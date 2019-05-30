@@ -23,6 +23,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 typedef struct {
     const char* testName;
+    unsigned int passedChecks;
+    unsigned int failedChecks;
+    unsigned int passedTestAsserts;
+    unsigned int failedTestAsserts;
+    unsigned int passedModuleAsserts;
+    unsigned int failedModuleAsserts;
+    unsigned int passedAsserts;
+    unsigned int failedAsserts;
 } nbp_test_details_t;
 
 typedef struct {
@@ -32,9 +40,19 @@ typedef struct {
 typedef void (*nbp_test_pfn_t)(nbp_test_details_t*);
 typedef void (*nbp_module_pfn_t)(nbp_module_details_t*);
 
+typedef void (*nbp_before_test_pfn_t)(void);
+typedef void (*nbp_after_test_pfn_t)(void);
+typedef void (*nbp_before_module_pfn_t)(void);
+typedef void (*nbp_after_module_pfn_t)(void);
+
 void nbp_call_test(nbp_test_pfn_t, const char*, nbp_module_details_t*);
 
 void nbp_call_module(nbp_module_pfn_t, const char*, nbp_module_details_t*);
+
+void nbp_set_before_test_pfn(nbp_before_test_pfn_t);
+void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
+void nbp_set_before_module_pfn(nbp_before_module_pfn_t);
+void nbp_set_after_module_pfn(nbp_after_module_pfn_t);
 
 /*
  * TODO: add docs
@@ -59,22 +77,22 @@ void nbp_call_module(nbp_module_pfn_t, const char*, nbp_module_details_t*);
 /*
  * TODO: add docs
  */
-#define NBP_CALL_BEFORE_TEST(func)
+#define NBP_CALL_BEFORE_TEST(func) nbp_set_before_test_pfn(func)
 
 /*
  * TODO: add docs
  */
-#define NBP_CALL_AFTER_TEST(func)
+#define NBP_CALL_AFTER_TEST(func) nbp_set_after_test_pfn(func)
 
 /*
  * TODO: add docs
  */
-#define NBP_CALL_BEFORE_MODULE(func)
+#define NBP_CALL_BEFORE_MODULE(func) nbp_set_before_module_pfn(func)
 
 /*
  * TODO: add docs
  */
-#define NBP_CALL_AFTER_MODULE(func)
+#define NBP_CALL_AFTER_MODULE(func) nbp_set_after_module_pfn(func)
 
 /*
  * TODO: add docs
@@ -106,6 +124,46 @@ void nbp_call_module(nbp_module_pfn_t, const char*, nbp_module_details_t*);
  * TODO: add docs
  */
 #define NBP_MAIN() int main(int argc, const char *argv[])
+
+/*
+ * TODO: add docs
+ */
+#define NBP_RUN() return 0;
+
+nbp_before_test_pfn_t   nbpBeforeTestPfn   = (nbp_before_test_pfn_t)   0x0;
+nbp_after_test_pfn_t    nbpAfterTestPfn    = (nbp_after_test_pfn_t)    0x0;
+nbp_before_module_pfn_t nbpBeforeModulePfn = (nbp_before_module_pfn_t) 0x0;
+nbp_after_module_pfn_t  nbpAfterModulePfn  = (nbp_after_module_pfn_t)  0x0;
+
+void nbp_set_before_test_pfn(nbp_before_test_pfn_t func)
+{
+    nbpBeforeTestPfn = func;
+}
+
+void nbp_set_after_test_pfn(nbp_after_test_pfn_t func)
+{
+    nbpAfterTestPfn = func;
+}
+
+void nbp_set_before_module_pfn(nbp_before_module_pfn_t func)
+{
+    nbpBeforeModulePfn = func;
+}
+
+void nbp_set_after_module_pfn(nbp_after_module_pfn_t func)
+{
+    nbpAfterModulePfn = func;
+}
+
+void nbp_call_test(nbp_test_pfn_t, const char*, nbp_module_details_t*)
+{
+    return;
+}
+
+void nbp_call_module(nbp_module_pfn_t, const char*, nbp_module_details_t*)
+{
+    return;
+}
 
 #endif // end if NBP_LIBRARY_MAIN
 
