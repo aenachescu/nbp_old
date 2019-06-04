@@ -18,8 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "basic_sample.h"
 
-#include <stdio.h>
-
 int my_add(int a, int b)
 {
     return a + b;
