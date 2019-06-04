@@ -72,7 +72,9 @@ void nbp_set_after_module_pfn(nbp_after_module_pfn_t);
 /*
  * TODO: add docs
  */
-#define NBP_CALL_MODULE(name) nbp_call_module(name, ##name, moduleDetails)
+#define NBP_CALL_MODULE(name)                                                  \
+    NBP_MODULE(name);                                                          \
+    nbp_call_module(name, ##name, moduleDetails)
 
 /*
  * TODO: add docs
