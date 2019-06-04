@@ -16,8 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define NBP_LIBRARY_MAIN
-
 #ifndef NBP_LIBRARY_H
 #define NBP_LIBRARY_H
 
