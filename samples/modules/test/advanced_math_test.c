@@ -38,7 +38,7 @@ NBP_TEST(test_my_div)
     NBP_CHECK(my_div(5, 5) == 1);
 }
 
-NBP_MODULE(basic_math)
+NBP_MODULE(advanced_math)
 {
     NBP_CALL_TEST(test_my_mul);
     NBP_CALL_TEST(test_my_div);
