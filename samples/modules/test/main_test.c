@@ -19,11 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_LIBRARY_MAIN
 #include <nbp.h>
 
-NBP_MAIN()
+NBP_MAIN_MODULE(modules_sample)
 {
     NBP_CALL_MODULE(basic_math);
     NBP_CALL_MODULE(advanced_math);
-
-    NBP_RUN();
 }
 
