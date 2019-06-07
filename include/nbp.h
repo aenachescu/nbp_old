@@ -57,6 +57,7 @@ struct nbp_module_details_t {
     nbp_teardown_module_pfn_t teardown;
     struct nbp_test_details_t* firstTest;
     struct nbp_test_details_t* lastTest;
+    struct nbp_module_details_t* parent;
     struct nbp_module_details_t* firstSubmodule;
     struct nbp_module_details_t* lastSubmodule;
     struct nbp_module_details_t* next;
@@ -139,6 +140,7 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
         .teardown       = 0x0,                                                 \
         .firstTest      = 0x0,                                                 \
         .lastTest       = 0x0,                                                 \
+        .parent         = 0x0,                                                 \
         .firstSubmodule = 0x0,                                                 \
         .lastSubmodule  = 0x0,                                                 \
         .next           = 0x0,                                                 \
@@ -158,6 +160,7 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
         .teardown       = teardownFunc,                                        \
         .firstTest      = 0x0,                                                 \
         .lastTest       = 0x0,                                                 \
+        .parent         = 0x0,                                                 \
         .firstSubmodule = 0x0,                                                 \
         .lastSubmodule  = 0x0,                                                 \
         .next           = 0x0,                                                 \
@@ -249,12 +252,32 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t func)
 
 void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module)
 {
-    return;
+    test->module = module;
+    if (module->firstTest == 0x0) {
+        module->firstTest = test;
+        module->lastTest = test;
+    } else {
+        test->prev = module->lastTest;
+        module->lastTest->next = test;
+        module->lastTest = test;
+    }
 }
 
 void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 {
-    return;
+    module->parent = parent;
+    if (parent != 0x0) {
+        if (parent->firstSubmodule == 0x0) {
+            parent->firstSubmodule = module;
+            parent->lastSubmodule = module;
+        } else {
+            module->prev = parent->lastSubmodule;
+            parent->lastSubmodule->next = module;
+            parent->lastSubmodule = module;
+        }
+    }
+
+    module->moduleFunc(module);
 }
 
 #endif // end if NBP_LIBRARY_MAIN
