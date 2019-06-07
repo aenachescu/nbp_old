@@ -143,7 +143,7 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
         .lastSubmodule  = 0x0,                                                 \
         .next           = 0x0,                                                 \
         .prev           = 0x0,                                                 \
-    }                                                                          \
+    };                                                                         \
     void name(nbp_module_details_t* moduleDetails)
 
 /*
@@ -162,7 +162,7 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
         .lastSubmodule  = 0x0,                                                 \
         .next           = 0x0,                                                 \
         .prev           = 0x0,                                                 \
-    }                                                                          \
+    };                                                                         \
     void name(nbp_module_details_t* moduleDetails)
 
 /*
@@ -211,17 +211,28 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
 /*
  * TODO: add docs
  */
-#define NBP_MAIN()                                                             \
-    nbp_module_details_t nbpGlobalModule = {                                   \
-        .moduleName = "main"                                                   \
-    };                                                                         \
-    nbp_module_details_t* moduleDetails = &nbpGlobalModule;                    \
-    int main(int argc, const char *argv[])
+#define NBP_MAIN_MODULE(name)                                                  \
+    void name(nbp_module_details_t* moduleDetails);                            \
+    int main(int argc, const char** argv)                                      \
+    {                                                                          \
+        extern nbp_module_details_t nbpModuleDetails ## name;                  \
+        nbp_call_module(& nbpModuleDetails ## name, 0x0);                      \
+        return 0;                                                              \
+    }                                                                          \
+    NBP_MODULE(name)
 
 /*
  * TODO: add docs
  */
-#define NBP_RUN() return 0;
+#define NBP_MAIN_MODULE_METHODS(name, setupFunc, teardownFunc)                 \
+    void name(nbp_module_details_t* moduleDetails);                            \
+    int main(int argc, const char** argv)                                      \
+    {                                                                          \
+        extern nbp_module_details_t nbpModuleDetails ## name;                  \
+        nbp_call_module(& nbpModuleDetails ## name, 0x0);                      \
+        return 0;                                                              \
+    }                                                                          \
+    NBP_MODULE_METHODS(name, setupFunc, teardownFunc)
 
 nbp_before_test_pfn_t nbpBeforeTestPfn = (nbp_before_test_pfn_t) 0x0;
 nbp_after_test_pfn_t  nbpAfterTestPfn  = (nbp_after_test_pfn_t)  0x0;
