@@ -22,14 +22,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 struct nbp_test_details_t;
 struct nbp_module_details_t;
 
-typedef void (*nbp_test_pfn_t)(struct nbp_test_details_t*);
-typedef void (*nbp_module_pfn_t)(struct nbp_module_details_t*);
+typedef void (*nbp_before_test_pfn_t)(
+    void
+);
+typedef void (*nbp_after_test_pfn_t)(
+    void
+);
 
-typedef void (*nbp_before_test_pfn_t)(void);
-typedef void (*nbp_after_test_pfn_t)(void);
+typedef void(*nbp_setup_module_pfn_t)(
+    void
+);
+typedef void(*nbp_teardown_module_pfn_t)(
+    void
+);
 
-typedef void(*nbp_setup_module_pfn_t)(void);
-typedef void(*nbp_teardown_module_pfn_t)(void);
+typedef void (*nbp_test_pfn_t)(
+    struct nbp_test_details_t*
+);
+
+typedef void (*nbp_module_pfn_t)(
+    struct nbp_module_details_t*,
+    nbp_before_test_pfn_t,
+    nbp_after_test_pfn_t
+);
 
 struct nbp_test_details_t {
     const char* testName;
@@ -65,12 +80,17 @@ struct nbp_module_details_t {
 };
 typedef struct nbp_module_details_t nbp_module_details_t;
 
-void nbp_call_test(nbp_test_details_t*, nbp_module_details_t*);
+void nbp_call_test(
+    nbp_test_details_t*,
+    nbp_module_details_t*,
+    nbp_before_test_pfn_t,
+    nbp_after_test_pfn_t
+);
 
-void nbp_call_module(nbp_module_details_t*, nbp_module_details_t*);
-
-void nbp_set_before_test_pfn(nbp_before_test_pfn_t);
-void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
+void nbp_call_module(
+    nbp_module_details_t*,
+    nbp_module_details_t*
+);
 
 /*
  * TODO: add docs
@@ -101,7 +121,9 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
  * TODO: add docs
  */
 #define NBP_TEST(name)                                                         \
-    void name(nbp_test_details_t* testDetails);                                \
+    void name(                                                                 \
+        nbp_test_details_t*                                                    \
+    );                                                                         \
     nbp_test_details_t nbpTestDetails ## name = {                              \
         .testName               = #name,                                       \
         .testFunc               = name,                                        \
@@ -119,20 +141,31 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
         .next                   = 0x0,                                         \
         .prev                   = 0x0                                          \
     };                                                                         \
-    void name(nbp_test_details_t* testDetails)
+    void name(                                                                 \
+        nbp_test_details_t* testDetails                                        \
+    )
 
 /*
  * TODO: add docs
  */
 #define NBP_CALL_TEST(name)                                                    \
     extern nbp_test_details_t nbpTestDetails ## name;                          \
-    nbp_call_test(& nbpTestDetails ## name, moduleDetails)
+    nbp_call_test(                                                             \
+        & nbpTestDetails ## name,                                              \
+        moduleDetails,                                                         \
+        beforeTest,                                                            \
+        afterTest                                                              \
+    )
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE(name)                                                       \
-    void name(nbp_module_details_t* moduleDetails);                            \
+    void name(                                                                 \
+        nbp_module_details_t*,                                                 \
+        nbp_before_test_pfn_t,                                                 \
+        nbp_after_test_pfn_t                                                   \
+    );                                                                         \
     nbp_module_details_t nbpModuleDetails ## name = {                          \
         .moduleName     = #name,                                               \
         .moduleFunc     = name,                                                \
@@ -146,13 +179,21 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
         .next           = 0x0,                                                 \
         .prev           = 0x0,                                                 \
     };                                                                         \
-    void name(nbp_module_details_t* moduleDetails)
+    void name(                                                                 \
+        nbp_module_details_t* moduleDetails,                                   \
+        nbp_before_test_pfn_t beforeTest,                                      \
+        nbp_after_test_pfn_t afterTest                                         \
+    )
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_METHODS(name, setupFunc, teardownFunc)                      \
-    void name(nbp_module_details_t* moduleDetails);                            \
+    void name(                                                                 \
+        nbp_module_details_t*,                                                 \
+        nbp_before_test_pfn_t,                                                 \
+        nbp_after_test_pfn_t                                                   \
+    );                                                                         \
     nbp_module_details_t nbpModuleDetails ## name = {                          \
         .moduleName     = #name,                                               \
         .moduleFunc     = name,                                                \
@@ -166,25 +207,33 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
         .next           = 0x0,                                                 \
         .prev           = 0x0,                                                 \
     };                                                                         \
-    void name(nbp_module_details_t* moduleDetails)
+    void name(                                                                 \
+        nbp_module_details_t* moduleDetails,                                   \
+        nbp_before_test_pfn_t beforeTest,                                      \
+        nbp_after_test_pfn_t afterTest                                         \
+    )
 
 /*
  * TODO: add docs
  */
 #define NBP_CALL_MODULE(name)                                                  \
     extern nbp_module_details_t nbpModuleDetails ## name;                      \
-    nbp_call_module(& nbpModuleDetails ## name, moduleDetails)
+    nbp_call_module(                                                           \
+        & nbpModuleDetails ## name,                                            \
+        moduleDetails                                                          \
+    )
 
 /*
  * TODO: add docs
  */
-#define NBP_CALL_BEFORE_TEST(func) nbp_set_before_test_pfn(func)
+#define NBP_CALL_BEFORE_TEST(func)                                             \
+    beforeTest = func
 
 /*
  * TODO: add docs
  */
-#define NBP_CALL_AFTER_TEST(func) nbp_set_after_test_pfn(func)
-
+#define NBP_CALL_AFTER_TEST(func)                                              \
+    afterTest = func
 /*
  * TODO: add docs
  */
@@ -215,7 +264,11 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE(name)                                                  \
-    void name(nbp_module_details_t* moduleDetails);                            \
+    void name(                                                                 \
+        nbp_module_details_t*,                                                 \
+        nbp_before_test_pfn_t,                                                 \
+        nbp_after_test_pfn_t                                                   \
+    );                                                                         \
     int main(int argc, const char** argv)                                      \
     {                                                                          \
         extern nbp_module_details_t nbpModuleDetails ## name;                  \
@@ -228,7 +281,11 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE_METHODS(name, setupFunc, teardownFunc)                 \
-    void name(nbp_module_details_t* moduleDetails);                            \
+    void name(                                                                 \
+        nbp_module_details_t*,                                                 \
+        nbp_before_test_pfn_t,                                                 \
+        nbp_after_test_pfn_t                                                   \
+    );                                                                         \
     int main(int argc, const char** argv)                                      \
     {                                                                          \
         extern nbp_module_details_t nbpModuleDetails ## name;                  \
@@ -237,22 +294,12 @@ void nbp_set_after_test_pfn(nbp_after_test_pfn_t);
     }                                                                          \
     NBP_MODULE_METHODS(name, setupFunc, teardownFunc)
 
-nbp_before_test_pfn_t nbpBeforeTestPfn = (nbp_before_test_pfn_t) 0x0;
-nbp_after_test_pfn_t  nbpAfterTestPfn  = (nbp_after_test_pfn_t)  0x0;
-
-void nbp_set_before_test_pfn(nbp_before_test_pfn_t func)
-{
-    nbpBeforeTestPfn = func;
-}
-
-void nbp_set_after_test_pfn(nbp_after_test_pfn_t func)
-{
-    nbpAfterTestPfn = func;
-}
-
-void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module)
+void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
+    nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
 {
     test->module = module;
+    test->beforeTestFunc = beforeTest;
+    test->afterTestFunc = afterTest;
     if (module->firstTest == 0x0) {
         module->firstTest = test;
         module->lastTest = test;
@@ -277,7 +324,7 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
         }
     }
 
-    module->moduleFunc(module);
+    module->moduleFunc(module, 0x0, 0x0);
 }
 
 #endif // end if NBP_LIBRARY_MAIN
