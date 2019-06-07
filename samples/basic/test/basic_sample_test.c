@@ -57,7 +57,7 @@ NBP_TEST(test_my_div)
     NBP_CHECK(my_div(5, 5) == 1);
 }
 
-NBP_MAIN_MODULE(basic)
+NBP_MAIN_MODULE(basic_sample)
 {
     NBP_CALL_TEST(test_my_add);
     NBP_CALL_TEST(test_my_sub);
