@@ -18,28 +18,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <nbp.h>
 
-#include "advanced_math.h"
-
-NBP_TEST(test_my_mul)
+NBP_TEST(test_my_add)
 {
-    NBP_CHECK(my_mul(1, 1) == 1);
-    NBP_CHECK(my_mul(2, 2) == 4);
-    NBP_CHECK(my_mul(3, 3) == 9);
-    NBP_CHECK(my_mul(4, 4) == 16);
-    NBP_CHECK(my_mul(5, 5) == 25);
+    NBP_CHECK(1 + 1 == 2);
+    NBP_CHECK(2 + 2 == 4);
+    NBP_CHECK(3 + 3 == 6);
+    NBP_CHECK(4 + 4 == 8);
+    NBP_CHECK(5 + 5 == 10);
 }
 
-NBP_TEST(test_my_div)
+NBP_TEST(test_my_sub)
 {
-    NBP_CHECK(my_div(1, 1) == 1);
-    NBP_CHECK(my_div(2, 2) == 1);
-    NBP_CHECK(my_div(3, 3) == 1);
-    NBP_CHECK(my_div(4, 4) == 1);
-    NBP_CHECK(my_div(5, 5) == 1);
+    NBP_CHECK(1 - 1 == 0);
+    NBP_CHECK(2 - 2 == 0);
+    NBP_CHECK(3 - 3 == 0);
+    NBP_CHECK(4 - 4 == 0);
+    NBP_CHECK(5 - 5 == 0);
 }
 
-NBP_MODULE(advanced_math)
+NBP_MODULE(basic_math)
 {
-    NBP_CALL_TEST(test_my_mul);
-    NBP_CALL_TEST(test_my_div);
+    NBP_CALL_TEST(test_my_add);
+    NBP_CALL_TEST(test_my_sub);
 }
