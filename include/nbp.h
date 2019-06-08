@@ -80,6 +80,18 @@ struct nbp_module_details_t {
 };
 typedef struct nbp_module_details_t nbp_module_details_t;
 
+typedef void (*nbp_scheduler_init_pfn_t)(void);
+typedef void (*nbp_scheduler_uninit_pfn_t)(void);
+typedef void (*nbp_scheduler_run_pfn_t)(void);
+typedef void (*nbp_scheduler_add_test_pfn_t)(nbp_test_details_t*);
+struct nbp_scheduler_interface_t {
+    nbp_scheduler_init_pfn_t init;
+    nbp_scheduler_uninit_pfn_t uninit;
+    nbp_scheduler_run_pfn_t run;
+    nbp_scheduler_add_test_pfn_t addTest;
+};
+typedef struct nbp_scheduler_interface_t nbp_scheduler_interface_t;
+
 void nbp_call_test(
     nbp_test_details_t*,
     nbp_module_details_t*,
@@ -263,6 +275,58 @@ void nbp_call_module(
 /*
  * TODO: add docs
  */
+#ifdef NBP_CUSTOM_SCHEDULER
+
+#error "Not supported"
+
+#else // if custom scheduler is not enabled
+
+#ifdef NBP_FIFO_MT_SCHEDULER
+
+#error "Not supported"
+
+#else
+
+void nbp_basic_scheduler_init(void)
+{
+    return;
+}
+
+void nbp_basic_scheduler_uninit(void)
+{
+    return;
+}
+
+void nbp_basic_scheduler_run(void)
+{
+    return;
+}
+
+void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
+{
+    if (test->beforeTestFunc) {
+        test->beforeTestFunc();
+    }
+
+    test->testFunc(test);
+
+    if (test->afterTestFunc) {
+        test->afterTestFunc();
+    }
+}
+
+nbp_scheduler_interface_t nbpScheduler = {
+    .init = nbp_basic_scheduler_init,
+    .uninit = nbp_basic_scheduler_uninit,
+    .run = nbp_basic_scheduler_run,
+    .addTest = nbp_basic_scheduler_add_test
+};
+
+#endif
+
+/*
+ * TODO: add docs
+ */
 #define NBP_MAIN_MODULE(name)                                                  \
     void name(                                                                 \
         nbp_module_details_t*,                                                 \
@@ -271,8 +335,11 @@ void nbp_call_module(
     );                                                                         \
     int main(int argc, const char** argv)                                      \
     {                                                                          \
+        nbpScheduler.init();                                                   \
         extern nbp_module_details_t nbpModuleDetails ## name;                  \
         nbp_call_module(& nbpModuleDetails ## name, 0x0);                      \
+        nbpScheduler.run();                                                    \
+        nbpScheduler.uninit();                                                 \
         return 0;                                                              \
     }                                                                          \
     NBP_MODULE(name)
@@ -288,11 +355,16 @@ void nbp_call_module(
     );                                                                         \
     int main(int argc, const char** argv)                                      \
     {                                                                          \
+        nbpScheduler.init();                                                   \
         extern nbp_module_details_t nbpModuleDetails ## name;                  \
         nbp_call_module(& nbpModuleDetails ## name, 0x0);                      \
+        nbpScheduler.run();                                                    \
+        nbpScheduler.uninit();                                                 \
         return 0;                                                              \
     }                                                                          \
     NBP_MODULE_METHODS(name, setupFunc, teardownFunc)
+
+#endif // end if NBP_CUSTOM_SCHEDULER
 
 void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
@@ -308,6 +380,8 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
         module->lastTest->next = test;
         module->lastTest = test;
     }
+
+    nbpScheduler.addTest(test);
 }
 
 void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
