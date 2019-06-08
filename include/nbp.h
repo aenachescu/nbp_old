@@ -19,6 +19,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_LIBRARY_H
 #define NBP_LIBRARY_H
 
+/******************************************************************************
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                           Structures definition                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ ******************************************************************************/
+
 struct nbp_test_details_t;
 struct nbp_module_details_t;
 
@@ -92,6 +106,24 @@ struct nbp_scheduler_interface_t {
 };
 typedef struct nbp_scheduler_interface_t nbp_scheduler_interface_t;
 
+typedef void (*nbp_printer_init_pfn_t)(void);
+typedef void (*nbp_printer_uninit_pfn_t)(void);
+typedef void (*nbp_printer_test_begin_pfn_t)(nbp_test_details_t*);
+typedef void (*nbp_printer_test_end_pfn_t)(nbp_test_details_t*);
+typedef void (*nbp_printer_module_begin_pfn_t)(nbp_module_details_t*);
+typedef void (*nbp_printer_module_end_pfn_t)(nbp_module_details_t*);
+typedef void (*nbp_printer_check_result_pfn_t)(nbp_test_details_t*);
+struct nbp_printer_interface_t {
+    nbp_printer_init_pfn_t init;
+    nbp_printer_uninit_pfn_t uninit;
+    nbp_printer_test_begin_pfn_t testBegin;
+    nbp_printer_test_end_pfn_t testEnd;
+    nbp_printer_module_begin_pfn_t moduleBegin;
+    nbp_printer_module_end_pfn_t moduleEnd;
+    nbp_printer_check_result_pfn_t checkResult;
+};
+typedef struct nbp_printer_interface_t nbp_printer_interface_t;
+
 void nbp_call_test(
     nbp_test_details_t*,
     nbp_module_details_t*,
@@ -103,6 +135,20 @@ void nbp_call_module(
     nbp_module_details_t*,
     nbp_module_details_t*
 );
+
+/******************************************************************************
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                 Public API                                 *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ ******************************************************************************/
 
 /*
  * TODO: add docs
@@ -251,6 +297,20 @@ void nbp_call_module(
  */
 #ifdef NBP_LIBRARY_MAIN
 
+/******************************************************************************
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                              Memory allocator                              *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ ******************************************************************************/
+
 /*
  * TODO: add docs
  */
@@ -272,6 +332,20 @@ void nbp_call_module(
 
 #endif // end if NBP_CUSTOM_MEMORY_ALLOCATOR
 
+/******************************************************************************
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                 Scheduler                                  *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ ******************************************************************************/
+
 /*
  * TODO: add docs
  */
@@ -279,14 +353,14 @@ void nbp_call_module(
 
 #error "Not supported"
 
-#elif defined NBP_FIFO_MT_SCHEDULER
+#elif defined NBP_FIFO_MT_SCHEDULER // NBP_CUSTOM_SCHEDULER not defined
 /*
  * TODO: add docs
  */
 
 #error "Not supported"
 
-#else
+#else // NBP_FIFO_MT_SCHEDULER not defined
 /*
  * TODO: add docs
  */
@@ -328,6 +402,73 @@ nbp_scheduler_interface_t nbpScheduler = {
 
 #endif // end if NBP_CUSTOM_SCHEDULER
 
+/******************************************************************************
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                  Printer                                   *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ ******************************************************************************/
+
+/*
+ * TODO: add docs
+ */
+#ifdef NBP_CUSTOM_PRINTER
+
+#error "Not supported"
+
+#else // NBP_CUSTOM_PRINTER not defined
+
+#ifndef NBP_CUSTOM_SCHEDULER
+/*
+ * Enable multi thread printer if custom printer is not defined and multi
+ * thread scheduler is used.
+ */
+#ifdef NBP_FIFO_MT_SCHEDULER
+#define NBP_MT_PRINTER
+#else // NBP_FIFO_MT_SCHEDULER not defined
+/*
+ * Enable single thread printer if custom printer is not defined and single
+ * thread scheduler is used.
+ */
+#define NBP_PRINTER
+#endif // end if NBP_FIFO_MT_SCHEDULER
+#endif // end if NBP_CUSTOM_SCHEDULER
+#endif // end if NBP_CUSTOM_PRINTER
+
+/*
+ * TODO: add docs
+ */
+#ifdef NBP_MT_PRINTER
+#error "Not supported"
+#endif // end if NBP_MT_PRINTER
+
+/*
+ * TODO: add docs
+ */
+#ifdef NBP_PRINTER
+#endif // end if NBP_PRINTER
+
+/******************************************************************************
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                Main module                                 *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ ******************************************************************************/
+
 #define NBP_MAIN_MODULE_BASE(name, scheduler, setupFunc, teardownFunc)         \
     void name(                                                                 \
         nbp_module_details_t*,                                                 \
@@ -350,6 +491,7 @@ nbp_scheduler_interface_t nbpScheduler = {
         return 0;                                                              \
     }                                                                          \
     NBP_MODULE_METHODS(name, setupFunc, teardownFunc)
+
 /*
  * TODO: add docs
  */
@@ -361,6 +503,20 @@ nbp_scheduler_interface_t nbpScheduler = {
  */
 #define NBP_MAIN_MODULE_METHODS(name, setupFunc, teardownFunc)                 \
     NBP_MAIN_MODULE_BASE(name, nbpScheduler, setupFunc, teardownFunc)
+
+/******************************************************************************
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                     Internal functions implementation                      *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ *                                                                            *
+ ******************************************************************************/
 
 void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
