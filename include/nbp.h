@@ -279,13 +279,17 @@ void nbp_call_module(
 
 #error "Not supported"
 
-#else // if custom scheduler is not enabled
-
-#ifdef NBP_FIFO_MT_SCHEDULER
+#elif defined NBP_FIFO_MT_SCHEDULER
+/*
+ * TODO: add docs
+ */
 
 #error "Not supported"
 
 #else
+/*
+ * TODO: add docs
+ */
 
 void nbp_basic_scheduler_init(void)
 {
@@ -322,49 +326,41 @@ nbp_scheduler_interface_t nbpScheduler = {
     .addTest = nbp_basic_scheduler_add_test
 };
 
-#endif
+#endif // end if NBP_CUSTOM_SCHEDULER
 
-/*
- * TODO: add docs
- */
-#define NBP_MAIN_MODULE(name)                                                  \
+#define NBP_MAIN_MODULE_BASE(name, scheduler, setupFunc, teardownFunc)         \
     void name(                                                                 \
         nbp_module_details_t*,                                                 \
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
+    nbp_scheduler_interface_t* nbpSchedulerPtr = 0x0;                          \
     int main(int argc, const char** argv)                                      \
     {                                                                          \
-        nbpScheduler.init();                                                   \
+        nbpSchedulerPtr = &scheduler;                                          \
+        if (scheduler.init == 0x0 || scheduler.uninit == 0x0 ||                \
+            scheduler.run == 0x0 || scheduler.addTest == 0x0) {                \
+                return -1;                                                     \
+        }                                                                      \
+        nbpSchedulerPtr->init();                                               \
         extern nbp_module_details_t nbpModuleDetails ## name;                  \
         nbp_call_module(& nbpModuleDetails ## name, 0x0);                      \
-        nbpScheduler.run();                                                    \
-        nbpScheduler.uninit();                                                 \
+        nbpSchedulerPtr->run();                                                \
+        nbpSchedulerPtr->uninit();                                             \
         return 0;                                                              \
     }                                                                          \
-    NBP_MODULE(name)
+    NBP_MODULE_METHODS(name, setupFunc, teardownFunc)
+/*
+ * TODO: add docs
+ */
+#define NBP_MAIN_MODULE(name)                                                  \
+    NBP_MAIN_MODULE_BASE(name, nbpScheduler, 0x0, 0x0)
 
 /*
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE_METHODS(name, setupFunc, teardownFunc)                 \
-    void name(                                                                 \
-        nbp_module_details_t*,                                                 \
-        nbp_before_test_pfn_t,                                                 \
-        nbp_after_test_pfn_t                                                   \
-    );                                                                         \
-    int main(int argc, const char** argv)                                      \
-    {                                                                          \
-        nbpScheduler.init();                                                   \
-        extern nbp_module_details_t nbpModuleDetails ## name;                  \
-        nbp_call_module(& nbpModuleDetails ## name, 0x0);                      \
-        nbpScheduler.run();                                                    \
-        nbpScheduler.uninit();                                                 \
-        return 0;                                                              \
-    }                                                                          \
-    NBP_MODULE_METHODS(name, setupFunc, teardownFunc)
-
-#endif // end if NBP_CUSTOM_SCHEDULER
+    NBP_MAIN_MODULE_BASE(name, nbpScheduler, setupFunc, teardownFunc)
 
 void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
@@ -381,7 +377,8 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
         module->lastTest = test;
     }
 
-    nbpScheduler.addTest(test);
+    extern nbp_scheduler_interface_t* nbpSchedulerPtr;
+    nbpSchedulerPtr->addTest(test);
 }
 
 void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
