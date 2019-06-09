@@ -19,6 +19,41 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_LIBRARY_H
 #define NBP_LIBRARY_H
 
+/*
+ * Make sure there is only one defined scheduler
+ */
+#undef NBP_PRIVATE_SCHEDULER_TYPE
+
+#ifdef NBP_CUSTOM_SCHEDULER
+#define NBP_PRIVATE_SCHEDULER_TYPE
+#endif // end if NBP_CUSTOM_SCHEDULER
+
+#ifdef NBP_FIFO_MT_SCHEDULER
+#ifdef NBP_PRIVATE_SCHEDULER_TYPE
+#error "Cannot enabe NBP_FIFO_MT_SCHEDULER because another scheduler is enabled"
+#else // NBP_PRIVATE_SCHEDULER_TYPE not defined
+#define NBP_PRIVATE_SCHEDULER_TYPE
+#define NBP_MT_SUPPORT
+#endif // end if NBP_PRIVATE_SCHEDULER_TYPE
+#endif // end if NBP_FIFO_MT_SCHEDULER
+
+#ifdef NBP_SCHEDULER
+#ifdef NBP_PRIVATE_SCHEDULER_TYPE
+#error "Cannot enabe NBP_SCHEDULER because another scheduler is enabled"
+#else // NBP_PRIVATE_SCHEDULER_TYPE not defined
+#define NBP_PRIVATE_SCHEDULER_TYPE
+#endif // end if NBP_PRIVATE_SCHEDULER_TYPE
+#endif // end if NBP_SCHEDULER
+
+/*
+ * If no scheduler is defined then define the default scheduler
+ */
+#ifndef NBP_PRIVATE_SCHEDULER_TYPE
+#define NBP_SCHEDULER
+#endif // end if NBP_PRIVATE_SCHEDULER_TYPE
+
+#undef NBP_PRIVATE_SCHEDULER_TYPE
+
 /******************************************************************************
  *                                                                            *
  *                                                                            *
@@ -361,11 +396,11 @@ void nbp_call_module(
 
 #ifndef NBP_ALLOC
 #error "Custom memory allocator is enabled but no alloc function is provided"
-#endif
+#endif // end if NBP_ALLOC
 
 #ifndef NBP_FREE
 #error "Custom memory allocator is enabled but no free function is provided"
-#endif
+#endif // end if NBP_FREE
 
 #endif // end if NBP_CUSTOM_MEMORY_ALLOCATOR
 
@@ -387,20 +422,20 @@ void nbp_call_module(
  * TODO: add docs
  */
 #ifdef NBP_CUSTOM_SCHEDULER
-
 #error "Not supported"
+#endif // end if NBP_CUSTOM_SCHEDULER
 
-#elif defined NBP_FIFO_MT_SCHEDULER // NBP_CUSTOM_SCHEDULER not defined
 /*
  * TODO: add docs
  */
-
+#ifdef NBP_FIFO_MT_SCHEDULER
 #error "Not supported"
+#endif // end if NBP_FIFO_MT_SCHEDULER
 
-#else // NBP_FIFO_MT_SCHEDULER not defined
 /*
  * TODO: add docs
  */
+#ifdef NBP_SCHEDULER
 
 void nbp_basic_scheduler_init(void)
 {
@@ -455,7 +490,7 @@ nbp_scheduler_interface_t nbpScheduler = {
     .addTest = nbp_basic_scheduler_add_test
 };
 
-#endif // end if NBP_CUSTOM_SCHEDULER
+#endif // end if NBP_SCHEDULER
 
 /******************************************************************************
  *                                                                            *
@@ -480,34 +515,50 @@ nbp_scheduler_interface_t nbpScheduler = {
 
 #else // NBP_CUSTOM_PRINTER not defined
 
-#ifndef NBP_CUSTOM_SCHEDULER
 /*
- * Enable multi thread printer if custom printer is not defined and multi
- * thread scheduler is used.
+ * If no printer is defined then enable NBP_MT_PRINTER when NPB_MT_SUPPORT
+ * is enabled or enable NBP_PRINTER when NBP_MT_SUPPORT is disabled
  */
-#ifdef NBP_FIFO_MT_SCHEDULER
+#if !defined NBP_MT_PRINTER && !defined NBP_PRINTER
+#ifdef NBP_MT_SUPPORT
 #define NBP_MT_PRINTER
-#else // NBP_FIFO_MT_SCHEDULER not defined
-/*
- * Enable single thread printer if custom printer is not defined and single
- * thread scheduler is used.
- */
+#else // NBP_MT_SUPPORT not defined
 #define NBP_PRINTER
-#endif // end if NBP_FIFO_MT_SCHEDULER
-#endif // end if NBP_CUSTOM_SCHEDULER
+#endif // end if NBP_MT_SUPPORT
+#endif // end if ! NBP_MT_PRINTER && ! NBP_PRINTER
+
 #endif // end if NBP_CUSTOM_PRINTER
 
 /*
  * TODO: add docs
  */
 #ifdef NBP_MT_PRINTER
+
+/*
+ * Check if NBP_MT_SUPPORT is enabled because NBP_MT_PRINTER can be enabled
+ * by integrator and NBP_MT_PRINTER is multi thread.
+ */
+#ifndef NBP_MT_SUPPORT
+#error "Cannot enable NBP_MT_PRINTER if NBP_MT_SUPPORT is not enabled"
+#endif // end if NBP_MT_SUPPORT
+
 #error "Not supported"
+
 #endif // end if NBP_MT_PRINTER
 
 /*
  * TODO: add docs
  */
 #ifdef NBP_PRINTER
+
+/*
+ * Check if NBP_MT_SUPPORT is not enabled because NBP_PRINTER can be enabled
+ * by integrator and NBP_PRINTER is single thread.
+ */
+#ifdef NBP_MT_SUPPORT
+#error "Cannot enable NBP_PRINTER if NBP_MT_SUPPORT is enabled"
+#endif // end if NBP_MT_SUPPORT
+
 #endif // end if NBP_PRINTER
 
 /******************************************************************************
