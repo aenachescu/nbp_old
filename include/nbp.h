@@ -33,6 +33,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *                                                                            *
  ******************************************************************************/
 
+#define NBP_TEST_STATE_NOT_INITIALIZED  0
+#define NBP_TEST_STATE_READY            1
+#define NBP_TEST_STATE_RUNNING          2
+#define NBP_TEST_STATE_COMPLETED        3
+#define NBP_TEST_STATE_SKIPPED          4
+
+#define NBP_MODULE_STATE_NOT_INITIALIZED  0
+#define NBP_MODULE_STATE_READY            1
+#define NBP_MODULE_STATE_RUNNING          2
+#define NBP_MODULE_STATE_COMPLETED        3
+#define NBP_MODULE_STATE_SKIPPED          4
+
 struct nbp_test_details_t;
 struct nbp_module_details_t;
 
@@ -74,6 +86,7 @@ struct nbp_test_details_t {
     unsigned int failedModuleAsserts;
     unsigned int passedAsserts;
     unsigned int failedAsserts;
+    unsigned int testState;
     struct nbp_test_details_t* next;
     struct nbp_test_details_t* prev;
 };
@@ -91,6 +104,9 @@ struct nbp_module_details_t {
     struct nbp_module_details_t* lastSubmodule;
     struct nbp_module_details_t* next;
     struct nbp_module_details_t* prev;
+    unsigned int numTests;
+    unsigned int numCompletedTests;
+    unsigned int moduleState;
 };
 typedef struct nbp_module_details_t nbp_module_details_t;
 
@@ -106,13 +122,27 @@ struct nbp_scheduler_interface_t {
 };
 typedef struct nbp_scheduler_interface_t nbp_scheduler_interface_t;
 
-typedef void (*nbp_printer_init_pfn_t)(void);
-typedef void (*nbp_printer_uninit_pfn_t)(void);
-typedef void (*nbp_printer_test_begin_pfn_t)(nbp_test_details_t*);
-typedef void (*nbp_printer_test_end_pfn_t)(nbp_test_details_t*);
-typedef void (*nbp_printer_module_begin_pfn_t)(nbp_module_details_t*);
-typedef void (*nbp_printer_module_end_pfn_t)(nbp_module_details_t*);
-typedef void (*nbp_printer_check_result_pfn_t)(nbp_test_details_t*);
+typedef void (*nbp_printer_init_pfn_t)(
+    void
+);
+typedef void (*nbp_printer_uninit_pfn_t)(
+    void
+);
+typedef void (*nbp_printer_test_begin_pfn_t)(
+    nbp_test_details_t*
+);
+typedef void (*nbp_printer_test_end_pfn_t)(
+    nbp_test_details_t*
+);
+typedef void (*nbp_printer_module_begin_pfn_t)(
+    nbp_module_details_t*
+);
+typedef void (*nbp_printer_module_end_pfn_t)(
+    nbp_module_details_t*
+);
+typedef void (*nbp_printer_check_result_pfn_t)(
+    nbp_test_details_t*
+);
 struct nbp_printer_interface_t {
     nbp_printer_init_pfn_t init;
     nbp_printer_uninit_pfn_t uninit;
@@ -196,6 +226,7 @@ void nbp_call_module(
         .failedModuleAsserts    = 0,                                           \
         .passedAsserts          = 0,                                           \
         .failedAsserts          = 0,                                           \
+        .testState              = NBP_TEST_STATE_NOT_INITIALIZED,              \
         .next                   = 0x0,                                         \
         .prev                   = 0x0                                          \
     };                                                                         \
@@ -225,17 +256,20 @@ void nbp_call_module(
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
     nbp_module_details_t nbpModuleDetails ## name = {                          \
-        .moduleName     = #name,                                               \
-        .moduleFunc     = name,                                                \
-        .setup          = 0x0,                                                 \
-        .teardown       = 0x0,                                                 \
-        .firstTest      = 0x0,                                                 \
-        .lastTest       = 0x0,                                                 \
-        .parent         = 0x0,                                                 \
-        .firstSubmodule = 0x0,                                                 \
-        .lastSubmodule  = 0x0,                                                 \
-        .next           = 0x0,                                                 \
-        .prev           = 0x0,                                                 \
+        .moduleName         = #name,                                           \
+        .moduleFunc         = name,                                            \
+        .setup              = 0x0,                                             \
+        .teardown           = 0x0,                                             \
+        .firstTest          = 0x0,                                             \
+        .lastTest           = 0x0,                                             \
+        .parent             = 0x0,                                             \
+        .firstSubmodule     = 0x0,                                             \
+        .lastSubmodule      = 0x0,                                             \
+        .next               = 0x0,                                             \
+        .prev               = 0x0,                                             \
+        .numTests           = 0,                                               \
+        .numCompletedTests  = 0,                                               \
+        .moduleState        = NBP_MODULE_STATE_NOT_INITIALIZED,                \
     };                                                                         \
     void name(                                                                 \
         nbp_module_details_t* moduleDetails,                                   \
@@ -253,17 +287,20 @@ void nbp_call_module(
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
     nbp_module_details_t nbpModuleDetails ## name = {                          \
-        .moduleName     = #name,                                               \
-        .moduleFunc     = name,                                                \
-        .setup          = setupFunc,                                           \
-        .teardown       = teardownFunc,                                        \
-        .firstTest      = 0x0,                                                 \
-        .lastTest       = 0x0,                                                 \
-        .parent         = 0x0,                                                 \
-        .firstSubmodule = 0x0,                                                 \
-        .lastSubmodule  = 0x0,                                                 \
-        .next           = 0x0,                                                 \
-        .prev           = 0x0,                                                 \
+        .moduleName         = #name,                                           \
+        .moduleFunc         = name,                                            \
+        .setup              = setupFunc,                                       \
+        .teardown           = teardownFunc,                                    \
+        .firstTest          = 0x0,                                             \
+        .lastTest           = 0x0,                                             \
+        .parent             = 0x0,                                             \
+        .firstSubmodule     = 0x0,                                             \
+        .lastSubmodule      = 0x0,                                             \
+        .next               = 0x0,                                             \
+        .prev               = 0x0,                                             \
+        .numTests           = 0,                                               \
+        .numCompletedTests  = 0,                                               \
+        .moduleState        = NBP_MODULE_STATE_NOT_INITIALIZED,                \
     };                                                                         \
     void name(                                                                 \
         nbp_module_details_t* moduleDetails,                                   \
@@ -382,6 +419,18 @@ void nbp_basic_scheduler_run(void)
 
 void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
 {
+    if (test->testState == NBP_TEST_STATE_SKIPPED) {
+        // todo: notify printer
+        return;
+    }
+
+    if (test->module->moduleState == NBP_MODULE_STATE_READY) {
+        test->module->moduleState = NBP_MODULE_STATE_RUNNING;
+        if (test->module->setup) {
+            test->module->setup();
+        }
+    }
+
     if (test->beforeTestFunc) {
         test->beforeTestFunc();
     }
@@ -390,6 +439,12 @@ void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
 
     if (test->afterTestFunc) {
         test->afterTestFunc();
+    }
+
+    test->module->numCompletedTests++;
+    if (test->module->numTests == test->module->numCompletedTests) {
+        // todo: notify printer
+        test->module->teardown;
     }
 }
 
@@ -469,7 +524,7 @@ nbp_scheduler_interface_t nbpScheduler = {
  *                                                                            *
  ******************************************************************************/
 
-#define NBP_MAIN_MODULE_BASE(name, scheduler, setupFunc, teardownFunc)         \
+#define NBP_PRIVATE_MAIN_MODULE(name, scheduler, setupFunc, teardownFunc)      \
     void name(                                                                 \
         nbp_module_details_t*,                                                 \
         nbp_before_test_pfn_t,                                                 \
@@ -496,13 +551,13 @@ nbp_scheduler_interface_t nbpScheduler = {
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE(name)                                                  \
-    NBP_MAIN_MODULE_BASE(name, nbpScheduler, 0x0, 0x0)
+    NBP_PRIVATE_MAIN_MODULE(name, nbpScheduler, 0x0, 0x0)
 
 /*
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE_METHODS(name, setupFunc, teardownFunc)                 \
-    NBP_MAIN_MODULE_BASE(name, nbpScheduler, setupFunc, teardownFunc)
+    NBP_PRIVATE_MAIN_MODULE(name, nbpScheduler, setupFunc, teardownFunc)
 
 /******************************************************************************
  *                                                                            *
@@ -521,9 +576,12 @@ nbp_scheduler_interface_t nbpScheduler = {
 void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
 {
+    test->testState = NBP_TEST_STATE_READY;
     test->module = module;
     test->beforeTestFunc = beforeTest;
     test->afterTestFunc = afterTest;
+    test->module->numTests++;
+
     if (module->firstTest == 0x0) {
         module->firstTest = test;
         module->lastTest = test;
@@ -533,13 +591,19 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
         module->lastTest = test;
     }
 
+    if (module->moduleState == NBP_MODULE_STATE_SKIPPED) {
+        test->testState = NBP_TEST_STATE_SKIPPED;
+    }
+
     extern nbp_scheduler_interface_t* nbpSchedulerPtr;
     nbpSchedulerPtr->addTest(test);
 }
 
 void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 {
+    module->moduleState = NBP_MODULE_STATE_READY;
     module->parent = parent;
+
     if (parent != 0x0) {
         if (parent->firstSubmodule == 0x0) {
             parent->firstSubmodule = module;
@@ -548,6 +612,10 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
             module->prev = parent->lastSubmodule;
             parent->lastSubmodule->next = module;
             parent->lastSubmodule = module;
+        }
+
+        if (parent->moduleState == NBP_MODULE_STATE_SKIPPED) {
+            module->moduleState = NBP_MODULE_STATE_SKIPPED;
         }
     }
 
