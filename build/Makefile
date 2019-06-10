@@ -22,10 +22,27 @@ modules_sample:
 clean_modules_sample:
 	rm -f modules_sample
 
+submodule_sample_files=\
+	../samples/submodules/main_test.c\
+	../samples/submodules/module1.c\
+	../samples/submodules/module2.c\
+	../samples/submodules/submodule1.c\
+	../samples/submodules/submodule2.c\
+	../samples/submodules/submodule3.c\
+	../samples/submodules/submodule4.c\
+
+submodules_sample:
+	$(CC) -o submodules_sample $(submodule_sample_files) $(lib_folder)
+
+clean_submodules_sample:
+	rm -f submodules_sample
+
 all:\
 	basic_sample\
-	modules_sample
+	modules_sample\
+	submodules_sample
 
 clean:\
 	clean_basic_sample\
-	clean_modules_sample
+	clean_modules_sample\
+	clean_submodules_sample
