@@ -364,6 +364,31 @@ void nbp_call_module(
  */
 #define NBP_CALL_AFTER_TEST(func)                                              \
     afterTest = func
+
+/*
+ * TODO: add docs
+ */
+#define NBP_BEFORE_TEST(name)                                                  \
+    void name(void)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_AFTER_TEST(name)                                                   \
+    void name(void)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SETUP_MODULE(name)                                                 \
+    void name(void)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEARDOWN_MODULE(name)                                              \
+    void name(void)
+
 /*
  * TODO: add docs
  */
