@@ -12,7 +12,7 @@ clean_basic_sample:
 	rm -f basic_sample
 
 modules_sample_files=\
-	../samples/modules/main_test.c\
+	../samples/modules/modules_sample_test.c\
 	../samples/modules/basic_math_test.c\
 	../samples/modules/advanced_math_test.c
 
@@ -23,7 +23,7 @@ clean_modules_sample:
 	rm -f modules_sample
 
 submodules_sample_files=\
-	../samples/submodules/main_test.c\
+	../samples/submodules/submodules_sample_test.c\
 	../samples/submodules/module1.c\
 	../samples/submodules/module2.c\
 	../samples/submodules/submodule1.c\
@@ -38,7 +38,7 @@ clean_submodules_sample:
 	rm -f submodules_sample
 
 modules_one_file_sample_files=\
-	../samples/modules_one_file/main_test.c
+	../samples/modules_one_file/modules_one_file_sample_test.c
 
 modules_one_file_sample:
 	$(CC) -o modules_one_file_sample $(modules_one_file_sample_files) \
