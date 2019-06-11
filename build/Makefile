@@ -47,14 +47,26 @@ modules_one_file_sample:
 clean_modules_one_file_sample:
 	rm -f modules_one_file_sample
 
+submodules_one_file_sample_files=\
+	../samples/submodules_one_file/submodules_one_file_sample_test.c
+
+submodules_one_file_sample:
+	$(CC) -o submodules_one_file_sample $(submodules_one_file_sample_files) \
+	$(lib_folder)
+
+clean_submodules_one_file_sample:
+	rm -f submodules_one_file_sample
+
 all:\
 	basic_sample\
 	modules_sample\
 	submodules_sample\
 	modules_one_file_sample\
+	submodules_one_file_sample\
 
 clean:\
 	clean_basic_sample\
 	clean_modules_sample\
 	clean_submodules_sample\
 	clean_modules_one_file_sample\
+	clean_submodules_one_file_sample\
