@@ -489,37 +489,40 @@ void nbp_notify_printer_module_end(
  */
 #ifdef NBP_SCHEDULER
 
-void nbp_basic_scheduler_init(void)
-{
-    return;
-}
+struct nbp_scheduler_data_t {
+    nbp_test_details_t* test;
+    struct nbp_scheduler_data_t* next;
+};
+typedef struct nbp_scheduler_data_t nbp_schedular_data_t;
 
-void nbp_basic_scheduler_uninit(void)
-{
-    return;
-}
+nbp_schedular_data_t nbpSchedulerData;
+nbp_schedular_data_t* nbpSchedulerDataLast;
 
-void nbp_basic_scheduler_run(void)
+void nbp_basic_scheduler_setup_module(nbp_module_details_t* module)
 {
-    return;
-}
-
-void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
-{
-    if (test->testState == NBP_TEST_STATE_SKIPPED) {
-        // todo: notify printer
+    if (module == 0x0) {
         return;
     }
 
-    if (test->module->moduleState == NBP_MODULE_STATE_READY) {
-        test->module->moduleState = NBP_MODULE_STATE_RUNNING;
-        nbp_notify_printer_module_begin(test->module);
-        if (test->module->setup) {
-            test->module->setup();
-        }
+    if (module->moduleState == NBP_MODULE_STATE_RUNNING) {
+        return;
     }
 
+    nbp_basic_scheduler_setup_module(module->parent);
+
+    module->moduleState = NBP_MODULE_STATE_RUNNING;
+    nbp_notify_printer_module_begin(module);
+    if (module->setup) {
+        module->setup();
+    }
+}
+
+void nbp_basic_scheduler_run_test(nbp_test_details_t* test)
+{
+    test->testState = NBP_TEST_STATE_RUNNING;
+
     nbp_notify_printer_test_begin(test);
+
     if (test->beforeTestFunc) {
         test->beforeTestFunc();
     }
@@ -529,16 +532,73 @@ void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
     if (test->afterTestFunc) {
         test->afterTestFunc();
     }
+
     nbp_notify_printer_test_end(test);
 
-    test->module->numCompletedTests++;
+    test->testState = NBP_TEST_STATE_COMPLETED;
 
-    if (test->module->numTests == test->module->numCompletedTests) {
-        if (test->module->teardown) {
-            test->module->teardown();
+    test->module->numCompletedTests++;
+}
+
+void nbp_basic_scheduler_teardown_module(nbp_module_details_t* module)
+{
+    while (module->numTests == module->numCompletedTests &&
+        module->numSubmodules == module->numCompletedSubmodules) {
+        if (module->teardown) {
+            module->teardown();
         }
-        nbp_notify_printer_module_end(test->module);
-        test->module->moduleState = NBP_MODULE_STATE_COMPLETED;
+        nbp_notify_printer_module_end(module);
+        module->moduleState = NBP_MODULE_STATE_COMPLETED;
+
+        module = module->parent;
+        module->numCompletedSubmodules++;
+    }
+}
+
+void nbp_basic_scheduler_init(void)
+{
+    nbpSchedulerData.test = 0x0;
+    nbpSchedulerData.next = 0x0;
+    nbpSchedulerDataLast = 0x0;
+}
+
+void nbp_basic_scheduler_uninit(void)
+{
+    nbp_schedular_data_t* data = nbpSchedulerData.next;
+    nbp_schedular_data_t* tmp = 0x0;
+    while (data != 0x0) {
+        tmp = data;
+        data = data->next;
+        NBP_FREE(tmp);
+    }
+}
+
+void nbp_basic_scheduler_run(void)
+{
+    if (nbpSchedulerData.test == 0x0) {
+        return;
+    }
+
+    nbp_schedular_data_t* data = &nbpSchedulerData;
+    while (data != 0x0) {
+        nbp_basic_scheduler_setup_module(data->test->module);
+        nbp_basic_scheduler_run_test(data->test);
+        nbp_basic_scheduler_teardown_module(data->test->module);
+        data = data->next;
+    }
+}
+
+void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
+{
+    // TODO: check if alloc failed
+    if (nbpSchedulerDataLast != 0x0) {
+        nbpSchedulerDataLast->next = NBP_ALLOC(sizeof(nbp_schedular_data_t));
+        nbpSchedulerDataLast = nbpSchedulerDataLast->next;
+        nbpSchedulerDataLast->test = test;
+        nbpSchedulerDataLast->next = 0x0;
+    } else {
+        nbpSchedulerData.test = test;
+        nbpSchedulerDataLast = &nbpSchedulerData;
     }
 }
 
@@ -620,6 +680,19 @@ nbp_scheduler_interface_t nbpScheduler = {
 
 #include <stdio.h>
 
+#define KNRM "\x1B[0m"
+#define KRED "\x1B[31m"
+#define KGRN "\x1B[32m"
+#define KYEL "\x1B[33m"
+#define KBLU "\x1B[34m"
+
+void nbp_printer_print_deepth(unsigned int deepth)
+{
+    while (deepth-- > 0) {
+        printf("    ");
+    }
+}
+
 void nbp_printer_init()
 {
     return;
@@ -632,18 +705,19 @@ void nbp_printer_uninit()
 
 void nbp_printer_test_begin(nbp_test_details_t* test)
 {
-    printf("%s\n", test->testName);
-    return;
+    nbp_printer_print_deepth(test->module->deepth + 1);
+    printf(KBLU "%s\n" KNRM, test->testName);
 }
 
 void nbp_printer_test_end(nbp_test_details_t* test)
 {
-    (void)(test);
-    return;
+    nbp_printer_print_deepth(test->module->deepth + 1);
+    printf(KGRN "%s\n" KNRM, test->testName);
 }
 
 void nbp_printer_module_begin(nbp_module_details_t* module)
 {
+    nbp_printer_print_deepth(module->deepth);
     printf("%s\n", module->moduleName);
     return;
 }
@@ -669,6 +743,12 @@ nbp_printer_interface_t nbpPrinter = {
     .moduleEnd = nbp_printer_module_end,
     .checkResult = nbp_printer_check_result,
 };
+
+#undef KNRM
+#undef KRED
+#undef KGRN
+#undef KYEL
+#undef KBLU
 
 #endif // end if NBP_PRINTER
 
@@ -796,6 +876,8 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
         if (parent->moduleState == NBP_MODULE_STATE_SKIPPED) {
             module->moduleState = NBP_MODULE_STATE_SKIPPED;
         }
+
+        module->deepth = parent->deepth + 1;
     }
 
     module->moduleFunc(module, 0x0, 0x0);
