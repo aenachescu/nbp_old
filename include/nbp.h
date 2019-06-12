@@ -141,7 +141,10 @@ struct nbp_module_details_t {
     struct nbp_module_details_t* prev;
     unsigned int numTests;
     unsigned int numCompletedTests;
+    unsigned int numSubmodules;
+    unsigned int numCompletedSubmodules;
     unsigned int moduleState;
+    unsigned int deepth;
 };
 typedef struct nbp_module_details_t nbp_module_details_t;
 
@@ -307,20 +310,23 @@ void nbp_notify_printer_module_end(
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
     nbp_module_details_t nbpModuleDetails ## name = {                          \
-        .moduleName         = #name,                                           \
-        .moduleFunc         = name,                                            \
-        .setup              = 0x0,                                             \
-        .teardown           = 0x0,                                             \
-        .firstTest          = 0x0,                                             \
-        .lastTest           = 0x0,                                             \
-        .parent             = 0x0,                                             \
-        .firstSubmodule     = 0x0,                                             \
-        .lastSubmodule      = 0x0,                                             \
-        .next               = 0x0,                                             \
-        .prev               = 0x0,                                             \
-        .numTests           = 0,                                               \
-        .numCompletedTests  = 0,                                               \
-        .moduleState        = NBP_MODULE_STATE_NOT_INITIALIZED,                \
+        .moduleName             = #name,                                       \
+        .moduleFunc             = name,                                        \
+        .setup                  = 0x0,                                         \
+        .teardown               = 0x0,                                         \
+        .firstTest              = 0x0,                                         \
+        .lastTest               = 0x0,                                         \
+        .parent                 = 0x0,                                         \
+        .firstSubmodule         = 0x0,                                         \
+        .lastSubmodule          = 0x0,                                         \
+        .next                   = 0x0,                                         \
+        .prev                   = 0x0,                                         \
+        .numTests               = 0,                                           \
+        .numCompletedTests      = 0,                                           \
+        .numSubmodules          = 0,                                           \
+        .numCompletedSubmodules = 0,                                           \
+        .moduleState            = NBP_MODULE_STATE_NOT_INITIALIZED,            \
+        .deepth                 = 0,                                           \
     };                                                                         \
     void name(                                                                 \
         nbp_module_details_t* moduleDetails,                                   \
@@ -338,20 +344,23 @@ void nbp_notify_printer_module_end(
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
     nbp_module_details_t nbpModuleDetails ## name = {                          \
-        .moduleName         = #name,                                           \
-        .moduleFunc         = name,                                            \
-        .setup              = setupFunc,                                       \
-        .teardown           = teardownFunc,                                    \
-        .firstTest          = 0x0,                                             \
-        .lastTest           = 0x0,                                             \
-        .parent             = 0x0,                                             \
-        .firstSubmodule     = 0x0,                                             \
-        .lastSubmodule      = 0x0,                                             \
-        .next               = 0x0,                                             \
-        .prev               = 0x0,                                             \
-        .numTests           = 0,                                               \
-        .numCompletedTests  = 0,                                               \
-        .moduleState        = NBP_MODULE_STATE_NOT_INITIALIZED,                \
+        .moduleName             = #name,                                       \
+        .moduleFunc             = name,                                        \
+        .setup                  = setupFunc,                                   \
+        .teardown               = teardownFunc,                                \
+        .firstTest              = 0x0,                                         \
+        .lastTest               = 0x0,                                         \
+        .parent                 = 0x0,                                         \
+        .firstSubmodule         = 0x0,                                         \
+        .lastSubmodule          = 0x0,                                         \
+        .next                   = 0x0,                                         \
+        .prev                   = 0x0,                                         \
+        .numTests               = 0,                                           \
+        .numCompletedTests      = 0,                                           \
+        .numSubmodules          = 0,                                           \
+        .numCompletedSubmodules = 0,                                           \
+        .moduleState            = NBP_MODULE_STATE_NOT_INITIALIZED,            \
+        .deepth                 = 0,                                           \
     };                                                                         \
     void name(                                                                 \
         nbp_module_details_t* moduleDetails,                                   \
