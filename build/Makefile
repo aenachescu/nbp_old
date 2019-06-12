@@ -1,4 +1,5 @@
 CC=gcc
+CFLAGS=-Wall -Wextra -Werror
 
 lib_folder=-I../include
 
@@ -6,7 +7,7 @@ basic_sample_files=\
 	../samples/basic/basic_sample_test.c
 
 basic_sample:
-	$(CC) -o basic_sample $(basic_sample_files) $(lib_folder)
+	$(CC) -o basic_sample $(basic_sample_files) $(lib_folder) $(CFLAGS)
 
 clean_basic_sample:
 	rm -f basic_sample
@@ -17,7 +18,7 @@ modules_sample_files=\
 	../samples/modules/advanced_math_test.c
 
 modules_sample:
-	$(CC) -o modules_sample $(modules_sample_files) $(lib_folder)
+	$(CC) -o modules_sample $(modules_sample_files) $(lib_folder) $(CFLAGS)
 
 clean_modules_sample:
 	rm -f modules_sample
@@ -32,7 +33,8 @@ submodules_sample_files=\
 	../samples/submodules/submodule4.c
 
 submodules_sample:
-	$(CC) -o submodules_sample $(submodules_sample_files) $(lib_folder)
+	$(CC) -o submodules_sample $(submodules_sample_files) $(lib_folder) \
+	$(CFLAGS)
 
 clean_submodules_sample:
 	rm -f submodules_sample
@@ -42,7 +44,7 @@ modules_one_file_sample_files=\
 
 modules_one_file_sample:
 	$(CC) -o modules_one_file_sample $(modules_one_file_sample_files) \
-	$(lib_folder)
+	$(lib_folder) $(CFLAGS)
 
 clean_modules_one_file_sample:
 	rm -f modules_one_file_sample
@@ -52,7 +54,7 @@ submodules_one_file_sample_files=\
 
 submodules_one_file_sample:
 	$(CC) -o submodules_one_file_sample $(submodules_one_file_sample_files) \
-	$(lib_folder)
+	$(lib_folder) $(CFLAGS)
 
 clean_submodules_one_file_sample:
 	rm -f submodules_one_file_sample
