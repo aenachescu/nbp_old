@@ -201,6 +201,22 @@ void nbp_call_module(
     nbp_module_details_t*
 );
 
+void nbp_notify_printer_test_begin(
+    nbp_test_details_t*
+);
+
+void nbp_notify_printer_test_end(
+    nbp_test_details_t*
+);
+
+void nbp_notify_printer_module_begin(
+    nbp_module_details_t*
+);
+
+void nbp_notify_printer_module_end(
+    nbp_module_details_t*
+);
+
 /******************************************************************************
  *                                                                            *
  *                                                                            *
@@ -348,6 +364,8 @@ void nbp_call_module(
  */
 #define NBP_CALL_MODULE(name)                                                  \
     extern nbp_module_details_t nbpModuleDetails ## name;                      \
+    (void)(beforeTest);                                                        \
+    (void)(afterTest);                                                         \
     nbp_call_module(                                                           \
         & nbpModuleDetails ## name,                                            \
         moduleDetails                                                          \
@@ -486,11 +504,13 @@ void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
 
     if (test->module->moduleState == NBP_MODULE_STATE_READY) {
         test->module->moduleState = NBP_MODULE_STATE_RUNNING;
+        nbp_notify_printer_module_begin(test->module);
         if (test->module->setup) {
             test->module->setup();
         }
     }
 
+    nbp_notify_printer_test_begin(test);
     if (test->beforeTestFunc) {
         test->beforeTestFunc();
     }
@@ -500,11 +520,16 @@ void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
     if (test->afterTestFunc) {
         test->afterTestFunc();
     }
+    nbp_notify_printer_test_end(test);
 
     test->module->numCompletedTests++;
+
     if (test->module->numTests == test->module->numCompletedTests) {
-        // todo: notify printer
-        test->module->teardown;
+        if (test->module->teardown) {
+            test->module->teardown();
+        }
+        nbp_notify_printer_module_end(test->module);
+        test->module->moduleState = NBP_MODULE_STATE_COMPLETED;
     }
 }
 
@@ -584,6 +609,58 @@ nbp_scheduler_interface_t nbpScheduler = {
 #error "Cannot enable NBP_PRINTER if NBP_MT_SUPPORT is enabled"
 #endif // end if NBP_MT_SUPPORT
 
+#include <stdio.h>
+
+void nbp_printer_init()
+{
+    return;
+}
+
+void nbp_printer_uninit()
+{
+    return;
+}
+
+void nbp_printer_test_begin(nbp_test_details_t* test)
+{
+    printf("%s\n", test->testName);
+    return;
+}
+
+void nbp_printer_test_end(nbp_test_details_t* test)
+{
+    (void)(test);
+    return;
+}
+
+void nbp_printer_module_begin(nbp_module_details_t* module)
+{
+    printf("%s\n", module->moduleName);
+    return;
+}
+
+void nbp_printer_module_end(nbp_module_details_t* module)
+{
+    (void)(module);
+    return;
+}
+
+void nbp_printer_check_result(nbp_test_details_t* test)
+{
+    (void)(test);
+    return;
+}
+
+nbp_printer_interface_t nbpPrinter = {
+    .init = nbp_printer_init,
+    .uninit = nbp_printer_uninit,
+    .testBegin = nbp_printer_test_begin,
+    .testEnd = nbp_printer_test_end,
+    .moduleBegin = nbp_printer_module_begin,
+    .moduleEnd = nbp_printer_module_end,
+    .checkResult = nbp_printer_check_result,
+};
+
 #endif // end if NBP_PRINTER
 
 /******************************************************************************
@@ -600,15 +677,20 @@ nbp_scheduler_interface_t nbpScheduler = {
  *                                                                            *
  ******************************************************************************/
 
-#define NBP_PRIVATE_MAIN_MODULE(name, scheduler, setupFunc, teardownFunc)      \
+#define NBP_PRIVATE_MAIN_MODULE(name, scheduler, printers, setupFunc,          \
+    teardownFunc)                                                              \
     void name(                                                                 \
         nbp_module_details_t*,                                                 \
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
     nbp_scheduler_interface_t* nbpSchedulerPtr = 0x0;                          \
+    nbp_printer_interface_t* nbpPrinters[] = printers;                         \
+    int nbpPrintersSize = sizeof(nbpPrinters) / sizeof(nbpPrinters[0]);        \
     int main(int argc, const char** argv)                                      \
     {                                                                          \
+        (void)(argc);                                                          \
+        (void)(argv);                                                          \
         nbpSchedulerPtr = &scheduler;                                          \
         if (scheduler.init == 0x0 || scheduler.uninit == 0x0 ||                \
             scheduler.run == 0x0 || scheduler.addTest == 0x0) {                \
@@ -627,13 +709,25 @@ nbp_scheduler_interface_t nbpScheduler = {
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE(name)                                                  \
-    NBP_PRIVATE_MAIN_MODULE(name, nbpScheduler, 0x0, 0x0)
+    NBP_PRIVATE_MAIN_MODULE(                                                   \
+        name,                                                                  \
+        nbpScheduler,                                                          \
+        { &nbpPrinter },                                                       \
+        0x0,                                                                   \
+        0x0                                                                    \
+    )
 
 /*
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE_METHODS(name, setupFunc, teardownFunc)                 \
-    NBP_PRIVATE_MAIN_MODULE(name, nbpScheduler, setupFunc, teardownFunc)
+    NBP_PRIVATE_MAIN_MODULE(                                                   \
+        name,                                                                  \
+        nbpScheduler,                                                          \
+        { &nbpPrinter },                                                       \
+        setupFunc,                                                             \
+        teardownFunc                                                           \
+    )
 
 /******************************************************************************
  *                                                                            *
@@ -696,6 +790,37 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
     }
 
     module->moduleFunc(module, 0x0, 0x0);
+}
+
+extern nbp_printer_interface_t* nbpPrinters[];
+extern int nbpPrintersSize;
+
+void nbp_notify_printer_test_begin(nbp_test_details_t* test)
+{
+    for (int i = 0; i < nbpPrintersSize; i++) {
+        nbpPrinters[i]->testBegin(test);
+    }
+}
+
+void nbp_notify_printer_test_end(nbp_test_details_t* test)
+{
+    for (int i = 0; i < nbpPrintersSize; i++) {
+        nbpPrinters[i]->testEnd(test);
+    }
+}
+
+void nbp_notify_printer_module_begin(nbp_module_details_t* module)
+{
+    for (int i = 0; i < nbpPrintersSize; i++) {
+        nbpPrinters[i]->moduleBegin(module);
+    }
+}
+
+void nbp_notify_printer_module_end(nbp_module_details_t* module)
+{
+    for (int i = 0; i < nbpPrintersSize; i++) {
+        nbpPrinters[i]->moduleEnd(module);
+    }
 }
 
 #endif // end if NBP_LIBRARY_MAIN
