@@ -551,6 +551,10 @@ void nbp_basic_scheduler_teardown_module(nbp_module_details_t* module)
         module->moduleState = NBP_MODULE_STATE_COMPLETED;
 
         module = module->parent;
+        if (module == 0x0) {
+            break;
+        }
+
         module->numCompletedSubmodules++;
     }
 }
@@ -678,6 +682,25 @@ nbp_scheduler_interface_t nbpScheduler = {
 #define KYEL "\x1B[33m"
 #define KBLU "\x1B[34m"
 
+#define NBP_PRINTER_DATA_TYPE_NOTHING   0
+#define NBP_PRINTER_DATA_TYPE_TEST      1
+#define NBP_PRINTER_DATA_TYPE_MODULE    2
+
+struct nbp_printer_data_t {
+    unsigned int rowPos;
+    unsigned int dataType;
+    union {
+        nbp_module_details_t* module;
+        nbp_test_details_t* test;
+    };
+    struct nbp_printer_data_t* next;
+};
+typedef struct nbp_printer_data_t nbp_printer_data_t;
+
+nbp_printer_data_t nbpPrinterData;
+nbp_printer_data_t* nbpPrinterDataLast;
+unsigned int nbpPrinterCurrentRow;
+
 void nbp_printer_print_deepth(unsigned int deepth)
 {
     while (deepth-- > 0) {
@@ -687,37 +710,105 @@ void nbp_printer_print_deepth(unsigned int deepth)
 
 void nbp_printer_init()
 {
-    return;
+    nbpPrinterCurrentRow    = 0;
+
+    nbpPrinterData.rowPos   = 0;
+    nbpPrinterData.dataType = NBP_PRINTER_DATA_TYPE_NOTHING;
+    nbpPrinterData.module   = 0x0;
+    nbpPrinterData.next     = 0x0;
+
+    nbpPrinterDataLast      = &nbpPrinterData;
 }
 
 void nbp_printer_uninit()
 {
-    return;
+    nbp_printer_data_t* data = nbpPrinterData.next;
+    nbp_printer_data_t* tmp = 0x0;
+    while (data != 0x0) {
+        tmp = data;
+        data = data->next;
+        NBP_FREE(tmp);
+    }
 }
 
 void nbp_printer_test_begin(nbp_test_details_t* test)
 {
+    // TODO: check if alloc failed
+    nbpPrinterDataLast->rowPos      = nbpPrinterCurrentRow;
+    nbpPrinterDataLast->dataType    = NBP_PRINTER_DATA_TYPE_TEST;
+    nbpPrinterDataLast->test        = test;
+    nbpPrinterDataLast->next        = NBP_ALLOC(sizeof(nbp_printer_data_t));
+    nbpPrinterDataLast              = nbpPrinterDataLast->next;
+    nbpPrinterDataLast->rowPos      = 0;
+    nbpPrinterDataLast->dataType    = NBP_PRINTER_DATA_TYPE_NOTHING;
+    nbpPrinterDataLast->test        = 0x0;
+    nbpPrinterDataLast->next        = 0x0;
+
     nbp_printer_print_deepth(test->module->deepth + 1);
-    printf(KBLU "%s\n" KNRM, test->testName);
+    printf(KBLU "%s" KNRM "\n", test->testName);
+    nbpPrinterCurrentRow++;
 }
 
 void nbp_printer_test_end(nbp_test_details_t* test)
 {
+    unsigned int rows = 0;
+    nbp_printer_data_t* data = &nbpPrinterData;
+    while (data != 0x0) {
+        if (data->dataType == NBP_PRINTER_DATA_TYPE_TEST &&
+            data->test == test) {
+            rows = nbpPrinterCurrentRow - data->rowPos;
+            break;
+        }
+        data = data->next;
+    }
+    if (data == 0x0) {
+        // TODO: print error
+    }
+
+    printf("\033[%uA", rows);
     nbp_printer_print_deepth(test->module->deepth + 1);
-    printf(KGRN "%s\n" KNRM, test->testName);
+    printf(KGRN "%s" KNRM, test->testName);
+    printf("\033[%uB\r", rows);
 }
 
 void nbp_printer_module_begin(nbp_module_details_t* module)
 {
+    // TODO: check if alloc failed
+    nbpPrinterDataLast->rowPos      = nbpPrinterCurrentRow;
+    nbpPrinterDataLast->dataType    = NBP_PRINTER_DATA_TYPE_MODULE;
+    nbpPrinterDataLast->module      = module;
+    nbpPrinterDataLast->next        = NBP_ALLOC(sizeof(nbp_printer_data_t));
+    nbpPrinterDataLast              = nbpPrinterDataLast->next;
+    nbpPrinterDataLast->rowPos      = 0;
+    nbpPrinterDataLast->dataType    = NBP_PRINTER_DATA_TYPE_NOTHING;
+    nbpPrinterDataLast->test        = 0x0;
+    nbpPrinterDataLast->next        = 0x0;
+
     nbp_printer_print_deepth(module->deepth);
-    printf("%s\n", module->moduleName);
-    return;
+    printf(KBLU "%s" KNRM "\n", module->moduleName);
+    nbpPrinterCurrentRow++;
 }
 
 void nbp_printer_module_end(nbp_module_details_t* module)
 {
-    (void)(module);
-    return;
+    unsigned int rows = 0;
+    nbp_printer_data_t* data = &nbpPrinterData;
+    while (data != 0x0) {
+        if (data->dataType == NBP_PRINTER_DATA_TYPE_MODULE &&
+            data->module == module) {
+            rows = nbpPrinterCurrentRow - data->rowPos;
+            break;
+        }
+        data = data->next;
+    }
+    if (data == 0x0) {
+        // TODO: print error
+    }
+
+    printf("\033[%uA", rows);
+    nbp_printer_print_deepth(module->deepth);
+    printf(KGRN "%s" KNRM, module->moduleName);
+    printf("\033[%uB\r", rows);
 }
 
 void nbp_printer_check_result(nbp_test_details_t* test)
@@ -772,6 +863,9 @@ nbp_printer_interface_t nbpPrinter = {
     {                                                                          \
         (void)(argc);                                                          \
         (void)(argv);                                                          \
+        for (int i = 0; i < nbpPrintersSize; i++) {                            \
+            nbpPrinters[i]->init();                                            \
+        }                                                                      \
         nbpSchedulerPtr = &scheduler;                                          \
         if (scheduler.init == 0x0 || scheduler.uninit == 0x0 ||                \
             scheduler.run == 0x0 || scheduler.addTest == 0x0) {                \
@@ -782,6 +876,9 @@ nbp_printer_interface_t nbpPrinter = {
         nbp_call_module(& nbpModuleDetails ## name, 0x0);                      \
         nbpSchedulerPtr->run();                                                \
         nbpSchedulerPtr->uninit();                                             \
+        for (int i = 0; i < nbpPrintersSize; i++) {                            \
+            nbpPrinters[i]->uninit();                                            \
+        }                                                                      \
         return 0;                                                              \
     }                                                                          \
     NBP_MODULE_METHODS(name, setupFunc, teardownFunc)
@@ -856,6 +953,7 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
     module->parent = parent;
 
     if (parent != 0x0) {
+        parent->numSubmodules++;
         if (parent->firstSubmodule == 0x0) {
             parent->firstSubmodule = module;
             parent->lastSubmodule = module;
