@@ -1,0 +1,17 @@
+language: c
+compiler: gcc
+sudo: required
+
+matrix:
+  include:
+    - os: linux
+      env: TARGET=x86_64-unknown-linux-gnu
+
+script:
+  - make -C build/ clean
+  - make -C build/ all
+  - ./build/basic_sample
+  - ./build/modules_sample
+  - ./build/modules_one_file_sample
+  - ./build/submodules_sample
+  - ./build/submodules_one_file_sample
