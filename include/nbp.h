@@ -559,7 +559,7 @@ void nbp_basic_scheduler_init(void)
 {
     nbpSchedulerData.test = 0x0;
     nbpSchedulerData.next = 0x0;
-    nbpSchedulerDataLast = 0x0;
+    nbpSchedulerDataLast = &nbpSchedulerData;
 }
 
 void nbp_basic_scheduler_uninit(void)
@@ -575,12 +575,8 @@ void nbp_basic_scheduler_uninit(void)
 
 void nbp_basic_scheduler_run(void)
 {
-    if (nbpSchedulerData.test == 0x0) {
-        return;
-    }
-
     nbp_schedular_data_t* data = &nbpSchedulerData;
-    while (data != 0x0) {
+    while (data->test != 0x0) {
         nbp_basic_scheduler_setup_module(data->test->module);
         nbp_basic_scheduler_run_test(data->test);
         nbp_basic_scheduler_teardown_module(data->test->module);
@@ -591,15 +587,11 @@ void nbp_basic_scheduler_run(void)
 void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
 {
     // TODO: check if alloc failed
-    if (nbpSchedulerDataLast != 0x0) {
-        nbpSchedulerDataLast->next = NBP_ALLOC(sizeof(nbp_schedular_data_t));
-        nbpSchedulerDataLast = nbpSchedulerDataLast->next;
-        nbpSchedulerDataLast->test = test;
-        nbpSchedulerDataLast->next = 0x0;
-    } else {
-        nbpSchedulerData.test = test;
-        nbpSchedulerDataLast = &nbpSchedulerData;
-    }
+    nbpSchedulerDataLast->test = test;
+    nbpSchedulerDataLast->next = NBP_ALLOC(sizeof(nbp_schedular_data_t));
+    nbpSchedulerDataLast = nbpSchedulerDataLast->next;
+    nbpSchedulerDataLast->next = 0x0;
+    nbpSchedulerDataLast->test = 0x0;
 }
 
 nbp_scheduler_interface_t nbpScheduler = {
