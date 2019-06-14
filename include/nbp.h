@@ -1061,10 +1061,6 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
         module->lastTest = test;
     }
 
-    if (module->moduleState == NBP_MODULE_STATE_SKIPPED) {
-        test->testState = NBP_TEST_STATE_SKIPPED;
-    }
-
     nbpSchedulerInterface->addTest(test);
 }
 
@@ -1082,10 +1078,6 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
             module->prev = parent->lastSubmodule;
             parent->lastSubmodule->next = module;
             parent->lastSubmodule = module;
-        }
-
-        if (parent->moduleState == NBP_MODULE_STATE_SKIPPED) {
-            module->moduleState = NBP_MODULE_STATE_SKIPPED;
         }
 
         module->deepth = parent->deepth + 1;
