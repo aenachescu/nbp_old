@@ -707,6 +707,7 @@ struct winsize nbpPrinterWindowSize;
 
 void nbp_printer_print_deepth(unsigned int deepth)
 {
+    printf("\r");
     while (deepth-- > 0) {
         printf("    ");
     }
@@ -714,9 +715,9 @@ void nbp_printer_print_deepth(unsigned int deepth)
 
 void nbp_printer_redraw()
 {
-    printf("\033[%huA", nbpPrinterWindowSize.ws_row);
+    printf("\033[%huA", nbpPrinterWindowSize.ws_row - 2);
 
-    unsigned int row = nbpPrinterCurrentRow - nbpPrinterWindowSize.ws_row + 1u;
+    unsigned int row = nbpPrinterCurrentRow - nbpPrinterWindowSize.ws_row + 2u;
     nbp_printer_data_t* data = &nbpPrinterData;
     while (data->dataType != NBP_PRINTER_DATA_TYPE_NOTHING) {
         if (data->rowPos < row) {
@@ -742,6 +743,8 @@ void nbp_printer_redraw()
         }
         data = data->next;
     }
+    printf("\33[2K");
+    fflush(stdout);
 }
 
 void nbp_printer_init()
@@ -762,9 +765,46 @@ void nbp_printer_init()
 
 void nbp_printer_uninit()
 {
-    nbp_printer_data_t* data = nbpPrinterData.next;
+    printf("\033[%huA", nbpPrinterWindowSize.ws_row - 2);
+
+    nbp_printer_data_t* data = &nbpPrinterData;
+        if (data->dataType == NBP_PRINTER_DATA_TYPE_TEST) {
+            printf("\33[2K");
+            nbp_printer_print_deepth(data->test->module->deepth + 1);
+            if (data->test->testState == NBP_TEST_STATE_RUNNING) {
+                printf(KBLU "%s" KNRM "\n", data->test->testName);
+            } else if (data->test->testState == NBP_TEST_STATE_COMPLETED) {
+                printf(KGRN "%s" KNRM "\n", data->test->testName);
+            }
+        } else if (data->dataType == NBP_PRINTER_DATA_TYPE_MODULE) {
+            printf("\33[2K");
+            nbp_printer_print_deepth(data->module->deepth);
+            if (data->module->moduleState == NBP_MODULE_STATE_RUNNING) {
+                printf(KBLU "%s" KNRM "\n", data->module->moduleName);
+            } else if (data->module->moduleState == NBP_MODULE_STATE_COMPLETED) {
+                printf(KGRN "%s" KNRM "\n", data->module->moduleName);
+            }
+        }
+    data = data->next;
     nbp_printer_data_t* tmp = 0x0;
     while (data != 0x0) {
+        if (data->dataType == NBP_PRINTER_DATA_TYPE_TEST) {
+            printf("\33[2K");
+            nbp_printer_print_deepth(data->test->module->deepth + 1);
+            if (data->test->testState == NBP_TEST_STATE_RUNNING) {
+                printf(KBLU "%s" KNRM "\n", data->test->testName);
+            } else if (data->test->testState == NBP_TEST_STATE_COMPLETED) {
+                printf(KGRN "%s" KNRM "\n", data->test->testName);
+            }
+        } else if (data->dataType == NBP_PRINTER_DATA_TYPE_MODULE) {
+            printf("\33[2K");
+            nbp_printer_print_deepth(data->module->deepth);
+            if (data->module->moduleState == NBP_MODULE_STATE_RUNNING) {
+                printf(KBLU "%s" KNRM "\n", data->module->moduleName);
+            } else if (data->module->moduleState == NBP_MODULE_STATE_COMPLETED) {
+                printf(KGRN "%s" KNRM "\n", data->module->moduleName);
+            }
+        }
         tmp = data;
         data = data->next;
         NBP_FREE(tmp);
