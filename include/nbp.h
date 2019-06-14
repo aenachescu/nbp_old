@@ -163,7 +163,7 @@ typedef struct nbp_scheduler_interface_t nbp_scheduler_interface_t;
 typedef void (*nbp_printer_init_pfn_t)(
     void
 );
-typedef void (*nbp_printer_uninit_pfn_t)(
+typedef int (*nbp_printer_uninit_pfn_t)(
     void
 );
 typedef void (*nbp_printer_test_begin_pfn_t)(
@@ -771,7 +771,7 @@ void nbp_printer_init()
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &nbpPrinterWindowSize);
 }
 
-void nbp_printer_uninit()
+int nbp_printer_uninit()
 {
     nbp_printer_data_t* data = &nbpPrinterData;
     nbp_printer_data_t* tmp = 0x0;
@@ -795,6 +795,8 @@ void nbp_printer_uninit()
             NBP_FREE(data);
         }
     }
+
+    return 0;
 }
 
 void nbp_printer_test_begin(nbp_test_details_t* test)
@@ -978,13 +980,14 @@ int main(int argc, const char** argv)
     nbpSchedulerInterface->run();
     nbpSchedulerInterface->uninit();
 
+    int ret = 0;
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->uninit != 0x0) {
-            nbpPrinterInterfaces[i]->uninit();
+            ret += nbpPrinterInterfaces[i]->uninit();
         }
     }
 
-    return 0;
+    return ret;
 }
 
 #define NBP_PRIVATE_MAIN_MODULE(name, scheduler, printers, setupFunc,          \
