@@ -939,6 +939,54 @@ nbp_printer_interface_t nbpPrinter = {
  *                                                                            *
  ******************************************************************************/
 
+extern nbp_module_details_t* nbpMainModule;
+extern nbp_scheduler_interface_t* nbpSchedulerInterface;
+extern nbp_printer_interface_t* nbpPrinterInterfaces[];
+extern unsigned int nbpPrinterInterfacesSize;
+int main(int argc, const char** argv)
+{
+    (void)(argc);
+    (void)(argv);
+
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->init != 0x0) {
+            nbpPrinterInterfaces[i]->init();
+        }
+    }
+
+    if (nbpSchedulerInterface->init == 0x0) {
+        // TODO: notify printer
+        return -1;
+    }
+    if (nbpSchedulerInterface->uninit == 0x0) {
+        // TODO: notify printer
+        return -2;
+    }
+    if (nbpSchedulerInterface->run == 0x0) {
+        // TODO: notify printer
+        return -3;
+    }
+    if (nbpSchedulerInterface->addTest == 0x0) {
+        // TODO: notify printer
+        return -4;
+    }
+
+    nbpSchedulerInterface->init();
+
+    nbp_call_module(nbpMainModule, 0x0);
+
+    nbpSchedulerInterface->run();
+    nbpSchedulerInterface->uninit();
+
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->uninit != 0x0) {
+            nbpPrinterInterfaces[i]->uninit();
+        }
+    }
+
+    return 0;
+}
+
 #define NBP_PRIVATE_MAIN_MODULE(name, scheduler, printers, setupFunc,          \
     teardownFunc)                                                              \
     void name(                                                                 \
@@ -946,31 +994,12 @@ nbp_printer_interface_t nbpPrinter = {
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
-    nbp_scheduler_interface_t* nbpSchedulerPtr = 0x0;                          \
-    nbp_printer_interface_t* nbpPrinters[] = printers;                         \
-    int nbpPrintersSize = sizeof(nbpPrinters) / sizeof(nbpPrinters[0]);        \
-    int main(int argc, const char** argv)                                      \
-    {                                                                          \
-        (void)(argc);                                                          \
-        (void)(argv);                                                          \
-        for (int i = 0; i < nbpPrintersSize; i++) {                            \
-            nbpPrinters[i]->init();                                            \
-        }                                                                      \
-        nbpSchedulerPtr = &scheduler;                                          \
-        if (scheduler.init == 0x0 || scheduler.uninit == 0x0 ||                \
-            scheduler.run == 0x0 || scheduler.addTest == 0x0) {                \
-                return -1;                                                     \
-        }                                                                      \
-        nbpSchedulerPtr->init();                                               \
-        extern nbp_module_details_t nbpModuleDetails ## name;                  \
-        nbp_call_module(& nbpModuleDetails ## name, 0x0);                      \
-        nbpSchedulerPtr->run();                                                \
-        nbpSchedulerPtr->uninit();                                             \
-        for (int i = 0; i < nbpPrintersSize; i++) {                            \
-            nbpPrinters[i]->uninit();                                            \
-        }                                                                      \
-        return 0;                                                              \
-    }                                                                          \
+    extern nbp_module_details_t nbpModuleDetails ## name;                      \
+    nbp_module_details_t* nbpMainModule = & nbpModuleDetails ## name;          \
+    nbp_scheduler_interface_t* nbpSchedulerInterface = &scheduler;             \
+    nbp_printer_interface_t* nbpPrinterInterfaces[] = printers;                \
+    unsigned int nbpPrinterInterfacesSize =                                    \
+        sizeof(nbpPrinterInterfaces) / sizeof(nbpPrinterInterfaces[0]);        \
     NBP_MODULE_METHODS(name, setupFunc, teardownFunc)
 
 /*
@@ -1033,8 +1062,7 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
         test->testState = NBP_TEST_STATE_SKIPPED;
     }
 
-    extern nbp_scheduler_interface_t* nbpSchedulerPtr;
-    nbpSchedulerPtr->addTest(test);
+    nbpSchedulerInterface->addTest(test);
 }
 
 void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
@@ -1063,34 +1091,31 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
     module->moduleFunc(module, 0x0, 0x0);
 }
 
-extern nbp_printer_interface_t* nbpPrinters[];
-extern int nbpPrintersSize;
-
 void nbp_notify_printer_test_begin(nbp_test_details_t* test)
 {
-    for (int i = 0; i < nbpPrintersSize; i++) {
-        nbpPrinters[i]->testBegin(test);
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        nbpPrinterInterfaces[i]->testBegin(test);
     }
 }
 
 void nbp_notify_printer_test_end(nbp_test_details_t* test)
 {
-    for (int i = 0; i < nbpPrintersSize; i++) {
-        nbpPrinters[i]->testEnd(test);
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        nbpPrinterInterfaces[i]->testEnd(test);
     }
 }
 
 void nbp_notify_printer_module_begin(nbp_module_details_t* module)
 {
-    for (int i = 0; i < nbpPrintersSize; i++) {
-        nbpPrinters[i]->moduleBegin(module);
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        nbpPrinterInterfaces[i]->moduleBegin(module);
     }
 }
 
 void nbp_notify_printer_module_end(nbp_module_details_t* module)
 {
-    for (int i = 0; i < nbpPrintersSize; i++) {
-        nbpPrinters[i]->moduleEnd(module);
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        nbpPrinterInterfaces[i]->moduleEnd(module);
     }
 }
 
