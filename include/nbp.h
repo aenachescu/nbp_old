@@ -674,6 +674,10 @@ nbp_scheduler_interface_t nbpScheduler = {
 #error "Cannot enable NBP_PRINTER if NBP_MT_SUPPORT is enabled"
 #endif // end if NBP_MT_SUPPORT
 
+/*
+ * This is a cool printer but it's too hard to implement for now :(
+ */
+#ifdef 0
 #include <stdio.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
@@ -924,6 +928,8 @@ nbp_printer_interface_t nbpPrinter = {
 #undef KGRN
 #undef KYEL
 #undef KBLU
+
+#endif // end if 0
 
 #endif // end if NBP_PRINTER
 
