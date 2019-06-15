@@ -677,7 +677,7 @@ nbp_scheduler_interface_t nbpScheduler = {
 /*
  * This is a cool printer but it's too hard to implement for now :(
  */
-#ifdef 0
+#ifdef NBP_COOL_PRINTER
 #include <stdio.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
@@ -931,6 +931,66 @@ nbp_printer_interface_t nbpPrinter = {
 
 #endif // end if 0
 
+#include <stdio.h>
+
+#define KNRM "\x1B[0m"
+#define KRED "\x1B[31m"
+#define KGRN "\x1B[32m"
+#define KYEL "\x1B[33m"
+
+int nbpPrinterRet;
+int nbpPrinterTestFailed;
+
+void nbp_printer_print_deepth(unsigned int deepth)
+{
+    printf("\r");
+    while (deepth-- > 0) {
+        printf("    ");
+    }
+}
+
+void nbp_printer_init(void)
+{
+    nbpPrinterRet           = 0;
+    nbpPrinterTestFailed    = 0;
+}
+
+int nbp_printer_uninit(void)
+{
+    return nbpPrinterRet;
+}
+
+void nbp_printer_test_end(nbp_test_details_t* test)
+{
+    if (nbpPrinterTestFailed == 0) {
+        nbp_printer_print_deepth(test->module->deepth + 1);
+        printf(KGRN "%s" KNRM "\n", test->testName);
+    } else {
+        nbpPrinterTestFailed = 0;
+    }
+}
+
+void nbp_printer_module_begin(nbp_module_details_t* module)
+{
+    nbp_printer_print_deepth(module->deepth);
+    printf("%s\n", module->moduleName);
+}
+
+void nbp_printer_check_result(nbp_test_details_t* test)
+{
+    (void)(test);
+}
+
+nbp_printer_interface_t nbpPrinter = {
+    .init           = nbp_printer_init,
+    .uninit         = nbp_printer_uninit,
+    .testBegin      = 0x0,
+    .testEnd        = nbp_printer_test_end,
+    .moduleBegin    = nbp_printer_module_begin,
+    .moduleEnd      = 0x0,
+    .checkResult    = nbp_printer_check_result,
+};
+
 #endif // end if NBP_PRINTER
 
 /******************************************************************************
@@ -1095,28 +1155,36 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 void nbp_notify_printer_test_begin(nbp_test_details_t* test)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        nbpPrinterInterfaces[i]->testBegin(test);
+        if (nbpPrinterInterfaces[i]->testBegin != 0x0) {
+            nbpPrinterInterfaces[i]->testBegin(test);
+        }
     }
 }
 
 void nbp_notify_printer_test_end(nbp_test_details_t* test)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        nbpPrinterInterfaces[i]->testEnd(test);
+        if (nbpPrinterInterfaces[i]->testEnd != 0x0) {
+            nbpPrinterInterfaces[i]->testEnd(test);
+        }
     }
 }
 
 void nbp_notify_printer_module_begin(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        nbpPrinterInterfaces[i]->moduleBegin(module);
+        if (nbpPrinterInterfaces[i]->moduleBegin != 0x0) {
+            nbpPrinterInterfaces[i]->moduleBegin(module);
+        }
     }
 }
 
 void nbp_notify_printer_module_end(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        nbpPrinterInterfaces[i]->moduleEnd(module);
+        if (nbpPrinterInterfaces[i]->moduleEnd != 0x0) {
+            nbpPrinterInterfaces[i]->moduleEnd(module);
+        }
     }
 }
 
