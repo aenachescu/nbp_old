@@ -384,12 +384,14 @@ void nbp_notify_printer_module_end(
  * TODO: add docs
  */
 #define NBP_CALL_BEFORE_TEST(func)                                             \
+    void func(void);                                                           \
     beforeTest = func
 
 /*
  * TODO: add docs
  */
 #define NBP_CALL_AFTER_TEST(func)                                              \
+    void func(void);                                                           \
     afterTest = func
 
 /*
