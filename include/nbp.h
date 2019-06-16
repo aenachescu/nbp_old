@@ -337,7 +337,7 @@ void nbp_notify_printer_module_end(
 /*
  * TODO: add docs
  */
-#define NBP_MODULE_METHODS(name, setupFunc, teardownFunc)                      \
+#define NBP_MODULE_FIXTURES(name, setupFunc, teardownFunc)                     \
     void name(                                                                 \
         nbp_module_details_t*,                                                 \
         nbp_before_test_pfn_t,                                                 \
@@ -1083,7 +1083,7 @@ int main(int argc, const char** argv)
     nbp_printer_interface_t* nbpPrinterInterfaces[] = printers;                \
     unsigned int nbpPrinterInterfacesSize =                                    \
         sizeof(nbpPrinterInterfaces) / sizeof(nbpPrinterInterfaces[0]);        \
-    NBP_MODULE_METHODS(name, setupFunc, teardownFunc)
+    NBP_MODULE_FIXTURES(name, setupFunc, teardownFunc)
 
 /*
  * TODO: add docs
@@ -1100,7 +1100,7 @@ int main(int argc, const char** argv)
 /*
  * TODO: add docs
  */
-#define NBP_MAIN_MODULE_METHODS(name, setupFunc, teardownFunc)                 \
+#define NBP_MAIN_MODULE_FIXTURES(name, setupFunc, teardownFunc)                \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         name,                                                                  \
         nbpScheduler,                                                          \
