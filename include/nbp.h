@@ -421,8 +421,20 @@ void nbp_notify_printer_module_end(
 /*
  * TODO: add docs
  */
+#define NBP_NO_SETUP_FUNC                                                      \
+    nbpEmptySetupFunc
+
+/*
+ * TODO: add docs
+ */
 #define NBP_SETUP_MODULE(name)                                                 \
     void name(void)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_NO_TEARDOWN_FUNC                                                   \
+    nbpEmptyTeardownFunc
 
 /*
  * TODO: add docs
@@ -1200,6 +1212,14 @@ void nbp_notify_printer_module_end(nbp_module_details_t* module)
             nbpPrinterInterfaces[i]->moduleEnd(module);
         }
     }
+}
+
+NBP_SETUP_MODULE(nbpEmptySetupFunc)
+{
+}
+
+NBP_TEARDOWN_MODULE(nbpEmptyTeardownFunc)
+{
 }
 
 #endif // end if NBP_LIBRARY_MAIN
