@@ -390,9 +390,21 @@ void nbp_notify_printer_module_end(
 /*
  * TODO: add docs
  */
+#define NBP_RESET_BEFORE_TEST()                                                \
+    beforeTest = 0x0
+
+/*
+ * TODO: add docs
+ */
 #define NBP_CALL_AFTER_TEST(func)                                              \
     void func(void);                                                           \
     afterTest = func
+
+/*
+ * TODO: add docs
+ */
+#define NBP_RESET_AFTER_TEST()                                                 \
+    afterTest = 0x0
 
 /*
  * TODO: add docs
