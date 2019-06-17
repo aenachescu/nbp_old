@@ -44,4 +44,8 @@ cd main_module_fixtures_one_file_sample
 ./main_module_fixtures_one_file_sample
 cd ..
 
+cd main_module_setup_sample
+./main_module_setup_sample
+cd ..
+
 cd ../build
