@@ -29,4 +29,4 @@ samples="
     -b $path_to_bin/main_module_setup_sample
 "
 
-coveralls -r $path_to_project $samples --gcov gcov --gcov-options '\-lp'
+coveralls -r $path_to_project $samples --gcov $1 --gcov-options '\-lp'
