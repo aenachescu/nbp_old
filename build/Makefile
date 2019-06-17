@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -DSAMPLE_LINUX
+CFLAGS=-Wall -Wextra -Werror -DSAMPLE_LINUX -fprofile-arcs -ftest-coverage
 
 lib_folder=-I../include
 lib_files=../include/nbp.h
