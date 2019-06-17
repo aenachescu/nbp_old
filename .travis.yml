@@ -24,7 +24,7 @@ matrix:
     #
     - os: linux
       env:
-        - TEST="gcc"
+        - DESCRIPTION="linux gcc"
       addons:
         apt:
           sources:
@@ -69,7 +69,7 @@ matrix:
     #
     - os: linux
       env:
-        - TEST="g++"
+        - DESCRIPTION="linux g++"
       addons:
         apt:
           sources:
