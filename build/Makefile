@@ -27,49 +27,47 @@ bin_folder=../bin/
 # basic sample
 #
 
-basic_sample_files=\
-	$(samples_folder)basic/main.c
+files1=$(samples_folder)basic/main.c
+depends1=../samples/basic/main.c
+name1=basic_sample
 
-basic_sample_files_depends=\
-	../samples/basic/main.c
-
-basic_sample: $(basic_sample_files_depends) $(lib_files)
-	mkdir -p $(bin_folder)basic_sample && \
-	cd $(bin_folder)basic_sample && \
-	$(CC) -o basic_sample $(basic_sample_files) $(lib_folder) $(CFLAGS) && \
+basic_sample: $(depends1) $(lib_files)
+	mkdir -p $(bin_folder)$(name1) && \
+	cd $(bin_folder)$(name1) && \
+	$(CC) -o $(name1) $(files1) $(lib_folder) $(CFLAGS) && \
 	cd ../../build
 
 clean_basic_sample:
-	rm -rf $(bin_folder)basic_sample
+	rm -rf $(bin_folder)$(name1)
 
 #
 # modules sample
 #
 
-modules_sample_files=\
+files2=\
 	$(samples_folder)modules/main.c\
 	$(samples_folder)modules/module1.c\
 	$(samples_folder)modules/module2.c
-
-modules_sample_files_depends=\
+depends2=\
 	../samples/modules/main.c\
 	../samples/modules/module1.c\
 	../samples/modules/module2.c
+name2=modules_sample
 
-modules_sample: $(modules_sample_files_depends) $(lib_files)
-	mkdir -p $(bin_folder)modules_sample && \
-	cd $(bin_folder)modules_sample && \
-	$(CC) -o modules_sample $(modules_sample_files) $(lib_folder) $(CFLAGS) && \
+modules_sample: $(depends2) $(lib_files)
+	mkdir -p $(bin_folder)$(name2) && \
+	cd $(bin_folder)$(name2) && \
+	$(CC) -o $(name2) $(files2) $(lib_folder) $(CFLAGS) && \
 	cd ../../build
 
 clean_modules_sample:
-	rm -rf $(bin_folder)modules_sample
+	rm -rf $(bin_folder)$(name2)
 
 #
 # submodules sample
 #
 
-submodules_sample_files=\
+files3=\
 	$(samples_folder)submodules/main.c\
 	$(samples_folder)submodules/module1.c\
 	$(samples_folder)submodules/module2.c\
@@ -77,8 +75,7 @@ submodules_sample_files=\
 	$(samples_folder)submodules/submodule2.c\
 	$(samples_folder)submodules/submodule3.c\
 	$(samples_folder)submodules/submodule4.c
-
-submodules_sample_files_depends=\
+depends3=\
 	../samples/submodules/main.c\
 	../samples/submodules/module1.c\
 	../samples/submodules/module2.c\
@@ -86,101 +83,89 @@ submodules_sample_files_depends=\
 	../samples/submodules/submodule2.c\
 	../samples/submodules/submodule3.c\
 	../samples/submodules/submodule4.c
+name3=submodules_sample
 
-submodules_sample: $(submodules_sample_files_depends) $(lib_files)
-	mkdir -p $(bin_folder)submodules_sample && \
-	cd $(bin_folder)submodules_sample && \
-	$(CC) -o submodules_sample $(submodules_sample_files) $(lib_folder) \
+submodules_sample: $(depends3) $(lib_files)
+	mkdir -p $(bin_folder)$(name3) && \
+	cd $(bin_folder)$(name3) && \
+	$(CC) -o $(name3) $(files3) $(lib_folder) \
 	$(CFLAGS) && \
 	cd ../../build
 
 clean_submodules_sample:
-	rm -rf $(bin_folder)submodules_sample
+	rm -rf $(bin_folder)$(name3)
 
 #
 # modules_one_file sample
 #
 
-modules_one_file_sample_files=\
-	$(samples_folder)modules_one_file/main.c
+files4=$(samples_folder)modules_one_file/main.c
+depends4=../samples/modules_one_file/main.c
+name4=modules_one_file_sample
 
-modules_one_file_sample_files_depends=\
-	../samples/modules_one_file/main.c
-
-modules_one_file_sample: $(modules_one_file_sample_files_depends) $(lib_files)
-	mkdir -p $(bin_folder)modules_one_file_sample && \
-	cd $(bin_folder)modules_one_file_sample && \
-	$(CC) -o modules_one_file_sample $(modules_one_file_sample_files) \
-	$(lib_folder) $(CFLAGS) && \
+modules_one_file_sample: $(depends4) $(lib_files)
+	mkdir -p $(bin_folder)$(name4) && \
+	cd $(bin_folder)$(name4) && \
+	$(CC) -o $(name4) $(files4) $(lib_folder) $(CFLAGS) && \
 	cd ../../build
 
 clean_modules_one_file_sample:
-	rm -rf $(bin_folder)modules_one_file_sample
+	rm -rf $(bin_folder)$(name4)
 
 #
 # submodules_one_file sample
 #
 
-submodules_one_file_sample_files=\
-	$(samples_folder)submodules_one_file/main.c
+files5=$(samples_folder)submodules_one_file/main.c
+depends5=../samples/submodules_one_file/main.c
+name5=submodules_one_file_sample
 
-submodules_one_file_sample_files_depends=\
-	../samples/submodules_one_file/main.c
-
-submodules_one_file_sample: $(submodules_one_file_sample_files_depends) \
-	$(lib_files)
-	mkdir -p $(bin_folder)submodules_one_file_sample && \
-	cd $(bin_folder)submodules_one_file_sample && \
-	$(CC) -o submodules_one_file_sample $(submodules_one_file_sample_files) \
-	$(lib_folder) $(CFLAGS) && \
+submodules_one_file_sample: $(depends5) $(lib_files)
+	mkdir -p $(bin_folder)$(name5) && \
+	cd $(bin_folder)$(name5) && \
+	$(CC) -o $(name5) $(files5) $(lib_folder) $(CFLAGS) && \
 	cd ../../build
 
 clean_submodules_one_file_sample:
-	rm -rf $(bin_folder)submodules_one_file_sample
+	rm -rf $(bin_folder)$(name5)
 
 #
 # main_module_fixtures sample
 #
 
-main_module_fixtures_sample_files=\
+files6=\
 	$(samples_folder)main_module_fixtures/main.c\
 	$(samples_folder)main_module_fixtures/fixtures.c
-
-main_module_fixtures_sample_files_depends=\
+depends6=\
 	../samples/main_module_fixtures/main.c\
 	../samples/main_module_fixtures/fixtures.c
+name6=main_module_fixtures_sample
 
-main_module_fixtures_sample: $(main_module_fixtures_sample_files_depends) \
-	$(lib_files)
-	mkdir -p $(bin_folder)main_module_fixtures_sample && \
-	cd $(bin_folder)main_module_fixtures_sample && \
-	$(CC) -o main_module_fixtures_sample $(main_module_fixtures_sample_files) \
-	$(lib_folder) $(CFLAGS) && \
+main_module_fixtures_sample: $(depends6) $(lib_files)
+	mkdir -p $(bin_folder)$(name6) && \
+	cd $(bin_folder)$(name6) && \
+	$(CC) -o $(name6) $(files6) $(lib_folder) $(CFLAGS) && \
 	cd ../../build
 
 clean_main_module_fixtures_sample:
-	rm -rf $(bin_folder)main_module_fixtures_sample
+	rm -rf $(bin_folder)$(name6)
 
 #
 # main_module_fixtures_one_file sample
 #
 
-main_module_fixtures_one_file_sample_files=\
-	$(samples_folder)main_module_fixtures_one_file/main.c
+files7=$(samples_folder)main_module_fixtures_one_file/main.c
+depends7=../samples/main_module_fixtures_one_file/main.c
+name7=main_module_fixtures_one_file_sample
 
-main_module_fixtures_one_file_sample_files_depends=\
-	../samples/main_module_fixtures_one_file/main.c
-
-main_module_fixtures_one_file_sample: $(main_module_fixtures_one_file_sample_files_depends) \
-	$(lib_files)
-	mkdir -p $(bin_folder)main_module_fixtures_one_file_sample && \
-	cd $(bin_folder)main_module_fixtures_one_file_sample && \
-	$(CC) -o main_module_fixtures_one_file_sample $(main_module_fixtures_one_file_sample_files) \
-	$(lib_folder) $(CFLAGS) && \
+main_module_fixtures_one_file_sample: $(depends7) $(lib_files)
+	mkdir -p $(bin_folder)$(name7) && \
+	cd $(bin_folder)$(name7) && \
+	$(CC) -o $(name7) $(files7) $(lib_folder) $(CFLAGS) && \
 	cd ../../build
 
 clean_main_module_fixtures_one_file_sample:
-	rm -rf $(bin_folder)main_module_fixtures_one_file_sample
+	rm -rf $(bin_folder)$(name7)
 
 #
 # make all
