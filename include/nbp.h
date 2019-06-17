@@ -343,6 +343,8 @@ void nbp_notify_printer_module_end(
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
+    void setupFunc(void);                                                      \
+    void teardownFunc(void);                                                   \
     nbp_module_details_t nbpModuleDetails ## name = {                          \
         .moduleName             = #name,                                       \
         .moduleFunc             = name,                                        \
@@ -1106,8 +1108,8 @@ int main(int argc, const char** argv)
         name,                                                                  \
         nbpScheduler,                                                          \
         { &nbpPrinter },                                                       \
-        0x0,                                                                   \
-        0x0                                                                    \
+        nbpEmptySetupFunc,                                                     \
+        nbpEmptyTeardownFunc                                                   \
     )
 
 /*
