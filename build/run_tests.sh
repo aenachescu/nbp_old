@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-./basic_sample
-./modules_sample
-./modules_one_file_sample
-./submodules_sample
-./submodules_one_file_sample
+../bin/basic_sample/basic_sample
+../bin/modules_sample/modules_sample
+../bin/modules_one_file_sample/modules_one_file_sample
+../bin/submodules_sample/submodules_sample
+../bin/submodules_one_file_sample/submodules_one_file_sample
