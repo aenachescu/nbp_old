@@ -519,10 +519,10 @@ struct nbp_scheduler_data_t {
     nbp_test_details_t* test;
     struct nbp_scheduler_data_t* next;
 };
-typedef struct nbp_scheduler_data_t nbp_schedular_data_t;
+typedef struct nbp_scheduler_data_t nbp_scheduler_data_t;
 
-nbp_schedular_data_t nbpSchedulerData;
-nbp_schedular_data_t* nbpSchedulerDataLast;
+nbp_scheduler_data_t nbpSchedulerData;
+nbp_scheduler_data_t* nbpSchedulerDataLast;
 
 void nbp_basic_scheduler_setup_module(nbp_module_details_t* module)
 {
@@ -594,8 +594,8 @@ void nbp_basic_scheduler_init(void)
 
 void nbp_basic_scheduler_uninit(void)
 {
-    nbp_schedular_data_t* data = nbpSchedulerData.next;
-    nbp_schedular_data_t* tmp = 0x0;
+    nbp_scheduler_data_t* data = nbpSchedulerData.next;
+    nbp_scheduler_data_t* tmp = 0x0;
     while (data != 0x0) {
         tmp = data;
         data = data->next;
@@ -605,7 +605,7 @@ void nbp_basic_scheduler_uninit(void)
 
 void nbp_basic_scheduler_run(void)
 {
-    nbp_schedular_data_t* data = &nbpSchedulerData;
+    nbp_scheduler_data_t* data = &nbpSchedulerData;
     while (data->test != 0x0) {
         nbp_basic_scheduler_setup_module(data->test->module);
         nbp_basic_scheduler_run_test(data->test);
@@ -619,7 +619,7 @@ void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
     // TODO: check if alloc failed
     nbpSchedulerDataLast->test = test;
     nbpSchedulerDataLast->next =
-        (nbp_schedular_data_t*) NBP_ALLOC(sizeof(nbp_schedular_data_t));
+        (nbp_scheduler_data_t*) NBP_ALLOC(sizeof(nbp_scheduler_data_t));
     nbpSchedulerDataLast = nbpSchedulerDataLast->next;
     nbpSchedulerDataLast->next = 0x0;
     nbpSchedulerDataLast->test = 0x0;
