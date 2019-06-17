@@ -15,8 +15,8 @@ clean_basic_sample:
 
 modules_sample_files=\
 	../samples/modules/modules_sample_test.c\
-	../samples/modules/basic_math_test.c\
-	../samples/modules/advanced_math_test.c
+	../samples/modules/modules_sample_module1.c\
+	../samples/modules/modules_sample_module2.c
 
 modules_sample: $(modules_sample_files) $(lib_files)
 	$(CC) -o modules_sample $(modules_sample_files) $(lib_folder) $(CFLAGS)
