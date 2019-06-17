@@ -12,6 +12,7 @@ basic_sample: $(basic_sample_files) $(lib_files)
 
 clean_basic_sample:
 	rm -f basic_sample
+	rm -f basic_sample_test.gcno basic_sample_test.gcda
 
 modules_sample_files=\
 	../samples/modules/modules_sample_test.c\
@@ -23,6 +24,9 @@ modules_sample: $(modules_sample_files) $(lib_files)
 
 clean_modules_sample:
 	rm -f modules_sample
+	rm -f modules_sample_test.gcno modules_sample_test.gcda
+	rm -f modules_sample_module1.gcno modules_sample_module1.gcda
+	rm -f modules_sample_module2.gcno modules_sample_module2.gcda
 
 submodules_sample_files=\
 	../samples/submodules/submodules_sample_test.c\
@@ -39,6 +43,13 @@ submodules_sample: $(submodules_sample_files) $(lib_files)
 
 clean_submodules_sample:
 	rm -f submodules_sample
+	rm -f submodules_sample_test.gcno submodules_sample_test.gcda
+	rm -f submodules_sample_module1.gcno submodules_sample_module1.gcda
+	rm -f submodules_sample_module2.gcno submodules_sample_module2.gcda
+	rm -f submodules_sample_submodule1.gcno submodules_sample_submodule1.gcda
+	rm -f submodules_sample_submodule2.gcno submodules_sample_submodule2.gcda
+	rm -f submodules_sample_submodule3.gcno submodules_sample_submodule3.gcda
+	rm -f submodules_sample_submodule4.gcno submodules_sample_submodule4.gcda
 
 modules_one_file_sample_files=\
 	../samples/modules_one_file/modules_one_file_sample_test.c
@@ -49,6 +60,7 @@ modules_one_file_sample: $(modules_one_file_sample_files) $(lib_files)
 
 clean_modules_one_file_sample:
 	rm -f modules_one_file_sample
+	rm -f modules_one_file_sample_test.gcno modules_one_file_sample_test.gcda
 
 submodules_one_file_sample_files=\
 	../samples/submodules_one_file/submodules_one_file_sample_test.c
@@ -59,6 +71,8 @@ submodules_one_file_sample: $(submodules_one_file_sample_files) $(lib_files)
 
 clean_submodules_one_file_sample:
 	rm -f submodules_one_file_sample
+	rm -f submodules_one_file_sample_test.gcno \
+		submodules_one_file_sample_test.gcda
 
 all:\
 	basic_sample\
