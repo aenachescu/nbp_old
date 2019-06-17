@@ -28,10 +28,10 @@ bin_folder=../bin/
 #
 
 basic_sample_files=\
-	$(samples_folder)basic/basic_sample_test.c
+	$(samples_folder)basic/main.c
 
 basic_sample_files_depends=\
-	../samples/basic/basic_sample_test.c
+	../samples/basic/main.c
 
 basic_sample: $(basic_sample_files_depends) $(lib_files)
 	mkdir -p $(bin_folder)basic_sample && \
@@ -47,14 +47,14 @@ clean_basic_sample:
 #
 
 modules_sample_files=\
-	$(samples_folder)modules/modules_sample_test.c\
-	$(samples_folder)modules/modules_sample_module1.c\
-	$(samples_folder)modules/modules_sample_module2.c
+	$(samples_folder)modules/main.c\
+	$(samples_folder)modules/module1.c\
+	$(samples_folder)modules/module2.c
 
 modules_sample_files_depends=\
-	../samples/modules/modules_sample_test.c\
-	../samples/modules/modules_sample_module1.c\
-	../samples/modules/modules_sample_module2.c
+	../samples/modules/main.c\
+	../samples/modules/module1.c\
+	../samples/modules/module2.c
 
 modules_sample: $(modules_sample_files_depends) $(lib_files)
 	mkdir -p $(bin_folder)modules_sample && \
@@ -70,22 +70,22 @@ clean_modules_sample:
 #
 
 submodules_sample_files=\
-	$(samples_folder)submodules/submodules_sample_test.c\
-	$(samples_folder)submodules/submodules_sample_module1.c\
-	$(samples_folder)submodules/submodules_sample_module2.c\
-	$(samples_folder)submodules/submodules_sample_submodule1.c\
-	$(samples_folder)submodules/submodules_sample_submodule2.c\
-	$(samples_folder)submodules/submodules_sample_submodule3.c\
-	$(samples_folder)submodules/submodules_sample_submodule4.c
+	$(samples_folder)submodules/main.c\
+	$(samples_folder)submodules/module1.c\
+	$(samples_folder)submodules/module2.c\
+	$(samples_folder)submodules/submodule1.c\
+	$(samples_folder)submodules/submodule2.c\
+	$(samples_folder)submodules/submodule3.c\
+	$(samples_folder)submodules/submodule4.c
 
 submodules_sample_files_depends=\
-	../samples/submodules/submodules_sample_test.c\
-	../samples/submodules/submodules_sample_module1.c\
-	../samples/submodules/submodules_sample_module2.c\
-	../samples/submodules/submodules_sample_submodule1.c\
-	../samples/submodules/submodules_sample_submodule2.c\
-	../samples/submodules/submodules_sample_submodule3.c\
-	../samples/submodules/submodules_sample_submodule4.c
+	../samples/submodules/main.c\
+	../samples/submodules/module1.c\
+	../samples/submodules/module2.c\
+	../samples/submodules/submodule1.c\
+	../samples/submodules/submodule2.c\
+	../samples/submodules/submodule3.c\
+	../samples/submodules/submodule4.c
 
 submodules_sample: $(submodules_sample_files_depends) $(lib_files)
 	mkdir -p $(bin_folder)submodules_sample && \
@@ -102,10 +102,10 @@ clean_submodules_sample:
 #
 
 modules_one_file_sample_files=\
-	$(samples_folder)modules_one_file/modules_one_file_sample_test.c
+	$(samples_folder)modules_one_file/main.c
 
 modules_one_file_sample_files_depends=\
-	../samples/modules_one_file/modules_one_file_sample_test.c
+	../samples/modules_one_file/main.c
 
 modules_one_file_sample: $(modules_one_file_sample_files_depends) $(lib_files)
 	mkdir -p $(bin_folder)modules_one_file_sample && \
@@ -122,10 +122,10 @@ clean_modules_one_file_sample:
 #
 
 submodules_one_file_sample_files=\
-	$(samples_folder)submodules_one_file/submodules_one_file_sample_test.c
+	$(samples_folder)submodules_one_file/main.c
 
 submodules_one_file_sample_files_depends=\
-	../samples/submodules_one_file/submodules_one_file_sample_test.c
+	../samples/submodules_one_file/main.c
 
 submodules_one_file_sample: $(submodules_one_file_sample_files_depends) \
 	$(lib_files)
