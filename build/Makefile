@@ -26,12 +26,12 @@ clean_modules_sample:
 
 submodules_sample_files=\
 	../samples/submodules/submodules_sample_test.c\
-	../samples/submodules/module1.c\
-	../samples/submodules/module2.c\
-	../samples/submodules/submodule1.c\
-	../samples/submodules/submodule2.c\
-	../samples/submodules/submodule3.c\
-	../samples/submodules/submodule4.c
+	../samples/submodules/submodules_sample_module1.c\
+	../samples/submodules/submodules_sample_module2.c\
+	../samples/submodules/submodules_sample_submodule1.c\
+	../samples/submodules/submodules_sample_submodule2.c\
+	../samples/submodules/submodules_sample_submodule3.c\
+	../samples/submodules/submodules_sample_submodule4.c
 
 submodules_sample: $(submodules_sample_files) $(lib_files)
 	$(CC) -o submodules_sample $(submodules_sample_files) $(lib_folder) \
