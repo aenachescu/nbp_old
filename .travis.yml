@@ -43,6 +43,7 @@ matrix:
         - make -C build/ all CC=gcc-5
         - cd build
         - ./run_tests.sh
+        - cd ..
         - coveralls
           -r /home/travis/build/aenachescu/nbp
           -b /home/travis/build/aenachescu/nbp/build
@@ -52,6 +53,7 @@ matrix:
         - make -C build/ all CC=gcc-6
         - cd build
         - ./run_tests.sh
+        - cd ..
         - coveralls
           -r /home/travis/build/aenachescu/nbp
           -b /home/travis/build/aenachescu/nbp/build
@@ -61,6 +63,7 @@ matrix:
         - make -C build/ all CC=gcc-7
         - cd build
         - ./run_tests.sh
+        - cd ..
         - coveralls
           -r /home/travis/build/aenachescu/nbp
           -b /home/travis/build/aenachescu/nbp/build
@@ -70,6 +73,7 @@ matrix:
         - make -C build/ all CC=gcc-8
         - cd build
         - ./run_tests.sh
+        - cd ..
         - coveralls
           -r /home/travis/build/aenachescu/nbp
           -b /home/travis/build/aenachescu/nbp/build
@@ -79,6 +83,7 @@ matrix:
         - make -C build/ all CC=gcc-9
         - cd build
         - ./run_tests.sh
+        - cd ..
         - coveralls
           -r /home/travis/build/aenachescu/nbp
           -b /home/travis/build/aenachescu/nbp/build
@@ -108,6 +113,7 @@ matrix:
         - make -C build/ all CC=g++-5
         - cd build
         - ./run_tests.sh
+        - cd ..
         - coveralls
           -r /home/travis/build/aenachescu/nbp
           -b /home/travis/build/aenachescu/nbp/build
@@ -117,6 +123,7 @@ matrix:
         - make -C build/ all CC=g++-6
         - cd build
         - ./run_tests.sh
+        - cd ..
         - coveralls
           -r /home/travis/build/aenachescu/nbp
           -b /home/travis/build/aenachescu/nbp/build
@@ -126,6 +133,7 @@ matrix:
         - make -C build/ all CC=g++-7
         - cd build
         - ./run_tests.sh
+        - cd ..
         - coveralls
           -r /home/travis/build/aenachescu/nbp
           -b /home/travis/build/aenachescu/nbp/build
@@ -135,6 +143,7 @@ matrix:
         - make -C build/ all CC=g++-8
         - cd build
         - ./run_tests.sh
+        - cd ..
         - coveralls
           -r /home/travis/build/aenachescu/nbp
           -b /home/travis/build/aenachescu/nbp/build
@@ -144,6 +153,7 @@ matrix:
         - make -C build/ all CC=g++-9
         - cd build
         - ./run_tests.sh
+        - cd ..
         - coveralls
           -r /home/travis/build/aenachescu/nbp
           -b /home/travis/build/aenachescu/nbp/build
