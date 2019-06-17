@@ -45,6 +45,106 @@ matrix:
           --gcov gcov --gcov-options '\-lp'
 
     #
+    # gcc 6
+    #
+    - os: linux
+      env:
+        - TEST="gcc 6"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-6
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - make -C build/ clean
+        - make -C build/ all CC=gcc-6
+        - cd build
+        - ./run_tests.sh
+      after_success:
+        - coveralls
+          -r /home/travis/build/aenachescu/nbp
+          -b /home/travis/build/aenachescu/nbp/build
+          --gcov gcov --gcov-options '\-lp'
+
+    #
+    # gcc 7
+    #
+    - os: linux
+      env:
+        - TEST="gcc 7"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-7
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - make -C build/ clean
+        - make -C build/ all CC=gcc-7
+        - cd build
+        - ./run_tests.sh
+      after_success:
+        - coveralls
+          -r /home/travis/build/aenachescu/nbp
+          -b /home/travis/build/aenachescu/nbp/build
+          --gcov gcov --gcov-options '\-lp'
+
+    #
+    # gcc 8
+    #
+    - os: linux
+      env:
+        - TEST="gcc 8"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-8
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - make -C build/ clean
+        - make -C build/ all CC=gcc-8
+        - cd build
+        - ./run_tests.sh
+      after_success:
+        - coveralls
+          -r /home/travis/build/aenachescu/nbp
+          -b /home/travis/build/aenachescu/nbp/build
+          --gcov gcov --gcov-options '\-lp'
+
+    #
+    # gcc 9
+    #
+    - os: linux
+      env:
+        - TEST="gcc 9"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-9
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - make -C build/ clean
+        - make -C build/ all CC=gcc-9
+        - cd build
+        - ./run_tests.sh
+      after_success:
+        - coveralls
+          -r /home/travis/build/aenachescu/nbp
+          -b /home/travis/build/aenachescu/nbp/build
+          --gcov gcov --gcov-options '\-lp'
+
+    #
     # g++ 5
     #
     - os: linux
@@ -61,6 +161,106 @@ matrix:
       script:
         - make -C build/ clean
         - make -C build/ all CC=g++-5
+        - cd build
+        - ./run_tests.sh
+      after_success:
+        - coveralls
+          -r /home/travis/build/aenachescu/nbp
+          -b /home/travis/build/aenachescu/nbp/build
+          --gcov gcov --gcov-options '\-lp'
+
+    #
+    # g++ 6
+    #
+    - os: linux
+      env:
+        - TEST="g++ 6"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - make -C build/ clean
+        - make -C build/ all CC=g++-6
+        - cd build
+        - ./run_tests.sh
+      after_success:
+        - coveralls
+          -r /home/travis/build/aenachescu/nbp
+          -b /home/travis/build/aenachescu/nbp/build
+          --gcov gcov --gcov-options '\-lp'
+
+    #
+    # g++ 7
+    #
+    - os: linux
+      env:
+        - TEST="g++ 7"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - make -C build/ clean
+        - make -C build/ all CC=g++-7
+        - cd build
+        - ./run_tests.sh
+      after_success:
+        - coveralls
+          -r /home/travis/build/aenachescu/nbp
+          -b /home/travis/build/aenachescu/nbp/build
+          --gcov gcov --gcov-options '\-lp'
+
+    #
+    # g++ 8
+    #
+    - os: linux
+      env:
+        - TEST="g++ 8"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - make -C build/ clean
+        - make -C build/ all CC=g++-8
+        - cd build
+        - ./run_tests.sh
+      after_success:
+        - coveralls
+          -r /home/travis/build/aenachescu/nbp
+          -b /home/travis/build/aenachescu/nbp/build
+          --gcov gcov --gcov-options '\-lp'
+
+    #
+    # g++ 9
+    #
+    - os: linux
+      env:
+        - TEST="g++ 9"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-9
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - make -C build/ clean
+        - make -C build/ all CC=g++-9
         - cd build
         - ./run_tests.sh
       after_success:
