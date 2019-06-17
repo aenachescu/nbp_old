@@ -618,7 +618,8 @@ void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
 {
     // TODO: check if alloc failed
     nbpSchedulerDataLast->test = test;
-    nbpSchedulerDataLast->next = NBP_ALLOC(sizeof(nbp_schedular_data_t));
+    nbpSchedulerDataLast->next =
+        (nbp_schedular_data_t*) NBP_ALLOC(sizeof(nbp_schedular_data_t));
     nbpSchedulerDataLast = nbpSchedulerDataLast->next;
     nbpSchedulerDataLast->next = 0x0;
     nbpSchedulerDataLast->test = 0x0;
