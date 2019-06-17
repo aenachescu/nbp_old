@@ -1,26 +1,52 @@
 language: c
-compiler: gcc
 sudo: required
 
 matrix:
   include:
+    #
+    # gcc 5
+    #
     - os: linux
-      env: TARGET=x86_64-unknown-linux-gnu
+      env:
+        - TEST="gcc 5"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-5
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - make -C build/ clean
+        - make -C build/ all CC=gcc-5
+        - ./build/run_tests
+      after_success:
+        - coveralls
+          -r /home/travis/build/aenachescu/nbp
+          -b /home/travis/build/aenachescu/nbp/build
+          --gcov gcov --gcov-options '\-lp'
 
-before_install:
-  - pip install --user cpp-coveralls
-
-script:
-  - make -C build/ clean
-  - make -C build/ all
-  - ./build/basic_sample
-  - ./build/modules_sample
-  - ./build/modules_one_file_sample
-  - ./build/submodules_sample
-  - ./build/submodules_one_file_sample
-
-after_success:
-    - coveralls
-        -r /home/travis/build/aenachescu/nbp
-        -b /home/travis/build/aenachescu/nbp/build
-        --gcov gcov --gcov-options '\-lp'
+    #
+    # g++ 5
+    #
+    - os: linux
+      env:
+        - TEST="g++ 5"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - make -C build/ clean
+        - make -C build/ all CC=g++-5
+        - ./build/run_tests
+      after_success:
+        - coveralls
+          -r /home/travis/build/aenachescu/nbp
+          -b /home/travis/build/aenachescu/nbp/build
+          --gcov gcov --gcov-options '\-lp'
