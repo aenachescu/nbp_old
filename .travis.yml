@@ -41,53 +41,28 @@ matrix:
         # gcc 5
         - make -C build/ clean
         - make -C build/ all CC=gcc-5
-        - cd build
-        - ./run_tests.sh
-        - cd ..
-        - coveralls
-          -r /home/travis/build/aenachescu/nbp
-          -b /home/travis/build/aenachescu/nbp/build
-          --gcov gcov --gcov-options '\-lp'
+        - cd build && ./run_tests.sh && cd ..
+        - cd build && ./run_coveralls.sh && cd ..
         # gcc 6
         - make -C build/ clean
         - make -C build/ all CC=gcc-6
-        - cd build
-        - ./run_tests.sh
-        - cd ..
-        - coveralls
-          -r /home/travis/build/aenachescu/nbp
-          -b /home/travis/build/aenachescu/nbp/build
-          --gcov gcov --gcov-options '\-lp'
+        - cd build && ./run_tests.sh && cd ..
+        - cd build && ./run_coveralls.sh && cd ..
         # gcc 7
         - make -C build/ clean
         - make -C build/ all CC=gcc-7
-        - cd build
-        - ./run_tests.sh
-        - cd ..
-        - coveralls
-          -r /home/travis/build/aenachescu/nbp
-          -b /home/travis/build/aenachescu/nbp/build
-          --gcov gcov --gcov-options '\-lp'
+        - cd build && ./run_tests.sh && cd ..
+        - cd build && ./run_coveralls.sh && cd ..
         # gcc 8
         - make -C build/ clean
         - make -C build/ all CC=gcc-8
-        - cd build
-        - ./run_tests.sh
-        - cd ..
-        - coveralls
-          -r /home/travis/build/aenachescu/nbp
-          -b /home/travis/build/aenachescu/nbp/build
-          --gcov gcov --gcov-options '\-lp'
+        - cd build && ./run_tests.sh && cd ..
+        - cd build && ./run_coveralls.sh && cd ..
         # gcc 9
         - make -C build/ clean
         - make -C build/ all CC=gcc-9
-        - cd build
-        - ./run_tests.sh
-        - cd ..
-        - coveralls
-          -r /home/travis/build/aenachescu/nbp
-          -b /home/travis/build/aenachescu/nbp/build
-          --gcov gcov --gcov-options '\-lp'
+        - cd build && ./run_tests.sh && cd ..
+        - cd build && ./run_coveralls.sh && cd ..
 
     #
     # g++
@@ -111,50 +86,25 @@ matrix:
         # g++ 5
         - make -C build/ clean
         - make -C build/ all CC=g++-5
-        - cd build
-        - ./run_tests.sh
-        - cd ..
-        - coveralls
-          -r /home/travis/build/aenachescu/nbp
-          -b /home/travis/build/aenachescu/nbp/build
-          --gcov gcov --gcov-options '\-lp'
+        - cd build && ./run_tests.sh && cd ..
+        - cd build && ./run_coveralls.sh && cd ..
         # g++ 6
         - make -C build/ clean
         - make -C build/ all CC=g++-6
-        - cd build
-        - ./run_tests.sh
-        - cd ..
-        - coveralls
-          -r /home/travis/build/aenachescu/nbp
-          -b /home/travis/build/aenachescu/nbp/build
-          --gcov gcov --gcov-options '\-lp'
+        - cd build && ./run_tests.sh && cd ..
+        - cd build && ./run_coveralls.sh && cd ..
         # g++ 7
         - make -C build/ clean
         - make -C build/ all CC=g++-7
-        - cd build
-        - ./run_tests.sh
-        - cd ..
-        - coveralls
-          -r /home/travis/build/aenachescu/nbp
-          -b /home/travis/build/aenachescu/nbp/build
-          --gcov gcov --gcov-options '\-lp'
+        - cd build && ./run_tests.sh && cd ..
+        - cd build && ./run_coveralls.sh && cd ..
         # g++ 8
         - make -C build/ clean
         - make -C build/ all CC=g++-8
-        - cd build
-        - ./run_tests.sh
-        - cd ..
-        - coveralls
-          -r /home/travis/build/aenachescu/nbp
-          -b /home/travis/build/aenachescu/nbp/build
-          --gcov gcov --gcov-options '\-lp'
+        - cd build && ./run_tests.sh && cd ..
+        - cd build && ./run_coveralls.sh && cd ..
         # g++ 9
         - make -C build/ clean
         - make -C build/ all CC=g++-9
-        - cd build
-        - ./run_tests.sh
-        - cd ..
-        - coveralls
-          -r /home/travis/build/aenachescu/nbp
-          -b /home/travis/build/aenachescu/nbp/build
-          --gcov gcov --gcov-options '\-lp'
+        - cd build && ./run_tests.sh && cd ..
+        - cd build && ./run_coveralls.sh && cd ..
