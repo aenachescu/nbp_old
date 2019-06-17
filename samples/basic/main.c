@@ -19,16 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_LIBRARY_MAIN
 #include <nbp.h>
 
-#ifdef SAMPLE_LINUX
-#include <unistd.h>
-#define SAMPLE_SLEEP(seconds) sleep(seconds)
-#else
-#error "Unknow OS"
-#endif
+#include "../sample_sleep.h"
 
 NBP_TEST(test_my_add)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1 + 1 == 2);
     NBP_CHECK(2 + 2 == 4);
     NBP_CHECK(3 + 3 == 6);
@@ -38,7 +33,7 @@ NBP_TEST(test_my_add)
 
 NBP_TEST(test_my_sub)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1 - 1 == 0);
     NBP_CHECK(2 - 2 == 0);
     NBP_CHECK(3 - 3 == 0);
@@ -48,7 +43,7 @@ NBP_TEST(test_my_sub)
 
 NBP_TEST(test_my_mul)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1 * 1 == 1);
     NBP_CHECK(2 * 2 == 4);
     NBP_CHECK(3 * 3 == 9);
@@ -58,7 +53,7 @@ NBP_TEST(test_my_mul)
 
 NBP_TEST(test_my_div)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1 / 1 == 1);
     NBP_CHECK(2 / 2 == 1);
     NBP_CHECK(3 / 3 == 1);

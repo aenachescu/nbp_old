@@ -16,32 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <nbp.h>
+#ifndef NBP_SAMPLE_SLEEP
+#define NBP_SAMPLE_SLEEP
 
-#include "../sample_sleep.h"
+#ifdef SAMPLE_LINUX
+#include <unistd.h>
+#define SAMPLE_SLEEP() usleep(200000)
+#else
+#error "Unknow OS"
+#endif
 
-NBP_TEST(test_my_add)
-{
-    SAMPLE_SLEEP();
-    NBP_CHECK(1 + 1 == 2);
-    NBP_CHECK(2 + 2 == 4);
-    NBP_CHECK(3 + 3 == 6);
-    NBP_CHECK(4 + 4 == 8);
-    NBP_CHECK(5 + 5 == 10);
-}
-
-NBP_TEST(test_my_sub)
-{
-    SAMPLE_SLEEP();
-    NBP_CHECK(1 - 1 == 0);
-    NBP_CHECK(2 - 2 == 0);
-    NBP_CHECK(3 - 3 == 0);
-    NBP_CHECK(4 - 4 == 0);
-    NBP_CHECK(5 - 5 == 0);
-}
-
-NBP_MODULE(basic_math)
-{
-    NBP_CALL_TEST(test_my_add);
-    NBP_CALL_TEST(test_my_sub);
-}
+#endif

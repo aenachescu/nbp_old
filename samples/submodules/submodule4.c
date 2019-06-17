@@ -18,34 +18,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <nbp.h>
 
-#ifdef SAMPLE_LINUX
-#include <unistd.h>
-#define SAMPLE_SLEEP(seconds) sleep(seconds)
-#else
-#error "Unknow OS"
-#endif
+#include "../sample_sleep.h"
 
 NBP_TEST(test13)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
 NBP_TEST(test14)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(2);
 }
 
 NBP_TEST(test15)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(3);
 }
 
 NBP_TEST(test16)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(4);
 }
 

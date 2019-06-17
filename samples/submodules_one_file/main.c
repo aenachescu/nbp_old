@@ -19,12 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_LIBRARY_MAIN
 #include <nbp.h>
 
-#ifdef SAMPLE_LINUX
-#include <unistd.h>
-#define SAMPLE_SLEEP(seconds) sleep(seconds)
-#else
-#error "Unknow OS"
-#endif
+#include "../sample_sleep.h"
 
 NBP_MAIN_MODULE(submodules_one_file_sample)
 {
@@ -78,97 +73,97 @@ NBP_MODULE(submodule4)
 
 NBP_TEST(test1)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
 NBP_TEST(test2)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(2);
 }
 
 NBP_TEST(test3)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(3);
 }
 
 NBP_TEST(test4)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(4);
 }
 
 NBP_TEST(test5)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
 NBP_TEST(test6)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(2);
 }
 
 NBP_TEST(test7)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(3);
 }
 
 NBP_TEST(test8)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(4);
 }
 
 NBP_TEST(test9)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
 NBP_TEST(test10)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(2);
 }
 
 NBP_TEST(test11)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(3);
 }
 
 NBP_TEST(test12)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(4);
 }
 
 NBP_TEST(test13)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
 NBP_TEST(test14)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(2);
 }
 
 NBP_TEST(test15)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(3);
 }
 
 NBP_TEST(test16)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(4);
 }
 

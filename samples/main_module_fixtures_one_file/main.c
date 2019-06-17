@@ -20,12 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <nbp.h>
 #include <stdio.h>
 
-#ifdef SAMPLE_LINUX
-#include <unistd.h>
-#define SAMPLE_SLEEP(seconds) sleep(seconds)
-#else
-#error "Unknow OS"
-#endif
+#include "../sample_sleep.h"
 
 void write_message_to_file(const char *msg)
 {
@@ -48,25 +43,25 @@ NBP_TEARDOWN_MODULE(teardownMainModule)
 
 NBP_TEST(test1)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1 == 1);
 }
 
 NBP_TEST(test2)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1 == 1);
 }
 
 NBP_TEST(test3)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1 == 1);
 }
 
 NBP_TEST(test4)
 {
-    SAMPLE_SLEEP(1);
+    SAMPLE_SLEEP();
     NBP_CHECK(1 == 1);
 }
 
