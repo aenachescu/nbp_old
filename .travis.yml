@@ -20,7 +20,7 @@ matrix:
       script:
         - make -C build/ clean
         - make -C build/ all CC=gcc-5
-        - ./build/run_tests
+        - ./build/run_tests.sh
       after_success:
         - coveralls
           -r /home/travis/build/aenachescu/nbp
@@ -44,7 +44,7 @@ matrix:
       script:
         - make -C build/ clean
         - make -C build/ all CC=g++-5
-        - ./build/run_tests
+        - ./build/run_tests.sh
       after_success:
         - coveralls
           -r /home/travis/build/aenachescu/nbp
