@@ -139,7 +139,7 @@ clean_submodules_one_file_sample:
 	rm -rf $(bin_folder)submodules_one_file_sample
 
 #
-# main_module_fixtures
+# main_module_fixtures sample
 #
 
 main_module_fixtures_sample_files=\
@@ -162,6 +162,27 @@ clean_main_module_fixtures_sample:
 	rm -rf $(bin_folder)main_module_fixtures_sample
 
 #
+# main_module_fixtures_one_file sample
+#
+
+main_module_fixtures_one_file_sample_files=\
+	$(samples_folder)main_module_fixtures_one_file/main.c
+
+main_module_fixtures_one_file_sample_files_depends=\
+	../samples/main_module_fixtures_one_file/main.c
+
+main_module_fixtures_one_file_sample: $(main_module_fixtures_one_file_sample_files_depends) \
+	$(lib_files)
+	mkdir -p $(bin_folder)main_module_fixtures_one_file_sample && \
+	cd $(bin_folder)main_module_fixtures_one_file_sample && \
+	$(CC) -o main_module_fixtures_one_file_sample $(main_module_fixtures_one_file_sample_files) \
+	$(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_main_module_fixtures_one_file_sample:
+	rm -rf $(bin_folder)main_module_fixtures_one_file_sample
+
+#
 # make all
 #
 
@@ -172,6 +193,7 @@ all:\
 	modules_one_file_sample\
 	submodules_one_file_sample\
 	main_module_fixtures_sample\
+	main_module_fixtures_one_file_sample\
 
 #
 # make clean
@@ -184,3 +206,4 @@ clean:\
 	clean_modules_one_file_sample\
 	clean_submodules_one_file_sample\
 	clean_main_module_fixtures_sample\
+	clean_main_module_fixtures_one_file_sample\
