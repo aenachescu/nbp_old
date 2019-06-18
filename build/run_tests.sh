@@ -56,4 +56,8 @@ cd main_module_teardown_sample
 ./main_module_teardown_sample
 cd ..
 
+cd main_module_teardown_one_file_sample
+./main_module_teardown_one_file_sample
+cd ..
+
 cd ../build
