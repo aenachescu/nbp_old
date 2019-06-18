@@ -424,7 +424,7 @@ void nbp_notify_printer_module_end(
  * TODO: add docs
  */
 #define NBP_NO_SETUP_FUNC                                                      \
-    nbpEmptySetupFunc
+    nbp_empty_setup_func
 
 /*
  * TODO: add docs
@@ -436,7 +436,7 @@ void nbp_notify_printer_module_end(
  * TODO: add docs
  */
 #define NBP_NO_TEARDOWN_FUNC                                                   \
-    nbpEmptyTeardownFunc
+    nbp_empty_teardown_func
 
 /*
  * TODO: add docs
@@ -1108,8 +1108,8 @@ int main(int argc, const char** argv)
         name,                                                                  \
         nbpScheduler,                                                          \
         { &nbpPrinter },                                                       \
-        nbpEmptySetupFunc,                                                     \
-        nbpEmptyTeardownFunc                                                   \
+        nbp_empty_setup_func,                                                  \
+        nbp_empty_teardown_func                                                \
     )
 
 /*
@@ -1217,11 +1217,11 @@ void nbp_notify_printer_module_end(nbp_module_details_t* module)
     }
 }
 
-NBP_SETUP_MODULE(nbpEmptySetupFunc)
+NBP_SETUP_MODULE(nbp_empty_setup_func)
 {
 }
 
-NBP_TEARDOWN_MODULE(nbpEmptyTeardownFunc)
+NBP_TEARDOWN_MODULE(nbp_empty_teardown_func)
 {
 }
 
