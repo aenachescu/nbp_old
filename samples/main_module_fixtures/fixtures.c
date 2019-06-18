@@ -17,16 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <nbp.h>
-#include <stdio.h>
 
-void write_message_to_file(const char *msg)
-{
-    FILE *fp = fopen("output.txt", "a");
-    if (fp != NULL) {
-        fprintf(fp, "%s", msg);
-        fclose(fp);  
-    }
-}
+#include "../sample_utils.h"
 
 NBP_SETUP_MODULE(setupMainModule)
 {
