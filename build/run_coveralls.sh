@@ -27,6 +27,7 @@ samples="
     -b $path_to_bin/main_module_fixtures_sample
     -b $path_to_bin/main_module_fixtures_one_file_sample
     -b $path_to_bin/main_module_setup_sample
+    -b $path_to_bin/main_module_setup_one_file_sample
 "
 
 coveralls -r $path_to_project $samples --gcov $1 --gcov-options '\-lp'

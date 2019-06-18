@@ -189,6 +189,25 @@ clean_main_module_setup_sample:
 	rm -rf $(bin_folder)$(name8)
 
 #
+# main_module_setup_one_file sample
+#
+
+files9=\
+	$(samples_folder)main_module_setup_one_file/main.c
+depends9=\
+	../samples/main_module_setup_one_file/main.c
+name9=main_module_setup_one_file_sample
+
+main_module_setup_one_file_sample: $(depends9) $(lib_files)
+	mkdir -p $(bin_folder)$(name9) && \
+	cd $(bin_folder)$(name9) && \
+	$(CC) -o $(name9) $(files9) $(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_main_module_setup_one_file_sample:
+	rm -rf $(bin_folder)$(name9)
+
+#
 # make all
 #
 
@@ -201,6 +220,7 @@ all:\
 	main_module_fixtures_sample\
 	main_module_fixtures_one_file_sample\
 	main_module_setup_sample\
+	main_module_setup_one_file_sample\
 
 #
 # make clean
@@ -215,3 +235,4 @@ clean:\
 	clean_main_module_fixtures_sample\
 	clean_main_module_fixtures_one_file_sample\
 	clean_main_module_setup_sample\
+	clean_main_module_setup_one_file_sample\
