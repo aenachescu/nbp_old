@@ -208,6 +208,27 @@ clean_main_module_setup_one_file_sample:
 	rm -rf $(bin_folder)$(name9)
 
 #
+# main_module_teardown sample
+#
+
+files10=\
+	$(samples_folder)main_module_teardown/main.c\
+	$(samples_folder)main_module_teardown/teardown.c
+depends10=\
+	../samples/main_module_teardown/main.c\
+	../samples/main_module_teardown/teardown.c
+name10=main_module_teardown_sample
+
+main_module_teardown_sample: $(depends10) $(lib_files)
+	mkdir -p $(bin_folder)$(name10) && \
+	cd $(bin_folder)$(name10) && \
+	$(CC) -o $(name10) $(files10) $(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_main_module_teardown_sample:
+	rm -rf $(bin_folder)$(name10)
+
+#
 # make all
 #
 
@@ -221,6 +242,7 @@ all:\
 	main_module_fixtures_one_file_sample\
 	main_module_setup_sample\
 	main_module_setup_one_file_sample\
+	main_module_teardown_sample\
 
 #
 # make clean
@@ -236,3 +258,4 @@ clean:\
 	clean_main_module_fixtures_one_file_sample\
 	clean_main_module_setup_sample\
 	clean_main_module_setup_one_file_sample\
+	clean_main_module_teardown_sample\
