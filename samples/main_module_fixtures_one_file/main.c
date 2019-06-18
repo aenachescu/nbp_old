@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <nbp.h>
 #include <stdio.h>
 
-#include "../sample_sleep.h"
 #include "../sample_utils.h"
 
 NBP_SETUP_MODULE(setupMainModule)

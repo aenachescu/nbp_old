@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_LIBRARY_MAIN
 #include <nbp.h>
 
-#include "../sample_sleep.h"
+#include "../sample_utils.h"
 
 NBP_TEST(test1)
 {
