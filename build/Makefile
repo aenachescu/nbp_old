@@ -15,7 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -DSAMPLE_LINUX -fprofile-arcs -ftest-coverage
+CFLAGS=-Wall -Wextra -Werror -DSAMPLE_LINUX -fprofile-arcs -ftest-coverage \
+	$(SAMPLE_FLAGS)
 
 lib_folder=-I../../include
 lib_files=../include/nbp.h
