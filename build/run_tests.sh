@@ -20,14 +20,24 @@ function run_test {
     echo "running test $1"
 
     sample=${1%_sample}
+    have_output=0
+    expected_output=""
+    output=""
 
     cd ../samples/$sample
-    expected_output=$(<expected_linux_printer_output.txt)
+    expected_printer_output=$(<expected_linux_printer_output.txt)
+    if [ -f "expected_output.txt" ]; then
+        have_output=1
+        expected_output=$(<expected_output.txt)
+    fi
     cd ../../bin
 
     cd $1
-    output=$(./$1)
+    printer_output=$(./$1)
     testStatus=$?
+    if [ -f "output.txt" ]; then
+        output=$(<output.txt)
+    fi
     cd ..
 
     if [ $testStatus -ne $2 ]; then
@@ -38,14 +48,25 @@ function run_test {
         return
     fi
 
-    if [ "$expected_output" == "$output" ]; then
-        echo $'test passed\n'
-    else
-        echo "$expected_output"
-        echo "$output"
+    if [ "$expected_printer_output" != "$printer_output" ]; then
+        echo "$expected_printer_output"
+        echo "$printer_output"
         echo $'test failed\n'
         status=1
+        return
     fi
+
+    if [ $have_output -eq 1 ]; then
+        if [ "$expected_output" != "$output" ]; then
+            echo "$expected_output"
+            echo "$output"
+            echo $'test failed\n'
+            status=1
+            return
+        fi
+    fi
+
+    echo $'test passed\n'
 }
 
 cd ../bin
