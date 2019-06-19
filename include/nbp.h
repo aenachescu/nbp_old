@@ -1239,12 +1239,12 @@ void nbp_notify_printer_module_end(nbp_module_details_t* module)
 
 NBP_SETUP_MODULE(nbp_empty_setup_func)
 {
-    (void)(module);
+    (void)(NBP_THIS_MODULE);
 }
 
 NBP_TEARDOWN_MODULE(nbp_empty_teardown_func)
 {
-    (void)(module);
+    (void)(NBP_THIS_MODULE);
 }
 
 #endif // end if NBP_LIBRARY_MAIN
