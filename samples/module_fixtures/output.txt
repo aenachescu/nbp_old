@@ -1,0 +1,10 @@
+module1_setup module1
+submodule_setup submodule1
+submodule_teardown submodule1
+submodule_setup submodule2
+submodule_teardown submodule2
+module1_teardown module1
+module2_setup module2
+submodule3_setup submodule3
+submodule4_teardown submodule4
+module2_teardown module2
