@@ -447,6 +447,26 @@ void nbp_notify_printer_module_end(
 /*
  * TODO: add docs
  */
+#define NBP_THIS_TEST test
+
+/*
+ * TODO: add docs
+ */
+#define NBP_THIS_MODULE module
+
+/*
+ * TODO: add docs
+ */
+#define NBP_GET_TEST_NAME(test) test->testName
+
+/*
+ * TODO: add docs
+ */
+#define NBP_GET_MODULE_NAME(module) module->moduleName
+
+/*
+ * TODO: add docs
+ */
 #ifdef NBP_LIBRARY_MAIN
 
 /******************************************************************************
