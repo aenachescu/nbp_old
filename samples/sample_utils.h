@@ -21,12 +21,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdio.h>
 
-static inline void write_message_to_file(const char *msg)
+static inline void write_message_to_file(const char* msg)
 {
     FILE *fp = fopen("output.txt", "a");
     if (fp != NULL) {
         fprintf(fp, "%s\n", msg);
-        fclose(fp);  
+        fclose(fp);
+    }
+}
+
+static inline void write_message_to_file_2(const char* msg1, const char* msg2)
+{
+    FILE *fp = fopen("output.txt", "a");
+    if (fp != NULL) {
+        fprintf(fp, "%s %s\n", msg1, msg2);
+        fclose(fp);
     }
 }
 
