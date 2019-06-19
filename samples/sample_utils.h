@@ -30,11 +30,19 @@ static inline void write_message_to_file(const char *msg)
     }
 }
 
+#ifdef SAMPLE_DISABLE_SLEEP
+
+#define SAMPLE_SLEEP()
+
+#else
+
 #ifdef SAMPLE_LINUX
 #include <unistd.h>
 #define SAMPLE_SLEEP() usleep(200000)
 #else
 #error "Unknow OS"
+#endif
+
 #endif
 
 #endif // end if NBP_SAMPLE_UTILS
