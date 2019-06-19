@@ -84,17 +84,17 @@ struct nbp_test_details_t;
 struct nbp_module_details_t;
 
 typedef void (*nbp_before_test_pfn_t)(
-    void
+    struct nbp_test_details_t*
 );
 typedef void (*nbp_after_test_pfn_t)(
-    void
+    struct nbp_test_details_t*
 );
 
 typedef void(*nbp_setup_module_pfn_t)(
-    void
+    struct nbp_module_details_t*
 );
 typedef void(*nbp_teardown_module_pfn_t)(
-    void
+    struct nbp_module_details_t*
 );
 
 typedef void (*nbp_test_pfn_t)(
@@ -262,6 +262,68 @@ void nbp_notify_printer_module_end(
 /*
  * TODO: add docs
  */
+#define NBP_BEFORE_TEST(name)                                                  \
+    void name(nbp_test_details_t* test)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CALL_BEFORE_TEST(func)                                             \
+    NBP_BEFORE_TEST(func);                                                     \
+    beforeTest = func
+
+/*
+ * TODO: add docs
+ */
+#define NBP_RESET_BEFORE_TEST()                                                \
+    beforeTest = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_AFTER_TEST(name)                                                   \
+    void name(nbp_test_details_t* test)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CALL_AFTER_TEST(func)                                              \
+    NBP_AFTER_TEST(func);                                                      \
+    afterTest = func
+
+/*
+ * TODO: add docs
+ */
+#define NBP_RESET_AFTER_TEST()                                                 \
+    afterTest = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_NO_SETUP_FUNC                                                      \
+    nbp_empty_setup_func
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SETUP_MODULE(name)                                                 \
+    void name(nbp_module_details_t* module)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_NO_TEARDOWN_FUNC                                                   \
+    nbp_empty_teardown_func
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEARDOWN_MODULE(name)                                              \
+    void name(nbp_module_details_t* module)
+
+/*
+ * TODO: add docs
+ */
 #define NBP_TEST(name)                                                         \
     void name(                                                                 \
         nbp_test_details_t*                                                    \
@@ -343,8 +405,8 @@ void nbp_notify_printer_module_end(
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
-    void setupFunc(void);                                                      \
-    void teardownFunc(void);                                                   \
+    NBP_SETUP_MODULE(setupFunc);                                               \
+    NBP_TEARDOWN_MODULE(teardownFunc);                                         \
     nbp_module_details_t nbpModuleDetails ## name = {                          \
         .moduleName             = #name,                                       \
         .moduleFunc             = name,                                        \
@@ -381,68 +443,6 @@ void nbp_notify_printer_module_end(
         & nbpModuleDetails ## name,                                            \
         moduleDetails                                                          \
     )
-
-/*
- * TODO: add docs
- */
-#define NBP_CALL_BEFORE_TEST(func)                                             \
-    void func(void);                                                           \
-    beforeTest = func
-
-/*
- * TODO: add docs
- */
-#define NBP_RESET_BEFORE_TEST()                                                \
-    beforeTest = 0x0
-
-/*
- * TODO: add docs
- */
-#define NBP_CALL_AFTER_TEST(func)                                              \
-    void func(void);                                                           \
-    afterTest = func
-
-/*
- * TODO: add docs
- */
-#define NBP_RESET_AFTER_TEST()                                                 \
-    afterTest = 0x0
-
-/*
- * TODO: add docs
- */
-#define NBP_BEFORE_TEST(name)                                                  \
-    void name(void)
-
-/*
- * TODO: add docs
- */
-#define NBP_AFTER_TEST(name)                                                   \
-    void name(void)
-
-/*
- * TODO: add docs
- */
-#define NBP_NO_SETUP_FUNC                                                      \
-    nbp_empty_setup_func
-
-/*
- * TODO: add docs
- */
-#define NBP_SETUP_MODULE(name)                                                 \
-    void name(void)
-
-/*
- * TODO: add docs
- */
-#define NBP_NO_TEARDOWN_FUNC                                                   \
-    nbp_empty_teardown_func
-
-/*
- * TODO: add docs
- */
-#define NBP_TEARDOWN_MODULE(name)                                              \
-    void name(void)
 
 /*
  * TODO: add docs
@@ -541,7 +541,7 @@ void nbp_basic_scheduler_setup_module(nbp_module_details_t* module)
     module->moduleState = NBP_MODULE_STATE_RUNNING;
     nbp_notify_printer_module_begin(module);
     if (module->setup) {
-        module->setup();
+        module->setup(module);
     }
 }
 
@@ -552,13 +552,13 @@ void nbp_basic_scheduler_run_test(nbp_test_details_t* test)
     nbp_notify_printer_test_begin(test);
 
     if (test->beforeTestFunc) {
-        test->beforeTestFunc();
+        test->beforeTestFunc(test);
     }
 
     test->testFunc(test);
 
     if (test->afterTestFunc) {
-        test->afterTestFunc();
+        test->afterTestFunc(test);
     }
 
     nbp_notify_printer_test_end(test);
@@ -573,7 +573,7 @@ void nbp_basic_scheduler_teardown_module(nbp_module_details_t* module)
     while (module->numTests == module->numCompletedTests &&
         module->numSubmodules == module->numCompletedSubmodules) {
         if (module->teardown) {
-            module->teardown();
+            module->teardown(module);
         }
         nbp_notify_printer_module_end(module);
         module->moduleState = NBP_MODULE_STATE_COMPLETED;
@@ -1219,10 +1219,12 @@ void nbp_notify_printer_module_end(nbp_module_details_t* module)
 
 NBP_SETUP_MODULE(nbp_empty_setup_func)
 {
+    (void)(module);
 }
 
 NBP_TEARDOWN_MODULE(nbp_empty_teardown_func)
 {
+    (void)(module);
 }
 
 #endif // end if NBP_LIBRARY_MAIN
