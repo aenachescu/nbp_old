@@ -24,6 +24,7 @@ function run_test {
     expected_output=""
     output=""
 
+    # load expected test output
     cd ../samples/$sample
     expected_printer_output=$(<expected_linux_printer_output.txt)
     if [ -f "expected_output.txt" ]; then
@@ -32,7 +33,11 @@ function run_test {
     fi
     cd ../../bin
 
+    # run and get test output
     cd $1
+    if [ -f "output.txt" ]; then
+        rm output.txt
+    fi
     printer_output=$(./$1)
     testStatus=$?
     if [ -f "output.txt" ]; then
@@ -40,6 +45,7 @@ function run_test {
     fi
     cd ..
 
+    # check test return code
     if [ $testStatus -ne $2 ]; then
         echo "expected status: $2"
         echo "current status: $testStatus"
@@ -48,6 +54,7 @@ function run_test {
         return
     fi
 
+    # check printer output
     if [ "$expected_printer_output" != "$printer_output" ]; then
         echo "$expected_printer_output"
         echo "$printer_output"
@@ -56,6 +63,7 @@ function run_test {
         return
     fi
 
+    # check output file
     if [ $have_output -eq 1 ]; then
         if [ "$expected_output" != "$output" ]; then
             echo "$expected_output"
