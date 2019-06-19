@@ -1,0 +1,5 @@
+main_module_setup
+    [32mtest1[0m
+    [32mtest2[0m
+    [32mtest3[0m
+    [32mtest4[0m
