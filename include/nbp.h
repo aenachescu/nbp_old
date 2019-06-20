@@ -80,6 +80,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_MODULE_STATE_COMPLETED        3
 #define NBP_MODULE_STATE_SKIPPED          4
 
+#define NBP_ERROR_ALLOC                                         (int) 1
+#define NBP_ERROR_TEST_ALREADY_CALLED                           (int) 2
+#define NBP_ERROR_MODULE_ALREADY_CALLED                         (int) 3
+#define NBP_ERROR_SCHEDULER_NO_INIT_FUNC                        (int) 4
+#define NBP_ERROR_SCHEDULER_NO_UNINIT_FUNC                      (int) 5
+#define NBP_ERROR_SCHEDULER_NO_RUN_FUNC                         (int) 6
+#define NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC                    (int) 7
+
 struct nbp_test_details_t;
 struct nbp_module_details_t;
 
@@ -166,6 +174,9 @@ typedef void (*nbp_printer_init_pfn_t)(
 typedef int (*nbp_printer_uninit_pfn_t)(
     void
 );
+typedef void (*nbp_printer_handle_error_pfn_t)(
+    int
+);
 typedef void (*nbp_printer_test_begin_pfn_t)(
     nbp_test_details_t*
 );
@@ -184,6 +195,7 @@ typedef void (*nbp_printer_check_result_pfn_t)(
 struct nbp_printer_interface_t {
     nbp_printer_init_pfn_t init;
     nbp_printer_uninit_pfn_t uninit;
+    nbp_printer_handle_error_pfn_t handleError;
     nbp_printer_test_begin_pfn_t testBegin;
     nbp_printer_test_end_pfn_t testEnd;
     nbp_printer_module_begin_pfn_t moduleBegin;
@@ -218,6 +230,10 @@ void nbp_notify_printer_module_begin(
 
 void nbp_notify_printer_module_end(
     nbp_module_details_t*
+);
+
+void nbp_notify_printer_handle_error(
+    int
 );
 
 /******************************************************************************
@@ -638,10 +654,15 @@ void nbp_basic_scheduler_run(void)
 
 void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
 {
-    // TODO: check if alloc failed
     nbpSchedulerDataLast->test = test;
     nbpSchedulerDataLast->next =
         (nbp_scheduler_data_t*) NBP_ALLOC(sizeof(nbp_scheduler_data_t));
+
+    if (nbpSchedulerDataLast->next == 0x0) {
+        nbp_notify_printer_handle_error(NBP_ERROR_ALLOC);
+        return;
+    }
+
     nbpSchedulerDataLast = nbpSchedulerDataLast->next;
     nbpSchedulerDataLast->next = 0x0;
     nbpSchedulerDataLast->test = 0x0;
@@ -1072,19 +1093,19 @@ int main(int argc, const char** argv)
     }
 
     if (nbpSchedulerInterface->init == 0x0) {
-        // TODO: notify printer
+        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_INIT_FUNC);
         return -1;
     }
     if (nbpSchedulerInterface->uninit == 0x0) {
-        // TODO: notify printer
+        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_UNINIT_FUNC);
         return -2;
     }
     if (nbpSchedulerInterface->run == 0x0) {
-        // TODO: notify printer
+        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_RUN_FUNC);
         return -3;
     }
     if (nbpSchedulerInterface->addTest == 0x0) {
-        // TODO: notify printer
+        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
         return -4;
     }
 
@@ -1161,6 +1182,11 @@ int main(int argc, const char** argv)
 void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
 {
+    if (test->testState != NBP_TEST_STATE_NOT_INITIALIZED) {
+        nbp_notify_printer_handle_error(NBP_ERROR_TEST_ALREADY_CALLED);
+        return;
+    }
+
     test->testState = NBP_TEST_STATE_READY;
     test->module = module;
     test->beforeTestFunc = beforeTest;
@@ -1181,6 +1207,11 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
 
 void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 {
+    if (module->moduleState != NBP_MODULE_STATE_NOT_INITIALIZED) {
+        nbp_notify_printer_handle_error(NBP_ERROR_MODULE_ALREADY_CALLED);
+        return;
+    }
+
     module->moduleState = NBP_MODULE_STATE_READY;
     module->parent = parent;
 
@@ -1199,6 +1230,15 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
     }
 
     module->moduleFunc(module, 0x0, 0x0);
+}
+
+void nbp_notify_printer_handle_error(int errCode)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->handleError != 0x0) {
+            nbpPrinterInterfaces[i]->handleError(errCode);
+        }
+    }
 }
 
 void nbp_notify_printer_test_begin(nbp_test_details_t* test)
