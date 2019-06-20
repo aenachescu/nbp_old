@@ -970,6 +970,7 @@ void nbp_printer_check_result(nbp_test_details_t* test, const char* cond,
 nbp_printer_interface_t nbpPrinter = {
     .init           = nbp_printer_init,
     .uninit         = nbp_printer_uninit,
+    .handleError    = 0x0,
     .testBegin      = 0x0,
     .testEnd        = nbp_printer_test_end,
     .moduleBegin    = nbp_printer_module_begin,
