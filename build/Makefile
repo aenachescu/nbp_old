@@ -286,6 +286,23 @@ clean_module_fixtures_sample:
 	rm -rf $(bin_folder)$(name12)
 
 #
+# module_fixtures_one_file sample
+#
+
+files13=$(samples_folder)module_fixtures_one_file/main.c
+depends13=../samples/module_fixtures_one_file/main.c
+name13=module_fixtures_one_file_sample
+
+module_fixtures_one_file_sample: $(depends13) $(lib_files)
+	mkdir -p $(bin_folder)$(name13) && \
+	cd $(bin_folder)$(name13) && \
+	$(CC) -o $(name13) $(files13) $(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_module_fixtures_one_file_sample:
+	rm -rf $(bin_folder)$(name13)
+
+#
 # make all
 #
 
@@ -302,6 +319,7 @@ all:\
 	main_module_teardown_sample\
 	main_module_teardown_one_file_sample\
 	module_fixtures_sample\
+	module_fixtures_one_file_sample\
 
 #
 # make clean
@@ -320,3 +338,4 @@ clean:\
 	clean_main_module_teardown_sample\
 	clean_main_module_teardown_one_file_sample\
 	clean_module_fixtures_sample\
+	clean_module_fixtures_one_file_sample\
