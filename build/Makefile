@@ -303,6 +303,43 @@ clean_module_fixtures_one_file_sample:
 	rm -rf $(bin_folder)$(name13)
 
 #
+# test_fixtures sample
+#
+
+files14=\
+	$(samples_folder)test_fixtures/main.c\
+	$(samples_folder)test_fixtures/module1.c\
+	$(samples_folder)test_fixtures/module2.c\
+	$(samples_folder)test_fixtures/submodule1.c\
+	$(samples_folder)test_fixtures/submodule2.c\
+	$(samples_folder)test_fixtures/submodule3.c\
+	$(samples_folder)test_fixtures/submodule4.c\
+	$(samples_folder)test_fixtures/test_after.c\
+	$(samples_folder)test_fixtures/test_before.c\
+	$(samples_folder)test_fixtures/test_fixtures.c
+depends14=\
+	../samples/test_fixtures/main.c\
+	../samples/test_fixtures/module1.c\
+	../samples/test_fixtures/module2.c\
+	../samples/test_fixtures/submodule1.c\
+	../samples/test_fixtures/submodule2.c\
+	../samples/test_fixtures/submodule3.c\
+	../samples/test_fixtures/submodule4.c\
+	../samples/test_fixtures/test_after.c\
+	../samples/test_fixtures/test_before.c\
+	../samples/test_fixtures/test_fixtures.c
+name14=test_fixtures_sample
+
+test_fixtures_sample: $(depends14) $(lib_files)
+	mkdir -p $(bin_folder)$(name14) && \
+	cd $(bin_folder)$(name14) && \
+	$(CC) -o $(name14) $(files14) $(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_test_fixtures_sample:
+	rm -rf $(bin_folder)$(name14)
+
+#
 # make all
 #
 
@@ -320,6 +357,7 @@ all:\
 	main_module_teardown_one_file_sample\
 	module_fixtures_sample\
 	module_fixtures_one_file_sample\
+	test_fixtures_sample\
 
 #
 # make clean
@@ -339,3 +377,4 @@ clean:\
 	clean_main_module_teardown_one_file_sample\
 	clean_module_fixtures_sample\
 	clean_module_fixtures_one_file_sample\
+	clean_test_fixtures_sample\
