@@ -951,6 +951,7 @@ void nbp_printer_check_result(nbp_test_details_t* test, const char* cond,
 
     if (nbpPrinterTestFailed == 0) {
         nbpPrinterTestFailed = 1;
+        nbpPrinterRet        = 1;
 
         nbp_printer_print_deepth(test->module->deepth + 1);
         printf(KRED "%s" KNRM "\n", test->testName);
