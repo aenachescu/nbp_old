@@ -85,7 +85,7 @@ NBP_AFTER_TEST(my_after_test2)
     );
 }
 
-NBP_MAIN_MODULE(test_fixtures_sample)
+NBP_MAIN_MODULE(test_fixtures_one_file_sample)
 {
     NBP_CALL_MODULE(module1);
     NBP_CALL_MODULE(module2);
