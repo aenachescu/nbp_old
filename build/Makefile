@@ -357,6 +357,23 @@ clean_test_fixtures_one_file_sample:
 	rm -rf $(bin_folder)$(name15)
 
 #
+# check sample
+#
+
+files16=$(samples_folder)check/main.c
+depends16=../samples/check/main.c
+name16=check_sample
+
+check_sample: $(depends16) $(lib_files)
+	mkdir -p $(bin_folder)$(name16) && \
+	cd $(bin_folder)$(name16) && \
+	$(CC) -o $(name16) $(files16) $(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_check_sample:
+	rm -rf $(bin_folder)$(name16)
+
+#
 # make all
 #
 
@@ -376,6 +393,7 @@ all:\
 	module_fixtures_one_file_sample\
 	test_fixtures_sample\
 	test_fixtures_one_file_sample\
+	check_sample\
 
 #
 # make clean
@@ -397,3 +415,4 @@ clean:\
 	clean_module_fixtures_one_file_sample\
 	clean_test_fixtures_sample\
 	clean_test_fixtures_one_file_sample\
+	clean_check_sample\

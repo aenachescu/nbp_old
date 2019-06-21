@@ -98,6 +98,7 @@ run_test module_fixtures_sample 0
 run_test module_fixtures_one_file_sample 0
 run_test test_fixtures_sample 0
 run_test test_fixtures_one_file_sample 0
+run_test check_sample 1
 
 cd ../build
 
