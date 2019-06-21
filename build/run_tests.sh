@@ -47,8 +47,8 @@ function run_test {
 
     # check test return code
     if [ $testStatus -ne $2 ]; then
-        echo "expected status: $2"
-        echo "current status: $testStatus"
+        echo "***** expected status: $2"
+        echo "***** current status: $testStatus"
         echo $'test failed\n'
         status=1
         return
@@ -56,7 +56,9 @@ function run_test {
 
     # check printer output
     if [ "$expected_printer_output" != "$printer_output" ]; then
+        echo "***** expected printer output *****"
         echo "$expected_printer_output"
+        echo "***** printer output *****"
         echo "$printer_output"
         echo $'test failed\n'
         status=1
@@ -66,7 +68,9 @@ function run_test {
     # check output file
     if [ $have_output -eq 1 ]; then
         if [ "$expected_output" != "$output" ]; then
+            echo "***** expected output file *****"
             echo "$expected_output"
+            echo "***** output file *****"
             echo "$output"
             echo $'test failed\n'
             status=1

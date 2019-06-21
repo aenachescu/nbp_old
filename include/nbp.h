@@ -80,6 +80,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_MODULE_STATE_COMPLETED        3
 #define NBP_MODULE_STATE_SKIPPED          4
 
+#define NBP_ERROR_ALLOC                                         (int) 1
+#define NBP_ERROR_TEST_ALREADY_CALLED                           (int) 2
+#define NBP_ERROR_MODULE_ALREADY_CALLED                         (int) 3
+#define NBP_ERROR_SCHEDULER_NO_INIT_FUNC                        (int) 4
+#define NBP_ERROR_SCHEDULER_NO_UNINIT_FUNC                      (int) 5
+#define NBP_ERROR_SCHEDULER_NO_RUN_FUNC                         (int) 6
+#define NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC                    (int) 7
+
 struct nbp_test_details_t;
 struct nbp_module_details_t;
 
@@ -166,6 +174,9 @@ typedef void (*nbp_printer_init_pfn_t)(
 typedef int (*nbp_printer_uninit_pfn_t)(
     void
 );
+typedef void (*nbp_printer_handle_error_pfn_t)(
+    int
+);
 typedef void (*nbp_printer_test_begin_pfn_t)(
     nbp_test_details_t*
 );
@@ -179,11 +190,17 @@ typedef void (*nbp_printer_module_end_pfn_t)(
     nbp_module_details_t*
 );
 typedef void (*nbp_printer_check_result_pfn_t)(
-    nbp_test_details_t*
+    nbp_test_details_t*,
+    const char*,
+    int,
+    int,
+    const char*,
+    const char*
 );
 struct nbp_printer_interface_t {
     nbp_printer_init_pfn_t init;
     nbp_printer_uninit_pfn_t uninit;
+    nbp_printer_handle_error_pfn_t handleError;
     nbp_printer_test_begin_pfn_t testBegin;
     nbp_printer_test_end_pfn_t testEnd;
     nbp_printer_module_begin_pfn_t moduleBegin;
@@ -220,6 +237,19 @@ void nbp_notify_printer_module_end(
     nbp_module_details_t*
 );
 
+void nbp_notify_printer_handle_error(
+    int
+);
+
+void nbp_notify_printer_check_result(
+    nbp_test_details_t*,
+    const char*,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
 /******************************************************************************
  *                                                                            *
  *                                                                            *
@@ -234,15 +264,52 @@ void nbp_notify_printer_module_end(
  *                                                                            *
  ******************************************************************************/
 
+#define NBP_PRIVATE_CHECK_BASE(cond, failMsg, passMsg)                         \
+    if (cond) {                                                                \
+        test->passedChecks++;                                                  \
+        nbp_notify_printer_check_result(                                       \
+            test,                                                              \
+            #cond,                                                             \
+            1,                                                                 \
+            __LINE__,                                                          \
+            0x0,                                                               \
+            passMsg                                                            \
+        );                                                                     \
+    } else {                                                                   \
+        test->failedChecks++;                                                  \
+        nbp_notify_printer_check_result(                                       \
+            test,                                                              \
+            #cond,                                                             \
+            0,                                                                 \
+            __LINE__,                                                          \
+            failMsg,                                                           \
+            0x0                                                                \
+        );                                                                     \
+    }
+
 /*
  * TODO: add docs
  */
 #define NBP_CHECK(cond)                                                        \
-    if (cond) {                                                                \
-        testDetails->passedChecks++;                                           \
-    } else {                                                                   \
-        testDetails->failedChecks++;                                           \
-    }
+    NBP_PRIVATE_CHECK_BASE(cond, 0x0, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_FAIL_MSG(cond, msg)                                          \
+    NBP_PRIVATE_CHECK_BASE(cond, msg, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_PASS_MSG(cond, msg)                                          \
+    NBP_PRIVATE_CHECK_BASE(cond, 0x0, msg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_MSG(cond, failMsg, passMsg)                                  \
+    NBP_PRIVATE_CHECK_BASE(cond, failMsg, passMsg)
 
 /*
  * TODO: add docs
@@ -347,7 +414,7 @@ void nbp_notify_printer_module_end(
         .prev                   = 0x0                                          \
     };                                                                         \
     void name(                                                                 \
-        nbp_test_details_t* testDetails                                        \
+        nbp_test_details_t* test                                               \
     )
 
 /*
@@ -357,7 +424,7 @@ void nbp_notify_printer_module_end(
     extern nbp_test_details_t nbpTestDetails ## name;                          \
     nbp_call_test(                                                             \
         & nbpTestDetails ## name,                                              \
-        moduleDetails,                                                         \
+        module,                                                                \
         beforeTest,                                                            \
         afterTest                                                              \
     )
@@ -391,7 +458,7 @@ void nbp_notify_printer_module_end(
         .deepth                 = 0,                                           \
     };                                                                         \
     void name(                                                                 \
-        nbp_module_details_t* moduleDetails,                                   \
+        nbp_module_details_t* module,                                          \
         nbp_before_test_pfn_t beforeTest,                                      \
         nbp_after_test_pfn_t afterTest                                         \
     )
@@ -427,7 +494,7 @@ void nbp_notify_printer_module_end(
         .deepth                 = 0,                                           \
     };                                                                         \
     void name(                                                                 \
-        nbp_module_details_t* moduleDetails,                                   \
+        nbp_module_details_t* module,                                          \
         nbp_before_test_pfn_t beforeTest,                                      \
         nbp_after_test_pfn_t afterTest                                         \
     )
@@ -441,7 +508,7 @@ void nbp_notify_printer_module_end(
     (void)(afterTest);                                                         \
     nbp_call_module(                                                           \
         & nbpModuleDetails ## name,                                            \
-        moduleDetails                                                          \
+        module                                                                 \
     )
 
 /*
@@ -638,10 +705,15 @@ void nbp_basic_scheduler_run(void)
 
 void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
 {
-    // TODO: check if alloc failed
     nbpSchedulerDataLast->test = test;
     nbpSchedulerDataLast->next =
         (nbp_scheduler_data_t*) NBP_ALLOC(sizeof(nbp_scheduler_data_t));
+
+    if (nbpSchedulerDataLast->next == 0x0) {
+        nbp_notify_printer_handle_error(NBP_ERROR_ALLOC);
+        return;
+    }
+
     nbpSchedulerDataLast = nbpSchedulerDataLast->next;
     nbpSchedulerDataLast->next = 0x0;
     nbpSchedulerDataLast->test = 0x0;
@@ -723,272 +795,25 @@ nbp_scheduler_interface_t nbpScheduler = {
 #error "Cannot enable NBP_PRINTER if NBP_MT_SUPPORT is enabled"
 #endif // end if NBP_MT_SUPPORT
 
-/*
- * This is a cool printer but it's too hard to implement for now :(
- */
-#ifdef NBP_COOL_PRINTER
 #include <stdio.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
+#include <string.h>
 
 #define KNRM "\x1B[0m"
 #define KRED "\x1B[31m"
 #define KGRN "\x1B[32m"
 #define KYEL "\x1B[33m"
-#define KBLU "\x1B[34m"
 
-#define NBP_PRINTER_DATA_TYPE_NOTHING   0
-#define NBP_PRINTER_DATA_TYPE_TEST      1
-#define NBP_PRINTER_DATA_TYPE_MODULE    2
-
-struct nbp_printer_data_t {
-    unsigned int rowPos;
-    unsigned int dataType;
-    union {
-        nbp_module_details_t* module;
-        nbp_test_details_t* test;
-    };
-    struct nbp_printer_data_t* next;
+struct NbpPrinterPassMsgList {
+    char* msg;
+    char* cond;
+    int line;
+    struct NbpPrinterPassMsgList* next;
 };
-typedef struct nbp_printer_data_t nbp_printer_data_t;
-
-nbp_printer_data_t nbpPrinterData;
-nbp_printer_data_t* nbpPrinterDataLast;
-unsigned int nbpPrinterCurrentRow;
-unsigned int nbpPrinterWindowRowPos;
-struct winsize nbpPrinterWindowSize;
-int nbpPrinterRedrawn;
-
-void nbp_printer_print_deepth(unsigned int deepth)
-{
-    printf("\r");
-    while (deepth-- > 0) {
-        printf("    ");
-    }
-}
-
-void nbp_printer_redraw_printer_data(nbp_printer_data_t* data)
-{
-    if (data->dataType == NBP_PRINTER_DATA_TYPE_TEST) {
-        printf("\33[2K");
-        nbp_printer_print_deepth(data->test->module->deepth + 1);
-        if (data->test->testState == NBP_TEST_STATE_RUNNING) {
-            printf(KBLU "%s" KNRM "\n", data->test->testName);
-        } else if (data->test->testState == NBP_TEST_STATE_COMPLETED) {
-            printf(KGRN "%s" KNRM "\n", data->test->testName);
-        }
-    } else if (data->dataType == NBP_PRINTER_DATA_TYPE_MODULE) {
-        printf("\33[2K");
-        nbp_printer_print_deepth(data->module->deepth);
-        if (data->module->moduleState == NBP_MODULE_STATE_RUNNING) {
-            printf(KBLU "%s" KNRM "\n", data->module->moduleName);
-        } else if (data->module->moduleState == NBP_MODULE_STATE_COMPLETED) {
-            printf(KGRN "%s" KNRM "\n", data->module->moduleName);
-        }
-    }
-}
-
-void nbp_printer_redraw()
-{
-    nbpPrinterRedrawn = 1;
-    printf("\033[%huA", nbpPrinterWindowSize.ws_row - 2);
-
-    unsigned int row = nbpPrinterCurrentRow - nbpPrinterWindowSize.ws_row + 2u;
-    nbp_printer_data_t* data = &nbpPrinterData;
-    while (data->dataType != NBP_PRINTER_DATA_TYPE_NOTHING) {
-        if (data->rowPos < row) {
-            data = data->next;
-            continue;
-        }
-        nbp_printer_redraw_printer_data(data);
-        data = data->next;
-    }
-    printf("\33[2K");
-    fflush(stdout);
-}
-
-void nbp_printer_init()
-{
-    nbpPrinterRedrawn       = 0;
-    nbpPrinterCurrentRow    = 0;
-    nbpPrinterWindowRowPos  = 0;
-
-    nbpPrinterData.rowPos   = 0;
-    nbpPrinterData.dataType = NBP_PRINTER_DATA_TYPE_NOTHING;
-    nbpPrinterData.module   = 0x0;
-    nbpPrinterData.next     = 0x0;
-
-    nbpPrinterDataLast      = &nbpPrinterData;
-
-    // TODO: check error
-    ioctl(STDOUT_FILENO, TIOCGWINSZ, &nbpPrinterWindowSize);
-}
-
-int nbp_printer_uninit()
-{
-    nbp_printer_data_t* data = &nbpPrinterData;
-    nbp_printer_data_t* tmp = 0x0;
-
-    if (nbpPrinterRedrawn == 1) {
-        printf("\033[%huA", nbpPrinterWindowSize.ws_row - 2);
-        nbp_printer_redraw_printer_data(data);
-
-        data = data->next;
-        while (data != 0x0) {
-            nbp_printer_redraw_printer_data(data);
-            tmp = data;
-            data = data->next;
-            NBP_FREE(tmp);
-        }
-    } else {
-        data = data->next;
-        while (data != 0x0) {
-            tmp = data;
-            data = data->next;
-            NBP_FREE(data);
-        }
-    }
-
-    return 0;
-}
-
-void nbp_printer_test_begin(nbp_test_details_t* test)
-{
-    // TODO: check if alloc failed
-    nbpPrinterDataLast->rowPos      = nbpPrinterCurrentRow;
-    nbpPrinterDataLast->dataType    = NBP_PRINTER_DATA_TYPE_TEST;
-    nbpPrinterDataLast->test        = test;
-    nbpPrinterDataLast->next        = NBP_ALLOC(sizeof(nbp_printer_data_t));
-    nbpPrinterDataLast              = nbpPrinterDataLast->next;
-    nbpPrinterDataLast->rowPos      = 0;
-    nbpPrinterDataLast->dataType    = NBP_PRINTER_DATA_TYPE_NOTHING;
-    nbpPrinterDataLast->test        = 0x0;
-    nbpPrinterDataLast->next        = 0x0;
-
-    nbp_printer_print_deepth(test->module->deepth + 1);
-    printf(KBLU "%s" KNRM, test->testName);
-    nbpPrinterCurrentRow++;
-    nbpPrinterWindowRowPos++;
-
-    if (nbpPrinterWindowRowPos == nbpPrinterWindowSize.ws_row - 1u) {
-        nbp_printer_redraw();
-        nbpPrinterWindowRowPos--;
-    } else {
-        printf("\n");
-    }
-}
-
-void nbp_printer_test_end(nbp_test_details_t* test)
-{
-    unsigned int rows = 0;
-    nbp_printer_data_t* data = &nbpPrinterData;
-    while (data != 0x0) {
-        if (data->dataType == NBP_PRINTER_DATA_TYPE_TEST &&
-            data->test == test) {
-            rows = nbpPrinterCurrentRow - data->rowPos;
-            break;
-        }
-        data = data->next;
-    }
-    if (data == 0x0) {
-        // TODO: print error
-    }
-
-    if (rows >= nbpPrinterWindowSize.ws_row) {
-        return;
-    }
-
-    printf("\033[%uA", rows);
-    nbp_printer_print_deepth(test->module->deepth + 1);
-    printf(KGRN "%s" KNRM, test->testName);
-    printf("\033[%uB\r", rows);
-}
-
-void nbp_printer_module_begin(nbp_module_details_t* module)
-{
-    // TODO: check if alloc failed
-    nbpPrinterDataLast->rowPos      = nbpPrinterCurrentRow;
-    nbpPrinterDataLast->dataType    = NBP_PRINTER_DATA_TYPE_MODULE;
-    nbpPrinterDataLast->module      = module;
-    nbpPrinterDataLast->next        = NBP_ALLOC(sizeof(nbp_printer_data_t));
-    nbpPrinterDataLast              = nbpPrinterDataLast->next;
-    nbpPrinterDataLast->rowPos      = 0;
-    nbpPrinterDataLast->dataType    = NBP_PRINTER_DATA_TYPE_NOTHING;
-    nbpPrinterDataLast->test        = 0x0;
-    nbpPrinterDataLast->next        = 0x0;
-
-    nbp_printer_print_deepth(module->deepth);
-    printf(KBLU "%s" KNRM, module->moduleName);
-    nbpPrinterCurrentRow++;
-    nbpPrinterWindowRowPos++;
-
-    if (nbpPrinterWindowRowPos == nbpPrinterWindowSize.ws_row - 1u) {
-        nbp_printer_redraw();
-        nbpPrinterWindowRowPos--;
-    } else {
-        printf("\n");
-    }
-}
-
-void nbp_printer_module_end(nbp_module_details_t* module)
-{
-    unsigned int rows = 0;
-    nbp_printer_data_t* data = &nbpPrinterData;
-    while (data != 0x0) {
-        if (data->dataType == NBP_PRINTER_DATA_TYPE_MODULE &&
-            data->module == module) {
-            rows = nbpPrinterCurrentRow - data->rowPos;
-            break;
-        }
-        data = data->next;
-    }
-    if (data == 0x0) {
-        // TODO: print error
-    }
-
-    if (rows >= nbpPrinterWindowSize.ws_row) {
-        return;
-    }
-
-    printf("\033[%uA", rows);
-    nbp_printer_print_deepth(module->deepth);
-    printf(KGRN "%s" KNRM, module->moduleName);
-    printf("\033[%uB\r", rows);
-}
-
-void nbp_printer_check_result(nbp_test_details_t* test)
-{
-    (void)(test);
-    return;
-}
-
-nbp_printer_interface_t nbpPrinter = {
-    .init = nbp_printer_init,
-    .uninit = nbp_printer_uninit,
-    .testBegin = nbp_printer_test_begin,
-    .testEnd = nbp_printer_test_end,
-    .moduleBegin = nbp_printer_module_begin,
-    .moduleEnd = nbp_printer_module_end,
-    .checkResult = nbp_printer_check_result,
-};
-
-#undef KNRM
-#undef KRED
-#undef KGRN
-#undef KYEL
-#undef KBLU
-
-#endif // end if 0
-
-#include <stdio.h>
-
-#define KNRM "\x1B[0m"
-#define KRED "\x1B[31m"
-#define KGRN "\x1B[32m"
-#define KYEL "\x1B[33m"
 
 int nbpPrinterRet;
 int nbpPrinterTestFailed;
+struct NbpPrinterPassMsgList* nbpPrinterFirstPassMsg;
+struct NbpPrinterPassMsgList* nbpPrinterLastPassMsg;
 
 void nbp_printer_print_deepth(unsigned int deepth)
 {
@@ -996,12 +821,93 @@ void nbp_printer_print_deepth(unsigned int deepth)
     while (deepth-- > 0) {
         printf("    ");
     }
+}
+
+char* nbp_printer_duplicate_str(const char* str)
+{
+    char* dup = (char*) NBP_ALLOC(strlen(str));
+    if (dup != 0x0) {
+        strcpy(dup, str);
+    }
+    return dup;
+}
+
+void nbp_printer_add_pass_msg(const char* cond, const char* msg, int line)
+{
+    struct NbpPrinterPassMsgList* tmp = (struct NbpPrinterPassMsgList*)
+        NBP_ALLOC(sizeof(struct NbpPrinterPassMsgList));
+
+    do {
+        if (tmp == 0x0) {
+            nbp_notify_printer_handle_error(NBP_ERROR_ALLOC);
+            break;
+        }
+
+        tmp->cond = nbp_printer_duplicate_str(cond);
+        if (tmp->cond == 0x0) {
+            nbp_notify_printer_handle_error(NBP_ERROR_ALLOC);
+            break;
+        }
+
+        tmp->msg = nbp_printer_duplicate_str(msg);
+        if (tmp->msg == 0x0) {
+            nbp_notify_printer_handle_error(NBP_ERROR_ALLOC);
+        }
+
+        tmp->line = line;
+        tmp->next = 0x0;
+
+        if (nbpPrinterLastPassMsg == 0x0) {
+            nbpPrinterFirstPassMsg = tmp;
+            nbpPrinterLastPassMsg  = tmp;
+        } else {
+            nbpPrinterLastPassMsg->next = tmp;
+            nbpPrinterLastPassMsg       = tmp;
+        }
+
+        return;
+    } while (0);
+
+    if (tmp != 0x0) {
+        if (tmp->cond != 0x0) {
+            NBP_FREE(tmp->cond);
+        }
+        if (tmp->msg != 0x0) {
+            NBP_FREE(tmp->msg);
+        }
+        NBP_FREE(tmp);
+    }
+}
+
+void nbp_printer_print_pass_msg(nbp_test_details_t* test)
+{
+    struct NbpPrinterPassMsgList* tmp = 0x0;
+
+    while (nbpPrinterFirstPassMsg != 0x0) {
+        nbp_printer_print_deepth(test->module->deepth + 2);
+        printf(KGRN "%s passed (%s) (%d)" KNRM "\n",
+            nbpPrinterFirstPassMsg->cond,
+            nbpPrinterFirstPassMsg->msg,
+            nbpPrinterFirstPassMsg->line
+        );
+
+        tmp = nbpPrinterFirstPassMsg;
+        nbpPrinterFirstPassMsg = nbpPrinterFirstPassMsg->next;
+
+        NBP_FREE(tmp->cond);
+        NBP_FREE(tmp->msg);
+        NBP_FREE(tmp);
+    }
+
+    nbpPrinterLastPassMsg = 0x0;
 }
 
 void nbp_printer_init(void)
 {
     nbpPrinterRet           = 0;
     nbpPrinterTestFailed    = 0;
+    nbpPrinterFirstPassMsg  = 0x0;
+    nbpPrinterLastPassMsg   = 0x0;
 }
 
 int nbp_printer_uninit(void)
@@ -1014,6 +920,7 @@ void nbp_printer_test_end(nbp_test_details_t* test)
     if (nbpPrinterTestFailed == 0) {
         nbp_printer_print_deepth(test->module->deepth + 1);
         printf(KGRN "%s" KNRM "\n", test->testName);
+        nbp_printer_print_pass_msg(test);
     } else {
         nbpPrinterTestFailed = 0;
     }
@@ -1025,14 +932,45 @@ void nbp_printer_module_begin(nbp_module_details_t* module)
     printf("%s\n", module->moduleName);
 }
 
-void nbp_printer_check_result(nbp_test_details_t* test)
+void nbp_printer_check_result(nbp_test_details_t* test, const char* cond,
+    int passed, int line, const char* failMsg, const char* passMsg)
 {
-    (void)(test);
+    if (passed == 1) {
+        if (passMsg == 0x0) {
+            return;
+        }
+
+        if (nbpPrinterTestFailed == 1) {
+            nbp_printer_print_deepth(test->module->deepth + 2);
+            printf(KGRN "%s passed (%s) (%d)" KNRM "\n", cond, passMsg, line);
+        } else {
+            nbp_printer_add_pass_msg(cond, passMsg, line);
+        }
+        return;
+    }
+
+    if (nbpPrinterTestFailed == 0) {
+        nbpPrinterTestFailed = 1;
+
+        nbp_printer_print_deepth(test->module->deepth + 1);
+        printf(KRED "%s" KNRM "\n", test->testName);
+
+        nbp_printer_print_pass_msg(test);
+    }
+
+    if (failMsg != 0x0) {
+        nbp_printer_print_deepth(test->module->deepth + 2);
+        printf(KRED "%s failed (%s) (%d)" KNRM "\n", cond, failMsg, line);
+    } else {
+        nbp_printer_print_deepth(test->module->deepth + 2);
+        printf(KRED "%s failed (%d)" KNRM "\n", cond, line);
+    }
 }
 
 nbp_printer_interface_t nbpPrinter = {
     .init           = nbp_printer_init,
     .uninit         = nbp_printer_uninit,
+    .handleError    = 0x0,
     .testBegin      = 0x0,
     .testEnd        = nbp_printer_test_end,
     .moduleBegin    = nbp_printer_module_begin,
@@ -1072,19 +1010,19 @@ int main(int argc, const char** argv)
     }
 
     if (nbpSchedulerInterface->init == 0x0) {
-        // TODO: notify printer
+        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_INIT_FUNC);
         return -1;
     }
     if (nbpSchedulerInterface->uninit == 0x0) {
-        // TODO: notify printer
+        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_UNINIT_FUNC);
         return -2;
     }
     if (nbpSchedulerInterface->run == 0x0) {
-        // TODO: notify printer
+        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_RUN_FUNC);
         return -3;
     }
     if (nbpSchedulerInterface->addTest == 0x0) {
-        // TODO: notify printer
+        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
         return -4;
     }
 
@@ -1161,6 +1099,11 @@ int main(int argc, const char** argv)
 void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
 {
+    if (test->testState != NBP_TEST_STATE_NOT_INITIALIZED) {
+        nbp_notify_printer_handle_error(NBP_ERROR_TEST_ALREADY_CALLED);
+        return;
+    }
+
     test->testState = NBP_TEST_STATE_READY;
     test->module = module;
     test->beforeTestFunc = beforeTest;
@@ -1181,6 +1124,11 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
 
 void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 {
+    if (module->moduleState != NBP_MODULE_STATE_NOT_INITIALIZED) {
+        nbp_notify_printer_handle_error(NBP_ERROR_MODULE_ALREADY_CALLED);
+        return;
+    }
+
     module->moduleState = NBP_MODULE_STATE_READY;
     module->parent = parent;
 
@@ -1199,6 +1147,15 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
     }
 
     module->moduleFunc(module, 0x0, 0x0);
+}
+
+void nbp_notify_printer_handle_error(int errCode)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->handleError != 0x0) {
+            nbpPrinterInterfaces[i]->handleError(errCode);
+        }
+    }
 }
 
 void nbp_notify_printer_test_begin(nbp_test_details_t* test)
@@ -1233,6 +1190,23 @@ void nbp_notify_printer_module_end(nbp_module_details_t* module)
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->moduleEnd != 0x0) {
             nbpPrinterInterfaces[i]->moduleEnd(module);
+        }
+    }
+}
+
+void nbp_notify_printer_check_result(nbp_test_details_t* test, const char* cond,
+    int passed, int line, const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->checkResult != 0x0) {
+            nbpPrinterInterfaces[i]->checkResult(
+                test,
+                cond,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
         }
     }
 }
