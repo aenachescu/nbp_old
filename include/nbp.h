@@ -795,6 +795,11 @@ nbp_scheduler_interface_t nbpScheduler = {
 #error "Cannot enable NBP_PRINTER if NBP_MT_SUPPORT is enabled"
 #endif // end if NBP_MT_SUPPORT
 
+/*
+ * Default nbp printer for Linux
+ */
+#ifdef NBP_OS_LINUX
+
 #include <stdio.h>
 #include <string.h>
 
@@ -978,6 +983,22 @@ nbp_printer_interface_t nbpPrinter = {
     .moduleEnd      = 0x0,
     .checkResult    = nbp_printer_check_result,
 };
+
+#elif defined NBP_OS_WINDOWS
+/*
+ * Default nbp printer for Windows
+ */
+
+#error "Not supported"
+
+#elif defined NBP_OS_MAC
+/*
+ * Default nbp printer for Mac
+ */
+
+#error "Not supported"
+
+#endif // end if NBP_OS_MAC
 
 #endif // end if NBP_PRINTER
 
