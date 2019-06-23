@@ -49,7 +49,7 @@ void nbp_printer_print_deepth(unsigned int deepth)
 
 char* nbp_printer_duplicate_str(const char* str)
 {
-    char* dup = (char*) NBP_ALLOC(strlen(str));
+    char* dup = (char*) NBP_ALLOC(strlen(str) + 1);
     if (dup != 0x0) {
         strcpy(dup, str);
     }
