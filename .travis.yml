@@ -83,7 +83,7 @@ matrix:
         # g++ 5
         - make -C build/ clean
         - make -C build/ all CC=g++-5 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && && ./run_coveralls.sh cd ..
+        - cd build && ./run_tests.sh && ./run_coveralls.sh && cd ..
         # g++ 6
         - make -C build/ clean
         - make -C build/ all CC=g++-6 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
