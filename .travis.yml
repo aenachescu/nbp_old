@@ -35,34 +35,30 @@ matrix:
             - gcc-7
             - gcc-8
             - gcc-9
+            - lcov
       before_install:
-        - pip install --user cpp-coveralls
+        - gem install coveralls-lcov
       script:
         # gcc 5
         - make -C build/ clean
         - make -C build/ all CC=gcc-5 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && cd ..
-        - cd build && ./run_coveralls.sh gcov-5 && cd ..
+        - cd build && ./run_tests.sh && ./run_coveralls.sh && cd ..
         # gcc 6
         - make -C build/ clean
         - make -C build/ all CC=gcc-6 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - cd build && ./run_tests.sh && cd ..
-        - cd build && ./run_coveralls.sh gcov-6 && cd ..
         # gcc 7
         - make -C build/ clean
         - make -C build/ all CC=gcc-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - cd build && ./run_tests.sh && cd ..
-        - cd build && ./run_coveralls.sh gcov-7 && cd ..
         # gcc 8
         - make -C build/ clean
         - make -C build/ all CC=gcc-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - cd build && ./run_tests.sh && cd ..
-        - cd build && ./run_coveralls.sh gcov-8 && cd ..
         # gcc 9
         - make -C build/ clean
         - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - cd build && ./run_tests.sh && cd ..
-        - cd build && ./run_coveralls.sh gcov-9 && cd ..
 
     #
     # g++
@@ -80,31 +76,27 @@ matrix:
             - g++-7
             - g++-8
             - g++-9
+            - lcov
       before_install:
-        - pip install --user cpp-coveralls
+        - gem install coveralls-lcov
       script:
         # g++ 5
         - make -C build/ clean
         - make -C build/ all CC=g++-5 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && cd ..
-        - cd build && ./run_coveralls.sh gcov-5 && cd ..
+        - cd build && ./run_tests.sh && && ./run_coveralls.sh cd ..
         # g++ 6
         - make -C build/ clean
         - make -C build/ all CC=g++-6 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - cd build && ./run_tests.sh && cd ..
-        - cd build && ./run_coveralls.sh gcov-6 && cd ..
         # g++ 7
         - make -C build/ clean
         - make -C build/ all CC=g++-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - cd build && ./run_tests.sh && cd ..
-        - cd build && ./run_coveralls.sh gcov-7 && cd ..
         # g++ 8
         - make -C build/ clean
         - make -C build/ all CC=g++-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - cd build && ./run_tests.sh && cd ..
-        - cd build && ./run_coveralls.sh gcov-8 && cd ..
         # g++ 9
         - make -C build/ clean
         - make -C build/ all CC=g++-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - cd build && ./run_tests.sh && cd ..
-        - cd build && ./run_coveralls.sh gcov-9 && cd ..
