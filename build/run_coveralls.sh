@@ -14,27 +14,41 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-path_to_bin="/home/travis/build/aenachescu/nbp/bin"
+path_to_bin="../bin"
+path_to_project="/home/travis/build/aenachescu/nbp/"
 
-path_to_project="/home/travis/build/aenachescu/nbp"
+declare -a arr=(
+    "basic_sample"
+    "modules_sample"
+    "modules_one_file_sample"
+    "submodules_sample"
+    "submodules_one_file_sample"
+    "main_module_fixtures_sample"
+    "main_module_fixtures_one_file_sample"
+    "main_module_setup_sample"
+    "main_module_setup_one_file_sample"
+    "main_module_teardown_sample"
+    "main_module_teardown_one_file_sample"
+    "module_fixtures_sample"
+    "module_fixtures_one_file_sample"
+    "test_fixtures_sample"
+    "test_fixtures_one_file_sample"
+    "check_sample"
+)
 
-samples="
-    -b $path_to_bin/basic_sample
-    -b $path_to_bin/modules_sample
-    -b $path_to_bin/modules_one_file_sample
-    -b $path_to_bin/submodules_sample
-    -b $path_to_bin/submodules_one_file_sample
-    -b $path_to_bin/main_module_fixtures_sample
-    -b $path_to_bin/main_module_fixtures_one_file_sample
-    -b $path_to_bin/main_module_setup_sample
-    -b $path_to_bin/main_module_setup_one_file_sample
-    -b $path_to_bin/main_module_teardown_sample
-    -b $path_to_bin/main_module_teardown_one_file_sample
-    -b $path_to_bin/module_fixtures_sample
-    -b $path_to_bin/module_fixtures_one_file_sample
-    -b $path_to_bin/test_fixtures_sample
-    -b $path_to_bin/test_fixtures_one_file_sample
-    -b $path_to_bin/check_sample
-"
+files=""
 
-coveralls -r $path_to_project $samples --gcov $1 --gcov-options '\-lp'
+for i in "${arr[@]}"
+do
+    files="$files -a $path_to_bin/$i/coverage.info"
+    lcov --directory $path_to_bin/$i/. --capture --output-file \
+        $path_to_bin/$i/coverage.info
+done
+
+lcov $files -o $path_to_bin/coverage.info
+
+sed -i "s|$path_to_project||g" $path_to_bin/coverage.info
+
+cd ..
+coveralls-lcov bin/coverage.info
+cd build
