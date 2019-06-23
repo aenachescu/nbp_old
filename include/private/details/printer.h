@@ -48,4 +48,15 @@ void nbp_notify_printer_check_result(
     const char*
 );
 
+void nbp_notify_printer_check_op_result(
+    nbp_test_details_t*,
+    const char*,
+    const char*,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
 #endif // end if NBP_PRIVATE_DETAILS_PRINTER_H

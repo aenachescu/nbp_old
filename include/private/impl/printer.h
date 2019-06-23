@@ -81,4 +81,25 @@ void nbp_notify_printer_check_result(nbp_test_details_t* test, const char* cond,
     }
 }
 
+void nbp_notify_printer_check_op_result( nbp_test_details_t* test,
+    const char* a, const char* b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg )
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->checkOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->checkOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+
 #endif // end if NBP_PRIVATE_IMPL_PRINTER_H
