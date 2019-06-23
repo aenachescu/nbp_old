@@ -16,16 +16,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NBP_LIBRARY_H
-#define NBP_LIBRARY_H
+#ifndef NBP_PRIVATE_TYPES_ERRORS_H
+#define NBP_PRIVATE_TYPES_ERRORS_H
 
-#include "private/types/types.h"
-#include "private/details/details.h"
-#include "private/api/api.h"
-#include "private/memory_allocator/memory_allocator.h"
-#include "private/scheduler/scheduler.h"
-#include "private/printer/printer.h"
-#include "private/impl/impl.h"
+#define NBP_ERROR_ALLOC                                         (int) 1
+#define NBP_ERROR_TEST_ALREADY_CALLED                           (int) 2
+#define NBP_ERROR_MODULE_ALREADY_CALLED                         (int) 3
+#define NBP_ERROR_SCHEDULER_NO_INIT_FUNC                        (int) 4
+#define NBP_ERROR_SCHEDULER_NO_UNINIT_FUNC                      (int) 5
+#define NBP_ERROR_SCHEDULER_NO_RUN_FUNC                         (int) 6
+#define NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC                    (int) 7
 
-#endif // end if NBP_LIBRARY_H
-
+#endif // end if NBP_PRIVATE_TYPES_ERRORS_H

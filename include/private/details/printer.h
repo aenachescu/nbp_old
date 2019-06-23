@@ -16,16 +16,36 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NBP_LIBRARY_H
-#define NBP_LIBRARY_H
+#ifndef NBP_PRIVATE_DETAILS_PRINTER_H
+#define NBP_PRIVATE_DETAILS_PRINTER_H
 
-#include "private/types/types.h"
-#include "private/details/details.h"
-#include "private/api/api.h"
-#include "private/memory_allocator/memory_allocator.h"
-#include "private/scheduler/scheduler.h"
-#include "private/printer/printer.h"
-#include "private/impl/impl.h"
+void nbp_notify_printer_test_begin(
+    nbp_test_details_t*
+);
 
-#endif // end if NBP_LIBRARY_H
+void nbp_notify_printer_test_end(
+    nbp_test_details_t*
+);
 
+void nbp_notify_printer_module_begin(
+    nbp_module_details_t*
+);
+
+void nbp_notify_printer_module_end(
+    nbp_module_details_t*
+);
+
+void nbp_notify_printer_handle_error(
+    int
+);
+
+void nbp_notify_printer_check_result(
+    nbp_test_details_t*,
+    const char*,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+#endif // end if NBP_PRIVATE_DETAILS_PRINTER_H

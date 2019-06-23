@@ -16,16 +16,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NBP_LIBRARY_H
-#define NBP_LIBRARY_H
+#ifndef NBP_PRIVATE_API_TEST_ASSERT_H
+#define NBP_PRIVATE_API_TEST_ASSERT_H
 
-#include "private/types/types.h"
-#include "private/details/details.h"
-#include "private/api/api.h"
-#include "private/memory_allocator/memory_allocator.h"
-#include "private/scheduler/scheduler.h"
-#include "private/printer/printer.h"
-#include "private/impl/impl.h"
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_ASSERT(cond)
 
-#endif // end if NBP_LIBRARY_H
-
+#endif // end if NBP_PRIVATE_API_TEST_ASSERT_H

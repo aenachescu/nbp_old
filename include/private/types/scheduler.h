@@ -16,16 +16,31 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NBP_LIBRARY_H
-#define NBP_LIBRARY_H
+#ifndef NBP_PRIVATE_TYPES_SCHEDULER_H
+#define NBP_PRIVATE_TYPES_SCHEDULER_H
 
-#include "private/types/types.h"
-#include "private/details/details.h"
-#include "private/api/api.h"
-#include "private/memory_allocator/memory_allocator.h"
-#include "private/scheduler/scheduler.h"
-#include "private/printer/printer.h"
-#include "private/impl/impl.h"
+typedef void (*nbp_scheduler_init_pfn_t)(
+    void
+);
 
-#endif // end if NBP_LIBRARY_H
+typedef void (*nbp_scheduler_uninit_pfn_t)(
+    void
+);
 
+typedef void (*nbp_scheduler_run_pfn_t)(
+    void
+);
+
+typedef void (*nbp_scheduler_add_test_pfn_t)(
+    nbp_test_details_t*
+);
+
+struct nbp_scheduler_interface_t {
+    nbp_scheduler_init_pfn_t init;
+    nbp_scheduler_uninit_pfn_t uninit;
+    nbp_scheduler_run_pfn_t run;
+    nbp_scheduler_add_test_pfn_t addTest;
+};
+typedef struct nbp_scheduler_interface_t nbp_scheduler_interface_t;
+
+#endif // end if NBP_PRIVATE_TYPES_SCHEDULER_H

@@ -16,16 +16,28 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NBP_LIBRARY_H
-#define NBP_LIBRARY_H
+#ifndef NBP_PRIVATE_MEMORY_ALLOCATOR_H
+#define NBP_PRIVATE_MEMORY_ALLOCATOR_H
 
-#include "private/types/types.h"
-#include "private/details/details.h"
-#include "private/api/api.h"
-#include "private/memory_allocator/memory_allocator.h"
-#include "private/scheduler/scheduler.h"
-#include "private/printer/printer.h"
-#include "private/impl/impl.h"
+/*
+ * TODO: add docs
+ */
+#ifndef NBP_CUSTOM_MEMORY_ALLOCATOR
 
-#endif // end if NBP_LIBRARY_H
+#include <stdlib.h>
+#define NBP_ALLOC malloc
+#define NBP_FREE free
 
+#else // if custom memory allocator is enabled
+
+#ifndef NBP_ALLOC
+#error "Custom memory allocator is enabled but no alloc function is provided"
+#endif // end if NBP_ALLOC
+
+#ifndef NBP_FREE
+#error "Custom memory allocator is enabled but no free function is provided"
+#endif // end if NBP_FREE
+
+#endif // end if NBP_CUSTOM_MEMORY_ALLOCATOR
+
+#endif // end if NBP_PRIVATE_MEMORY_ALLOCATOR_H
