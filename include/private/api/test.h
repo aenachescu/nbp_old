@@ -23,14 +23,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_BEFORE_TEST(name)                                                  \
-    void nbp_before_test_ ## name(nbp_test_details_t* test)
+    void NBP_PRIVATE_PP_CONCAT(nbp_before_test_, name)(                        \
+        nbp_test_details_t* test                                               \
+    )
 
 /*
  * TODO: add docs
  */
 #define NBP_CALL_BEFORE_TEST(func)                                             \
     NBP_BEFORE_TEST(func);                                                     \
-    beforeTest = nbp_before_test_ ## func
+    beforeTest = NBP_PRIVATE_PP_CONCAT(nbp_before_test_, func)
 
 /*
  * TODO: add docs
@@ -42,14 +44,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_AFTER_TEST(name)                                                   \
-    void nbp_after_test_ ## name(nbp_test_details_t* test)
+    void NBP_PRIVATE_PP_CONCAT(nbp_after_test_, name)(                         \
+        nbp_test_details_t* test                                               \
+    )
 
 /*
  * TODO: add docs
  */
 #define NBP_CALL_AFTER_TEST(func)                                              \
     NBP_AFTER_TEST(func);                                                      \
-    afterTest = nbp_after_test_ ## func
+    afterTest = NBP_PRIVATE_PP_CONCAT(nbp_after_test_, func)
 
 /*
  * TODO: add docs
@@ -61,12 +65,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_TEST(name)                                                         \
-    void nbp_test_ ## name(                                                    \
+    void NBP_PRIVATE_PP_CONCAT(nbp_test_, name)(                               \
         nbp_test_details_t*                                                    \
     );                                                                         \
-    nbp_test_details_t nbpTestDetails ## name = {                              \
+    nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, name) = {         \
         .testName               = #name,                                       \
-        .testFunc               = nbp_test_ ## name,                           \
+        .testFunc               = NBP_PRIVATE_PP_CONCAT(nbp_test_, name),      \
         .beforeTestFunc         = 0x0,                                         \
         .afterTestFunc          = 0x0,                                         \
         .module                 = 0x0,                                         \
@@ -82,7 +86,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .next                   = 0x0,                                         \
         .prev                   = 0x0                                          \
     };                                                                         \
-    void nbp_test_ ## name(                                                    \
+    void NBP_PRIVATE_PP_CONCAT(nbp_test_, name)(                               \
         nbp_test_details_t* test                                               \
     )
 
@@ -90,9 +94,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_CALL_TEST(name)                                                    \
-    extern nbp_test_details_t nbpTestDetails ## name;                          \
+    extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, name);     \
     nbp_call_test(                                                             \
-        & nbpTestDetails ## name,                                              \
+        & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, name),                         \
         module,                                                                \
         beforeTest,                                                            \
         afterTest                                                              \

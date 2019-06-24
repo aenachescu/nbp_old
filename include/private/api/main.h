@@ -28,8 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
-    extern nbp_module_details_t nbpModuleDetails ## name;                      \
-    nbp_module_details_t* nbpMainModule = & nbpModuleDetails ## name;          \
+    extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, name); \
+    nbp_module_details_t* nbpMainModule =                                      \
+        & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, name);                       \
     nbp_scheduler_interface_t* nbpSchedulerInterface = &scheduler;             \
     nbp_printer_interface_t* nbpPrinterInterfaces[] = printers;                \
     unsigned int nbpPrinterInterfacesSize =                                    \

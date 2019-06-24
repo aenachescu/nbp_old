@@ -56,7 +56,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
-    nbp_module_details_t nbpModuleDetails ## name = {                          \
+    nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, name) = {     \
         .moduleName             = #name,                                       \
         .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, name),    \
         .setup                  = 0x0,                                         \
@@ -92,7 +92,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     );                                                                         \
     NBP_SETUP_MODULE(setupFunc);                                               \
     NBP_TEARDOWN_MODULE(teardownFunc);                                         \
-    nbp_module_details_t nbpModuleDetails ## name = {                          \
+    nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, name) = {     \
         .moduleName             = #name,                                       \
         .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, name),    \
         .setup                  =                                              \
@@ -123,11 +123,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_CALL_MODULE(name)                                                  \
-    extern nbp_module_details_t nbpModuleDetails ## name;                      \
+    extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, name); \
     (void)(beforeTest);                                                        \
     (void)(afterTest);                                                         \
     nbp_call_module(                                                           \
-        & nbpModuleDetails ## name,                                            \
+        & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, name),                       \
         module                                                                 \
     )
 
