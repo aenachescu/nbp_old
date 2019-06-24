@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_LIBRARY_H
 #define NBP_LIBRARY_H
 
+#include "private/utils/utils.h"
 #include "private/types/types.h"
 #include "private/details/details.h"
 #include "private/api/api.h"
