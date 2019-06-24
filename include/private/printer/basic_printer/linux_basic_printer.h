@@ -39,6 +39,26 @@ int nbpPrinterTestFailed;
 struct NbpPrinterPassMsgList* nbpPrinterFirstPassMsg;
 struct NbpPrinterPassMsgList* nbpPrinterLastPassMsg;
 
+const char* nbp_printer_op_to_string(int op)
+{
+    switch (op) {
+        case NBP_PRINTER_OPERATOR_EQ:
+            return "==";
+        case NBP_PRINTER_OPERATOR_NE:
+            return "!=";
+        case NBP_PRINTER_OPERATOR_GT:
+            return ">";
+        case NBP_PRINTER_OPERATOR_GE:
+            return ">=";
+        case NBP_PRINTER_OPERATOR_LT:
+            return "<";
+        case NBP_PRINTER_OPERATOR_LE:
+            return "<=";
+    }
+
+    return "unknown";
+}
+
 void nbp_printer_print_deepth(unsigned int deepth)
 {
     printf("\r");
@@ -192,6 +212,73 @@ void nbp_printer_check_result(nbp_test_details_t* test, const char* cond,
     }
 }
 
+void nbp_printer_check_op_result(nbp_test_details_t* test, const char* a,
+    const char* b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    char buff[1024];
+
+    if (passed == 1) {
+        if (passMsg == 0x0) {
+            return;
+        }
+
+        if (nbpPrinterTestFailed == 1) {
+            nbp_printer_print_deepth(test->module->deepth + 2);
+            printf(
+                KGRN "%s %s %s passed (%s) (%d)" KNRM "\n",
+                a,
+                nbp_printer_op_to_string(op),
+                b,
+                passMsg,
+                line
+            );
+        } else {
+            snprintf(
+                buff,
+                1024,
+                "%s %s %s",
+                a,
+                nbp_printer_op_to_string(op),
+                b
+            );
+            nbp_printer_add_pass_msg(buff, passMsg, line);
+        }
+        return;
+    }
+
+    if (nbpPrinterTestFailed == 0) {
+        nbpPrinterTestFailed = 1;
+        nbpPrinterRet        = 1;
+
+        nbp_printer_print_deepth(test->module->deepth + 1);
+        printf(KRED "%s" KNRM "\n", test->testName);
+
+        nbp_printer_print_pass_msg(test);
+    }
+
+    if (failMsg != 0x0) {
+        nbp_printer_print_deepth(test->module->deepth + 2);
+        printf(
+            KRED "%s %s %s failed (%s) (%d)" KNRM "\n",
+            a,
+            nbp_printer_op_to_string(op),
+            b,
+            failMsg,
+            line
+        );
+    } else {
+        nbp_printer_print_deepth(test->module->deepth + 2);
+        printf(
+            KRED "%s %s %s failed (%d)" KNRM "\n",
+            a,
+            nbp_printer_op_to_string(op),
+            b,
+            line
+        );
+    }
+}
+
 nbp_printer_interface_t nbpPrinter = {
     .init           = nbp_printer_init,
     .uninit         = nbp_printer_uninit,
@@ -201,6 +288,7 @@ nbp_printer_interface_t nbpPrinter = {
     .moduleBegin    = nbp_printer_module_begin,
     .moduleEnd      = 0x0,
     .checkResult    = nbp_printer_check_result,
+    .checkOpResult  = nbp_printer_check_op_result,
 };
 
 #undef KNRM
