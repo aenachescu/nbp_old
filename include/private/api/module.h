@@ -29,7 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_SETUP_MODULE(name)                                                 \
-    void name(nbp_module_details_t* module)
+    void NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, name)(                       \
+        nbp_module_details_t* module                                           \
+    )
 
 /*
  * TODO: add docs
@@ -41,20 +43,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_TEARDOWN_MODULE(name)                                              \
-    void name(nbp_module_details_t* module)
+    void NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, name)(                    \
+        nbp_module_details_t* module                                           \
+    )
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE(name)                                                       \
-    void name(                                                                 \
+    void NBP_PRIVATE_PP_CONCAT(nbp_module_, name)(                             \
         nbp_module_details_t*,                                                 \
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
     nbp_module_details_t nbpModuleDetails ## name = {                          \
         .moduleName             = #name,                                       \
-        .moduleFunc             = name,                                        \
+        .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, name),    \
         .setup                  = 0x0,                                         \
         .teardown               = 0x0,                                         \
         .firstTest              = 0x0,                                         \
@@ -71,7 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .moduleState            = NBP_MODULE_STATE_NOT_INITIALIZED,            \
         .deepth                 = 0,                                           \
     };                                                                         \
-    void name(                                                                 \
+    void NBP_PRIVATE_PP_CONCAT(nbp_module_, name)(                             \
         nbp_module_details_t* module,                                          \
         nbp_before_test_pfn_t beforeTest,                                      \
         nbp_after_test_pfn_t afterTest                                         \
@@ -81,7 +85,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_MODULE_FIXTURES(name, setupFunc, teardownFunc)                     \
-    void name(                                                                 \
+    void NBP_PRIVATE_PP_CONCAT(nbp_module_, name)(                             \
         nbp_module_details_t*,                                                 \
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
@@ -90,9 +94,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     NBP_TEARDOWN_MODULE(teardownFunc);                                         \
     nbp_module_details_t nbpModuleDetails ## name = {                          \
         .moduleName             = #name,                                       \
-        .moduleFunc             = name,                                        \
-        .setup                  = setupFunc,                                   \
-        .teardown               = teardownFunc,                                \
+        .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, name),    \
+        .setup                  =                                              \
+            NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, setupFunc),               \
+        .teardown               =                                              \
+            NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, teardownFunc),         \
         .firstTest              = 0x0,                                         \
         .lastTest               = 0x0,                                         \
         .parent                 = 0x0,                                         \
@@ -107,7 +113,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .moduleState            = NBP_MODULE_STATE_NOT_INITIALIZED,            \
         .deepth                 = 0,                                           \
     };                                                                         \
-    void name(                                                                 \
+    void NBP_PRIVATE_PP_CONCAT(nbp_module_, name)(                             \
         nbp_module_details_t* module,                                          \
         nbp_before_test_pfn_t beforeTest,                                      \
         nbp_after_test_pfn_t afterTest                                         \
