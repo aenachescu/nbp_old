@@ -74,6 +74,105 @@ typedef void (*nbp_printer_check_op_result_pfn_t)(
     const char*
 );
 
+typedef void (*nbp_printer_check_char_op_result_pfn_t)(
+    nbp_test_details_t*,
+    char,
+    char,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_check_short_op_result_pfn_t)(
+    nbp_test_details_t*,
+    short int,
+    short int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_check_ushort_op_result_pfn_t)(
+    nbp_test_details_t*,
+    unsigned short int,
+    unsigned short int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_check_int_op_result_pfn_t)(
+    nbp_test_details_t*,
+    int,
+    int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_check_uint_op_result_pfn_t)(
+    nbp_test_details_t*,
+    unsigned int,
+    unsigned int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_check_long_op_result_pfn_t)(
+    nbp_test_details_t*,
+    long int,
+    long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_check_ulong_op_result_pfn_t)(
+    nbp_test_details_t*,
+    unsigned long int,
+    unsigned long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_check_llong_op_result_pfn_t)(
+    nbp_test_details_t*,
+    long long int,
+    long long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_check_ullong_op_result_pfn_t)(
+    nbp_test_details_t*,
+    unsigned long long int,
+    unsigned long long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
 struct nbp_printer_interface_t {
     nbp_printer_init_pfn_t init;
     nbp_printer_uninit_pfn_t uninit;
@@ -84,6 +183,15 @@ struct nbp_printer_interface_t {
     nbp_printer_module_end_pfn_t moduleEnd;
     nbp_printer_check_result_pfn_t checkResult;
     nbp_printer_check_op_result_pfn_t checkOpResult;
+    nbp_printer_check_char_op_result_pfn_t checkCharOpResult;
+    nbp_printer_check_short_op_result_pfn_t checkShortOpResult;
+    nbp_printer_check_ushort_op_result_pfn_t checkUShortOpResult;
+    nbp_printer_check_int_op_result_pfn_t checkIntOpResult;
+    nbp_printer_check_uint_op_result_pfn_t checkUIntOpResult;
+    nbp_printer_check_long_op_result_pfn_t checkLongOpResult;
+    nbp_printer_check_ulong_op_result_pfn_t checkULongOpResult;
+    nbp_printer_check_llong_op_result_pfn_t checkLLongOpResult;
+    nbp_printer_check_ullong_op_result_pfn_t checkULLongOpResult;
 };
 
 typedef struct nbp_printer_interface_t nbp_printer_interface_t;
