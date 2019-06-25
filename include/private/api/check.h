@@ -69,6 +69,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         );                                                                     \
     }
 
+#define NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(type)                         \
+    NBP_PRIVATE_PP_CONCAT(                                                     \
+        NBP_PRIVATE_PP_CONCAT(nbp_notify_printer_check_, type),                \
+        _op_result                                                             \
+    )
+
+#define NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, op, printerOp, type, failMsg,     \
+    passMsg)                                                                   \
+    if (a op b) {                                                              \
+        test->passedChecks++;                                                  \
+        NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(type)(                        \
+            test,                                                              \
+            #a,                                                                \
+            #b,                                                                \
+            printerOp,                                                         \
+            1,                                                                 \
+            __LINE__,                                                          \
+            0x0,                                                               \
+            passMsg                                                            \
+        );                                                                     \
+    } else {                                                                   \
+        test->failedChecks++;                                                  \
+        NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(type)(                        \
+            test,                                                              \
+            #a,                                                                \
+            #b,                                                                \
+            printerOp,                                                         \
+            0,                                                                 \
+            __LINE__,                                                          \
+            failMsg,                                                           \
+            0x0                                                                \
+        );                                                                     \
+    }
+
 /*
  * TODO: add docs
  */
@@ -92,6 +126,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_CHECK_MSG(cond, failMsg, passMsg)                                  \
     NBP_PRIVATE_CHECK_BASE(cond, failMsg, passMsg)
+
+/******************************************************************************
+ *                                                                            *
+ *                                                                            *
+ * NBP_CHECK_<operator>                                                       *
+ *                                                                            *
+ *                                                                            *
+ ******************************************************************************/
 
 /*
  * TODO: add docs
@@ -242,5 +284,181 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_CHECK_LE_MSG(a, b, failMsg, passMsg)                               \
     NBP_PRIVATE_CHECK_OP_BASE(a, b, <=, NBP_PRINTER_OPERATOR_LE, failMsg,      \
         passMsg)
+
+/******************************************************************************
+ *                                                                            *
+ *                                                                            *
+ * NBP_CHECK_CHAR_<operator>                                                  *
+ *                                                                            *
+ *                                                                            *
+ ******************************************************************************/
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_EQ(a, b)                                                \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, ==, NBP_PRINTER_OPERATOR_EQ, char,    \
+        0x0, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_EQ_FAIL_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, ==, NBP_PRINTER_OPERATOR_EQ, char,    \
+        msg, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_EQ_PASS_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, ==, NBP_PRINTER_OPERATOR_EQ, char,    \
+        0x0, msg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_EQ_MSG(a, b, failMsg, passMsg)                          \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, ==, NBP_PRINTER_OPERATOR_EQ, char,    \
+        failMsg, passMsg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_NE(a, b)                                                \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, !=, NBP_PRINTER_OPERATOR_NE, char,    \
+        0x0, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_NE_FAIL_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, !=, NBP_PRINTER_OPERATOR_NE, char,    \
+        msg, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_NE_PASS_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, !=, NBP_PRINTER_OPERATOR_NE, char,    \
+        0x0, msg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_NE_MSG(a, b, failMsg, passMsg)                          \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, !=, NBP_PRINTER_OPERATOR_NE, char,    \
+        failMsg, passMsg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_GT(a, b)                                                \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, >, NBP_PRINTER_OPERATOR_GT, char,    \
+        0x0, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_GT_FAIL_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, >, NBP_PRINTER_OPERATOR_GT, char,     \
+        msg, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_GT_PASS_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, >, NBP_PRINTER_OPERATOR_GT, char,     \
+        0x0, msg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_GT_MSG(a, b, failMsg, passMsg)                          \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, >, NBP_PRINTER_OPERATOR_GT, char,     \
+        failMsg, passMsg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_GE(a, b)                                                \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, >=, NBP_PRINTER_OPERATOR_GE, char,    \
+        0x0, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_GE_FAIL_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, >=, NBP_PRINTER_OPERATOR_GE, char,    \
+        msg, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_GE_PASS_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, >=, NBP_PRINTER_OPERATOR_GE, char,    \
+        0x0, msg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_GE_MSG(a, b, failMsg, passMsg)                          \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, >=, NBP_PRINTER_OPERATOR_GE, char,    \
+        failMsg, passMsg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_LT(a, b)                                                \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, <, NBP_PRINTER_OPERATOR_LT, char,     \
+        0x0, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_LT_FAIL_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, <, NBP_PRINTER_OPERATOR_LT, char,     \
+        msg, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_LT_PASS_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, <, NBP_PRINTER_OPERATOR_LT, char,     \
+        0x0, msg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_LT_MSG(a, b, failMsg, passMsg)                          \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, <, NBP_PRINTER_OPERATOR_LT, char,     \
+        failMsg, passMsg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_LE(a, b)                                                \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, <=, NBP_PRINTER_OPERATOR_LE, char,    \
+        0x0, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_LE_FAIL_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, <=, NBP_PRINTER_OPERATOR_LE, char,    \
+        msg, 0x0)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_LE_PASS_MSG(a, b, msg)                                  \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, <=, NBP_PRINTER_OPERATOR_LE, char,    \
+        0x0, msg)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_CHAR_LE_MSG(a, b, failMsg, passMsg)                          \
+    NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, <=, NBP_PRINTER_OPERATOR_LE, char,    \
+        failMsg, passMsg)
 
 #endif // end if NBP_PRIVATE_API_CHECK_H
