@@ -77,31 +77,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define NBP_PRIVATE_CHECK_TYPE_OP_BASE(a, b, op, printerOp, type, failMsg,     \
     passMsg)                                                                   \
-    if (a op b) {                                                              \
-        test->passedChecks++;                                                  \
-        NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(type)(                        \
-            test,                                                              \
-            #a,                                                                \
-            #b,                                                                \
-            printerOp,                                                         \
-            1,                                                                 \
-            __LINE__,                                                          \
-            0x0,                                                               \
-            passMsg                                                            \
-        );                                                                     \
-    } else {                                                                   \
-        test->failedChecks++;                                                  \
-        NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(type)(                        \
-            test,                                                              \
-            #a,                                                                \
-            #b,                                                                \
-            printerOp,                                                         \
-            0,                                                                 \
-            __LINE__,                                                          \
-            failMsg,                                                           \
-            0x0                                                                \
-        );                                                                     \
-    }
+    do {                                                                       \
+        type tmpA = a, tmpB = b;                                               \
+        if (tmpA op tmpB) {                                                    \
+            test->passedChecks++;                                              \
+            NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(type)(                    \
+                test,                                                          \
+                tmpA,                                                          \
+                tmpB,                                                          \
+                printerOp,                                                     \
+                1,                                                             \
+                __LINE__,                                                      \
+                0x0,                                                           \
+                passMsg                                                        \
+            );                                                                 \
+        } else {                                                               \
+            test->failedChecks++;                                              \
+            NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(type)(                    \
+                test,                                                          \
+                tmpA,                                                          \
+                tmpB,                                                          \
+                printerOp,                                                     \
+                0,                                                             \
+                __LINE__,                                                      \
+                failMsg,                                                       \
+                0x0                                                            \
+            );                                                                 \
+        }                                                                      \
+    } while (0);
 
 /*
  * TODO: add docs
