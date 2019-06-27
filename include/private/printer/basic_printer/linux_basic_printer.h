@@ -146,37 +146,7 @@ void nbp_printer_print_pass_msg(nbp_test_details_t* test)
     nbpPrinterLastPassMsg = 0x0;
 }
 
-void nbp_printer_init(void)
-{
-    nbpPrinterRet           = 0;
-    nbpPrinterTestFailed    = 0;
-    nbpPrinterFirstPassMsg  = 0x0;
-    nbpPrinterLastPassMsg   = 0x0;
-}
-
-int nbp_printer_uninit(void)
-{
-    return nbpPrinterRet;
-}
-
-void nbp_printer_test_end(nbp_test_details_t* test)
-{
-    if (nbpPrinterTestFailed == 0) {
-        nbp_printer_print_deepth(test->module->deepth + 1);
-        printf(KGRN "%s" KNRM "\n", test->testName);
-        nbp_printer_print_pass_msg(test);
-    } else {
-        nbpPrinterTestFailed = 0;
-    }
-}
-
-void nbp_printer_module_begin(nbp_module_details_t* module)
-{
-    nbp_printer_print_deepth(module->deepth);
-    printf("%s\n", module->moduleName);
-}
-
-void nbp_printer_check_result(nbp_test_details_t* test, const char* cond,
+void nbp_printer_print_check_result(nbp_test_details_t* test, const char* cond,
     int passed, int line, const char* failMsg, const char* passMsg)
 {
     if (passed == 1) {
@@ -212,83 +182,149 @@ void nbp_printer_check_result(nbp_test_details_t* test, const char* cond,
     }
 }
 
+void nbp_printer_init(void)
+{
+    nbpPrinterRet           = 0;
+    nbpPrinterTestFailed    = 0;
+    nbpPrinterFirstPassMsg  = 0x0;
+    nbpPrinterLastPassMsg   = 0x0;
+}
+
+int nbp_printer_uninit(void)
+{
+    return nbpPrinterRet;
+}
+
+void nbp_printer_test_end(nbp_test_details_t* test)
+{
+    if (nbpPrinterTestFailed == 0) {
+        nbp_printer_print_deepth(test->module->deepth + 1);
+        printf(KGRN "%s" KNRM "\n", test->testName);
+        nbp_printer_print_pass_msg(test);
+    } else {
+        nbpPrinterTestFailed = 0;
+    }
+}
+
+void nbp_printer_module_begin(nbp_module_details_t* module)
+{
+    nbp_printer_print_deepth(module->deepth);
+    printf("%s\n", module->moduleName);
+}
+
+void nbp_printer_check_result(nbp_test_details_t* test, const char* cond,
+    int passed, int line, const char* failMsg, const char* passMsg)
+{
+    nbp_printer_print_check_result(test, cond, passed, line, failMsg, passMsg);
+}
+
 void nbp_printer_check_op_result(nbp_test_details_t* test, const char* a,
     const char* b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
     char buff[1024];
+    snprintf(buff, 1024, "%s %s %s", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
 
-    if (passed == 1) {
-        if (passMsg == 0x0) {
-            return;
-        }
+void nbp_printer_check_char_op_result(nbp_test_details_t* test, char a, char b,
+    int op, int passed, int line, const char* failMsg, const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%c %s %c", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
 
-        if (nbpPrinterTestFailed == 1) {
-            nbp_printer_print_deepth(test->module->deepth + 2);
-            printf(
-                KGRN "%s %s %s passed (%s) (%d)" KNRM "\n",
-                a,
-                nbp_printer_op_to_string(op),
-                b,
-                passMsg,
-                line
-            );
-        } else {
-            snprintf(
-                buff,
-                1024,
-                "%s %s %s",
-                a,
-                nbp_printer_op_to_string(op),
-                b
-            );
-            nbp_printer_add_pass_msg(buff, passMsg, line);
-        }
-        return;
-    }
+void nbp_printer_check_short_op_result(nbp_test_details_t* test, short int a,
+    short int b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%hu %s %hd", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
 
-    if (nbpPrinterTestFailed == 0) {
-        nbpPrinterTestFailed = 1;
-        nbpPrinterRet        = 1;
+void nbp_printer_check_ushort_op_result(nbp_test_details_t* test,
+    unsigned short int a, unsigned short int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%hu %s %hu", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
 
-        nbp_printer_print_deepth(test->module->deepth + 1);
-        printf(KRED "%s" KNRM "\n", test->testName);
+void nbp_printer_check_int_op_result(nbp_test_details_t* test, int a, int b,
+    int op, int passed, int line, const char* failMsg, const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%d %s %d", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
 
-        nbp_printer_print_pass_msg(test);
-    }
+void nbp_printer_check_uint_op_result(nbp_test_details_t* test, unsigned int a,
+    unsigned int b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%u %s %u", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
 
-    if (failMsg != 0x0) {
-        nbp_printer_print_deepth(test->module->deepth + 2);
-        printf(
-            KRED "%s %s %s failed (%s) (%d)" KNRM "\n",
-            a,
-            nbp_printer_op_to_string(op),
-            b,
-            failMsg,
-            line
-        );
-    } else {
-        nbp_printer_print_deepth(test->module->deepth + 2);
-        printf(
-            KRED "%s %s %s failed (%d)" KNRM "\n",
-            a,
-            nbp_printer_op_to_string(op),
-            b,
-            line
-        );
-    }
+void nbp_printer_check_long_op_result(nbp_test_details_t* test, long int a,
+    long int b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%ld %s %ld", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
+
+void nbp_printer_check_ulong_op_result(nbp_test_details_t* test,
+    unsigned long int a, unsigned long int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%lu %s %lu", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
+
+void nbp_printer_check_llong_op_result(nbp_test_details_t* test,
+    long long int a, long long int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%lld %s %lld", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
+
+void nbp_printer_check_ullong_op_result(nbp_test_details_t* test,
+    unsigned long long int a, unsigned long long int b, int op, int passed,
+    int line, const char* failMsg, const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%llu %s %llu", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
 }
 
 nbp_printer_interface_t nbpPrinter = {
-    .init           = nbp_printer_init,
-    .uninit         = nbp_printer_uninit,
-    .handleError    = 0x0,
-    .testBegin      = 0x0,
-    .testEnd        = nbp_printer_test_end,
-    .moduleBegin    = nbp_printer_module_begin,
-    .moduleEnd      = 0x0,
-    .checkResult    = nbp_printer_check_result,
-    .checkOpResult  = nbp_printer_check_op_result,
+    .init                       = nbp_printer_init,
+    .uninit                     = nbp_printer_uninit,
+    .handleError                = 0x0,
+    .testBegin                  = 0x0,
+    .testEnd                    = nbp_printer_test_end,
+    .moduleBegin                = nbp_printer_module_begin,
+    .moduleEnd                  = 0x0,
+    .checkResult                = nbp_printer_check_result,
+    .checkOpResult              = nbp_printer_check_op_result,
+    .checkCharOpResult          = nbp_printer_check_char_op_result,
+    .checkShortOpResult         = nbp_printer_check_short_op_result,
+    .checkUShortOpResult        = nbp_printer_check_ushort_op_result,
+    .checkIntOpResult           = nbp_printer_check_int_op_result,
+    .checkUIntOpResult          = nbp_printer_check_uint_op_result,
+    .checkLongOpResult          = nbp_printer_check_long_op_result,
+    .checkULongOpResult         = nbp_printer_check_ulong_op_result,
+    .checkLLongOpResult         = nbp_printer_check_llong_op_result,
+    .checkULLongOpResult        = nbp_printer_check_ullong_op_result,
 };
 
 #undef KNRM
