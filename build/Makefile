@@ -16,7 +16,7 @@
 
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror -DSAMPLE_LINUX -fprofile-arcs -ftest-coverage \
-	$(SAMPLE_FLAGS) -DNBP_OS_LINUX
+	$(SAMPLE_FLAGS) -DNBP_OS_LINUX -Wconversion
 
 lib_folder=-I../../include
 lib_files=../include/nbp.h
