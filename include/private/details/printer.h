@@ -59,4 +59,103 @@ void nbp_notify_printer_check_op_result(
     const char*
 );
 
+void nbp_notify_printer_check_char_op_result(
+    nbp_test_details_t*,
+    char,
+    char,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_check_short_op_result(
+    nbp_test_details_t*,
+    short int,
+    short int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_check_ushort_op_result(
+    nbp_test_details_t*,
+    unsigned short int,
+    unsigned short int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_check_int_op_result(
+    nbp_test_details_t*,
+    int,
+    int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_check_uint_op_result(
+    nbp_test_details_t*,
+    unsigned int,
+    unsigned int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_check_long_op_result(
+    nbp_test_details_t*,
+    long int,
+    long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_check_ulong_op_result(
+    nbp_test_details_t*,
+    unsigned long int,
+    unsigned long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_check_llong_op_result(
+    nbp_test_details_t*,
+    long long int,
+    long long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_check_ullong_op_result(
+    nbp_test_details_t*,
+    unsigned long long int,
+    unsigned long long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
 #endif // end if NBP_PRIVATE_DETAILS_PRINTER_H

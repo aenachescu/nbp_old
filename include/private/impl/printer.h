@@ -101,5 +101,184 @@ void nbp_notify_printer_check_op_result( nbp_test_details_t* test,
     }
 }
 
+void nbp_notify_printer_check_char_op_result(nbp_test_details_t* test, char a,
+    char b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->checkCharOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->checkCharOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_check_short_op_result(nbp_test_details_t* test,
+    short int a, short int b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->checkShortOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->checkShortOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_check_ushort_op_result(nbp_test_details_t* test,
+    unsigned short int a, unsigned short int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->checkUShortOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->checkUShortOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_check_int_op_result(nbp_test_details_t* test, int a,
+    int b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->checkIntOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->checkIntOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_check_uint_op_result(nbp_test_details_t* test,
+    unsigned int a, unsigned int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->checkUIntOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->checkUIntOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_check_long_op_result(nbp_test_details_t* test,
+    long int a, long int b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->checkLongOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->checkLongOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_check_ulong_op_result(nbp_test_details_t* test,
+    unsigned long int a, unsigned long int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->checkULongOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->checkULongOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_check_llong_op_result(nbp_test_details_t* test,
+    long long int a, long long int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->checkLLongOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->checkLLongOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_check_ullong_op_result(nbp_test_details_t* test,
+    unsigned long long int a, unsigned long long int b, int op, int passed,
+    int line, const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->checkULLongOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->checkULLongOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
 
 #endif // end if NBP_PRIVATE_IMPL_PRINTER_H
