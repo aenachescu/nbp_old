@@ -61,15 +61,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_RESET_AFTER_TEST()                                                 \
     afterTest = 0x0
 
-/*
- * TODO: add docs
- */
-#define NBP_TEST(func)                                                         \
+#define NBP_PRIVATE_TEST(func, name)                                           \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
         nbp_test_details_t*                                                    \
     );                                                                         \
     nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func) = {         \
-        .testName               = #func,                                       \
+        .testName               = name,                                        \
         .testFunc               = NBP_PRIVATE_PP_CONCAT(nbp_test_, func),      \
         .beforeTestFunc         = 0x0,                                         \
         .afterTestFunc          = 0x0,                                         \
@@ -89,6 +86,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
         nbp_test_details_t* test                                               \
     )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST(func)                                                         \
+    NBP_PRIVATE_TEST(func, #func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_NAME(func, name)                                              \
+    NBP_PRIVATE_TEST(func, name)
 
 /*
  * TODO: add docs
