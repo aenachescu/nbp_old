@@ -22,8 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_BEFORE_TEST(name)                                                  \
-    void NBP_PRIVATE_PP_CONCAT(nbp_before_test_, name)(                        \
+#define NBP_BEFORE_TEST(func)                                                  \
+    void NBP_PRIVATE_PP_CONCAT(nbp_before_test_, func)(                        \
         nbp_test_details_t* test                                               \
     )
 
@@ -43,8 +43,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_AFTER_TEST(name)                                                   \
-    void NBP_PRIVATE_PP_CONCAT(nbp_after_test_, name)(                         \
+#define NBP_AFTER_TEST(func)                                                   \
+    void NBP_PRIVATE_PP_CONCAT(nbp_after_test_, func)(                         \
         nbp_test_details_t* test                                               \
     )
 
@@ -64,13 +64,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_TEST(name)                                                         \
-    void NBP_PRIVATE_PP_CONCAT(nbp_test_, name)(                               \
+#define NBP_TEST(func)                                                         \
+    void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
         nbp_test_details_t*                                                    \
     );                                                                         \
-    nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, name) = {         \
-        .testName               = #name,                                       \
-        .testFunc               = NBP_PRIVATE_PP_CONCAT(nbp_test_, name),      \
+    nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func) = {         \
+        .testName               = #func,                                       \
+        .testFunc               = NBP_PRIVATE_PP_CONCAT(nbp_test_, func),      \
         .beforeTestFunc         = 0x0,                                         \
         .afterTestFunc          = 0x0,                                         \
         .module                 = 0x0,                                         \
@@ -86,17 +86,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .next                   = 0x0,                                         \
         .prev                   = 0x0                                          \
     };                                                                         \
-    void NBP_PRIVATE_PP_CONCAT(nbp_test_, name)(                               \
+    void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
         nbp_test_details_t* test                                               \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_CALL_TEST(name)                                                    \
-    extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, name);     \
+#define NBP_CALL_TEST(func)                                                    \
+    extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func);     \
     nbp_call_test(                                                             \
-        & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, name),                         \
+        & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
         module,                                                                \
         beforeTest,                                                            \
         afterTest                                                              \
