@@ -47,20 +47,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         nbp_module_details_t* module                                           \
     )
 
-/*
- * TODO: add docs
- */
-#define NBP_MODULE(func)                                                       \
+#define NBP_PRIVATE_MODULE(func, name, setupFunc, teardownFunc)                \
     void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
         nbp_module_details_t*,                                                 \
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
     nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func) = {     \
-        .moduleName             = #func,                                       \
+        .moduleName             = name,                                        \
         .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),    \
-        .setup                  = 0x0,                                         \
-        .teardown               = 0x0,                                         \
+        .setup                  = setupFunc,                                   \
+        .teardown               = teardownFunc,                                \
         .firstTest              = 0x0,                                         \
         .lastTest               = 0x0,                                         \
         .parent                 = 0x0,                                         \
@@ -84,39 +81,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_MODULE(func)                                                       \
+    NBP_PRIVATE_MODULE(func, #func, 0x0, 0x0)
+
+/*
+ * TODO: add docs
+ */
 #define NBP_MODULE_FIXTURES(func, setupFunc, teardownFunc)                     \
-    void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
-        nbp_module_details_t*,                                                 \
-        nbp_before_test_pfn_t,                                                 \
-        nbp_after_test_pfn_t                                                   \
-    );                                                                         \
     NBP_SETUP_MODULE(setupFunc);                                               \
     NBP_TEARDOWN_MODULE(teardownFunc);                                         \
-    nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func) = {     \
-        .moduleName             = #func,                                       \
-        .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),    \
-        .setup                  =                                              \
-            NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, setupFunc),               \
-        .teardown               =                                              \
-            NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, teardownFunc),         \
-        .firstTest              = 0x0,                                         \
-        .lastTest               = 0x0,                                         \
-        .parent                 = 0x0,                                         \
-        .firstSubmodule         = 0x0,                                         \
-        .lastSubmodule          = 0x0,                                         \
-        .next                   = 0x0,                                         \
-        .prev                   = 0x0,                                         \
-        .numTests               = 0,                                           \
-        .numCompletedTests      = 0,                                           \
-        .numSubmodules          = 0,                                           \
-        .numCompletedSubmodules = 0,                                           \
-        .moduleState            = NBP_MODULE_STATE_NOT_INITIALIZED,            \
-        .deepth                 = 0,                                           \
-    };                                                                         \
-    void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
-        nbp_module_details_t* module,                                          \
-        nbp_before_test_pfn_t beforeTest,                                      \
-        nbp_after_test_pfn_t afterTest                                         \
+    NBP_PRIVATE_MODULE(                                                        \
+        func,                                                                  \
+        #func,                                                                 \
+        NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, setupFunc),                   \
+        NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, teardownFunc)              \
     )
 
 /*
