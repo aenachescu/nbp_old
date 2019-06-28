@@ -28,8 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_SETUP_MODULE(name)                                                 \
-    void NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, name)(                       \
+#define NBP_SETUP_MODULE(func)                                                 \
+    void NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, func)(                       \
         nbp_module_details_t* module                                           \
     )
 
@@ -42,23 +42,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_TEARDOWN_MODULE(name)                                              \
-    void NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, name)(                    \
+#define NBP_TEARDOWN_MODULE(func)                                              \
+    void NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, func)(                    \
         nbp_module_details_t* module                                           \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_MODULE(name)                                                       \
-    void NBP_PRIVATE_PP_CONCAT(nbp_module_, name)(                             \
+#define NBP_MODULE(func)                                                       \
+    void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
         nbp_module_details_t*,                                                 \
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
-    nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, name) = {     \
-        .moduleName             = #name,                                       \
-        .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, name),    \
+    nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func) = {     \
+        .moduleName             = #func,                                       \
+        .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),    \
         .setup                  = 0x0,                                         \
         .teardown               = 0x0,                                         \
         .firstTest              = 0x0,                                         \
@@ -75,7 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .moduleState            = NBP_MODULE_STATE_NOT_INITIALIZED,            \
         .deepth                 = 0,                                           \
     };                                                                         \
-    void NBP_PRIVATE_PP_CONCAT(nbp_module_, name)(                             \
+    void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
         nbp_module_details_t* module,                                          \
         nbp_before_test_pfn_t beforeTest,                                      \
         nbp_after_test_pfn_t afterTest                                         \
@@ -84,17 +84,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_MODULE_FIXTURES(name, setupFunc, teardownFunc)                     \
-    void NBP_PRIVATE_PP_CONCAT(nbp_module_, name)(                             \
+#define NBP_MODULE_FIXTURES(func, setupFunc, teardownFunc)                     \
+    void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
         nbp_module_details_t*,                                                 \
         nbp_before_test_pfn_t,                                                 \
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
     NBP_SETUP_MODULE(setupFunc);                                               \
     NBP_TEARDOWN_MODULE(teardownFunc);                                         \
-    nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, name) = {     \
-        .moduleName             = #name,                                       \
-        .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, name),    \
+    nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func) = {     \
+        .moduleName             = #func,                                       \
+        .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),    \
         .setup                  =                                              \
             NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, setupFunc),               \
         .teardown               =                                              \
@@ -113,7 +113,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .moduleState            = NBP_MODULE_STATE_NOT_INITIALIZED,            \
         .deepth                 = 0,                                           \
     };                                                                         \
-    void NBP_PRIVATE_PP_CONCAT(nbp_module_, name)(                             \
+    void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
         nbp_module_details_t* module,                                          \
         nbp_before_test_pfn_t beforeTest,                                      \
         nbp_after_test_pfn_t afterTest                                         \
@@ -122,12 +122,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_CALL_MODULE(name)                                                  \
-    extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, name); \
+#define NBP_CALL_MODULE(func)                                                  \
+    extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
     (void)(beforeTest);                                                        \
     (void)(afterTest);                                                         \
     nbp_call_module(                                                           \
-        & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, name),                       \
+        & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func),                       \
         module                                                                 \
     )
 
