@@ -49,6 +49,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_MAIN_MODULE_NAME(func, name)                                       \
+    NBP_PRIVATE_MAIN_MODULE(                                                   \
+        func,                                                                  \
+        nbpScheduler,                                                          \
+        { &nbpPrinter }                                                        \
+    );                                                                         \
+    NBP_MODULE_NAME(func, name)
+
+/*
+ * TODO: add docs
+ */
 #define NBP_MAIN_MODULE_FIXTURES(func, setupFunc, teardownFunc)                \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
@@ -56,6 +67,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         { &nbpPrinter }                                                        \
     );                                                                         \
     NBP_MODULE_FIXTURES(func, setupFunc, teardownFunc)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MAIN_MODULE_NAME_FIXTURES(func, name, setupFunc, teardownFunc)     \
+    NBP_PRIVATE_MAIN_MODULE(                                                   \
+        func,                                                                  \
+        nbpScheduler,                                                          \
+        { &nbpPrinter }                                                        \
+    );                                                                         \
+    NBP_MODULE_NAME_FIXTURES(func, name, setupFunc, teardownFunc)
 
 #endif // end if NBP_LIBRARY_MAIN
 
