@@ -81,21 +81,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_MODULE_NAME(func, name)                                            \
+    NBP_PRIVATE_MODULE(func, name, 0x0, 0x0)
+
+/*
+ * TODO: add docs
+ */
 #define NBP_MODULE(func)                                                       \
-    NBP_PRIVATE_MODULE(func, #func, 0x0, 0x0)
+    NBP_MODULE_NAME(func, #func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_NAME_FIXTURES(func, name, setupFunc, teardownFunc)          \
+    NBP_SETUP_MODULE(setupFunc);                                               \
+    NBP_TEARDOWN_MODULE(teardownFunc);                                         \
+    NBP_PRIVATE_MODULE(                                                        \
+        func,                                                                  \
+        name,                                                                  \
+        NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, setupFunc),                   \
+        NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, teardownFunc)              \
+    )
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_FIXTURES(func, setupFunc, teardownFunc)                     \
-    NBP_SETUP_MODULE(setupFunc);                                               \
-    NBP_TEARDOWN_MODULE(teardownFunc);                                         \
-    NBP_PRIVATE_MODULE(                                                        \
-        func,                                                                  \
-        #func,                                                                 \
-        NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, setupFunc),                   \
-        NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, teardownFunc)              \
-    )
+    NBP_MODULE_NAME_FIXTURES(func, #func, setupFunc, teardownFunc)
 
 /*
  * TODO: add docs
