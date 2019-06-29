@@ -34,12 +34,12 @@ struct NbpPrinterPassMsgList {
     struct NbpPrinterPassMsgList* next;
 };
 
-int nbpPrinterRet;
-int nbpPrinterTestFailed;
-struct NbpPrinterPassMsgList* nbpPrinterFirstPassMsg;
-struct NbpPrinterPassMsgList* nbpPrinterLastPassMsg;
+static int nbpPrinterRet;
+static int nbpPrinterTestFailed;
+static struct NbpPrinterPassMsgList* nbpPrinterFirstPassMsg;
+static struct NbpPrinterPassMsgList* nbpPrinterLastPassMsg;
 
-const char* nbp_printer_op_to_string(int op)
+static const char* nbp_printer_op_to_string(int op)
 {
     switch (op) {
         case NBP_PRINTER_OPERATOR_EQ:
@@ -59,7 +59,7 @@ const char* nbp_printer_op_to_string(int op)
     return "unknown";
 }
 
-void nbp_printer_print_deepth(unsigned int deepth)
+static void nbp_printer_print_deepth(unsigned int deepth)
 {
     printf("\r");
     while (deepth-- > 0) {
@@ -67,7 +67,7 @@ void nbp_printer_print_deepth(unsigned int deepth)
     }
 }
 
-char* nbp_printer_duplicate_str(const char* str)
+static char* nbp_printer_duplicate_str(const char* str)
 {
     char* dup = (char*) NBP_ALLOC(strlen(str) + 1);
     if (dup != 0x0) {
@@ -76,7 +76,8 @@ char* nbp_printer_duplicate_str(const char* str)
     return dup;
 }
 
-void nbp_printer_add_pass_msg(const char* cond, const char* msg, int line)
+static void nbp_printer_add_pass_msg(const char* cond, const char* msg,
+    int line)
 {
     struct NbpPrinterPassMsgList* tmp = (struct NbpPrinterPassMsgList*)
         NBP_ALLOC(sizeof(struct NbpPrinterPassMsgList));
@@ -123,7 +124,7 @@ void nbp_printer_add_pass_msg(const char* cond, const char* msg, int line)
     }
 }
 
-void nbp_printer_print_pass_msg(nbp_test_details_t* test)
+static void nbp_printer_print_pass_msg(nbp_test_details_t* test)
 {
     struct NbpPrinterPassMsgList* tmp = 0x0;
 
@@ -146,8 +147,9 @@ void nbp_printer_print_pass_msg(nbp_test_details_t* test)
     nbpPrinterLastPassMsg = 0x0;
 }
 
-void nbp_printer_print_check_result(nbp_test_details_t* test, const char* cond,
-    int passed, int line, const char* failMsg, const char* passMsg)
+static void nbp_printer_print_check_result(nbp_test_details_t* test,
+    const char* cond, int passed, int line, const char* failMsg,
+    const char* passMsg)
 {
     if (passed == 1) {
         if (passMsg == 0x0) {
@@ -182,7 +184,7 @@ void nbp_printer_print_check_result(nbp_test_details_t* test, const char* cond,
     }
 }
 
-void nbp_printer_init(void)
+static void nbp_printer_init(void)
 {
     nbpPrinterRet           = 0;
     nbpPrinterTestFailed    = 0;
@@ -190,12 +192,12 @@ void nbp_printer_init(void)
     nbpPrinterLastPassMsg   = 0x0;
 }
 
-int nbp_printer_uninit(void)
+static int nbp_printer_uninit(void)
 {
     return nbpPrinterRet;
 }
 
-void nbp_printer_test_end(nbp_test_details_t* test)
+static void nbp_printer_test_end(nbp_test_details_t* test)
 {
     if (nbpPrinterTestFailed == 0) {
         nbp_printer_print_deepth(test->module->deepth + 1);
@@ -206,19 +208,19 @@ void nbp_printer_test_end(nbp_test_details_t* test)
     }
 }
 
-void nbp_printer_module_begin(nbp_module_details_t* module)
+static void nbp_printer_module_begin(nbp_module_details_t* module)
 {
     nbp_printer_print_deepth(module->deepth);
     printf("%s\n", module->moduleName);
 }
 
-void nbp_printer_check_result(nbp_test_details_t* test, const char* cond,
+static void nbp_printer_check_result(nbp_test_details_t* test, const char* cond,
     int passed, int line, const char* failMsg, const char* passMsg)
 {
     nbp_printer_print_check_result(test, cond, passed, line, failMsg, passMsg);
 }
 
-void nbp_printer_check_op_result(nbp_test_details_t* test, const char* a,
+static void nbp_printer_check_op_result(nbp_test_details_t* test, const char* a,
     const char* b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -227,16 +229,17 @@ void nbp_printer_check_op_result(nbp_test_details_t* test, const char* a,
     nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
 }
 
-void nbp_printer_check_char_op_result(nbp_test_details_t* test, char a, char b,
-    int op, int passed, int line, const char* failMsg, const char* passMsg)
+static void nbp_printer_check_char_op_result(nbp_test_details_t* test, char a,
+    char b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
 {
     char buff[1024];
     snprintf(buff, 1024, "%c %s %c", a, nbp_printer_op_to_string(op), b);
     nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
 }
 
-void nbp_printer_check_short_op_result(nbp_test_details_t* test, short int a,
-    short int b, int op, int passed, int line, const char* failMsg,
+static void nbp_printer_check_short_op_result(nbp_test_details_t* test,
+    short int a, short int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
     char buff[1024];
@@ -244,7 +247,7 @@ void nbp_printer_check_short_op_result(nbp_test_details_t* test, short int a,
     nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
 }
 
-void nbp_printer_check_ushort_op_result(nbp_test_details_t* test,
+static void nbp_printer_check_ushort_op_result(nbp_test_details_t* test,
     unsigned short int a, unsigned short int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -253,25 +256,26 @@ void nbp_printer_check_ushort_op_result(nbp_test_details_t* test,
     nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
 }
 
-void nbp_printer_check_int_op_result(nbp_test_details_t* test, int a, int b,
-    int op, int passed, int line, const char* failMsg, const char* passMsg)
+static void nbp_printer_check_int_op_result(nbp_test_details_t* test, int a,
+    int b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
 {
     char buff[1024];
     snprintf(buff, 1024, "%d %s %d", a, nbp_printer_op_to_string(op), b);
     nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
 }
 
-void nbp_printer_check_uint_op_result(nbp_test_details_t* test, unsigned int a,
-    unsigned int b, int op, int passed, int line, const char* failMsg,
-    const char* passMsg)
+static void nbp_printer_check_uint_op_result(nbp_test_details_t* test,
+    unsigned int a, unsigned int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
 {
     char buff[1024];
     snprintf(buff, 1024, "%u %s %u", a, nbp_printer_op_to_string(op), b);
     nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
 }
 
-void nbp_printer_check_long_op_result(nbp_test_details_t* test, long int a,
-    long int b, int op, int passed, int line, const char* failMsg,
+static void nbp_printer_check_long_op_result(nbp_test_details_t* test,
+    long int a, long int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
     char buff[1024];
@@ -279,7 +283,7 @@ void nbp_printer_check_long_op_result(nbp_test_details_t* test, long int a,
     nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
 }
 
-void nbp_printer_check_ulong_op_result(nbp_test_details_t* test,
+static void nbp_printer_check_ulong_op_result(nbp_test_details_t* test,
     unsigned long int a, unsigned long int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -288,7 +292,7 @@ void nbp_printer_check_ulong_op_result(nbp_test_details_t* test,
     nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
 }
 
-void nbp_printer_check_llong_op_result(nbp_test_details_t* test,
+static void nbp_printer_check_llong_op_result(nbp_test_details_t* test,
     long long int a, long long int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -297,7 +301,7 @@ void nbp_printer_check_llong_op_result(nbp_test_details_t* test,
     nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
 }
 
-void nbp_printer_check_ullong_op_result(nbp_test_details_t* test,
+static void nbp_printer_check_ullong_op_result(nbp_test_details_t* test,
     unsigned long long int a, unsigned long long int b, int op, int passed,
     int line, const char* failMsg, const char* passMsg)
 {

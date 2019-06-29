@@ -25,10 +25,10 @@ struct nbp_scheduler_data_t {
 };
 typedef struct nbp_scheduler_data_t nbp_scheduler_data_t;
 
-nbp_scheduler_data_t nbpSchedulerData;
-nbp_scheduler_data_t* nbpSchedulerDataLast;
+static nbp_scheduler_data_t nbpSchedulerData;
+static nbp_scheduler_data_t* nbpSchedulerDataLast;
 
-void nbp_basic_scheduler_setup_module(nbp_module_details_t* module)
+static void nbp_basic_scheduler_setup_module(nbp_module_details_t* module)
 {
     if (module == 0x0) {
         return;
@@ -47,7 +47,7 @@ void nbp_basic_scheduler_setup_module(nbp_module_details_t* module)
     }
 }
 
-void nbp_basic_scheduler_run_test(nbp_test_details_t* test)
+static void nbp_basic_scheduler_run_test(nbp_test_details_t* test)
 {
     test->testState = NBP_TEST_STATE_RUNNING;
 
@@ -70,7 +70,7 @@ void nbp_basic_scheduler_run_test(nbp_test_details_t* test)
     test->module->numCompletedTests++;
 }
 
-void nbp_basic_scheduler_teardown_module(nbp_module_details_t* module)
+static void nbp_basic_scheduler_teardown_module(nbp_module_details_t* module)
 {
     while (module->numTests == module->numCompletedTests &&
         module->numSubmodules == module->numCompletedSubmodules) {
@@ -89,14 +89,14 @@ void nbp_basic_scheduler_teardown_module(nbp_module_details_t* module)
     }
 }
 
-void nbp_basic_scheduler_init(void)
+static void nbp_basic_scheduler_init(void)
 {
     nbpSchedulerData.test = 0x0;
     nbpSchedulerData.next = 0x0;
     nbpSchedulerDataLast = &nbpSchedulerData;
 }
 
-void nbp_basic_scheduler_uninit(void)
+static void nbp_basic_scheduler_uninit(void)
 {
     nbp_scheduler_data_t* data = nbpSchedulerData.next;
     nbp_scheduler_data_t* tmp = 0x0;
@@ -107,7 +107,7 @@ void nbp_basic_scheduler_uninit(void)
     }
 }
 
-void nbp_basic_scheduler_run(void)
+static void nbp_basic_scheduler_run(void)
 {
     nbp_scheduler_data_t* data = &nbpSchedulerData;
     while (data->test != 0x0) {
@@ -118,7 +118,7 @@ void nbp_basic_scheduler_run(void)
     }
 }
 
-void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
+static void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
 {
     nbpSchedulerDataLast->test = test;
     nbpSchedulerDataLast->next =
