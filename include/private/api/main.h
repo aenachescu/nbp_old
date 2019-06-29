@@ -21,8 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef NBP_LIBRARY_MAIN
 
-#define NBP_PRIVATE_MAIN_MODULE(func, scheduler, printers, setupFunc,          \
-    teardownFunc)                                                              \
+#define NBP_PRIVATE_MAIN_MODULE(func, scheduler, printers)                     \
     void func(                                                                 \
         nbp_module_details_t*,                                                 \
         nbp_before_test_pfn_t,                                                 \
@@ -34,8 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     nbp_scheduler_interface_t* nbpSchedulerInterface = &scheduler;             \
     nbp_printer_interface_t* nbpPrinterInterfaces[] = printers;                \
     unsigned int nbpPrinterInterfacesSize =                                    \
-        sizeof(nbpPrinterInterfaces) / sizeof(nbpPrinterInterfaces[0]);        \
-    NBP_MODULE_FIXTURES(func, setupFunc, teardownFunc)
+        sizeof(nbpPrinterInterfaces) / sizeof(nbpPrinterInterfaces[0]);
 
 /*
  * TODO: add docs
@@ -44,10 +42,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
         nbpScheduler,                                                          \
-        { &nbpPrinter },                                                       \
-        nbp_empty_setup_func,                                                  \
-        nbp_empty_teardown_func                                                \
-    )
+        { &nbpPrinter }                                                        \
+    );                                                                         \
+    NBP_MODULE(func)
 
 /*
  * TODO: add docs
@@ -56,10 +53,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
         nbpScheduler,                                                          \
-        { &nbpPrinter },                                                       \
-        setupFunc,                                                             \
-        teardownFunc                                                           \
-    )
+        { &nbpPrinter }                                                        \
+    );                                                                         \
+    NBP_MODULE_FIXTURES(func, setupFunc, teardownFunc)
 
 #endif // end if NBP_LIBRARY_MAIN
 
