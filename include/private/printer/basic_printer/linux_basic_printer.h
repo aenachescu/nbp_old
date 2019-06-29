@@ -22,10 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdio.h>
 #include <string.h>
 
-#define KNRM "\x1B[0m"
-#define KRED "\x1B[31m"
-#define KGRN "\x1B[32m"
-#define KYEL "\x1B[33m"
+#define NBP_PRIVATE_COLOR_NORMAL    "\x1B[0m"
+#define NBP_PRIVATE_COLOR_RED       "\x1B[31m"
+#define NBP_PRIVATE_COLOR_GREEN     "\x1B[32m"
+#define NBP_PRIVATE_COLOR_YELLOW    "\x1B[33m"
 
 struct NbpPrinterPassMsgList {
     char* msg;
@@ -130,7 +130,10 @@ static void nbp_printer_print_pass_msg(nbp_test_details_t* test)
 
     while (nbpPrinterFirstPassMsg != 0x0) {
         nbp_printer_print_deepth(test->module->deepth + 2);
-        printf(KGRN "%s passed (%s) (%d)" KNRM "\n",
+        printf(
+            NBP_PRIVATE_COLOR_GREEN
+                "%s passed (%s) (%d)"
+            NBP_PRIVATE_COLOR_NORMAL "\n",
             nbpPrinterFirstPassMsg->cond,
             nbpPrinterFirstPassMsg->msg,
             nbpPrinterFirstPassMsg->line
@@ -158,7 +161,14 @@ static void nbp_printer_print_check_result(nbp_test_details_t* test,
 
         if (nbpPrinterTestFailed == 1) {
             nbp_printer_print_deepth(test->module->deepth + 2);
-            printf(KGRN "%s passed (%s) (%d)" KNRM "\n", cond, passMsg, line);
+            printf(
+                NBP_PRIVATE_COLOR_GREEN
+                    "%s passed (%s) (%d)"
+                NBP_PRIVATE_COLOR_NORMAL "\n",
+                cond,
+                passMsg,
+                line
+            );
         } else {
             nbp_printer_add_pass_msg(cond, passMsg, line);
         }
@@ -170,17 +180,33 @@ static void nbp_printer_print_check_result(nbp_test_details_t* test,
         nbpPrinterRet        = 1;
 
         nbp_printer_print_deepth(test->module->deepth + 1);
-        printf(KRED "%s" KNRM "\n", test->testName);
+        printf(
+            NBP_PRIVATE_COLOR_RED "%s" NBP_PRIVATE_COLOR_NORMAL "\n",
+            test->testName
+        );
 
         nbp_printer_print_pass_msg(test);
     }
 
     if (failMsg != 0x0) {
         nbp_printer_print_deepth(test->module->deepth + 2);
-        printf(KRED "%s failed (%s) (%d)" KNRM "\n", cond, failMsg, line);
+        printf(
+            NBP_PRIVATE_COLOR_RED
+                "%s failed (%s) (%d)"
+            NBP_PRIVATE_COLOR_NORMAL "\n",
+            cond,
+            failMsg,
+            line
+        );
     } else {
         nbp_printer_print_deepth(test->module->deepth + 2);
-        printf(KRED "%s failed (%d)" KNRM "\n", cond, line);
+        printf(
+            NBP_PRIVATE_COLOR_RED
+                "%s failed (%d)"
+            NBP_PRIVATE_COLOR_NORMAL "\n",
+            cond,
+            line
+        );
     }
 }
 
@@ -201,7 +227,10 @@ static void nbp_printer_test_end(nbp_test_details_t* test)
 {
     if (nbpPrinterTestFailed == 0) {
         nbp_printer_print_deepth(test->module->deepth + 1);
-        printf(KGRN "%s" KNRM "\n", test->testName);
+        printf(
+            NBP_PRIVATE_COLOR_GREEN "%s" NBP_PRIVATE_COLOR_NORMAL "\n",
+            test->testName
+        );
         nbp_printer_print_pass_msg(test);
     } else {
         nbpPrinterTestFailed = 0;
@@ -331,9 +360,9 @@ nbp_printer_interface_t nbpPrinter = {
     .checkULLongOpResult        = nbp_printer_check_ullong_op_result,
 };
 
-#undef KNRM
-#undef KRED
-#undef KGRN
-#undef KYEL
+#undef NBP_PRIVATE_COLOR_NORMAL
+#undef NBP_PRIVATE_COLOR_RED
+#undef NBP_PRIVATE_COLOR_GREEN
+#undef NBP_PRIVATE_COLOR_YELLOW
 
 #endif // end if NBP_PRIVATE_PRINTER_LINUX_BASIC_PRINTER_H
