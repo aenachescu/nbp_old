@@ -1,0 +1,8 @@
+main module
+    [32mfirst test[0m
+    first module
+        [32mfirst test[0m
+    [32msecond test[0m
+    second module
+        [32msecond test[0m
+    [32mthird test[0m

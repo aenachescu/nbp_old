@@ -36,6 +36,7 @@ declare -a arr=(
     "check_sample"
     "test_and_module_sample"
     "test_and_module_fixtures_sample"
+    "test_and_module_name_sample"
 )
 
 files=""

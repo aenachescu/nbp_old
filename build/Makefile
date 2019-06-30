@@ -408,6 +408,23 @@ clean_test_and_module_fixtures_sample:
 	rm -rf $(bin_folder)$(name18)
 
 #
+# test_and_module_name sample
+#
+
+files19=$(samples_folder)test_and_module_name/main.c
+depends19=../samples/test_and_module_name/main.c
+name19=test_and_module_name_sample
+
+test_and_module_name_sample: $(depends19) $(lib_files)
+	mkdir -p $(bin_folder)$(name19) && \
+	cd $(bin_folder)$(name19) && \
+	$(CC) -o $(name19) $(files19) $(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_test_and_module_name_sample:
+	rm -rf $(bin_folder)$(name19)
+
+#
 # make all
 #
 
@@ -430,6 +447,7 @@ all:\
 	check_sample\
 	test_and_module_sample\
 	test_and_module_fixtures_sample\
+	test_and_module_name_sample\
 
 #
 # make clean
@@ -454,3 +472,4 @@ clean:\
 	clean_check_sample\
 	clean_test_and_module_sample\
 	clean_test_and_module_fixtures_sample\
+	clean_test_and_module_name_sample\
