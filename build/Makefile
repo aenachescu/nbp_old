@@ -425,6 +425,49 @@ clean_test_and_module_name_sample:
 	rm -rf $(bin_folder)$(name19)
 
 #
+# check_type sample
+#
+
+files20=\
+	$(samples_folder)check_type/main.c\
+	$(samples_folder)check_type/char.c\
+	$(samples_folder)check_type/short.c\
+	$(samples_folder)check_type/ushort.c\
+	$(samples_folder)check_type/int.c\
+	$(samples_folder)check_type/uint.c\
+	$(samples_folder)check_type/long.c\
+	$(samples_folder)check_type/ulong.c\
+	$(samples_folder)check_type/llong.c\
+	$(samples_folder)check_type/ullong.c\
+	$(samples_folder)check_type/float.c\
+	$(samples_folder)check_type/double.c\
+	$(samples_folder)check_type/ldouble.c
+depends20=\
+	../samples/check_type/main.c\
+	../samples/check_type/char.c\
+	../samples/check_type/short.c\
+	../samples/check_type/ushort.c\
+	../samples/check_type/int.c\
+	../samples/check_type/uint.c\
+	../samples/check_type/long.c\
+	../samples/check_type/ulong.c\
+	../samples/check_type/llong.c\
+	../samples/check_type/ullong.c\
+	../samples/check_type/float.c\
+	../samples/check_type/double.c\
+	../samples/check_type/ldouble.c
+name20=check_type_sample
+
+check_type_sample: $(depends20) $(lib_files)
+	mkdir -p $(bin_folder)$(name20) && \
+	cd $(bin_folder)$(name20) && \
+	$(CC) -o $(name20) $(files20) $(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_check_type_sample:
+	rm -rf $(bin_folder)$(name20)
+
+#
 # make all
 #
 
@@ -448,6 +491,7 @@ all:\
 	test_and_module_sample\
 	test_and_module_fixtures_sample\
 	test_and_module_name_sample\
+	check_type_sample\
 
 #
 # make clean
@@ -473,3 +517,4 @@ clean:\
 	clean_test_and_module_sample\
 	clean_test_and_module_fixtures_sample\
 	clean_test_and_module_name_sample\
+	clean_check_type_sample\
