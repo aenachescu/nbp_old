@@ -339,6 +339,33 @@ static void nbp_printer_check_ullong_op_result(nbp_test_details_t* test,
     nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
 }
 
+static void nbp_printer_check_float_op_result(nbp_test_details_t* test,
+    float a, float b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%f %s %f", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
+
+static void nbp_printer_check_double_op_result(nbp_test_details_t* test,
+    double a, double b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%f %s %f", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
+
+static void nbp_printer_check_ldouble_op_result(nbp_test_details_t* test,
+    long double a, long double b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    char buff[1024];
+    snprintf(buff, 1024, "%Lf %s %Lf", a, nbp_printer_op_to_string(op), b);
+    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+}
+
 nbp_printer_interface_t nbpPrinter = {
     .init                       = nbp_printer_init,
     .uninit                     = nbp_printer_uninit,
@@ -358,6 +385,9 @@ nbp_printer_interface_t nbpPrinter = {
     .checkULongOpResult         = nbp_printer_check_ulong_op_result,
     .checkLLongOpResult         = nbp_printer_check_llong_op_result,
     .checkULLongOpResult        = nbp_printer_check_ullong_op_result,
+    .checkFloatOpResult         = nbp_printer_check_float_op_result,
+    .checkDoubleOpResult        = nbp_printer_check_double_op_result,
+    .checkLDoubleOpResult       = nbp_printer_check_ldouble_op_result,
 };
 
 #undef NBP_PRIVATE_COLOR_NORMAL

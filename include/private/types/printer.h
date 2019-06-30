@@ -173,6 +173,39 @@ typedef void (*nbp_printer_check_ullong_op_result_pfn_t)(
     const char*
 );
 
+typedef void (*nbp_printer_check_float_op_result_pfn_t)(
+    nbp_test_details_t*,
+    float,
+    float,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_check_double_op_result_pfn_t)(
+    nbp_test_details_t*,
+    double,
+    double,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_check_ldouble_op_result_pfn_t)(
+    nbp_test_details_t*,
+    long double,
+    long double,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
 struct nbp_printer_interface_t {
     nbp_printer_init_pfn_t init;
     nbp_printer_uninit_pfn_t uninit;
@@ -192,6 +225,9 @@ struct nbp_printer_interface_t {
     nbp_printer_check_ulong_op_result_pfn_t checkULongOpResult;
     nbp_printer_check_llong_op_result_pfn_t checkLLongOpResult;
     nbp_printer_check_ullong_op_result_pfn_t checkULLongOpResult;
+    nbp_printer_check_float_op_result_pfn_t checkFloatOpResult;
+    nbp_printer_check_double_op_result_pfn_t checkDoubleOpResult;
+    nbp_printer_check_ldouble_op_result_pfn_t checkLDoubleOpResult;
 };
 
 typedef struct nbp_printer_interface_t nbp_printer_interface_t;
