@@ -158,4 +158,37 @@ void nbp_notify_printer_check_ullong_op_result(
     const char*
 );
 
+void nbp_notify_printer_check_float_op_result(
+    nbp_test_details_t*,
+    float,
+    float,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_check_double_op_result(
+    nbp_test_details_t*,
+    double,
+    double,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_check_ldouble_op_result(
+    nbp_test_details_t*,
+    long double,
+    long double,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
 #endif // end if NBP_PRIVATE_DETAILS_PRINTER_H
