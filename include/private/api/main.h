@@ -39,6 +39,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE(func)                                                  \
+    extern nbp_printer_interface_t nbpPrinter;                                 \
+    extern nbp_scheduler_interface_t nbpScheduler;                             \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
         nbpScheduler,                                                          \
@@ -50,6 +52,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE_NAME(func, name)                                       \
+    extern nbp_printer_interface_t nbpPrinter;                                 \
+    extern nbp_scheduler_interface_t nbpScheduler;                             \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
         nbpScheduler,                                                          \
@@ -61,6 +65,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE_FIXTURES(func, setupFunc, teardownFunc)                \
+    extern nbp_printer_interface_t nbpPrinter;                                 \
+    extern nbp_scheduler_interface_t nbpScheduler;                             \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
         nbpScheduler,                                                          \
@@ -72,6 +78,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE_NAME_FIXTURES(func, name, setupFunc, teardownFunc)     \
+    extern nbp_printer_interface_t nbpPrinter;                                 \
+    extern nbp_scheduler_interface_t nbpScheduler;                             \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
         nbpScheduler,                                                          \
