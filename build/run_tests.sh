@@ -103,6 +103,7 @@ run_test test_and_module_sample 0
 run_test test_and_module_fixtures_sample 0
 run_test test_and_module_name_sample 0
 run_test check_type_sample 0
+run_test check_operator_sample 0
 
 cd ../build
 

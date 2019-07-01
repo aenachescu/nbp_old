@@ -468,6 +468,23 @@ clean_check_type_sample:
 	rm -rf $(bin_folder)$(name20)
 
 #
+# check_operator sample
+#
+
+files21=$(samples_folder)check_operator/main.c
+depends21=../samples/check_operator/main.c
+name21=check_operator_sample
+
+check_operator_sample: $(depends21) $(lib_files)
+	mkdir -p $(bin_folder)$(name21) && \
+	cd $(bin_folder)$(name21) && \
+	$(CC) -o $(name21) $(files21) $(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_check_operator_sample:
+	rm -rf $(bin_folder)$(name21)
+
+#
 # make all
 #
 
@@ -492,6 +509,7 @@ all:\
 	test_and_module_fixtures_sample\
 	test_and_module_name_sample\
 	check_type_sample\
+	check_operator_sample\
 
 #
 # make clean
@@ -518,3 +536,4 @@ clean:\
 	clean_test_and_module_fixtures_sample\
 	clean_test_and_module_name_sample\
 	clean_check_type_sample\
+	clean_check_operator_sample\
