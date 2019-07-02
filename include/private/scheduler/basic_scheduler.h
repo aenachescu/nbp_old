@@ -28,75 +28,14 @@ typedef struct nbp_scheduler_data_t nbp_scheduler_data_t;
 static nbp_scheduler_data_t nbpSchedulerData;
 static nbp_scheduler_data_t* nbpSchedulerDataLast;
 
-static void nbp_basic_scheduler_setup_module(nbp_module_details_t* module)
-{
-    if (module == 0x0) {
-        return;
-    }
-
-    if (module->moduleState == NBP_MODULE_STATE_RUNNING) {
-        return;
-    }
-
-    nbp_basic_scheduler_setup_module(module->parent);
-
-    module->moduleState = NBP_MODULE_STATE_RUNNING;
-    nbp_notify_printer_module_begin(module);
-    if (module->setup) {
-        module->setup(module);
-    }
-}
-
-static void nbp_basic_scheduler_run_test(nbp_test_details_t* test)
-{
-    test->testState = NBP_TEST_STATE_RUNNING;
-
-    nbp_notify_printer_test_begin(test);
-
-    if (test->beforeTestFunc) {
-        test->beforeTestFunc(test);
-    }
-
-    test->testFunc(test);
-
-    if (test->afterTestFunc) {
-        test->afterTestFunc(test);
-    }
-
-    nbp_notify_printer_test_end(test);
-
-    test->testState = NBP_TEST_STATE_COMPLETED;
-
-    test->module->numCompletedTests++;
-}
-
-static void nbp_basic_scheduler_teardown_module(nbp_module_details_t* module)
-{
-    while (module->numTests == module->numCompletedTests &&
-        module->numSubmodules == module->numCompletedSubmodules) {
-        if (module->teardown) {
-            module->teardown(module);
-        }
-        nbp_notify_printer_module_end(module);
-        module->moduleState = NBP_MODULE_STATE_COMPLETED;
-
-        module = module->parent;
-        if (module == 0x0) {
-            break;
-        }
-
-        module->numCompletedSubmodules++;
-    }
-}
-
-static void nbp_basic_scheduler_init(void)
+NBP_SCHEDULER_FUNC_INIT(basic_scheduler_init)
 {
     nbpSchedulerData.test = 0x0;
     nbpSchedulerData.next = 0x0;
     nbpSchedulerDataLast = &nbpSchedulerData;
 }
 
-static void nbp_basic_scheduler_uninit(void)
+NBP_SCHEDULER_FUNC_UNINIT(basic_scheduler_uninit)
 {
     nbp_scheduler_data_t* data = nbpSchedulerData.next;
     nbp_scheduler_data_t* tmp = 0x0;
@@ -107,20 +46,18 @@ static void nbp_basic_scheduler_uninit(void)
     }
 }
 
-static void nbp_basic_scheduler_run(void)
+NBP_SCHEDULER_FUNC_RUN(basic_scheduler_run)
 {
     nbp_scheduler_data_t* data = &nbpSchedulerData;
     while (data->test != 0x0) {
-        nbp_basic_scheduler_setup_module(data->test->module);
-        nbp_basic_scheduler_run_test(data->test);
-        nbp_basic_scheduler_teardown_module(data->test->module);
+        NBP_SCHEDULER_RUN_TEST(data->test);
         data = data->next;
     }
 }
 
-static void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
+NBP_SCHEDULER_FUNC_ADD_TEST(basic_scheduler_add_test)
 {
-    nbpSchedulerDataLast->test = test;
+    nbpSchedulerDataLast->test = NBP_THIS_TEST;
     nbpSchedulerDataLast->next =
         (nbp_scheduler_data_t*) NBP_ALLOC(sizeof(nbp_scheduler_data_t));
 
@@ -134,11 +71,12 @@ static void nbp_basic_scheduler_add_test(nbp_test_details_t* test)
     nbpSchedulerDataLast->test = 0x0;
 }
 
-nbp_scheduler_interface_t nbpScheduler = {
-    .init = nbp_basic_scheduler_init,
-    .uninit = nbp_basic_scheduler_uninit,
-    .run = nbp_basic_scheduler_run,
-    .addTest = nbp_basic_scheduler_add_test
-};
+NBP_DEFINE_SCHEDULER(
+    nbpScheduler,
+    NBP_SCHEDULER_USE_FUNC_INIT(basic_scheduler_init),
+    NBP_SCHEDULER_USE_FUNC_UNINIT(basic_scheduler_uninit),
+    NBP_SCHEDULER_USE_FUNC_RUN(basic_scheduler_run),
+    NBP_SCHEDULER_USE_FUNC_ADD_TEST(basic_scheduler_add_test)
+);
 
 #endif // end if NBP_PRIVATE_SCHEDULER_BASIC_SCHEDULER_H
