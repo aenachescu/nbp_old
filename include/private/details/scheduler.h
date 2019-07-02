@@ -16,17 +16,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NBP_PRIVATE_IMPL_H
-#define NBP_PRIVATE_IMPL_H
+#ifndef NBP_PRIVATE_DETAILS_SCHEDULER_H
+#define NBP_PRIVATE_DETAILS_SCHEDULER_H
 
-#ifdef NBP_LIBRARY_MAIN
+void nbp_scheduler_run_test(
+    nbp_test_details_t*
+);
 
-#include "main.h"
-#include "test.h"
-#include "module.h"
-#include "printer.h"
-#include "scheduler.h"
-
-#endif // end if NBP_LIBRARY_MAIN
-
-#endif // end if NBP_PRIVATE_IMPL_H
+#endif // end if NBP_PRIVATE_DETAILS_SCHEDULER_H

@@ -22,5 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "test.h"
 #include "module.h"
 #include "printer.h"
+#include "scheduler.h"
 
 #endif // end if NBP_PRIVATE_DETAILS_H
