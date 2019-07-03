@@ -100,3 +100,44 @@ matrix:
         - make -C build/ clean
         - make -C build/ all CC=g++-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - cd build && ./run_tests.sh && cd ..
+
+    #
+    # clang
+    #
+    - os: linux
+      env:
+        - DESCRIPTION="linux clang"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - clang-4
+            - clang-5
+            - clang-6
+            - clang-7
+            - clang-8
+            - lcov
+      before_install:
+        - gem install coveralls-lcov
+      script:
+        # clang 4
+        - make -C build/ clean
+        - make -C build/ all CC=clang-4 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cd build && ./run_tests.sh && ./run_coveralls.sh && cd ..
+        # clang 5
+        - make -C build/ clean
+        - make -C build/ all CC=clang-5 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cd build && ./run_tests.sh && cd ..
+        # clang 6
+        - make -C build/ clean
+        - make -C build/ all CC=clang-6 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cd build && ./run_tests.sh && cd ..
+        # clang 7
+        - make -C build/ clean
+        - make -C build/ all CC=clang-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cd build && ./run_tests.sh && cd ..
+        # clang 8
+        - make -C build/ clean
+        - make -C build/ all CC=clang-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cd build && ./run_tests.sh && cd ..
