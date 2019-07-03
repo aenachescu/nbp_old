@@ -1,19 +1,19 @@
 check_operator
     [32mcheck_operator_eq[0m
-        [32mget_int() == int_ passed (check passed) (40)[0m
-        [32mget_int() == int_ passed (check passed) (41)[0m
+        [32mget_int() == int_ passed (check passed) (42)[0m
+        [32mget_int() == int_ passed (check passed) (43)[0m
     [32mcheck_operator_ne[0m
-        [32mget_int() != int_min passed (check passed) (49)[0m
-        [32mget_int() != int_min passed (check passed) (50)[0m
+        [32mget_int() != int_min passed (check passed) (51)[0m
+        [32mget_int() != int_min passed (check passed) (52)[0m
     [32mcheck_operator_gt[0m
-        [32mget_int() > int_min passed (check passed) (58)[0m
-        [32mget_int() > int_min passed (check passed) (59)[0m
+        [32mget_int() > int_min passed (check passed) (60)[0m
+        [32mget_int() > int_min passed (check passed) (61)[0m
     [32mcheck_operator_ge[0m
-        [32mget_int() >= int_min passed (check passed) (67)[0m
-        [32mget_int() >= int_ passed (check passed) (68)[0m
+        [32mget_int() >= int_min passed (check passed) (69)[0m
+        [32mget_int() >= int_ passed (check passed) (70)[0m
     [32mcheck_operator_lt[0m
-        [32mget_int() < int_max passed (check passed) (76)[0m
-        [32mget_int() < int_max passed (check passed) (77)[0m
+        [32mget_int() < int_max passed (check passed) (78)[0m
+        [32mget_int() < int_max passed (check passed) (79)[0m
     [32mcheck_operator_le[0m
-        [32mget_int() <= 0x7fffffff passed (check passed) (85)[0m
-        [32mget_int() <= int_ passed (check passed) (86)[0m
+        [32mget_int() <= 0x7fffffff passed (check passed) (87)[0m
+        [32mget_int() <= int_ passed (check passed) (88)[0m

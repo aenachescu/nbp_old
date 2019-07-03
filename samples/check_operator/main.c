@@ -28,6 +28,8 @@ int get_int()
     return 2;
 }
 
+#define MY_INT_MAX 0x7fffffff
+
 volatile int int_min = INT_MIN;
 volatile int int_max = INT_MAX;
 volatile int int_ = 2;
@@ -82,7 +84,7 @@ NBP_TEST(check_operator_le)
     SAMPLE_SLEEP();
     NBP_CHECK_LE(get_int(), int_max);
     NBP_CHECK_LE_FAIL_MSG(get_int(), int_, "check failed");
-    NBP_CHECK_LE_PASS_MSG(get_int(), INT_MAX, "check passed");
+    NBP_CHECK_LE_PASS_MSG(get_int(), MY_INT_MAX, "check passed");
     NBP_CHECK_LE_MSG(get_int(), int_, "check failed", "check passed");
 }
 
