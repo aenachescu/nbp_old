@@ -111,6 +111,11 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
+            - llvm-toolchain-xenial-4
+            - llvm-toolchain-xenial-5
+            - llvm-toolchain-xenial-6
+            - llvm-toolchain-xenial-7
+            - llvm-toolchain-xenial-8
           packages:
             - clang-4
             - clang-5
