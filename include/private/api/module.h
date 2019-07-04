@@ -131,4 +131,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_GET_MODULE_NAME(module) module->moduleName
 
+/*
+ * TODO: add docs
+ */
+#define NBP_GET_MODULE_DEEPTH(module) module->deepth
+
 #endif // end if NBP_PRIVATE_API_MODULE_H
