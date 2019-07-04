@@ -121,4 +121,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_GET_TEST_NAME(test) test->testName
 
+/*
+ * TODO: add docs
+ */
+#define NBP_GET_TEST_DEEPTH(test) NBP_GET_MODULE_DEEPTH(test->module) + 1
+
 #endif // end if NBP_PRIVATE_API_TEST_H
