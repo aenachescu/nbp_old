@@ -58,7 +58,7 @@ struct nbp_module_details_t {
     unsigned int numSubmodules;
     unsigned int numCompletedSubmodules;
     unsigned int moduleState;
-    unsigned int deepth;
+    unsigned int depth;
 };
 typedef struct nbp_module_details_t nbp_module_details_t;
 

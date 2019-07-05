@@ -70,7 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .numSubmodules          = 0,                                           \
         .numCompletedSubmodules = 0,                                           \
         .moduleState            = NBP_MODULE_STATE_NOT_INITIALIZED,            \
-        .deepth                 = 0,                                           \
+        .depth                  = 0,                                           \
     };                                                                         \
     void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
         nbp_module_details_t* module,                                          \
@@ -134,6 +134,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_GET_MODULE_DEEPTH(module) module->deepth
+#define NBP_GET_MODULE_DEPTH(module) module->depth
 
 #endif // end if NBP_PRIVATE_API_MODULE_H

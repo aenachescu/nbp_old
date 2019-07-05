@@ -59,10 +59,10 @@ static const char* nbp_printer_op_to_string(int op)
     return "unknown";
 }
 
-static void nbp_printer_print_deepth(unsigned int deepth)
+static void nbp_printer_print_depth(unsigned int depth)
 {
     printf("\r");
-    while (deepth-- > 0) {
+    while (depth-- > 0) {
         printf("    ");
     }
 }
@@ -129,7 +129,7 @@ static void nbp_printer_print_pass_msg(nbp_test_details_t* test)
     struct NbpPrinterPassMsgList* tmp = 0x0;
 
     while (nbpPrinterFirstPassMsg != 0x0) {
-        nbp_printer_print_deepth(test->module->deepth + 2);
+        nbp_printer_print_depth(test->module->depth + 2);
         printf(
             NBP_PRIVATE_COLOR_GREEN
                 "%s passed (%s) (%d)"
@@ -160,7 +160,7 @@ static void nbp_printer_print_check_result(nbp_test_details_t* test,
         }
 
         if (nbpPrinterTestFailed == 1) {
-            nbp_printer_print_deepth(test->module->deepth + 2);
+            nbp_printer_print_depth(test->module->depth + 2);
             printf(
                 NBP_PRIVATE_COLOR_GREEN
                     "%s passed (%s) (%d)"
@@ -179,7 +179,7 @@ static void nbp_printer_print_check_result(nbp_test_details_t* test,
         nbpPrinterTestFailed = 1;
         nbpPrinterRet        = 1;
 
-        nbp_printer_print_deepth(test->module->deepth + 1);
+        nbp_printer_print_depth(test->module->depth + 1);
         printf(
             NBP_PRIVATE_COLOR_RED "%s" NBP_PRIVATE_COLOR_NORMAL "\n",
             test->testName
@@ -189,7 +189,7 @@ static void nbp_printer_print_check_result(nbp_test_details_t* test,
     }
 
     if (failMsg != 0x0) {
-        nbp_printer_print_deepth(test->module->deepth + 2);
+        nbp_printer_print_depth(test->module->depth + 2);
         printf(
             NBP_PRIVATE_COLOR_RED
                 "%s failed (%s) (%d)"
@@ -199,7 +199,7 @@ static void nbp_printer_print_check_result(nbp_test_details_t* test,
             line
         );
     } else {
-        nbp_printer_print_deepth(test->module->deepth + 2);
+        nbp_printer_print_depth(test->module->depth + 2);
         printf(
             NBP_PRIVATE_COLOR_RED
                 "%s failed (%d)"
@@ -226,7 +226,7 @@ static int nbp_printer_uninit(void)
 static void nbp_printer_test_end(nbp_test_details_t* test)
 {
     if (nbpPrinterTestFailed == 0) {
-        nbp_printer_print_deepth(test->module->deepth + 1);
+        nbp_printer_print_depth(test->module->depth + 1);
         printf(
             NBP_PRIVATE_COLOR_GREEN "%s" NBP_PRIVATE_COLOR_NORMAL "\n",
             test->testName
@@ -239,7 +239,7 @@ static void nbp_printer_test_end(nbp_test_details_t* test)
 
 static void nbp_printer_module_begin(nbp_module_details_t* module)
 {
-    nbp_printer_print_deepth(module->deepth);
+    nbp_printer_print_depth(module->depth);
     printf("%s\n", module->moduleName);
 }
 

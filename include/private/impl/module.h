@@ -40,7 +40,7 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
             parent->lastSubmodule = module;
         }
 
-        module->deepth = parent->deepth + 1;
+        module->depth = parent->depth + 1;
     }
 
     module->moduleFunc(module, 0x0, 0x0);
