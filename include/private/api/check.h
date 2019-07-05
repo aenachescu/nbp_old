@@ -19,13 +19,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_API_CHECK_H
 #define NBP_PRIVATE_API_CHECK_H
 
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_STATUS_PASSED 1
+
+/*
+ * TODO: add docs
+ */
+#define NBP_CHECK_STATUS_FAILED 0
+
 #define NBP_PRIVATE_CHECK_BASE(cond, failMsg, passMsg)                         \
     if (cond) {                                                                \
         test->passedChecks++;                                                  \
         nbp_notify_printer_check_result(                                       \
             test,                                                              \
             #cond,                                                             \
-            1,                                                                 \
+            NBP_CHECK_STATUS_PASSED,                                           \
             __LINE__,                                                          \
             0x0,                                                               \
             passMsg                                                            \
@@ -35,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         nbp_notify_printer_check_result(                                       \
             test,                                                              \
             #cond,                                                             \
-            0,                                                                 \
+            NBP_CHECK_STATUS_FAILED,                                           \
             __LINE__,                                                          \
             failMsg,                                                           \
             0x0                                                                \
@@ -50,7 +60,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             #a,                                                                \
             #b,                                                                \
             printerOp,                                                         \
-            1,                                                                 \
+            NBP_CHECK_STATUS_PASSED,                                           \
             __LINE__,                                                          \
             0x0,                                                               \
             passMsg                                                            \
@@ -62,7 +72,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             #a,                                                                \
             #b,                                                                \
             printerOp,                                                         \
-            0,                                                                 \
+            NBP_CHECK_STATUS_FAILED,                                           \
             __LINE__,                                                          \
             failMsg,                                                           \
             0x0                                                                \
@@ -86,7 +96,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 tmpA,                                                          \
                 tmpB,                                                          \
                 printerOp,                                                     \
-                1,                                                             \
+                NBP_CHECK_STATUS_PASSED,                                       \
                 __LINE__,                                                      \
                 0x0,                                                           \
                 passMsg                                                        \
@@ -98,7 +108,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 tmpA,                                                          \
                 tmpB,                                                          \
                 printerOp,                                                     \
-                0,                                                             \
+                NBP_CHECK_STATUS_FAILED,                                       \
                 __LINE__,                                                      \
                 failMsg,                                                       \
                 0x0                                                            \
