@@ -27,5 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "testAssert.h"
 #include "moduleAssert.h"
 #include "scheduler.h"
+#include "printer.h"
 
 #endif // end if NBP_PRIVATE_API_H
