@@ -73,9 +73,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_DEFINE_SCHEDULER(name, ...)                                        \
-    struct nbp_scheduler_interface_t name = {                                  \
+    struct nbp_scheduler_interface_t                                           \
+    NBP_PRIVATE_PP_CONCAT(nbpScheduler, name) = {                              \
         __VA_ARGS__                                                            \
     }
+
+/*
+ * TODO: add docs
+ */
+#define NBP_USE_SCHEDULER(name)                                                \
+    & NBP_PRIVATE_PP_CONCAT(nbpScheduler, name)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_INCLUDE_SCHEDULER(name)                                            \
+    extern nbp_scheduler_interface_t NBP_PRIVATE_PP_CONCAT(nbpScheduler, name)
 
 /*
  * TODO: add docs

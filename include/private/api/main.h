@@ -40,10 +40,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_MAIN_MODULE(func)                                                  \
     NBP_INCLUDE_PRINTER(nbpBasicPrinter);                                      \
-    extern nbp_scheduler_interface_t nbpScheduler;                             \
+    NBP_INCLUDE_SCHEDULER(nbpScheduler);                                       \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
-        nbpScheduler,                                                          \
+        NBP_USE_SCHEDULER(nbpScheduler),                                       \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpBasicPrinter))                     \
     );                                                                         \
     NBP_MODULE(func)
@@ -53,10 +53,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_MAIN_MODULE_NAME(func, name)                                       \
     NBP_INCLUDE_PRINTER(nbpBasicPrinter);                                      \
-    extern nbp_scheduler_interface_t nbpScheduler;                             \
+    NBP_INCLUDE_SCHEDULER(nbpScheduler);                                       \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
-        nbpScheduler,                                                          \
+        NBP_USE_SCHEDULER(nbpScheduler),                                       \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpBasicPrinter))                     \
     );                                                                         \
     NBP_MODULE_NAME(func, name)
@@ -66,10 +66,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_MAIN_MODULE_FIXTURES(func, setupFunc, teardownFunc)                \
     NBP_INCLUDE_PRINTER(nbpBasicPrinter);                                      \
-    extern nbp_scheduler_interface_t nbpScheduler;                             \
+    NBP_INCLUDE_SCHEDULER(nbpScheduler);                                       \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
-        nbpScheduler,                                                          \
+        NBP_USE_SCHEDULER(nbpScheduler),                                       \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpBasicPrinter))                     \
     );                                                                         \
     NBP_MODULE_FIXTURES(func, setupFunc, teardownFunc)
@@ -79,10 +79,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_MAIN_MODULE_NAME_FIXTURES(func, name, setupFunc, teardownFunc)     \
     NBP_INCLUDE_PRINTER(nbpBasicPrinter);                                      \
-    extern nbp_scheduler_interface_t nbpScheduler;                             \
+    NBP_INCLUDE_SCHEDULER(nbpScheduler);                                       \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
-        nbpScheduler,                                                          \
+        NBP_USE_SCHEDULER(nbpScheduler),                                       \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpBasicPrinter))                     \
     );                                                                         \
     NBP_MODULE_NAME_FIXTURES(func, name, setupFunc, teardownFunc)
