@@ -19,6 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_DETAILS_PRINTER_H
 #define NBP_PRIVATE_DETAILS_PRINTER_H
 
+const char* nbp_printer_operator_to_string(
+    int
+);
+
 void nbp_notify_printer_test_begin(
     nbp_test_details_t*
 );

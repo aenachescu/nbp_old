@@ -19,6 +19,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_IMPL_PRINTER_H
 #define NBP_PRIVATE_IMPL_PRINTER_H
 
+const char* nbp_printer_operator_to_string(int op)
+{
+    switch (op) {
+        case NBP_PRINTER_OPERATOR_EQ:
+            return "==";
+        case NBP_PRINTER_OPERATOR_NE:
+            return "!=";
+        case NBP_PRINTER_OPERATOR_GT:
+            return ">";
+        case NBP_PRINTER_OPERATOR_GE:
+            return ">=";
+        case NBP_PRINTER_OPERATOR_LT:
+            return "<";
+        case NBP_PRINTER_OPERATOR_LE:
+            return "<=";
+    }
+
+    nbp_notify_printer_handle_error(NBP_ERROR_UNKNOWN_OPERATOR);
+    return "unknown";
+}
+
 void nbp_notify_printer_handle_error(int errCode)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
