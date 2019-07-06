@@ -26,5 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_ERROR_SCHEDULER_NO_UNINIT_FUNC                      (int) 5
 #define NBP_ERROR_SCHEDULER_NO_RUN_FUNC                         (int) 6
 #define NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC                    (int) 7
+#define NBP_ERROR_UNKNOWN_OPERATOR                              (int) 8
 
 #endif // end if NBP_PRIVATE_TYPES_ERRORS_H
