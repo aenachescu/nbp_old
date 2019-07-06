@@ -344,7 +344,7 @@ NBP_PRINTER_FUNC_CHECK_LDOUBLE_OP_RESULT(
 }
 
 NBP_DEFINE_PRINTER(
-    nbpBasicPrinter,
+    nbpDefaultPrinter,
     NBP_PRINTER_USE_FUNC_INIT(nbp_basic_printer_init),
     NBP_PRINTER_USE_FUNC_UNINIT(nbp_basic_printer_uninit),
     NBP_PRINTER_NO_FUNC_HANDLE_ERROR,
