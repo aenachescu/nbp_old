@@ -514,21 +514,21 @@ NBP_PRINTER_FUNC_CHECK_LDOUBLE_OP_RESULT(
 
 NBP_DEFINE_PRINTER(
     nbpDefaultPrinter,
-    NBP_PRINTER_NO_FUNC_HANDLE_ERROR,
-    NBP_PRINTER_NO_FUNC_TEST_BEGIN,
-    NBP_PRINTER_NO_FUNC_MODULE_END,
     NBP_PRINTER_USE_FUNC_INIT(
         nbp_basic_printer_init
     ),
     NBP_PRINTER_USE_FUNC_UNINIT(
         nbp_basic_printer_uninit
     ),
+    NBP_PRINTER_NO_FUNC_HANDLE_ERROR,
+    NBP_PRINTER_NO_FUNC_TEST_BEGIN,
     NBP_PRINTER_USE_FUNC_TEST_END(
         nbp_basic_printer_test_end
     ),
     NBP_PRINTER_USE_FUNC_MODULE_BEGIN(
         nbp_basic_printer_module_begin
     ),
+    NBP_PRINTER_NO_FUNC_MODULE_END,
     NBP_PRINTER_USE_FUNC_CHECK_RESULT(
         nbp_basic_printer_check_result
     ),
