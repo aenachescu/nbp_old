@@ -561,5 +561,60 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_USE_PRINTERS(...)                                                  \
     { __VA_ARGS__ }
 
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_OPERATOR() op
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_OPERATOR_STR() nbp_printer_operator_to_string(op)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_CONDITION() cond
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FIRST_VALUE() a
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SECOND_VALUE() b
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_CHECK_STATUS() passed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_CHECK_LINE() line
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FAIL_MSG() failMsg
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FAIL_MSG 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_PASS_MSG() passMsg
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_PASS_MSG 0x0
+
 #endif // end if NBP_PRIVATE_API_PRINTER_H
 

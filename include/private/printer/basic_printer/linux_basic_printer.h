@@ -39,26 +39,6 @@ static int nbpPrinterTestFailed;
 static struct NbpPrinterPassMsgList* nbpPrinterFirstPassMsg;
 static struct NbpPrinterPassMsgList* nbpPrinterLastPassMsg;
 
-static const char* nbp_printer_op_to_string(int op)
-{
-    switch (op) {
-        case NBP_PRINTER_OPERATOR_EQ:
-            return "==";
-        case NBP_PRINTER_OPERATOR_NE:
-            return "!=";
-        case NBP_PRINTER_OPERATOR_GT:
-            return ">";
-        case NBP_PRINTER_OPERATOR_GE:
-            return ">=";
-        case NBP_PRINTER_OPERATOR_LT:
-            return "<";
-        case NBP_PRINTER_OPERATOR_LE:
-            return "<=";
-    }
-
-    return "unknown";
-}
-
 static void nbp_printer_print_depth(unsigned int depth)
 {
     printf("\r");
@@ -124,12 +104,12 @@ static void nbp_printer_add_pass_msg(const char* cond, const char* msg,
     }
 }
 
-static void nbp_printer_print_pass_msg(nbp_test_details_t* test)
+static void nbp_printer_print_pass_msg(unsigned int testDepth)
 {
     struct NbpPrinterPassMsgList* tmp = 0x0;
 
     while (nbpPrinterFirstPassMsg != 0x0) {
-        nbp_printer_print_depth(test->module->depth + 2);
+        nbp_printer_print_depth(testDepth + 1);
         printf(
             NBP_PRIVATE_COLOR_GREEN
                 "%s passed (%s) (%d)"
@@ -154,13 +134,13 @@ static void nbp_printer_print_check_result(nbp_test_details_t* test,
     const char* cond, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
-    if (passed == 1) {
-        if (passMsg == 0x0) {
+    if (passed == NBP_CHECK_STATUS_PASSED) {
+        if (passMsg == NBP_PRINTER_NO_PASS_MSG) {
             return;
         }
 
         if (nbpPrinterTestFailed == 1) {
-            nbp_printer_print_depth(test->module->depth + 2);
+            nbp_printer_print_depth(NBP_GET_TEST_DEPTH(test) + 1);
             printf(
                 NBP_PRIVATE_COLOR_GREEN
                     "%s passed (%s) (%d)"
@@ -179,17 +159,17 @@ static void nbp_printer_print_check_result(nbp_test_details_t* test,
         nbpPrinterTestFailed = 1;
         nbpPrinterRet        = 1;
 
-        nbp_printer_print_depth(test->module->depth + 1);
+        nbp_printer_print_depth(NBP_GET_TEST_DEPTH(test));
         printf(
             NBP_PRIVATE_COLOR_RED "%s" NBP_PRIVATE_COLOR_NORMAL "\n",
-            test->testName
+            NBP_GET_TEST_NAME(test)
         );
 
-        nbp_printer_print_pass_msg(test);
+        nbp_printer_print_pass_msg(NBP_GET_TEST_DEPTH(test));
     }
 
-    if (failMsg != 0x0) {
-        nbp_printer_print_depth(test->module->depth + 2);
+    if (failMsg != NBP_PRINTER_NO_FAIL_MSG) {
+        nbp_printer_print_depth(NBP_GET_TEST_DEPTH(test) + 1);
         printf(
             NBP_PRIVATE_COLOR_RED
                 "%s failed (%s) (%d)"
@@ -199,7 +179,7 @@ static void nbp_printer_print_check_result(nbp_test_details_t* test,
             line
         );
     } else {
-        nbp_printer_print_depth(test->module->depth + 2);
+        nbp_printer_print_depth(NBP_GET_TEST_DEPTH(test) + 1);
         printf(
             NBP_PRIVATE_COLOR_RED
                 "%s failed (%d)"
@@ -226,12 +206,12 @@ NBP_PRINTER_FUNC_UNINIT(nbp_basic_printer_uninit)
 NBP_PRINTER_FUNC_TEST_END(nbp_basic_printer_test_end)
 {
     if (nbpPrinterTestFailed == 0) {
-        nbp_printer_print_depth(test->module->depth + 1);
+        nbp_printer_print_depth(NBP_GET_TEST_DEPTH(NBP_THIS_TEST));
         printf(
             NBP_PRIVATE_COLOR_GREEN "%s" NBP_PRIVATE_COLOR_NORMAL "\n",
-            test->testName
+            NBP_GET_TEST_NAME(NBP_THIS_TEST)
         );
-        nbp_printer_print_pass_msg(test);
+        nbp_printer_print_pass_msg(NBP_GET_TEST_DEPTH(NBP_THIS_TEST));
     } else {
         nbpPrinterTestFailed = 0;
     }
@@ -239,121 +219,322 @@ NBP_PRINTER_FUNC_TEST_END(nbp_basic_printer_test_end)
 
 NBP_PRINTER_FUNC_MODULE_BEGIN(nbp_basic_printer_module_begin)
 {
-    nbp_printer_print_depth(module->depth);
-    printf("%s\n", module->moduleName);
+    nbp_printer_print_depth(NBP_GET_MODULE_DEPTH(NBP_THIS_MODULE));
+    printf("%s\n", NBP_GET_MODULE_NAME(NBP_THIS_MODULE));
 }
 
 NBP_PRINTER_FUNC_CHECK_RESULT(nbp_basic_printer_check_result)
 {
-    nbp_printer_print_check_result(test, cond, passed, line, failMsg, passMsg);
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        NBP_PRINTER_GET_CONDITION(),
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_OP_RESULT(nbp_basic_printer_check_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%s %s %s", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%s %s %s",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_CHAR_OP_RESULT(nbp_basic_printer_check_char_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%c %s %c", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%c %s %c",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_SHORT_OP_RESULT(nbp_basic_printer_check_short_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%hd %s %hd", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%hd %s %hd",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_USHORT_OP_RESULT(
     nbp_basic_printer_check_ushort_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%hu %s %hu", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%hu %s %hu",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_INT_OP_RESULT(nbp_basic_printer_check_int_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%d %s %d", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%d %s %d",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_UINT_OP_RESULT(nbp_basic_printer_check_uint_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%u %s %u", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%u %s %u",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_LONG_OP_RESULT(nbp_basic_printer_check_long_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%ld %s %ld", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%ld %s %ld",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_ULONG_OP_RESULT(nbp_basic_printer_check_ulong_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%lu %s %lu", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%lu %s %lu",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_LLONG_OP_RESULT(nbp_basic_printer_check_llong_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%lld %s %lld", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%lld %s %lld",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_ULLONG_OP_RESULT(
     nbp_basic_printer_check_ullong_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%llu %s %llu", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%llu %s %llu",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_FLOAT_OP_RESULT(nbp_basic_printer_check_float_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%f %s %f", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%f %s %f",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_DOUBLE_OP_RESULT(
     nbp_basic_printer_check_double_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%f %s %f", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%f %s %f",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_LDOUBLE_OP_RESULT(
     nbp_basic_printer_check_ldouble_op_result)
 {
     char buff[1024];
-    snprintf(buff, 1024, "%Lf %s %Lf", a, nbp_printer_op_to_string(op), b);
-    nbp_printer_print_check_result(test, buff, passed, line, failMsg, passMsg);
+    snprintf(
+        buff,
+        1024,
+        "%Lf %s %Lf",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_check_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_CHECK_STATUS(),
+        NBP_PRINTER_GET_CHECK_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
 }
 
 NBP_DEFINE_PRINTER(
     nbpDefaultPrinter,
-    NBP_PRINTER_USE_FUNC_INIT(nbp_basic_printer_init),
-    NBP_PRINTER_USE_FUNC_UNINIT(nbp_basic_printer_uninit),
     NBP_PRINTER_NO_FUNC_HANDLE_ERROR,
     NBP_PRINTER_NO_FUNC_TEST_BEGIN,
-    NBP_PRINTER_USE_FUNC_TEST_END(nbp_basic_printer_test_end),
-    NBP_PRINTER_USE_FUNC_MODULE_BEGIN(nbp_basic_printer_module_begin),
     NBP_PRINTER_NO_FUNC_MODULE_END,
-    NBP_PRINTER_USE_FUNC_CHECK_RESULT(nbp_basic_printer_check_result),
-    NBP_PRINTER_USE_FUNC_CHECK_OP_RESULT(nbp_basic_printer_check_op_result),
+    NBP_PRINTER_USE_FUNC_INIT(
+        nbp_basic_printer_init
+    ),
+    NBP_PRINTER_USE_FUNC_UNINIT(
+        nbp_basic_printer_uninit
+    ),
+    NBP_PRINTER_USE_FUNC_TEST_END(
+        nbp_basic_printer_test_end
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_BEGIN(
+        nbp_basic_printer_module_begin
+    ),
+    NBP_PRINTER_USE_FUNC_CHECK_RESULT(
+        nbp_basic_printer_check_result
+    ),
+    NBP_PRINTER_USE_FUNC_CHECK_OP_RESULT(
+        nbp_basic_printer_check_op_result
+    ),
     NBP_PRINTER_USE_FUNC_CHECK_CHAR_OP_RESULT(
         nbp_basic_printer_check_char_op_result
     ),
