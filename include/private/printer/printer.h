@@ -24,11 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#ifdef NBP_CUSTOM_PRINTER
-
-#error "Not supported"
-
-#else // NBP_CUSTOM_PRINTER not defined
+#ifndef NBP_CUSTOM_PRINTER
 
 /*
  * If no printer is defined then enable NBP_MT_PRINTER when NPB_MT_SUPPORT
