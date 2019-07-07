@@ -44,6 +44,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif // end if NBP_PRIVATE_OS_TYPE
 #endif // end if NBP_OS_MAC
 
+#ifndef NBP_PRIVATE_OS_TYPE
+#error "Unknown OS"
+#endif // end if NBP_PRIVATE_OS_TYPE
+
 #undef NBP_PRIVATE_OS_TYPE
 
 /*
