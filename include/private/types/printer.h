@@ -206,6 +206,158 @@ typedef void (*nbp_printer_check_ldouble_op_result_pfn_t)(
     const char*
 );
 
+typedef void (*nbp_printer_test_assert_result_pfn_t)(
+    nbp_test_details_t*,
+    const char*,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_op_result_pfn_t)(
+    nbp_test_details_t*,
+    const char*,
+    const char*,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_char_op_result_pfn_t)(
+    nbp_test_details_t*,
+    char,
+    char,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_short_op_result_pfn_t)(
+    nbp_test_details_t*,
+    short int,
+    short int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_ushort_op_result_pfn_t)(
+    nbp_test_details_t*,
+    unsigned short int,
+    unsigned short int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_int_op_result_pfn_t)(
+    nbp_test_details_t*,
+    int,
+    int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_uint_op_result_pfn_t)(
+    nbp_test_details_t*,
+    unsigned int,
+    unsigned int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_long_op_result_pfn_t)(
+    nbp_test_details_t*,
+    long int,
+    long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_ulong_op_result_pfn_t)(
+    nbp_test_details_t*,
+    unsigned long int,
+    unsigned long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_llong_op_result_pfn_t)(
+    nbp_test_details_t*,
+    long long int,
+    long long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_ullong_op_result_pfn_t)(
+    nbp_test_details_t*,
+    unsigned long long int,
+    unsigned long long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_float_op_result_pfn_t)(
+    nbp_test_details_t*,
+    float,
+    float,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_double_op_result_pfn_t)(
+    nbp_test_details_t*,
+    double,
+    double,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+typedef void (*nbp_printer_test_assert_ldouble_op_result_pfn_t)(
+    nbp_test_details_t*,
+    long double,
+    long double,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
 struct nbp_printer_interface_t {
     nbp_printer_init_pfn_t init;
     nbp_printer_uninit_pfn_t uninit;
@@ -214,6 +366,8 @@ struct nbp_printer_interface_t {
     nbp_printer_test_end_pfn_t testEnd;
     nbp_printer_module_begin_pfn_t moduleBegin;
     nbp_printer_module_end_pfn_t moduleEnd;
+
+    // callbacks for NBP_CHECK_* macros
     nbp_printer_check_result_pfn_t checkResult;
     nbp_printer_check_op_result_pfn_t checkOpResult;
     nbp_printer_check_char_op_result_pfn_t checkCharOpResult;
@@ -228,6 +382,22 @@ struct nbp_printer_interface_t {
     nbp_printer_check_float_op_result_pfn_t checkFloatOpResult;
     nbp_printer_check_double_op_result_pfn_t checkDoubleOpResult;
     nbp_printer_check_ldouble_op_result_pfn_t checkLDoubleOpResult;
+
+    // callbacks for NBP_TEST_ASSERT_* macros
+    nbp_printer_test_assert_result_pfn_t testAssertResult;
+    nbp_printer_test_assert_op_result_pfn_t testAssertOpResult;
+    nbp_printer_test_assert_char_op_result_pfn_t testAssertCharOpResult;
+    nbp_printer_test_assert_short_op_result_pfn_t testAssertShortOpResult;
+    nbp_printer_test_assert_ushort_op_result_pfn_t testAssertUShortOpResult;
+    nbp_printer_test_assert_int_op_result_pfn_t testAssertIntOpResult;
+    nbp_printer_test_assert_uint_op_result_pfn_t testAssertUIntOpResult;
+    nbp_printer_test_assert_long_op_result_pfn_t testAssertLongOpResult;
+    nbp_printer_test_assert_ulong_op_result_pfn_t testAssertULongOpResult;
+    nbp_printer_test_assert_llong_op_result_pfn_t testAssertLLongOpResult;
+    nbp_printer_test_assert_ullong_op_result_pfn_t testAssertULLongOpResult;
+    nbp_printer_test_assert_float_op_result_pfn_t testAssertFloatOpResult;
+    nbp_printer_test_assert_double_op_result_pfn_t testAssertDoubleOpResult;
+    nbp_printer_test_assert_ldouble_op_result_pfn_t testAssertLDoubleOpResult;
 };
 
 typedef struct nbp_printer_interface_t nbp_printer_interface_t;
