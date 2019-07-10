@@ -130,7 +130,7 @@ static void nbp_printer_print_pass_msg(unsigned int testDepth)
     nbpPrinterLastPassMsg = 0x0;
 }
 
-static void nbp_printer_print_check_result(nbp_test_details_t* test,
+static void nbp_printer_print_result(nbp_test_details_t* test,
     const char* cond, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -225,7 +225,7 @@ NBP_PRINTER_FUNC_MODULE_BEGIN(nbp_basic_printer_module_begin)
 
 NBP_PRINTER_FUNC_CHECK_RESULT(nbp_basic_printer_check_result)
 {
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         NBP_PRINTER_GET_CONDITION(),
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -246,7 +246,7 @@ NBP_PRINTER_FUNC_CHECK_OP_RESULT(nbp_basic_printer_check_op_result)
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -267,7 +267,7 @@ NBP_PRINTER_FUNC_CHECK_CHAR_OP_RESULT(nbp_basic_printer_check_char_op_result)
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -288,7 +288,7 @@ NBP_PRINTER_FUNC_CHECK_SHORT_OP_RESULT(nbp_basic_printer_check_short_op_result)
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -310,7 +310,7 @@ NBP_PRINTER_FUNC_CHECK_USHORT_OP_RESULT(
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -331,7 +331,7 @@ NBP_PRINTER_FUNC_CHECK_INT_OP_RESULT(nbp_basic_printer_check_int_op_result)
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -352,7 +352,7 @@ NBP_PRINTER_FUNC_CHECK_UINT_OP_RESULT(nbp_basic_printer_check_uint_op_result)
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -373,7 +373,7 @@ NBP_PRINTER_FUNC_CHECK_LONG_OP_RESULT(nbp_basic_printer_check_long_op_result)
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -394,7 +394,7 @@ NBP_PRINTER_FUNC_CHECK_ULONG_OP_RESULT(nbp_basic_printer_check_ulong_op_result)
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -415,7 +415,7 @@ NBP_PRINTER_FUNC_CHECK_LLONG_OP_RESULT(nbp_basic_printer_check_llong_op_result)
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -437,7 +437,7 @@ NBP_PRINTER_FUNC_CHECK_ULLONG_OP_RESULT(
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -458,7 +458,7 @@ NBP_PRINTER_FUNC_CHECK_FLOAT_OP_RESULT(nbp_basic_printer_check_float_op_result)
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -480,7 +480,7 @@ NBP_PRINTER_FUNC_CHECK_DOUBLE_OP_RESULT(
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -502,7 +502,7 @@ NBP_PRINTER_FUNC_CHECK_LDOUBLE_OP_RESULT(
         NBP_PRINTER_GET_OPERATOR_STR(),
         NBP_PRINTER_GET_SECOND_VALUE()
     );
-    nbp_printer_print_check_result(
+    nbp_printer_print_result(
         NBP_THIS_TEST,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
@@ -529,6 +529,8 @@ NBP_DEFINE_PRINTER(
         nbp_basic_printer_module_begin
     ),
     NBP_PRINTER_NO_FUNC_MODULE_END,
+
+    // callbacks for NBP_CHECK_* macros
     NBP_PRINTER_USE_FUNC_CHECK_RESULT(
         nbp_basic_printer_check_result
     ),
