@@ -102,7 +102,7 @@ void nbp_notify_printer_check_result(nbp_test_details_t* test, const char* cond,
     }
 }
 
-void nbp_notify_printer_check_op_result( nbp_test_details_t* test,
+void nbp_notify_printer_check_op_result(nbp_test_details_t* test,
     const char* a, const char* b, int op, int passed, int line,
     const char* failMsg, const char* passMsg )
 {
@@ -349,6 +349,283 @@ void nbp_notify_printer_check_ldouble_op_result(nbp_test_details_t* test,
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->checkLDoubleOpResult != 0x0) {
             nbpPrinterInterfaces[i]->checkLDoubleOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_result(nbp_test_details_t* test, const char* cond,
+    int passed, int line, const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertResult(
+                test,
+                cond,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_op_result(nbp_test_details_t* test,
+    const char* a, const char* b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg )
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_char_op_result(nbp_test_details_t* test, char a,
+    char b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertCharOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertCharOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_short_op_result(nbp_test_details_t* test,
+    short int a, short int b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertShortOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertShortOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_ushort_op_result(nbp_test_details_t* test,
+    unsigned short int a, unsigned short int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertUShortOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertUShortOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_int_op_result(nbp_test_details_t* test, int a,
+    int b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertIntOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertIntOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_uint_op_result(nbp_test_details_t* test,
+    unsigned int a, unsigned int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertUIntOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertUIntOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_long_op_result(nbp_test_details_t* test,
+    long int a, long int b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertLongOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertLongOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_ulong_op_result(nbp_test_details_t* test,
+    unsigned long int a, unsigned long int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertULongOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertULongOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_llong_op_result(nbp_test_details_t* test,
+    long long int a, long long int b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertLLongOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertLLongOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_ullong_op_result(nbp_test_details_t* test,
+    unsigned long long int a, unsigned long long int b, int op, int passed,
+    int line, const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertULLongOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertULLongOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_float_op_result(nbp_test_details_t* test,
+    float a, float b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertFloatOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertFloatOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_double_op_result(nbp_test_details_t* test,
+    double a, double b, int op, int passed, int line, const char* failMsg,
+    const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertDoubleOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertDoubleOpResult(
+                test,
+                a,
+                b,
+                op,
+                passed,
+                line,
+                failMsg,
+                passMsg
+            );
+        }
+    }
+}
+
+void nbp_notify_printer_test_assert_ldouble_op_result(nbp_test_details_t* test,
+    long double a, long double b, int op, int passed, int line,
+    const char* failMsg, const char* passMsg)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->testAssertLDoubleOpResult != 0x0) {
+            nbpPrinterInterfaces[i]->testAssertLDoubleOpResult(
                 test,
                 a,
                 b,
