@@ -811,6 +811,305 @@ NBP_PRINTER_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT(
     );
 }
 
+NBP_PRINTER_FUNC_MODULE_ASSERT_RESULT(
+    nbp_basic_printer_module_assert_result)
+{
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        NBP_PRINTER_GET_CONDITION(),
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_OP_RESULT(
+    nbp_basic_printer_module_assert_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%s %s %s",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_CHAR_OP_RESULT(
+    nbp_basic_printer_module_assert_char_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%c %s %c",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_SHORT_OP_RESULT(
+    nbp_basic_printer_module_assert_short_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%hd %s %hd",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_USHORT_OP_RESULT(
+    nbp_basic_printer_module_assert_ushort_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%hu %s %hu",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_INT_OP_RESULT(
+    nbp_basic_printer_module_assert_int_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%d %s %d",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_UINT_OP_RESULT(
+    nbp_basic_printer_module_assert_uint_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%u %s %u",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_LONG_OP_RESULT(
+    nbp_basic_printer_module_assert_long_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%ld %s %ld",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_ULONG_OP_RESULT(
+    nbp_basic_printer_module_assert_ulong_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%lu %s %lu",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_LLONG_OP_RESULT(
+    nbp_basic_printer_module_assert_llong_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%lld %s %lld",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT(
+    nbp_basic_printer_module_assert_ullong_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%llu %s %llu",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT(
+    nbp_basic_printer_module_assert_float_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%f %s %f",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT(
+    nbp_basic_printer_module_assert_double_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%f %s %f",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
+NBP_PRINTER_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT(
+    nbp_basic_printer_module_assert_ldouble_op_result)
+{
+    char buff[1024];
+    snprintf(
+        buff,
+        1024,
+        "%Lf %s %Lf",
+        NBP_PRINTER_GET_FIRST_VALUE(),
+        NBP_PRINTER_GET_OPERATOR_STR(),
+        NBP_PRINTER_GET_SECOND_VALUE()
+    );
+    nbp_printer_print_result(
+        NBP_THIS_TEST,
+        buff,
+        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
+        NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
+        NBP_PRINTER_GET_FAIL_MSG(),
+        NBP_PRINTER_GET_PASS_MSG()
+    );
+}
+
 NBP_DEFINE_PRINTER(
     nbpDefaultPrinter,
     NBP_PRINTER_USE_FUNC_INIT(
@@ -915,6 +1214,50 @@ NBP_DEFINE_PRINTER(
     ),
     NBP_PRINTER_USE_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT(
         nbp_basic_printer_test_assert_ldouble_op_result
+    ),
+
+    // callbacks for NBP_MODULE_ASSERT_* macros
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_RESULT(
+        nbp_basic_printer_module_assert_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_OP_RESULT(
+        nbp_basic_printer_module_assert_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_CHAR_OP_RESULT(
+        nbp_basic_printer_module_assert_char_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_SHORT_OP_RESULT(
+        nbp_basic_printer_module_assert_short_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_USHORT_OP_RESULT(
+        nbp_basic_printer_module_assert_ushort_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_INT_OP_RESULT(
+        nbp_basic_printer_module_assert_int_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_UINT_OP_RESULT(
+        nbp_basic_printer_module_assert_uint_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_LONG_OP_RESULT(
+        nbp_basic_printer_module_assert_long_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_ULONG_OP_RESULT(
+        nbp_basic_printer_module_assert_ulong_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_LLONG_OP_RESULT(
+        nbp_basic_printer_module_assert_llong_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT(
+        nbp_basic_printer_module_assert_ullong_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT(
+        nbp_basic_printer_module_assert_float_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT(
+        nbp_basic_printer_module_assert_double_op_result
+    ),
+    NBP_PRINTER_USE_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT(
+        nbp_basic_printer_module_assert_ldouble_op_result
     )
 );
 
