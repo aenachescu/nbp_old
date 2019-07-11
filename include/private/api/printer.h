@@ -1291,6 +1291,382 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_PRINTER_FUNC_ASSERT_RESULT(func)                                   \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        const char* cond,                                                      \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_RESULT(func)                               \
+    .assertResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_RESULT                                      \
+    .assertResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_OP_RESULT(func)                                \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        const char* a,                                                         \
+        const char* b,                                                         \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_OP_RESULT(func)                            \
+    .assertOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_OP_RESULT                                   \
+    .assertOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_CHAR_OP_RESULT(func)                           \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        char a,                                                                \
+        char b,                                                                \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_CHAR_OP_RESULT(func)                       \
+    .assertCharOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_CHAR_OP_RESULT                              \
+    .assertCharOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_SHORT_OP_RESULT(func)                          \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        short int a,                                                           \
+        short int b,                                                           \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_SHORT_OP_RESULT(func)                      \
+    .assertShortOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_SHORT_OP_RESULT                             \
+    .assertShortOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_USHORT_OP_RESULT(func)                         \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        unsigned short int a,                                                  \
+        unsigned short int b,                                                  \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_USHORT_OP_RESULT(func)                     \
+    .assertUShortOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_USHORT_OP_RESULT                            \
+    .assertUShortOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_INT_OP_RESULT(func)                            \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        int a,                                                                 \
+        int b,                                                                 \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_INT_OP_RESULT(func)                        \
+    .assertIntOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_INT_OP_RESULT                               \
+    .assertIntOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_UINT_OP_RESULT(func)                           \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        unsigned int a,                                                        \
+        unsigned int b,                                                        \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_UINT_OP_RESULT(func)                       \
+    .assertUIntOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_UINT_OP_RESULT                              \
+    .assertUIntOpResult = 0x0
+
+    /*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_LONG_OP_RESULT(func)                           \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        long int a,                                                            \
+        long int b,                                                            \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_LONG_OP_RESULT(func)                       \
+    .assertLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_LONG_OP_RESULT                              \
+    .assertLongOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_ULONG_OP_RESULT(func)                          \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        unsigned long int a,                                                   \
+        unsigned long int b,                                                   \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_ULONG_OP_RESULT(func)                      \
+    .assertULongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_ULONG_OP_RESULT                             \
+    .assertULongOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_LLONG_OP_RESULT(func)                          \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        long long int a,                                                       \
+        long long int b,                                                       \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_LLONG_OP_RESULT(func)                      \
+    .assertLLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_LLONG_OP_RESULT                             \
+    .assertLLongOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_ULLONG_OP_RESULT(func)                         \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        unsigned long long int a,                                              \
+        unsigned long long int b,                                              \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_ULLONG_OP_RESULT(func)                     \
+    .assertULLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_ULLONG_OP_RESULT                            \
+    .assertULLongOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_FLOAT_OP_RESULT(func)                          \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        float a,                                                               \
+        float b,                                                               \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_FLOAT_OP_RESULT(func)                      \
+    .assertFloatOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_FLOAT_OP_RESULT                             \
+    .assertFloatOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_DOUBLE_OP_RESULT(func)                         \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        double a,                                                              \
+        double b,                                                              \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_DOUBLE_OP_RESULT(func)                     \
+    .assertDoubleOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_DOUBLE_OP_RESULT                            \
+    .assertDoubleOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_ASSERT_LDOUBLE_OP_RESULT(func)                        \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test,                                              \
+        long double a,                                                         \
+        long double b,                                                         \
+        int op,                                                                \
+        int passed,                                                            \
+        int line,                                                              \
+        const char* failMsg,                                                   \
+        const char* passMsg                                                    \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_ASSERT_LDOUBLE_OP_RESULT(func)                    \
+    .assertLDoubleOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_ASSERT_LDOUBLE_OP_RESULT                           \
+    .assertLDoubleOpResult = 0x0
+
+/*
+ * TODO: add docs
+ */
 #define NBP_DEFINE_PRINTER(name, ...)                                          \
     nbp_printer_interface_t NBP_PRIVATE_PP_CONCAT(nbpPrinter, name) = {        \
         __VA_ARGS__                                                            \
@@ -1368,6 +1744,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_GET_MODULE_ASSERT_LINE() line
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_ASSERT_STATUS() passed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_ASSERT_LINE() line
 
 /*
  * TODO: add docs
