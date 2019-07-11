@@ -347,4 +347,156 @@ void nbp_notify_printer_test_assert_ldouble_op_result(
     const char*
 );
 
+void nbp_notify_printer_module_assert_result(
+    nbp_test_details_t*,
+    const char*,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_op_result(
+    nbp_test_details_t*,
+    const char*,
+    const char*,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_char_op_result(
+    nbp_test_details_t*,
+    char,
+    char,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_short_op_result(
+    nbp_test_details_t*,
+    short int,
+    short int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_ushort_op_result(
+    nbp_test_details_t*,
+    unsigned short int,
+    unsigned short int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_int_op_result(
+    nbp_test_details_t*,
+    int,
+    int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_uint_op_result(
+    nbp_test_details_t*,
+    unsigned int,
+    unsigned int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_long_op_result(
+    nbp_test_details_t*,
+    long int,
+    long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_ulong_op_result(
+    nbp_test_details_t*,
+    unsigned long int,
+    unsigned long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_llong_op_result(
+    nbp_test_details_t*,
+    long long int,
+    long long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_ullong_op_result(
+    nbp_test_details_t*,
+    unsigned long long int,
+    unsigned long long int,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_float_op_result(
+    nbp_test_details_t*,
+    float,
+    float,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_double_op_result(
+    nbp_test_details_t*,
+    double,
+    double,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
+void nbp_notify_printer_module_assert_ldouble_op_result(
+    nbp_test_details_t*,
+    long double,
+    long double,
+    int,
+    int,
+    int,
+    const char*,
+    const char*
+);
+
 #endif // end if NBP_PRIVATE_DETAILS_PRINTER_H
