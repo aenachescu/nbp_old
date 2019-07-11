@@ -29,6 +29,97 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_ASSERT_STATUS_FAILED 0
 
+#define NBP_PRIVATE_ASSERT_BASE(cond, failMsg, passMsg)                        \
+    if (cond) {                                                                \
+        test->passedAsserts++;                                                 \
+        nbp_notify_printer_assert_result(                                      \
+            test,                                                              \
+            #cond,                                                             \
+            NBP_ASSERT_STATUS_PASSED,                                          \
+            __LINE__,                                                          \
+            0x0,                                                               \
+            passMsg                                                            \
+        );                                                                     \
+    } else {                                                                   \
+        test->failedAsserts++;                                                 \
+        nbp_notify_printer_assert_result(                                      \
+            test,                                                              \
+            #cond,                                                             \
+            NBP_ASSERT_STATUS_FAILED,                                          \
+            __LINE__,                                                          \
+            failMsg,                                                           \
+            0x0                                                                \
+        );                                                                     \
+        return;                                                                \
+    }
+
+#define NBP_PRIVATE_ASSERT_OP_BASE(a, b, op, printerOp, failMsg,               \
+    passMsg)                                                                   \
+    if (a op b) {                                                              \
+        test->passedAsserts++;                                                 \
+        nbp_notify_printer_assert_op_result(                                   \
+            test,                                                              \
+            #a,                                                                \
+            #b,                                                                \
+            printerOp,                                                         \
+            NBP_ASSERT_STATUS_PASSED,                                          \
+            __LINE__,                                                          \
+            0x0,                                                               \
+            passMsg                                                            \
+        );                                                                     \
+    } else {                                                                   \
+        test->failedAsserts++;                                                 \
+        nbp_notify_printer_assert_op_result(                                   \
+            test,                                                              \
+            #a,                                                                \
+            #b,                                                                \
+            printerOp,                                                         \
+            NBP_ASSERT_STATUS_FAILED,                                          \
+            __LINE__,                                                          \
+            failMsg,                                                           \
+            0x0                                                                \
+        );                                                                     \
+        return;                                                                \
+    }
+
+#define NBP_PRIVATE_NOTIFY_PRINTER_ASSERT_TYPE_OP(type)                        \
+    NBP_PRIVATE_PP_CONCAT(                                                     \
+        NBP_PRIVATE_PP_CONCAT(nbp_notify_printer_assert_, type),               \
+        _op_result                                                             \
+    )
+
+#define NBP_PRIVATE_ASSERT_TYPE_OP_BASE(a, b, op, printerOp, type,             \
+    typeStr, failMsg, passMsg)                                                 \
+    do {                                                                       \
+        type tmpA = a, tmpB = b;                                               \
+        if (tmpA op tmpB) {                                                    \
+            test->passedAsserts++;                                             \
+            NBP_PRIVATE_NOTIFY_PRINTER_ASSERT_TYPE_OP(typeStr)(                \
+                test,                                                          \
+                tmpA,                                                          \
+                tmpB,                                                          \
+                printerOp,                                                     \
+                NBP_ASSERT_STATUS_PASSED,                                      \
+                __LINE__,                                                      \
+                0x0,                                                           \
+                passMsg                                                        \
+            );                                                                 \
+        } else {                                                               \
+            test->failedAsserts++;                                             \
+            NBP_PRIVATE_NOTIFY_PRINTER_ASSERT_TYPE_OP(typeStr)(                \
+                test,                                                          \
+                tmpA,                                                          \
+                tmpB,                                                          \
+                printerOp,                                                     \
+                NBP_ASSERT_STATUS_FAILED,                                      \
+                __LINE__,                                                      \
+                failMsg,                                                       \
+                0x0                                                            \
+            );                                                                 \
+            return;                                                            \
+        }                                                                      \
+    } while (0);
+
 /*
  * TODO: add docs
  */
