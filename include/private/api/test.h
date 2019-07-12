@@ -66,22 +66,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         nbp_test_details_t*                                                    \
     );                                                                         \
     nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func) = {         \
-        .testName               = name,                                        \
-        .testFunc               = NBP_PRIVATE_PP_CONCAT(nbp_test_, func),      \
-        .beforeTestFunc         = 0x0,                                         \
-        .afterTestFunc          = 0x0,                                         \
-        .module                 = 0x0,                                         \
-        .passedChecks           = 0,                                           \
-        .failedChecks           = 0,                                           \
-        .passedTestAsserts      = 0,                                           \
-        .failedTestAsserts      = 0,                                           \
-        .passedModuleAsserts    = 0,                                           \
-        .failedModuleAsserts    = 0,                                           \
-        .passedAsserts          = 0,                                           \
-        .failedAsserts          = 0,                                           \
-        .testState              = NBP_TEST_STATE_NOT_INITIALIZED,              \
-        .next                   = 0x0,                                         \
-        .prev                   = 0x0                                          \
+        .testName                   = name,                                    \
+        .testFunc                   = NBP_PRIVATE_PP_CONCAT(nbp_test_, func),  \
+        .module                     = 0x0,                                     \
+        .beforeTestFunc             = 0x0,                                     \
+        .afterTestFunc              = 0x0,                                     \
+        .next                       = 0x0,                                     \
+        .prev                       = 0x0,                                     \
+        .testState                  = NBP_TEST_STATE_NOT_INITIALIZED,          \
+        .checks = {                                                            \
+            .numPassed              = 0,                                       \
+            .numFailed              = 0,                                       \
+        },                                                                     \
+        .testAsserts = {                                                       \
+            .numPassed              = 0,                                       \
+            .numFailed              = 0,                                       \
+        },                                                                     \
+        .moduleAsserts = {                                                     \
+            .numPassed              = 0,                                       \
+            .numFailed              = 0,                                       \
+        },                                                                     \
+        .asserts = {                                                           \
+            .numPassed              = 0,                                       \
+            .numFailed              = 0,                                       \
+        },                                                                     \
     };                                                                         \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
         nbp_test_details_t* test                                               \

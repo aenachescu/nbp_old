@@ -31,7 +31,7 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     test->module = module;
     test->beforeTestFunc = beforeTest;
     test->afterTestFunc = afterTest;
-    test->module->numTests++;
+    test->module->ownTests.num++;
 
     if (module->firstTest == 0x0) {
         module->firstTest = test;

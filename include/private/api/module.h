@@ -54,23 +54,79 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         nbp_after_test_pfn_t                                                   \
     );                                                                         \
     nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func) = {     \
-        .moduleName             = name,                                        \
-        .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),    \
-        .setup                  = setupFunc,                                   \
-        .teardown               = teardownFunc,                                \
-        .firstTest              = 0x0,                                         \
-        .lastTest               = 0x0,                                         \
-        .parent                 = 0x0,                                         \
-        .firstSubmodule         = 0x0,                                         \
-        .lastSubmodule          = 0x0,                                         \
-        .next                   = 0x0,                                         \
-        .prev                   = 0x0,                                         \
-        .numTests               = 0,                                           \
-        .numCompletedTests      = 0,                                           \
-        .numSubmodules          = 0,                                           \
-        .numCompletedSubmodules = 0,                                           \
-        .moduleState            = NBP_MODULE_STATE_NOT_INITIALIZED,            \
-        .depth                  = 0,                                           \
+        .moduleName        = name,                                             \
+        .moduleFunc        = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),         \
+        .parent            = 0x0,                                              \
+        .setup             = setupFunc,                                        \
+        .teardown          = teardownFunc,                                     \
+        .firstTest         = 0x0,                                              \
+        .lastTest          = 0x0,                                              \
+        .firstModule       = 0x0,                                              \
+        .lastModule        = 0x0,                                              \
+        .next              = 0x0,                                              \
+        .prev              = 0x0,                                              \
+        .depth             = 0,                                                \
+        .moduleState       = NBP_MODULE_STATE_NOT_INITIALIZED,                 \
+        .ownTests = {                                                          \
+            .num           = 0,                                                \
+            .numPassed     = 0,                                                \
+            .numFailed     = 0,                                                \
+            .numSkipped    = 0,                                                \
+        },                                                                     \
+        .subTests = {                                                          \
+            .num           = 0,                                                \
+            .numPassed     = 0,                                                \
+            .numFailed     = 0,                                                \
+            .numSkipped    = 0,                                                \
+        },                                                                     \
+        .ownModules = {                                                        \
+            .num           = 0,                                                \
+            .numPassed     = 0,                                                \
+            .numFailed     = 0,                                                \
+            .numSkipped    = 0,                                                \
+        },                                                                     \
+        .subModules = {                                                        \
+            .num           = 0,                                                \
+            .numPassed     = 0,                                                \
+            .numFailed     = 0,                                                \
+            .numSkipped    = 0,                                                \
+        },                                                                     \
+        .own = {                                                               \
+            .checks = {                                                        \
+                .numPassed = 0,                                                \
+                .numFailed = 0,                                                \
+            },                                                                 \
+            .testAsserts = {                                                   \
+                .numPassed = 0,                                                \
+                .numFailed = 0,                                                \
+            },                                                                 \
+            .moduleAsserts = {                                                 \
+                .numPassed = 0,                                                \
+                .numFailed = 0,                                                \
+            },                                                                 \
+            .asserts = {                                                       \
+                .numPassed = 0,                                                \
+                .numFailed = 0,                                                \
+            },                                                                 \
+        },                                                                     \
+        .sub = {                                                               \
+            .checks = {                                                        \
+                .numPassed = 0,                                                \
+                .numFailed = 0,                                                \
+            },                                                                 \
+            .testAsserts = {                                                   \
+                .numPassed = 0,                                                \
+                .numFailed = 0,                                                \
+            },                                                                 \
+            .moduleAsserts = {                                                 \
+                .numPassed = 0,                                                \
+                .numFailed = 0,                                                \
+            },                                                                 \
+            .asserts = {                                                       \
+                .numPassed = 0,                                                \
+                .numFailed = 0,                                                \
+            },                                                                 \
+        },                                                                     \
     };                                                                         \
     void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
         nbp_module_details_t* module,                                          \

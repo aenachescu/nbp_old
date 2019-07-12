@@ -22,8 +22,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_TEST_STATE_NOT_INITIALIZED  0
 #define NBP_TEST_STATE_READY            1
 #define NBP_TEST_STATE_RUNNING          2
-#define NBP_TEST_STATE_COMPLETED        3
-#define NBP_TEST_STATE_SKIPPED          4
+#define NBP_TEST_STATE_PASSED           3
+#define NBP_TEST_STATE_FAILED           4
+#define NBP_TEST_STATE_SKIPPED          5
 
 struct nbp_test_details_t;
 
@@ -42,20 +43,20 @@ typedef void (*nbp_test_pfn_t)(
 struct nbp_test_details_t {
     const char* testName;
     nbp_test_pfn_t testFunc;
+    struct nbp_module_details_t* module;
+
     nbp_before_test_pfn_t beforeTestFunc;
     nbp_after_test_pfn_t afterTestFunc;
-    struct nbp_module_details_t* module;
-    unsigned int passedChecks;
-    unsigned int failedChecks;
-    unsigned int passedTestAsserts;
-    unsigned int failedTestAsserts;
-    unsigned int passedModuleAsserts;
-    unsigned int failedModuleAsserts;
-    unsigned int passedAsserts;
-    unsigned int failedAsserts;
-    unsigned int testState;
+
     struct nbp_test_details_t* next;
     struct nbp_test_details_t* prev;
+
+    unsigned int testState;
+
+    struct {
+        unsigned int numPassed;
+        unsigned int numFailed;
+    } checks, testAsserts, moduleAsserts, asserts;
 };
 typedef struct nbp_test_details_t nbp_test_details_t;
 

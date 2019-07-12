@@ -30,14 +30,14 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
     module->parent = parent;
 
     if (parent != 0x0) {
-        parent->numSubmodules++;
-        if (parent->firstSubmodule == 0x0) {
-            parent->firstSubmodule = module;
-            parent->lastSubmodule = module;
+        parent->ownModules.num++;
+        if (parent->firstModule == 0x0) {
+            parent->firstModule = module;
+            parent->lastModule = module;
         } else {
-            module->prev = parent->lastSubmodule;
-            parent->lastSubmodule->next = module;
-            parent->lastSubmodule = module;
+            module->prev = parent->lastModule;
+            parent->lastModule->next = module;
+            parent->lastModule = module;
         }
 
         module->depth = parent->depth + 1;
