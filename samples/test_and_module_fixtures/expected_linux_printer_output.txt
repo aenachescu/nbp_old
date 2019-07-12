@@ -1,8 +1,8 @@
-test_and_module_fixtures
-    [32mtest_and_module_fixtures_test1[0m
-    module1
-        [32mtest1[0m
-    [32mtest_and_module_fixtures_test2[0m
-    module2
-        [32mtest2[0m
-    [32mtest_and_module_fixtures_test3[0m
+test_and_module_fixtures
+    [32mtest_and_module_fixtures_test1[0m
+    module1
+        [32mtest1[0m
+    [32mtest_and_module_fixtures_test2[0m
+    module2
+        [32mtest2[0m
+    [32mtest_and_module_fixtures_test3[0m

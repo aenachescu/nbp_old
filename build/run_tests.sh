@@ -40,6 +40,7 @@ function run_test {
     fi
     printer_output=$(./$1)
     testStatus=$?
+    printer_output=$(echo "$printer_output" | sed -e 's/\r//g')
     if [ -f "output.txt" ]; then
         output=$(<output.txt)
     fi

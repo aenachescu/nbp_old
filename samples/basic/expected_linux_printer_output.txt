@@ -1,5 +1,5 @@
-basic_sample
-    [32mtest_my_add[0m
-    [32mtest_my_sub[0m
-    [32mtest_my_mul[0m
-    [32mtest_my_div[0m
+basic_sample
+    [32mtest_my_add[0m
+    [32mtest_my_sub[0m
+    [32mtest_my_mul[0m
+    [32mtest_my_div[0m

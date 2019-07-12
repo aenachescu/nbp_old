@@ -1,23 +1,23 @@
-module_fixtures_one_file_sample
-    module1
-        submodule1
-            [32mtest1[0m
-            [32mtest2[0m
-            [32mtest3[0m
-            [32mtest4[0m
-        submodule2
-            [32mtest5[0m
-            [32mtest6[0m
-            [32mtest7[0m
-            [32mtest8[0m
-    module2
-        submodule3
-            [32mtest9[0m
-            [32mtest10[0m
-            [32mtest11[0m
-            [32mtest12[0m
-        submodule4
-            [32mtest13[0m
-            [32mtest14[0m
-            [32mtest15[0m
-            [32mtest16[0m
+module_fixtures_one_file_sample
+    module1
+        submodule1
+            [32mtest1[0m
+            [32mtest2[0m
+            [32mtest3[0m
+            [32mtest4[0m
+        submodule2
+            [32mtest5[0m
+            [32mtest6[0m
+            [32mtest7[0m
+            [32mtest8[0m
+    module2
+        submodule3
+            [32mtest9[0m
+            [32mtest10[0m
+            [32mtest11[0m
+            [32mtest12[0m
+        submodule4
+            [32mtest13[0m
+            [32mtest14[0m
+            [32mtest15[0m
+            [32mtest16[0m

@@ -1,7 +1,7 @@
-modules_sample
-    basic_math
-        [32mtest_my_add[0m
-        [32mtest_my_sub[0m
-    advanced_math
-        [32mtest_my_mul[0m
-        [32mtest_my_div[0m
+modules_sample
+    basic_math
+        [32mtest_my_add[0m
+        [32mtest_my_sub[0m
+    advanced_math
+        [32mtest_my_mul[0m
+        [32mtest_my_div[0m

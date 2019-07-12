@@ -1,229 +1,229 @@
-check_type
-    check_char
-        [32mcheck_char_eq[0m
-            [32mb == b passed (check passed) (37)[0m
-            [32mb == b passed (check passed) (38)[0m
-        [32mcheck_char_ne[0m
-            [32mb != a passed (check passed) (46)[0m
-            [32mb != a passed (check passed) (47)[0m
-        [32mcheck_char_gt[0m
-            [32mb > a passed (check passed) (55)[0m
-            [32mb > a passed (check passed) (56)[0m
-        [32mcheck_char_ge[0m
-            [32mb >= a passed (check passed) (64)[0m
-            [32mb >= b passed (check passed) (65)[0m
-        [32mcheck_char_lt[0m
-            [32mb < c passed (check passed) (73)[0m
-            [32mb < c passed (check passed) (74)[0m
-        [32mcheck_char_le[0m
-            [32mb <= c passed (check passed) (82)[0m
-            [32mb <= b passed (check passed) (83)[0m
-    check_short
-        [32mcheck_short_eq[0m
-            [32m2 == 2 passed (check passed) (39)[0m
-            [32m2 == 2 passed (check passed) (40)[0m
-        [32mcheck_short_ne[0m
-            [32m2 != -32768 passed (check passed) (48)[0m
-            [32m2 != -32768 passed (check passed) (49)[0m
-        [32mcheck_short_gt[0m
-            [32m2 > -32768 passed (check passed) (57)[0m
-            [32m2 > -32768 passed (check passed) (58)[0m
-        [32mcheck_short_ge[0m
-            [32m2 >= -32768 passed (check passed) (66)[0m
-            [32m2 >= 2 passed (check passed) (67)[0m
-        [32mcheck_short_lt[0m
-            [32m2 < 32767 passed (check passed) (75)[0m
-            [32m2 < 32767 passed (check passed) (76)[0m
-        [32mcheck_short_le[0m
-            [32m2 <= 32767 passed (check passed) (84)[0m
-            [32m2 <= 2 passed (check passed) (85)[0m
-    check_ushort
-        [32mcheck_ushort_eq[0m
-            [32m2 == 2 passed (check passed) (39)[0m
-            [32m2 == 2 passed (check passed) (40)[0m
-        [32mcheck_ushort_ne[0m
-            [32m2 != 0 passed (check passed) (48)[0m
-            [32m2 != 0 passed (check passed) (49)[0m
-        [32mcheck_ushort_gt[0m
-            [32m2 > 0 passed (check passed) (57)[0m
-            [32m2 > 0 passed (check passed) (58)[0m
-        [32mcheck_ushort_ge[0m
-            [32m2 >= 0 passed (check passed) (66)[0m
-            [32m2 >= 2 passed (check passed) (67)[0m
-        [32mcheck_ushort_lt[0m
-            [32m2 < 65535 passed (check passed) (75)[0m
-            [32m2 < 65535 passed (check passed) (76)[0m
-        [32mcheck_ushort_le[0m
-            [32m2 <= 65535 passed (check passed) (84)[0m
-            [32m2 <= 2 passed (check passed) (85)[0m
-    check_int
-        [32mcheck_int_eq[0m
-            [32m2 == 2 passed (check passed) (39)[0m
-            [32m2 == 2 passed (check passed) (40)[0m
-        [32mcheck_int_ne[0m
-            [32m2 != -2147483648 passed (check passed) (48)[0m
-            [32m2 != -2147483648 passed (check passed) (49)[0m
-        [32mcheck_int_gt[0m
-            [32m2 > -2147483648 passed (check passed) (57)[0m
-            [32m2 > -2147483648 passed (check passed) (58)[0m
-        [32mcheck_int_ge[0m
-            [32m2 >= -2147483648 passed (check passed) (66)[0m
-            [32m2 >= 2 passed (check passed) (67)[0m
-        [32mcheck_int_lt[0m
-            [32m2 < 2147483647 passed (check passed) (75)[0m
-            [32m2 < 2147483647 passed (check passed) (76)[0m
-        [32mcheck_int_le[0m
-            [32m2 <= 2147483647 passed (check passed) (84)[0m
-            [32m2 <= 2 passed (check passed) (85)[0m
-    check_uint
-        [32mcheck_uint_eq[0m
-            [32m2 == 2 passed (check passed) (39)[0m
-            [32m2 == 2 passed (check passed) (40)[0m
-        [32mcheck_uint_ne[0m
-            [32m2 != 0 passed (check passed) (48)[0m
-            [32m2 != 0 passed (check passed) (49)[0m
-        [32mcheck_uint_gt[0m
-            [32m2 > 0 passed (check passed) (57)[0m
-            [32m2 > 0 passed (check passed) (58)[0m
-        [32mcheck_uint_ge[0m
-            [32m2 >= 0 passed (check passed) (66)[0m
-            [32m2 >= 2 passed (check passed) (67)[0m
-        [32mcheck_uint_lt[0m
-            [32m2 < 4294967295 passed (check passed) (75)[0m
-            [32m2 < 4294967295 passed (check passed) (76)[0m
-        [32mcheck_uint_le[0m
-            [32m2 <= 4294967295 passed (check passed) (84)[0m
-            [32m2 <= 2 passed (check passed) (85)[0m
-    check_long
-        [32mcheck_long_eq[0m
-            [32m2 == 2 passed (check passed) (39)[0m
-            [32m2 == 2 passed (check passed) (40)[0m
-        [32mcheck_long_ne[0m
-            [32m2 != -9223372036854775808 passed (check passed) (48)[0m
-            [32m2 != -9223372036854775808 passed (check passed) (49)[0m
-        [32mcheck_long_gt[0m
-            [32m2 > -9223372036854775808 passed (check passed) (57)[0m
-            [32m2 > -9223372036854775808 passed (check passed) (58)[0m
-        [32mcheck_long_ge[0m
-            [32m2 >= -9223372036854775808 passed (check passed) (66)[0m
-            [32m2 >= 2 passed (check passed) (67)[0m
-        [32mcheck_long_lt[0m
-            [32m2 < 9223372036854775807 passed (check passed) (75)[0m
-            [32m2 < 9223372036854775807 passed (check passed) (76)[0m
-        [32mcheck_long_le[0m
-            [32m2 <= 9223372036854775807 passed (check passed) (84)[0m
-            [32m2 <= 2 passed (check passed) (85)[0m
-    check_ulong
-        [32mcheck_ulong_eq[0m
-            [32m2 == 2 passed (check passed) (39)[0m
-            [32m2 == 2 passed (check passed) (40)[0m
-        [32mcheck_ulong_ne[0m
-            [32m2 != 0 passed (check passed) (48)[0m
-            [32m2 != 0 passed (check passed) (49)[0m
-        [32mcheck_ulong_gt[0m
-            [32m2 > 0 passed (check passed) (57)[0m
-            [32m2 > 0 passed (check passed) (58)[0m
-        [32mcheck_ulong_ge[0m
-            [32m2 >= 0 passed (check passed) (66)[0m
-            [32m2 >= 2 passed (check passed) (67)[0m
-        [32mcheck_ulong_lt[0m
-            [32m2 < 18446744073709551615 passed (check passed) (75)[0m
-            [32m2 < 18446744073709551615 passed (check passed) (76)[0m
-        [32mcheck_ulong_le[0m
-            [32m2 <= 18446744073709551615 passed (check passed) (84)[0m
-            [32m2 <= 2 passed (check passed) (85)[0m
-    check_llong
-        [32mcheck_llong_eq[0m
-            [32m2 == 2 passed (check passed) (39)[0m
-            [32m2 == 2 passed (check passed) (40)[0m
-        [32mcheck_llong_ne[0m
-            [32m2 != -9223372036854775808 passed (check passed) (48)[0m
-            [32m2 != -9223372036854775808 passed (check passed) (49)[0m
-        [32mcheck_llong_gt[0m
-            [32m2 > -9223372036854775808 passed (check passed) (57)[0m
-            [32m2 > -9223372036854775808 passed (check passed) (58)[0m
-        [32mcheck_llong_ge[0m
-            [32m2 >= -9223372036854775808 passed (check passed) (66)[0m
-            [32m2 >= 2 passed (check passed) (67)[0m
-        [32mcheck_llong_lt[0m
-            [32m2 < 9223372036854775807 passed (check passed) (75)[0m
-            [32m2 < 9223372036854775807 passed (check passed) (76)[0m
-        [32mcheck_llong_le[0m
-            [32m2 <= 9223372036854775807 passed (check passed) (84)[0m
-            [32m2 <= 2 passed (check passed) (85)[0m
-    check_ullong
-        [32mcheck_ullong_eq[0m
-            [32m2 == 2 passed (check passed) (39)[0m
-            [32m2 == 2 passed (check passed) (40)[0m
-        [32mcheck_ullong_ne[0m
-            [32m2 != 0 passed (check passed) (48)[0m
-            [32m2 != 0 passed (check passed) (49)[0m
-        [32mcheck_ullong_gt[0m
-            [32m2 > 0 passed (check passed) (57)[0m
-            [32m2 > 0 passed (check passed) (58)[0m
-        [32mcheck_ullong_ge[0m
-            [32m2 >= 0 passed (check passed) (66)[0m
-            [32m2 >= 2 passed (check passed) (67)[0m
-        [32mcheck_ullong_lt[0m
-            [32m2 < 18446744073709551615 passed (check passed) (75)[0m
-            [32m2 < 18446744073709551615 passed (check passed) (76)[0m
-        [32mcheck_ullong_le[0m
-            [32m2 <= 18446744073709551615 passed (check passed) (84)[0m
-            [32m2 <= 2 passed (check passed) (85)[0m
-    check_float
-        [32mcheck_float_eq[0m
-            [32m1.140000 == 1.140000 passed (check passed) (39)[0m
-            [32m1.140000 == 1.140000 passed (check passed) (40)[0m
-        [32mcheck_float_ne[0m
-            [32m1.140000 != 0.000000 passed (check passed) (48)[0m
-            [32m1.140000 != 0.000000 passed (check passed) (49)[0m
-        [32mcheck_float_gt[0m
-            [32m1.140000 > 0.000000 passed (check passed) (57)[0m
-            [32m1.140000 > 0.000000 passed (check passed) (58)[0m
-        [32mcheck_float_ge[0m
-            [32m1.140000 >= 0.000000 passed (check passed) (66)[0m
-            [32m1.140000 >= 1.140000 passed (check passed) (67)[0m
-        [32mcheck_float_lt[0m
-            [32m1.140000 < 340282346638528859811704183484516925440.000000 passed (check passed) (75)[0m
-            [32m1.140000 < 340282346638528859811704183484516925440.000000 passed (check passed) (76)[0m
-        [32mcheck_float_le[0m
-            [32m1.140000 <= 340282346638528859811704183484516925440.000000 passed (check passed) (84)[0m
-            [32m1.140000 <= 1.140000 passed (check passed) (85)[0m
-    check_double
-        [32mcheck_double_eq[0m
-            [32m1.140000 == 1.140000 passed (check passed) (39)[0m
-            [32m1.140000 == 1.140000 passed (check passed) (40)[0m
-        [32mcheck_double_ne[0m
-            [32m1.140000 != 0.000000 passed (check passed) (48)[0m
-            [32m1.140000 != 0.000000 passed (check passed) (49)[0m
-        [32mcheck_double_gt[0m
-            [32m1.140000 > 0.000000 passed (check passed) (57)[0m
-            [32m1.140000 > 0.000000 passed (check passed) (58)[0m
-        [32mcheck_double_ge[0m
-            [32m1.140000 >= 0.000000 passed (check passed) (66)[0m
-            [32m1.140000 >= 1.140000 passed (check passed) (67)[0m
-        [32mcheck_double_lt[0m
-            [32m1.140000 < 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 passed (check passed) (75)[0m
-            [32m1.140000 < 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 passed (check passed) (76)[0m
-        [32mcheck_double_le[0m
-            [32m1.140000 <= 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 passed (check passed) (84)[0m
-            [32m1.140000 <= 1.140000 passed (check passed) (85)[0m
-    check_ldouble
-        [32mcheck_ldouble_eq[0m
-            [32m1.140000 == 1.140000 passed (check passed) (39)[0m
-            [32m1.140000 == 1.140000 passed (check passed) (40)[0m
-        [32mcheck_ldouble_ne[0m
-            [32m1.140000 != 0.000000 passed (check passed) (48)[0m
-            [32m1.140000 != 0.000000 passed (check passed) (49)[0m
-        [32mcheck_ldouble_gt[0m
-            [32m1.140000 > 0.000000 passed (check passed) (57)[0m
-            [32m1.140000 > 0.000000 passed (check passed) (58)[0m
-        [32mcheck_ldouble_ge[0m
-            [32m1.140000 >= 0.000000 passed (check passed) (66)[0m
-            [32m1.140000 >= 1.140000 passed (check passed) (67)[0m
-        [32mcheck_ldouble_lt[0m
-            [32m1.140000 < 1189731495357231765021263853030970205169063322294624200440323733891737005522970722616410290336528882853545697807495577314427443153670288434198125573853743678673593200706973263201915918282961524365529510646791086614311790632169778838896134786560600399148753433211454911160088679845154866512852340149773037600009125479393966223151383622417838542743917838138717805889487540575168226347659235576974805113725649020884855222494791399377585026011773549180099796226026859508558883608159846900235645132346594476384939859276456284579661772930407806609229102715046085388087959327781622986827547830768080040150694942303411728957777100335714010559775242124057347007386251660110828379119623008469277200965153500208474470792443848545912886723000619085126472111951361467527633519562927597957250278002980795904193139603021470997035276467445530922022679656280991498232083329641241038509239184734786121921697210543484287048353408113042573002216421348917347174234800714880751002064390517234247656004721768096486107994943415703476320 passed (check passed) (75)[0m
-            [32m1.140000 < 1189731495357231765021263853030970205169063322294624200440323733891737005522970722616410290336528882853545697807495577314427443153670288434198125573853743678673593200706973263201915918282961524365529510646791086614311790632169778838896134786560600399148753433211454911160088679845154866512852340149773037600009125479393966223151383622417838542743917838138717805889487540575168226347659235576974805113725649020884855222494791399377585026011773549180099796226026859508558883608159846900235645132346594476384939859276456284579661772930407806609229102715046085388087959327781622986827547830768080040150694942303411728957777100335714010559775242124057347007386251660110828379119623008469277200965153500208474470792443848545912886723000619085126472111951361467527633519562927597957250278002980795904193139603021470997035276467445530922022679656280991498232083329641241038509239184734786121921697210543484287048353408113042573002216421348917347174234800714880751002064390517234247656004721768096486107994943415703476320 passed (check passed) (76)[0m
-        [32mcheck_ldouble_le[0m
-            [32m1.140000 <= 118973149535723176502126385303097020516906332229462420044032373389173700552297072261641029033652888285354569780749557731442744315367028843419812557385374367867359320070697326320191591828296152436552951064679108661431179063216977883889613478656060039914875343321145491116008867984515486651285234014977303760000912547939396622315138362241783854274391783813871780588948754057516822634765923557697480511372564902088485522249479139937758502601177354918009979622602685950855888360815984690023564513234659447638493985927645628457966177293040780660922910271504608538808795932778162298682754783076808004015069494230341172895777710033571401055977524212405734700738625166011082837911962300846927720096515350020847447079244384854591288672300061908512647211195136146752763351956292759795725027800298079590419313960302147099703527646744553092202267965628099149823208332964124103850923918473478612192169721054348428704835340811304257300221642134891734717423480071488075100206439051723424765600472176809648610799494341570347632 passed (check passed) (84)[0m
-            [32m1.140000 <= 1.140000 passed (check passed) (85)[0m
+check_type
+    check_char
+        [32mcheck_char_eq[0m
+            [32mb == b passed (check passed) (37)[0m
+            [32mb == b passed (check passed) (38)[0m
+        [32mcheck_char_ne[0m
+            [32mb != a passed (check passed) (46)[0m
+            [32mb != a passed (check passed) (47)[0m
+        [32mcheck_char_gt[0m
+            [32mb > a passed (check passed) (55)[0m
+            [32mb > a passed (check passed) (56)[0m
+        [32mcheck_char_ge[0m
+            [32mb >= a passed (check passed) (64)[0m
+            [32mb >= b passed (check passed) (65)[0m
+        [32mcheck_char_lt[0m
+            [32mb < c passed (check passed) (73)[0m
+            [32mb < c passed (check passed) (74)[0m
+        [32mcheck_char_le[0m
+            [32mb <= c passed (check passed) (82)[0m
+            [32mb <= b passed (check passed) (83)[0m
+    check_short
+        [32mcheck_short_eq[0m
+            [32m2 == 2 passed (check passed) (39)[0m
+            [32m2 == 2 passed (check passed) (40)[0m
+        [32mcheck_short_ne[0m
+            [32m2 != -32768 passed (check passed) (48)[0m
+            [32m2 != -32768 passed (check passed) (49)[0m
+        [32mcheck_short_gt[0m
+            [32m2 > -32768 passed (check passed) (57)[0m
+            [32m2 > -32768 passed (check passed) (58)[0m
+        [32mcheck_short_ge[0m
+            [32m2 >= -32768 passed (check passed) (66)[0m
+            [32m2 >= 2 passed (check passed) (67)[0m
+        [32mcheck_short_lt[0m
+            [32m2 < 32767 passed (check passed) (75)[0m
+            [32m2 < 32767 passed (check passed) (76)[0m
+        [32mcheck_short_le[0m
+            [32m2 <= 32767 passed (check passed) (84)[0m
+            [32m2 <= 2 passed (check passed) (85)[0m
+    check_ushort
+        [32mcheck_ushort_eq[0m
+            [32m2 == 2 passed (check passed) (39)[0m
+            [32m2 == 2 passed (check passed) (40)[0m
+        [32mcheck_ushort_ne[0m
+            [32m2 != 0 passed (check passed) (48)[0m
+            [32m2 != 0 passed (check passed) (49)[0m
+        [32mcheck_ushort_gt[0m
+            [32m2 > 0 passed (check passed) (57)[0m
+            [32m2 > 0 passed (check passed) (58)[0m
+        [32mcheck_ushort_ge[0m
+            [32m2 >= 0 passed (check passed) (66)[0m
+            [32m2 >= 2 passed (check passed) (67)[0m
+        [32mcheck_ushort_lt[0m
+            [32m2 < 65535 passed (check passed) (75)[0m
+            [32m2 < 65535 passed (check passed) (76)[0m
+        [32mcheck_ushort_le[0m
+            [32m2 <= 65535 passed (check passed) (84)[0m
+            [32m2 <= 2 passed (check passed) (85)[0m
+    check_int
+        [32mcheck_int_eq[0m
+            [32m2 == 2 passed (check passed) (39)[0m
+            [32m2 == 2 passed (check passed) (40)[0m
+        [32mcheck_int_ne[0m
+            [32m2 != -2147483648 passed (check passed) (48)[0m
+            [32m2 != -2147483648 passed (check passed) (49)[0m
+        [32mcheck_int_gt[0m
+            [32m2 > -2147483648 passed (check passed) (57)[0m
+            [32m2 > -2147483648 passed (check passed) (58)[0m
+        [32mcheck_int_ge[0m
+            [32m2 >= -2147483648 passed (check passed) (66)[0m
+            [32m2 >= 2 passed (check passed) (67)[0m
+        [32mcheck_int_lt[0m
+            [32m2 < 2147483647 passed (check passed) (75)[0m
+            [32m2 < 2147483647 passed (check passed) (76)[0m
+        [32mcheck_int_le[0m
+            [32m2 <= 2147483647 passed (check passed) (84)[0m
+            [32m2 <= 2 passed (check passed) (85)[0m
+    check_uint
+        [32mcheck_uint_eq[0m
+            [32m2 == 2 passed (check passed) (39)[0m
+            [32m2 == 2 passed (check passed) (40)[0m
+        [32mcheck_uint_ne[0m
+            [32m2 != 0 passed (check passed) (48)[0m
+            [32m2 != 0 passed (check passed) (49)[0m
+        [32mcheck_uint_gt[0m
+            [32m2 > 0 passed (check passed) (57)[0m
+            [32m2 > 0 passed (check passed) (58)[0m
+        [32mcheck_uint_ge[0m
+            [32m2 >= 0 passed (check passed) (66)[0m
+            [32m2 >= 2 passed (check passed) (67)[0m
+        [32mcheck_uint_lt[0m
+            [32m2 < 4294967295 passed (check passed) (75)[0m
+            [32m2 < 4294967295 passed (check passed) (76)[0m
+        [32mcheck_uint_le[0m
+            [32m2 <= 4294967295 passed (check passed) (84)[0m
+            [32m2 <= 2 passed (check passed) (85)[0m
+    check_long
+        [32mcheck_long_eq[0m
+            [32m2 == 2 passed (check passed) (39)[0m
+            [32m2 == 2 passed (check passed) (40)[0m
+        [32mcheck_long_ne[0m
+            [32m2 != -9223372036854775808 passed (check passed) (48)[0m
+            [32m2 != -9223372036854775808 passed (check passed) (49)[0m
+        [32mcheck_long_gt[0m
+            [32m2 > -9223372036854775808 passed (check passed) (57)[0m
+            [32m2 > -9223372036854775808 passed (check passed) (58)[0m
+        [32mcheck_long_ge[0m
+            [32m2 >= -9223372036854775808 passed (check passed) (66)[0m
+            [32m2 >= 2 passed (check passed) (67)[0m
+        [32mcheck_long_lt[0m
+            [32m2 < 9223372036854775807 passed (check passed) (75)[0m
+            [32m2 < 9223372036854775807 passed (check passed) (76)[0m
+        [32mcheck_long_le[0m
+            [32m2 <= 9223372036854775807 passed (check passed) (84)[0m
+            [32m2 <= 2 passed (check passed) (85)[0m
+    check_ulong
+        [32mcheck_ulong_eq[0m
+            [32m2 == 2 passed (check passed) (39)[0m
+            [32m2 == 2 passed (check passed) (40)[0m
+        [32mcheck_ulong_ne[0m
+            [32m2 != 0 passed (check passed) (48)[0m
+            [32m2 != 0 passed (check passed) (49)[0m
+        [32mcheck_ulong_gt[0m
+            [32m2 > 0 passed (check passed) (57)[0m
+            [32m2 > 0 passed (check passed) (58)[0m
+        [32mcheck_ulong_ge[0m
+            [32m2 >= 0 passed (check passed) (66)[0m
+            [32m2 >= 2 passed (check passed) (67)[0m
+        [32mcheck_ulong_lt[0m
+            [32m2 < 18446744073709551615 passed (check passed) (75)[0m
+            [32m2 < 18446744073709551615 passed (check passed) (76)[0m
+        [32mcheck_ulong_le[0m
+            [32m2 <= 18446744073709551615 passed (check passed) (84)[0m
+            [32m2 <= 2 passed (check passed) (85)[0m
+    check_llong
+        [32mcheck_llong_eq[0m
+            [32m2 == 2 passed (check passed) (39)[0m
+            [32m2 == 2 passed (check passed) (40)[0m
+        [32mcheck_llong_ne[0m
+            [32m2 != -9223372036854775808 passed (check passed) (48)[0m
+            [32m2 != -9223372036854775808 passed (check passed) (49)[0m
+        [32mcheck_llong_gt[0m
+            [32m2 > -9223372036854775808 passed (check passed) (57)[0m
+            [32m2 > -9223372036854775808 passed (check passed) (58)[0m
+        [32mcheck_llong_ge[0m
+            [32m2 >= -9223372036854775808 passed (check passed) (66)[0m
+            [32m2 >= 2 passed (check passed) (67)[0m
+        [32mcheck_llong_lt[0m
+            [32m2 < 9223372036854775807 passed (check passed) (75)[0m
+            [32m2 < 9223372036854775807 passed (check passed) (76)[0m
+        [32mcheck_llong_le[0m
+            [32m2 <= 9223372036854775807 passed (check passed) (84)[0m
+            [32m2 <= 2 passed (check passed) (85)[0m
+    check_ullong
+        [32mcheck_ullong_eq[0m
+            [32m2 == 2 passed (check passed) (39)[0m
+            [32m2 == 2 passed (check passed) (40)[0m
+        [32mcheck_ullong_ne[0m
+            [32m2 != 0 passed (check passed) (48)[0m
+            [32m2 != 0 passed (check passed) (49)[0m
+        [32mcheck_ullong_gt[0m
+            [32m2 > 0 passed (check passed) (57)[0m
+            [32m2 > 0 passed (check passed) (58)[0m
+        [32mcheck_ullong_ge[0m
+            [32m2 >= 0 passed (check passed) (66)[0m
+            [32m2 >= 2 passed (check passed) (67)[0m
+        [32mcheck_ullong_lt[0m
+            [32m2 < 18446744073709551615 passed (check passed) (75)[0m
+            [32m2 < 18446744073709551615 passed (check passed) (76)[0m
+        [32mcheck_ullong_le[0m
+            [32m2 <= 18446744073709551615 passed (check passed) (84)[0m
+            [32m2 <= 2 passed (check passed) (85)[0m
+    check_float
+        [32mcheck_float_eq[0m
+            [32m1.140000 == 1.140000 passed (check passed) (39)[0m
+            [32m1.140000 == 1.140000 passed (check passed) (40)[0m
+        [32mcheck_float_ne[0m
+            [32m1.140000 != 0.000000 passed (check passed) (48)[0m
+            [32m1.140000 != 0.000000 passed (check passed) (49)[0m
+        [32mcheck_float_gt[0m
+            [32m1.140000 > 0.000000 passed (check passed) (57)[0m
+            [32m1.140000 > 0.000000 passed (check passed) (58)[0m
+        [32mcheck_float_ge[0m
+            [32m1.140000 >= 0.000000 passed (check passed) (66)[0m
+            [32m1.140000 >= 1.140000 passed (check passed) (67)[0m
+        [32mcheck_float_lt[0m
+            [32m1.140000 < 340282346638528859811704183484516925440.000000 passed (check passed) (75)[0m
+            [32m1.140000 < 340282346638528859811704183484516925440.000000 passed (check passed) (76)[0m
+        [32mcheck_float_le[0m
+            [32m1.140000 <= 340282346638528859811704183484516925440.000000 passed (check passed) (84)[0m
+            [32m1.140000 <= 1.140000 passed (check passed) (85)[0m
+    check_double
+        [32mcheck_double_eq[0m
+            [32m1.140000 == 1.140000 passed (check passed) (39)[0m
+            [32m1.140000 == 1.140000 passed (check passed) (40)[0m
+        [32mcheck_double_ne[0m
+            [32m1.140000 != 0.000000 passed (check passed) (48)[0m
+            [32m1.140000 != 0.000000 passed (check passed) (49)[0m
+        [32mcheck_double_gt[0m
+            [32m1.140000 > 0.000000 passed (check passed) (57)[0m
+            [32m1.140000 > 0.000000 passed (check passed) (58)[0m
+        [32mcheck_double_ge[0m
+            [32m1.140000 >= 0.000000 passed (check passed) (66)[0m
+            [32m1.140000 >= 1.140000 passed (check passed) (67)[0m
+        [32mcheck_double_lt[0m
+            [32m1.140000 < 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 passed (check passed) (75)[0m
+            [32m1.140000 < 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 passed (check passed) (76)[0m
+        [32mcheck_double_le[0m
+            [32m1.140000 <= 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 passed (check passed) (84)[0m
+            [32m1.140000 <= 1.140000 passed (check passed) (85)[0m
+    check_ldouble
+        [32mcheck_ldouble_eq[0m
+            [32m1.140000 == 1.140000 passed (check passed) (39)[0m
+            [32m1.140000 == 1.140000 passed (check passed) (40)[0m
+        [32mcheck_ldouble_ne[0m
+            [32m1.140000 != 0.000000 passed (check passed) (48)[0m
+            [32m1.140000 != 0.000000 passed (check passed) (49)[0m
+        [32mcheck_ldouble_gt[0m
+            [32m1.140000 > 0.000000 passed (check passed) (57)[0m
+            [32m1.140000 > 0.000000 passed (check passed) (58)[0m
+        [32mcheck_ldouble_ge[0m
+            [32m1.140000 >= 0.000000 passed (check passed) (66)[0m
+            [32m1.140000 >= 1.140000 passed (check passed) (67)[0m
+        [32mcheck_ldouble_lt[0m
+            [32m1.140000 < 1189731495357231765021263853030970205169063322294624200440323733891737005522970722616410290336528882853545697807495577314427443153670288434198125573853743678673593200706973263201915918282961524365529510646791086614311790632169778838896134786560600399148753433211454911160088679845154866512852340149773037600009125479393966223151383622417838542743917838138717805889487540575168226347659235576974805113725649020884855222494791399377585026011773549180099796226026859508558883608159846900235645132346594476384939859276456284579661772930407806609229102715046085388087959327781622986827547830768080040150694942303411728957777100335714010559775242124057347007386251660110828379119623008469277200965153500208474470792443848545912886723000619085126472111951361467527633519562927597957250278002980795904193139603021470997035276467445530922022679656280991498232083329641241038509239184734786121921697210543484287048353408113042573002216421348917347174234800714880751002064390517234247656004721768096486107994943415703476320 passed (check passed) (75)[0m
+            [32m1.140000 < 1189731495357231765021263853030970205169063322294624200440323733891737005522970722616410290336528882853545697807495577314427443153670288434198125573853743678673593200706973263201915918282961524365529510646791086614311790632169778838896134786560600399148753433211454911160088679845154866512852340149773037600009125479393966223151383622417838542743917838138717805889487540575168226347659235576974805113725649020884855222494791399377585026011773549180099796226026859508558883608159846900235645132346594476384939859276456284579661772930407806609229102715046085388087959327781622986827547830768080040150694942303411728957777100335714010559775242124057347007386251660110828379119623008469277200965153500208474470792443848545912886723000619085126472111951361467527633519562927597957250278002980795904193139603021470997035276467445530922022679656280991498232083329641241038509239184734786121921697210543484287048353408113042573002216421348917347174234800714880751002064390517234247656004721768096486107994943415703476320 passed (check passed) (76)[0m
+        [32mcheck_ldouble_le[0m
+            [32m1.140000 <= 118973149535723176502126385303097020516906332229462420044032373389173700552297072261641029033652888285354569780749557731442744315367028843419812557385374367867359320070697326320191591828296152436552951064679108661431179063216977883889613478656060039914875343321145491116008867984515486651285234014977303760000912547939396622315138362241783854274391783813871780588948754057516822634765923557697480511372564902088485522249479139937758502601177354918009979622602685950855888360815984690023564513234659447638493985927645628457966177293040780660922910271504608538808795932778162298682754783076808004015069494230341172895777710033571401055977524212405734700738625166011082837911962300846927720096515350020847447079244384854591288672300061908512647211195136146752763351956292759795725027800298079590419313960302147099703527646744553092202267965628099149823208332964124103850923918473478612192169721054348428704835340811304257300221642134891734717423480071488075100206439051723424765600472176809648610799494341570347632 passed (check passed) (84)[0m
+            [32m1.140000 <= 1.140000 passed (check passed) (85)[0m
