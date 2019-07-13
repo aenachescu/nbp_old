@@ -32,7 +32,7 @@ typedef void (*nbp_scheduler_run_pfn_t)(
 );
 
 typedef void (*nbp_scheduler_add_test_pfn_t)(
-    nbp_test_details_t*
+    nbp_test_details_t* /* current test */
 );
 
 struct nbp_scheduler_interface_t {

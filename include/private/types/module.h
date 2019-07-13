@@ -29,17 +29,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 struct nbp_module_details_t;
 
 typedef void(*nbp_setup_module_pfn_t)(
-    struct nbp_module_details_t*
+    struct nbp_module_details_t* /* current module */
 );
 
 typedef void(*nbp_teardown_module_pfn_t)(
-    struct nbp_module_details_t*
+    struct nbp_module_details_t* /* current module */
 );
 
 typedef void (*nbp_module_pfn_t)(
-    struct nbp_module_details_t*,
-    nbp_before_test_pfn_t,
-    nbp_after_test_pfn_t
+    struct nbp_module_details_t*, /* current module */
+    nbp_before_test_pfn_t, /* before test pfn */
+    nbp_after_test_pfn_t /* after test pfn */
 );
 
 struct nbp_module_details_t {

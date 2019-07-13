@@ -29,15 +29,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 struct nbp_test_details_t;
 
 typedef void (*nbp_before_test_pfn_t)(
-    struct nbp_test_details_t*
+    struct nbp_test_details_t* /* current test */
 );
 
 typedef void (*nbp_after_test_pfn_t)(
-    struct nbp_test_details_t*
+    struct nbp_test_details_t* /* current test */
 );
 
 typedef void (*nbp_test_pfn_t)(
-    struct nbp_test_details_t*
+    struct nbp_test_details_t* /* current test */
 );
 
 struct nbp_test_details_t {

@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_PRIVATE_DETAILS_SCHEDULER_H
 
 void nbp_scheduler_run_test(
-    nbp_test_details_t*
+    nbp_test_details_t* /* test */
 );
 
 #endif // end if NBP_PRIVATE_DETAILS_SCHEDULER_H

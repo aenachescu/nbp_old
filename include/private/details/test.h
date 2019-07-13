@@ -20,10 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_PRIVATE_DETAILS_TEST_H
 
 void nbp_call_test(
-    nbp_test_details_t*,
-    nbp_module_details_t*,
-    nbp_before_test_pfn_t,
-    nbp_after_test_pfn_t
+    nbp_test_details_t*, /* test */
+    nbp_module_details_t*, /* module */
+    nbp_before_test_pfn_t, /* before test pfn */
+    nbp_after_test_pfn_t /* after test pfn */
 );
 
 #endif // end if NBP_PRIVATE_DETAILS_TEST_H

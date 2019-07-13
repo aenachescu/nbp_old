@@ -20,8 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_PRIVATE_DETAILS_MODULE_H
 
 void nbp_call_module(
-    nbp_module_details_t*,
-    nbp_module_details_t*
+    nbp_module_details_t*, /* module */
+    nbp_module_details_t* /* parent */
 );
 
 #endif // end if NBP_PRIVATE_DETAILS_MODULE_H
