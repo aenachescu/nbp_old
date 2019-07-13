@@ -24,10 +24,14 @@ extern nbp_scheduler_interface_t* nbpSchedulerInterface;
 extern nbp_printer_interface_t* nbpPrinterInterfaces[];
 extern unsigned int nbpPrinterInterfacesSize;
 
+int nbpSchedulerRunEnabled;
+
 int main(int argc, const char** argv)
 {
     (void)(argc);
     (void)(argv);
+
+    nbpSchedulerRunEnabled = 0;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->init != 0x0) {
@@ -56,7 +60,10 @@ int main(int argc, const char** argv)
 
     nbp_call_module(nbpMainModule, 0x0);
 
+    nbpSchedulerRunEnabled = 1;
     nbpSchedulerInterface->run();
+    nbpSchedulerRunEnabled = 0;
+
     nbpSchedulerInterface->uninit();
 
     int ret = 0;

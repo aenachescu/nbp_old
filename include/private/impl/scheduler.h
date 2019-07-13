@@ -203,6 +203,12 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 
 void nbp_scheduler_run_test(nbp_test_details_t* test)
 {
+    extern int nbpSchedulerRunEnabled;
+    if (nbpSchedulerRunEnabled != 1) {
+        // TODO: notify printer
+        return;
+    }
+
     if (test->testState == NBP_TEST_STATE_SKIPPED) {
         // TODO
         return;
