@@ -134,4 +134,70 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_GET_TEST_DEPTH(test) NBP_GET_MODULE_DEPTH(test->module) + 1
 
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_CHECKS_NUM(test)                                          \
+    test->checks.numPassed + test->checks.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_PASSED_CHECKS_NUM(test) test->checks.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_FAILED_CHECKS_NUM(test) test->checks.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_TEST_ASSERT_NUM(test)                                     \
+    test->testAsserts.numPassed + test->testAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_PASSED_TEST_ASSERT_NUM(test) test->testAsserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_FAILED_TEST_ASSERT_NUM(test) test->testAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_MODULE_ASSERTS_NUM(test)                                  \
+    test->moduleAsserts.numPassed + test->moduleAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_PASSED_MODULE_ASSERTS_NUM(test)                           \
+    test->moduleAsserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_FAILED_MODULE_ASSERTS_NUM(test)                           \
+    test->moduleAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_ASSERTS_NUM(test)                                         \
+    test->asserts.numPassed + test->asserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_PASSED_ASSERTS_NUM(test) test->asserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_FAILED_ASSERTS_NUM(test) test->asserts.numFailed
+
 #endif // end if NBP_PRIVATE_API_TEST_H
