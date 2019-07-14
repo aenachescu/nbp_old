@@ -77,7 +77,6 @@ static void nbp_scheduler_update_parent_stats(nbp_module_details_t* module)
         m->ownModules.numSkipped + m->subModules.numSkipped;
 
     // sub tests stats
-    p->subTests.num         += m->ownTests.num + m->subTests.num;
     p->subTests.numPassed   += m->ownTests.numPassed + m->subTests.numPassed;
     p->subTests.numFailed   += m->ownTests.numFailed + m->subTests.numFailed;
     p->subTests.numSkipped  += m->ownTests.numSkipped + m->subTests.numSkipped;

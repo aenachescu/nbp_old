@@ -47,7 +47,8 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 
     nbp_module_details_t* idx = module->firstModule;
     while (idx != 0x0) {
-        module->subModules.num += idx->ownModules.num;
+        module->subModules.num += idx->ownModules.num + idx->subModules.num;
+        module->subTests.num += idx->ownTests.num + idx->subTests.num;
         idx = idx->next;
     }
 }
