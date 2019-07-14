@@ -60,9 +60,41 @@ int main(int argc, const char** argv)
 
     nbp_call_module(nbpMainModule, 0x0);
 
+    nbp_notify_printer_before_run(
+        NBP_MODULE_GET_MODULES_NUM(nbpMainModule) + 1,
+        NBP_MODULE_GET_TESTS_NUM(nbpMainModule)
+    );
+
     nbpSchedulerRunEnabled = 1;
     nbpSchedulerInterface->run();
     nbpSchedulerRunEnabled = 0;
+
+    nbp_notify_printer_after_run(
+        NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_PASSED ?
+            NBP_MODULE_GET_PASSED_MODULES_NUM(nbpMainModule) + 1 :
+            NBP_MODULE_GET_PASSED_MODULES_NUM(nbpMainModule),
+        NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_FAILED ?
+            NBP_MODULE_GET_FAILED_MODULES_NUM(nbpMainModule) + 1 :
+            NBP_MODULE_GET_FAILED_MODULES_NUM(nbpMainModule),
+        NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_SKIPPED ?
+            NBP_MODULE_GET_SKIPPED_MODULES_NUM(nbpMainModule) + 1 :
+            NBP_MODULE_GET_SKIPPED_MODULES_NUM(nbpMainModule),
+        NBP_MODULE_GET_PASSED_TESTS_NUM(nbpMainModule),
+        NBP_MODULE_GET_FAILED_TESTS_NUM(nbpMainModule),
+        NBP_MODULE_GET_SKIPPED_TESTS_NUM(nbpMainModule),
+        NBP_MODULE_GET_CHECKS_NUM(nbpMainModule),
+        NBP_MODULE_GET_PASSED_CHECKS_NUM(nbpMainModule),
+        NBP_MODULE_GET_FAILED_CHECKS_NUM(nbpMainModule),
+        NBP_MODULE_GET_TEST_ASSERTS_NUM(nbpMainModule),
+        NBP_MODULE_GET_PASSED_TEST_ASSERTS_NUM(nbpMainModule),
+        NBP_MODULE_GET_FAILED_TEST_ASSERTS_NUM(nbpMainModule),
+        NBP_MODULE_GET_MODULE_ASSERTS_NUM(nbpMainModule),
+        NBP_MODULE_GET_PASSED_MODULE_ASSERTS_NUM(nbpMainModule),
+        NBP_MODULE_GET_FAILED_MODULE_ASSERTS_NUM(nbpMainModule),
+        NBP_MODULE_GET_ASSERTS_NUM(nbpMainModule),
+        NBP_MODULE_GET_PASSED_ASSERTS_NUM(nbpMainModule),
+        NBP_MODULE_GET_FAILED_ASSERTS_NUM(nbpMainModule)
+    );
 
     nbpSchedulerInterface->uninit();
 
