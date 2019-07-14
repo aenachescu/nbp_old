@@ -162,6 +162,64 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_PRINTER_FUNC_BEFORE_RUN(func)                                      \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        unsigned int modulesNum,                                               \
+        unsigned int testsNum                                                  \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_BEFORE_RUN(func)                                  \
+    .beforeRun = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_BEFORE_RUN                                         \
+    .beforeRun = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_AFTER_RUN(func)                                       \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        unsigned int passedModulesNum,                                         \
+        unsigned int failedModulesNum,                                         \
+        unsigned int skippedModulesNum,                                        \
+        unsigned int passedTestsNum,                                           \
+        unsigned int failedTestsNum,                                           \
+        unsigned int skippedTestsNum,                                          \
+        unsigned int checksNum,                                                \
+        unsigned int passedChecksNum,                                          \
+        unsigned int failedChecksNum,                                          \
+        unsigned int testAssertsNum,                                           \
+        unsigned int passedTestAssertsNum,                                     \
+        unsigned int failedTestAssertsNum,                                     \
+        unsigned int moduleAssertsNum,                                         \
+        unsigned int passedModuleAssertsNum,                                   \
+        unsigned int failedModuleAssertsNum,                                   \
+        unsigned int assertsNum,                                               \
+        unsigned int passedAssertsNum,                                         \
+        unsigned int failedAssertsNum                                          \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_AFTER_RUN(func)                                   \
+    .afterRun = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_AFTER_RUN                                          \
+    .afterRun = 0x0
+
+/*
+ * TODO: add docs
+ */
 #define NBP_PRINTER_FUNC_CHECK_RESULT(func)                                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
         nbp_test_details_t* test,                                              \
@@ -1774,6 +1832,106 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_PASS_MSG 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_MODULES_NUM() modulesNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_PASSED_MODULES_NUM() passedModulesNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FAILED_MODULES_NUM() failedModulesNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SKIPPED_MODULES_NUM() skippedModulesNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_TESTS_NUM() testsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_PASSED_TESTS_NUM() passedTestsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FAILED_TESTS_NUM() failedTestsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SKIPPED_TESTS_NUM() skippedTestsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_CHECKS_NUM() checksNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_PASSED_CHECKS_NUM() passedChecksNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FAILED_CHECKS_NUM() failedChecksNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_TEST_ASSERTS_NUM() testAssertsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_PASSED_TEST_ASSERTS_NUM() passedTestAssertsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FAILED_TEST_ASSERTS_NUM() failedTestAssertsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_MODULE_ASSERTS_NUM() moduleAssertsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_PASSED_MODULE_ASSERTS_NUM() passedModuleAssertsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FAILED_MODULE_ASSERTS_NUM() failedModuleAssertsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_ASSERTS_NUM() assertsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_PASSED_ASSERTS_NUM() passedAssertsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FAILED_ASSERTS_NUM() failedAssertsNum
 
 #endif // end if NBP_PRIVATE_API_PRINTER_H
 
