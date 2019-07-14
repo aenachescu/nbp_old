@@ -38,6 +38,8 @@ static int nbpPrinterRet;
 static int nbpPrinterTestFailed;
 static struct NbpPrinterPassMsgList* nbpPrinterFirstPassMsg;
 static struct NbpPrinterPassMsgList* nbpPrinterLastPassMsg;
+static unsigned int nbpPrinterModulesNum;
+static unsigned int nbpPrinterTestsNum;
 
 static void nbp_printer_print_depth(unsigned int depth)
 {
@@ -221,6 +223,139 @@ NBP_PRINTER_FUNC_MODULE_BEGIN(nbp_basic_printer_module_begin)
 {
     nbp_printer_print_depth(NBP_GET_MODULE_DEPTH(NBP_THIS_MODULE));
     printf("%s\n", NBP_GET_MODULE_NAME(NBP_THIS_MODULE));
+}
+
+NBP_PRINTER_FUNC_BEFORE_RUN(nbp_basic_printer_before_run)
+{
+    nbpPrinterModulesNum = NBP_PRINTER_GET_MODULES_NUM();
+    nbpPrinterTestsNum = NBP_PRINTER_GET_TESTS_NUM();
+}
+
+NBP_PRINTER_FUNC_AFTER_RUN(nbp_basic_printer_after_run)
+{
+    // print modules stats
+    printf(
+        "Passed  modules: %s%u%s/%u\n"
+        "Failed  modules: %s%u%s/%u\n"
+        "Skipped modules: %s%u%s/%u\n",
+
+        NBP_PRIVATE_COLOR_GREEN,
+        NBP_PRINTER_GET_PASSED_MODULES_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        nbpPrinterModulesNum,
+
+        NBP_PRINTER_GET_FAILED_MODULES_NUM() == 0 ?
+            NBP_PRIVATE_COLOR_GREEN :
+            NBP_PRIVATE_COLOR_RED,
+        NBP_PRINTER_GET_FAILED_MODULES_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        nbpPrinterModulesNum,
+
+        NBP_PRINTER_GET_SKIPPED_MODULES_NUM() == 0 ?
+            NBP_PRIVATE_COLOR_GREEN :
+            NBP_PRIVATE_COLOR_YELLOW,
+        NBP_PRINTER_GET_SKIPPED_MODULES_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        nbpPrinterModulesNum
+    );
+
+    // print tests stats
+    printf(
+        "Passed  tests: %s%u%s/%u\n"
+        "Failed  tests: %s%u%s/%u\n"
+        "Skipped tests: %s%u%s/%u\n",
+
+        NBP_PRIVATE_COLOR_GREEN,
+        NBP_PRINTER_GET_PASSED_TESTS_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        nbpPrinterTestsNum,
+
+        NBP_PRINTER_GET_FAILED_TESTS_NUM() == 0 ?
+            NBP_PRIVATE_COLOR_GREEN :
+            NBP_PRIVATE_COLOR_RED,
+        NBP_PRINTER_GET_FAILED_TESTS_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        nbpPrinterTestsNum,
+
+        NBP_PRINTER_GET_SKIPPED_TESTS_NUM() == 0 ?
+            NBP_PRIVATE_COLOR_GREEN :
+            NBP_PRIVATE_COLOR_YELLOW,
+        NBP_PRINTER_GET_SKIPPED_TESTS_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        nbpPrinterTestsNum
+    );
+
+    // print checks stats
+    printf(
+        "Passed checks: %s%u%s/%u\n"
+        "Failed checks: %s%u%s/%u\n",
+
+        NBP_PRIVATE_COLOR_GREEN,
+        NBP_PRINTER_GET_PASSED_CHECKS_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        NBP_PRINTER_GET_CHECKS_NUM(),
+
+        NBP_PRINTER_GET_FAILED_CHECKS_NUM() == 0 ?
+            NBP_PRIVATE_COLOR_GREEN :
+            NBP_PRIVATE_COLOR_RED,
+        NBP_PRINTER_GET_FAILED_CHECKS_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        NBP_PRINTER_GET_CHECKS_NUM()
+    );
+
+    // print test asserts stats
+    printf(
+        "Passed test asserts: %s%u%s/%u\n"
+        "Failed test asserts: %s%u%s/%u\n",
+
+        NBP_PRIVATE_COLOR_GREEN,
+        NBP_PRINTER_GET_PASSED_TEST_ASSERTS_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        NBP_PRINTER_GET_TEST_ASSERTS_NUM(),
+
+        NBP_PRINTER_GET_FAILED_TEST_ASSERTS_NUM() == 0 ?
+            NBP_PRIVATE_COLOR_GREEN :
+            NBP_PRIVATE_COLOR_RED,
+        NBP_PRINTER_GET_FAILED_TEST_ASSERTS_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        NBP_PRINTER_GET_TEST_ASSERTS_NUM()
+    );
+
+    // print module asserts stats
+    printf(
+        "Passed module asserts: %s%u%s/%u\n"
+        "Failed module asserts: %s%u%s/%u\n",
+
+        NBP_PRIVATE_COLOR_GREEN,
+        NBP_PRINTER_GET_PASSED_MODULE_ASSERTS_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        NBP_PRINTER_GET_MODULE_ASSERTS_NUM(),
+
+        NBP_PRINTER_GET_FAILED_MODULE_ASSERTS_NUM() == 0 ?
+            NBP_PRIVATE_COLOR_GREEN :
+            NBP_PRIVATE_COLOR_RED,
+        NBP_PRINTER_GET_FAILED_MODULE_ASSERTS_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        NBP_PRINTER_GET_MODULE_ASSERTS_NUM()
+    );
+
+    // print asserts stats
+    printf(
+        "Passed asserts: %s%u%s/%u\n"
+        "Failed asserts: %s%u%s/%u\n",
+
+        NBP_PRIVATE_COLOR_GREEN,
+        NBP_PRINTER_GET_PASSED_ASSERTS_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        NBP_PRINTER_GET_ASSERTS_NUM(),
+
+        NBP_PRINTER_GET_FAILED_ASSERTS_NUM() == 0 ?
+            NBP_PRIVATE_COLOR_GREEN :
+            NBP_PRIVATE_COLOR_RED,
+        NBP_PRINTER_GET_FAILED_ASSERTS_NUM(),
+        NBP_PRIVATE_COLOR_NORMAL,
+        NBP_PRINTER_GET_ASSERTS_NUM()
+    );
 }
 
 NBP_PRINTER_FUNC_CHECK_RESULT(nbp_basic_printer_check_result)
@@ -1420,6 +1555,12 @@ NBP_DEFINE_PRINTER(
         nbp_basic_printer_module_begin
     ),
     NBP_PRINTER_NO_FUNC_MODULE_END,
+    NBP_PRINTER_USE_FUNC_BEFORE_RUN(
+        nbp_basic_printer_before_run
+    ),
+    NBP_PRINTER_USE_FUNC_AFTER_RUN(
+        nbp_basic_printer_after_run
+    ),
 
     // callbacks for NBP_CHECK_* macros
     NBP_PRINTER_USE_FUNC_CHECK_RESULT(
