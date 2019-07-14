@@ -69,8 +69,6 @@ static void nbp_scheduler_update_parent_stats(nbp_module_details_t* module)
     }
 
     // sub modules stats
-    p->subModules.num           +=
-        m->ownModules.num + m->subModules.num;
     p->subModules.numPassed     +=
         m->ownModules.numPassed + m->subModules.numPassed;
     p->subModules.numFailed     +=

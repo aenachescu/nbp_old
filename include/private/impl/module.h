@@ -44,6 +44,12 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
     }
 
     module->moduleFunc(module, 0x0, 0x0);
+
+    nbp_module_details_t* idx = module->firstModule;
+    while (idx != 0x0) {
+        module->subModules.num += idx->ownModules.num;
+        idx = idx->next;
+    }
 }
 
 NBP_SETUP_MODULE(nbp_empty_setup_func)
