@@ -54,6 +54,32 @@ typedef void (*nbp_printer_module_end_pfn_t)(
     nbp_module_details_t* /* current module */
 );
 
+typedef void (*nbp_printer_before_run_pfn_t)(
+    unsigned int, /* num of modules */
+    unsigned int  /* num of tests   */
+);
+
+typedef void (*nbp_printer_after_run_pfn_t)(
+    unsigned int, /* num of passed  modules             */
+    unsigned int, /* num of failed  modules             */
+    unsigned int, /* num of skipped modules             */
+    unsigned int, /* num of passed  tests               */
+    unsigned int, /* num of failed  tests               */
+    unsigned int, /* num of skipped tests               */
+    unsigned int, /* num of         checks              */
+    unsigned int, /* num of passed  checks              */
+    unsigned int, /* num of failed  checks              */
+    unsigned int, /* num of         test asserts        */
+    unsigned int, /* num of passed  test asserts        */
+    unsigned int, /* num of failed  test asserts        */
+    unsigned int, /* num of         modules asserts     */
+    unsigned int, /* num of passed  modules asserts     */
+    unsigned int, /* num of failed  modules asserts     */
+    unsigned int, /* num of         asserts             */
+    unsigned int, /* num of passed  asserts             */
+    unsigned int  /* num of failed  asserts             */
+);
+
 typedef void (*nbp_printer_check_result_pfn_t)(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
@@ -670,6 +696,8 @@ struct nbp_printer_interface_t {
     nbp_printer_test_end_pfn_t testEnd;
     nbp_printer_module_begin_pfn_t moduleBegin;
     nbp_printer_module_end_pfn_t moduleEnd;
+    nbp_printer_before_run_pfn_t beforeRun;
+    nbp_printer_after_run_pfn_t afterRun;
 
     // callbacks for NBP_CHECK_* macros
     nbp_printer_check_result_pfn_t checkResult;
