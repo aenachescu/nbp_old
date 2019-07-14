@@ -85,6 +85,53 @@ void nbp_notify_printer_module_end(nbp_module_details_t* module)
     }
 }
 
+void nbp_notify_printer_before_run(unsigned int modulesNum,
+    unsigned int testsNum)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->beforeRun != 0x0) {
+            nbpPrinterInterfaces[i]->beforeRun(modulesNum, testsNum);
+        }
+    }
+}
+
+void nbp_notify_printer_after_run(unsigned int passedModulesNum,
+    unsigned int failedModulesNum, unsigned int skippedModulesNum,
+    unsigned int passedTestsNum, unsigned int failedTestsNum,
+    unsigned int skippedTestsNum, unsigned int checksNum,
+    unsigned int passedChecksNum, unsigned int failedChecksNum,
+    unsigned int testAssertsNum, unsigned int passedTestAssertsNum,
+    unsigned int failedTestAssertsNum, unsigned int moduleAssertsNum,
+    unsigned int passedModuleAssertsNum, unsigned int failedModuleAssertsNum,
+    unsigned int assertsNum, unsigned int passedAssertsNum,
+    unsigned int failedAssertsNum)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->afterRun != 0x0) {
+            nbpPrinterInterfaces[i]->afterRun(
+                passedModulesNum,
+                failedModulesNum,
+                skippedModulesNum,
+                passedTestsNum,
+                failedTestsNum,
+                skippedTestsNum,
+                checksNum,
+                passedChecksNum,
+                failedChecksNum,
+                testAssertsNum,
+                passedTestAssertsNum,
+                failedTestAssertsNum,
+                moduleAssertsNum,
+                passedModuleAssertsNum,
+                failedModuleAssertsNum,
+                assertsNum,
+                passedAssertsNum,
+                failedAssertsNum
+            );
+        }
+    }
+}
+
 void nbp_notify_printer_check_result(nbp_test_details_t* test, const char* cond,
     int passed, int line, const char* failMsg, const char* passMsg)
 {

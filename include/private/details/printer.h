@@ -43,6 +43,32 @@ void nbp_notify_printer_handle_error(
     int /* error code */
 );
 
+void nbp_notify_printer_before_run(
+    unsigned int, /* num of modules */
+    unsigned int  /* num of tests   */
+);
+
+void nbp_notify_printer_after_run(
+    unsigned int, /* num of passed  modules             */
+    unsigned int, /* num of failed  modules             */
+    unsigned int, /* num of skipped modules             */
+    unsigned int, /* num of passed  tests               */
+    unsigned int, /* num of failed  tests               */
+    unsigned int, /* num of skipped tests               */
+    unsigned int, /* num of         checks              */
+    unsigned int, /* num of passed  checks              */
+    unsigned int, /* num of failed  checks              */
+    unsigned int, /* num of         test asserts        */
+    unsigned int, /* num of passed  test asserts        */
+    unsigned int, /* num of failed  test asserts        */
+    unsigned int, /* num of         modules asserts     */
+    unsigned int, /* num of passed  modules asserts     */
+    unsigned int, /* num of failed  modules asserts     */
+    unsigned int, /* num of         asserts             */
+    unsigned int, /* num of passed  asserts             */
+    unsigned int  /* num of failed  asserts             */
+);
+
 void nbp_notify_printer_check_result(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
