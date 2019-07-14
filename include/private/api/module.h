@@ -192,4 +192,373 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_GET_MODULE_DEPTH(module) module->depth
 
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_STATE(module) module->moduleState
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_TESTS_NUM(module)                                   \
+    module->ownTests.num
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_PASSED_TESTS_NUM(module)                            \
+    module->ownTests.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_FAILED_TESTS_NUM(module)                            \
+    module->ownTests.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_SKIPPED_TESTS_NUM(module)                           \
+    module->ownTests.numSkipped
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUBTESTS_NUM(module)                                    \
+    module->subTests.num
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_PASSED_SUBTESTS_NUM(module)                             \
+    module->subTests.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_FAILED_SUBTESTS_NUM(module)                             \
+    module->subTests.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SKIPPED_SUBTESTS_NUM(module)                            \
+    module->subTests.numSkipped
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_TESTS_NUM(module)                                       \
+    module->ownTests.num + module->subTests.num
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_PASSED_TESTS_NUM(module)                                \
+    module->ownTests.numPassed + module->subTests.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_FAILED_TESTS_NUM(module)                                \
+    module->ownTests.numFailed + module->subTests.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SKIPPED_TESTS_NUM(module)                               \
+    module->ownTests.numSkipped + module->subTests.numSkipped
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_MODULES_NUM(module)                                 \
+    module->ownModules.num
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_PASSED_MODULES_NUM(module)                          \
+    module->ownModules.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_FAILED_MODULES_NUM(module)                          \
+    module->ownModules.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_SKIPPED_MODULES_NUM(module)                         \
+    module->ownModules.numSkipped
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUBMODULES_NUM(module)                                  \
+    module->subModules.num
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_PASSED_SUBMODULES_NUM(module)                           \
+    module->subModules.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_FAILED_SUBMODULES_NUM(module)                           \
+    module->subModules.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SKIPPED_SUBMODULES_NUM(module)                          \
+    module->subModules.numSkipped
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_MODULES_NUM(module)                                     \
+    module->ownModules.num + module->subModules.num
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_PASSED_MODULES_NUM(module)                              \
+    module->ownModules.numPassed + module->subModules.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_FAILED_MODULES_NUM(module)                              \
+    module->ownModules.numFailed + module->subModules.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SKIPPED_MODULES_NUM(module)                             \
+    module->ownModules.numSkipped + module->subModules.numSkipped
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_CHECKS_NUM(module)                                  \
+    module->own.checks.numPassed + module->own.checks.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_PASSED_CHECKS_NUM(module)                           \
+    module->own.checks.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_FAILED_CHECKS_NUM(module)                           \
+    module->own.checks.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_CHECKS_NUM(module)                                  \
+    module->sub.checks.numPassed + module->sub.checks.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_PASSED_CHECKS_NUM(module)                           \
+    module->sub.checks.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_FAILED_CHECKS_NUM(module)                           \
+    module->sub.checks.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_CHECKS_NUM(module)                                      \
+    module->own.checks.numPassed + module->sub.checks.numPassed +              \
+    module->own.checks.numFailed + module->sub.checks.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_PASSED_CHECKS_NUM(module)                               \
+    module->own.checks.numPassed + module->sub.checks.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_FAILED_CHECKS_NUM(module)                               \
+    module->own.checks.numFailed + module->sub.checks.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_TEST_ASSERTS_NUM(module)                            \
+    module->own.testAsserts.numPassed + module->own.testAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_PASSED_TEST_ASSERTS_NUM(module)                     \
+    module->own.testAsserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_FAILED_TEST_ASSERTS_NUM(module)                     \
+    module->own.testAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_TEST_ASSERTS_NUM(module)                            \
+    module->sub.testAsserts.numPassed + module->sub.testAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_PASSED_TEST_ASSERTS_NUM(module)                     \
+    module->sub.testAsserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_FAILED_TEST_ASSERTS_NUM(module)                     \
+    module->sub.testAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_TEST_ASSERTS_NUM(module)                                \
+    module->own.testAsserts.numPassed + module->sub.testAsserts.numPassed +    \
+    module->own.testAsserts.numFailed + module->sub.testAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_PASSED_TEST_ASSERTS_NUM(module)                         \
+    module->own.testAsserts.numPassed + module->sub.testAsserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_FAILED_TEST_ASSERTS_NUM(module)                         \
+    module->own.testAsserts.numFailed + module->sub.testAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_MODULE_ASSERTS_NUM(module)                          \
+    module->own.moduleAsserts.numPassed + module->own.moduleAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_PASSED_MODULE_ASSERTS_NUM(module)                   \
+    module->own.moduleAsserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_FAILED_MODULE_ASSERTS_NUM(module)                   \
+    module->own.moduleAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_MODULE_ASSERTS_NUM(module)                          \
+    module->sub.moduleAsserts.numPassed + module->sub.moduleAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_PASSED_MODULE_ASSERTS_NUM(module)                   \
+    module->sub.moduleAsserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_FAILED_MODULE_ASSERTS_NUM(module)                   \
+    module->sub.moduleAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_MODULE_ASSERTS_NUM(module)                              \
+    module->own.moduleAsserts.numPassed + module->sub.moduleAsserts.numPassed +\
+    module->own.moduleAsserts.numFailed + module->sub.moduleAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_PASSED_MODULE_ASSERTS_NUM(module)                       \
+    module->own.moduleAsserts.numPassed + module->sub.moduleAsserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_FAILED_MODULE_ASSERTS_NUM(module)                       \
+    module->own.moduleAsserts.numFailed + module->sub.moduleAsserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_ASSERTS_NUM(module)                                 \
+    module->own.asserts.numPassed + module->own.asserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_PASSED_ASSERTS_NUM(module)                          \
+    module->own.asserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_OWN_FAILED_ASSERTS_NUM(module)                          \
+    module->own.asserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_ASSERTS_NUM(module)                                 \
+    module->sub.asserts.numPassed + module->sub.asserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_PASSED_ASSERTS_NUM(module)                          \
+    module->sub.asserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_SUB_FAILED_ASSERTS_NUM(module)                          \
+    module->sub.asserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_ASSERTS_NUM(module)                                     \
+    module->own.asserts.numPassed + module->sub.asserts.numPassed +            \
+    module->own.asserts.numFailed + module->sub.asserts.numFailed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_PASSED_ASSERTS_NUM(module)                              \
+    module->own.asserts.numPassed + module->sub.asserts.numPassed
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_FAILED_ASSERTS_NUM(module)                              \
+    module->own.asserts.numFailed + module->sub.asserts.numFailed
+
 #endif // end if NBP_PRIVATE_API_MODULE_H
