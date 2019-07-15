@@ -17,3 +17,17 @@ check_operator
     [32mcheck_operator_le[0m
         [32mget_int() <= 0x7fffffff passed (check passed) (87)[0m
         [32mget_int() <= int_ passed (check passed) (88)[0m
+Passed  modules: [32m1[0m/1
+Failed  modules: [32m0[0m/1
+Skipped modules: [32m0[0m/1
+Passed  tests: [32m6[0m/6
+Failed  tests: [32m0[0m/6
+Skipped tests: [32m0[0m/6
+Passed checks: [32m24[0m/24
+Failed checks: [32m0[0m/24
+Passed test asserts: [32m0[0m/0
+Failed test asserts: [32m0[0m/0
+Passed module asserts: [32m0[0m/0
+Failed module asserts: [32m0[0m/0
+Passed asserts: [32m0[0m/0
+Failed asserts: [32m0[0m/0

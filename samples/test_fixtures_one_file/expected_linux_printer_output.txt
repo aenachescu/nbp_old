@@ -21,3 +21,17 @@ test_fixtures_one_file_sample
             [32mtest14[0m
             [32mtest15[0m
             [32mtest16[0m
+Passed  modules: [32m7[0m/7
+Failed  modules: [32m0[0m/7
+Skipped modules: [32m0[0m/7
+Passed  tests: [32m16[0m/16
+Failed  tests: [32m0[0m/16
+Skipped tests: [32m0[0m/16
+Passed checks: [32m16[0m/16
+Failed checks: [32m0[0m/16
+Passed test asserts: [32m0[0m/0
+Failed test asserts: [32m0[0m/0
+Passed module asserts: [32m0[0m/0
+Failed module asserts: [32m0[0m/0
+Passed asserts: [32m0[0m/0
+Failed asserts: [32m0[0m/0

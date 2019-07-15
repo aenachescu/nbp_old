@@ -9,3 +9,17 @@ modules_one_file_sample
         [32mtest6[0m
         [32mtest7[0m
         [32mtest8[0m
+Passed  modules: [32m3[0m/3
+Failed  modules: [32m0[0m/3
+Skipped modules: [32m0[0m/3
+Passed  tests: [32m8[0m/8
+Failed  tests: [32m0[0m/8
+Skipped tests: [32m0[0m/8
+Passed checks: [32m8[0m/8
+Failed checks: [32m0[0m/8
+Passed test asserts: [32m0[0m/0
+Failed test asserts: [32m0[0m/0
+Passed module asserts: [32m0[0m/0
+Failed module asserts: [32m0[0m/0
+Passed asserts: [32m0[0m/0
+Failed asserts: [32m0[0m/0
