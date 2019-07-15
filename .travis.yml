@@ -12,7 +12,7 @@
 # GNU General Public License for more details.
 
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this program.  If not, see <http://www.gnu.org/licenses/|.
 
 language: c
 sudo: required
@@ -144,7 +144,7 @@ matrix:
       script:
         # address
         - make -C build/ clean
-        - >
+        - |
           make -C build/ all
             CC=gcc-9
             SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
@@ -153,7 +153,7 @@ matrix:
 
         # pointer compare
         - make -C build/ clean
-        - >
+        - |
           make -C build/ all
             CC=gcc-9
             SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
@@ -162,7 +162,7 @@ matrix:
 
         # pointer substract
         - make -C build/ clean
-        - >
+        - |
           make -C build/ all
             CC=gcc-9
             SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
@@ -171,7 +171,7 @@ matrix:
 
         # thread
         - make -C build/ clean
-        - >
+        - |
           make -C build/ all
             CC=gcc-9
             SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
@@ -180,7 +180,7 @@ matrix:
 
         # leak
         - make -C build/ clean
-        - >
+        - |
           make -C build/ all
             CC=gcc-9
             SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
@@ -189,7 +189,7 @@ matrix:
 
         # undefined behaviour
         - make -C build/ clean
-        - >
+        - |
           make -C build/ all
             CC=gcc-9
             SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
