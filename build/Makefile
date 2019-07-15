@@ -15,8 +15,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -DSAMPLE_LINUX -fprofile-arcs -ftest-coverage \
-	$(SAMPLE_FLAGS) -DNBP_OS_LINUX -Wconversion
+SANITIZERS=
+CFLAGS=                                                                        \
+	-Wall -Wextra -Werror -Wconversion                                         \
+	-fprofile-arcs -ftest-coverage                                             \
+	-DSAMPLE_LINUX                                                             \
+	-DNBP_OS_LINUX                                                             \
+	$(SANITIZERS)                                                              \
+	$(SAMPLE_FLAGS)
 
 lib_folder=-I../../include
 lib_files=../include/nbp.h

@@ -128,3 +128,70 @@ matrix:
         - make -C build/ clean
         - make -C build/ all CC=clang-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - cd build && ./run_tests.sh && cd ..
+
+    #
+    # gcc9 sanitizers
+    #
+    - os: linux
+      env:
+        - DESCRIPTION="linux gcc-9 sanitizers"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-9
+      script:
+        # address
+        - make -C build/ clean
+        - >
+          make -C build/ all
+            CC=gcc-9
+            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+            SANITIZERS="-fsanitize=address"
+        - cd build && ./run_tests.sh && cd ..
+
+        # pointer compare
+        - make -C build/ clean
+        - >
+          make -C build/ all
+            CC=gcc-9
+            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+            SANITIZERS="-fsanitize=pointer-compare"
+        - cd build && ./run_tests.sh && cd ..
+
+        # pointer substract
+        - make -C build/ clean
+        - >
+          make -C build/ all
+            CC=gcc-9
+            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+            SANITIZERS="-fsanitize=pointer-subtract"
+        - cd build && ./run_tests.sh && cd ..
+
+        # thread
+        - make -C build/ clean
+        - >
+          make -C build/ all
+            CC=gcc-9
+            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+            SANITIZERS="-fsanitize=thread"
+        - cd build && ./run_tests.sh && cd ..
+
+        # leak
+        - make -C build/ clean
+        - >
+          make -C build/ all
+            CC=gcc-9
+            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+            SANITIZERS="-fsanitize=leak"
+        - cd build && ./run_tests.sh && cd ..
+
+        # undefined behaviour
+        - make -C build/ clean
+        - >
+          make -C build/ all
+            CC=gcc-9
+            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+            SANITIZERS="-fsanitize=undefined"
+        - cd build && ./run_tests.sh && cd ..
