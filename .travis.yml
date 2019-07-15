@@ -144,54 +144,30 @@ matrix:
       script:
         # address
         - make -C build/ clean
-        - |
-          make -C build/ all
-            CC=gcc-9
-            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-            SANITIZERS="-fsanitize=address"
+        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=address"
         - cd build && ./run_tests.sh && cd ..
 
         # pointer compare
         - make -C build/ clean
-        - |
-          make -C build/ all
-            CC=gcc-9
-            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-            SANITIZERS="-fsanitize=pointer-compare"
+        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=pointer-compare"
         - cd build && ./run_tests.sh && cd ..
 
         # pointer substract
         - make -C build/ clean
-        - |
-          make -C build/ all
-            CC=gcc-9
-            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-            SANITIZERS="-fsanitize=pointer-subtract"
+        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=pointer-subtract"
         - cd build && ./run_tests.sh && cd ..
 
         # thread
         - make -C build/ clean
-        - |
-          make -C build/ all
-            CC=gcc-9
-            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-            SANITIZERS="-fsanitize=thread"
+        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=thread"
         - cd build && ./run_tests.sh && cd ..
 
         # leak
         - make -C build/ clean
-        - |
-          make -C build/ all
-            CC=gcc-9
-            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-            SANITIZERS="-fsanitize=leak"
+        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=leak"
         - cd build && ./run_tests.sh && cd ..
 
         # undefined behaviour
         - make -C build/ clean
-        - |
-          make -C build/ all
-            CC=gcc-9
-            SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-            SANITIZERS="-fsanitize=undefined"
+        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=undefined"
         - cd build && ./run_tests.sh && cd ..
