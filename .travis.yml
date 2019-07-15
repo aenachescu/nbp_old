@@ -144,8 +144,11 @@ matrix:
       script:
         # address
         - make -C build/ clean
-        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=address -fsanitize=pointer-compare -fsanitize=pointer-subtract"
-        - cd build && ./run_tests.sh && cd ..
+        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=address,pointer-compare,pointer-subtract"
+        - cd build
+        - ./run_tests.sh ASAN_OPTIONS="detect_invalid_pointer_pairs=1"
+        - ./run_tests.sh ASAN_OPTIONS="detect_stack_use_after_return=1"
+        - cd ..
 
         # thread
         - make -C build/ clean
@@ -159,5 +162,5 @@ matrix:
 
         # undefined behaviour
         - make -C build/ clean
-        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=undefined -fuse-ld=gold"
+        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=undefined,shift,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,bounds-strict,alignment,object-size,float-divide-by-zero,float-cast-overflow,nonnull-attribute,returns-nonnull-attribute,bool,enum,vptr,pointer-overflow,builtin -fuse-ld=gold"
         - cd build && ./run_tests.sh && cd ..

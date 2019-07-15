@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 status=0
+sanopt=""
 
 function run_test {
     echo "running test $1"
@@ -38,7 +39,12 @@ function run_test {
     if [ -f "output.txt" ]; then
         rm output.txt
     fi
-    printer_output=$(./$1)
+    printer_output=""
+    if [ -z "$sanopt" ]; then
+        printer_output=$(./$1)
+    else
+        printer_output=$(env $sanopt ./$1)
+    fi
     testStatus=$?
     printer_output=$(echo "$printer_output" | sed -e 's/\r//g')
     if [ -f "output.txt" ]; then
@@ -81,6 +87,11 @@ function run_test {
 
     echo $'test passed\n'
 }
+
+if test "$#" -eq 1; then
+    sanopt=$1
+    echo "$sanopt"
+fi
 
 cd ../bin
 
