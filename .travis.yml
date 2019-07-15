@@ -159,5 +159,5 @@ matrix:
 
         # undefined behaviour
         - make -C build/ clean
-        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=undefined"
+        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=undefined -fuse-ld=gold"
         - cd build && ./run_tests.sh && cd ..
