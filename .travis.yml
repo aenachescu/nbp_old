@@ -144,17 +144,7 @@ matrix:
       script:
         # address
         - make -C build/ clean
-        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=address"
-        - cd build && ./run_tests.sh && cd ..
-
-        # pointer compare
-        - make -C build/ clean
-        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=pointer-compare"
-        - cd build && ./run_tests.sh && cd ..
-
-        # pointer substract
-        - make -C build/ clean
-        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=pointer-subtract"
+        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=address -fsanitize=pointer-compare -fsanitize=pointer-subtract"
         - cd build && ./run_tests.sh && cd ..
 
         # thread
