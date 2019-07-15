@@ -43,7 +43,6 @@ static unsigned int nbpPrinterTestsNum;
 
 static void nbp_printer_print_depth(unsigned int depth)
 {
-    printf("\r");
     while (depth-- > 0) {
         printf("    ");
     }
