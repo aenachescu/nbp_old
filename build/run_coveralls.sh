@@ -40,6 +40,7 @@ declare -a arr=(
     "check_type_sample"
     "check_operator_sample"
     "assert_type_sample"
+    "test_assert_type_sample"
 )
 
 files=""
