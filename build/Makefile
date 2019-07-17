@@ -577,6 +577,49 @@ clean_test_assert_type_sample:
 	rm -rf $(bin_folder)$(name23)
 
 #
+# module_assert_type sample
+#
+
+files24=\
+	$(samples_folder)module_assert_type/main.c\
+	$(samples_folder)module_assert_type/char.c\
+	$(samples_folder)module_assert_type/short.c\
+	$(samples_folder)module_assert_type/ushort.c\
+	$(samples_folder)module_assert_type/int.c\
+	$(samples_folder)module_assert_type/uint.c\
+	$(samples_folder)module_assert_type/long.c\
+	$(samples_folder)module_assert_type/ulong.c\
+	$(samples_folder)module_assert_type/llong.c\
+	$(samples_folder)module_assert_type/ullong.c\
+	$(samples_folder)module_assert_type/float.c\
+	$(samples_folder)module_assert_type/double.c\
+	$(samples_folder)module_assert_type/ldouble.c
+depends24=\
+	../samples/module_assert_type/main.c\
+	../samples/module_assert_type/char.c\
+	../samples/module_assert_type/short.c\
+	../samples/module_assert_type/ushort.c\
+	../samples/module_assert_type/int.c\
+	../samples/module_assert_type/uint.c\
+	../samples/module_assert_type/long.c\
+	../samples/module_assert_type/ulong.c\
+	../samples/module_assert_type/llong.c\
+	../samples/module_assert_type/ullong.c\
+	../samples/module_assert_type/float.c\
+	../samples/module_assert_type/double.c\
+	../samples/module_assert_type/ldouble.c
+name24=module_assert_type_sample
+
+module_assert_type_sample: $(depends24) $(lib_files)
+	mkdir -p $(bin_folder)$(name24) && \
+	cd $(bin_folder)$(name24) && \
+	$(CC) -o $(name24) $(files24) $(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_module_assert_type_sample:
+	rm -rf $(bin_folder)$(name24)
+
+#
 # make all
 #
 
@@ -604,6 +647,7 @@ all:\
 	check_operator_sample\
 	assert_type_sample\
 	test_assert_type_sample\
+	module_assert_type_sample\
 
 #
 # make clean
@@ -633,3 +677,4 @@ clean:\
 	clean_check_operator_sample\
 	clean_assert_type_sample\
 	clean_test_assert_type_sample\
+	clean_module_assert_type_sample\
