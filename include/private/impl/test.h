@@ -23,7 +23,7 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
 {
     if (test->testState != NBP_TEST_STATE_NOT_INITIALIZED) {
-        nbp_notify_printer_handle_error(NBP_ERROR_TEST_ALREADY_CALLED);
+        NBP_HANDLE_ERROR(NBP_ERROR_TEST_ALREADY_CALLED);
         return;
     }
 

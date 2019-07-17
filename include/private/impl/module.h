@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 {
     if (module->moduleState != NBP_MODULE_STATE_NOT_INITIALIZED) {
-        nbp_notify_printer_handle_error(NBP_ERROR_MODULE_ALREADY_CALLED);
+        NBP_HANDLE_ERROR(NBP_ERROR_MODULE_ALREADY_CALLED);
         return;
     }
 

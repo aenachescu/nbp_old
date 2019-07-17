@@ -40,19 +40,19 @@ int main(int argc, const char** argv)
     }
 
     if (nbpSchedulerInterface->init == 0x0) {
-        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_INIT_FUNC);
+        NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_INIT_FUNC);
         return -1;
     }
     if (nbpSchedulerInterface->uninit == 0x0) {
-        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_UNINIT_FUNC);
+        NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_UNINIT_FUNC);
         return -2;
     }
     if (nbpSchedulerInterface->run == 0x0) {
-        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_RUN_FUNC);
+        NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_RUN_FUNC);
         return -3;
     }
     if (nbpSchedulerInterface->addTest == 0x0) {
-        nbp_notify_printer_handle_error(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
+        NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
         return -4;
     }
 

@@ -65,19 +65,19 @@ static void nbp_printer_add_pass_msg(const char* cond, const char* msg,
 
     do {
         if (tmp == 0x0) {
-            nbp_notify_printer_handle_error(NBP_ERROR_ALLOC);
+            NBP_HANDLE_ERROR(NBP_ERROR_ALLOC);
             break;
         }
 
         tmp->cond = nbp_printer_duplicate_str(cond);
         if (tmp->cond == 0x0) {
-            nbp_notify_printer_handle_error(NBP_ERROR_ALLOC);
+            NBP_HANDLE_ERROR(NBP_ERROR_ALLOC);
             break;
         }
 
         tmp->msg = nbp_printer_duplicate_str(msg);
         if (tmp->msg == 0x0) {
-            nbp_notify_printer_handle_error(NBP_ERROR_ALLOC);
+            NBP_HANDLE_ERROR(NBP_ERROR_ALLOC);
         }
 
         tmp->line = line;

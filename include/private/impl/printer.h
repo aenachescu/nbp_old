@@ -36,7 +36,7 @@ const char* nbp_printer_operator_to_string(int op)
             return "<=";
     }
 
-    nbp_notify_printer_handle_error(NBP_ERROR_UNKNOWN_OPERATOR);
+    NBP_HANDLE_ERROR(NBP_ERROR_UNKNOWN_OPERATOR);
     return "unknown";
 }
 
