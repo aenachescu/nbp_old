@@ -491,6 +491,49 @@ clean_check_operator_sample:
 	rm -rf $(bin_folder)$(name21)
 
 #
+# assert_type sample
+#
+
+files21=\
+	$(samples_folder)assert_type/main.c\
+	$(samples_folder)assert_type/char.c\
+	$(samples_folder)assert_type/short.c\
+	$(samples_folder)assert_type/ushort.c\
+	$(samples_folder)assert_type/int.c\
+	$(samples_folder)assert_type/uint.c\
+	$(samples_folder)assert_type/long.c\
+	$(samples_folder)assert_type/ulong.c\
+	$(samples_folder)assert_type/llong.c\
+	$(samples_folder)assert_type/ullong.c\
+	$(samples_folder)assert_type/float.c\
+	$(samples_folder)assert_type/double.c\
+	$(samples_folder)assert_type/ldouble.c
+depends21=\
+	../samples/assert_type/main.c\
+	../samples/assert_type/char.c\
+	../samples/assert_type/short.c\
+	../samples/assert_type/ushort.c\
+	../samples/assert_type/int.c\
+	../samples/assert_type/uint.c\
+	../samples/assert_type/long.c\
+	../samples/assert_type/ulong.c\
+	../samples/assert_type/llong.c\
+	../samples/assert_type/ullong.c\
+	../samples/assert_type/float.c\
+	../samples/assert_type/double.c\
+	../samples/assert_type/ldouble.c
+name21=assert_type_sample
+
+assert_type_sample: $(depends21) $(lib_files)
+	mkdir -p $(bin_folder)$(name21) && \
+	cd $(bin_folder)$(name21) && \
+	$(CC) -o $(name21) $(files21) $(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_assert_type_sample:
+	rm -rf $(bin_folder)$(name21)
+
+#
 # make all
 #
 
@@ -516,6 +559,7 @@ all:\
 	test_and_module_name_sample\
 	check_type_sample\
 	check_operator_sample\
+	assert_type_sample\
 
 #
 # make clean
@@ -543,3 +587,4 @@ clean:\
 	clean_test_and_module_name_sample\
 	clean_check_type_sample\
 	clean_check_operator_sample\
+	clean_assert_type_sample\

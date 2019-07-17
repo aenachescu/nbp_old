@@ -1,0 +1,243 @@
+assert_type
+    assert_char
+        [32massert_char_eq[0m
+            [32mb == b passed (assert passed) (37)[0m
+            [32mb == b passed (assert passed) (38)[0m
+        [32massert_char_ne[0m
+            [32mb != a passed (assert passed) (46)[0m
+            [32mb != a passed (assert passed) (47)[0m
+        [32massert_char_gt[0m
+            [32mb > a passed (assert passed) (55)[0m
+            [32mb > a passed (assert passed) (56)[0m
+        [32massert_char_ge[0m
+            [32mb >= a passed (assert passed) (64)[0m
+            [32mb >= b passed (assert passed) (65)[0m
+        [32massert_char_lt[0m
+            [32mb < c passed (assert passed) (73)[0m
+            [32mb < c passed (assert passed) (74)[0m
+        [32massert_char_le[0m
+            [32mb <= c passed (assert passed) (82)[0m
+            [32mb <= b passed (assert passed) (83)[0m
+    assert_short
+        [32massert_short_eq[0m
+            [32m2 == 2 passed (assert passed) (39)[0m
+            [32m2 == 2 passed (assert passed) (40)[0m
+        [32massert_short_ne[0m
+            [32m2 != -32768 passed (assert passed) (48)[0m
+            [32m2 != -32768 passed (assert passed) (49)[0m
+        [32massert_short_gt[0m
+            [32m2 > -32768 passed (assert passed) (57)[0m
+            [32m2 > -32768 passed (assert passed) (58)[0m
+        [32massert_short_ge[0m
+            [32m2 >= -32768 passed (assert passed) (66)[0m
+            [32m2 >= 2 passed (assert passed) (67)[0m
+        [32massert_short_lt[0m
+            [32m2 < 32767 passed (assert passed) (75)[0m
+            [32m2 < 32767 passed (assert passed) (76)[0m
+        [32massert_short_le[0m
+            [32m2 <= 32767 passed (assert passed) (84)[0m
+            [32m2 <= 2 passed (assert passed) (85)[0m
+    assert_ushort
+        [32massert_ushort_eq[0m
+            [32m2 == 2 passed (assert passed) (39)[0m
+            [32m2 == 2 passed (assert passed) (40)[0m
+        [32massert_ushort_ne[0m
+            [32m2 != 0 passed (assert passed) (48)[0m
+            [32m2 != 0 passed (assert passed) (49)[0m
+        [32massert_ushort_gt[0m
+            [32m2 > 0 passed (assert passed) (57)[0m
+            [32m2 > 0 passed (assert passed) (58)[0m
+        [32massert_ushort_ge[0m
+            [32m2 >= 0 passed (assert passed) (66)[0m
+            [32m2 >= 2 passed (assert passed) (67)[0m
+        [32massert_ushort_lt[0m
+            [32m2 < 65535 passed (assert passed) (75)[0m
+            [32m2 < 65535 passed (assert passed) (76)[0m
+        [32massert_ushort_le[0m
+            [32m2 <= 65535 passed (assert passed) (84)[0m
+            [32m2 <= 2 passed (assert passed) (85)[0m
+    assert_int
+        [32massert_int_eq[0m
+            [32m2 == 2 passed (assert passed) (39)[0m
+            [32m2 == 2 passed (assert passed) (40)[0m
+        [32massert_int_ne[0m
+            [32m2 != -2147483648 passed (assert passed) (48)[0m
+            [32m2 != -2147483648 passed (assert passed) (49)[0m
+        [32massert_int_gt[0m
+            [32m2 > -2147483648 passed (assert passed) (57)[0m
+            [32m2 > -2147483648 passed (assert passed) (58)[0m
+        [32massert_int_ge[0m
+            [32m2 >= -2147483648 passed (assert passed) (66)[0m
+            [32m2 >= 2 passed (assert passed) (67)[0m
+        [32massert_int_lt[0m
+            [32m2 < 2147483647 passed (assert passed) (75)[0m
+            [32m2 < 2147483647 passed (assert passed) (76)[0m
+        [32massert_int_le[0m
+            [32m2 <= 2147483647 passed (assert passed) (84)[0m
+            [32m2 <= 2 passed (assert passed) (85)[0m
+    assert_uint
+        [32massert_uint_eq[0m
+            [32m2 == 2 passed (assert passed) (39)[0m
+            [32m2 == 2 passed (assert passed) (40)[0m
+        [32massert_uint_ne[0m
+            [32m2 != 0 passed (assert passed) (48)[0m
+            [32m2 != 0 passed (assert passed) (49)[0m
+        [32massert_uint_gt[0m
+            [32m2 > 0 passed (assert passed) (57)[0m
+            [32m2 > 0 passed (assert passed) (58)[0m
+        [32massert_uint_ge[0m
+            [32m2 >= 0 passed (assert passed) (66)[0m
+            [32m2 >= 2 passed (assert passed) (67)[0m
+        [32massert_uint_lt[0m
+            [32m2 < 4294967295 passed (assert passed) (75)[0m
+            [32m2 < 4294967295 passed (assert passed) (76)[0m
+        [32massert_uint_le[0m
+            [32m2 <= 4294967295 passed (assert passed) (84)[0m
+            [32m2 <= 2 passed (assert passed) (85)[0m
+    assert_long
+        [32massert_long_eq[0m
+            [32m2 == 2 passed (assert passed) (39)[0m
+            [32m2 == 2 passed (assert passed) (40)[0m
+        [32massert_long_ne[0m
+            [32m2 != -9223372036854775808 passed (assert passed) (48)[0m
+            [32m2 != -9223372036854775808 passed (assert passed) (49)[0m
+        [32massert_long_gt[0m
+            [32m2 > -9223372036854775808 passed (assert passed) (57)[0m
+            [32m2 > -9223372036854775808 passed (assert passed) (58)[0m
+        [32massert_long_ge[0m
+            [32m2 >= -9223372036854775808 passed (assert passed) (66)[0m
+            [32m2 >= 2 passed (assert passed) (67)[0m
+        [32massert_long_lt[0m
+            [32m2 < 9223372036854775807 passed (assert passed) (75)[0m
+            [32m2 < 9223372036854775807 passed (assert passed) (76)[0m
+        [32massert_long_le[0m
+            [32m2 <= 9223372036854775807 passed (assert passed) (84)[0m
+            [32m2 <= 2 passed (assert passed) (85)[0m
+    assert_ulong
+        [32massert_ulong_eq[0m
+            [32m2 == 2 passed (assert passed) (39)[0m
+            [32m2 == 2 passed (assert passed) (40)[0m
+        [32massert_ulong_ne[0m
+            [32m2 != 0 passed (assert passed) (48)[0m
+            [32m2 != 0 passed (assert passed) (49)[0m
+        [32massert_ulong_gt[0m
+            [32m2 > 0 passed (assert passed) (57)[0m
+            [32m2 > 0 passed (assert passed) (58)[0m
+        [32massert_ulong_ge[0m
+            [32m2 >= 0 passed (assert passed) (66)[0m
+            [32m2 >= 2 passed (assert passed) (67)[0m
+        [32massert_ulong_lt[0m
+            [32m2 < 18446744073709551615 passed (assert passed) (75)[0m
+            [32m2 < 18446744073709551615 passed (assert passed) (76)[0m
+        [32massert_ulong_le[0m
+            [32m2 <= 18446744073709551615 passed (assert passed) (84)[0m
+            [32m2 <= 2 passed (assert passed) (85)[0m
+    assert_llong
+        [32massert_llong_eq[0m
+            [32m2 == 2 passed (assert passed) (39)[0m
+            [32m2 == 2 passed (assert passed) (40)[0m
+        [32massert_llong_ne[0m
+            [32m2 != -9223372036854775808 passed (assert passed) (48)[0m
+            [32m2 != -9223372036854775808 passed (assert passed) (49)[0m
+        [32massert_llong_gt[0m
+            [32m2 > -9223372036854775808 passed (assert passed) (57)[0m
+            [32m2 > -9223372036854775808 passed (assert passed) (58)[0m
+        [32massert_llong_ge[0m
+            [32m2 >= -9223372036854775808 passed (assert passed) (66)[0m
+            [32m2 >= 2 passed (assert passed) (67)[0m
+        [32massert_llong_lt[0m
+            [32m2 < 9223372036854775807 passed (assert passed) (75)[0m
+            [32m2 < 9223372036854775807 passed (assert passed) (76)[0m
+        [32massert_llong_le[0m
+            [32m2 <= 9223372036854775807 passed (assert passed) (84)[0m
+            [32m2 <= 2 passed (assert passed) (85)[0m
+    assert_ullong
+        [32massert_ullong_eq[0m
+            [32m2 == 2 passed (assert passed) (39)[0m
+            [32m2 == 2 passed (assert passed) (40)[0m
+        [32massert_ullong_ne[0m
+            [32m2 != 0 passed (assert passed) (48)[0m
+            [32m2 != 0 passed (assert passed) (49)[0m
+        [32massert_ullong_gt[0m
+            [32m2 > 0 passed (assert passed) (57)[0m
+            [32m2 > 0 passed (assert passed) (58)[0m
+        [32massert_ullong_ge[0m
+            [32m2 >= 0 passed (assert passed) (66)[0m
+            [32m2 >= 2 passed (assert passed) (67)[0m
+        [32massert_ullong_lt[0m
+            [32m2 < 18446744073709551615 passed (assert passed) (75)[0m
+            [32m2 < 18446744073709551615 passed (assert passed) (76)[0m
+        [32massert_ullong_le[0m
+            [32m2 <= 18446744073709551615 passed (assert passed) (84)[0m
+            [32m2 <= 2 passed (assert passed) (85)[0m
+    assert_float
+        [32massert_float_eq[0m
+            [32m1.140000 == 1.140000 passed (assert passed) (39)[0m
+            [32m1.140000 == 1.140000 passed (assert passed) (40)[0m
+        [32massert_float_ne[0m
+            [32m1.140000 != 0.000000 passed (assert passed) (48)[0m
+            [32m1.140000 != 0.000000 passed (assert passed) (49)[0m
+        [32massert_float_gt[0m
+            [32m1.140000 > 0.000000 passed (assert passed) (57)[0m
+            [32m1.140000 > 0.000000 passed (assert passed) (58)[0m
+        [32massert_float_ge[0m
+            [32m1.140000 >= 0.000000 passed (assert passed) (66)[0m
+            [32m1.140000 >= 1.140000 passed (assert passed) (67)[0m
+        [32massert_float_lt[0m
+            [32m1.140000 < 340282346638528859811704183484516925440.000000 passed (assert passed) (75)[0m
+            [32m1.140000 < 340282346638528859811704183484516925440.000000 passed (assert passed) (76)[0m
+        [32massert_float_le[0m
+            [32m1.140000 <= 340282346638528859811704183484516925440.000000 passed (assert passed) (84)[0m
+            [32m1.140000 <= 1.140000 passed (assert passed) (85)[0m
+    assert_double
+        [32massert_double_eq[0m
+            [32m1.140000 == 1.140000 passed (assert passed) (39)[0m
+            [32m1.140000 == 1.140000 passed (assert passed) (40)[0m
+        [32massert_double_ne[0m
+            [32m1.140000 != 0.000000 passed (assert passed) (48)[0m
+            [32m1.140000 != 0.000000 passed (assert passed) (49)[0m
+        [32massert_double_gt[0m
+            [32m1.140000 > 0.000000 passed (assert passed) (57)[0m
+            [32m1.140000 > 0.000000 passed (assert passed) (58)[0m
+        [32massert_double_ge[0m
+            [32m1.140000 >= 0.000000 passed (assert passed) (66)[0m
+            [32m1.140000 >= 1.140000 passed (assert passed) (67)[0m
+        [32massert_double_lt[0m
+            [32m1.140000 < 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 passed (assert passed) (75)[0m
+            [32m1.140000 < 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 passed (assert passed) (76)[0m
+        [32massert_double_le[0m
+            [32m1.140000 <= 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 passed (assert passed) (84)[0m
+            [32m1.140000 <= 1.140000 passed (assert passed) (85)[0m
+    assert_ldouble
+        [32massert_ldouble_eq[0m
+            [32m1.140000 == 1.140000 passed (assert passed) (39)[0m
+            [32m1.140000 == 1.140000 passed (assert passed) (40)[0m
+        [32massert_ldouble_ne[0m
+            [32m1.140000 != 0.000000 passed (assert passed) (48)[0m
+            [32m1.140000 != 0.000000 passed (assert passed) (49)[0m
+        [32massert_ldouble_gt[0m
+            [32m1.140000 > 0.000000 passed (assert passed) (57)[0m
+            [32m1.140000 > 0.000000 passed (assert passed) (58)[0m
+        [32massert_ldouble_ge[0m
+            [32m1.140000 >= 0.000000 passed (assert passed) (66)[0m
+            [32m1.140000 >= 1.140000 passed (assert passed) (67)[0m
+        [32massert_ldouble_lt[0m
+            [32m1.140000 < 1189731495357231765021263853030970205169063322294624200440323733891737005522970722616410290336528882853545697807495577314427443153670288434198125573853743678673593200706973263201915918282961524365529510646791086614311790632169778838896134786560600399148753433211454911160088679845154866512852340149773037600009125479393966223151383622417838542743917838138717805889487540575168226347659235576974805113725649020884855222494791399377585026011773549180099796226026859508558883608159846900235645132346594476384939859276456284579661772930407806609229102715046085388087959327781622986827547830768080040150694942303411728957777100335714010559775242124057347007386251660110828379119623008469277200965153500208474470792443848545912886723000619085126472111951361467527633519562927597957250278002980795904193139603021470997035276467445530922022679656280991498232083329641241038509239184734786121921697210543484287048353408113042573002216421348917347174234800714880751002064390517234247656004721768096486107994943415703476320 passed (assert passed) (75)[0m
+            [32m1.140000 < 1189731495357231765021263853030970205169063322294624200440323733891737005522970722616410290336528882853545697807495577314427443153670288434198125573853743678673593200706973263201915918282961524365529510646791086614311790632169778838896134786560600399148753433211454911160088679845154866512852340149773037600009125479393966223151383622417838542743917838138717805889487540575168226347659235576974805113725649020884855222494791399377585026011773549180099796226026859508558883608159846900235645132346594476384939859276456284579661772930407806609229102715046085388087959327781622986827547830768080040150694942303411728957777100335714010559775242124057347007386251660110828379119623008469277200965153500208474470792443848545912886723000619085126472111951361467527633519562927597957250278002980795904193139603021470997035276467445530922022679656280991498232083329641241038509239184734786121921697210543484287048353408113042573002216421348917347174234800714880751002064390517234247656004721768096486107994943415703476320 passed (assert passed) (76)[0m
+        [32massert_ldouble_le[0m
+            [32m1.140000 <= 118973149535723176502126385303097020516906332229462420044032373389173700552297072261641029033652888285354569780749557731442744315367028843419812557385374367867359320070697326320191591828296152436552951064679108661431179063216977883889613478656060039914875343321145491116008867984515486651285234014977303760000912547939396622315138362241783854274391783813871780588948754057516822634765923557697480511372564902088485522249479139937758502601177354918009979622602685950855888360815984690023564513234659447638493985927645628457966177293040780660922910271504608538808795932778162298682754783076808004015069494230341172895777710033571401055977524212405734700738625166011082837911962300846927720096515350020847447079244384854591288672300061908512647211195136146752763351956292759795725027800298079590419313960302147099703527646744553092202267965628099149823208332964124103850923918473478612192169721054348428704835340811304257300221642134891734717423480071488075100206439051723424765600472176809648610799494341570347632 passed (assert passed) (84)[0m
+            [32m1.140000 <= 1.140000 passed (assert passed) (85)[0m
+Passed  modules: [32m13[0m/13
+Failed  modules: [32m0[0m/13
+Skipped modules: [32m0[0m/13
+Passed  tests: [32m72[0m/72
+Failed  tests: [32m0[0m/72
+Skipped tests: [32m0[0m/72
+Passed checks: [32m0[0m/0
+Failed checks: [32m0[0m/0
+Passed test asserts: [32m0[0m/0
+Failed test asserts: [32m0[0m/0
+Passed module asserts: [32m0[0m/0
+Failed module asserts: [32m0[0m/0
+Passed asserts: [32m288[0m/288
+Failed asserts: [32m0[0m/288
