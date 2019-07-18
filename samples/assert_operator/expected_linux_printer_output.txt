@@ -1,0 +1,33 @@
+assert_operator
+    [32massert_operator_eq[0m
+        [32mget_int() == int_ passed (assert passed) (42)[0m
+        [32mget_int() == int_ passed (assert passed) (43)[0m
+    [32massert_operator_ne[0m
+        [32mget_int() != int_min passed (assert passed) (51)[0m
+        [32mget_int() != int_min passed (assert passed) (52)[0m
+    [32massert_operator_gt[0m
+        [32mget_int() > int_min passed (assert passed) (60)[0m
+        [32mget_int() > int_min passed (assert passed) (61)[0m
+    [32massert_operator_ge[0m
+        [32mget_int() >= int_min passed (assert passed) (69)[0m
+        [32mget_int() >= int_ passed (assert passed) (70)[0m
+    [32massert_operator_lt[0m
+        [32mget_int() < int_max passed (assert passed) (78)[0m
+        [32mget_int() < int_max passed (assert passed) (79)[0m
+    [32massert_operator_le[0m
+        [32mget_int() <= 0x7fffffff passed (assert passed) (87)[0m
+        [32mget_int() <= int_ passed (assert passed) (88)[0m
+Passed  modules: [32m1[0m/1
+Failed  modules: [32m0[0m/1
+Skipped modules: [32m0[0m/1
+Passed  tests: [32m6[0m/6
+Failed  tests: [32m0[0m/6
+Skipped tests: [32m0[0m/6
+Passed checks: [32m0[0m/0
+Failed checks: [32m0[0m/0
+Passed test asserts: [32m0[0m/0
+Failed test asserts: [32m0[0m/0
+Passed module asserts: [32m0[0m/0
+Failed module asserts: [32m0[0m/0
+Passed asserts: [32m24[0m/24
+Failed asserts: [32m0[0m/24
