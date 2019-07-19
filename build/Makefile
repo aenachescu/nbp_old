@@ -654,6 +654,23 @@ clean_test_assert_operator_sample:
 	rm -rf $(bin_folder)$(name26)
 
 #
+# module_assert_operator sample
+#
+
+files27=$(samples_folder)module_assert_operator/main.c
+depends27=../samples/module_assert_operator/main.c
+name27=module_assert_operator_sample
+
+module_assert_operator_sample: $(depends27) $(lib_files)
+	mkdir -p $(bin_folder)$(name27) && \
+	cd $(bin_folder)$(name27) && \
+	$(CC) -o $(name27) $(files27) $(lib_folder) $(CFLAGS) && \
+	cd ../../build
+
+clean_module_assert_operator_sample:
+	rm -rf $(bin_folder)$(name27)
+
+#
 # make all
 #
 
@@ -684,6 +701,7 @@ all:\
 	module_assert_type_sample\
 	assert_operator_sample\
 	test_assert_operator_sample\
+	module_assert_operator_sample\
 
 #
 # make clean
@@ -716,3 +734,4 @@ clean:\
 	clean_module_assert_type_sample\
 	clean_assert_operator_sample\
 	clean_test_assert_operator_sample\
+	clean_module_assert_operator_sample\

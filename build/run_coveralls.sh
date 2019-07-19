@@ -44,6 +44,7 @@ declare -a arr=(
     "module_assert_type_sample"
     "assert_operator_sample"
     "test_assert_operator_sample"
+    "module_assert_operator_sample"
 )
 
 files=""
