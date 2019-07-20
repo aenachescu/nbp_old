@@ -64,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_HANDLE_ERROR(func)                                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        int errCode                                                            \
+        nbp_error_t err                                                        \
     )
 
 /*
@@ -1932,6 +1932,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_GET_FAILED_ASSERTS_NUM() failedAssertsNum
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_ERROR() err
 
 #endif // end if NBP_PRIVATE_API_PRINTER_H
 

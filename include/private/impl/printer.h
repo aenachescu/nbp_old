@@ -40,11 +40,11 @@ const char* nbp_printer_operator_to_string(int op)
     return "unknown";
 }
 
-void nbp_notify_printer_handle_error(int errCode)
+void nbp_notify_printer_handle_error(nbp_error_t err)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->handleError != 0x0) {
-            nbpPrinterInterfaces[i]->handleError(errCode);
+            nbpPrinterInterfaces[i]->handleError(err);
         }
     }
 }

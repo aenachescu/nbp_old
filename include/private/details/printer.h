@@ -40,7 +40,7 @@ void nbp_notify_printer_module_end(
 );
 
 void nbp_notify_printer_handle_error(
-    int /* error code */
+    nbp_error_t /* error context */
 );
 
 void nbp_notify_printer_before_run(

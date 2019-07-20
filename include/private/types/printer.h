@@ -35,7 +35,7 @@ typedef int (*nbp_printer_uninit_pfn_t)(
 );
 
 typedef void (*nbp_printer_handle_error_pfn_t)(
-    int /* error code */
+    nbp_error_t /* error context */
 );
 
 typedef void (*nbp_printer_test_begin_pfn_t)(

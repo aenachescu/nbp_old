@@ -19,6 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_TYPES_ERRORS_H
 #define NBP_PRIVATE_TYPES_ERRORS_H
 
+#define NBP_ERROR_CONTEXT_EMPTY                                 (int) 0
+#define NBP_ERROR_CONTEXT_STRING                                (int) 1
+#define NBP_ERROR_CONTEXT_CUSTOM                                (int) 2
+
 #define NBP_ERROR_ALLOC                                         (int) 1
 #define NBP_ERROR_TEST_ALREADY_CALLED                           (int) 2
 #define NBP_ERROR_MODULE_ALREADY_CALLED                         (int) 3
@@ -27,5 +31,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_ERROR_SCHEDULER_NO_RUN_FUNC                         (int) 6
 #define NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC                    (int) 7
 #define NBP_ERROR_UNKNOWN_OPERATOR                              (int) 8
+
+struct nbp_error_t {
+    int errorCode;
+    int contextType;
+    union {
+        const char* contextString;
+        void* contextCustom;
+    };
+};
+typedef struct nbp_error_t nbp_error_t;
 
 #endif // end if NBP_PRIVATE_TYPES_ERRORS_H
