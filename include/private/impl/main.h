@@ -39,24 +39,18 @@ int main(int argc, const char** argv)
         }
     }
 
-    if (nbpSchedulerInterface->init == 0x0) {
-        NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_INIT_FUNC);
-        return -1;
-    }
-    if (nbpSchedulerInterface->uninit == 0x0) {
-        NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_UNINIT_FUNC);
-        return -2;
-    }
     if (nbpSchedulerInterface->run == 0x0) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_RUN_FUNC);
-        return -3;
+        return -1;
     }
     if (nbpSchedulerInterface->addTest == 0x0) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
-        return -4;
+        return -2;
     }
 
-    nbpSchedulerInterface->init();
+    if (nbpSchedulerInterface->init != 0x0) {
+        nbpSchedulerInterface->init();
+    }
 
     nbp_call_module(nbpMainModule, 0x0);
 
@@ -96,7 +90,9 @@ int main(int argc, const char** argv)
         NBP_MODULE_GET_FAILED_ASSERTS_NUM(nbpMainModule)
     );
 
-    nbpSchedulerInterface->uninit();
+    if (nbpSchedulerInterface->uninit != 0x0) {
+        nbpSchedulerInterface->uninit();
+    }
 
     int ret = 0;
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {

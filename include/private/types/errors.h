@@ -26,11 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_ERROR_ALLOC                                         (int) 1
 #define NBP_ERROR_TEST_ALREADY_CALLED                           (int) 2
 #define NBP_ERROR_MODULE_ALREADY_CALLED                         (int) 3
-#define NBP_ERROR_SCHEDULER_NO_INIT_FUNC                        (int) 4
-#define NBP_ERROR_SCHEDULER_NO_UNINIT_FUNC                      (int) 5
-#define NBP_ERROR_SCHEDULER_NO_RUN_FUNC                         (int) 6
-#define NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC                    (int) 7
-#define NBP_ERROR_UNKNOWN_OPERATOR                              (int) 8
+#define NBP_ERROR_SCHEDULER_NO_RUN_FUNC                         (int) 4
+#define NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC                    (int) 5
+#define NBP_ERROR_UNKNOWN_OPERATOR                              (int) 6
 
 struct nbp_error_t {
     int errorCode;

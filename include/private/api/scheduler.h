@@ -34,6 +34,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_SCHEDULER_NO_FUNC_INIT                                             \
+    .init = 0x0
+
+/*
+ * TODO: add docs
+ */
 #define NBP_SCHEDULER_FUNC_UNINIT(func)                                        \
     static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(void)
 
@@ -42,6 +48,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_SCHEDULER_USE_FUNC_UNINIT(func)                                    \
     .uninit = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_NO_FUNC_UNINIT                                           \
+    .uninit = 0x0
 
 /*
  * TODO: add docs
