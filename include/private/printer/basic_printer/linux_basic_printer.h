@@ -65,19 +65,28 @@ static void nbp_printer_add_pass_msg(const char* cond, const char* msg,
 
     do {
         if (tmp == 0x0) {
-            NBP_HANDLE_ERROR(NBP_ERROR_ALLOC);
+            NBP_HANDLE_ERROR_CTX_STRING(
+                NBP_ERROR_ALLOC,
+                "could not allocate NbpPrinterPassMsgList"
+            );
             break;
         }
 
         tmp->cond = nbp_printer_duplicate_str(cond);
         if (tmp->cond == 0x0) {
-            NBP_HANDLE_ERROR(NBP_ERROR_ALLOC);
+            NBP_HANDLE_ERROR_CTX_STRING(
+                NBP_ERROR_ALLOC,
+                "could not duplicate condition"
+            );
             break;
         }
 
         tmp->msg = nbp_printer_duplicate_str(msg);
         if (tmp->msg == 0x0) {
-            NBP_HANDLE_ERROR(NBP_ERROR_ALLOC);
+            NBP_HANDLE_ERROR_CTX_STRING(
+                NBP_ERROR_ALLOC,
+                "could not duplicate pass message"
+            );
         }
 
         tmp->line = line;
