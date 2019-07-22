@@ -122,6 +122,7 @@ run_test module_assert_type_sample 0
 run_test assert_operator_sample 0
 run_test test_assert_operator_sample 0
 run_test module_assert_operator_sample 0
+run_test test_assert_sample 1
 
 cd ../build
 
