@@ -202,7 +202,7 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
 {
     extern int nbpSchedulerRunEnabled;
     if (nbpSchedulerRunEnabled != 1) {
-        // TODO: notify printer
+        NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_RUN_DISABLED);
         return;
     }
 
@@ -212,7 +212,10 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
     }
 
     if (test->testState != NBP_TEST_STATE_READY) {
-        // TODO: notify printer
+        NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_INVALID_TEST_STATE,
+            "test is not ready"
+        )
         return;
     }
 
