@@ -21,8 +21,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../sample_utils.h"
 
-NBP_MAIN_MODULE(test_assert_sample)
+NBP_BEFORE_TEST(beforeTest)
 {
+    write_message_to_file_2("before test", NBP_GET_TEST_NAME(NBP_THIS_TEST));
+}
+
+NBP_AFTER_TEST(afterTest)
+{
+    write_message_to_file_2("after test", NBP_GET_TEST_NAME(NBP_THIS_TEST));
+}
+
+NBP_SETUP_MODULE(setupModule)
+{
+    write_message_to_file_2(
+        "setup module",
+        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+    );
+}
+
+NBP_TEARDOWN_MODULE(teardownModule)
+{
+    write_message_to_file_2(
+        "teardown module",
+        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+    );
+}
+
+NBP_MAIN_MODULE_FIXTURES(test_assert_sample, setupModule, teardownModule)
+{
+    NBP_CALL_BEFORE_TEST(beforeTest);
+    NBP_CALL_AFTER_TEST(afterTest);
+
     NBP_CALL_TEST(test1);
     NBP_CALL_MODULE(module1);
     NBP_CALL_TEST(test2);
@@ -30,47 +59,65 @@ NBP_MAIN_MODULE(test_assert_sample)
     NBP_CALL_TEST(test3);
 }
 
-NBP_MODULE(module1)
+NBP_MODULE_FIXTURES(module1, setupModule, teardownModule)
 {
+    NBP_CALL_BEFORE_TEST(beforeTest);
+    NBP_CALL_AFTER_TEST(afterTest);
+
     NBP_CALL_MODULE(submodule1);
     NBP_CALL_TEST(test4);
     NBP_CALL_MODULE(submodule2);
 }
 
-NBP_MODULE(module2)
+NBP_MODULE_FIXTURES(module2, setupModule, teardownModule)
 {
+    NBP_CALL_BEFORE_TEST(beforeTest);
+    NBP_CALL_AFTER_TEST(afterTest);
+
     NBP_CALL_TEST(test5);
     NBP_CALL_MODULE(submodule3);
     NBP_CALL_MODULE(submodule4);
     NBP_CALL_TEST(test6);
 }
 
-NBP_MODULE(submodule1)
+NBP_MODULE_FIXTURES(submodule1, setupModule, teardownModule)
 {
+    NBP_CALL_BEFORE_TEST(beforeTest);
+    NBP_CALL_AFTER_TEST(afterTest);
+
     NBP_CALL_TEST(test7);
     NBP_CALL_TEST(test8);
     NBP_CALL_TEST(test9);
     NBP_CALL_TEST(test10);
 }
 
-NBP_MODULE(submodule2)
+NBP_MODULE_FIXTURES(submodule2, setupModule, teardownModule)
 {
+    NBP_CALL_BEFORE_TEST(beforeTest);
+    NBP_CALL_AFTER_TEST(afterTest);
+
     NBP_CALL_TEST(test11);
     NBP_CALL_TEST(test12);
     NBP_CALL_TEST(test13);
     NBP_CALL_TEST(test14);
 }
 
-NBP_MODULE(submodule3)
+NBP_MODULE_FIXTURES(submodule3, setupModule, teardownModule)
 {
+    NBP_CALL_BEFORE_TEST(beforeTest);
+    NBP_CALL_AFTER_TEST(afterTest);
+
     NBP_CALL_TEST(test15);
     NBP_CALL_TEST(test16);
     NBP_CALL_TEST(test17);
     NBP_CALL_TEST(test18);
 }
 
-NBP_MODULE(submodule4)
+NBP_MODULE_FIXTURES(submodule4, setupModule, teardownModule)
 {
+    NBP_CALL_BEFORE_TEST(beforeTest);
+    NBP_CALL_AFTER_TEST(afterTest);
+
     NBP_CALL_TEST(test19);
     NBP_CALL_TEST(test20);
     NBP_CALL_TEST(test21);
