@@ -29,6 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_ERROR_SCHEDULER_NO_RUN_FUNC                         (int) 4
 #define NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC                    (int) 5
 #define NBP_ERROR_UNKNOWN_OPERATOR                              (int) 6
+#define NBP_ERROR_SCHEDULER_RUN_DISABLED                        (int) 7
+#define NBP_ERROR_INVALID_TEST_STATE                            (int) 8
 
 struct nbp_error_t {
     int errorCode;
