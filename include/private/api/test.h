@@ -137,6 +137,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_GET_TEST_STATE(test) test->testState
+
+/*
+ * TODO: add docs
+ */
 #define NBP_TEST_GET_CHECKS_NUM(test)                                          \
     test->checks.numPassed + test->checks.numFailed
 
