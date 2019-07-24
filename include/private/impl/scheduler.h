@@ -198,6 +198,26 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
     }
 }
 
+void nbp_scheduler_skip_module(nbp_module_details_t* module)
+{
+    nbp_test_details_t* testIdx = module->firstTest;
+    while (testIdx != 0x0) {
+        if (testIdx->testState == NBP_TEST_STATE_READY) {
+            testIdx->testState = NBP_TEST_STATE_SKIPPED;
+        }
+        testIdx = testIdx->next;
+    }
+
+    nbp_module_details_t* moduleIdx = module->firstModule;
+    while (moduleIdx != 0x0) {
+        if (moduleIdx->moduleState == NBP_MODULE_STATE_READY) {
+            moduleIdx->moduleState = NBP_MODULE_STATE_SKIPPED;
+            nbp_scheduler_skip_module(moduleIdx);
+        }
+        moduleIdx = moduleIdx->next;
+    }
+}
+
 void nbp_scheduler_run_test(nbp_test_details_t* test)
 {
     extern int nbpSchedulerRunEnabled;
@@ -230,6 +250,12 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
     }
 
     test->testFunc(test);
+
+    if (test->asserts.numFailed != 0) {
+        nbp_scheduler_skip_module(nbpMainModule);
+    } else if (test->moduleAsserts.numFailed != 0) {
+        nbp_scheduler_skip_module(test->module);
+    }
 
     if (test->afterTestFunc) {
         test->afterTestFunc(test);
