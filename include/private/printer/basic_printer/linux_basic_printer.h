@@ -215,7 +215,13 @@ NBP_PRINTER_FUNC_UNINIT(nbp_basic_printer_uninit)
 
 NBP_PRINTER_FUNC_TEST_END(nbp_basic_printer_test_end)
 {
-    if (nbpPrinterTestFailed == 0) {
+    if (NBP_GET_TEST_STATE(NBP_THIS_TEST) == NBP_TEST_STATE_SKIPPED) {
+        nbp_printer_print_depth(NBP_GET_TEST_DEPTH(NBP_THIS_TEST));
+        printf(
+            NBP_PRIVATE_COLOR_YELLOW "%s" NBP_PRIVATE_COLOR_NORMAL "\n",
+            NBP_GET_TEST_NAME(NBP_THIS_TEST)
+        );
+    } else if (nbpPrinterTestFailed == 0) {
         nbp_printer_print_depth(NBP_GET_TEST_DEPTH(NBP_THIS_TEST));
         printf(
             NBP_PRIVATE_COLOR_GREEN "%s" NBP_PRIVATE_COLOR_NORMAL "\n",
