@@ -19,12 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_TYPES_TEST_H
 #define NBP_PRIVATE_TYPES_TEST_H
 
-#define NBP_TEST_STATE_NOT_INITIALIZED  0
-#define NBP_TEST_STATE_READY            1
-#define NBP_TEST_STATE_RUNNING          2
-#define NBP_TEST_STATE_PASSED           3
-#define NBP_TEST_STATE_FAILED           4
-#define NBP_TEST_STATE_SKIPPED          5
+#define NBP_TEST_STATE_NOT_INITIALIZED  (unsigned int) 0
+#define NBP_TEST_STATE_READY            (unsigned int) 1
+#define NBP_TEST_STATE_RUNNING          (unsigned int) 2
+#define NBP_TEST_STATE_PASSED           (unsigned int) 3
+#define NBP_TEST_STATE_FAILED           (unsigned int) 4
+#define NBP_TEST_STATE_SKIPPED          (unsigned int) 5
 
 struct nbp_test_details_t;
 
@@ -51,11 +51,11 @@ struct nbp_test_details_t {
     struct nbp_test_details_t* next;
     struct nbp_test_details_t* prev;
 
-    unsigned int testState;
+    NBP_ATOMIC_UINT_TYPE testState;
 
     struct {
-        unsigned int numPassed;
-        unsigned int numFailed;
+        NBP_ATOMIC_UINT_TYPE numPassed;
+        NBP_ATOMIC_UINT_TYPE numFailed;
     } checks, testAsserts, moduleAsserts, asserts;
 };
 typedef struct nbp_test_details_t nbp_test_details_t;

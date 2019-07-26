@@ -19,12 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_TYPES_MODULE_H
 #define NBP_PRIVATE_TYPES_MODULE_H
 
-#define NBP_MODULE_STATE_NOT_INITIALIZED  0
-#define NBP_MODULE_STATE_READY            1
-#define NBP_MODULE_STATE_RUNNING          2
-#define NBP_MODULE_STATE_PASSED           3
-#define NBP_MODULE_STATE_FAILED           4
-#define NBP_MODULE_STATE_SKIPPED          5
+#define NBP_MODULE_STATE_NOT_INITIALIZED  (unsigned int) 0
+#define NBP_MODULE_STATE_READY            (unsigned int) 1
+#define NBP_MODULE_STATE_RUNNING          (unsigned int) 2
+#define NBP_MODULE_STATE_PASSED           (unsigned int) 3
+#define NBP_MODULE_STATE_FAILED           (unsigned int) 4
+#define NBP_MODULE_STATE_SKIPPED          (unsigned int) 5
 
 struct nbp_module_details_t;
 
@@ -60,26 +60,27 @@ struct nbp_module_details_t {
     struct nbp_module_details_t* prev;
 
     unsigned int depth;
-    unsigned int moduleState;
+    NBP_EVENT_TYPE event;
+    NBP_ATOMIC_UINT_TYPE moduleState;
 
     struct {
-        unsigned int num;
-        unsigned int numPassed;
-        unsigned int numFailed;
-        unsigned int numSkipped;
+        NBP_ATOMIC_UINT_TYPE num;
+        NBP_ATOMIC_UINT_TYPE numPassed;
+        NBP_ATOMIC_UINT_TYPE numFailed;
+        NBP_ATOMIC_UINT_TYPE numSkipped;
     } ownTests, subTests;
 
     struct {
-        unsigned int num;
-        unsigned int numPassed;
-        unsigned int numFailed;
-        unsigned int numSkipped;
+        NBP_ATOMIC_UINT_TYPE num;
+        NBP_ATOMIC_UINT_TYPE numPassed;
+        NBP_ATOMIC_UINT_TYPE numFailed;
+        NBP_ATOMIC_UINT_TYPE numSkipped;
     } ownModules, subModules;
 
     struct {
         struct {
-            unsigned int numPassed;
-            unsigned int numFailed;
+            NBP_ATOMIC_UINT_TYPE numPassed;
+            NBP_ATOMIC_UINT_TYPE numFailed;
         } checks, testAsserts, moduleAsserts, asserts;
     } own, sub;
 };
