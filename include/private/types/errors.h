@@ -31,6 +31,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_ERROR_UNKNOWN_OPERATOR                              (int) 6
 #define NBP_ERROR_SCHEDULER_RUN_DISABLED                        (int) 7
 #define NBP_ERROR_INVALID_TEST_STATE                            (int) 8
+#define NBP_ERROR_INVALID_MODULE_STATE                          (int) 9
+#define NBP_ERROR_FAILED_TO_INIT_EVENT                          (int) 10
 
 struct nbp_error_t {
     int errorCode;
