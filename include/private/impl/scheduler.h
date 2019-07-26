@@ -160,23 +160,66 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
     test->module->ownTests.numFailed++;
 }
 
-static void nbp_scheduler_setup_module(nbp_module_details_t* module)
+static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
 {
     if (module == 0x0) {
-        return;
+        return NBP_MODULE_STATE_RUNNING;
     }
 
-    if (module->moduleState == NBP_MODULE_STATE_RUNNING) {
-        return;
+    unsigned int state = NBP_ATOMIC_UINT_CAS(
+        &module->moduleState,
+        NBP_MODULE_STATE_READY,
+        NBP_MODULE_STATE_RUNNING
+    );
+
+    if (state == NBP_MODULE_STATE_SKIPPED) {
+        return state;
     }
 
-    nbp_scheduler_setup_module(module->parent);
+    if (state == NBP_MODULE_STATE_RUNNING) {
+        NBP_WAIT_EVENT(module->event);
 
-    module->moduleState = NBP_MODULE_STATE_RUNNING;
-    nbp_notify_printer_module_begin(module);
-    if (module->setup) {
-        module->setup(module);
+        state = NBP_ATOMIC_LOAD(&module->moduleState);
+        if (state == NBP_MODULE_STATE_RUNNING ||
+            state == NBP_MODULE_STATE_SKIPPED) {
+            return state;
+        }
+
+        NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_INVALID_MODULE_STATE,
+            "module is not running or skipped"
+        )
+        // TODO: exit!!!
     }
+
+    if (state == NBP_MODULE_STATE_READY) {
+        unsigned int parentState = nbp_scheduler_setup_module(module->parent);
+        if (parentState == NBP_MODULE_STATE_RUNNING) {
+            nbp_notify_printer_module_begin(module);
+            if (module->setup) {
+                module->setup(module);
+            }
+            NBP_SIGNAL_EVENT(module->event);
+            return NBP_MODULE_STATE_RUNNING;
+        }
+
+        if (parentState == NBP_MODULE_STATE_SKIPPED) {
+            return NBP_MODULE_STATE_SKIPPED;
+        }
+
+        NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_INVALID_MODULE_STATE,
+            "parent is not running or skipped"
+        )
+        // TODO: exit!!!!
+    }
+
+    NBP_HANDLE_ERROR_CTX_STRING(
+        NBP_ERROR_INVALID_MODULE_STATE,
+        "module is not running, skipped or ready"
+    );
+    // TODO: exit!!!
+    return state;
 }
 
 static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
@@ -202,18 +245,21 @@ void nbp_scheduler_skip_module(nbp_module_details_t* module)
 {
     nbp_test_details_t* testIdx = module->firstTest;
     while (testIdx != 0x0) {
-        if (testIdx->testState == NBP_TEST_STATE_READY) {
-            testIdx->testState = NBP_TEST_STATE_SKIPPED;
-        }
+        NBP_ATOMIC_UINT_CAS(
+            &testIdx->testState,
+            NBP_TEST_STATE_READY,
+            NBP_TEST_STATE_SKIPPED
+        );
         testIdx = testIdx->next;
     }
 
     nbp_module_details_t* moduleIdx = module->firstModule;
     while (moduleIdx != 0x0) {
-        if (moduleIdx->moduleState == NBP_MODULE_STATE_READY) {
-            moduleIdx->moduleState = NBP_MODULE_STATE_SKIPPED;
-            nbp_scheduler_skip_module(moduleIdx);
-        }
+        NBP_ATOMIC_UINT_CAS(
+            &moduleIdx->moduleState,
+            NBP_MODULE_STATE_READY,
+            NBP_MODULE_STATE_SKIPPED
+        );
         moduleIdx = moduleIdx->next;
     }
 }
@@ -226,47 +272,56 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
         return;
     }
 
-    if (test->testState == NBP_TEST_STATE_SKIPPED) {
-        // TODO
+    unsigned int old = NBP_ATOMIC_UINT_CAS(
+        &test->testState,
+        NBP_TEST_STATE_READY,
+        NBP_TEST_STATE_RUNNING
+    );
+
+    switch (old) {
+        case NBP_TEST_STATE_RUNNING:
+            break;
+        case NBP_TEST_STATE_SKIPPED:
+            break;
+
+        default:
+            NBP_HANDLE_ERROR_CTX_STRING(
+                NBP_ERROR_INVALID_TEST_STATE,
+                "test is not ready or skipped"
+            )
+            break;
+    }
+
+    if (old == NBP_TEST_STATE_READY) {
+        // now running
+        nbp_scheduler_setup_module(test->module);
+
+        nbp_notify_printer_test_begin(test);
+
+        if (test->beforeTestFunc) {
+            test->beforeTestFunc(test);
+        }
+
+        test->testFunc(test);
+
+        if (test->asserts.numFailed != 0) {
+            nbp_scheduler_skip_module(nbpMainModule);
+        } else if (test->moduleAsserts.numFailed != 0) {
+            nbp_scheduler_skip_module(test->module);
+        }
+
+        if (test->afterTestFunc) {
+            test->afterTestFunc(test);
+        }
+
+        nbp_scheduler_update_test_state(test);
+        nbp_scheduler_update_module_stats(test);
+
+        nbp_notify_printer_test_end(test);
+
+        nbp_scheduler_teardown_module(test->module);
         return;
     }
-
-    if (test->testState != NBP_TEST_STATE_READY) {
-        NBP_HANDLE_ERROR_CTX_STRING(
-            NBP_ERROR_INVALID_TEST_STATE,
-            "test is not ready"
-        )
-        return;
-    }
-
-    nbp_scheduler_setup_module(test->module);
-
-    test->testState = NBP_TEST_STATE_RUNNING;
-
-    nbp_notify_printer_test_begin(test);
-
-    if (test->beforeTestFunc) {
-        test->beforeTestFunc(test);
-    }
-
-    test->testFunc(test);
-
-    if (test->asserts.numFailed != 0) {
-        nbp_scheduler_skip_module(nbpMainModule);
-    } else if (test->moduleAsserts.numFailed != 0) {
-        nbp_scheduler_skip_module(test->module);
-    }
-
-    if (test->afterTestFunc) {
-        test->afterTestFunc(test);
-    }
-
-    nbp_scheduler_update_test_state(test);
-    nbp_scheduler_update_module_stats(test);
-
-    nbp_notify_printer_test_end(test);
-
-    nbp_scheduler_teardown_module(test->module);
 }
 
 #endif // end if NBP_PRIVATE_IMPL_SCHEDULER_H
