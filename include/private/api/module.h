@@ -66,6 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .next              = 0x0,                                              \
         .prev              = 0x0,                                              \
         .depth             = 0,                                                \
+        .event             = NBP_EVENT_DEFAULT_VALUE,                          \
         .moduleState       = NBP_MODULE_STATE_NOT_INITIALIZED,                 \
         .ownTests = {                                                          \
             .num           = 0,                                                \
