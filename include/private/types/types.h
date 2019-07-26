@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_PRIVATE_TYPES_H
 
 #include "errors.h"
+#include "sync.h"
 #include "test.h"
 #include "module.h"
 #include "scheduler.h"
