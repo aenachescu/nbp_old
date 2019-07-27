@@ -22,16 +22,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
 {
-    if (test->testState != NBP_TEST_STATE_NOT_INITIALIZED) {
+    unsigned int state = NBP_ATOMIC_UINT_CAS(
+        &test->testState,
+        NBP_TEST_STATE_NOT_INITIALIZED,
+        NBP_TEST_STATE_READY
+    );
+    if (state != NBP_TEST_STATE_NOT_INITIALIZED) {
         NBP_HANDLE_ERROR(NBP_ERROR_TEST_ALREADY_CALLED);
         return;
     }
 
-    test->testState = NBP_TEST_STATE_READY;
     test->module = module;
     test->beforeTestFunc = beforeTest;
     test->afterTestFunc = afterTest;
-    test->module->ownTests.num++;
+    NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.num, 1);
+    NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->taskNum, 1);
 
     if (module->firstTest == 0x0) {
         module->firstTest = test;

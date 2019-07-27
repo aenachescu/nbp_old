@@ -21,16 +21,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 {
-    if (module->moduleState != NBP_MODULE_STATE_NOT_INITIALIZED) {
+    unsigned int state = NBP_ATOMIC_UINT_CAS(
+        &module->moduleState,
+        NBP_MODULE_STATE_NOT_INITIALIZED,
+        NBP_MODULE_STATE_READY
+    );
+    if (state != NBP_MODULE_STATE_NOT_INITIALIZED) {
         NBP_HANDLE_ERROR(NBP_ERROR_MODULE_ALREADY_CALLED);
         return;
     }
 
-    module->moduleState = NBP_MODULE_STATE_READY;
     module->parent = parent;
 
     if (parent != 0x0) {
-        parent->ownModules.num++;
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&parent->ownModules.num, 1);
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&parent->taskNum, 1);
         if (parent->firstModule == 0x0) {
             parent->firstModule = module;
             parent->lastModule = module;
@@ -47,8 +52,22 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 
     nbp_module_details_t* idx = module->firstModule;
     while (idx != 0x0) {
-        module->subModules.num += idx->ownModules.num + idx->subModules.num;
-        module->subTests.num += idx->ownTests.num + idx->subTests.num;
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(
+            &module->subModules.num,
+            NBP_ATOMIC_UINT_LOAD(&idx->ownModules.num)
+        );
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(
+            &module->subModules.num,
+            NBP_ATOMIC_UINT_LOAD(&idx->subModules.num)
+        );
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(
+            &module->subTests.num,
+            NBP_ATOMIC_UINT_LOAD(&idx->ownTests.num)
+        );
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(
+            &module->subTests.num,
+            NBP_ATOMIC_UINT_LOAD(&idx->subTests.num)
+        );
         idx = idx->next;
     }
 }
