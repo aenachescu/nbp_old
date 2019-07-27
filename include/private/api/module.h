@@ -68,6 +68,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .depth             = 0,                                                \
         .event             = NBP_EVENT_DEFAULT_VALUE,                          \
         .moduleState       = NBP_MODULE_STATE_NOT_INITIALIZED,                 \
+        .taskNum           = 0,                                                \
+        .completedTaskNum  = 0,                                                \
         .ownTests = {                                                          \
             .num           = 0,                                                \
             .numPassed     = 0,                                                \

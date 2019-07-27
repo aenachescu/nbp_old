@@ -63,6 +63,9 @@ struct nbp_module_details_t {
     NBP_EVENT_TYPE event;
     NBP_ATOMIC_UINT_TYPE moduleState;
 
+    NBP_ATOMIC_UINT_TYPE taskNum;
+    NBP_ATOMIC_UINT_TYPE completedTaskNum;
+
     struct {
         NBP_ATOMIC_UINT_TYPE num;
         NBP_ATOMIC_UINT_TYPE numPassed;
