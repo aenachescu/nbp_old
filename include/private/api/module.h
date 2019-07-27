@@ -196,370 +196,394 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_MODULE_GET_STATE(module) module->moduleState
+#define NBP_MODULE_GET_STATE(module) NBP_ATOMIC_LOAD(&module->moduleState)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_TESTS_NUM(module)                                   \
-    module->ownTests.num
+    NBP_ATOMIC_LOAD(&module->ownTests.num)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_PASSED_TESTS_NUM(module)                            \
-    module->ownTests.numPassed
+    NBP_ATOMIC_LOAD(&module->ownTests.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_FAILED_TESTS_NUM(module)                            \
-    module->ownTests.numFailed
+    NBP_ATOMIC_LOAD(&module->ownTests.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_SKIPPED_TESTS_NUM(module)                           \
-    module->ownTests.numSkipped
+    NBP_ATOMIC_LOAD(&module->ownTests.numSkipped)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUBTESTS_NUM(module)                                    \
-    module->subTests.num
+    NBP_ATOMIC_LOAD(&module->subTests.num)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_PASSED_SUBTESTS_NUM(module)                             \
-    module->subTests.numPassed
+    NBP_ATOMIC_LOAD(&module->subTests.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_FAILED_SUBTESTS_NUM(module)                             \
-    module->subTests.numFailed
+    NBP_ATOMIC_LOAD(&module->subTests.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SKIPPED_SUBTESTS_NUM(module)                            \
-    module->subTests.numSkipped
+    NBP_ATOMIC_LOAD(&module->subTests.numSkipped)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_TESTS_NUM(module)                                       \
-    module->ownTests.num + module->subTests.num
+    NBP_MODULE_GET_OWN_TESTS_NUM(module) +                                     \
+    NBP_MODULE_GET_SUBTESTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_PASSED_TESTS_NUM(module)                                \
-    module->ownTests.numPassed + module->subTests.numPassed
+    NBP_MODULE_GET_OWN_PASSED_TESTS_NUM(module) +                              \
+    NBP_MODULE_GET_PASSED_SUBTESTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_FAILED_TESTS_NUM(module)                                \
-    module->ownTests.numFailed + module->subTests.numFailed
+    NBP_MODULE_GET_OWN_FAILED_TESTS_NUM(module) +                              \
+    NBP_MODULE_GET_FAILED_SUBTESTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SKIPPED_TESTS_NUM(module)                               \
-    module->ownTests.numSkipped + module->subTests.numSkipped
+    NBP_MODULE_GET_OWN_SKIPPED_TESTS_NUM(module) +                             \
+    NBP_MODULE_GET_SKIPPED_SUBTESTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_MODULES_NUM(module)                                 \
-    module->ownModules.num
+    NBP_ATOMIC_LOAD(&module->ownModules.num)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_PASSED_MODULES_NUM(module)                          \
-    module->ownModules.numPassed
+    NBP_ATOMIC_LOAD(&module->ownModules.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_FAILED_MODULES_NUM(module)                          \
-    module->ownModules.numFailed
+    NBP_ATOMIC_LOAD(&module->ownModules.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_SKIPPED_MODULES_NUM(module)                         \
-    module->ownModules.numSkipped
+    NBP_ATOMIC_LOAD(&module->ownModules.numSkipped)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUBMODULES_NUM(module)                                  \
-    module->subModules.num
+    NBP_ATOMIC_LOAD(&module->subModules.num)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_PASSED_SUBMODULES_NUM(module)                           \
-    module->subModules.numPassed
+    NBP_ATOMIC_LOAD(&module->subModules.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_FAILED_SUBMODULES_NUM(module)                           \
-    module->subModules.numFailed
+    NBP_ATOMIC_LOAD(&module->subModules.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SKIPPED_SUBMODULES_NUM(module)                          \
-    module->subModules.numSkipped
+    NBP_ATOMIC_LOAD(&module->subModules.numSkipped)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_MODULES_NUM(module)                                     \
-    module->ownModules.num + module->subModules.num
+    NBP_MODULE_GET_OWN_MODULES_NUM(module) +                                   \
+    NBP_MODULE_GET_SUBMODULES_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_PASSED_MODULES_NUM(module)                              \
-    module->ownModules.numPassed + module->subModules.numPassed
+    NBP_MODULE_GET_OWN_PASSED_MODULES_NUM(module) +                            \
+    NBP_MODULE_GET_PASSED_SUBMODULES_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_FAILED_MODULES_NUM(module)                              \
-    module->ownModules.numFailed + module->subModules.numFailed
+    NBP_MODULE_GET_OWN_FAILED_MODULES_NUM(module) +                            \
+    NBP_MODULE_GET_FAILED_SUBMODULES_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SKIPPED_MODULES_NUM(module)                             \
-    module->ownModules.numSkipped + module->subModules.numSkipped
+    NBP_MODULE_GET_OWN_SKIPPED_MODULES_NUM(module) +                           \
+    NBP_MODULE_GET_SKIPPED_SUBMODULES_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_CHECKS_NUM(module)                                  \
-    module->own.checks.numPassed + module->own.checks.numFailed
+    NBP_MODULE_GET_OWN_PASSED_CHECKS_NUM(module) +                             \
+    NBP_MODULE_GET_OWN_FAILED_CHECKS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_PASSED_CHECKS_NUM(module)                           \
-    module->own.checks.numPassed
+    NBP_ATOMIC_LOAD(&module->own.checks.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_FAILED_CHECKS_NUM(module)                           \
-    module->own.checks.numFailed
+    NBP_ATOMIC_LOAD(&module->own.checks.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_CHECKS_NUM(module)                                  \
-    module->sub.checks.numPassed + module->sub.checks.numFailed
+    NBP_MODULE_GET_SUB_PASSED_CHECKS_NUM(module) +                             \
+    NBP_MODULE_GET_SUB_FAILED_CHECKS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_PASSED_CHECKS_NUM(module)                           \
-    module->sub.checks.numPassed
+    NBP_ATOMIC_LOAD(&module->sub.checks.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_FAILED_CHECKS_NUM(module)                           \
-    module->sub.checks.numFailed
+    NBP_ATOMIC_LOAD(&module->sub.checks.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_CHECKS_NUM(module)                                      \
-    module->own.checks.numPassed + module->sub.checks.numPassed +              \
-    module->own.checks.numFailed + module->sub.checks.numFailed
+    NBP_MODULE_GET_PASSED_CHECKS_NUM(module) +                                 \
+    NBP_MODULE_GET_FAILED_CHECKS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_PASSED_CHECKS_NUM(module)                               \
-    module->own.checks.numPassed + module->sub.checks.numPassed
+    NBP_MODULE_GET_OWN_PASSED_CHECKS_NUM(module) +                             \
+    NBP_MODULE_GET_SUB_PASSED_CHECKS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_FAILED_CHECKS_NUM(module)                               \
-    module->own.checks.numFailed + module->sub.checks.numFailed
+    NBP_MODULE_GET_OWN_FAILED_CHECKS_NUM(module) +                             \
+    NBP_MODULE_GET_SUB_FAILED_CHECKS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_TEST_ASSERTS_NUM(module)                            \
-    module->own.testAsserts.numPassed + module->own.testAsserts.numFailed
+    NBP_MODULE_GET_OWN_PASSED_TEST_ASSERTS_NUM(module) +                       \
+    NBP_MODULE_GET_OWN_FAILED_TEST_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_PASSED_TEST_ASSERTS_NUM(module)                     \
-    module->own.testAsserts.numPassed
+    NBP_ATOMIC_LOAD(&module->own.testAsserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_FAILED_TEST_ASSERTS_NUM(module)                     \
-    module->own.testAsserts.numFailed
+    NBP_ATOMIC_LOAD(&module->own.testAsserts.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_TEST_ASSERTS_NUM(module)                            \
-    module->sub.testAsserts.numPassed + module->sub.testAsserts.numFailed
+    NBP_MODULE_GET_SUB_PASSED_TEST_ASSERTS_NUM(module) +                       \
+    NBP_MODULE_GET_SUB_FAILED_TEST_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_PASSED_TEST_ASSERTS_NUM(module)                     \
-    module->sub.testAsserts.numPassed
+    NBP_ATOMIC_LOAD(&module->sub.testAsserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_FAILED_TEST_ASSERTS_NUM(module)                     \
-    module->sub.testAsserts.numFailed
+    NBP_ATOMIC_LOAD(&module->sub.testAsserts.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_TEST_ASSERTS_NUM(module)                                \
-    module->own.testAsserts.numPassed + module->sub.testAsserts.numPassed +    \
-    module->own.testAsserts.numFailed + module->sub.testAsserts.numFailed
+    NBP_MODULE_GET_PASSED_TEST_ASSERTS_NUM(module) +                           \
+    NBP_MODULE_GET_FAILED_TEST_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_PASSED_TEST_ASSERTS_NUM(module)                         \
-    module->own.testAsserts.numPassed + module->sub.testAsserts.numPassed
+    NBP_MODULE_GET_OWN_PASSED_TEST_ASSERTS_NUM(module) +                       \
+    NBP_MODULE_GET_SUB_PASSED_TEST_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_FAILED_TEST_ASSERTS_NUM(module)                         \
-    module->own.testAsserts.numFailed + module->sub.testAsserts.numFailed
+    NBP_MODULE_GET_OWN_FAILED_TEST_ASSERTS_NUM(module) +                       \
+    NBP_MODULE_GET_SUB_FAILED_TEST_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_MODULE_ASSERTS_NUM(module)                          \
-    module->own.moduleAsserts.numPassed + module->own.moduleAsserts.numFailed
+    NBP_MODULE_GET_OWN_PASSED_MODULE_ASSERTS_NUM(module) +                     \
+    NBP_MODULE_GET_OWN_FAILED_MODULE_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_PASSED_MODULE_ASSERTS_NUM(module)                   \
-    module->own.moduleAsserts.numPassed
+    NBP_ATOMIC_LOAD(&module->own.moduleAsserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_FAILED_MODULE_ASSERTS_NUM(module)                   \
-    module->own.moduleAsserts.numFailed
+    NBP_ATOMIC_LOAD(&module->own.moduleAsserts.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_MODULE_ASSERTS_NUM(module)                          \
-    module->sub.moduleAsserts.numPassed + module->sub.moduleAsserts.numFailed
+    NBP_MODULE_GET_SUB_PASSED_MODULE_ASSERTS_NUM(module) +                     \
+    NBP_MODULE_GET_SUB_FAILED_MODULE_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_PASSED_MODULE_ASSERTS_NUM(module)                   \
-    module->sub.moduleAsserts.numPassed
+    NBP_ATOMIC_LOAD(&module->sub.moduleAsserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_FAILED_MODULE_ASSERTS_NUM(module)                   \
-    module->sub.moduleAsserts.numFailed
+    NBP_ATOMIC_LOAD(&module->sub.moduleAsserts.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_MODULE_ASSERTS_NUM(module)                              \
-    module->own.moduleAsserts.numPassed + module->sub.moduleAsserts.numPassed +\
-    module->own.moduleAsserts.numFailed + module->sub.moduleAsserts.numFailed
+    NBP_MODULE_GET_PASSED_MODULE_ASSERTS_NUM(module) +                         \
+    NBP_MODULE_GET_FAILED_MODULE_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_PASSED_MODULE_ASSERTS_NUM(module)                       \
-    module->own.moduleAsserts.numPassed + module->sub.moduleAsserts.numPassed
+    NBP_MODULE_GET_OWN_PASSED_MODULE_ASSERTS_NUM(module) +                     \
+    NBP_MODULE_GET_SUB_PASSED_MODULE_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_FAILED_MODULE_ASSERTS_NUM(module)                       \
-    module->own.moduleAsserts.numFailed + module->sub.moduleAsserts.numFailed
+    NBP_MODULE_GET_OWN_FAILED_MODULE_ASSERTS_NUM(module) +                     \
+    NBP_MODULE_GET_SUB_FAILED_MODULE_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_ASSERTS_NUM(module)                                 \
-    module->own.asserts.numPassed + module->own.asserts.numFailed
+    NBP_MODULE_GET_OWN_PASSED_ASSERTS_NUM(module) +                            \
+    NBP_MODULE_GET_OWN_FAILED_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_PASSED_ASSERTS_NUM(module)                          \
-    module->own.asserts.numPassed
+    NBP_ATOMIC_LOAD(&module->own.asserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_OWN_FAILED_ASSERTS_NUM(module)                          \
-    module->own.asserts.numFailed
+    NBP_ATOMIC_LOAD(&module->own.asserts.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_ASSERTS_NUM(module)                                 \
-    module->sub.asserts.numPassed + module->sub.asserts.numFailed
+    NBP_MODULE_GET_SUB_PASSED_ASSERTS_NUM(module) +                            \
+    NBP_MODULE_GET_SUB_FAILED_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_PASSED_ASSERTS_NUM(module)                          \
-    module->sub.asserts.numPassed
+    NBP_ATOMIC_LOAD(&module->sub.asserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_SUB_FAILED_ASSERTS_NUM(module)                          \
-    module->sub.asserts.numFailed
+    NBP_ATOMIC_LOAD(&module->sub.asserts.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_ASSERTS_NUM(module)                                     \
-    module->own.asserts.numPassed + module->sub.asserts.numPassed +            \
-    module->own.asserts.numFailed + module->sub.asserts.numFailed
+    NBP_MODULE_GET_PASSED_ASSERTS_NUM(module) +                                \
+    NBP_MODULE_GET_FAILED_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_PASSED_ASSERTS_NUM(module)                              \
-    module->own.asserts.numPassed + module->sub.asserts.numPassed
+    NBP_MODULE_GET_OWN_PASSED_ASSERTS_NUM(module) +                            \
+    NBP_MODULE_GET_SUB_PASSED_ASSERTS_NUM(module)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_FAILED_ASSERTS_NUM(module)                              \
-    module->own.asserts.numFailed + module->sub.asserts.numFailed
+    NBP_MODULE_GET_OWN_FAILED_ASSERTS_NUM(module) +                            \
+    NBP_MODULE_GET_SUB_FAILED_ASSERTS_NUM(module)
 
 #endif // end if NBP_PRIVATE_API_MODULE_H
