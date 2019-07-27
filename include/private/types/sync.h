@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define NBP_ATOMIC_UINT_TYPE unsigned int
 
-#define NBP_ATOMIC_LOAD(ptr) (*(ptr))
+#define NBP_ATOMIC_UINT_LOAD(ptr) (*(ptr))
 
 #define NBP_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                              \
     (*(ptr)) += value
