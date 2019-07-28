@@ -35,6 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_ERROR_FAILED_TO_INIT_EVENT                          (int) 10
 #define NBP_ERROR_TEST_FLAGS_INVALID_VALUE                      (int) 11
 #define NBP_ERROR_MODULE_FLAGS_INVALID_VALUE                    (int) 12
+#define NBP_ERROR_INVALID_MODULE_STATS                          (int) 13
 
 struct nbp_error_t {
     int errorCode;
