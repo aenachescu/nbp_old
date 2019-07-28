@@ -67,6 +67,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .prev              = 0x0,                                              \
         .depth             = 0,                                                \
         .runEvent          = NBP_EVENT_DEFAULT_VALUE,                          \
+        .setupEvent        = NBP_EVENT_DEFAULT_VALUE,                          \
         .flags             =                                                   \
             NBP_ATOMIC_UINT_INIT(NBP_MODULE_FLAGS_NOT_INITIALIZED),            \
         .moduleState       =                                                   \
