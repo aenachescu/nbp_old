@@ -65,6 +65,7 @@ struct nbp_module_details_t {
 
     unsigned int depth;
     NBP_EVENT_TYPE runEvent;
+    NBP_EVENT_TYPE setupEvent;
     NBP_ATOMIC_UINT_TYPE flags;
     NBP_ATOMIC_UINT_TYPE moduleState;
 
