@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define NBP_PRIVATE_TEST_ASSERT_BASE(cond, failMsg, passMsg)                   \
     if (cond) {                                                                \
-        test->testAsserts.numPassed++;                                         \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numPassed, 1);        \
         nbp_notify_printer_test_assert_result(                                 \
             test,                                                              \
             #cond,                                                             \
@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        test->testAsserts.numFailed++;                                         \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numFailed, 1);        \
         nbp_notify_printer_test_assert_result(                                 \
             test,                                                              \
             #cond,                                                             \
@@ -55,7 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define NBP_PRIVATE_TEST_ASSERT_OP_BASE(a, b, op, printerOp, failMsg, passMsg) \
     if (a op b) {                                                              \
-        test->testAsserts.numPassed++;                                         \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numPassed, 1);        \
         nbp_notify_printer_test_assert_op_result(                              \
             test,                                                              \
             #a,                                                                \
@@ -67,7 +67,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        test->testAsserts.numFailed++;                                         \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numFailed, 1);        \
         nbp_notify_printer_test_assert_op_result(                              \
             test,                                                              \
             #a,                                                                \
@@ -92,7 +92,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     do {                                                                       \
         type tmpA = a, tmpB = b;                                               \
         if (tmpA op tmpB) {                                                    \
-            test->testAsserts.numPassed++;                                     \
+            NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numPassed, 1);    \
             NBP_PRIVATE_NOTIFY_PRINTER_TEST_ASSERT_TYPE_OP(typeStr)(           \
                 test,                                                          \
                 tmpA,                                                          \
@@ -104,7 +104,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 passMsg                                                        \
             );                                                                 \
         } else {                                                               \
-            test->testAsserts.numFailed++;                                     \
+            NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numFailed, 1);    \
             NBP_PRIVATE_NOTIFY_PRINTER_TEST_ASSERT_TYPE_OP(typeStr)(           \
                 test,                                                          \
                 tmpA,                                                          \

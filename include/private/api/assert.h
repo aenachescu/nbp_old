@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define NBP_PRIVATE_ASSERT_BASE(cond, failMsg, passMsg)                        \
     if (cond) {                                                                \
-        test->asserts.numPassed++;                                             \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->asserts.numPassed, 1);            \
         nbp_notify_printer_assert_result(                                      \
             test,                                                              \
             #cond,                                                             \
@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        test->asserts.numFailed++;                                             \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->asserts.numFailed, 1);            \
         nbp_notify_printer_assert_result(                                      \
             test,                                                              \
             #cond,                                                             \
@@ -56,7 +56,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_PRIVATE_ASSERT_OP_BASE(a, b, op, printerOp, failMsg,               \
     passMsg)                                                                   \
     if (a op b) {                                                              \
-        test->asserts.numPassed++;                                             \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->asserts.numPassed, 1);            \
         nbp_notify_printer_assert_op_result(                                   \
             test,                                                              \
             #a,                                                                \
@@ -68,7 +68,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        test->asserts.numFailed++;                                             \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->asserts.numFailed, 1);            \
         nbp_notify_printer_assert_op_result(                                   \
             test,                                                              \
             #a,                                                                \
@@ -93,7 +93,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     do {                                                                       \
         type tmpA = a, tmpB = b;                                               \
         if (tmpA op tmpB) {                                                    \
-            test->asserts.numPassed++;                                         \
+            NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->asserts.numPassed, 1);        \
             NBP_PRIVATE_NOTIFY_PRINTER_ASSERT_TYPE_OP(typeStr)(                \
                 test,                                                          \
                 tmpA,                                                          \
@@ -105,7 +105,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 passMsg                                                        \
             );                                                                 \
         } else {                                                               \
-            test->asserts.numFailed++;                                         \
+            NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->asserts.numFailed, 1);        \
             NBP_PRIVATE_NOTIFY_PRINTER_ASSERT_TYPE_OP(typeStr)(                \
                 test,                                                          \
                 tmpA,                                                          \

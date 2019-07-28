@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define NBP_PRIVATE_CHECK_BASE(cond, failMsg, passMsg)                         \
     if (cond) {                                                                \
-        test->checks.numPassed++;                                              \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numPassed, 1);             \
         nbp_notify_printer_check_result(                                       \
             test,                                                              \
             #cond,                                                             \
@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        test->checks.numFailed++;                                              \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numFailed, 1);             \
         nbp_notify_printer_check_result(                                       \
             test,                                                              \
             #cond,                                                             \
@@ -54,7 +54,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define NBP_PRIVATE_CHECK_OP_BASE(a, b, op, printerOp, failMsg, passMsg)       \
     if (a op b) {                                                              \
-        test->checks.numPassed++;                                              \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numPassed, 1);             \
         nbp_notify_printer_check_op_result(                                    \
             test,                                                              \
             #a,                                                                \
@@ -66,7 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        test->checks.numFailed++;                                              \
+        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numFailed, 1);             \
         nbp_notify_printer_check_op_result(                                    \
             test,                                                              \
             #a,                                                                \
@@ -90,7 +90,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     do {                                                                       \
         type tmpA = a, tmpB = b;                                               \
         if (tmpA op tmpB) {                                                    \
-            test->checks.numPassed++;                                          \
+            NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numPassed, 1);         \
             NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(typeStr)(                 \
                 test,                                                          \
                 tmpA,                                                          \
@@ -102,7 +102,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 passMsg                                                        \
             );                                                                 \
         } else {                                                               \
-            test->checks.numFailed++;                                          \
+            NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numFailed, 1);         \
             NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(typeStr)(                 \
                 test,                                                          \
                 tmpA,                                                          \
