@@ -27,13 +27,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define NBP_ATOMIC_UINT_TYPE unsigned int
 
+#define NBP_ATOMIC_UINT_INIT(val) val
+
 #define NBP_ATOMIC_UINT_LOAD(ptr) (*(ptr))
 
 #define NBP_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                              \
-    (*(ptr)) += value
+    ((*(ptr)) += (value))
 
 #define NBP_ATOMIC_UINT_CAS(ptr, oldVal, newVal)                               \
-    (*(ptr)) == oldVal ? (*(ptr)) = newVal, oldVal : (*(ptr))
+    ((*(ptr)) == (oldVal) ? (*(ptr)) = (newVal), (oldVal) : (*(ptr)))
 
 #define NBP_EVENT_TYPE int
 
