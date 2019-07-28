@@ -130,82 +130,95 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_GET_TEST_NAME(test) test->testName
+#define NBP_GET_TEST_NAME(test)                                                \
+    test->testName
 
 /*
  * TODO: add docs
  */
-#define NBP_GET_TEST_DEPTH(test) NBP_GET_MODULE_DEPTH(test->module) + 1
+#define NBP_GET_TEST_DEPTH(test)                                               \
+    NBP_GET_MODULE_DEPTH(test->module) + 1
 
 /*
  * TODO: add docs
  */
-#define NBP_GET_TEST_STATE(test) test->testState
+#define NBP_GET_TEST_STATE(test)                                               \
+    NBP_ATOMIC_UINT_LOAD(&test->testState)
 
 /*
  * TODO: add docs
  */
 #define NBP_TEST_GET_CHECKS_NUM(test)                                          \
-    test->checks.numPassed + test->checks.numFailed
+    NBP_TEST_GET_PASSED_CHECKS_NUM(test) +                                      \
+    NBP_TEST_GET_FAILED_CHECKS_NUM(test)
 
 /*
  * TODO: add docs
  */
-#define NBP_TEST_GET_PASSED_CHECKS_NUM(test) test->checks.numPassed
+#define NBP_TEST_GET_PASSED_CHECKS_NUM(test)                                   \
+    NBP_ATOMIC_UINT_LOAD(&test->checks.numPassed)
 
 /*
  * TODO: add docs
  */
-#define NBP_TEST_GET_FAILED_CHECKS_NUM(test) test->checks.numFailed
+#define NBP_TEST_GET_FAILED_CHECKS_NUM(test)                                   \
+    NBP_ATOMIC_UINT_LOAD(&test->checks.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_TEST_GET_TEST_ASSERT_NUM(test)                                     \
-    test->testAsserts.numPassed + test->testAsserts.numFailed
+    NBP_TEST_GET_PASSED_TEST_ASSERT_NUM(test) +                                \
+    NBP_TEST_GET_FAILED_TEST_ASSERT_NUM(test)
 
 /*
  * TODO: add docs
  */
-#define NBP_TEST_GET_PASSED_TEST_ASSERT_NUM(test) test->testAsserts.numPassed
+#define NBP_TEST_GET_PASSED_TEST_ASSERT_NUM(test)                              \
+    NBP_ATOMIC_UINT_LOAD(&test->testAsserts.numPassed)
 
 /*
  * TODO: add docs
  */
-#define NBP_TEST_GET_FAILED_TEST_ASSERT_NUM(test) test->testAsserts.numFailed
+#define NBP_TEST_GET_FAILED_TEST_ASSERT_NUM(test)                              \
+    NBP_ATOMIC_UINT_LOAD(&test->testAsserts.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_TEST_GET_MODULE_ASSERTS_NUM(test)                                  \
-    test->moduleAsserts.numPassed + test->moduleAsserts.numFailed
+    NBP_TEST_GET_PASSED_MODULE_ASSERTS_NUM(test) +                             \
+    NBP_TEST_GET_FAILED_MODULE_ASSERTS_NUM(test)
 
 /*
  * TODO: add docs
  */
 #define NBP_TEST_GET_PASSED_MODULE_ASSERTS_NUM(test)                           \
-    test->moduleAsserts.numPassed
+    NBP_ATOMIC_UINT_LOAD(&test->moduleAsserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_TEST_GET_FAILED_MODULE_ASSERTS_NUM(test)                           \
-    test->moduleAsserts.numFailed
+    NBP_ATOMIC_UINT_LOAD(&test->moduleAsserts.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_TEST_GET_ASSERTS_NUM(test)                                         \
-    test->asserts.numPassed + test->asserts.numFailed
+    NBP_TEST_GET_PASSED_ASSERTS_NUM(test) +                                    \
+    NBP_TEST_GET_FAILED_ASSERTS_NUM(test)
 
 /*
  * TODO: add docs
  */
-#define NBP_TEST_GET_PASSED_ASSERTS_NUM(test) test->asserts.numPassed
+#define NBP_TEST_GET_PASSED_ASSERTS_NUM(test)                                  \
+    NBP_ATOMIC_UINT_LOAD(&test->asserts.numPassed)
 
 /*
  * TODO: add docs
  */
-#define NBP_TEST_GET_FAILED_ASSERTS_NUM(test) test->asserts.numFailed
+#define NBP_TEST_GET_FAILED_ASSERTS_NUM(test)                                  \
+    NBP_ATOMIC_UINT_LOAD(&test->asserts.numFailed)
 
 #endif // end if NBP_PRIVATE_API_TEST_H
