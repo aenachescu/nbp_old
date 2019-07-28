@@ -73,22 +73,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .afterTestFunc              = 0x0,                                     \
         .next                       = 0x0,                                     \
         .prev                       = 0x0,                                     \
-        .testState                  = NBP_TEST_STATE_NOT_INITIALIZED,          \
+        .testState                  =                                          \
+            NBP_ATOMIC_UINT_INIT(NBP_TEST_STATE_NOT_INITIALIZED),              \
+        .flags                      =                                          \
+            NBP_ATOMIC_UINT_INIT(NBP_TEST_FLAGS_NOT_INITIALIZED),              \
         .checks = {                                                            \
-            .numPassed              = 0,                                       \
-            .numFailed              = 0,                                       \
+            .numPassed              = NBP_ATOMIC_UINT_INIT(0),                 \
+            .numFailed              = NBP_ATOMIC_UINT_INIT(0),                 \
         },                                                                     \
         .testAsserts = {                                                       \
-            .numPassed              = 0,                                       \
-            .numFailed              = 0,                                       \
+            .numPassed              = NBP_ATOMIC_UINT_INIT(0),                 \
+            .numFailed              = NBP_ATOMIC_UINT_INIT(0),                 \
         },                                                                     \
         .moduleAsserts = {                                                     \
-            .numPassed              = 0,                                       \
-            .numFailed              = 0,                                       \
+            .numPassed              = NBP_ATOMIC_UINT_INIT(0),                 \
+            .numFailed              = NBP_ATOMIC_UINT_INIT(0),                 \
         },                                                                     \
         .asserts = {                                                           \
-            .numPassed              = 0,                                       \
-            .numFailed              = 0,                                       \
+            .numPassed              = NBP_ATOMIC_UINT_INIT(0),                 \
+            .numFailed              = NBP_ATOMIC_UINT_INIT(0),                 \
         },                                                                     \
     };                                                                         \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \

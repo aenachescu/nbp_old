@@ -66,68 +66,71 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .next              = 0x0,                                              \
         .prev              = 0x0,                                              \
         .depth             = 0,                                                \
-        .event             = NBP_EVENT_DEFAULT_VALUE,                          \
-        .moduleState       = NBP_MODULE_STATE_NOT_INITIALIZED,                 \
-        .taskNum           = 0,                                                \
-        .completedTaskNum  = 0,                                                \
+        .runEvent          = NBP_EVENT_DEFAULT_VALUE,                          \
+        .flags             =                                                   \
+            NBP_ATOMIC_UINT_INIT(NBP_MODULE_FLAGS_NOT_INITIALIZED),            \
+        .moduleState       =                                                   \
+            NBP_ATOMIC_UINT_INIT(NBP_MODULE_STATE_NOT_INITIALIZED),            \
+        .taskNum           = NBP_ATOMIC_UINT_INIT(0),                          \
+        .completedTaskNum  = NBP_ATOMIC_UINT_INIT(0),                          \
         .ownTests = {                                                          \
-            .num           = 0,                                                \
-            .numPassed     = 0,                                                \
-            .numFailed     = 0,                                                \
-            .numSkipped    = 0,                                                \
+            .num           = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numPassed     = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numFailed     = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numSkipped    = NBP_ATOMIC_UINT_INIT(0),                          \
         },                                                                     \
         .subTests = {                                                          \
-            .num           = 0,                                                \
-            .numPassed     = 0,                                                \
-            .numFailed     = 0,                                                \
-            .numSkipped    = 0,                                                \
+            .num           = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numPassed     = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numFailed     = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numSkipped    = NBP_ATOMIC_UINT_INIT(0),                          \
         },                                                                     \
         .ownModules = {                                                        \
-            .num           = 0,                                                \
-            .numPassed     = 0,                                                \
-            .numFailed     = 0,                                                \
-            .numSkipped    = 0,                                                \
+            .num           = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numPassed     = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numFailed     = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numSkipped    = NBP_ATOMIC_UINT_INIT(0),                          \
         },                                                                     \
         .subModules = {                                                        \
-            .num           = 0,                                                \
-            .numPassed     = 0,                                                \
-            .numFailed     = 0,                                                \
-            .numSkipped    = 0,                                                \
+            .num           = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numPassed     = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numFailed     = NBP_ATOMIC_UINT_INIT(0),                          \
+            .numSkipped    = NBP_ATOMIC_UINT_INIT(0),                          \
         },                                                                     \
         .own = {                                                               \
             .checks = {                                                        \
-                .numPassed = 0,                                                \
-                .numFailed = 0,                                                \
+                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
             },                                                                 \
             .testAsserts = {                                                   \
-                .numPassed = 0,                                                \
-                .numFailed = 0,                                                \
+                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
             },                                                                 \
             .moduleAsserts = {                                                 \
-                .numPassed = 0,                                                \
-                .numFailed = 0,                                                \
+                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
             },                                                                 \
             .asserts = {                                                       \
-                .numPassed = 0,                                                \
-                .numFailed = 0,                                                \
+                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
             },                                                                 \
         },                                                                     \
         .sub = {                                                               \
             .checks = {                                                        \
-                .numPassed = 0,                                                \
-                .numFailed = 0,                                                \
+                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
             },                                                                 \
             .testAsserts = {                                                   \
-                .numPassed = 0,                                                \
-                .numFailed = 0,                                                \
+                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
             },                                                                 \
             .moduleAsserts = {                                                 \
-                .numPassed = 0,                                                \
-                .numFailed = 0,                                                \
+                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
             },                                                                 \
             .asserts = {                                                       \
-                .numPassed = 0,                                                \
-                .numFailed = 0,                                                \
+                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
             },                                                                 \
         },                                                                     \
     };                                                                         \
