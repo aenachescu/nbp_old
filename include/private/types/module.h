@@ -26,6 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_MODULE_STATE_FAILED           (unsigned int) 4
 #define NBP_MODULE_STATE_SKIPPED          (unsigned int) 5
 
+#define NBP_MODULE_FLAGS_NOT_INITIALIZED  (unsigned int) 0
+#define NBP_MODULE_FLAGS_SKIP             (unsigned int) 1
+#define NBP_MODULE_FLAGS_PROCESSED        (unsigned int) 2
+
 struct nbp_module_details_t;
 
 typedef void(*nbp_setup_module_pfn_t)(
@@ -60,7 +64,8 @@ struct nbp_module_details_t {
     struct nbp_module_details_t* prev;
 
     unsigned int depth;
-    NBP_EVENT_TYPE event;
+    NBP_EVENT_TYPE runEvent;
+    NBP_ATOMIC_UINT_TYPE flags;
     NBP_ATOMIC_UINT_TYPE moduleState;
 
     NBP_ATOMIC_UINT_TYPE taskNum;
