@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         err.contextType = NBP_ERROR_CONTEXT_EMPTY;                             \
         err.contextString = (const char*) 0x0;                                 \
         nbp_notify_printer_handle_error(err);                                  \
-    } while (0);
+    } while (0)
 
 /*
  * TODO: add docs
@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         err.contextType = NBP_ERROR_CONTEXT_STRING;                            \
         err.contextString = str;                                               \
         nbp_notify_printer_handle_error(err);                                  \
-    } while (0);
+    } while (0)
 
 /*
  * TODO: add docs
@@ -53,7 +53,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         err.contextType = NBP_ERROR_CONTEXT_CUSTOM;                            \
         err.contextString = ctx;                                               \
         nbp_notify_printer_handle_error(err);                                  \
-    } while (0);
+    } while (0)
 
 /*
  * TODO: add docs
