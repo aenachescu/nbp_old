@@ -30,7 +30,7 @@ typedef void (*nbp_printer_init_pfn_t)(
     void
 );
 
-typedef int (*nbp_printer_uninit_pfn_t)(
+typedef void (*nbp_printer_uninit_pfn_t)(
     void
 );
 

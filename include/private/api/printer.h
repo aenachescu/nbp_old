@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_UNINIT(func)                                          \
-    static int NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                 \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
         void                                                                   \
     )
 
