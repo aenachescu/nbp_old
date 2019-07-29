@@ -16,15 +16,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NBP_PRIVATE_TYPES_H
-#define NBP_PRIVATE_TYPES_H
+#ifndef NBP_PRIVATE_TYPES_EXIT_STATUS_H
+#define NBP_PRIVATE_TYPES_EXIT_STATUS_H
 
-#include "errors.h"
-#include "exit_status.h"
-#include "sync.h"
-#include "test.h"
-#include "module.h"
-#include "scheduler.h"
-#include "printer.h"
+#define NBP_EXIT_STATUS_PASSED          (int)  0
+#define NBP_EXIT_STATUS_FAILED          (int)  1
+#define NBP_EXIT_STATUS_GENERIC_ERROR   (int) -1
 
-#endif // end if NBP_PRIVATE_TYPES_H
+#endif // end if NBP_PRIVATE_TYPES_EXIT_STATUS_H
+
