@@ -208,11 +208,6 @@ NBP_PRINTER_FUNC_INIT(nbp_basic_printer_init)
     nbpPrinterLastPassMsg   = 0x0;
 }
 
-NBP_PRINTER_FUNC_UNINIT(nbp_basic_printer_uninit)
-{
-    return nbpPrinterRet;
-}
-
 NBP_PRINTER_FUNC_TEST_END(nbp_basic_printer_test_end)
 {
     if (NBP_GET_TEST_STATE(NBP_THIS_TEST) == NBP_TEST_STATE_SKIPPED) {
@@ -1557,9 +1552,7 @@ NBP_DEFINE_PRINTER(
     NBP_PRINTER_USE_FUNC_INIT(
         nbp_basic_printer_init
     ),
-    NBP_PRINTER_USE_FUNC_UNINIT(
-        nbp_basic_printer_uninit
-    ),
+    NBP_PRINTER_NO_FUNC_UNINIT,
     NBP_PRINTER_NO_FUNC_HANDLE_ERROR,
     NBP_PRINTER_NO_FUNC_TEST_BEGIN,
     NBP_PRINTER_USE_FUNC_TEST_END(
