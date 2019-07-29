@@ -94,14 +94,17 @@ int main(int argc, const char** argv)
         nbpSchedulerInterface->uninit();
     }
 
-    int ret = 0;
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->uninit != 0x0) {
-            ret += nbpPrinterInterfaces[i]->uninit();
+            nbpPrinterInterfaces[i]->uninit();
         }
     }
 
-    return ret;
+    if (NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_PASSED) {
+        return NBP_EXIT_STATUS_PASSED;
+    }
+
+    return NBP_EXIT_STATUS_FAILED;
 }
 
 #endif // end if NBP_PRIVATE_IMPL_MAIN_H
