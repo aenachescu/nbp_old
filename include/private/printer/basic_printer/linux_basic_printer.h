@@ -208,6 +208,31 @@ NBP_PRINTER_FUNC_INIT(nbp_basic_printer_init)
     nbpPrinterLastPassMsg   = 0x0;
 }
 
+NBP_PRINTER_FUNC_HANDLE_ERROR(nbp_basic_printer_handle_error)
+{
+    switch (NBP_ERROR_GET_CONTEXT_TYPE(NBP_PRINTER_GET_ERROR())) {
+        case NBP_ERROR_CONTEXT_STRING:
+            printf(
+                NBP_PRIVATE_COLOR_RED
+                    "[error] code = %d, message = %s\n"
+                NBP_PRIVATE_COLOR_NORMAL,
+                NBP_ERROR_GET_CODE(NBP_PRINTER_GET_ERROR()),
+                NBP_ERROR_GET_CONTEXT_STRING(NBP_PRINTER_GET_ERROR())
+            );
+            break;
+        case NBP_ERROR_CONTEXT_EMPTY:
+        case NBP_ERROR_CONTEXT_CUSTOM:
+        default:
+            printf(
+                NBP_PRIVATE_COLOR_RED
+                    "[error] code = %d\n"
+                NBP_PRIVATE_COLOR_NORMAL,
+                NBP_ERROR_GET_CODE(NBP_PRINTER_GET_ERROR())
+            );
+            break;
+    }
+}
+
 NBP_PRINTER_FUNC_TEST_END(nbp_basic_printer_test_end)
 {
     if (NBP_GET_TEST_STATE(NBP_THIS_TEST) == NBP_TEST_STATE_SKIPPED) {
@@ -1553,7 +1578,9 @@ NBP_DEFINE_PRINTER(
         nbp_basic_printer_init
     ),
     NBP_PRINTER_NO_FUNC_UNINIT,
-    NBP_PRINTER_NO_FUNC_HANDLE_ERROR,
+    NBP_PRINTER_USE_FUNC_HANDLE_ERROR(
+        nbp_basic_printer_handle_error
+    ),
     NBP_PRINTER_NO_FUNC_TEST_BEGIN,
     NBP_PRINTER_USE_FUNC_TEST_END(
         nbp_basic_printer_test_end
