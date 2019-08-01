@@ -172,8 +172,7 @@ end:
             NBP_ERROR_INVALID_MODULE_STATE,
             "module is not running"
         );
-        // TODO: exit!!!
-        return;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     if (module->parent == 0x0) {
@@ -196,8 +195,7 @@ end:
                 NBP_ERROR_INVALID_MODULE_STATE,
                 "unknown module state"
             );
-            // TODO: exit!!!
-            return;
+            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     NBP_ATOMIC_UINT_ADD_AND_FETCH(parentNum, 1);
@@ -232,8 +230,7 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
                 NBP_ERROR_INVALID_TEST_STATE,
                 "test is not running"
             );
-            // TODO: exit!!!
-            return;
+            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
 
         NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numPassed, 1);
@@ -250,8 +247,7 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
             NBP_ERROR_INVALID_TEST_STATE,
             "test is not running"
         );
-        // TODO: exit!!!
-        return;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numFailed, 1);
@@ -283,8 +279,7 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
         }
 
         NBP_HANDLE_ERROR(NBP_ERROR_MODULE_FLAGS_INVALID_VALUE);
-        // TODO: exit!!!
-        return NBP_MODULE_FLAGS_NOT_INITIALIZED;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     if (oldVal == NBP_MODULE_FLAGS_NOT_INITIALIZED) {
@@ -305,20 +300,17 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
             );
             if (oldVal != NBP_MODULE_FLAGS_PROCESSED) {
                 NBP_HANDLE_ERROR(NBP_ERROR_MODULE_FLAGS_INVALID_VALUE);
-                // TODO: exit!!!
-                return NBP_MODULE_FLAGS_NOT_INITIALIZED;
+                NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
             }
             return NBP_MODULE_FLAGS_SKIP;
         }
 
         NBP_HANDLE_ERROR(NBP_ERROR_MODULE_FLAGS_INVALID_VALUE);
-        // TODO: exit!!!
-        return NBP_MODULE_FLAGS_NOT_INITIALIZED;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     NBP_HANDLE_ERROR(NBP_ERROR_MODULE_FLAGS_INVALID_VALUE);
-    // TODO: exit!!!
-    return NBP_MODULE_FLAGS_NOT_INITIALIZED;
+    NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
 }
 
 static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
@@ -364,7 +356,7 @@ error:
         NBP_ERROR_INVALID_MODULE_STATS,
         "the sum of numPassed, numFailed and numSkipped is not equal to num"
     );
-    // TODO: exit!!!
+    NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
 }
 
 static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
@@ -381,8 +373,7 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
                 NBP_ERROR_INVALID_MODULE_STATS,
                 "there are too many completed tasks"
             );
-            // TODO: exit!!!
-            return;
+            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
 
         nbp_scheduler_verify_module_stats(module);
@@ -475,8 +466,7 @@ static void nbp_scheduler_run_test_skipped(nbp_test_details_t* test)
             NBP_ERROR_INVALID_TEST_STATE,
             "test is not running"
         );
-        // TODO: exit!!!
-        return;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numSkipped, 1);
@@ -508,8 +498,7 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
                 NBP_ERROR_INVALID_MODULE_STATE,
                 "parent module is not running"
             );
-            // TODO: exit!!!
-            return NBP_MODULE_STATE_NOT_INITIALIZED;
+            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
 
         nbp_notify_printer_module_begin(module);
@@ -522,8 +511,7 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
         NBP_ERROR_INVALID_MODULE_STATE,
         "module is not ready or running"
     );
-    // TODO: exit!!!
-    return NBP_MODULE_STATE_NOT_INITIALIZED;
+    NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
 }
 
 void nbp_scheduler_run_test(nbp_test_details_t* test)
@@ -546,8 +534,7 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
             NBP_ERROR_INVALID_TEST_STATE,
             "test is not ready"
         );
-        // TODO: exit!!!
-        return;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     unsigned int moduleState = nbp_scheduler_run_module(test->module);
@@ -556,8 +543,7 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
             NBP_ERROR_INVALID_MODULE_STATE,
             "module is not running"
         );
-        // TODO: exit!!!
-        return;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     oldVal = NBP_ATOMIC_UINT_CAS(
@@ -574,15 +560,13 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
             nbp_scheduler_run_test_skipped(test);
         } else {
             NBP_HANDLE_ERROR(NBP_ERROR_MODULE_FLAGS_INVALID_VALUE);
-            // TODO: exit!!!
-            return;
+            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
     } else if (oldVal == NBP_TEST_FLAGS_SKIP) {
         nbp_scheduler_run_test_skipped(test);
     } else {
         NBP_HANDLE_ERROR(NBP_ERROR_TEST_FLAGS_INVALID_VALUE);
-        // TODO: exit!!!
-        return;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     nbp_scheduler_teardown_module(test->module);

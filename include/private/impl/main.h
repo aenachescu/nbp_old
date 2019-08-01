@@ -41,11 +41,11 @@ int main(int argc, const char** argv)
 
     if (nbpSchedulerInterface->run == 0x0) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_RUN_FUNC);
-        return -1;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
     if (nbpSchedulerInterface->addTest == 0x0) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
-        return -2;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     if (nbpSchedulerInterface->init != 0x0) {
