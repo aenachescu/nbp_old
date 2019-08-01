@@ -16,19 +16,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NBP_PRIVATE_API_H
-#define NBP_PRIVATE_API_H
+#ifndef NBP_PRIVATE_API_EXIT_H
+#define NBP_PRIVATE_API_EXIT_H
 
-#include "test.h"
-#include "module.h"
-#include "main.h"
-#include "check.h"
-#include "assert.h"
-#include "testAssert.h"
-#include "moduleAssert.h"
-#include "scheduler.h"
-#include "printer.h"
-#include "error.h"
-#include "exit.h"
+#include <stdlib.h>
 
-#endif // end if NBP_PRIVATE_API_H
+#define NBP_EXIT(exitCode) exit(exitCode)
+
+#endif // end if NBP_PRIVATE_API_EXIT_H
