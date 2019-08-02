@@ -28,14 +28,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_PRIVATE_SCHEDULER_TYPE
 #endif // end if NBP_CUSTOM_SCHEDULER
 
-#ifdef NBP_FIFO_MT_SCHEDULER
+#ifdef NBP_MT_SCHEDULER
 #ifdef NBP_PRIVATE_SCHEDULER_TYPE
-#error "Cannot enabe NBP_FIFO_MT_SCHEDULER because another scheduler is enabled"
+#error "Cannot enabe NBP_MT_SCHEDULER because another scheduler is enabled"
 #else // NBP_PRIVATE_SCHEDULER_TYPE not defined
 #define NBP_PRIVATE_SCHEDULER_TYPE
 #define NBP_MT_SUPPORT
 #endif // end if NBP_PRIVATE_SCHEDULER_TYPE
-#endif // end if NBP_FIFO_MT_SCHEDULER
+#endif // end if NBP_MT_SCHEDULER
 
 #ifdef NBP_SCHEDULER
 #ifdef NBP_PRIVATE_SCHEDULER_TYPE
@@ -54,21 +54,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #undef NBP_PRIVATE_SCHEDULER_TYPE
 
+/*
+ * Include in the main file a default scheduler if custom scheduler is not used
+ */
 #ifdef NBP_LIBRARY_MAIN
+#ifndef NBP_CUSTOM_SCHEDULER
 
 /*
  * TODO: add docs
  */
-#ifdef NBP_CUSTOM_SCHEDULER
-#error "Not supported"
-#endif // end if NBP_CUSTOM_SCHEDULER
-
-/*
- * TODO: add docs
- */
-#ifdef NBP_FIFO_MT_SCHEDULER
-#error "Not supported"
-#endif // end if NBP_FIFO_MT_SCHEDULER
+#ifdef NBP_MT_SCHEDULER
+#include "basic_mt_scheduler.h"
+#endif // end if NBP_MT_SCHEDULER
 
 /*
  * TODO: add docs
@@ -77,6 +74,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "basic_scheduler.h"
 #endif // end if NBP_SCHEDULER
 
+#endif // end if NBP_CUSTOM_SCHEDULER
 #endif // end if NBP_LIBRARY_MAIN
 
 #endif // end if NBP_PRIVATE_SCHEDULER_H
