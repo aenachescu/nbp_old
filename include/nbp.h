@@ -19,14 +19,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_LIBRARY_H
 #define NBP_LIBRARY_H
 
+#include "private/check_compile_flags.h"
+
+// library API
+#include "private/api/api.h"
+
+// library implementation
 #include "private/utils/utils.h"
 #include "private/types/types.h"
-#include "private/details/details.h"
-#include "private/api/api.h"
 #include "private/memory_allocator/memory_allocator.h"
-#include "private/scheduler/scheduler.h"
-#include "private/printer/printer.h"
+#include "private/details/details.h"
 #include "private/impl/impl.h"
+
+// default scheduler
+#include "private/scheduler/scheduler.h"
+
+// default printer
+#include "private/printer/printer.h"
 
 #endif // end if NBP_LIBRARY_H
 

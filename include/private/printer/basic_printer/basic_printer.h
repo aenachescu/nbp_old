@@ -20,37 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_PRIVATE_PRINTER_BASIC_PRINTER_H
 
 /*
- * Make sure there is only one OS defined
- */
-#undef NBP_PRIVATE_OS_TYPE
-
-#ifdef NBP_OS_LINUX
-#define NBP_PRIVATE_OS_TYPE
-#endif // end if NBP_OS_LINUX
-
-#ifdef NBP_OS_WINDOWS
-#ifndef NBP_PRIVATE_OS_TYPE
-#define NBP_PRIVATE_OS_TYPE
-#else // NBP_PRIVATE_OS_TYPE not defined
-#error "More NBP_OS_* macros are defined"
-#endif // end if NBP_PRIVATE_OS_TYPE
-#endif // end if NBP_OS_WINDOWS
-
-#ifdef NBP_OS_MAC
-#ifndef NBP_PRIVATE_OS_TYPE
-#define NBP_PRIVATE_OS_TYPE
-#else // NBP_PRIVATE_OS_TYPE not defined
-#error "More NBP_OS_* macros are defined"
-#endif // end if NBP_PRIVATE_OS_TYPE
-#endif // end if NBP_OS_MAC
-
-#ifndef NBP_PRIVATE_OS_TYPE
-#error "Unknown OS"
-#endif // end if NBP_PRIVATE_OS_TYPE
-
-#undef NBP_PRIVATE_OS_TYPE
-
-/*
  * Default nbp printer for Linux
  */
 #ifdef NBP_OS_LINUX
