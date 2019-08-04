@@ -487,7 +487,7 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
     );
 
     if (oldVal == NBP_MODULE_STATE_RUNNING) {
-        NBP_WAIT_EVENT(&module->runEvent);
+        NBP_WAIT_EVENT(module->runEvent);
         return NBP_MODULE_STATE_RUNNING;
     }
 
@@ -502,7 +502,7 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
         }
 
         nbp_notify_printer_module_begin(module);
-        NBP_SIGNAL_EVENT(&module->runEvent);
+        NBP_SIGNAL_EVENT(module->runEvent);
 
         return NBP_MODULE_STATE_RUNNING;
     }
