@@ -21,9 +21,53 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef NBP_MT_SUPPORT
 
-#error "not supported"
+#include <semaphore.h>
 
-#else 
+#ifdef NBP_OS_LINUX
+
+#define NBP_ATOMIC_UINT_TYPE unsigned int
+
+#define NBP_ATOMIC_UINT_INIT(val) val
+
+#define NBP_ATOMIC_UINT_LOAD(ptr) __atomic_load_n((ptr), __ATOMIC_SEQ_CST)
+
+#define NBP_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                              \
+    __sync_add_and_fetch((ptr), (value))
+
+#define NBP_ATOMIC_UINT_CAS(ptr, oldVal, newVal)                               \
+    __sync_val_compare_and_swap((ptr), (oldVal), (newVal))
+
+#define NBP_EVENT_TYPE sem_t
+
+#define NBP_EVENT_DEFAULT_VALUE { .__align = 0 }
+
+#define NBP_EVENT_INIT(ev) sem_init(&ev, 0, 0)
+
+#define NBP_EVENT_UNINIT(ev) sem_destroy(&ev)
+
+#define NBP_WAIT_EVENT(ev) sem_wait(&ev); sem_post(&ev)
+
+#define NBP_SIGNAL_EVENT(ev) sem_post(&ev)
+
+#elif defined NBP_OS_WINDOWS
+
+#error "Not supported"
+
+#elif defined NBP_OS_MAC
+
+#error "Not supported"
+
+#elif defined NBP_OS_CUSTOM
+
+#error "Not supported"
+
+#else // no NBP_OS_* macro defined
+
+#error "Unknown OS"
+
+#endif
+
+#else // NBP_MT_SUPPORT not defined
 
 #define NBP_ATOMIC_UINT_TYPE unsigned int
 
