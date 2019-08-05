@@ -372,6 +372,7 @@ error:
 static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 {
     unsigned int num, flags;
+    int errCode;
     while (1) {
         num = NBP_ATOMIC_UINT_ADD_AND_FETCH(&module->completedTaskNum, 1);
         if (NBP_ATOMIC_UINT_LOAD(&module->taskNum) > num) {
@@ -399,6 +400,18 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
         nbp_scheduler_update_parent_stats(module);
 
         nbp_notify_printer_module_end(module);
+
+        errCode = NBP_EVENT_UNINIT(module->runEvent);
+        if (errCode != NBP_NO_ERROR) {
+            NBP_HANDLE_ERROR(errCode);
+            NBP_EXIT(errCode);
+        }
+
+        errCode = NBP_EVENT_UNINIT(module->setupEvent);
+        if (errCode != NBP_NO_ERROR) {
+            NBP_HANDLE_ERROR(errCode);
+            NBP_EXIT(errCode);
+        }
 
         module = module->parent;
         if (module == 0x0) {
