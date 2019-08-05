@@ -31,6 +31,18 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
         return;
     }
 
+    int errCode = NBP_EVENT_INIT(module->runEvent);
+    if (errCode != NBP_NO_ERROR) {
+        NBP_HANDLE_ERROR(errCode);
+        NBP_EXIT(errCode);
+    }
+
+    errCode = NBP_EVENT_INIT(module->setupEvent);
+    if (errCode != NBP_NO_ERROR) {
+        NBP_HANDLE_ERROR(errCode);
+        NBP_EXIT(errCode);
+    }
+
     module->parent = parent;
 
     if (parent != 0x0) {
