@@ -41,13 +41,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define NBP_EVENT_DEFAULT_VALUE { .__align = 0 }
 
-#define NBP_EVENT_INIT(ev) sem_init(&ev, 0, 0)
+#define NBP_EVENT_INIT(ev)                                                     \
+    sem_init(&ev, 0, 0) == 0                                                   \
+        ? NBP_NO_ERROR                                                         \
+        : NBP_ERROR_FAILED_TO_INIT_EVENT
 
-#define NBP_EVENT_UNINIT(ev) sem_destroy(&ev)
+#define NBP_EVENT_UNINIT(ev)                                                   \
+    sem_destroy(&ev) == 0                                                      \
+        ? NBP_NO_ERROR                                                         \
+        : NBP_ERROR_FAILED_TO_UNINIT_EVENT
 
-#define NBP_WAIT_EVENT(ev) sem_wait(&ev); sem_post(&ev)
+#define NBP_WAIT_EVENT(ev)                                                     \
+    sem_wait(&ev) == 0 && sem_post(&ev) == 0                                   \
+        ? NBP_NO_ERROR                                                         \
+        : NBP_ERROR_FAILED_TO_WAIT_EVENT
 
-#define NBP_SIGNAL_EVENT(ev) sem_post(&ev)
+#define NBP_SIGNAL_EVENT(ev)                                                   \
+    sem_post(&ev) == 0                                                         \
+        ? NBP_NO_ERROR                                                         \
+        : NBP_ERROR_FAILED_TO_SIGNAL_EVENT
 
 #elif defined NBP_OS_WINDOWS
 
@@ -85,13 +97,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define NBP_EVENT_DEFAULT_VALUE 0
 
-#define NBP_EVENT_INIT(ev) do {} while(0)
+#define NBP_EVENT_INIT(ev) NBP_NO_ERROR
 
-#define NBP_EVENT_UNINIT(ev) do {} while(0)
+#define NBP_EVENT_UNINIT(ev) NBP_NO_ERROR
 
-#define NBP_WAIT_EVENT(ev) do {} while(0)
+#define NBP_WAIT_EVENT(ev) NBP_NO_ERROR
 
-#define NBP_SIGNAL_EVENT(ev) do {} while(0)
+#define NBP_SIGNAL_EVENT(ev) NBP_NO_ERROR
 
 #endif // end if NBP_MT_SUPPORT
 
