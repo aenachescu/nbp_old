@@ -20,44 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_PRIVATE_SCHEDULER_H
 
 /*
- * Make sure there is only one defined scheduler
+ * if custom scheduler is not used then use a default scheduler
  */
-#undef NBP_PRIVATE_SCHEDULER_TYPE
-
-#ifdef NBP_CUSTOM_SCHEDULER
-#define NBP_PRIVATE_SCHEDULER_TYPE
-#endif // end if NBP_CUSTOM_SCHEDULER
-
-#ifdef NBP_MT_SCHEDULER
-#ifdef NBP_PRIVATE_SCHEDULER_TYPE
-#error "Cannot enabe NBP_MT_SCHEDULER because another scheduler is enabled"
-#else // NBP_PRIVATE_SCHEDULER_TYPE not defined
-#define NBP_PRIVATE_SCHEDULER_TYPE
-#define NBP_MT_SUPPORT
-#endif // end if NBP_PRIVATE_SCHEDULER_TYPE
-#endif // end if NBP_MT_SCHEDULER
-
-#ifdef NBP_SCHEDULER
-#ifdef NBP_PRIVATE_SCHEDULER_TYPE
-#error "Cannot enabe NBP_SCHEDULER because another scheduler is enabled"
-#else // NBP_PRIVATE_SCHEDULER_TYPE not defined
-#define NBP_PRIVATE_SCHEDULER_TYPE
-#endif // end if NBP_PRIVATE_SCHEDULER_TYPE
-#endif // end if NBP_SCHEDULER
-
-/*
- * If no scheduler is defined then define the default scheduler
- */
-#ifndef NBP_PRIVATE_SCHEDULER_TYPE
-#define NBP_SCHEDULER
-#endif // end if NBP_PRIVATE_SCHEDULER_TYPE
-
-#undef NBP_PRIVATE_SCHEDULER_TYPE
-
-/*
- * Include in the main file a default scheduler if custom scheduler is not used
- */
-#ifdef NBP_LIBRARY_MAIN
 #ifndef NBP_CUSTOM_SCHEDULER
 
 /*
@@ -75,6 +39,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif // end if NBP_SCHEDULER
 
 #endif // end if NBP_CUSTOM_SCHEDULER
-#endif // end if NBP_LIBRARY_MAIN
 
 #endif // end if NBP_PRIVATE_SCHEDULER_H
