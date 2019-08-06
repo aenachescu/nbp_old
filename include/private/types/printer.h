@@ -80,6 +80,18 @@ typedef void (*nbp_printer_after_run_pfn_t)(
     unsigned int  /* num of failed  asserts             */
 );
 
+typedef void (*nbp_printer_scheduling_test_pfn_t) (
+    nbp_test_details_t* /* current test */
+);
+
+typedef void (*nbp_printer_before_scheduling_module_pfn_t) (
+    nbp_module_details_t* /* current module */
+);
+
+typedef void (*nbp_printer_after_scheduling_module_pfn_t) (
+    nbp_module_details_t* /* current module */
+);
+
 typedef void (*nbp_printer_check_result_pfn_t)(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
@@ -698,6 +710,9 @@ struct nbp_printer_interface_t {
     nbp_printer_module_end_pfn_t moduleEnd;
     nbp_printer_before_run_pfn_t beforeRun;
     nbp_printer_after_run_pfn_t afterRun;
+    nbp_printer_scheduling_test_pfn_t schedulingTest;
+    nbp_printer_before_scheduling_module_pfn_t beforeSchedulingModule;
+    nbp_printer_after_scheduling_module_pfn_t afterSchedulingModule;
 
     // callbacks for NBP_CHECK_* macros
     nbp_printer_check_result_pfn_t checkResult;

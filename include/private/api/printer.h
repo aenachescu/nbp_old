@@ -217,6 +217,67 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_PRINTER_NO_FUNC_AFTER_RUN                                          \
     .afterRun = 0x0
 
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_SCHEDULING_TEST(func)                                 \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_test_details_t* test                                               \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_SCHEDULING_TEST(func)                             \
+    .schedulingTest = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_SCHEDULING_TEST                                    \
+    .schedulingTest = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_BEFORE_SCHEDULING_MODULE(func)                        \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_module_details_t* module                                           \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_BEFORE_SCHEDULING_MODULE(func)                    \
+    .beforeSchedulingModule = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_BEFORE_SCHEDULING_MODULE                           \
+    .beforeSchedulingModule = 0x0
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_FUNC_AFTER_SCHEDULING_MODULE(func)                         \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        nbp_module_details_t* module                                           \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_AFTER_SCHEDULING_MODULE(func)                     \
+    .afterSchedulingModule = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_AFTER_SCHEDULING_MODULE                            \
+    .afterSchedulingModule = 0x0
+
 /*
  * TODO: add docs
  */
