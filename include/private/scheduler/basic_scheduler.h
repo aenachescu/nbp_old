@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_SCHEDULER_BASIC_SCHEDULER_H
 #define NBP_PRIVATE_SCHEDULER_BASIC_SCHEDULER_H
 
+#ifdef NBP_LIBRARY_MAIN
+
 struct nbp_scheduler_data_t {
     nbp_test_details_t* test;
     struct nbp_scheduler_data_t* next;
@@ -81,5 +83,7 @@ NBP_DEFINE_SCHEDULER(
     NBP_SCHEDULER_USE_FUNC_RUN(basic_scheduler_run),
     NBP_SCHEDULER_USE_FUNC_ADD_TEST(basic_scheduler_add_test)
 );
+
+#endif // end if NBP_LIBRARY_MAIN
 
 #endif // end if NBP_PRIVATE_SCHEDULER_BASIC_SCHEDULER_H
