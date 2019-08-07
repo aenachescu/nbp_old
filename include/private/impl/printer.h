@@ -132,6 +132,33 @@ void nbp_notify_printer_after_run(unsigned int passedModulesNum,
     }
 }
 
+void nbp_notify_printer_scheduling_test(nbp_test_details_t* test)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->schedulingTest != 0x0) {
+            nbpPrinterInterfaces[i]->schedulingTest(test);
+        }
+    }
+}
+
+void nbp_notify_printer_before_scheduling_module(nbp_module_details_t* module)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->beforeSchedulingModule != 0x0) {
+            nbpPrinterInterfaces[i]->beforeSchedulingModule(module);
+        }
+    }
+}
+
+void nbp_notify_printer_after_scheduling_module(nbp_module_details_t* module)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->afterSchedulingModule != 0x0) {
+            nbpPrinterInterfaces[i]->afterSchedulingModule(module);
+        }
+    }
+}
+
 void nbp_notify_printer_check_result(nbp_test_details_t* test, const char* cond,
     int passed, int line, const char* failMsg, const char* passMsg)
 {

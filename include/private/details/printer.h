@@ -69,6 +69,18 @@ void nbp_notify_printer_after_run(
     unsigned int  /* num of failed  asserts             */
 );
 
+void nbp_notify_printer_scheduling_test(
+    nbp_test_details_t* /* current test */
+);
+
+void nbp_notify_printer_before_scheduling_module(
+    nbp_module_details_t* /* current module */
+);
+
+void nbp_notify_printer_after_scheduling_module(
+    nbp_module_details_t* /* current module */
+);
+
 void nbp_notify_printer_check_result(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
