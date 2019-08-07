@@ -40,6 +40,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_ERROR_TEST_FLAGS_INVALID_VALUE                      (int) 14
 #define NBP_ERROR_MODULE_FLAGS_INVALID_VALUE                    (int) 15
 #define NBP_ERROR_INVALID_MODULE_STATS                          (int) 16
+#define NBP_ERROR_GENERIC                                       (int) 17
+#define NBP_ERROR_TEST_NOT_FOUND                                (int) 18
 
 struct nbp_error_t {
     int errorCode;
