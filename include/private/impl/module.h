@@ -60,7 +60,9 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
         module->depth = parent->depth + 1;
     }
 
+    nbp_notify_printer_before_scheduling_module(module);
     module->moduleFunc(module, 0x0, 0x0);
+    nbp_notify_printer_after_scheduling_module(module);
 
     nbp_module_details_t* idx = module->firstModule;
     while (idx != 0x0) {
