@@ -47,6 +47,7 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
         module->lastTest = test;
     }
 
+    nbp_notify_printer_scheduling_test(test);
     nbpSchedulerInterface->addTest(test);
 }
 
