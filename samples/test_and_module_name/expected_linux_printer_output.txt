@@ -1,9 +1,9 @@
-main module
+Running...[2KRunning... 1/5[2KRunning... 2/5[2KRunning... 3/5[2KRunning... 4/5[2KRunning... 5/5[2K[32mmain module[0m
     [32mfirst test[0m
-    first module
+    [32mfirst module[0m
         [32mfirst test[0m
     [32msecond test[0m
-    second module
+    [32msecond module[0m
         [32msecond test[0m
     [32mthird test[0m
 Passed  modules: [32m3[0m/3

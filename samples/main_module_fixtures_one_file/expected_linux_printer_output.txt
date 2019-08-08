@@ -1,4 +1,4 @@
-main_module_fixtures_one_file
+Running...[2KRunning... 1/4[2KRunning... 2/4[2KRunning... 3/4[2KRunning... 4/4[2K[32mmain_module_fixtures_one_file[0m
     [32mtest1[0m
     [32mtest2[0m
     [32mtest3[0m

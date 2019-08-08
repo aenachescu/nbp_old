@@ -1,39 +1,39 @@
-assert_sample
+Running...[2KRunning... 1/32[2KRunning... 2/32[2KRunning... 3/32[2KRunning... 4/32[2KRunning... 5/32[2KRunning... 6/32[2KRunning... 7/32[2KRunning... 8/32[2KRunning... 9/32[2KRunning... 10/32[2KRunning... 11/32[2KRunning... 12/32[2KRunning... 13/32[2KRunning... 14/32[2KRunning... 15/32[2KRunning... 16/32[2KRunning... 17/32[2KRunning... 18/32[2KRunning... 19/32[2KRunning... 20/32[2KRunning... 21/32[2KRunning... 22/32[2KRunning... 23/32[2KRunning... 24/32[2KRunning... 25/32[2KRunning... 26/32[2KRunning... 27/32[2KRunning... 28/32[2KRunning... 29/32[2KRunning... 30/32[2KRunning... 31/32[2KRunning... 32/32[2K[31massert_sample[0m
     [32mtest1[0m
-    module1
+    [31mmodule1[0m
         [32mtest4[0m
-        submodule1
+        [32msubmodule1[0m
             [32mtest13[0m
             [32mtest14[0m
             [32mtest15[0m
             [32mtest16[0m
         [31mtest5[0m
-            [31m1 != 1 failed (174)[0m
+            [31m1 != 1 (174)[0m
         [31mtest6[0m
-            [31m1 != 1 failed (180)[0m
+            [31m1 != 1 (180)[0m
         [33mtest7[0m
-        submodule2
+        [33msubmodule2[0m
             [33mtest17[0m
             [33mtest18[0m
             [33mtest19[0m
             [33mtest20[0m
         [33mtest8[0m
-        submodule3
+        [33msubmodule3[0m
             [33mtest21[0m
             [33mtest22[0m
             [33mtest23[0m
             [33mtest24[0m
         [33mtest9[0m
     [33mtest2[0m
-    module2
+    [33mmodule2[0m
         [33mtest10[0m
-        submodule4
+        [33msubmodule4[0m
             [33mtest25[0m
             [33mtest26[0m
             [33mtest27[0m
             [33mtest28[0m
         [33mtest11[0m
-        submodule5
+        [33msubmodule5[0m
             [33mtest29[0m
             [33mtest30[0m
             [33mtest31[0m

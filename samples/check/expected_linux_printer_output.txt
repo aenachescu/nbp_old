@@ -1,49 +1,49 @@
-check_sample
+Running...[2KRunning... 1/22[2KRunning... 2/22[2KRunning... 3/22[2KRunning... 4/22[2KRunning... 5/22[2KRunning... 6/22[2KRunning... 7/22[2KRunning... 8/22[2KRunning... 9/22[2KRunning... 10/22[2KRunning... 11/22[2KRunning... 12/22[2KRunning... 13/22[2KRunning... 14/22[2KRunning... 15/22[2KRunning... 16/22[2KRunning... 17/22[2KRunning... 18/22[2KRunning... 19/22[2KRunning... 20/22[2KRunning... 21/22[2KRunning... 22/22[2K[31mcheck_sample[0m
     [32mtest1[0m
-        [32m1 == 1 passed (pass message) (84)[0m
-        [32m2 == 2 passed (whoaaa) (85)[0m
-    module1
-        submodule1
+        [32m1 == 1 (pass message) (84)[0m
+        [32m2 == 2 (whoaaa) (85)[0m
+    [31mmodule1[0m
+        [31msubmodule1[0m
             [31mtest7[0m
-                [31m1 != 1 failed (132)[0m
-                [32m3 == 3 passed (pass msg) (134)[0m
+                [31m1 != 1 (132)[0m
+                [32m3 == 3 (pass msg) (134)[0m
             [31mtest8[0m
-                [31ma == b failed (142)[0m
-                [32mc == d passed (peeeerfect) (143)[0m
+                [31ma == b (142)[0m
+                [32mc == d (peeeerfect) (143)[0m
             [32mtest9[0m
             [32mtest10[0m
         [31mtest4[0m
-            [31m1 != 1 failed (failed :() (106)[0m
-        submodule2
+            [31m1 != 1 (failed :() (106)[0m
+        [32msubmodule2[0m
             [32mtest11[0m
             [32mtest12[0m
             [32mtest13[0m
             [32mtest14[0m
     [32mtest2[0m
-        [32m2 == 2 passed (best best best) (93)[0m
-    module2
+        [32m2 == 2 (best best best) (93)[0m
+    [31mmodule2[0m
         [31mtest5[0m
-            [32m1 == 1 passed (qwe) (113)[0m
-            [32m2 == 2 passed (asd) (114)[0m
-            [32m3 == 3 passed (zxc) (115)[0m
-            [31m4 != 4 failed (pff) (116)[0m
-            [32m5 == 5 passed (rty) (117)[0m
-            [32m6 == 6 passed (fgh) (118)[0m
-        submodule3
+            [32m1 == 1 (qwe) (113)[0m
+            [32m2 == 2 (asd) (114)[0m
+            [32m3 == 3 (zxc) (115)[0m
+            [31m4 != 4 (pff) (116)[0m
+            [32m5 == 5 (rty) (117)[0m
+            [32m6 == 6 (fgh) (118)[0m
+        [32msubmodule3[0m
             [32mtest15[0m
             [32mtest16[0m
             [32mtest17[0m
             [32mtest18[0m
-        submodule4
+        [31msubmodule4[0m
             [31mtest19[0m
-                [31mfunc1() == func2(2) failed (220)[0m
+                [31mfunc1() == func2(2) (220)[0m
             [31mtest20[0m
-                [32mfunc2(1) == func2(1) passed (pass) (227)[0m
-                [31mfunc2(2) == func2(1) failed (fail) (228)[0m
+                [32mfunc2(1) == func2(1) (pass) (227)[0m
+                [31mfunc2(2) == func2(1) (fail) (228)[0m
             [32mtest21[0m
             [32mtest22[0m
         [31mtest6[0m
-            [31m1 == 4 failed (pff) (125)[0m
+            [31m1 == 4 (pff) (125)[0m
     [32mtest3[0m
 Passed  modules: [32m2[0m/7
 Failed  modules: [31m5[0m/7

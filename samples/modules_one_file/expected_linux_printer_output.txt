@@ -1,10 +1,10 @@
-modules_one_file_sample
-    module1
+Running...[2KRunning... 1/8[2KRunning... 2/8[2KRunning... 3/8[2KRunning... 4/8[2KRunning... 5/8[2KRunning... 6/8[2KRunning... 7/8[2KRunning... 8/8[2K[32mmodules_one_file_sample[0m
+    [32mmodule1[0m
         [32mtest1[0m
         [32mtest2[0m
         [32mtest3[0m
         [32mtest4[0m
-    module2
+    [32mmodule2[0m
         [32mtest5[0m
         [32mtest6[0m
         [32mtest7[0m

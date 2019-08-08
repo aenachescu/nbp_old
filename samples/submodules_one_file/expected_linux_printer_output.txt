@@ -1,22 +1,22 @@
-submodules_one_file_sample
-    module1
-        submodule1
+Running...[2KRunning... 1/16[2KRunning... 2/16[2KRunning... 3/16[2KRunning... 4/16[2KRunning... 5/16[2KRunning... 6/16[2KRunning... 7/16[2KRunning... 8/16[2KRunning... 9/16[2KRunning... 10/16[2KRunning... 11/16[2KRunning... 12/16[2KRunning... 13/16[2KRunning... 14/16[2KRunning... 15/16[2KRunning... 16/16[2K[32msubmodules_one_file_sample[0m
+    [32mmodule1[0m
+        [32msubmodule1[0m
             [32mtest1[0m
             [32mtest2[0m
             [32mtest3[0m
             [32mtest4[0m
-        submodule2
+        [32msubmodule2[0m
             [32mtest5[0m
             [32mtest6[0m
             [32mtest7[0m
             [32mtest8[0m
-    module2
-        submodule3
+    [32mmodule2[0m
+        [32msubmodule3[0m
             [32mtest9[0m
             [32mtest10[0m
             [32mtest11[0m
             [32mtest12[0m
-        submodule4
+        [32msubmodule4[0m
             [32mtest13[0m
             [32mtest14[0m
             [32mtest15[0m
