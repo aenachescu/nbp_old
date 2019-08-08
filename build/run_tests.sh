@@ -46,7 +46,7 @@ function run_test {
         printer_output=$(env $sanopt ./$1)
     fi
     testStatus=$?
-    printer_output=$(echo "$printer_output" | sed -e 's/\r//g')
+
     if [ -f "output.txt" ]; then
         output=$(<output.txt)
     fi
