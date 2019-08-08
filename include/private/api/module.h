@@ -202,6 +202,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_GET_MODULE_STATE(module)                                           \
+    NBP_ATOMIC_UINT_LOAD(&module->moduleState)
+
+/*
+ * TODO: add docs
+ */
 #define NBP_MODULE_GET_STATE(module)                                           \
     NBP_ATOMIC_UINT_LOAD(&module->moduleState)
 
