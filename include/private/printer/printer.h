@@ -22,38 +22,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef NBP_LIBRARY_MAIN
 
 /*
- * TODO: add docs
+ * Default nbp printer for Linux
  */
-#ifdef NBP_MT_PRINTER
+#ifdef NBP_OS_LINUX
+#include "linux_basic_printer.h"
+#endif // end if NBP_OS_LINUX
 
 /*
- * Check if NBP_MT_SUPPORT is enabled because NBP_MT_PRINTER can be enabled
- * by integrator and NBP_MT_PRINTER is multi thread.
+ * Default nbp printer for Windows
  */
-#ifndef NBP_MT_SUPPORT
-#error "Cannot enable NBP_MT_PRINTER if NBP_MT_SUPPORT is not enabled"
-#endif // end if NBP_MT_SUPPORT
-
+#ifdef NBP_OS_WINDOWS
 #error "Not supported"
-
-#endif // end if NBP_MT_PRINTER
-
-/*
- * TODO: add docs
- */
-#ifdef NBP_PRINTER
+#endif // end if NBP_OS_WINDOWS
 
 /*
- * Check if NBP_MT_SUPPORT is not enabled because NBP_PRINTER can be enabled
- * by integrator and NBP_PRINTER is single thread.
+ * Default nbp printer for Mac
  */
-#ifdef NBP_MT_SUPPORT
-#error "Cannot enable NBP_PRINTER if NBP_MT_SUPPORT is enabled"
-#endif // end if NBP_MT_SUPPORT
-
-#include "basic_printer/basic_printer.h"
-
-#endif // end if NBP_PRINTER
+#ifdef NBP_OS_MAC
+#error "Not supported"
+#endif // end if NBP_OS_MAC
 
 #endif // end if NBP_LIBRARY_MAIN
 
