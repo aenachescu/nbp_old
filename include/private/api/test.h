@@ -20,7 +20,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_PRIVATE_API_TEST_H
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  Defines a function that can be called before running a test using the
+ *  NBP_CALL_BEFORE_TEST macro.
+ *
+ *  Use the NBP_THIS_TEST macro if you want to get info about the test that will
+ *  run.
+ *
+ * @params
+ *  func - Represents the function name. It must be unique in the entire program
+ *         not just in the C file where it is defined.
+ * 
+ * @code
+ *  NBP_BEFORE_TEST(beforeMyTests)
+ *  {
+ *      // do something
+ *  }
+ * @endcode
  */
 #define NBP_BEFORE_TEST(func)                                                  \
     void NBP_PRIVATE_PP_CONCAT(nbp_before_test_, func)(                        \
@@ -28,20 +46,93 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     )
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  Calls the function `func` before running a test. The function must be
+ *  defined using the NBP_BEFORE_TEST macro and it can be defined in any C file
+ *  not just in the current C file.
+ *
+ *  This macro must be used in the NBP_MODULE macro. This function will be
+ *  called before any test that will run until another NBP_CALL_BEFORE_TEST
+ *  macro will be used or until the NBP_RESET_BEFORE_TEST macro will be used.
+ *
+ * @params
+ *  func - Represents the function name that was passed to the NBP_BEFORE_TEST
+ *         macro.
+ * 
+ * @code
+ *  NBP_BEFORE_TEST(beforeMyFirstTest)
+ *  {
+ *      // do something
+ *  }
+ *
+ *  NBP_BEFORE_TEST(beforeMySecondAndThirdTest)
+ *  {
+ *      // do something
+ *  }
+ * 
+ *  NBP_MODULE(myFirstModule)
+ *  {
+ *      NBP_CALL_BEFORE_TEST(beforeMyFirstTest);
+ *      NBP_CALL_TEST(myFirstTest);
+ *      NBP_CALL_BEFORE_TEST(beforeMySecondAndThirdTest);
+ *      NBP_CALL_TEST(mySecondTest);
+ *      NBP_CALL_TEST(myThirdTest);
+ *  }
+ * @endcode
  */
 #define NBP_CALL_BEFORE_TEST(func)                                             \
     NBP_BEFORE_TEST(func);                                                     \
     beforeTest = NBP_PRIVATE_PP_CONCAT(nbp_before_test_, func)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  No function will be called before running the tests called after this macro.
+ *  This macro must be used in the NBP_MODULE macro.
+ * 
+ * @code
+ *  NBP_BEFORE_TEST(beforeMyFirstTest)
+ *  {
+ *      // do something
+ *  }
+ * 
+ *  NBP_MODULE(myFirstModule)
+ *  {
+ *      NBP_CALL_BEFORE_TEST(beforeMyFirstTest);
+ *      NBP_CALL_TEST(myFirstTest);
+ *      NBP_RESET_BEFORE_TEST();
+ *      // no function will be called before mySecondTest and myThirdTest.
+ *      NBP_CALL_TEST(mySecondTest);
+ *      NBP_CALL_TEST(myThirdTest);
+ *  }
+ * @endcode
  */
 #define NBP_RESET_BEFORE_TEST()                                                \
     beforeTest = 0x0
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  Defines a function that can be called after running a test using the
+ *  NBP_CALL_AFTER_TEST macro.
+ *
+ *  Use the NBP_THIS_TEST macro if you want to get info about the test that was
+ *  run.
+ *
+ * @params
+ *  func - Represents the function name. It must be unique in the entire program
+ *         not just in the C file where it is defined.
+ * 
+ * @code
+ *  NBP_AFTER_TEST(afterMyTests)
+ *  {
+ *      // do something
+ *  }
+ * @endcode
  */
 #define NBP_AFTER_TEST(func)                                                   \
     void NBP_PRIVATE_PP_CONCAT(nbp_after_test_, func)(                         \
@@ -49,14 +140,69 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     )
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  Calls the function `func` after running a test. The function must be defined
+ *  using the NBP_AFTER_TEST macro and it can be defined in any C file not just
+ *  in the current C file.
+ *
+ *  This macro must be used in the NBP_MODULE macro. This function will be
+ *  called after any test that will run until another NBP_CALL_AFTER_TEST macro
+ *  will be used or until the NBP_RESET_AFTER_TEST macro will be used.
+ *
+ * @params
+ *  func - Represents the function name that was passed to the NBP_AFTER_TEST
+ *         macro.
+ * 
+ * @code
+ *  NBP_AFTER_TEST(afterMyFirstTest)
+ *  {
+ *      // do something
+ *  }
+ *
+ *  NBP_AFTER_TEST(afterMySecondAndThirdTest)
+ *  {
+ *      // do something
+ *  }
+ * 
+ *  NBP_MODULE(myFirstModule)
+ *  {
+ *      NBP_CALL_AFTER_TEST(afterMyFirstTest);
+ *      NBP_CALL_TEST(myFirstTest);
+ *      NBP_CALL_AFTER_TEST(afterMySecondAndThirdTest);
+ *      NBP_CALL_TEST(mySecondTest);
+ *      NBP_CALL_TEST(myThirdTest);
+ *  }
+ * @endcode
  */
 #define NBP_CALL_AFTER_TEST(func)                                              \
     NBP_AFTER_TEST(func);                                                      \
     afterTest = NBP_PRIVATE_PP_CONCAT(nbp_after_test_, func)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  No function will be called after running the tests called after this macro.
+ *  This macro must be used in the NBP_MODULE macro.
+ * 
+ * @code
+ *  NBP_AFTER_TEST(afterMyFirstTest)
+ *  {
+ *      // do something
+ *  }
+ * 
+ *  NBP_MODULE(myFirstModule)
+ *  {
+ *      NBP_CALL_AFTER_TEST(afterMyFirstTest);
+ *      NBP_CALL_TEST(myFirstTest);
+ *      NBP_RESET_AFTER_TEST();
+ *      // no function will be called after mySecondTest and myThirdTest.
+ *      NBP_CALL_TEST(mySecondTest);
+ *      NBP_CALL_TEST(myThirdTest);
+ *  }
+ * @endcode
  */
 #define NBP_RESET_AFTER_TEST()                                                 \
     afterTest = 0x0
@@ -99,19 +245,81 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     )
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  Defines a test that can be called using the NBP_CALL_TEST macro.
+ *  Use the NBP_THIS_TEST macro if you want to get info about the test.
+ *
+ * @params
+ *  func - Represents the function name. It must be unique in the entire program
+ *         not just in the C file where it is defined. At the same time in this
+ *         macro it represents the name of the test.
+ * 
+ * @code
+ *  NBP_TEST(myTest)
+ *  {
+ *      // do something
+ *  }
+ * @endcode
  */
 #define NBP_TEST(func)                                                         \
     NBP_PRIVATE_TEST(func, #func)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  Defines a test that can be called using the NBP_CALL_TEST macro.
+ *  Use the NBP_THIS_TEST macro if you want to get info about the test.
+ *
+ * @params
+ *  func - Represents the function name. It must be unique in the entire program
+ *         not just in the C file where it is defined.
+ *  name - const char* that represents the test name.
+ * 
+ * @code
+ *  NBP_TEST_NAME(myTest, "it tests if something is wrong...")
+ *  {
+ *      // do something
+ *  }
+ * @endcode
  */
 #define NBP_TEST_NAME(func, name)                                              \
     NBP_PRIVATE_TEST(func, name)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  Calls a test that was defined using the NBP_TEST or NBP_TEST_NAME macro.
+ *  The test can be defined in any C file not just in the current C file.
+ *  This macro must be used in the NBP_MODULE macro.
+ * 
+ *  The test will be passed to the scheduler and the scheduler will decide
+ *  when the test will run.
+ *
+ * @params
+ *  func - Represents the function name that was passed to the NBP_TEST or
+ *         NBP_TEST_NAME macro.
+ * 
+ * @code
+ *  NBP_TEST(myFirstTest)
+ *  {
+ *      // do something
+ *  }
+ * 
+ *  NBP_TEST_NAME(mySecondTest, "bla bla bla")
+ *  {
+ *      // do something
+ *  }
+ * 
+ *  NBP_MODULE(myFirstModule)
+ *  {
+ *      NBP_CALL_TEST(myFirstTest);
+ *      NBP_CALL_TEST(mySecondTest);
+ *  }
+ * @endcode
  */
 #define NBP_CALL_TEST(func)                                                    \
     extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func);     \
@@ -123,33 +331,82 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     )
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  Gets the current test. Use this macro only in the functions whose
+ *  documentation specifies that this macro can be used.
+ *
+ * @return
+ *  Pointer to nbp_test_details_t struct. Do not free or modify this structure,
+ *  but you can store this pointer and use it via NBP_TEST_GET_* macros.
  */
 #define NBP_THIS_TEST test
 
 /*
- * TODO: add docs
+ * @public doc
+ * 
+ * @brief
+ *  Gets the test name.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  Pointer to const char. Do not free or modify this pointer.
  */
 #define NBP_GET_TEST_NAME(test)                                                \
     test->testName
 
 /*
- * TODO: add docs
+ * @public doc
+ * 
+ * @brief
+ *  Gets the test depth which is equal to the module depth + 1.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which is greater than 0.
  */
 #define NBP_GET_TEST_DEPTH(test)                                               \
     NBP_GET_MODULE_DEPTH(test->module) + 1
 
 /*
- * TODO: add docs
+ * @public doc
+ * 
+ * @brief
+ *  Gets the test state.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents one of the NBP_TEST_STATE_* macros.
  */
 #define NBP_GET_TEST_STATE(test)                                               \
     NBP_ATOMIC_UINT_LOAD(&test->testState)
 
 /*
- * TODO: add docs
+ * @public doc
+ * 
+ * @brief
+ *  Gets the total number of NBP_CHECK_* macros executed by this test.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the total number of NBP_CHECK_* macros
+ *  executed by this test.
  */
 #define NBP_TEST_GET_CHECKS_NUM(test)                                          \
-    NBP_TEST_GET_PASSED_CHECKS_NUM(test) +                                      \
+    NBP_TEST_GET_PASSED_CHECKS_NUM(test) +                                     \
     NBP_TEST_GET_FAILED_CHECKS_NUM(test)
 
 /*
@@ -222,3 +479,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     NBP_ATOMIC_UINT_LOAD(&test->asserts.numFailed)
 
 #endif // end if NBP_PRIVATE_API_TEST_H
+
