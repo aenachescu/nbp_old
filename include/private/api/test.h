@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @params
  *  func - Represents the function name. It must be unique in the entire program
  *         not just in the C file where it is defined.
- * 
+ *
  * @code
  *  NBP_BEFORE_TEST(beforeMyTests)
  *  {
@@ -60,7 +60,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @params
  *  func - Represents the function name that was passed to the NBP_BEFORE_TEST
  *         macro.
- * 
+ *
  * @code
  *  NBP_BEFORE_TEST(beforeMyFirstTest)
  *  {
@@ -71,7 +71,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  {
  *      // do something
  *  }
- * 
+ *
  *  NBP_MODULE(myFirstModule)
  *  {
  *      NBP_CALL_BEFORE_TEST(beforeMyFirstTest);
@@ -92,13 +92,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @brief
  *  No function will be called before running the tests called after this macro.
  *  This macro must be used in the NBP_MODULE macro.
- * 
+ *
  * @code
  *  NBP_BEFORE_TEST(beforeMyFirstTest)
  *  {
  *      // do something
  *  }
- * 
+ *
  *  NBP_MODULE(myFirstModule)
  *  {
  *      NBP_CALL_BEFORE_TEST(beforeMyFirstTest);
@@ -126,7 +126,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @params
  *  func - Represents the function name. It must be unique in the entire program
  *         not just in the C file where it is defined.
- * 
+ *
  * @code
  *  NBP_AFTER_TEST(afterMyTests)
  *  {
@@ -154,7 +154,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @params
  *  func - Represents the function name that was passed to the NBP_AFTER_TEST
  *         macro.
- * 
+ *
  * @code
  *  NBP_AFTER_TEST(afterMyFirstTest)
  *  {
@@ -165,7 +165,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  {
  *      // do something
  *  }
- * 
+ *
  *  NBP_MODULE(myFirstModule)
  *  {
  *      NBP_CALL_AFTER_TEST(afterMyFirstTest);
@@ -186,13 +186,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @brief
  *  No function will be called after running the tests called after this macro.
  *  This macro must be used in the NBP_MODULE macro.
- * 
+ *
  * @code
  *  NBP_AFTER_TEST(afterMyFirstTest)
  *  {
  *      // do something
  *  }
- * 
+ *
  *  NBP_MODULE(myFirstModule)
  *  {
  *      NBP_CALL_AFTER_TEST(afterMyFirstTest);
@@ -255,7 +255,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  func - Represents the function name. It must be unique in the entire program
  *         not just in the C file where it is defined. At the same time in this
  *         macro it represents the name of the test.
- * 
+ *
  * @code
  *  NBP_TEST(myTest)
  *  {
@@ -277,7 +277,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  func - Represents the function name. It must be unique in the entire program
  *         not just in the C file where it is defined.
  *  name - const char* that represents the test name.
- * 
+ *
  * @code
  *  NBP_TEST_NAME(myTest, "it tests if something is wrong...")
  *  {
@@ -295,25 +295,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  Calls a test that was defined using the NBP_TEST or NBP_TEST_NAME macro.
  *  The test can be defined in any C file not just in the current C file.
  *  This macro must be used in the NBP_MODULE macro.
- * 
+ *
  *  The test will be passed to the scheduler and the scheduler will decide
  *  when the test will run.
  *
  * @params
  *  func - Represents the function name that was passed to the NBP_TEST or
  *         NBP_TEST_NAME macro.
- * 
+ *
  * @code
  *  NBP_TEST(myFirstTest)
  *  {
  *      // do something
  *  }
- * 
+ *
  *  NBP_TEST_NAME(mySecondTest, "bla bla bla")
  *  {
  *      // do something
  *  }
- * 
+ *
  *  NBP_MODULE(myFirstModule)
  *  {
  *      NBP_CALL_TEST(myFirstTest);
@@ -334,7 +334,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @public doc
  *
  * @brief
- *  Gets the current test. Use this macro only in the functions whose
+ *  This macro gets the current test. Use this macro only in the functions whose
  *  documentation specifies that this macro can be used.
  *
  * @return
@@ -345,9 +345,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
  * @public doc
- * 
+ *
  * @brief
- *  Gets the test name.
+ *  This macro gets the test name.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
@@ -361,9 +361,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
  * @public doc
- * 
+ *
  * @brief
- *  Gets the test depth which is equal to the module depth + 1.
+ *  This macro gets the test depth which is equal to the module depth + 1.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
@@ -377,9 +377,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
  * @public doc
- * 
+ *
  * @brief
- *  Gets the test state.
+ *  This macro gets the test state.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
@@ -393,16 +393,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
  * @public doc
- * 
+ *
  * @brief
- *  Gets the total number of NBP_CHECK_* macros executed by this test.
+ *  This macro gets the total number of NBP_CHECK* macros executed by this test.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
  *         the NBP_THIS_TEST macro.
  *
  * @return
- *  unsigned int which represents the total number of NBP_CHECK_* macros
+ *  unsigned int which represents the total number of NBP_CHECK* macros
  *  executed by this test.
  */
 #define NBP_TEST_GET_CHECKS_NUM(test)                                          \
@@ -410,70 +410,185 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     NBP_TEST_GET_FAILED_CHECKS_NUM(test)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  This macro gets the number of passed NBP_CHECK* macros.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the number of passed NBP_CHECK* macros.
  */
 #define NBP_TEST_GET_PASSED_CHECKS_NUM(test)                                   \
     NBP_ATOMIC_UINT_LOAD(&test->checks.numPassed)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  This macro gets the number of failed NBP_CHECK* macros.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the number of failed NBP_CHECK* macros.
  */
 #define NBP_TEST_GET_FAILED_CHECKS_NUM(test)                                   \
     NBP_ATOMIC_UINT_LOAD(&test->checks.numFailed)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  This macro gets the total number of NBP_TEST_ASSERT* macros executed by this
+ *  test.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the total number of NBP_TEST_ASSERT* macros
+ *  executed by this test.
  */
 #define NBP_TEST_GET_TEST_ASSERT_NUM(test)                                     \
     NBP_TEST_GET_PASSED_TEST_ASSERT_NUM(test) +                                \
     NBP_TEST_GET_FAILED_TEST_ASSERT_NUM(test)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  This macro gets the number of passed NBP_TEST_ASSERT* macros.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the number of passed NBP_TEST_ASSERT* macros.
  */
 #define NBP_TEST_GET_PASSED_TEST_ASSERT_NUM(test)                              \
     NBP_ATOMIC_UINT_LOAD(&test->testAsserts.numPassed)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  This macro gets the number of failed NBP_TEST_ASSERT* macros.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the number of failed NBP_TEST_ASSERT* macros.
  */
 #define NBP_TEST_GET_FAILED_TEST_ASSERT_NUM(test)                              \
     NBP_ATOMIC_UINT_LOAD(&test->testAsserts.numFailed)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  This macro gets the total number of NBP_MODULE_ASSERT* macros executed by
+ *  this test.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the total number of NBP_MODULE_ASSERT* macros
+ *  executed by this test.
  */
 #define NBP_TEST_GET_MODULE_ASSERTS_NUM(test)                                  \
     NBP_TEST_GET_PASSED_MODULE_ASSERTS_NUM(test) +                             \
     NBP_TEST_GET_FAILED_MODULE_ASSERTS_NUM(test)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  This macro gets the number of passed NBP_MODULE_ASSERT* macros.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the number of passed NBP_MODULE_ASSERT* macros.
  */
 #define NBP_TEST_GET_PASSED_MODULE_ASSERTS_NUM(test)                           \
     NBP_ATOMIC_UINT_LOAD(&test->moduleAsserts.numPassed)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  This macro gets the number of failed NBP_MODULE_ASSERT* macros.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the number of failed NBP_MODULE_ASSERT* macros.
  */
 #define NBP_TEST_GET_FAILED_MODULE_ASSERTS_NUM(test)                           \
     NBP_ATOMIC_UINT_LOAD(&test->moduleAsserts.numFailed)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  This macro gets the total number of NBP_ASSERT* macros executed by this test.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the total number of NBP_ASSERT* macros
+ *  executed by this test.
  */
 #define NBP_TEST_GET_ASSERTS_NUM(test)                                         \
     NBP_TEST_GET_PASSED_ASSERTS_NUM(test) +                                    \
     NBP_TEST_GET_FAILED_ASSERTS_NUM(test)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  This macro gets the number of passed NBP_ASSERT* macros.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the number of passed NBP_ASSERT* macros.
  */
 #define NBP_TEST_GET_PASSED_ASSERTS_NUM(test)                                  \
     NBP_ATOMIC_UINT_LOAD(&test->asserts.numPassed)
 
 /*
- * TODO: add docs
+ * @public doc
+ *
+ * @brief
+ *  This macro gets the number of failed NBP_ASSERT* macros.
+ *
+ * @params
+ *  test - a pointer to nbp_test_details_t structure which was obtained using
+ *         the NBP_THIS_TEST macro.
+ *
+ * @return
+ *  unsigned int which represents the number of failed NBP_ASSERT* macros.
  */
 #define NBP_TEST_GET_FAILED_ASSERTS_NUM(test)                                  \
     NBP_ATOMIC_UINT_LOAD(&test->asserts.numFailed)
