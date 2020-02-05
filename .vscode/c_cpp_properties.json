@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "name": "Linux-x64",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "NBP_OS_LINUX"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        },
+        {
+            "name": "Linux-x64-MT",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "NBP_OS_LINUX",
+                "NBP_MT_SCHEDULER"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
