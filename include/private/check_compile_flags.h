@@ -94,17 +94,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef NBP_PRIVATE_SCHEDULER_TYPE
 
 /*
- * If no printer is defined then enable NBP_MT_PRINTER when NPB_MT_SUPPORT
- * is enabled or enable NBP_PRINTER when NBP_MT_SUPPORT is disabled
+ * If no printer is defined then define the default printer
  */
-#ifndef NBP_CUSTOM_PRINTER
-#if !defined NBP_MT_PRINTER && !defined NBP_PRINTER
-#ifdef NBP_MT_SUPPORT
-#define NBP_MT_PRINTER
-#else // NBP_MT_SUPPORT not defined
+#if !defined NBP_CUSTOM_PRINTER && !defined NBP_PRINTER
 #define NBP_PRINTER
-#endif // end if NBP_MT_SUPPORT
-#endif // end if ! NBP_MT_PRINTER && ! NBP_PRINTER
-#endif // end if NBP_CUSTOM_PRINTER
+#endif // end if ! NBP_CUSTOM_PRINTER && ! NBP_PRINTER
 
 #endif // end if NBP_PRIVATE_CHECK_COMPILE_FLAGS_H
