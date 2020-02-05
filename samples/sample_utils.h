@@ -48,8 +48,11 @@ static inline void write_message_to_file_2(const char* msg1, const char* msg2)
 #ifdef SAMPLE_LINUX
 #include <unistd.h>
 #define SAMPLE_SLEEP() usleep(200000)
+#elif defined SAMPLE_WINDOWS
+#include <Windows.h>
+#define SAMPLE_SLEEP() Sleep(200000)
 #else
-#error "Unknow OS"
+#error "Unknown OS"
 #endif
 
 #endif
