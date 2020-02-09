@@ -111,7 +111,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @endcode
  */
 #define NBP_RESET_BEFORE_TEST()                                                \
-    beforeTest = 0x0
+    beforeTest = NBP_NULL_POINTER
 
 /*
  * @public doc
@@ -205,7 +205,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @endcode
  */
 #define NBP_RESET_AFTER_TEST()                                                 \
-    afterTest = 0x0
+    afterTest = NBP_NULL_POINTER
 
 #define NBP_PRIVATE_TEST(func, name)                                           \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
@@ -214,11 +214,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func) = {         \
         .testName                   = name,                                    \
         .testFunc                   = NBP_PRIVATE_PP_CONCAT(nbp_test_, func),  \
-        .module                     = 0x0,                                     \
-        .beforeTestFunc             = 0x0,                                     \
-        .afterTestFunc              = 0x0,                                     \
-        .next                       = 0x0,                                     \
-        .prev                       = 0x0,                                     \
+        .module                     = NBP_NULL_POINTER,                        \
+        .beforeTestFunc             = NBP_NULL_POINTER,                        \
+        .afterTestFunc              = NBP_NULL_POINTER,                        \
+        .next                       = NBP_NULL_POINTER,                        \
+        .prev                       = NBP_NULL_POINTER,                        \
         .testState                  =                                          \
             NBP_ATOMIC_UINT_INIT(NBP_TEST_STATE_NOT_INITIALIZED),              \
         .flags                      =                                          \

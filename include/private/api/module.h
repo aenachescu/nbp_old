@@ -56,15 +56,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func) = {     \
         .moduleName        = name,                                             \
         .moduleFunc        = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),         \
-        .parent            = 0x0,                                              \
+        .parent            = NBP_NULL_POINTER,                                 \
         .setup             = setupFunc,                                        \
         .teardown          = teardownFunc,                                     \
-        .firstTest         = 0x0,                                              \
-        .lastTest          = 0x0,                                              \
-        .firstModule       = 0x0,                                              \
-        .lastModule        = 0x0,                                              \
-        .next              = 0x0,                                              \
-        .prev              = 0x0,                                              \
+        .firstTest         = NBP_NULL_POINTER,                                 \
+        .lastTest          = NBP_NULL_POINTER,                                 \
+        .firstModule       = NBP_NULL_POINTER,                                 \
+        .lastModule        = NBP_NULL_POINTER,                                 \
+        .next              = NBP_NULL_POINTER,                                 \
+        .prev              = NBP_NULL_POINTER,                                 \
         .depth             = 0,                                                \
         .runEvent          = NBP_EVENT_DEFAULT_VALUE,                          \
         .setupEvent        = NBP_EVENT_DEFAULT_VALUE,                          \
@@ -145,7 +145,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_MODULE_NAME(func, name)                                            \
-    NBP_PRIVATE_MODULE(func, name, 0x0, 0x0)
+    NBP_PRIVATE_MODULE(func, name, NBP_NULL_POINTER, NBP_NULL_POINTER)
 
 /*
  * TODO: add docs

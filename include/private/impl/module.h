@@ -45,10 +45,10 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 
     module->parent = parent;
 
-    if (parent != 0x0) {
+    if (parent != NBP_NULL_POINTER) {
         NBP_ATOMIC_UINT_ADD_AND_FETCH(&parent->ownModules.num, 1);
         NBP_ATOMIC_UINT_ADD_AND_FETCH(&parent->taskNum, 1);
-        if (parent->firstModule == 0x0) {
+        if (parent->firstModule == NBP_NULL_POINTER) {
             parent->firstModule = module;
             parent->lastModule = module;
         } else {
@@ -61,11 +61,11 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
     }
 
     nbp_notify_printer_before_scheduling_module(module);
-    module->moduleFunc(module, 0x0, 0x0);
+    module->moduleFunc(module, NBP_NULL_POINTER, NBP_NULL_POINTER);
     nbp_notify_printer_after_scheduling_module(module);
 
     nbp_module_details_t* idx = module->firstModule;
-    while (idx != 0x0) {
+    while (idx != NBP_NULL_POINTER) {
         NBP_ATOMIC_UINT_ADD_AND_FETCH(
             &module->subModules.num,
             NBP_ATOMIC_UINT_LOAD(&idx->ownModules.num)

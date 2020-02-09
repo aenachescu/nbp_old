@@ -38,7 +38,7 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.num, 1);
     NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->taskNum, 1);
 
-    if (module->firstTest == 0x0) {
+    if (module->firstTest == NBP_NULL_POINTER) {
         module->firstTest = test;
         module->lastTest = test;
     } else {

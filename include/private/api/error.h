@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         nbp_error_t err;                                                       \
         err.errorCode = errCode;                                               \
         err.contextType = NBP_ERROR_CONTEXT_EMPTY;                             \
-        err.contextString = (const char*) 0x0;                                 \
+        err.contextString = (const char*) NBP_NULL_POINTER;                    \
         nbp_notify_printer_handle_error(err);                                  \
     } while (0)
 

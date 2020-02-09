@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_NO_FUNC_INIT                                             \
-    .init = 0x0
+    .init = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -53,7 +53,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_NO_FUNC_UNINIT                                           \
-    .uninit = 0x0
+    .uninit = NBP_NULL_POINTER
 
 /*
  * TODO: add docs

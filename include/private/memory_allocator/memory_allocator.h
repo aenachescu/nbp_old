@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdlib.h>
 #define NBP_ALLOC malloc
 #define NBP_FREE free
+#define NBP_NULL_POINTER NULL
 
 #else // if custom memory allocator is enabled
 
@@ -37,6 +38,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_FREE
 #error "Custom memory allocator is enabled but no free function is provided"
 #endif // end if NBP_FREE
+
+#ifndef NBP_NULL_POINTER
+#error "Custom memory allocator is enabled but NBP_NULL_POINTER is undefined"
+#endif // end if NBP_NULL_POINTER
 
 #endif // end if NBP_CUSTOM_MEMORY_ALLOCATOR
 

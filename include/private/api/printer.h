@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_INIT                                               \
-    .init = 0x0
+    .init = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -57,7 +57,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_UNINIT                                             \
-    .uninit = 0x0
+    .uninit = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -77,7 +77,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_HANDLE_ERROR                                       \
-    .handleError = 0x0
+    .handleError = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -97,7 +97,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_BEGIN                                         \
-    .testBegin = 0x0
+    .testBegin = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -117,7 +117,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_END                                           \
-    .testEnd = 0x0
+    .testEnd = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -137,7 +137,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_BEGIN                                       \
-    .moduleBegin = 0x0
+    .moduleBegin = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -157,7 +157,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_END                                         \
-    .moduleEnd = 0x0
+    .moduleEnd = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -178,7 +178,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_BEFORE_RUN                                         \
-    .beforeRun = 0x0
+    .beforeRun = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -215,7 +215,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_AFTER_RUN                                          \
-    .afterRun = 0x0
+    .afterRun = NBP_NULL_POINTER
 
 
 /*
@@ -236,7 +236,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_SCHEDULING_TEST                                    \
-    .schedulingTest = 0x0
+    .schedulingTest = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -256,7 +256,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_BEFORE_SCHEDULING_MODULE                           \
-    .beforeSchedulingModule = 0x0
+    .beforeSchedulingModule = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -276,7 +276,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_AFTER_SCHEDULING_MODULE                            \
-    .afterSchedulingModule = 0x0
+    .afterSchedulingModule = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -301,7 +301,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_RESULT                                       \
-    .checkResult = 0x0
+    .checkResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -328,7 +328,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_OP_RESULT                                    \
-    .checkOpResult = 0x0
+    .checkOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -355,7 +355,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_CHAR_OP_RESULT                               \
-    .checkCharOpResult = 0x0
+    .checkCharOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -382,7 +382,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_SHORT_OP_RESULT                              \
-    .checkShortOpResult = 0x0
+    .checkShortOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -409,7 +409,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_USHORT_OP_RESULT                             \
-    .checkUShortOpResult = 0x0
+    .checkUShortOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -436,7 +436,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_INT_OP_RESULT                                \
-    .checkIntOpResult = 0x0
+    .checkIntOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -463,7 +463,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_UINT_OP_RESULT                               \
-    .checkUIntOpResult = 0x0
+    .checkUIntOpResult = NBP_NULL_POINTER
 
     /*
  * TODO: add docs
@@ -490,7 +490,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_LONG_OP_RESULT                               \
-    .checkLongOpResult = 0x0
+    .checkLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -517,7 +517,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_ULONG_OP_RESULT                              \
-    .checkULongOpResult = 0x0
+    .checkULongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -544,7 +544,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_LLONG_OP_RESULT                              \
-    .checkLLongOpResult = 0x0
+    .checkLLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -571,7 +571,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_ULLONG_OP_RESULT                             \
-    .checkULLongOpResult = 0x0
+    .checkULLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -598,7 +598,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_FLOAT_OP_RESULT                              \
-    .checkFloatOpResult = 0x0
+    .checkFloatOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -625,7 +625,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_DOUBLE_OP_RESULT                             \
-    .checkDoubleOpResult = 0x0
+    .checkDoubleOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -652,7 +652,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_LDOUBLE_OP_RESULT                            \
-    .checkLDoubleOpResult = 0x0
+    .checkLDoubleOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -677,7 +677,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_RESULT                                 \
-    .testAssertResult = 0x0
+    .testAssertResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -704,7 +704,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_OP_RESULT                              \
-    .testAssertOpResult = 0x0
+    .testAssertOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -731,7 +731,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_CHAR_OP_RESULT                         \
-    .testAssertCharOpResult = 0x0
+    .testAssertCharOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -758,7 +758,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_SHORT_OP_RESULT                        \
-    .testAssertShortOpResult = 0x0
+    .testAssertShortOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -785,7 +785,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_USHORT_OP_RESULT                       \
-    .testAssertUShortOpResult = 0x0
+    .testAssertUShortOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -812,7 +812,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_INT_OP_RESULT                          \
-    .testAssertIntOpResult = 0x0
+    .testAssertIntOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -839,7 +839,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_UINT_OP_RESULT                         \
-    .testAssertUIntOpResult = 0x0
+    .testAssertUIntOpResult = NBP_NULL_POINTER
 
     /*
  * TODO: add docs
@@ -866,7 +866,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_LONG_OP_RESULT                         \
-    .testAssertLongOpResult = 0x0
+    .testAssertLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -893,7 +893,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_ULONG_OP_RESULT                        \
-    .testAssertULongOpResult = 0x0
+    .testAssertULongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -920,7 +920,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_LLONG_OP_RESULT                        \
-    .testAssertLLongOpResult = 0x0
+    .testAssertLLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -947,7 +947,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_ULLONG_OP_RESULT                       \
-    .testAssertULLongOpResult = 0x0
+    .testAssertULLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -974,7 +974,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_FLOAT_OP_RESULT                        \
-    .testAssertFloatOpResult = 0x0
+    .testAssertFloatOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1001,7 +1001,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_DOUBLE_OP_RESULT                       \
-    .testAssertDoubleOpResult = 0x0
+    .testAssertDoubleOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1028,7 +1028,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT                      \
-    .testAssertLDoubleOpResult = 0x0
+    .testAssertLDoubleOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1053,7 +1053,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_RESULT                               \
-    .moduleAssertResult = 0x0
+    .moduleAssertResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1080,7 +1080,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_OP_RESULT                            \
-    .moduleAssertOpResult = 0x0
+    .moduleAssertOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1107,7 +1107,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_CHAR_OP_RESULT                       \
-    .moduleAssertCharOpResult = 0x0
+    .moduleAssertCharOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1134,7 +1134,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_SHORT_OP_RESULT                      \
-    .moduleAssertShortOpResult = 0x0
+    .moduleAssertShortOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1161,7 +1161,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_USHORT_OP_RESULT                     \
-    .moduleAssertUShortOpResult = 0x0
+    .moduleAssertUShortOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1188,7 +1188,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_INT_OP_RESULT                        \
-    .moduleAssertIntOpResult = 0x0
+    .moduleAssertIntOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1215,7 +1215,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_UINT_OP_RESULT                       \
-    .moduleAssertUIntOpResult = 0x0
+    .moduleAssertUIntOpResult = NBP_NULL_POINTER
 
     /*
  * TODO: add docs
@@ -1242,7 +1242,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_LONG_OP_RESULT                       \
-    .moduleAssertLongOpResult = 0x0
+    .moduleAssertLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1269,7 +1269,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_ULONG_OP_RESULT                      \
-    .moduleAssertULongOpResult = 0x0
+    .moduleAssertULongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1296,7 +1296,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_LLONG_OP_RESULT                      \
-    .moduleAssertLLongOpResult = 0x0
+    .moduleAssertLLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1323,7 +1323,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT                     \
-    .moduleAssertULLongOpResult = 0x0
+    .moduleAssertULLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1350,7 +1350,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT                      \
-    .moduleAssertFloatOpResult = 0x0
+    .moduleAssertFloatOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1377,7 +1377,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT                     \
-    .moduleAssertDoubleOpResult = 0x0
+    .moduleAssertDoubleOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1405,7 +1405,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT                    \
-    .moduleAssertLDoubleOpResult = 0x0
+    .moduleAssertLDoubleOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1430,7 +1430,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_RESULT                                      \
-    .assertResult = 0x0
+    .assertResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1457,7 +1457,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_OP_RESULT                                   \
-    .assertOpResult = 0x0
+    .assertOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1484,7 +1484,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_CHAR_OP_RESULT                              \
-    .assertCharOpResult = 0x0
+    .assertCharOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1511,7 +1511,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_SHORT_OP_RESULT                             \
-    .assertShortOpResult = 0x0
+    .assertShortOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1538,7 +1538,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_USHORT_OP_RESULT                            \
-    .assertUShortOpResult = 0x0
+    .assertUShortOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1565,7 +1565,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_INT_OP_RESULT                               \
-    .assertIntOpResult = 0x0
+    .assertIntOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1592,7 +1592,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_UINT_OP_RESULT                              \
-    .assertUIntOpResult = 0x0
+    .assertUIntOpResult = NBP_NULL_POINTER
 
     /*
  * TODO: add docs
@@ -1619,7 +1619,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_LONG_OP_RESULT                              \
-    .assertLongOpResult = 0x0
+    .assertLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1646,7 +1646,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_ULONG_OP_RESULT                             \
-    .assertULongOpResult = 0x0
+    .assertULongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1673,7 +1673,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_LLONG_OP_RESULT                             \
-    .assertLLongOpResult = 0x0
+    .assertLLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1700,7 +1700,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_ULLONG_OP_RESULT                            \
-    .assertULLongOpResult = 0x0
+    .assertULLongOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1727,7 +1727,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_FLOAT_OP_RESULT                             \
-    .assertFloatOpResult = 0x0
+    .assertFloatOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1754,7 +1754,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_DOUBLE_OP_RESULT                            \
-    .assertDoubleOpResult = 0x0
+    .assertDoubleOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1781,7 +1781,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_LDOUBLE_OP_RESULT                           \
-    .assertLDoubleOpResult = 0x0
+    .assertLDoubleOpResult = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1882,7 +1882,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_FAIL_MSG 0x0
+#define NBP_PRINTER_NO_FAIL_MSG NBP_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1892,7 +1892,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_PASS_MSG 0x0
+#define NBP_PRINTER_NO_PASS_MSG NBP_NULL_POINTER
 
 /*
  * TODO: add docs

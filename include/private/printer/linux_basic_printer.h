@@ -98,7 +98,7 @@ DECLARE_MUTEX(printerMutex);
 static char* nbp_printer_duplicate_str(const char* str)
 {
     char* dup = (char*) NBP_ALLOC(strlen(str) + 1);
-    if (dup != 0x0) {
+    if (dup != NBP_NULL_POINTER) {
         strcpy(dup, str);
     }
     return dup;
@@ -107,11 +107,11 @@ static char* nbp_printer_duplicate_str(const char* str)
 static printer_data_t* nbp_printer_create_data_from_test(
     nbp_test_details_t* test)
 {
-    printer_data_t* data = 0x0;
+    printer_data_t* data = NBP_NULL_POINTER;
 
     do {
         data = (printer_data_t*) NBP_ALLOC(sizeof(*data));
-        if (data == 0x0) {
+        if (data == NBP_NULL_POINTER) {
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_ALLOC,
                 "could not allocate printer_data_t struct from test"
@@ -121,9 +121,9 @@ static printer_data_t* nbp_printer_create_data_from_test(
 
         data->type              = NBP_PRIVATE_PRINTER_TYPE_TEST;
         data->test.test         = test;
-        data->test.messages     = 0x0;
-        data->test.messagesLast = 0x0;
-        data->next              = 0x0;
+        data->test.messages     = NBP_NULL_POINTER;
+        data->test.messagesLast = NBP_NULL_POINTER;
+        data->next              = NBP_NULL_POINTER;
     } while (0);
 
     return data;
@@ -132,11 +132,11 @@ static printer_data_t* nbp_printer_create_data_from_test(
 static printer_data_t* nbp_printer_create_data_from_module(
     nbp_module_details_t* module)
 {
-    printer_data_t* data = 0x0;
+    printer_data_t* data = NBP_NULL_POINTER;
 
     do {
         data = (printer_data_t*) NBP_ALLOC(sizeof(*data));
-        if (data == 0x0) {
+        if (data == NBP_NULL_POINTER) {
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_ALLOC,
                 "could not allocate printer_data_t struct from module"
@@ -146,7 +146,7 @@ static printer_data_t* nbp_printer_create_data_from_module(
 
         data->type          = NBP_PRIVATE_PRINTER_TYPE_MODULE;
         data->module.module = module;
-        data->next          = 0x0;
+        data->next          = NBP_NULL_POINTER;
     } while (0);
 
     return data;
@@ -154,7 +154,8 @@ static printer_data_t* nbp_printer_create_data_from_module(
 
 static printer_data_t* nbp_printer_find_printer_test(nbp_test_details_t* test)
 {
-    for (printer_data_t* data = printerData; data != 0x0; data = data->next) {
+    printer_data_t* data = NBP_NULL_POINTER;
+    for (data = printerData; data != NBP_NULL_POINTER; data = data->next) {
         if (data->type != NBP_PRIVATE_PRINTER_TYPE_TEST) {
             continue;
         }
@@ -166,17 +167,17 @@ static printer_data_t* nbp_printer_find_printer_test(nbp_test_details_t* test)
         return data;
     }
 
-    return 0x0;
+    return NBP_NULL_POINTER;
 }
 
 static void nbp_printer_delete_messages(printer_messages_list_t* msg)
 {
-    printer_messages_list_t* tmp = 0x0;
-    while (msg != 0x0) {
+    printer_messages_list_t* tmp = NBP_NULL_POINTER;
+    while (msg != NBP_NULL_POINTER) {
         tmp = msg;
         msg = tmp->next;
 
-        tmp->next = 0x0;
+        tmp->next = NBP_NULL_POINTER;
 
         NBP_FREE(tmp->message);
         NBP_FREE(tmp);
@@ -185,11 +186,11 @@ static void nbp_printer_delete_messages(printer_messages_list_t* msg)
 
 static printer_messages_list_t* nbp_printer_create_message(char* msg)
 {
-    printer_messages_list_t* message = 0x0;
+    printer_messages_list_t* message = NBP_NULL_POINTER;
 
     do {
         message = (printer_messages_list_t*) NBP_ALLOC(sizeof(*message));
-        if (message == 0x0) {
+        if (message == NBP_NULL_POINTER) {
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_ALLOC,
                 "could not allocate printer_messages_list_t struct"
@@ -197,10 +198,10 @@ static printer_messages_list_t* nbp_printer_create_message(char* msg)
             break;
         }
 
-        message->next = 0x0;
+        message->next = NBP_NULL_POINTER;
         message->message = nbp_printer_duplicate_str(msg);
 
-        if (message->message == 0x0) {
+        if (message->message == NBP_NULL_POINTER) {
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_ALLOC,
                 "could not duplicate the message"
@@ -211,30 +212,30 @@ static printer_messages_list_t* nbp_printer_create_message(char* msg)
         return message;
     } while (0);
 
-    if (message != 0x0) {
+    if (message != NBP_NULL_POINTER) {
         NBP_FREE(message);
     }
 
-    return 0x0;
+    return NBP_NULL_POINTER;
 }
 
 static void nbp_printer_add_message(nbp_test_details_t* test, char* msg)
 {
     printer_data_t* data = nbp_printer_find_printer_test(test);
 
-    if (data == 0x0) {
+    if (data == NBP_NULL_POINTER) {
         char errMsg[1024];
         snprintf(errMsg, 1024, "test [%s] not found", NBP_GET_TEST_NAME(test));
         NBP_HANDLE_ERROR_CTX_STRING(NBP_ERROR_TEST_NOT_FOUND, errMsg);
         return;
     }
 
-    if (data->test.messages == 0x0) {
+    if (data->test.messages == NBP_NULL_POINTER) {
         data->test.messages = nbp_printer_create_message(msg);
         data->test.messagesLast = data->test.messages;
     } else {
         data->test.messagesLast->next = nbp_printer_create_message(msg);
-        if (data->test.messagesLast->next != 0x0) {
+        if (data->test.messagesLast->next != NBP_NULL_POINTER) {
             data->test.messagesLast = data->test.messagesLast->next;
         }
     }
@@ -471,7 +472,7 @@ static void nbp_printer_print_test(printer_test_t* test)
     printer_messages_list_t* msg = test->messages;
     depth++;
 
-    while (msg != 0x0) {
+    while (msg != NBP_NULL_POINTER) {
         nbp_printer_print_depth(depth);
         printf("%s", msg->message);
         msg = msg->next;
@@ -507,7 +508,7 @@ static void nbp_printer_print_data()
 {
     printer_data_t* data = printerData;
 
-    while (data != 0x0) {
+    while (data != NBP_NULL_POINTER) {
         if (data->type == NBP_PRIVATE_PRINTER_TYPE_MODULE) {
             nbp_printer_print_module(&data->module);
         } else if (data->type == NBP_PRIVATE_PRINTER_TYPE_TEST) {
@@ -520,8 +521,8 @@ static void nbp_printer_print_data()
 
 NBP_PRINTER_FUNC_INIT(nbp_basic_printer_init)
 {
-    printerData                 = 0x0;
-    printerDataLast             = 0x0;
+    printerData                 = NBP_NULL_POINTER;
+    printerDataLast             = NBP_NULL_POINTER;
     printerModulesNum           = 0;
     printerTestsNum             = 0;
     printerCompletedTestsNum    = 0;
@@ -530,12 +531,12 @@ NBP_PRINTER_FUNC_INIT(nbp_basic_printer_init)
 
 NBP_PRINTER_FUNC_UNINIT(nbp_basic_printer_uninit)
 {
-    printer_data_t* tmp = 0x0;
-    while (printerData != 0x0) {
+    printer_data_t* tmp = NBP_NULL_POINTER;
+    while (printerData != NBP_NULL_POINTER) {
         tmp = printerData;
         printerData = tmp->next;
 
-        tmp->next = 0x0;
+        tmp->next = NBP_NULL_POINTER;
 
         if (tmp->type == NBP_PRIVATE_PRINTER_TYPE_TEST) {
             nbp_printer_delete_messages(tmp->test.messages);
@@ -544,7 +545,7 @@ NBP_PRINTER_FUNC_UNINIT(nbp_basic_printer_uninit)
         NBP_FREE(tmp);
     }
 
-    printerDataLast = 0x0;
+    printerDataLast = NBP_NULL_POINTER;
 
     MUTEX_UNINIT(printerMutex);
 }
@@ -737,14 +738,14 @@ NBP_PRINTER_FUNC_AFTER_RUN(nbp_basic_printer_after_run)
 
 NBP_PRINTER_FUNC_SCHEDULING_TEST(nbp_basic_printer_scheduling_test)
 {
-    if (printerData == 0x0) {
+    if (printerData == NBP_NULL_POINTER) {
         printerData = nbp_printer_create_data_from_test(NBP_THIS_TEST);
         printerDataLast = printerData;
     } else {
         printerDataLast->next = nbp_printer_create_data_from_test(
             NBP_THIS_TEST
         );
-        if (printerDataLast->next != 0x0) {
+        if (printerDataLast->next != NBP_NULL_POINTER) {
             printerDataLast = printerDataLast->next;
         }
     }
@@ -753,14 +754,14 @@ NBP_PRINTER_FUNC_SCHEDULING_TEST(nbp_basic_printer_scheduling_test)
 NBP_PRINTER_FUNC_BEFORE_SCHEDULING_MODULE(
     nbp_basic_printer_before_scheduling_module)
 {
-    if (printerData == 0x0) {
+    if (printerData == NBP_NULL_POINTER) {
         printerData = nbp_printer_create_data_from_module(NBP_THIS_MODULE);
         printerDataLast = printerData;
     } else {
         printerDataLast->next = nbp_printer_create_data_from_module(
             NBP_THIS_MODULE
         );
-        if (printerDataLast->next != 0x0) {
+        if (printerDataLast->next != NBP_NULL_POINTER) {
             printerDataLast = printerDataLast->next;
         }
     }

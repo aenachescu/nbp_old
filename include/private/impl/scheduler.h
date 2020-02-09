@@ -65,7 +65,7 @@ static void nbp_scheduler_update_parent_stats(nbp_module_details_t* module)
     nbp_module_details_t* m = module;
     nbp_module_details_t* p = module->parent;
 
-    if (p == 0x0) {
+    if (p == NBP_NULL_POINTER) {
         return;
     }
 
@@ -175,7 +175,7 @@ end:
         NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
-    if (module->parent == 0x0) {
+    if (module->parent == NBP_NULL_POINTER) {
         return;
     }
 
@@ -255,7 +255,7 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
 
 static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
 {
-    if (module == 0x0) {
+    if (module == NBP_NULL_POINTER) {
         return NBP_MODULE_FLAGS_PROCESSED;
     }
 
@@ -414,7 +414,7 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
         }
 
         module = module->parent;
-        if (module == 0x0) {
+        if (module == NBP_NULL_POINTER) {
             break;
         }
     }
@@ -423,7 +423,7 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 static void nbp_scheduler_skip_module(nbp_module_details_t* module)
 {
     nbp_test_details_t* testIdx = module->firstTest;
-    while (testIdx != 0x0) {
+    while (testIdx != NBP_NULL_POINTER) {
         NBP_ATOMIC_UINT_CAS(
             &testIdx->flags,
             NBP_TEST_FLAGS_NOT_INITIALIZED,
@@ -434,7 +434,7 @@ static void nbp_scheduler_skip_module(nbp_module_details_t* module)
 
     nbp_module_details_t* moduleIdx = module->firstModule;
     unsigned int flags;
-    while (moduleIdx != 0x0) {
+    while (moduleIdx != NBP_NULL_POINTER) {
         flags = NBP_ATOMIC_UINT_CAS(
             &moduleIdx->flags,
             NBP_MODULE_FLAGS_NOT_INITIALIZED,
@@ -499,7 +499,7 @@ static void nbp_scheduler_run_test_skipped(nbp_test_details_t* test)
 
 static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
 {
-    if (module == 0x0) {
+    if (module == NBP_NULL_POINTER) {
         return NBP_MODULE_STATE_RUNNING;
     }
 
