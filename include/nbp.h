@@ -19,6 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_LIBRARY_H
 #define NBP_LIBRARY_H
 
+#define NBP_VERSION_MAJOR       1
+#define NBP_VERSION_MINOR       0
+#define NBP_VERSION_REVISION    0
+
+#define NBP_VERSION_STR         "1.0.0"
+
 #include "private/check_compile_flags.h"
 
 // library API
