@@ -19,10 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_TYPES_EXIT_STATUS_H
 #define NBP_PRIVATE_TYPES_EXIT_STATUS_H
 
-#define NBP_EXIT_STATUS_PASSED          (int)  0
-#define NBP_EXIT_STATUS_FAILED          (int)  1
-#define NBP_EXIT_STATUS_GENERIC_ERROR   (int) -1
-#define NBP_EXIT_STATUS_INVALID_CMDLINE (int) -2
+#define NBP_EXIT_STATUS_PASSED                                  (int)  0
+#define NBP_EXIT_STATUS_FAILED                                  (int)  1
+#define NBP_EXIT_STATUS_GENERIC_ERROR                           (int) -1
+#define NBP_EXIT_STATUS_INVALID_CMDLINE                         (int) -2
+#define NBP_EXIT_STATUS_EVENT_ERROR                             (int) -3
+#define NBP_EXIT_STATUS_MUTEX_ERROR                             (int) -4
+#define NBP_EXIT_STATUS_INVALID_SCHEDULER                       (int) -5
 
 #endif // end if NBP_PRIVATE_TYPES_EXIT_STATUS_H
 

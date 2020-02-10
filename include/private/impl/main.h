@@ -48,11 +48,11 @@ int nbp_command_run_all()
 
     if (nbpSchedulerInterface->run == NBP_NULL_POINTER) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_RUN_FUNC);
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
     }
     if (nbpSchedulerInterface->addTest == NBP_NULL_POINTER) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
     }
 
     if (nbpSchedulerInterface->init != NBP_NULL_POINTER) {
