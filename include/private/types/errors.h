@@ -23,6 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_ERROR_CONTEXT_STRING                                (int) 1
 #define NBP_ERROR_CONTEXT_CUSTOM                                (int) 2
 
+#define ERROR_TYPE int
+
 #define NBP_NO_ERROR                                            (int) 0
 #define NBP_ERROR_ALLOC                                         (int) 1
 #define NBP_ERROR_TEST_ALREADY_CALLED                           (int) 2
@@ -42,6 +44,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_ERROR_INVALID_MODULE_STATS                          (int) 16
 #define NBP_ERROR_GENERIC                                       (int) 17
 #define NBP_ERROR_TEST_NOT_FOUND                                (int) 18
+#define NBP_ERROR_FAILED_TO_INIT_MUTEX                          (int) 19
+#define NBP_ERROR_FAILED_TO_UNINIT_MUTEX                        (int) 20
+#define NBP_ERROR_FAILED_TO_LOCK_MUTEX                          (int) 21
+#define NBP_ERROR_FAILED_TO_UNLOCK_MUTEX                        (int) 22
 
 struct nbp_error_t {
     int errorCode;
