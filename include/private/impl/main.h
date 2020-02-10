@@ -26,11 +26,18 @@ extern unsigned int nbpPrinterInterfacesSize;
 
 int nbpSchedulerRunEnabled;
 
-int main(int argc, const char** argv)
+int nbp_string_equal(const char* a, const char* b)
 {
-    (void)(argc);
-    (void)(argv);
+    while (*a == *b && *a != '\0') {
+        a++;
+        b++;
+    }
 
+    return *a != *b ? 0 : 1;
+}
+
+int nbp_command_run_all()
+{
     nbpSchedulerRunEnabled = 0;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
@@ -105,6 +112,49 @@ int main(int argc, const char** argv)
     }
 
     return NBP_EXIT_STATUS_FAILED;
+}
+
+int nbp_command_version()
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->init != NBP_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->init();
+        }
+    }
+
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->handleVersionCommand != NBP_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->handleVersionCommand();
+        }
+    }
+
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->uninit != NBP_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->uninit();
+        }
+    }
+
+    return NBP_EXIT_STATUS_PASSED;
+}
+
+int main(int argc, const char** argv)
+{
+    (void)(argc);
+    (void)(argv);
+
+    if (argc < 1) {
+        return NBP_EXIT_STATUS_INVALID_CMDLINE;
+    }
+
+    if (argc == 1) {
+        return nbp_command_run_all();
+    }
+
+    if (nbp_string_equal(argv[1], "--version") == 1) {
+        return nbp_command_version();
+    }
+
+    return NBP_EXIT_STATUS_INVALID_CMDLINE;
 }
 
 #endif // end if NBP_PRIVATE_IMPL_MAIN_H

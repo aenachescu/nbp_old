@@ -38,6 +38,9 @@ typedef void (*nbp_printer_handle_error_pfn_t)(
     nbp_error_t /* error context */
 );
 
+typedef void (*nbp_printer_handle_version_command_pfn_t)(
+);
+
 typedef void (*nbp_printer_test_begin_pfn_t)(
     nbp_test_details_t* /* current test */
 );
@@ -703,14 +706,22 @@ typedef void (*nbp_printer_assert_ldouble_op_result_pfn_t)(
 struct nbp_printer_interface_t {
     nbp_printer_init_pfn_t init;
     nbp_printer_uninit_pfn_t uninit;
+
     nbp_printer_handle_error_pfn_t handleError;
+
+    nbp_printer_handle_version_command_pfn_t handleVersionCommand;
+
     nbp_printer_test_begin_pfn_t testBegin;
     nbp_printer_test_end_pfn_t testEnd;
+
     nbp_printer_module_begin_pfn_t moduleBegin;
     nbp_printer_module_end_pfn_t moduleEnd;
+
     nbp_printer_before_run_pfn_t beforeRun;
     nbp_printer_after_run_pfn_t afterRun;
+
     nbp_printer_scheduling_test_pfn_t schedulingTest;
+
     nbp_printer_before_scheduling_module_pfn_t beforeSchedulingModule;
     nbp_printer_after_scheduling_module_pfn_t afterSchedulingModule;
 

@@ -82,6 +82,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_PRINTER_FUNC_HANDLE_VERSION_COMMAND(func)                          \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_HANDLE_VERSION_COMMAND(func)                      \
+    .handleVersionCommand = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_HANDLE_VERSION_COMMAND                             \
+    .handleVersionCommand = NBP_NULL_POINTER
+
+/*
+ * TODO: add docs
+ */
 #define NBP_PRINTER_FUNC_TEST_BEGIN(func)                                      \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
         nbp_test_details_t* test                                               \

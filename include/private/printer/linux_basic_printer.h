@@ -607,6 +607,11 @@ NBP_PRINTER_FUNC_HANDLE_ERROR(nbp_basic_printer_handle_error)
     MUTEX_UNLOCK(printerMutex);
 }
 
+NBP_PRINTER_FUNC_HANDLE_VERSION_COMMAND(nbp_basic_printer_handle_version_command)
+{
+    printf("%s\n", NBP_VERSION_STR);
+}
+
 NBP_PRINTER_FUNC_TEST_END(nbp_basic_printer_test_end)
 {
     (void)(NBP_THIS_TEST);
@@ -1990,6 +1995,11 @@ NBP_DEFINE_PRINTER(
     // handle error callback
     NBP_PRINTER_USE_FUNC_HANDLE_ERROR(
         nbp_basic_printer_handle_error
+    ),
+
+    // handle version command
+    NBP_PRINTER_USE_FUNC_HANDLE_VERSION_COMMAND(
+        nbp_basic_printer_handle_version_command
     ),
 
     // test callbacks

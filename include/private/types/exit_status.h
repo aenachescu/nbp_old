@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_EXIT_STATUS_PASSED          (int)  0
 #define NBP_EXIT_STATUS_FAILED          (int)  1
 #define NBP_EXIT_STATUS_GENERIC_ERROR   (int) -1
+#define NBP_EXIT_STATUS_INVALID_CMDLINE (int) -2
 
 #endif // end if NBP_PRIVATE_TYPES_EXIT_STATUS_H
 
