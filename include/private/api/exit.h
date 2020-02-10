@@ -19,8 +19,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_API_EXIT_H
 #define NBP_PRIVATE_API_EXIT_H
 
+#ifndef NBP_CUSTOM_EXIT
+
 #include <stdlib.h>
 
 #define NBP_EXIT(exitCode) exit(exitCode)
+
+#else // NBP_CUSTOM_EXIT is defined
+
+#ifndef NBP_EXIT
+#error "Custom exit is enabled but no exit function is provided"
+#endif // end if NBP_EXIT
+
+#endif // end if NBP_CUSTOM_EXIT
 
 #endif // end if NBP_PRIVATE_API_EXIT_H
