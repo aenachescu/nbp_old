@@ -39,6 +39,7 @@ typedef void (*nbp_printer_handle_error_pfn_t)(
 );
 
 typedef void (*nbp_printer_handle_version_command_pfn_t)(
+    void
 );
 
 typedef void (*nbp_printer_test_begin_pfn_t)(
