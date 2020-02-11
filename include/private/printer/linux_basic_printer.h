@@ -37,28 +37,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <pthread.h>
 
-static inline ERROR_TYPE nbp_mutex_init(pthread_mutex_t* mutex)
+static inline NBP_ERROR_TYPE nbp_mutex_init(pthread_mutex_t* mutex)
 {
     return pthread_mutex_init(mutex, NULL) == 0
         ? NBP_NO_ERROR
         : NBP_ERROR_FAILED_TO_INIT_MUTEX;
 }
 
-static inline ERROR_TYPE nbp_mutex_uninit(pthread_mutex_t* mutex)
+static inline NBP_ERROR_TYPE nbp_mutex_uninit(pthread_mutex_t* mutex)
 {
     return pthread_mutex_destroy(mutex) == 0
         ? NBP_NO_ERROR
         : NBP_ERROR_FAILED_TO_UNINIT_MUTEX;
 }
 
-static inline ERROR_TYPE nbp_mutex_lock(pthread_mutex_t* mutex)
+static inline NBP_ERROR_TYPE nbp_mutex_lock(pthread_mutex_t* mutex)
 {
     return pthread_mutex_lock(mutex) == 0
         ? NBP_NO_ERROR
         : NBP_ERROR_FAILED_TO_LOCK_MUTEX;
 }
 
-static inline ERROR_TYPE nbp_mutex_unlock(pthread_mutex_t* mutex)
+static inline NBP_ERROR_TYPE nbp_mutex_unlock(pthread_mutex_t* mutex)
 {
     return pthread_mutex_unlock(mutex) == 0
         ? NBP_NO_ERROR
@@ -73,10 +73,10 @@ static inline ERROR_TYPE nbp_mutex_unlock(pthread_mutex_t* mutex)
 
 #else // NBP_MT_SUPPORT not defined
 
-static inline ERROR_TYPE nbp_fake_mutex_init()   { return NBP_NO_ERROR; }
-static inline ERROR_TYPE nbp_fake_mutex_uninit() { return NBP_NO_ERROR; }
-static inline ERROR_TYPE nbp_fake_mutex_lock()   { return NBP_NO_ERROR; }
-static inline ERROR_TYPE nbp_fake_mutex_unlock() { return NBP_NO_ERROR; }
+static inline NBP_ERROR_TYPE nbp_fake_mutex_init()   { return NBP_NO_ERROR; }
+static inline NBP_ERROR_TYPE nbp_fake_mutex_uninit() { return NBP_NO_ERROR; }
+static inline NBP_ERROR_TYPE nbp_fake_mutex_lock()   { return NBP_NO_ERROR; }
+static inline NBP_ERROR_TYPE nbp_fake_mutex_unlock() { return NBP_NO_ERROR; }
 
 #define DECLARE_MUTEX(name)
 #define MUTEX_INIT(name)    nbp_fake_mutex_init()

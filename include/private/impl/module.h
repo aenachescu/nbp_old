@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_IMPL_MODULE_H
 #define NBP_PRIVATE_IMPL_MODULE_H
 
-static ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
+static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
     nbp_module_details_t* parent)
 {
     unsigned int state = NBP_ATOMIC_UINT_CAS(

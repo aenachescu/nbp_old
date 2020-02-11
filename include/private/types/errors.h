@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_ERROR_CONTEXT_STRING                                (int) 1
 #define NBP_ERROR_CONTEXT_CUSTOM                                (int) 2
 
-#define ERROR_TYPE int
+#define NBP_ERROR_TYPE int
 
 #define NBP_NO_ERROR                                            (int) 0
 #define NBP_ERROR_ALLOC                                         (int) 1

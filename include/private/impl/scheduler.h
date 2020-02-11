@@ -270,7 +270,7 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
     }
 
     if (oldVal == NBP_MODULE_FLAGS_PROCESSED) {
-        ERROR_TYPE errCode = NBP_WAIT_EVENT(module->setupEvent);
+        NBP_ERROR_TYPE errCode = NBP_WAIT_EVENT(module->setupEvent);
         if (errCode != NBP_NO_ERROR) {
             NBP_HANDLE_ERROR(errCode);
             NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
@@ -293,7 +293,7 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
                 module->setup(module);
             }
 
-            ERROR_TYPE errCode = NBP_SIGNAL_EVENT(module->setupEvent);
+            NBP_ERROR_TYPE errCode = NBP_SIGNAL_EVENT(module->setupEvent);
             if (errCode != NBP_NO_ERROR) {
                 NBP_HANDLE_ERROR(errCode);
                 NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
@@ -372,7 +372,7 @@ error:
 static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 {
     unsigned int num, flags;
-    ERROR_TYPE errCode;
+    NBP_ERROR_TYPE errCode;
     while (1) {
         num = NBP_ATOMIC_UINT_ADD_AND_FETCH(&module->completedTaskNum, 1);
         if (NBP_ATOMIC_UINT_LOAD(&module->taskNum) > num) {
@@ -510,7 +510,7 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
     );
 
     if (oldVal == NBP_MODULE_STATE_RUNNING) {
-        ERROR_TYPE errCode = NBP_WAIT_EVENT(module->runEvent);
+        NBP_ERROR_TYPE errCode = NBP_WAIT_EVENT(module->runEvent);
         if (errCode != NBP_NO_ERROR) {
             NBP_HANDLE_ERROR(errCode);
             NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
@@ -531,7 +531,7 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
 
         nbp_notify_printer_module_begin(module);
 
-        ERROR_TYPE errCode = NBP_SIGNAL_EVENT(module->runEvent);
+        NBP_ERROR_TYPE errCode = NBP_SIGNAL_EVENT(module->runEvent);
         if (errCode != NBP_NO_ERROR) {
             NBP_HANDLE_ERROR(errCode);
             NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
