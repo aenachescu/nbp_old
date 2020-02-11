@@ -19,8 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_IMPL_TEST_H
 #define NBP_PRIVATE_IMPL_TEST_H
 
-void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
-    nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
+static ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
+    nbp_module_details_t* module, nbp_before_test_pfn_t beforeTest,
+    nbp_after_test_pfn_t afterTest)
 {
     unsigned int state = NBP_ATOMIC_UINT_CAS(
         &test->testState,
@@ -29,7 +30,7 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     );
     if (state != NBP_TEST_STATE_NOT_INITIALIZED) {
         NBP_HANDLE_ERROR(NBP_ERROR_TEST_ALREADY_CALLED);
-        return;
+        return NBP_ERROR_TEST_ALREADY_CALLED;
     }
 
     test->module = module;
@@ -47,8 +48,42 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
         module->lastTest = test;
     }
 
+    return NBP_NO_ERROR;
+}
+
+void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
+    nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
+{
+    if (nbpSchedulerInterface->addTest == NBP_NULL_POINTER) {
+        NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
+        NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
+    }
+
+    ERROR_TYPE err = nbp_test_init(test, module, beforeTest, afterTest);
+    if (err != NBP_NO_ERROR) {
+        return;
+    }
+
     nbp_notify_printer_scheduling_test(test);
     nbpSchedulerInterface->addTest(test);
+}
+
+void nbp_call_test_ctx(nbp_test_details_t* test, void* ctx,
+    nbp_module_details_t* module, nbp_before_test_pfn_t beforeTest,
+    nbp_after_test_pfn_t afterTest)
+{
+    if (nbpSchedulerInterface->addTestCtx == NBP_NULL_POINTER) {
+        NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
+        NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
+    }
+
+    ERROR_TYPE err = nbp_test_init(test, module, beforeTest, afterTest);
+    if (err != NBP_NO_ERROR) {
+        return;
+    }
+
+    nbp_notify_printer_scheduling_test(test);
+    nbpSchedulerInterface->addTestCtx(test, ctx);
 }
 
 #endif // end if NBP_PRIVATE_IMPL_TEST_H

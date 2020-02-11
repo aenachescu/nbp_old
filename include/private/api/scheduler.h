@@ -84,6 +84,94 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_SCHEDULER_NO_FUNC_ADD_TEST                                         \
+    .addTest = NBP_NULL_POINTER
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_FUNC_ADD_TEST_CTX(func)                                  \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+        nbp_test_details_t* test,                                              \
+        void* ctx                                                              \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_USE_FUNC_ADD_TEST_CTX(func)                              \
+    .addTestCtx = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_NO_FUNC_ADD_TEST_CTX                                     \
+    .addTestCtx = NBP_NULL_POINTER
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_FUNC_MODULE_BEGIN(func)                                  \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+        nbp_module_details_t* module                                           \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_USE_FUNC_MODULE_BEGIN(func)                              \
+    .moduleBegin = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_NO_FUNC_MODULE_BEGIN                                     \
+    .moduleBegin = NBP_NULL_POINTER
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_FUNC_MODULE_BEGIN_CTX(func)                              \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+        nbp_module_details_t* module,                                          \
+        void* ctx                                                              \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_USE_FUNC_MODULE_BEGIN_CTX(func)                          \
+    .moduleBeginCtx = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_NO_FUNC_MODULE_BEGIN_CTX                                 \
+    .moduleBeginCtx = NBP_NULL_POINTER
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_FUNC_MODULE_END(func)                                    \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+        nbp_module_details_t* module                                           \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_USE_FUNC_MODULE_END(func)                                \
+    .moduleEnd = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_NO_FUNC_MODULE_END                                       \
+    .moduleEnd = NBP_NULL_POINTER
+
+/*
+ * TODO: add docs
+ */
 #define NBP_DEFINE_SCHEDULER(name, ...)                                        \
     struct nbp_scheduler_interface_t                                           \
     NBP_PRIVATE_PP_CONCAT(nbpScheduler, name) = {                              \
@@ -107,5 +195,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_SCHEDULER_RUN_TEST(test)                                           \
     nbp_scheduler_run_test(test)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_SCHEDULER_CTX ctx
 
 #endif // end if NBP_PRIVATE_API_SCHEDULER_H

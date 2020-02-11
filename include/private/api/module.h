@@ -187,6 +187,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_CALL_MODULE_CTX(func, ctx)                                         \
+    extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
+    (void)(beforeTest);                                                        \
+    (void)(afterTest);                                                         \
+    nbp_call_module_ctx(                                                       \
+        & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func),                       \
+        ctx,                                                                   \
+        module                                                                 \
+    )
+
+/*
+ * TODO: add docs
+ */
 #define NBP_INCLUDE_MODULE(func)                                               \
     extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func);
 

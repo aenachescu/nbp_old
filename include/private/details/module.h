@@ -24,4 +24,10 @@ void nbp_call_module(
     nbp_module_details_t* /* parent */
 );
 
+void nbp_call_module_ctx(
+    nbp_module_details_t*, /* module */
+    void* ctx, /* context */
+    nbp_module_details_t* /* parent */
+);
+
 #endif // end if NBP_PRIVATE_DETAILS_MODULE_H

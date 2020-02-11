@@ -19,7 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_IMPL_MODULE_H
 #define NBP_PRIVATE_IMPL_MODULE_H
 
-void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
+static ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
+    nbp_module_details_t* parent)
 {
     unsigned int state = NBP_ATOMIC_UINT_CAS(
         &module->moduleState,
@@ -28,7 +29,7 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
     );
     if (state != NBP_MODULE_STATE_NOT_INITIALIZED) {
         NBP_HANDLE_ERROR(NBP_ERROR_MODULE_ALREADY_CALLED);
-        return;
+        return NBP_ERROR_MODULE_ALREADY_CALLED;
     }
 
     int errCode = NBP_EVENT_INIT(module->runEvent);
@@ -60,10 +61,11 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
         module->depth = parent->depth + 1;
     }
 
-    nbp_notify_printer_before_scheduling_module(module);
-    module->moduleFunc(module, NBP_NULL_POINTER, NBP_NULL_POINTER);
-    nbp_notify_printer_after_scheduling_module(module);
+    return NBP_NO_ERROR;
+}
 
+static void nbp_module_update_stats(nbp_module_details_t* module)
+{
     nbp_module_details_t* idx = module->firstModule;
     while (idx != NBP_NULL_POINTER) {
         NBP_ATOMIC_UINT_ADD_AND_FETCH(
@@ -84,6 +86,53 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
         );
         idx = idx->next;
     }
+}
+
+void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
+{
+    if (nbp_module_init(module, parent) != NBP_NO_ERROR) {
+        return;
+    }
+
+    nbp_notify_printer_before_scheduling_module(module);
+
+    if (nbpSchedulerInterface->moduleBegin != NBP_NULL_POINTER) {
+        nbpSchedulerInterface->moduleBegin(module);
+    }
+
+    module->moduleFunc(module, NBP_NULL_POINTER, NBP_NULL_POINTER);
+
+    if (nbpSchedulerInterface->moduleEnd != NBP_NULL_POINTER) {
+        nbpSchedulerInterface->moduleEnd(module);
+    }
+
+    nbp_notify_printer_after_scheduling_module(module);
+
+    nbp_module_update_stats(module);
+}
+
+void nbp_call_module_ctx(nbp_module_details_t* module, void* ctx,
+    nbp_module_details_t* parent)
+{
+    if (nbp_module_init(module, parent) != NBP_NO_ERROR) {
+        return;
+    }
+
+    nbp_notify_printer_before_scheduling_module(module);
+
+    if (nbpSchedulerInterface->moduleBeginCtx != NBP_NULL_POINTER) {
+        nbpSchedulerInterface->moduleBeginCtx(module, ctx);
+    }
+
+    module->moduleFunc(module, NBP_NULL_POINTER, NBP_NULL_POINTER);
+
+    if (nbpSchedulerInterface->moduleEnd != NBP_NULL_POINTER) {
+        nbpSchedulerInterface->moduleEnd(module);
+    }
+
+    nbp_notify_printer_after_scheduling_module(module);
+
+    nbp_module_update_stats(module);
 }
 
 NBP_SETUP_MODULE(nbp_empty_setup_func)

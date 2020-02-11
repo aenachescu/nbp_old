@@ -333,6 +333,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_CALL_TEST_CTX(func, ctx)                                           \
+    extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func);     \
+    nbp_call_test_ctx(                                                         \
+        & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
+        ctx,                                                                   \
+        module,                                                                \
+        beforeTest,                                                            \
+        afterTest                                                              \
+    )
+
+/*
+ * TODO: add docs
+ */
 #define NBP_INCLUDE_TEST(func)                                                 \
     extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func)
 

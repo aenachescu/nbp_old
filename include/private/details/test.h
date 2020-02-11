@@ -26,4 +26,12 @@ void nbp_call_test(
     nbp_after_test_pfn_t /* after test pfn */
 );
 
+void nbp_call_test_ctx(
+    nbp_test_details_t*, /* test */
+    void* ctx, /* context */
+    nbp_module_details_t*, /* module */
+    nbp_before_test_pfn_t, /* before test pfn */
+    nbp_after_test_pfn_t /* after test pfn */
+);
+
 #endif // end if NBP_PRIVATE_DETAILS_TEST_H
