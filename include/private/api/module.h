@@ -187,6 +187,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_INCLUDE_MODULE(func)                                               \
+    extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func);
+
+/*
+ * TODO: add docs
+ */
 #define NBP_THIS_MODULE module
 
 /*
