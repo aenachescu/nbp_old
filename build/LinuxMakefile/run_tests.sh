@@ -21,7 +21,7 @@ function run_test {
     echo "running test $1"
 
     sample=${1%_sample}
-    have_output=0
+    has_output=0
     expected_output=""
     output=""
 
@@ -29,7 +29,7 @@ function run_test {
     cd ../samples/$sample
     expected_printer_output=$(<expected_linux_printer_output.txt)
     if [ -f "expected_output.txt" ]; then
-        have_output=1
+        has_output=1
         expected_output=$(<expected_output.txt)
     fi
     cd ../../bin
@@ -73,7 +73,7 @@ function run_test {
     fi
 
     # check output file
-    if [ $have_output -eq 1 ]; then
+    if [ $has_output -eq 1 ]; then
         if [ "$expected_output" != "$output" ]; then
             echo "***** expected output file *****"
             echo "$expected_output"
@@ -93,7 +93,7 @@ if test "$#" -eq 1; then
     echo "$sanopt"
 fi
 
-cd ../bin
+cd ../../bin
 
 run_test basic_sample 0
 run_test modules_sample 0
@@ -126,6 +126,6 @@ run_test test_assert_sample 1
 run_test module_assert_sample 1
 run_test assert_sample 1
 
-cd ../build
+cd ../build/LinuxMakefile
 
 exit $status

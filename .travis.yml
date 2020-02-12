@@ -39,26 +39,28 @@ matrix:
       before_install:
         - gem install coveralls-lcov
       script:
+        - cd build/LinuxMakefile
+
         # gcc 5
-        - make -C build/ clean
-        - make -C build/ all CC=gcc-5 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && ./run_coveralls.sh && cd ..
+        - make clean
+        - make all CC=gcc-5 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh && ./run_coveralls.sh
         # gcc 6
-        - make -C build/ clean
-        - make -C build/ all CC=gcc-6 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=gcc-6 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh
         # gcc 7
-        - make -C build/ clean
-        - make -C build/ all CC=gcc-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=gcc-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh
         # gcc 8
-        - make -C build/ clean
-        - make -C build/ all CC=gcc-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=gcc-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh
         # gcc 9
-        - make -C build/ clean
-        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh
 
     #
     # g++
@@ -80,26 +82,28 @@ matrix:
       before_install:
         - gem install coveralls-lcov
       script:
+        - cd build/LinuxMakefile
+
         # g++ 5
-        - make -C build/ clean
-        - make -C build/ all CC=g++-5 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && ./run_coveralls.sh && cd ..
+        - make clean
+        - make all CC=g++-5 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh && ./run_coveralls.sh
         # g++ 6
-        - make -C build/ clean
-        - make -C build/ all CC=g++-6 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=g++-6 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh
         # g++ 7
-        - make -C build/ clean
-        - make -C build/ all CC=g++-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=g++-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh
         # g++ 8
-        - make -C build/ clean
-        - make -C build/ all CC=g++-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=g++-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh
         # g++ 9
-        - make -C build/ clean
-        - make -C build/ all CC=g++-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=g++-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh
 
     #
     # clang
@@ -120,14 +124,16 @@ matrix:
       before_install:
         - gem install coveralls-lcov
       script:
+        - cd build/LinuxMakefile
+
         # clang 7
-        - make -C build/ clean
-        - make -C build/ all CC=clang-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && ./run_coveralls.sh && cd ..
+        - make clean
+        - make all CC=clang-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh && ./run_coveralls.sh
         # clang 8
-        - make -C build/ clean
-        - make -C build/ all CC=clang-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=clang-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - ./run_tests.sh
 
     #
     # gcc9 sanitizers
@@ -142,25 +148,25 @@ matrix:
           packages:
             - gcc-9
       script:
+        - cd build/LinuxMakefile
+
         # address
-        - make -C build/ clean
-        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=address,pointer-compare,pointer-subtract"
-        - cd build
+        - make clean
+        - make all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=address,pointer-compare,pointer-subtract"
         - ./run_tests.sh ASAN_OPTIONS="detect_invalid_pointer_pairs=1"
         - ./run_tests.sh ASAN_OPTIONS="detect_stack_use_after_return=1"
-        - cd ..
 
         # thread
-        - make -C build/ clean
-        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=thread"
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=thread"
+        - ./run_tests.sh
 
         # leak
-        - make -C build/ clean
-        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=leak"
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=leak"
+        - ./run_tests.sh
 
         # undefined behaviour
-        - make -C build/ clean
-        - make -C build/ all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=undefined,shift,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,bounds-strict,alignment,object-size,float-divide-by-zero,float-cast-overflow,nonnull-attribute,returns-nonnull-attribute,bool,enum,vptr,pointer-overflow,builtin -fuse-ld=gold"
-        - cd build && ./run_tests.sh && cd ..
+        - make clean
+        - make all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=undefined,shift,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,bounds-strict,alignment,object-size,float-divide-by-zero,float-cast-overflow,nonnull-attribute,returns-nonnull-attribute,bool,enum,vptr,pointer-overflow,builtin -fuse-ld=gold"
+        - ./run_tests.sh

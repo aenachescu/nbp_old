@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-path_to_bin="../bin"
+path_to_bin="../../bin"
 path_to_project="/home/travis/build/aenachescu/nbp/"
 
 declare -a arr=(
@@ -63,6 +63,4 @@ lcov $files -o $path_to_bin/coverage.info
 
 sed -i "s|$path_to_project||g" $path_to_bin/coverage.info
 
-cd ..
-coveralls-lcov bin/coverage.info
-cd build
+coveralls-lcov $path_to_bin/coverage.info
