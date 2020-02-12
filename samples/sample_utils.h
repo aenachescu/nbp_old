@@ -39,22 +39,26 @@ static inline void write_message_to_file_2(const char* msg1, const char* msg2)
     }
 }
 
-#ifdef SAMPLE_DISABLE_SLEEP
+#if defined NBP_OS_LINUX
 
-#define SAMPLE_SLEEP()
-
-#else
-
-#ifdef SAMPLE_LINUX
 #include <unistd.h>
-#define SAMPLE_SLEEP() usleep(200000)
-#elif defined SAMPLE_WINDOWS
+#define SAMPLE_FORCE_SLEEP_MS(ms) usleep(ms * 1000)
+
+#elif defined NBP_OS_WINDOWS
+
 #include <Windows.h>
-#define SAMPLE_SLEEP() Sleep(200000)
+#define SAMPLE_FORCE_SLEEP_MS(ms) Sleep(ms)
+
 #else
+
 #error "Unknown OS"
-#endif
 
 #endif
+
+#ifdef SAMPLE_DISABLE_SLEEP
+#define SAMPLE_SLEEP()
+#else // SAMPLE_DISABLE_SLEEP not defined
+#define SAMPLE_SLEEP() SAMPLE_FORCE_SLEEP_MS(200)
+#endif // end if SAMPLE_DISABLE_SLEEP
 
 #endif // end if NBP_SAMPLE_UTILS
