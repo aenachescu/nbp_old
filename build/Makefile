@@ -19,7 +19,6 @@ SANITIZERS=
 CFLAGS=                                                                        \
 	-Wall -Wextra -Werror -Wconversion                                         \
 	-fprofile-arcs -ftest-coverage                                             \
-	-DSAMPLE_LINUX                                                             \
 	-DNBP_OS_LINUX                                                             \
 	$(SANITIZERS)                                                              \
 	$(SAMPLE_FLAGS)
