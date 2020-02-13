@@ -612,7 +612,7 @@ NBP_PRINTER_FUNC_HANDLE_VERSION_COMMAND(nbp_basic_printer_handle_version_command
     printf("%s\n", NBP_VERSION_STR);
 }
 
-NBP_PRINTER_FUNC_TEST_END(nbp_basic_printer_test_end)
+NBP_PRINTER_FUNC_TEST_COMPLETED(nbp_basic_printer_test_completed)
 {
     (void)(NBP_THIS_TEST);
 
@@ -2003,14 +2003,14 @@ NBP_DEFINE_PRINTER(
     ),
 
     // test callbacks
-    NBP_PRINTER_NO_FUNC_TEST_BEGIN,
-    NBP_PRINTER_USE_FUNC_TEST_END(
-        nbp_basic_printer_test_end
+    NBP_PRINTER_NO_FUNC_TEST_STARTED,
+    NBP_PRINTER_USE_FUNC_TEST_COMPLETED(
+        nbp_basic_printer_test_completed
     ),
 
     // module callbacks
-    NBP_PRINTER_NO_FUNC_MODULE_BEGIN,
-    NBP_PRINTER_NO_FUNC_MODULE_END,
+    NBP_PRINTER_NO_FUNC_MODULE_STARTED,
+    NBP_PRINTER_NO_FUNC_MODULE_COMPLETED,
 
     // stats callbacks
     NBP_PRINTER_USE_FUNC_BEFORE_RUN(

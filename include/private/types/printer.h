@@ -42,19 +42,19 @@ typedef void (*nbp_printer_handle_version_command_pfn_t)(
     void
 );
 
-typedef void (*nbp_printer_test_begin_pfn_t)(
+typedef void (*nbp_printer_test_started_pfn_t)(
     nbp_test_details_t* /* current test */
 );
 
-typedef void (*nbp_printer_test_end_pfn_t)(
+typedef void (*nbp_printer_test_completed_pfn_t)(
     nbp_test_details_t* /* current test */
 );
 
-typedef void (*nbp_printer_module_begin_pfn_t)(
+typedef void (*nbp_printer_module_started_pfn_t)(
     nbp_module_details_t* /* current module */
 );
 
-typedef void (*nbp_printer_module_end_pfn_t)(
+typedef void (*nbp_printer_module_completed_pfn_t)(
     nbp_module_details_t* /* current module */
 );
 
@@ -712,11 +712,11 @@ struct nbp_printer_interface_t {
 
     nbp_printer_handle_version_command_pfn_t handleVersionCommand;
 
-    nbp_printer_test_begin_pfn_t testBegin;
-    nbp_printer_test_end_pfn_t testEnd;
+    nbp_printer_test_started_pfn_t testStarted;
+    nbp_printer_test_completed_pfn_t testCompleted;
 
-    nbp_printer_module_begin_pfn_t moduleBegin;
-    nbp_printer_module_end_pfn_t moduleEnd;
+    nbp_printer_module_started_pfn_t moduleStarted;
+    nbp_printer_module_completed_pfn_t moduleCompleted;
 
     nbp_printer_before_run_pfn_t beforeRun;
     nbp_printer_after_run_pfn_t afterRun;

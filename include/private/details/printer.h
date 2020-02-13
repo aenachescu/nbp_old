@@ -23,19 +23,19 @@ const char* nbp_printer_operator_to_string(
     int
 );
 
-void nbp_notify_printer_test_begin(
+void nbp_notify_printer_test_started(
     nbp_test_details_t* /* current test */
 );
 
-void nbp_notify_printer_test_end(
+void nbp_notify_printer_test_completed(
     nbp_test_details_t* /* current test */
 );
 
-void nbp_notify_printer_module_begin(
+void nbp_notify_printer_module_started(
     nbp_module_details_t* /* current module */
 );
 
-void nbp_notify_printer_module_end(
+void nbp_notify_printer_module_completed(
     nbp_module_details_t* /* current module */
 );
 

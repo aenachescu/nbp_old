@@ -49,38 +49,38 @@ void nbp_notify_printer_handle_error(nbp_error_t err)
     }
 }
 
-void nbp_notify_printer_test_begin(nbp_test_details_t* test)
+void nbp_notify_printer_test_started(nbp_test_details_t* test)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testBegin != NBP_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testBegin(test);
+        if (nbpPrinterInterfaces[i]->testStarted != NBP_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->testStarted(test);
         }
     }
 }
 
-void nbp_notify_printer_test_end(nbp_test_details_t* test)
+void nbp_notify_printer_test_completed(nbp_test_details_t* test)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testEnd != NBP_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testEnd(test);
+        if (nbpPrinterInterfaces[i]->testCompleted != NBP_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->testCompleted(test);
         }
     }
 }
 
-void nbp_notify_printer_module_begin(nbp_module_details_t* module)
+void nbp_notify_printer_module_started(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleBegin != NBP_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleBegin(module);
+        if (nbpPrinterInterfaces[i]->moduleStarted != NBP_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->moduleStarted(module);
         }
     }
 }
 
-void nbp_notify_printer_module_end(nbp_module_details_t* module)
+void nbp_notify_printer_module_completed(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleEnd != NBP_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleEnd(module);
+        if (nbpPrinterInterfaces[i]->moduleCompleted != NBP_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->moduleCompleted(module);
         }
     }
 }

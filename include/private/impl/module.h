@@ -96,14 +96,14 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 
     nbp_notify_printer_before_scheduling_module(module);
 
-    if (nbpSchedulerInterface->moduleBegin != NBP_NULL_POINTER) {
-        nbpSchedulerInterface->moduleBegin(module);
+    if (nbpSchedulerInterface->moduleStarted != NBP_NULL_POINTER) {
+        nbpSchedulerInterface->moduleStarted(module);
     }
 
     module->moduleFunc(module, NBP_NULL_POINTER, NBP_NULL_POINTER);
 
-    if (nbpSchedulerInterface->moduleEnd != NBP_NULL_POINTER) {
-        nbpSchedulerInterface->moduleEnd(module);
+    if (nbpSchedulerInterface->moduleCompleted != NBP_NULL_POINTER) {
+        nbpSchedulerInterface->moduleCompleted(module);
     }
 
     nbp_notify_printer_after_scheduling_module(module);
@@ -120,14 +120,14 @@ void nbp_call_module_ctx(nbp_module_details_t* module, void* ctx,
 
     nbp_notify_printer_before_scheduling_module(module);
 
-    if (nbpSchedulerInterface->moduleBeginCtx != NBP_NULL_POINTER) {
-        nbpSchedulerInterface->moduleBeginCtx(module, ctx);
+    if (nbpSchedulerInterface->moduleStartedCtx != NBP_NULL_POINTER) {
+        nbpSchedulerInterface->moduleStartedCtx(module, ctx);
     }
 
     module->moduleFunc(module, NBP_NULL_POINTER, NBP_NULL_POINTER);
 
-    if (nbpSchedulerInterface->moduleEnd != NBP_NULL_POINTER) {
-        nbpSchedulerInterface->moduleEnd(module);
+    if (nbpSchedulerInterface->moduleCompleted != NBP_NULL_POINTER) {
+        nbpSchedulerInterface->moduleCompleted(module);
     }
 
     nbp_notify_printer_after_scheduling_module(module);

@@ -101,7 +101,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_FUNC_TEST_BEGIN(func)                                      \
+#define NBP_PRINTER_FUNC_TEST_STARTED(func)                                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
         nbp_test_details_t* test                                               \
     )
@@ -109,19 +109,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_TEST_BEGIN(func)                                  \
-    .testBegin = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+#define NBP_PRINTER_USE_FUNC_TEST_STARTED(func)                                \
+    .testStarted = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_FUNC_TEST_BEGIN                                         \
-    .testBegin = NBP_NULL_POINTER
+#define NBP_PRINTER_NO_FUNC_TEST_STARTED                                       \
+    .testStarted = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_FUNC_TEST_END(func)                                        \
+#define NBP_PRINTER_FUNC_TEST_COMPLETED(func)                                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
         nbp_test_details_t* test                                               \
     )
@@ -129,19 +129,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_TEST_END(func)                                    \
-    .testEnd = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+#define NBP_PRINTER_USE_FUNC_TEST_COMPLETED(func)                              \
+    .testCompleted = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_FUNC_TEST_END                                           \
-    .testEnd = NBP_NULL_POINTER
+#define NBP_PRINTER_NO_FUNC_TEST_COMPLETED                                     \
+    .testCompleted = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_FUNC_MODULE_BEGIN(func)                                    \
+#define NBP_PRINTER_FUNC_MODULE_STARTED(func)                                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
         nbp_module_details_t* module                                           \
     )
@@ -149,19 +149,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_MODULE_BEGIN(func)                                \
-    .moduleBegin = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+#define NBP_PRINTER_USE_FUNC_MODULE_STARTED(func)                              \
+    .moduleStarted = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_FUNC_MODULE_BEGIN                                       \
-    .moduleBegin = NBP_NULL_POINTER
+#define NBP_PRINTER_NO_FUNC_MODULE_STARTED                                     \
+    .moduleStarted = NBP_NULL_POINTER
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_FUNC_MODULE_END(func)                                      \
+#define NBP_PRINTER_FUNC_MODULE_COMPLETED(func)                                \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
         nbp_module_details_t* module                                           \
     )
@@ -169,14 +169,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_MODULE_END(func)                                  \
-    .moduleEnd = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+#define NBP_PRINTER_USE_FUNC_MODULE_COMPLETED(func)                            \
+    .moduleCompleted = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_FUNC_MODULE_END                                         \
-    .moduleEnd = NBP_NULL_POINTER
+#define NBP_PRINTER_NO_FUNC_MODULE_COMPLETED                                   \
+    .moduleCompleted = NBP_NULL_POINTER
 
 /*
  * TODO: add docs

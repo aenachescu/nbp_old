@@ -40,16 +40,16 @@ typedef void (*nbp_scheduler_add_test_ctx_pfn_t)(
     void* ctx
 );
 
-typedef void (*nbp_scheduler_module_begin_pfn_t)(
+typedef void (*nbp_scheduler_module_started_pfn_t)(
     nbp_module_details_t* /* current module */
 );
 
-typedef void (*nbp_scheduler_module_begin_ctx_pfn_t)(
+typedef void (*nbp_scheduler_module_started_ctx_pfn_t)(
     nbp_module_details_t*, /* current module */
     void* ctx
 );
 
-typedef void (*nbp_scheduler_module_end_pfn_t)(
+typedef void (*nbp_scheduler_module_completed_pfn_t)(
     nbp_module_details_t* /* current module */
 );
 
@@ -59,9 +59,9 @@ struct nbp_scheduler_interface_t {
     nbp_scheduler_run_pfn_t run;
     nbp_scheduler_add_test_pfn_t addTest;
     nbp_scheduler_add_test_ctx_pfn_t addTestCtx;
-    nbp_scheduler_module_begin_pfn_t moduleBegin;
-    nbp_scheduler_module_begin_ctx_pfn_t moduleBeginCtx;
-    nbp_scheduler_module_end_pfn_t moduleEnd;
+    nbp_scheduler_module_started_pfn_t moduleStarted;
+    nbp_scheduler_module_started_ctx_pfn_t moduleStartedCtx;
+    nbp_scheduler_module_completed_pfn_t moduleCompleted;
 };
 typedef struct nbp_scheduler_interface_t nbp_scheduler_interface_t;
 
