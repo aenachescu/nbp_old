@@ -86,36 +86,36 @@ static inline NBP_ERROR_TYPE nbp_fake_mutex_unlock() { return NBP_NO_ERROR; }
 
 #endif // end if NBP_MT_SUPPORT
 
-struct printer_messages_list_t {
-    char *message;
-    struct printer_messages_list_t* next;
+struct nbp_printer_messages_list_t {
+    char* message;
+    struct nbp_printer_messages_list_t* next;
 };
-typedef struct printer_messages_list_t printer_messages_list_t;
+typedef struct nbp_printer_messages_list_t nbp_printer_messages_list_t;
 
-struct printer_test_t {
+struct nbp_printer_test_t {
     nbp_test_details_t* test;
-    printer_messages_list_t* messages;
-    printer_messages_list_t* messagesLast;
+    nbp_printer_messages_list_t* messages;
+    nbp_printer_messages_list_t* messagesLast;
 };
-typedef struct printer_test_t printer_test_t;
+typedef struct nbp_printer_test_t nbp_printer_test_t;
 
-struct printer_module_t {
+struct nbp_printer_module_t {
     nbp_module_details_t* module;
 };
-typedef struct printer_module_t printer_module_t;
+typedef struct nbp_printer_module_t nbp_printer_module_t;
 
-struct printer_data_t {
+struct nbp_printer_data_t {
     int type;
     union {
-        printer_test_t test;
-        printer_module_t module;
+        nbp_printer_test_t test;
+        nbp_printer_module_t module;
     };
-    struct printer_data_t* next;
+    struct nbp_printer_data_t* next;
 };
-typedef struct printer_data_t printer_data_t;
+typedef struct nbp_printer_data_t nbp_printer_data_t;
 
-static printer_data_t* printerData;
-static printer_data_t* printerDataLast;
+static nbp_printer_data_t* printerData;
+static nbp_printer_data_t* printerDataLast;
 
 static unsigned int printerModulesNum;
 static unsigned int printerTestsNum;
@@ -132,17 +132,17 @@ static char* nbp_printer_duplicate_str(const char* str)
     return dup;
 }
 
-static printer_data_t* nbp_printer_create_data_from_test(
+static nbp_printer_data_t* nbp_printer_create_data_from_test(
     nbp_test_details_t* test)
 {
-    printer_data_t* data = NBP_NULL_POINTER;
+    nbp_printer_data_t* data = NBP_NULL_POINTER;
 
     do {
-        data = (printer_data_t*) NBP_ALLOC(sizeof(*data));
+        data = (nbp_printer_data_t*) NBP_ALLOC(sizeof(*data));
         if (data == NBP_NULL_POINTER) {
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_ALLOC,
-                "could not allocate printer_data_t struct from test"
+                "could not allocate nbp_printer_data_t struct from test"
             );
             break;
         }
@@ -157,17 +157,17 @@ static printer_data_t* nbp_printer_create_data_from_test(
     return data;
 }
 
-static printer_data_t* nbp_printer_create_data_from_module(
+static nbp_printer_data_t* nbp_printer_create_data_from_module(
     nbp_module_details_t* module)
 {
-    printer_data_t* data = NBP_NULL_POINTER;
+    nbp_printer_data_t* data = NBP_NULL_POINTER;
 
     do {
-        data = (printer_data_t*) NBP_ALLOC(sizeof(*data));
+        data = (nbp_printer_data_t*) NBP_ALLOC(sizeof(*data));
         if (data == NBP_NULL_POINTER) {
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_ALLOC,
-                "could not allocate printer_data_t struct from module"
+                "could not allocate nbp_printer_data_t struct from module"
             );
             break;
         }
@@ -180,9 +180,9 @@ static printer_data_t* nbp_printer_create_data_from_module(
     return data;
 }
 
-static printer_data_t* nbp_printer_find_printer_test(nbp_test_details_t* test)
+static nbp_printer_data_t* nbp_printer_find_printer_test(nbp_test_details_t* test)
 {
-    printer_data_t* data = NBP_NULL_POINTER;
+    nbp_printer_data_t* data = NBP_NULL_POINTER;
     for (data = printerData; data != NBP_NULL_POINTER; data = data->next) {
         if (data->type != NBP_PRIVATE_PRINTER_TYPE_TEST) {
             continue;
@@ -198,9 +198,9 @@ static printer_data_t* nbp_printer_find_printer_test(nbp_test_details_t* test)
     return NBP_NULL_POINTER;
 }
 
-static void nbp_printer_delete_messages(printer_messages_list_t* msg)
+static void nbp_printer_delete_messages(nbp_printer_messages_list_t* msg)
 {
-    printer_messages_list_t* tmp = NBP_NULL_POINTER;
+    nbp_printer_messages_list_t* tmp = NBP_NULL_POINTER;
     while (msg != NBP_NULL_POINTER) {
         tmp = msg;
         msg = tmp->next;
@@ -212,16 +212,16 @@ static void nbp_printer_delete_messages(printer_messages_list_t* msg)
     }
 }
 
-static printer_messages_list_t* nbp_printer_create_message(char* msg)
+static nbp_printer_messages_list_t* nbp_printer_create_message(char* msg)
 {
-    printer_messages_list_t* message = NBP_NULL_POINTER;
+    nbp_printer_messages_list_t* message = NBP_NULL_POINTER;
 
     do {
-        message = (printer_messages_list_t*) NBP_ALLOC(sizeof(*message));
+        message = (nbp_printer_messages_list_t*) NBP_ALLOC(sizeof(*message));
         if (message == NBP_NULL_POINTER) {
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_ALLOC,
-                "could not allocate printer_messages_list_t struct"
+                "could not allocate nbp_printer_messages_list_t struct"
             );
             break;
         }
@@ -249,7 +249,7 @@ static printer_messages_list_t* nbp_printer_create_message(char* msg)
 
 static void nbp_printer_add_message(nbp_test_details_t* test, char* msg)
 {
-    printer_data_t* data = nbp_printer_find_printer_test(test);
+    nbp_printer_data_t* data = nbp_printer_find_printer_test(test);
 
     if (data == NBP_NULL_POINTER) {
         char errMsg[1024];
@@ -472,7 +472,7 @@ static void nbp_printer_print_depth(unsigned int depth)
     }
 }
 
-static void nbp_printer_print_test(printer_test_t* test)
+static void nbp_printer_print_test(nbp_printer_test_t* test)
 {
     unsigned int state = NBP_GET_TEST_STATE(test->test);
     unsigned int depth = NBP_GET_TEST_DEPTH(test->test);
@@ -497,7 +497,7 @@ static void nbp_printer_print_test(printer_test_t* test)
         printf("%s\n", NBP_GET_TEST_NAME(test->test));
     }
 
-    printer_messages_list_t* msg = test->messages;
+    nbp_printer_messages_list_t* msg = test->messages;
     depth++;
 
     while (msg != NBP_NULL_POINTER) {
@@ -507,7 +507,7 @@ static void nbp_printer_print_test(printer_test_t* test)
     }
 }
 
-static void nbp_printer_print_module(printer_module_t* module)
+static void nbp_printer_print_module(nbp_printer_module_t* module)
 {
     unsigned int state = NBP_GET_MODULE_STATE(module->module);
 
@@ -534,7 +534,7 @@ static void nbp_printer_print_module(printer_module_t* module)
 
 static void nbp_printer_print_data()
 {
-    printer_data_t* data = printerData;
+    nbp_printer_data_t* data = printerData;
 
     while (data != NBP_NULL_POINTER) {
         if (data->type == NBP_PRIVATE_PRINTER_TYPE_MODULE) {
@@ -559,7 +559,7 @@ NBP_PRINTER_FUNC_INIT(nbp_basic_printer_init)
 
 NBP_PRINTER_FUNC_UNINIT(nbp_basic_printer_uninit)
 {
-    printer_data_t* tmp = NBP_NULL_POINTER;
+    nbp_printer_data_t* tmp = NBP_NULL_POINTER;
     while (printerData != NBP_NULL_POINTER) {
         tmp = printerData;
         printerData = tmp->next;
