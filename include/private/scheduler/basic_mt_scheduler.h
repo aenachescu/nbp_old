@@ -37,7 +37,7 @@ struct nbp_mt_scheduler_rule_t {
         nbp_test_details_t* test;
         nbp_module_details_t* module;
         const char* name;
-    }
+    };
 };
 typedef struct nbp_mt_scheduler_rule_t nbp_mt_scheduler_rule_t;
 
