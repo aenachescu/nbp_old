@@ -20,7 +20,8 @@
             ],
             "defines": [
                 "NBP_OS_LINUX",
-                "NBP_MT_SCHEDULER"
+                "NBP_MT_SCHEDULER",
+                "NBP_MT_SCHEDULER_NUMBER_OF_THREADS=4"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
