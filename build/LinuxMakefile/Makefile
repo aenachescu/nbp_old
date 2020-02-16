@@ -24,6 +24,8 @@ CFLAGS=                                                                        \
 	$(SANITIZERS)                                                              \
 	$(SAMPLE_FLAGS)
 
+MT_SCHEDULER_FLAGS=-DNBP_MT_SCHEDULER -DNBP_MT_SCHEDULER_NUMBER_OF_THREADS=4
+
 bin_folder_from_build_folder=../../bin/
 
 build_folder_from_sample_bin_folder=../../build/LinuxMakefile/
@@ -730,6 +732,24 @@ assert_sample: $(depends30) $(lib_files)
 
 clean_assert_sample:
 	rm -rf $(bin_folder_from_build_folder)$(name30)
+
+#
+# mt basic sample
+#
+
+files31=$(samples_folder_from_sample_bin_folder)mt_basic/main.c
+depends31=$(samples_folder_from_build_folder)mt_basic/main.c
+name31=mt_basic_sample
+
+mt_basic_sample: $(depends31) $(lib_files)
+	mkdir -p $(bin_folder_from_build_folder)$(name31) && \
+	cd $(bin_folder_from_build_folder)$(name31) && \
+	$(CC) -o $(name31) $(files31) $(include_folders) $(CFLAGS) \
+		$(MT_SCHEDULER_FLAGS) && \
+	cd $(build_folder_from_sample_bin_folder)
+
+clean_mt_basic_sample:
+	rm -rf $(bin_folder_from_build_folder)$(name31)
 
 #
 # make all
