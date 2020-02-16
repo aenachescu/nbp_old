@@ -42,7 +42,25 @@ static inline void write_message_to_file_2(const char* msg1, const char* msg2)
 #if defined NBP_OS_LINUX
 
 #include <unistd.h>
+#include <semaphore.h>
+
 #define SAMPLE_FORCE_SLEEP_MS(ms) usleep(ms * 1000)
+
+#define SAMPLE_SEMAPHORE_TYPE sem_t
+
+#define SAMPLE_SEMAPHORE_DEFAULT_VALUE { .__align = 0 }
+
+#define SAMPLE_SEMAPHORE_INIT(sem)                                             \
+    sem_init(&sem, 0, 0) == 0 ? 0 : 1
+
+#define SAMPLE_SEMAPHORE_UNINIT(sem)                                           \
+    sem_destroy(&sem) == 0 ? 0 : 1
+
+#define SAMPLE_SEMAPHORE_WAIT(sem)                                             \
+    sem_wait(&sem) == 0 ? 0 : 1
+
+#define SAMPLE_SEMAPHORE_RELEASE(sem)                                          \
+    sem_post(&sem) == 0 ? 0 : 1
 
 #elif defined NBP_OS_WINDOWS
 
