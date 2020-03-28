@@ -23,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 NBP_TEARDOWN_MODULE(teardownMainModule)
 {
-    (void)(NBP_THIS_MODULE);
     write_message_to_file("teardown");
 }
 

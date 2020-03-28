@@ -22,6 +22,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 NBP_SETUP_MODULE(setupMainModule)
 {
-    (void)(NBP_THIS_MODULE);
     write_message_to_file("setup");
 }

@@ -137,12 +137,10 @@ void nbp_call_module_ctx(nbp_module_details_t* module, void* ctx,
 
 NBP_SETUP_MODULE(nbp_empty_setup_func)
 {
-    (void)(NBP_THIS_MODULE);
 }
 
 NBP_TEARDOWN_MODULE(nbp_empty_teardown_func)
 {
-    (void)(NBP_THIS_MODULE);
 }
 
 #endif // end if NBP_PRIVATE_IMPL_MODULE_H

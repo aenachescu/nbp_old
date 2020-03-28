@@ -64,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_HANDLE_ERROR(func)                                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_error_t err                                                        \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_error_t err                             \
     )
 
 /*
@@ -103,7 +103,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_STARTED(func)                                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test                                               \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
     )
 
 /*
@@ -123,7 +123,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_COMPLETED(func)                                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test                                               \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
     )
 
 /*
@@ -143,7 +143,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_STARTED(func)                                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_module_details_t* module                                           \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
     )
 
 /*
@@ -163,7 +163,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_COMPLETED(func)                                \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_module_details_t* module                                           \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
     )
 
 /*
@@ -183,8 +183,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_BEFORE_RUN(func)                                      \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        unsigned int modulesNum,                                               \
-        unsigned int testsNum                                                  \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int modulesNum,                    \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int testsNum                       \
     )
 
 /*
@@ -204,24 +204,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_AFTER_RUN(func)                                       \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        unsigned int passedModulesNum,                                         \
-        unsigned int failedModulesNum,                                         \
-        unsigned int skippedModulesNum,                                        \
-        unsigned int passedTestsNum,                                           \
-        unsigned int failedTestsNum,                                           \
-        unsigned int skippedTestsNum,                                          \
-        unsigned int checksNum,                                                \
-        unsigned int passedChecksNum,                                          \
-        unsigned int failedChecksNum,                                          \
-        unsigned int testAssertsNum,                                           \
-        unsigned int passedTestAssertsNum,                                     \
-        unsigned int failedTestAssertsNum,                                     \
-        unsigned int moduleAssertsNum,                                         \
-        unsigned int passedModuleAssertsNum,                                   \
-        unsigned int failedModuleAssertsNum,                                   \
-        unsigned int assertsNum,                                               \
-        unsigned int passedAssertsNum,                                         \
-        unsigned int failedAssertsNum                                          \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedModulesNum,              \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedModulesNum,              \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int skippedModulesNum,             \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedTestsNum,                \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedTestsNum,                \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int skippedTestsNum,               \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int checksNum,                     \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedChecksNum,               \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedChecksNum,               \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int testAssertsNum,                \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedTestAssertsNum,          \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedTestAssertsNum,          \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int moduleAssertsNum,              \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedModuleAssertsNum,        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedModuleAssertsNum,        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int assertsNum,                    \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedAssertsNum,              \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedAssertsNum               \
     )
 
 /*
@@ -242,7 +242,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_SCHEDULING_TEST(func)                                 \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test                                               \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
     )
 
 /*
@@ -262,7 +262,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_BEFORE_SCHEDULING_MODULE(func)                        \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_module_details_t* module                                           \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
     )
 
 /*
@@ -282,7 +282,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_AFTER_SCHEDULING_MODULE(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_module_details_t* module                                           \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
     )
 
 /*
@@ -302,12 +302,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_RESULT(func)                                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        const char* cond,                                                      \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* cond,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -327,14 +327,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_OP_RESULT(func)                                 \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        const char* a,                                                         \
-        const char* b,                                                         \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* a,                              \
+        NBP_MAYBE_UNUSED_PARAMETER const char* b,                              \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -354,14 +354,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_CHAR_OP_RESULT(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        char a,                                                                \
-        char b,                                                                \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER char a,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER char b,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -381,14 +381,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_SHORT_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        short int a,                                                           \
-        short int b,                                                           \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER short int a,                                \
+        NBP_MAYBE_UNUSED_PARAMETER short int b,                                \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -408,14 +408,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_USHORT_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned short int a,                                                  \
-        unsigned short int b,                                                  \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int a,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int b,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -435,14 +435,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_INT_OP_RESULT(func)                             \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        int a,                                                                 \
-        int b,                                                                 \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int a,                                      \
+        NBP_MAYBE_UNUSED_PARAMETER int b,                                      \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -462,14 +462,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_UINT_OP_RESULT(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned int a,                                                        \
-        unsigned int b,                                                        \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int a,                             \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int b,                             \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -489,14 +489,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_LONG_OP_RESULT(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long int a,                                                            \
-        long int b,                                                            \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long int a,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER long int b,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -516,14 +516,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_ULONG_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned long int a,                                                   \
-        unsigned long int b,                                                   \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int a,                        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int b,                        \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -543,14 +543,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_LLONG_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long long int a,                                                       \
-        long long int b,                                                       \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long long int a,                            \
+        NBP_MAYBE_UNUSED_PARAMETER long long int b,                            \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -570,14 +570,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_ULLONG_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned long long int a,                                              \
-        unsigned long long int b,                                              \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int a,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int b,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -597,14 +597,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_FLOAT_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        float a,                                                               \
-        float b,                                                               \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER float a,                                    \
+        NBP_MAYBE_UNUSED_PARAMETER float b,                                    \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -624,14 +624,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_DOUBLE_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        double a,                                                              \
-        double b,                                                              \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER double a,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER double b,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -651,14 +651,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_CHECK_LDOUBLE_OP_RESULT(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long double a,                                                         \
-        long double b,                                                         \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long double a,                              \
+        NBP_MAYBE_UNUSED_PARAMETER long double b,                              \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -678,12 +678,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_RESULT(func)                              \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        const char* cond,                                                      \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* cond,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -703,14 +703,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        const char* a,                                                         \
-        const char* b,                                                         \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* a,                              \
+        NBP_MAYBE_UNUSED_PARAMETER const char* b,                              \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -730,14 +730,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_CHAR_OP_RESULT(func)                      \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        char a,                                                                \
-        char b,                                                                \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER char a,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER char b,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -757,14 +757,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_SHORT_OP_RESULT(func)                     \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        short int a,                                                           \
-        short int b,                                                           \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER short int a,                                \
+        NBP_MAYBE_UNUSED_PARAMETER short int b,                                \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -784,14 +784,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_USHORT_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned short int a,                                                  \
-        unsigned short int b,                                                  \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int a,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int b,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -811,14 +811,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_INT_OP_RESULT(func)                       \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        int a,                                                                 \
-        int b,                                                                 \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int a,                                      \
+        NBP_MAYBE_UNUSED_PARAMETER int b,                                      \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -838,14 +838,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_UINT_OP_RESULT(func)                      \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned int a,                                                        \
-        unsigned int b,                                                        \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int a,                             \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int b,                             \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -865,14 +865,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_LONG_OP_RESULT(func)                      \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long int a,                                                            \
-        long int b,                                                            \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long int a,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER long int b,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -892,14 +892,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_ULONG_OP_RESULT(func)                     \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned long int a,                                                   \
-        unsigned long int b,                                                   \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int a,                        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int b,                        \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -919,14 +919,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_LLONG_OP_RESULT(func)                     \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long long int a,                                                       \
-        long long int b,                                                       \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long long int a,                            \
+        NBP_MAYBE_UNUSED_PARAMETER long long int b,                            \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -946,14 +946,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_ULLONG_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned long long int a,                                              \
-        unsigned long long int b,                                              \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int a,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int b,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -973,14 +973,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_FLOAT_OP_RESULT(func)                     \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        float a,                                                               \
-        float b,                                                               \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER float a,                                    \
+        NBP_MAYBE_UNUSED_PARAMETER float b,                                    \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1000,14 +1000,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_DOUBLE_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        double a,                                                              \
-        double b,                                                              \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER double a,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER double b,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1027,14 +1027,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT(func)                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long double a,                                                         \
-        long double b,                                                         \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long double a,                              \
+        NBP_MAYBE_UNUSED_PARAMETER long double b,                              \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1054,12 +1054,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_RESULT(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        const char* cond,                                                      \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* cond,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1079,14 +1079,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_OP_RESULT(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        const char* a,                                                         \
-        const char* b,                                                         \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* a,                              \
+        NBP_MAYBE_UNUSED_PARAMETER const char* b,                              \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1106,14 +1106,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_CHAR_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        char a,                                                                \
-        char b,                                                                \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER char a,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER char b,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1133,14 +1133,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_SHORT_OP_RESULT(func)                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        short int a,                                                           \
-        short int b,                                                           \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER short int a,                                \
+        NBP_MAYBE_UNUSED_PARAMETER short int b,                                \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1160,14 +1160,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_USHORT_OP_RESULT(func)                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned short int a,                                                  \
-        unsigned short int b,                                                  \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int a,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int b,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1187,14 +1187,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_INT_OP_RESULT(func)                     \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        int a,                                                                 \
-        int b,                                                                 \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int a,                                      \
+        NBP_MAYBE_UNUSED_PARAMETER int b,                                      \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1214,14 +1214,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_UINT_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned int a,                                                        \
-        unsigned int b,                                                        \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int a,                             \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int b,                             \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1241,14 +1241,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_LONG_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long int a,                                                            \
-        long int b,                                                            \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long int a,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER long int b,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1268,14 +1268,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_ULONG_OP_RESULT(func)                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned long int a,                                                   \
-        unsigned long int b,                                                   \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int a,                        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int b,                        \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1295,14 +1295,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_LLONG_OP_RESULT(func)                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long long int a,                                                       \
-        long long int b,                                                       \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long long int a,                            \
+        NBP_MAYBE_UNUSED_PARAMETER long long int b,                            \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1322,14 +1322,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT(func)                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned long long int a,                                              \
-        unsigned long long int b,                                              \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int a,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int b,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1349,14 +1349,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT(func)                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        float a,                                                               \
-        float b,                                                               \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER float a,                                    \
+        NBP_MAYBE_UNUSED_PARAMETER float b,                                    \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1376,14 +1376,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT(func)                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        double a,                                                              \
-        double b,                                                              \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER double a,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER double b,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1403,14 +1403,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT(func)                 \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long double a,                                                         \
-        long double b,                                                         \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long double a,                              \
+        NBP_MAYBE_UNUSED_PARAMETER long double b,                              \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1431,12 +1431,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_RESULT(func)                                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        const char* cond,                                                      \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* cond,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1456,14 +1456,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_OP_RESULT(func)                                \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        const char* a,                                                         \
-        const char* b,                                                         \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* a,                              \
+        NBP_MAYBE_UNUSED_PARAMETER const char* b,                              \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1483,14 +1483,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_CHAR_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        char a,                                                                \
-        char b,                                                                \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER char a,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER char b,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1510,14 +1510,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_SHORT_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        short int a,                                                           \
-        short int b,                                                           \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER short int a,                                \
+        NBP_MAYBE_UNUSED_PARAMETER short int b,                                \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1537,14 +1537,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_USHORT_OP_RESULT(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned short int a,                                                  \
-        unsigned short int b,                                                  \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int a,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int b,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1564,14 +1564,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_INT_OP_RESULT(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        int a,                                                                 \
-        int b,                                                                 \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int a,                                      \
+        NBP_MAYBE_UNUSED_PARAMETER int b,                                      \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1591,14 +1591,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_UINT_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned int a,                                                        \
-        unsigned int b,                                                        \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int a,                             \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int b,                             \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1618,14 +1618,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_LONG_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long int a,                                                            \
-        long int b,                                                            \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long int a,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER long int b,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1645,14 +1645,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_ULONG_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned long int a,                                                   \
-        unsigned long int b,                                                   \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int a,                        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int b,                        \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1672,14 +1672,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_LLONG_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long long int a,                                                       \
-        long long int b,                                                       \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long long int a,                            \
+        NBP_MAYBE_UNUSED_PARAMETER long long int b,                            \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1699,14 +1699,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_ULLONG_OP_RESULT(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        unsigned long long int a,                                              \
-        unsigned long long int b,                                              \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int a,                   \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int b,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1726,14 +1726,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_FLOAT_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        float a,                                                               \
-        float b,                                                               \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER float a,                                    \
+        NBP_MAYBE_UNUSED_PARAMETER float b,                                    \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1753,14 +1753,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_DOUBLE_OP_RESULT(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        double a,                                                              \
-        double b,                                                              \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER double a,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER double b,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*
@@ -1780,14 +1780,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_PRINTER_FUNC_ASSERT_LDOUBLE_OP_RESULT(func)                        \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        nbp_test_details_t* test,                                              \
-        long double a,                                                         \
-        long double b,                                                         \
-        int op,                                                                \
-        int passed,                                                            \
-        int line,                                                              \
-        const char* failMsg,                                                   \
-        const char* passMsg                                                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long double a,                              \
+        NBP_MAYBE_UNUSED_PARAMETER long double b,                              \
+        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
+        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
+        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
+        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
     )
 
 /*

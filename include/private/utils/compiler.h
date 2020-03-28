@@ -16,11 +16,26 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <nbp.h>
+#ifndef NBP_PRIVATE_UTILS_COMPILER_H
+#define NBP_PRIVATE_UTILS_COMPILER_H
 
-#include "../sample_utils.h"
+#ifdef NBP_COMPILER_GCC
 
-NBP_TEARDOWN_MODULE(teardownMainModule)
-{
-    write_message_to_file("teardown");
-}
+#define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
+
+#elif defined NBP_COMPILER_GPP
+
+#define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
+
+#elif defined NBP_COMPILER_CLANG
+
+#define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
+
+#else
+
+#error "Unknown compiler"
+#define NBP_MAYBE_UNUSED_PARAMETER
+
+#endif
+
+#endif // end if NBP_PRIVATE_UTILS_COMPILER_H

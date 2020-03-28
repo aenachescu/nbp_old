@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_BEFORE_TEST(func)                                                  \
     void NBP_PRIVATE_PP_CONCAT(nbp_before_test_, func)(                        \
-        nbp_test_details_t* test                                               \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
     )
 
 /*
@@ -136,7 +136,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_AFTER_TEST(func)                                                   \
     void NBP_PRIVATE_PP_CONCAT(nbp_after_test_, func)(                         \
-        nbp_test_details_t* test                                               \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
     )
 
 /*
@@ -241,7 +241,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         },                                                                     \
     };                                                                         \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
-        nbp_test_details_t* test                                               \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
     )
 
 /*

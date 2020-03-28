@@ -614,8 +614,6 @@ NBP_PRINTER_FUNC_HANDLE_VERSION_COMMAND(nbp_basic_printer_handle_version_command
 
 NBP_PRINTER_FUNC_TEST_COMPLETED(nbp_basic_printer_test_completed)
 {
-    (void)(NBP_THIS_TEST);
-
     MUTEX_LOCK(printerMutex);
 
     printerCompletedTestsNum++;

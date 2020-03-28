@@ -15,16 +15,21 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 CC=gcc
+COMPILER_FLAG=-DNBP_COMPILER_GCC
 SANITIZERS=
 SAMPLE_FLAGS=
 CFLAGS=                                                                        \
 	-Wall -Wextra -Werror -Wconversion                                         \
 	-fprofile-arcs -ftest-coverage                                             \
 	-DNBP_OS_LINUX                                                             \
+	$(COMPILER_FLAG)                                                           \
 	$(SANITIZERS)                                                              \
 	$(SAMPLE_FLAGS)
 
-MT_SCHEDULER_FLAGS=-DNBP_MT_SCHEDULER -DNBP_MT_SCHEDULER_NUMBER_OF_THREADS=4
+MT_SCHEDULER_FLAGS=                                                            \
+	-DNBP_MT_SCHEDULER                                                         \
+	-DNBP_MT_SCHEDULER_NUMBER_OF_THREADS=4                                     \
+	-lpthread
 
 bin_folder_from_build_folder=../../bin/
 

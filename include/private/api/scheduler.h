@@ -23,7 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_FUNC_INIT(func)                                          \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(void)
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+        void                                                                   \
+    )
 
 /*
  * TODO: add docs
@@ -41,7 +43,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_FUNC_UNINIT(func)                                        \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(void)
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+        void                                                                   \
+    )
 
 /*
  * TODO: add docs
@@ -59,7 +63,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_FUNC_RUN(func)                                           \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(void)
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+        void                                                                   \
+    )
 
 /*
  * TODO: add docs
@@ -72,7 +78,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_SCHEDULER_FUNC_ADD_TEST(func)                                      \
     static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
-        nbp_test_details_t* test                                               \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
     )
 
 /*
@@ -92,8 +98,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_SCHEDULER_FUNC_ADD_TEST_CTX(func)                                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
-        nbp_test_details_t* test,                                              \
-        void* ctx                                                              \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
+        NBP_MAYBE_UNUSED_PARAMETER void* ctx                                   \
     )
 
 /*
@@ -113,7 +119,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_SCHEDULER_FUNC_MODULE_STARTED(func)                                \
     static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
-        nbp_module_details_t* module                                           \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
     )
 
 /*
@@ -133,8 +139,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
-        nbp_module_details_t* module,                                          \
-        void* ctx                                                              \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module,               \
+        NBP_MAYBE_UNUSED_PARAMETER void* ctx                                   \
     )
 
 /*
@@ -154,7 +160,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_SCHEDULER_FUNC_MODULE_COMPLETED(func)                              \
     static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
-        nbp_module_details_t* module                                           \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
     )
 
 /*

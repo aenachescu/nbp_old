@@ -135,9 +135,6 @@ int nbp_command_version()
 
 int main(int argc, const char** argv)
 {
-    (void)(argc);
-    (void)(argv);
-
     if (argc < 1) {
         return NBP_EXIT_STATUS_INVALID_CMDLINE;
     }

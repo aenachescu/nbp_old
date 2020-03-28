@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_SETUP_MODULE(func)                                                 \
     void NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, func)(                       \
-        nbp_module_details_t* module                                           \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
     )
 
 /*
@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_TEARDOWN_MODULE(func)                                              \
     void NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, func)(                    \
-        nbp_module_details_t* module                                           \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
     )
 
 #define NBP_PRIVATE_MODULE(func, name, setupFunc, teardownFunc)                \
@@ -136,9 +136,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         },                                                                     \
     };                                                                         \
     void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
-        nbp_module_details_t* module,                                          \
-        nbp_before_test_pfn_t beforeTest,                                      \
-        nbp_after_test_pfn_t afterTest                                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module,               \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_before_test_pfn_t beforeTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_after_test_pfn_t afterTest              \
     )
 
 /*
@@ -177,8 +177,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_CALL_MODULE(func)                                                  \
     extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
-    (void)(beforeTest);                                                        \
-    (void)(afterTest);                                                         \
     nbp_call_module(                                                           \
         & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func),                       \
         module                                                                 \
@@ -189,8 +187,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_CALL_MODULE_CTX(func, ctx)                                         \
     extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
-    (void)(beforeTest);                                                        \
-    (void)(afterTest);                                                         \
     nbp_call_module_ctx(                                                       \
         & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func),                       \
         ctx,                                                                   \

@@ -84,8 +84,6 @@ NBP_TEST(test4)
 
 NBP_SETUP_MODULE(main_module_setup)
 {
-    (void)(NBP_THIS_MODULE);
-
     int err;
 
     err = SAMPLE_SEMAPHORE_INIT(g_semaphore1);
@@ -109,8 +107,6 @@ NBP_SETUP_MODULE(main_module_setup)
 
 NBP_TEARDOWN_MODULE(main_module_teardown)
 {
-    (void)(NBP_THIS_MODULE);
-
     int err;
 
     err = SAMPLE_SEMAPHORE_UNINIT(g_semaphore1);

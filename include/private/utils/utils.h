@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_PRIVATE_UTILS_H
 
 #include "preprocessor.h"
+#include "compiler.h"
 
 #endif // end if NBP_PRIVATE_UTILS_H
 

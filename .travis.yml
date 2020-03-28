@@ -43,23 +43,23 @@ matrix:
 
         # gcc 5
         - make clean
-        - make all CC=gcc-5 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=gcc-5 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh && ./run_coveralls.sh
         # gcc 6
         - make clean
-        - make all CC=gcc-6 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=gcc-6 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh
         # gcc 7
         - make clean
-        - make all CC=gcc-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=gcc-7 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh
         # gcc 8
         - make clean
-        - make all CC=gcc-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=gcc-8 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh
         # gcc 9
         - make clean
-        - make all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh
 
     #
@@ -86,23 +86,23 @@ matrix:
 
         # g++ 5
         - make clean
-        - make all CC=g++-5 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=g++-5 COMPILER_FLAG=-DNBP_COMPILER_GPP SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh && ./run_coveralls.sh
         # g++ 6
         - make clean
-        - make all CC=g++-6 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=g++-6 COMPILER_FLAG=-DNBP_COMPILER_GPP SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh
         # g++ 7
         - make clean
-        - make all CC=g++-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=g++-7 COMPILER_FLAG=-DNBP_COMPILER_GPP SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh
         # g++ 8
         - make clean
-        - make all CC=g++-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=g++-8 COMPILER_FLAG=-DNBP_COMPILER_GPP SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh
         # g++ 9
         - make clean
-        - make all CC=g++-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=g++-9 COMPILER_FLAG=-DNBP_COMPILER_GPP SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh
 
     #
@@ -128,11 +128,11 @@ matrix:
 
         # clang 7
         - make clean
-        - make all CC=clang-7 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=clang-7 COMPILER_FLAG=-DNBP_COMPILER_CLANG SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh && ./run_coveralls.sh
         # clang 8
         - make clean
-        - make all CC=clang-8 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - make all CC=clang-8 COMPILER_FLAG=-DNBP_COMPILER_CLANG SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
         - ./run_tests.sh
 
     #
@@ -152,21 +152,21 @@ matrix:
 
         # address
         - make clean
-        - make all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=address,pointer-compare,pointer-subtract"
+        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=address,pointer-compare,pointer-subtract"
         - ./run_tests.sh ASAN_OPTIONS="detect_invalid_pointer_pairs=1"
         - ./run_tests.sh ASAN_OPTIONS="detect_stack_use_after_return=1"
 
         # thread
         - make clean
-        - make all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=thread"
+        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=thread"
         - ./run_tests.sh
 
         # leak
         - make clean
-        - make all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=leak"
+        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=leak"
         - ./run_tests.sh
 
         # undefined behaviour
         - make clean
-        - make all CC=gcc-9 SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=undefined,shift,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,bounds-strict,alignment,object-size,float-divide-by-zero,float-cast-overflow,nonnull-attribute,returns-nonnull-attribute,bool,enum,vptr,pointer-overflow,builtin -fuse-ld=gold"
+        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=undefined,shift,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,bounds-strict,alignment,object-size,float-divide-by-zero,float-cast-overflow,nonnull-attribute,returns-nonnull-attribute,bool,enum,vptr,pointer-overflow,builtin -fuse-ld=gold"
         - ./run_tests.sh
