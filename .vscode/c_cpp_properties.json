@@ -6,7 +6,8 @@
                 "${workspaceFolder}/**"
             ],
             "defines": [
-                "NBP_OS_LINUX"
+                "NBP_OS_LINUX",
+                "NBP_COMPILER_GCC"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
@@ -20,6 +21,7 @@
             ],
             "defines": [
                 "NBP_OS_LINUX",
+                "NBP_COMPILER_GCC",
                 "NBP_MT_SCHEDULER",
                 "NBP_MT_SCHEDULER_NUMBER_OF_THREADS=4"
             ],
