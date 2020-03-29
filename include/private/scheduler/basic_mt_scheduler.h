@@ -161,11 +161,19 @@ int nbp_basic_mt_scheduler_get_number_of_threads()
     return get_nprocs();
 }
 
-#else // NBP_OS_LINUX not defined
-
-#error "Unknown OS"
-
 #endif // end if NBP_OS_LINUX
+
+#ifdef NBP_OS_WINDOWS
+#error "Not supported"
+#endif // end if NBP_OS_WINDOWS
+
+#ifdef NBP_OS_MAC
+#error "Not supported"
+#endif // end if NBP_OS_MAC
+
+#ifdef NBP_OS_CUSTOM
+#error "Not supported"
+#endif // end if NBP_OS_CUSTOM
 
 #endif // end if NBP_MT_SCHEDULER_NUMBER_OF_THREADS
 

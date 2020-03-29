@@ -39,7 +39,7 @@ static inline void write_message_to_file_2(const char* msg1, const char* msg2)
     }
 }
 
-#if defined NBP_OS_LINUX
+#ifdef NBP_OS_LINUX
 
 #include <unistd.h>
 #include <semaphore.h>
@@ -62,16 +62,22 @@ static inline void write_message_to_file_2(const char* msg1, const char* msg2)
 #define SAMPLE_SEMAPHORE_RELEASE(sem)                                          \
     sem_post(&sem) == 0 ? 0 : 1
 
-#elif defined NBP_OS_WINDOWS
+#endif // end if NBP_OS_LINUX
+
+#ifdef NBP_OS_WINDOWS
 
 #include <Windows.h>
 #define SAMPLE_FORCE_SLEEP_MS(ms) Sleep(ms)
 
-#else
+#endif // end if NBP_OS_WINDOWS
 
-#error "Unknown OS"
+#ifdef NBP_OS_MAC
+#error "Not supported"
+#endif // end if NBP_OS_MAC
 
-#endif
+#ifdef NBP_OS_CUSTOM
+#error "Not supported"
+#endif // end if NBP_OS_CUSTOM
 
 #ifdef SAMPLE_DISABLE_SLEEP
 #define SAMPLE_SLEEP()

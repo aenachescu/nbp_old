@@ -21,9 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef NBP_MT_SUPPORT
 
-#include <semaphore.h>
-
 #ifdef NBP_OS_LINUX
+
+#include <semaphore.h>
 
 #define NBP_ATOMIC_UINT_TYPE unsigned int
 
@@ -61,23 +61,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         ? NBP_NO_ERROR                                                         \
         : NBP_ERROR_FAILED_TO_SIGNAL_EVENT
 
-#elif defined NBP_OS_WINDOWS
+#endif // end if NBP_OS_LINUX
 
+#ifdef NBP_OS_WINDOWS
 #error "Not supported"
+#endif // end if NBP_OS_WINDOWS
 
-#elif defined NBP_OS_MAC
-
+#ifdef NBP_OS_MAC
 #error "Not supported"
+#endif // end if NBP_OS_MAC
 
-#elif defined NBP_OS_CUSTOM
-
+#ifdef NBP_OS_CUSTOM
 #error "Not supported"
-
-#else // no NBP_OS_* macro defined
-
-#error "Unknown OS"
-
-#endif
+#endif // end if NBP_OS_CUSTOM
 
 #else // NBP_MT_SUPPORT not defined
 
