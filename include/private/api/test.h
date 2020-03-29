@@ -350,6 +350,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func)
 
 /*
+ * TODO: add docs
+ */
+#define NBP_GET_TEST_PTR(func)                                                 \
+    & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func)
+
+/*
  * @public doc
  *
  * @brief
