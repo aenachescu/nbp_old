@@ -42,8 +42,8 @@ struct nbp_mt_scheduler_rule_t {
 typedef struct nbp_mt_scheduler_rule_t nbp_mt_scheduler_rule_t;
 
 struct nbp_mt_scheduler_context_t {
-    unsigned int numberOfRules;
-    nbp_mt_scheduler_rule_t* rules;
+    unsigned long long numberOfRules;
+    nbp_mt_scheduler_rule_t rules[1];
 };
 typedef struct nbp_mt_scheduler_context_t nbp_mt_scheduler_context_t;
 
@@ -68,32 +68,32 @@ nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module_name(
 );
 
 void* nbp_mt_scheduler_create_ctx(
-    int numberOfRules,
+    unsigned long long numberOfRules,
     nbp_mt_scheduler_rule_t* rules
 );
 
 #define NBP_MT_SCHEDULER_RUN_BEFORE_TEST(test)                                 \
     nbp_mt_schduler_create_rule_from_test(                                     \
         NBP_MT_SCHEDULER_RULE_TYPE_BEFORE,                                     \
-        test                                                                   \
+        NBP_GET_TEST_PTR(test)                                                 \
     )
 
 #define NBP_MT_SCHEDULER_RUN_AFTER_TEST(test)                                  \
     nbp_mt_schduler_create_rule_from_test(                                     \
         NBP_MT_SCHEDULER_RULE_TYPE_AFTER,                                      \
-        test                                                                   \
+        NBP_GET_TEST_PTR(test)                                                 \
     )
 
 #define NBP_MT_SCHEDULER_RUN_BEFORE_MODULE(module)                             \
     nbp_mt_schduler_create_rule_from_module(                                   \
         NBP_MT_SCHEDULER_RULE_TYPE_BEFORE,                                     \
-        module                                                                 \
+        NBP_GET_MODULE_PTR(module)                                             \
     )
 
 #define NBP_MT_SCHEDULER_RUN_AFTER_MODULE(module)                              \
     nbp_mt_schduler_create_rule_from_module(                                   \
         NBP_MT_SCHEDULER_RULE_TYPE_AFTER,                                      \
-        module                                                                 \
+        NBP_GET_MODULE_PTR(module)                                             \
     )
 
 #define NBP_MT_SCHEDULER_RUN_BEFORE_TEST_NAME(testName)                        \
@@ -177,8 +177,80 @@ int nbp_basic_mt_scheduler_get_number_of_threads()
 
 #endif // end if NBP_MT_SCHEDULER_NUMBER_OF_THREADS
 
-// TODO: implement nbp_mt_scheduler_create_rule_* functions
-// TODO: implement nbp_mt_scheduler_create_ctx function
+nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_test(
+    unsigned char ruleType, nbp_test_details_t* test)
+{
+    nbp_mt_scheduler_rule_t rule;
+
+    rule.ruleType   = ruleType;
+    rule.dataType   = NBP_MT_SCHEDULER_DATA_TYPE_TEST;
+    rule.test       = test;
+
+    return rule;
+}
+
+nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module(
+    unsigned char ruleType, nbp_module_details_t* module)
+{
+    nbp_mt_scheduler_rule_t rule;
+
+    rule.ruleType   = ruleType;
+    rule.dataType   = NBP_MT_SCHEDULER_DATA_TYPE_MODULE;
+    rule.module     = module;
+
+    return rule;
+}
+
+nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_test_name(
+    unsigned char ruleType, const char* testName)
+{
+    nbp_mt_scheduler_rule_t rule;
+
+    rule.ruleType   = ruleType;
+    rule.dataType   = NBP_MT_SCHEDULER_DATA_TYPE_TEST_NAME;
+    rule.name       = testName;
+
+    return rule;
+}
+
+nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module_name(
+    unsigned char ruleType, const char* moduleName)
+{
+    nbp_mt_scheduler_rule_t rule;
+
+    rule.ruleType   = ruleType;
+    rule.dataType   = NBP_MT_SCHEDULER_DATA_TYPE_MODULE_NAME;
+    rule.name       = moduleName;
+
+    return rule;
+}
+
+void* nbp_mt_scheduler_create_ctx(unsigned long long numberOfRules,
+    nbp_mt_scheduler_rule_t* rules)
+{
+    unsigned long long index;
+    unsigned long long size = sizeof(nbp_mt_scheduler_context_t);
+    if (numberOfRules > 1) {
+        size += ((numberOfRules - 1) * sizeof(nbp_mt_scheduler_rule_t));
+    }
+
+    nbp_mt_scheduler_context_t* ctx = (nbp_mt_scheduler_context_t*) NBP_ALLOC(size);
+    if (ctx == NBP_NULL_POINTER) {
+        NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_ALLOC,
+            "could not alloc context"
+        );
+        NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
+        return NBP_NULL_POINTER;
+    }
+
+    ctx->numberOfRules = numberOfRules;
+    for (index = 0; index < numberOfRules; ++index) {
+        ctx->rules[index] = rules[index];
+    }
+
+    return (void*) ctx;
+}
 
 NBP_SCHEDULER_FUNC_INIT(nbp_basic_mt_scheduler_init)
 {
