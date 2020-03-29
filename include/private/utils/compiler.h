@@ -19,23 +19,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_UTILS_COMPILER_H
 #define NBP_PRIVATE_UTILS_COMPILER_H
 
-#ifdef NBP_COMPILER_GCC
-
-#define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
-
-#elif defined NBP_COMPILER_GPP
-
-#define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
-
-#elif defined NBP_COMPILER_CLANG
-
-#define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
-
-#else
-
-#error "Unknown compiler"
 #define NBP_MAYBE_UNUSED_PARAMETER
 
-#endif
+#ifdef NBP_COMPILER_GCC
+
+#undef NBP_MAYBE_UNUSED_PARAMETER
+#define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
+
+#endif // end if NBP_COMPILER_GCC
+
+#ifdef NBP_COMPILER_GPP
+
+#undef NBP_MAYBE_UNUSED_PARAMETER
+#define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
+
+#endif // end if NBP_COMPILER_GPP
+
+#ifdef NBP_COMPILER_CLANG
+
+#undef NBP_MAYBE_UNUSED_PARAMETER
+#define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
+
+#endif // end if NBP_COMPILER_CLANG
 
 #endif // end if NBP_PRIVATE_UTILS_COMPILER_H

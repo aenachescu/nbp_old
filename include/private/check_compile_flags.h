@@ -59,6 +59,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef NBP_PRIVATE_OS_TYPE
 
 /*
+ * Make sure there is only one compiler defined
+ */
+#undef NBP_PRIVATE_COMPILER_TYPE
+
+#ifdef NBP_COMPILER_GCC
+#define NBP_PRIVATE_COMPILER_TYPE
+#endif // end if NBP_COMPILER_GCC
+
+#ifdef NBP_COMPILER_GPP
+#ifndef NBP_PRIVATE_COMPILER_TYPE
+#define NBP_PRIVATE_COMPILER_TYPE
+#else // NBP_PRIVATE_COMPILER_TYPE not defined
+#error "More NBP_COMPILER_* macros are defined"
+#endif // end if NBP_PRIVATE_COMPILER_TYPE
+#endif // end if NBP_COMPILER_GPP
+
+#ifdef NBP_COMPILER_CLANG
+#ifndef NBP_PRIVATE_COMPILER_TYPE
+#define NBP_PRIVATE_COMPILER_TYPE
+#else // NBP_PRIVATE_COMPILER_TYPE not defined
+#error "More NBP_COMPILER_* macros are defined"
+#endif // end if NBP_PRIVATE_COMPILER_TYPE
+#endif // end if NBP_COMPILER_CLANG
+
+#ifndef NBP_PRIVATE_COMPILER_TYPE
+#error "Unknown compiler"
+#endif // end if NBP_PRIVATE_COMPILER_TYPE
+
+#undef NBP_PRIVATE_COMPILER_TYPE
+
+/*
  * Make sure there is only one defined scheduler
  */
 #undef NBP_PRIVATE_SCHEDULER_TYPE
