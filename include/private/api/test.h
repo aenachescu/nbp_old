@@ -335,6 +335,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_CALL_TEST_CTX(func, ctx)                                           \
     extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func);     \
+    NBP_PRIVATE_SCHEDULER_PREPROCESSING_CONTEXT(P_ ## ctx)                     \
     nbp_call_test_ctx(                                                         \
         & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
         ctx,                                                                   \

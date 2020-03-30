@@ -27,8 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_MT_SCHEDULER_DATA_TYPE_EMPTY            (unsigned char) 1
 #define NBP_MT_SCHEDULER_DATA_TYPE_TEST             (unsigned char) 2
 #define NBP_MT_SCHEDULER_DATA_TYPE_MODULE           (unsigned char) 3
-#define NBP_MT_SCHEDULER_DATA_TYPE_TEST_NAME        (unsigned char) 4
-#define NBP_MT_SCHEDULER_DATA_TYPE_MODULE_NAME      (unsigned char) 5
 
 struct nbp_mt_scheduler_rule_t {
     unsigned char ruleType;
@@ -36,7 +34,6 @@ struct nbp_mt_scheduler_rule_t {
     union {
         nbp_test_details_t* test;
         nbp_module_details_t* module;
-        const char* name;
     };
 };
 typedef struct nbp_mt_scheduler_rule_t nbp_mt_scheduler_rule_t;
@@ -55,16 +52,6 @@ nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_test(
 nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module(
     unsigned char ruleType,
     nbp_module_details_t* module
-);
-
-nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_test_name(
-    unsigned char ruleType,
-    const char* testName
-);
-
-nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module_name(
-    unsigned char ruleType,
-    const char* moduleName
 );
 
 void* nbp_mt_scheduler_create_ctx(
@@ -96,30 +83,6 @@ void* nbp_mt_scheduler_create_ctx(
         NBP_GET_MODULE_PTR(module)                                             \
     )
 
-#define NBP_MT_SCHEDULER_RUN_BEFORE_TEST_NAME(testName)                        \
-    nbp_mt_schduler_create_rule_from_test_name(                                \
-        NBP_MT_SCHEDULER_RULE_TYPE_BEFORE,                                     \
-        testName                                                               \
-    )
-
-#define NBP_MT_SCHEDULER_RUN_AFTER_TEST_NAME(testName)                         \
-    nbp_mt_schduler_create_rule_from_test_name(                                \
-        NBP_MT_SCHEDULER_RULE_TYPE_AFTER,                                      \
-        testName                                                               \
-    )
-
-#define NBP_MT_SCHEDULER_RUN_BEFORE_MODULE_NAME(moduleName)                    \
-    nbp_mt_schduler_create_rule_from_module_name(                              \
-        NBP_MT_SCHEDULER_RULE_TYPE_BEFORE,                                     \
-        moduleName                                                             \
-    )
-
-#define NBP_MT_SCHEDULER_RUN_AFTER_MODULE_NAME(moduleName)                     \
-    nbp_mt_schduler_create_rule_from_module_name(                              \
-        NBP_MT_SCHEDULER_RULE_TYPE_AFTER,                                      \
-        moduleName                                                             \
-    )
-
 #define NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(...)                      \
     sizeof((nbp_mt_scheduler_rule_t[]){ __VA_ARGS__ }) /                       \
     sizeof(nbp_mt_scheduler_rule_t)
@@ -129,6 +92,79 @@ void* nbp_mt_scheduler_create_ctx(
         NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(__VA_ARGS__),             \
         (nbp_mt_scheduler_rule_t[]){ __VA_ARGS__ }                             \
     )
+
+/*
+ * NBP_SCHEDULER_PREPROCESSING_CONTEXT implementation
+ */
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_AFTER_TEST(     \
+    name)                                                                      \
+    NBP_INCLUDE_TEST(name);
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_BEFORE_TEST(    \
+    name)                                                                      \
+    NBP_INCLUDE_TEST(name);
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_AFTER_MODULE(   \
+    name)                                                                      \
+    NBP_INCLUDE_MODULE(name);
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_BEFORE_MODULE(  \
+    name)                                                                      \
+    NBP_INCLUDE_MODULE(name);
+
+// it's used when NBP_MT_SCHEDULER_CTX is called without rules
+#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_VARCOUNT(...)                              \
+    NBP_MT_SCHEDULER_PRIVATE_PP_VARCOUNT_HELPER(                               \
+        P ## __VA_ARGS__,                                                      \
+        9, 8, 7, 6, 5, 4, 3, 2, 1,                                             \
+    )
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_VARCOUNT_HELPER(                           \
+    _, _9, _8, _7, _6, _5, _4, _3, _2, _n, ...) _n
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_CONCAT(a, b)                               \
+    NBP_MT_SCHEDULER_PRIVATE_PP_CONCAT_HELPER(a, b)
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_CONCAT_HELPER(a, b) a ## b
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_1(rule)                    \
+    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule
+#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_2(rule, ...)               \
+    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
+    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_1(P_ ## __VA_ARGS__)
+#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_3(rule, ...)               \
+    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
+    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_2(P_ ## __VA_ARGS__)
+#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_4(rule, ...)               \
+    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
+    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_3(P_ ## __VA_ARGS__)
+#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_5(rule, ...)               \
+    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
+    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_4(P_ ## __VA_ARGS__)
+#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_6(rule, ...)               \
+    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
+    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_5(P_ ## __VA_ARGS__)
+#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_7(rule, ...)               \
+    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
+    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_6(P_ ## __VA_ARGS__)
+#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_8(rule, ...)               \
+    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
+    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_7(P_ ## __VA_ARGS__)
+#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_9(rule, ...)               \
+    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
+    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_8(P_ ## __VA_ARGS__)
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_PP_NBP_MT_SCHEDULER_CTX(...)           \
+    NBP_MT_SCHEDULER_PRIVATE_PP_CONCAT(                                        \
+        NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_,                          \
+        NBP_MT_SCHEDULER_PRIVATE_PP_VARCOUNT(P_ ## __VA_ARGS__)                \
+    )(P_ ## __VA_ARGS__)
+
+#define NBP_SCHEDULER_PREPROCESSING_CONTEXT(ctx)                               \
+    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## ctx
 
 #ifdef NBP_LIBRARY_MAIN
 
@@ -197,30 +233,6 @@ nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module(
     rule.ruleType   = ruleType;
     rule.dataType   = NBP_MT_SCHEDULER_DATA_TYPE_MODULE;
     rule.module     = module;
-
-    return rule;
-}
-
-nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_test_name(
-    unsigned char ruleType, const char* testName)
-{
-    nbp_mt_scheduler_rule_t rule;
-
-    rule.ruleType   = ruleType;
-    rule.dataType   = NBP_MT_SCHEDULER_DATA_TYPE_TEST_NAME;
-    rule.name       = testName;
-
-    return rule;
-}
-
-nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module_name(
-    unsigned char ruleType, const char* moduleName)
-{
-    nbp_mt_scheduler_rule_t rule;
-
-    rule.ruleType   = ruleType;
-    rule.dataType   = NBP_MT_SCHEDULER_DATA_TYPE_MODULE_NAME;
-    rule.name       = moduleName;
 
     return rule;
 }
