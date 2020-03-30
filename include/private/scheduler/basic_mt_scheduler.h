@@ -175,9 +175,19 @@ void* nbp_mt_scheduler_create_ctx(
 
 #if NBP_MT_SCHEDULER_NUMBER_OF_THREADS >= 1
 
-int nbp_basic_mt_scheduler_get_number_of_threads()
+unsigned int nbp_basic_mt_scheduler_get_number_of_threads()
 {
-    return NBP_MT_SCHEDULER_NUMBER_OF_THREADS;
+    int num = NBP_MT_SCHEDULER_NUMBER_OF_THREADS;
+    if (num < 1) {
+        NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_GENERIC,
+            "failed to get the number of threads"
+        );
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        return 1;
+    }
+
+    return (unsigned int) num;
 }
 
 #else // NBP_MT_SCHEDULER_NUMBER_OF_THREADS is less than 1
@@ -192,9 +202,19 @@ int nbp_basic_mt_scheduler_get_number_of_threads()
 
 #include <sys/sysinfo.h>
 
-int nbp_basic_mt_scheduler_get_number_of_threads()
+unsigned int nbp_basic_mt_scheduler_get_number_of_threads()
 {
-    return get_nprocs();
+    int num = get_nprocs();
+    if (num < 1) {
+        NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_GENERIC,
+            "failed to get the number of threads"
+        );
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        return 1;
+    }
+
+    return (unsigned int) num;
 }
 
 #endif // end if NBP_OS_LINUX
