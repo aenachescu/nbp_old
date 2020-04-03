@@ -46,6 +46,7 @@ typedef void (*nbp_test_pfn_t)(
 
 struct nbp_test_details_t {
     const char* testName;
+    unsigned int testId;
     nbp_test_pfn_t testFunc;
     struct nbp_module_details_t* module;
 
