@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_IMPL_MODULE_H
 #define NBP_PRIVATE_IMPL_MODULE_H
 
+static unsigned int nbpTotalNumberOfModules = 0;
+
 static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
     nbp_module_details_t* parent)
 {
@@ -29,7 +31,7 @@ static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
     );
     if (state != NBP_MODULE_STATE_NOT_INITIALIZED) {
         NBP_HANDLE_ERROR(NBP_ERROR_MODULE_ALREADY_CALLED);
-        return NBP_ERROR_MODULE_ALREADY_CALLED;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     int errCode = NBP_EVENT_INIT(module->runEvent);
@@ -43,6 +45,9 @@ static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
         NBP_HANDLE_ERROR(errCode);
         NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
     }
+
+    module->moduleId = nbpTotalNumberOfTests;
+    nbpTotalNumberOfModules++;
 
     module->parent = parent;
 
