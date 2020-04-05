@@ -744,16 +744,16 @@ clean_assert_sample:
 
 files31=$(samples_folder_from_sample_bin_folder)mt_basic/main.c
 depends31=$(samples_folder_from_build_folder)mt_basic/main.c
-name31=mt_basic_sample
+name31=mt_scheduler_basic_sample
 
-mt_basic_sample: $(depends31) $(lib_files)
+mt_scheduler_basic_sample: $(depends31) $(lib_files)
 	mkdir -p $(bin_folder_from_build_folder)$(name31) && \
 	cd $(bin_folder_from_build_folder)$(name31) && \
 	$(CC) -o $(name31) $(files31) $(include_folders) $(CFLAGS) \
 		$(MT_SCHEDULER_FLAGS) && \
 	cd $(build_folder_from_sample_bin_folder)
 
-clean_mt_basic_sample:
+clean_mt_scheduler_basic_sample:
 	rm -rf $(bin_folder_from_build_folder)$(name31)
 
 #
@@ -791,6 +791,7 @@ all:\
 	test_assert_sample\
 	module_assert_sample\
 	assert_sample\
+	mt_scheduler_basic_sample\
 
 #
 # make clean
@@ -827,3 +828,4 @@ clean:\
 	clean_test_assert_sample\
 	clean_module_assert_sample\
 	clean_assert_sample\
+	clean_mt_scheduler_basic_sample\
