@@ -836,6 +836,7 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_mt_scheduler_add_test)
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST;
     data->test = NBP_THIS_TEST;
     data->ctx = (nbp_mt_scheduler_context_t*) NBP_NULL_POINTER;
+    data->next = NBP_NULL_POINTER;
 
     if (nbpMtSchedulerDataLast == NBP_NULL_POINTER) {
         nbpMtSchedulerData = data;
@@ -863,6 +864,7 @@ NBP_SCHEDULER_FUNC_ADD_TEST_CTX(nbp_mt_scheduler_add_test_ctx)
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST;
     data->test = NBP_THIS_TEST;
     data->ctx = (nbp_mt_scheduler_context_t*) NBP_SCHEDULER_CTX;
+    data->next = NBP_NULL_POINTER;
 
     if (nbpMtSchedulerDataLast == NBP_NULL_POINTER) {
         nbpMtSchedulerData = data;
