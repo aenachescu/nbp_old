@@ -152,21 +152,21 @@ matrix:
 
         # address
         - make clean
-        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=address,pointer-compare,pointer-subtract"
+        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP GCOV_FLAGS= SANITIZERS="-fsanitize=address,pointer-compare,pointer-subtract"
         - ./run_tests.sh ASAN_OPTIONS="detect_invalid_pointer_pairs=1"
         - ./run_tests.sh ASAN_OPTIONS="detect_stack_use_after_return=1"
 
         # thread
         - make clean
-        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=thread"
+        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP GCOV_FLAGS= SANITIZERS="-fsanitize=thread"
         - ./run_tests.sh
 
         # leak
         - make clean
-        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=leak"
+        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP GCOV_FLAGS= SANITIZERS="-fsanitize=leak"
         - ./run_tests.sh
 
         # undefined behaviour
         - make clean
-        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP SANITIZERS="-fsanitize=undefined,shift,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,bounds-strict,alignment,object-size,float-divide-by-zero,float-cast-overflow,nonnull-attribute,returns-nonnull-attribute,bool,enum,vptr,pointer-overflow,builtin -fuse-ld=gold"
+        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP GCOV_FLAGS= SANITIZERS="-fsanitize=undefined,shift,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,bounds-strict,alignment,object-size,float-divide-by-zero,float-cast-overflow,nonnull-attribute,returns-nonnull-attribute,bool,enum,vptr,pointer-overflow,builtin -fuse-ld=gold"
         - ./run_tests.sh

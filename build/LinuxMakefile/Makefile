@@ -16,11 +16,12 @@
 
 CC=gcc
 COMPILER_FLAG=-DNBP_COMPILER_GCC
+GCOV_FLAGS=-fprofile-arcs -ftest-coverage
 SANITIZERS=
 SAMPLE_FLAGS=
 CFLAGS=                                                                        \
 	-Wall -Wextra -Werror -Wconversion                                         \
-	-fprofile-arcs -ftest-coverage                                             \
+	$(GCOV_FLAGS)                                                              \
 	-DNBP_OS_LINUX                                                             \
 	$(COMPILER_FLAG)                                                           \
 	$(SANITIZERS)                                                              \
