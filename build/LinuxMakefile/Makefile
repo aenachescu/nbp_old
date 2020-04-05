@@ -743,8 +743,8 @@ clean_assert_sample:
 # mt basic sample
 #
 
-files31=$(samples_folder_from_sample_bin_folder)mt_basic/main.c
-depends31=$(samples_folder_from_build_folder)mt_basic/main.c
+files31=$(samples_folder_from_sample_bin_folder)mt_scheduler_basic/main.c
+depends31=$(samples_folder_from_build_folder)mt_scheduler_basic/main.c
 name31=mt_scheduler_basic_sample
 
 mt_scheduler_basic_sample: $(depends31) $(lib_files)
