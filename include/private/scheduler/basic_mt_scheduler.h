@@ -480,6 +480,30 @@ static void nbp_mt_scheduler_add_pending_test(unsigned int pendingTestId,
     }
 }
 
+static void nbp_mt_scheduler_add_pending_tests(nbp_module_details_t* module,
+    unsigned int testId, int pendingModule)
+{
+    unsigned int pendingTestId;
+    unsigned int* testIdPtr = &testId;
+    unsigned int* pendingTestIdPtr = &pendingTestId;
+    nbp_test_details_t* test;
+    nbp_module_details_t* submodule;
+
+    if (pendingModule == 0) {
+        testIdPtr = &pendingTestId;
+        pendingTestIdPtr = &testId;
+    }
+
+    NBP_MODULE_FOR_EACH_TEST(module, test) {
+        pendingTestId = NBP_TEST_GET_ID(test);
+        nbp_mt_scheduler_add_pending_test(*pendingTestIdPtr, *testIdPtr);
+    }
+
+    NBP_MODULE_FOR_EACH_SUBMODULE(module, submodule) {
+        nbp_mt_scheduler_add_pending_tests(submodule, testId, pendingModule);
+    }
+}
+
 static void nbp_mt_scheduler_test_completed(unsigned int testId)
 {
     unsigned int bitsPerUint = sizeof(unsigned int) * 8;
@@ -613,7 +637,21 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
         }
 
         if (rule->dataType == NBP_MT_SCHEDULER_RULE_DATA_TYPE_MODULE) {
-            // TODO
+            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_AFTER) {
+                nbp_mt_scheduler_add_pending_tests(rule->module, testId, 1);
+                continue;
+            }
+
+            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_BEFORE) {
+                nbp_mt_scheduler_add_pending_tests(rule->module, testId, 0);
+                continue;
+            }
+
+            NBP_HANDLE_ERROR_CTX_STRING(
+                NBP_ERROR_GENERIC,
+                "unknown rule type"
+            );
+            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
 
         NBP_HANDLE_ERROR_CTX_STRING(
@@ -622,6 +660,14 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
         );
         NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
+}
+
+static void nbp_mt_scheduler_processing_module_context(
+    nbp_module_details_t* module, nbp_mt_scheduler_context_t* ctx)
+{
+    (void)(module);
+    (void)(ctx);
+    // TODO: implement
 }
 
 static void nbp_mt_scheduler_allocate_array_of_tests()
@@ -688,7 +734,7 @@ static void nbp_mt_scheduler_processing_data()
                 nbp_mt_scheduler_processing_test_context(testId, data->ctx);
             }
         } else if (data->dataType == NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE) {
-            // TODO
+            nbp_mt_scheduler_processing_module_context(data->module, data->ctx);
         } else {
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_GENERIC,
@@ -702,6 +748,8 @@ static void nbp_mt_scheduler_processing_data()
 
         NBP_FREE(tmp);
     }
+
+    // TODO: check if there is a cycle
 
     for (testId = 0; testId < nbpMtSchedulerNumberOfTests; testId++) {
         if (nbpMtSchedulerTests[testId].numberOfPendingTests == 0) {
@@ -878,11 +926,28 @@ NBP_SCHEDULER_FUNC_ADD_TEST_CTX(nbp_mt_scheduler_add_test_ctx)
 
 NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(nbp_mt_scheduler_module_started_ctx)
 {
-    NBP_HANDLE_ERROR_CTX_STRING(
-        NBP_ERROR_GENERIC,
-        "module started ctx not supported yet"
-    );
-    NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+    nbp_mt_scheduler_data_t* data = NBP_NULL_POINTER;
+
+    data = (nbp_mt_scheduler_data_t*) NBP_ALLOC(sizeof(nbp_mt_scheduler_data_t));
+    if (data == NBP_NULL_POINTER) {
+        NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_ALLOC,
+            "could not add module"
+        );
+        NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
+    }
+
+    data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE;
+    data->module = NBP_THIS_MODULE;
+    data->ctx = (nbp_mt_scheduler_context_t*) NBP_SCHEDULER_CTX;
+    data->next = NBP_NULL_POINTER;
+
+    if (nbpMtSchedulerDataLast == NBP_NULL_POINTER) {
+        nbpMtSchedulerData = data;
+    } else {
+        nbpMtSchedulerDataLast->next = data;
+    }
+    nbpMtSchedulerDataLast = data;
 }
 
 NBP_DEFINE_SCHEDULER(
