@@ -209,6 +209,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_MODULE_FOR_EACH_TEST(module, it)                                   \
+    for (it = module->firstTest; it != NBP_NULL_POINTER; it = it->next)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_FOR_EACH_SUBMODULE(module, it)                              \
+    for (it = module->firstModule; it != NBP_NULL_POINTER; it = it->next)
+
+/*
+ * TODO: add docs
+ */
 #define NBP_THIS_MODULE module
 
 /*
