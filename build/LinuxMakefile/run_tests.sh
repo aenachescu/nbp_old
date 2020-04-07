@@ -126,6 +126,7 @@ run_test test_assert_sample 1
 run_test module_assert_sample 1
 run_test assert_sample 1
 run_test mt_scheduler_basic_sample 0
+run_test mt_scheduler_module_fixtures_ran_only_once_sample 0
 
 cd ../build/LinuxMakefile
 

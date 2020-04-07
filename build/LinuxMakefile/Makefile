@@ -758,6 +758,24 @@ clean_mt_scheduler_basic_sample:
 	rm -rf $(bin_folder_from_build_folder)$(name31)
 
 #
+# mt scheduler module fixtures ran only once sample
+#
+
+files32=$(samples_folder_from_sample_bin_folder)mt_scheduler_module_fixtures_ran_only_once/main.c
+depends32=$(samples_folder_from_build_folder)mt_scheduler_module_fixtures_ran_only_once/main.c
+name32=mt_scheduler_module_fixtures_ran_only_once_sample
+
+mt_scheduler_module_fixtures_ran_only_once_sample: $(depends32) $(lib_files)
+	mkdir -p $(bin_folder_from_build_folder)$(name32) && \
+	cd $(bin_folder_from_build_folder)$(name32) && \
+	$(CC) -o $(name32) $(files32) $(include_folders) $(CFLAGS) \
+		$(MT_SCHEDULER_FLAGS) && \
+	cd $(build_folder_from_sample_bin_folder)
+
+clean_mt_scheduler_module_fixtures_ran_only_once_sample:
+	rm -rf $(bin_folder_from_build_folder)$(name32)
+
+#
 # make all
 #
 
@@ -793,6 +811,7 @@ all:\
 	module_assert_sample\
 	assert_sample\
 	mt_scheduler_basic_sample\
+	mt_scheduler_module_fixtures_ran_only_once_sample\
 
 #
 # make clean
@@ -830,3 +849,4 @@ clean:\
 	clean_module_assert_sample\
 	clean_assert_sample\
 	clean_mt_scheduler_basic_sample\
+	clean_mt_scheduler_module_fixtures_ran_only_once_sample\

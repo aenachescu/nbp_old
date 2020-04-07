@@ -49,6 +49,7 @@ declare -a arr=(
     "module_assert_sample"
     "assert_sample"
     "mt_scheduler_basic_sample"
+    "mt_scheduler_module_fixtures_ran_only_once_sample"
 )
 
 files=""
