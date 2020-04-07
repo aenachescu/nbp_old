@@ -755,6 +755,7 @@ static void nbp_mt_scheduler_processing_data()
 
             if (data->ctx != NBP_NULL_POINTER) {
                 nbp_mt_scheduler_processing_test_context(testId, data->ctx);
+                NBP_FREE(data->ctx);
             }
         } else if (data->dataType == NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE) {
             nbp_mt_scheduler_processing_module_context(data->module, data->ctx);
