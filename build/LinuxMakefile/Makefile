@@ -740,7 +740,7 @@ clean_assert_sample:
 	rm -rf $(bin_folder_from_build_folder)$(name30)
 
 #
-# mt basic sample
+# mt scheduler basic sample
 #
 
 files31=$(samples_folder_from_sample_bin_folder)mt_scheduler_basic/main.c
