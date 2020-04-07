@@ -87,11 +87,25 @@ void* nbp_mt_scheduler_create_ctx(
     sizeof((nbp_mt_scheduler_rule_t[]){ __VA_ARGS__ }) /                       \
     sizeof(nbp_mt_scheduler_rule_t)
 
+#ifdef NBP_COMPILER_GPP
+
+#define NBP_MT_SCHEDULER_CTX(...)                                              \
+    nbp_mt_scheduler_create_ctx(                                               \
+        NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(__VA_ARGS__),             \
+        new nbp_mt_scheduler_rule_t[                                           \
+            NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(__VA_ARGS__)          \
+        ]{ __VA_ARGS__ }                                                       \
+    )
+
+#else // NBP_COMPILER_GPP not defined
+
 #define NBP_MT_SCHEDULER_CTX(...)                                              \
     nbp_mt_scheduler_create_ctx(                                               \
         NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(__VA_ARGS__),             \
         (nbp_mt_scheduler_rule_t[]){ __VA_ARGS__ }                             \
     )
+
+#endif // end if NBP_COMPILER_GPP
 
 /*
  * NBP_SCHEDULER_PREPROCESSING_CONTEXT implementation
@@ -332,6 +346,12 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
 #error "Not supported"
 #endif // end if NBP_OS_CUSTOM
 
+#ifdef NBP_COMPILER_GPP
+#define NBP_MT_SCHEDULER_PRIVATE_DELETE_RULES(rules) delete[] rules
+#else // NBP_COMPILER_GPP not defined
+#define NBP_MT_SCHEDULER_PRIVATE_DELETE_RULES(rules)
+#endif // end if NBP_COMPILER_GPP
+
 #define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_UNKNOWN  (unsigned char) 0
 #define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST     (unsigned char) 1
 #define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE   (unsigned char) 2
@@ -412,6 +432,7 @@ void* nbp_mt_scheduler_create_ctx(unsigned long long numberOfRules,
 
     nbp_mt_scheduler_context_t* ctx = (nbp_mt_scheduler_context_t*) NBP_ALLOC(size);
     if (ctx == NBP_NULL_POINTER) {
+        NBP_MT_SCHEDULER_PRIVATE_DELETE_RULES(rules);
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_ALLOC,
             "could not alloc context"
@@ -424,6 +445,8 @@ void* nbp_mt_scheduler_create_ctx(unsigned long long numberOfRules,
     for (index = 0; index < numberOfRules; ++index) {
         ctx->rules[index] = rules[index];
     }
+
+    NBP_MT_SCHEDULER_PRIVATE_DELETE_RULES(rules);
 
     return (void*) ctx;
 }
@@ -998,6 +1021,11 @@ NBP_DEFINE_SCHEDULER(
 #undef NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_UNKNOWN
 #undef NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST
 #undef NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE
+
+/*
+ * undef delete rules macro
+ */
+#undef NBP_MT_SCHEDULER_PRIVATE_DELETE_RULES
 
 #endif // end if NBP_LIBRARY_MAIN
 
