@@ -21,8 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../sample_utils.h"
 
-SAMPLE_SEMAPHORE_TYPE g_semaphores[2];
-SAMPLE_ATOMIC_UINT_TYPE g_counter = SAMPLE_ATOMIC_UINT_INIT(0);
+SAMPLE_SEMAPHORE_TYPE g_semaphores[4];
+SAMPLE_ATOMIC_UINT_TYPE g_counter1 = SAMPLE_ATOMIC_UINT_INIT(0);
+SAMPLE_ATOMIC_UINT_TYPE g_counter2 = SAMPLE_ATOMIC_UINT_INIT(0);
 
 NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_fixtures_in_parallel, setup, teardown)
 {
@@ -34,7 +35,7 @@ NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_fixtures_in_parallel, setup, tear
 
 NBP_SETUP_MODULE(setup)
 {
-    for (size_t i = 0; i < 2; ++i) {
+    for (unsigned int i = 0; i < 4; ++i) {
         int err = SAMPLE_SEMAPHORE_INIT(g_semaphores[i]);
         if (err != 0) {
             NBP_HANDLE_ERROR_CTX_STRING(
@@ -48,7 +49,7 @@ NBP_SETUP_MODULE(setup)
 
 NBP_TEARDOWN_MODULE(teardown)
 {
-    for (size_t i = 0; i < 2; ++i) {
+    for (unsigned int i = 0; i < 4; ++i) {
         int err = SAMPLE_SEMAPHORE_UNINIT(g_semaphores[i]);
         if (err != 0) {
             NBP_HANDLE_ERROR_CTX_STRING(
@@ -60,9 +61,11 @@ NBP_TEARDOWN_MODULE(teardown)
     }
 }
 
-void check_parallelism() {
-    size_t order[] = {0, 1}; 
-    if (SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&g_counter, 1) != 1) {
+
+NBP_BEFORE_TEST(beforeTest)
+{
+    unsigned int order[] = {0, 1}; 
+    if (SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&g_counter1, 1) != 1) {
         order[0] = 1;
         order[1] = 0;
     }
@@ -83,18 +86,32 @@ void check_parallelism() {
         );
         NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);        
     }
-    
-    SAMPLE_ATOMIC_UINT_STORE(&g_counter, 0);
-}
-
-NBP_BEFORE_TEST(beforeTest)
-{
-    check_parallelism();
 }
 
 NBP_AFTER_TEST(afterTest)
 {
-    check_parallelism();
+    unsigned int order[] = {2, 3}; 
+    if (SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&g_counter2, 1) != 1) {
+        order[0] = 3;
+        order[1] = 2;
+    }
+    int err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[order[0]]);
+    if (err != 0) {
+        NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_GENERIC,
+            "failed to unlock semaphore"
+        );
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);        
+    }
+
+    err = SAMPLE_SEMAPHORE_WAIT(g_semaphores[order[1]]);
+    if (err != 0) {
+        NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_GENERIC,
+            "failed to lock semaphore"
+        );
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);        
+    }
 }
 
 NBP_TEST(test1)
