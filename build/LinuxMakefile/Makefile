@@ -776,6 +776,23 @@ clean_mt_scheduler_module_fixtures_ran_only_once_sample:
 	rm -rf $(bin_folder_from_build_folder)$(name32)
 
 #
+# mt scheduler run test fixtures in parallel
+#
+files33=$(samples_folder_from_sample_bin_folder)mt_scheduler_run_test_fixtures_in_parallel/main.c
+depends33=$(samples_folder_from_build_folder)mt_scheduler_run_test_fixtures_in_parallel/main.c
+name33=mt_scheduler_run_test_fixtures_in_parallel_sample
+
+mt_scheduler_run_test_fixtures_in_parallel_sample: $(depends33) $(lib_files)
+	mkdir -p $(bin_folder_from_build_folder)$(name33) && \
+	cd $(bin_folder_from_build_folder)$(name33) && \
+	$(CC) -o $(name33) $(files33) $(include_folders) $(CFLAGS) \
+		$(MT_SCHEDULER_FLAGS) && \
+	cd $(build_folder_from_sample_bin_folder)
+
+clean_mt_scheduler_run_test_fixtures_in_parallel_sample:
+	rm -rf $(bin_folder_from_build_folder)$(name33)
+
+#
 # make all
 #
 
@@ -812,6 +829,7 @@ all:\
 	assert_sample\
 	mt_scheduler_basic_sample\
 	mt_scheduler_module_fixtures_ran_only_once_sample\
+	mt_scheduler_run_test_fixtures_in_parallel_sample\
 
 #
 # make clean
@@ -850,3 +868,4 @@ clean:\
 	clean_assert_sample\
 	clean_mt_scheduler_basic_sample\
 	clean_mt_scheduler_module_fixtures_ran_only_once_sample\
+	mt_scheduler_run_test_fixtures_in_parallel_sample\
