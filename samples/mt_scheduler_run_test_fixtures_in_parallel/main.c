@@ -56,26 +56,28 @@ NBP_TEARDOWN_MODULE(teardown)
                 NBP_ERROR_GENERIC,
                 "failed to uninit semaphore1"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);        
+            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
     }
 }
 
-
 NBP_BEFORE_TEST(beforeTest)
 {
-    unsigned int order[] = {0, 1}; 
+    unsigned int order[] = {0, 1};
+    int err;
+
     if (SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&g_counter1, 1) != 1) {
         order[0] = 1;
         order[1] = 0;
     }
-    int err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[order[0]]);
+
+    err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[order[0]]);
     if (err != 0) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_GENERIC,
             "failed to unlock semaphore"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);        
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     err = SAMPLE_SEMAPHORE_WAIT(g_semaphores[order[1]]);
@@ -84,24 +86,27 @@ NBP_BEFORE_TEST(beforeTest)
             NBP_ERROR_GENERIC,
             "failed to lock semaphore"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);        
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 }
 
 NBP_AFTER_TEST(afterTest)
 {
-    unsigned int order[] = {2, 3}; 
+    unsigned int order[] = {2, 3};
+    int err;
+
     if (SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&g_counter2, 1) != 1) {
         order[0] = 3;
         order[1] = 2;
     }
-    int err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[order[0]]);
+
+    err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[order[0]]);
     if (err != 0) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_GENERIC,
             "failed to unlock semaphore"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);        
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     err = SAMPLE_SEMAPHORE_WAIT(g_semaphores[order[1]]);
@@ -110,7 +115,7 @@ NBP_AFTER_TEST(afterTest)
             NBP_ERROR_GENERIC,
             "failed to lock semaphore"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);        
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 }
 
