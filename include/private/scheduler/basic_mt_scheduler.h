@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_MT_SCHEDULER_RULE_TYPE_UNKNOWN                  (unsigned char) 0
 #define NBP_MT_SCHEDULER_RULE_TYPE_BEFORE                   (unsigned char) 1
 #define NBP_MT_SCHEDULER_RULE_TYPE_AFTER                    (unsigned char) 2
+#define NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD              (unsigned char) 3
 
 #define NBP_MT_SCHEDULER_RULE_DATA_TYPE_UNKNOWN             (unsigned char) 0
 #define NBP_MT_SCHEDULER_RULE_DATA_TYPE_EMPTY               (unsigned char) 1
@@ -59,27 +60,57 @@ void* nbp_mt_scheduler_create_ctx(
     ...
 );
 
+/*
+ * TODO: add docs
+ */
 #define NBP_MT_SCHEDULER_RUN_BEFORE_TEST(test)                                 \
     nbp_mt_schduler_create_rule_from_test(                                     \
         NBP_MT_SCHEDULER_RULE_TYPE_BEFORE,                                     \
         NBP_GET_TEST_PTR(test)                                                 \
     )
 
+/*
+ * TODO: add docs
+ */
 #define NBP_MT_SCHEDULER_RUN_AFTER_TEST(test)                                  \
     nbp_mt_schduler_create_rule_from_test(                                     \
         NBP_MT_SCHEDULER_RULE_TYPE_AFTER,                                      \
         NBP_GET_TEST_PTR(test)                                                 \
     )
 
+/*
+ * TODO: add docs
+ */
 #define NBP_MT_SCHEDULER_RUN_BEFORE_MODULE(module)                             \
     nbp_mt_schduler_create_rule_from_module(                                   \
         NBP_MT_SCHEDULER_RULE_TYPE_BEFORE,                                     \
         NBP_GET_MODULE_PTR(module)                                             \
     )
 
+/*
+ * TODO: add docs
+ */
 #define NBP_MT_SCHEDULER_RUN_AFTER_MODULE(module)                              \
     nbp_mt_schduler_create_rule_from_module(                                   \
         NBP_MT_SCHEDULER_RULE_TYPE_AFTER,                                      \
+        NBP_GET_MODULE_PTR(module)                                             \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_TEST(test)                    \
+    nbp_mt_schduler_create_rule_from_test(                                     \
+        NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD,                                \
+        NBP_GET_TEST_PTR(test)                                                 \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_MODULE(module)                \
+    nbp_mt_schduler_create_rule_from_module(                                   \
+        NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD,                                \
         NBP_GET_MODULE_PTR(module)                                             \
     )
 
@@ -87,6 +118,9 @@ void* nbp_mt_scheduler_create_ctx(
     sizeof((nbp_mt_scheduler_rule_t[]){ __VA_ARGS__ }) /                       \
     sizeof(nbp_mt_scheduler_rule_t)
 
+/*
+ * TODO: add docs
+ */
 #define NBP_MT_SCHEDULER_CTX(...)                                              \
     nbp_mt_scheduler_create_ctx(                                               \
         NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(__VA_ARGS__),             \
@@ -110,6 +144,14 @@ void* nbp_mt_scheduler_create_ctx(
     NBP_INCLUDE_MODULE(name);
 
 #define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_BEFORE_MODULE(  \
+    name)                                                                      \
+    NBP_INCLUDE_MODULE(name);
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_TEST(\
+    name)                                                                      \
+    NBP_INCLUDE_TEST(name);
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_MODULE(\
     name)                                                                      \
     NBP_INCLUDE_MODULE(name);
 
@@ -338,6 +380,8 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
 #define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST     (unsigned char) 1
 #define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE   (unsigned char) 2
 
+#define NBP_MT_SCHEDULER_PRIVATE_INVALID_WORKER_ID  (unsigned int) -1
+
 struct nbp_mt_scheduler_data_t {
     unsigned char dataType;
     union {
@@ -352,6 +396,9 @@ typedef struct nbp_mt_scheduler_data_t nbp_mt_scheduler_data_t;
 struct nbp_mt_scheduler_test_t {
     nbp_test_details_t* test;
     unsigned int numberOfPendingTests;
+
+    unsigned int* requestedWorkerId;
+    struct nbp_mt_scheduler_test_t* nextTestOnThisWorker;
 
     struct nbp_mt_scheduler_test_t* nextInQueue;
 };
@@ -446,22 +493,162 @@ static void nbp_mt_scheduler_queue_push(unsigned int testId)
     }
 }
 
-static nbp_mt_scheduler_test_t* nbp_mt_scheduler_queue_pop()
+static nbp_mt_scheduler_test_t* nbp_mt_scheduler_queue_pop(unsigned int workerId)
 {
-    nbp_mt_scheduler_test_t* test = NBP_NULL_POINTER;
+    nbp_mt_scheduler_test_t* prev = NBP_NULL_POINTER;
+    nbp_mt_scheduler_test_t* test = nbpMtSchedulerQueue;
 
-    if (nbpMtSchedulerQueue == NBP_NULL_POINTER) {
+    while (test != NBP_NULL_POINTER) {
+        if (test->requestedWorkerId == NBP_NULL_POINTER) {
+            break;
+        }
+
+        if (*test->requestedWorkerId == NBP_MT_SCHEDULER_PRIVATE_INVALID_WORKER_ID ) {
+            *test->requestedWorkerId = workerId;
+            break;
+        }
+
+        if (*test->requestedWorkerId == workerId) {
+            break;
+        }
+
+        prev = test;
+        test = test->nextInQueue;
+    }
+
+    // no test found for this worker
+    if (test == NBP_NULL_POINTER) {
         return test;
     }
 
-    test = nbpMtSchedulerQueue;
+    // test is the first element in queue
+    if (test == nbpMtSchedulerQueue) {
+        nbpMtSchedulerQueue = test->nextInQueue;
 
-    nbpMtSchedulerQueue = nbpMtSchedulerQueue->nextInQueue;
-    if (nbpMtSchedulerQueue == NBP_NULL_POINTER) {
-        nbpMtSchedulerQueueLast = NBP_NULL_POINTER;
+        // test is the only element in queue
+        if (test == nbpMtSchedulerQueueLast) {
+            nbpMtSchedulerQueueLast = NBP_NULL_POINTER;
+        }
+
+        return test;
     }
 
+    // test is the last element in queue
+    if (test == nbpMtSchedulerQueueLast) {
+        prev->nextInQueue = NBP_NULL_POINTER;
+        nbpMtSchedulerQueueLast = prev;
+
+        return test;
+    }
+
+    // the is somewhere in queue but it is not the first or last
+    prev->nextInQueue = test->nextInQueue;
+
     return test;
+}
+
+static void nbp_mt_scheduler_set_test_on_same_thread_with_test(
+    unsigned int testId1, unsigned int testId2)
+{
+    nbp_mt_scheduler_test_t* test1;
+    nbp_mt_scheduler_test_t* test2;
+    nbp_mt_scheduler_test_t* last;
+    nbp_mt_scheduler_test_t* current;
+
+    if (testId1 == testId2) {
+        return;
+    }
+
+    test1 = &nbpMtSchedulerTests[testId1];
+    test2 = &nbpMtSchedulerTests[testId2];
+
+    if (test1->requestedWorkerId == test2->requestedWorkerId) {
+        if (test1->requestedWorkerId != NBP_NULL_POINTER) {
+            return;
+        }
+
+        test1->requestedWorkerId = (unsigned int*) NBP_ALLOC(sizeof(unsigned int));
+        if (test1->requestedWorkerId == NBP_NULL_POINTER) {
+            NBP_HANDLE_ERROR(NBP_ERROR_ALLOC);
+            NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
+        }
+
+        *test1->requestedWorkerId = NBP_MT_SCHEDULER_PRIVATE_INVALID_WORKER_ID;
+
+        test2->requestedWorkerId = test1->requestedWorkerId;
+
+        test1->nextTestOnThisWorker = test2;
+        test2->nextTestOnThisWorker = test1;
+
+        return;
+    }
+
+    if (test1->requestedWorkerId == NBP_NULL_POINTER) {
+        test1->requestedWorkerId = test2->requestedWorkerId;
+
+        test1->nextTestOnThisWorker = test2->nextTestOnThisWorker;
+        test2->nextTestOnThisWorker = test1;
+
+        return;
+    }
+
+    if (test2->requestedWorkerId == NBP_NULL_POINTER) {
+        test2->requestedWorkerId = test1->requestedWorkerId;
+
+        test2->nextTestOnThisWorker = test1->nextTestOnThisWorker;
+        test1->nextTestOnThisWorker = test2;
+
+        return;
+    }
+
+    NBP_FREE(test2->requestedWorkerId);
+    test2->requestedWorkerId = test1->requestedWorkerId;
+
+    current = test2->nextTestOnThisWorker;
+    while (current != test2) {
+        current->requestedWorkerId = test1->requestedWorkerId;
+
+        last = current;
+        current = current->nextTestOnThisWorker;
+    }
+
+    current = test1->nextTestOnThisWorker;
+    test1->nextTestOnThisWorker = test2;
+    last->nextTestOnThisWorker = current;
+}
+
+static void nbp_mt_scheduler_set_module_on_same_thread_with_test(
+    nbp_module_details_t* module, unsigned int testId)
+{
+    nbp_test_details_t* test;
+    nbp_module_details_t* submodule;
+    unsigned int testId2;
+
+    NBP_MODULE_FOR_EACH_TEST(module, test) {
+        testId2 = NBP_TEST_GET_ID(test);
+        nbp_mt_scheduler_set_test_on_same_thread_with_test(testId, testId2);
+    }
+
+    NBP_MODULE_FOR_EACH_SUBMODULE(module, submodule) {
+        nbp_mt_scheduler_set_module_on_same_thread_with_test(submodule, testId);
+    }
+}
+
+static void nbp_mt_scheduler_set_module_on_same_thread_with_module(
+    nbp_module_details_t* module1, nbp_module_details_t* module2)
+{
+    nbp_test_details_t* test;
+    nbp_module_details_t* submodule;
+    unsigned int testId;
+
+    NBP_MODULE_FOR_EACH_TEST(module1, test) {
+        testId = NBP_TEST_GET_ID(test);
+        nbp_mt_scheduler_set_module_on_same_thread_with_test(module2, testId);
+    }
+
+    NBP_MODULE_FOR_EACH_SUBMODULE(module1, submodule) {
+        nbp_mt_scheduler_set_module_on_same_thread_with_module(submodule, module2);
+    }
 }
 
 static void nbp_mt_scheduler_add_pending_test_to_test(unsigned int pendingTestId,
@@ -581,7 +768,7 @@ static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_f
     }
 
     while (nbpMtSchedulerNumberOfDispatchedTests != nbpMtSchedulerNumberOfTests) {
-        test = nbp_mt_scheduler_queue_pop();
+        test = nbp_mt_scheduler_queue_pop(workerId);
         if (test == NBP_NULL_POINTER) {
             errCode = NBP_MT_SCHEDULER_CONDVAR_WAIT(
                 nbpMtSchedulerCondVar,
@@ -663,6 +850,11 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
                 continue;
             }
 
+            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD) {
+                nbp_mt_scheduler_set_test_on_same_thread_with_test(testId, ruleDataTestId);
+                continue;
+            }
+
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_GENERIC,
                 "unknown rule type"
@@ -678,6 +870,11 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
 
             if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_BEFORE) {
                 nbp_mt_scheduler_add_pending_test_to_module(testId, rule->module);
+                continue;
+            }
+
+            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD) {
+                nbp_mt_scheduler_set_module_on_same_thread_with_test(rule->module, testId);
                 continue;
             }
 
@@ -718,6 +915,11 @@ static void nbp_mt_scheduler_processing_module_context(
                 continue;
             }
 
+            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD) {
+                nbp_mt_scheduler_set_module_on_same_thread_with_test(module, ruleDataTestId);
+                continue;
+            }
+
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_GENERIC,
                 "unknown rule type"
@@ -733,6 +935,11 @@ static void nbp_mt_scheduler_processing_module_context(
 
             if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_BEFORE) {
                 nbp_mt_scheduler_add_pending_module_to_module(module, rule->module);
+                continue;
+            }
+
+            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD) {
+                nbp_mt_scheduler_set_module_on_same_thread_with_module(module, rule->module);
                 continue;
             }
 
@@ -769,6 +976,10 @@ static void nbp_mt_scheduler_allocate_array_of_tests()
     for ( ; index < nbpMtSchedulerNumberOfTests; index++) {
         nbpMtSchedulerTests[index].test = NBP_NULL_POINTER;
         nbpMtSchedulerTests[index].numberOfPendingTests = 0;
+
+        nbpMtSchedulerTests[index].requestedWorkerId = NBP_NULL_POINTER;
+        nbpMtSchedulerTests[index].nextTestOnThisWorker = NBP_NULL_POINTER;
+
         nbpMtSchedulerTests[index].nextInQueue = NBP_NULL_POINTER;
     }
 }
@@ -945,6 +1156,8 @@ NBP_SCHEDULER_FUNC_RUN(nbp_mt_scheduler_run)
     nbp_mt_scheduler_allocate_adjacency_matrix();
     nbp_mt_scheduler_processing_data();
     nbp_mt_scheduler_create_threads_and_run();
+
+    // TODO: free memory used by requestedWorkerId
 
     NBP_FREE(nbpMtSchedulerAdjacencyMatrix);
     NBP_FREE(nbpMtSchedulerTests);
