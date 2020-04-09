@@ -55,6 +55,10 @@ nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module(
     nbp_module_details_t* module
 );
 
+nbp_mt_scheduler_rule_t nbp_mt_scheduler_create_empty_rule(
+    unsigned char ruleType
+);
+
 void* nbp_mt_scheduler_create_ctx(
     unsigned long long numberOfRules,
     ...
@@ -114,6 +118,11 @@ void* nbp_mt_scheduler_create_ctx(
         NBP_GET_MODULE_PTR(module)                                             \
     )
 
+#define NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD                                    \
+    nbp_mt_scheduler_create_empty_rule(                                        \
+        NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD                                 \
+    )
+
 #define NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(...)                      \
     sizeof((nbp_mt_scheduler_rule_t[]){ __VA_ARGS__ }) /                       \
     sizeof(nbp_mt_scheduler_rule_t)
@@ -154,6 +163,8 @@ void* nbp_mt_scheduler_create_ctx(
 #define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_MODULE(\
     name)                                                                      \
     NBP_INCLUDE_MODULE(name);
+
+#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD
 
 // it's used when NBP_MT_SCHEDULER_CTX is called without rules
 #define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_
@@ -450,6 +461,18 @@ nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module(
     return rule;
 }
 
+nbp_mt_scheduler_rule_t nbp_mt_scheduler_create_empty_rule(
+    unsigned char ruleType)
+{
+    nbp_mt_scheduler_rule_t rule;
+
+    rule.ruleType   = ruleType;
+    rule.dataType   = NBP_MT_SCHEDULER_RULE_DATA_TYPE_EMPTY;
+    rule.test       = NBP_NULL_POINTER;
+
+    return rule;
+}
+
 void* nbp_mt_scheduler_create_ctx(unsigned long long numberOfRules, ...)
 {
     va_list args;
@@ -648,6 +671,30 @@ static void nbp_mt_scheduler_set_module_on_same_thread_with_module(
 
     NBP_MODULE_FOR_EACH_SUBMODULE(module1, submodule) {
         nbp_mt_scheduler_set_module_on_same_thread_with_module(submodule, module2);
+    }
+}
+
+static void nbp_mt_scheduler_set_module_on_same_thread(
+    nbp_module_details_t* module)
+{
+    nbp_test_details_t* firstTest = NBP_NULL_POINTER;
+    nbp_test_details_t* test;
+    nbp_module_details_t* submodule;
+    unsigned int firstTestId;
+    unsigned int testId;
+
+    NBP_MODULE_FOR_EACH_TEST(module, test) {
+        if (firstTest == NBP_NULL_POINTER) {
+            firstTest = test;
+            firstTestId = NBP_TEST_GET_ID(firstTest);
+        } else {
+            testId = NBP_TEST_GET_ID(test);
+            nbp_mt_scheduler_set_test_on_same_thread_with_test(firstTestId, testId);
+        }
+    }
+
+    NBP_MODULE_FOR_EACH_SUBMODULE(module, submodule) {
+        nbp_mt_scheduler_set_module_on_same_thread_with_test(submodule, firstTestId);
     }
 }
 
@@ -940,6 +987,19 @@ static void nbp_mt_scheduler_processing_module_context(
 
             if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD) {
                 nbp_mt_scheduler_set_module_on_same_thread_with_module(module, rule->module);
+                continue;
+            }
+
+            NBP_HANDLE_ERROR_CTX_STRING(
+                NBP_ERROR_GENERIC,
+                "unknown rule type"
+            );
+            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        }
+
+        if (rule->dataType == NBP_MT_SCHEDULER_RULE_DATA_TYPE_EMPTY) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD) {
+                nbp_mt_scheduler_set_module_on_same_thread(module);
                 continue;
             }
 
