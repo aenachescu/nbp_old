@@ -25,6 +25,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <semaphore.h>
 
+/*
+ * Atomic unsigned int wrapper
+ */
+
 #define NBP_ATOMIC_UINT_TYPE unsigned int
 
 #define NBP_ATOMIC_UINT_INIT(val) val
@@ -36,6 +40,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define NBP_ATOMIC_UINT_CAS(ptr, oldVal, newVal)                               \
     __sync_val_compare_and_swap((ptr), (oldVal), (newVal))
+
+/*
+ * Event wrapper
+ */
 
 #define NBP_EVENT_TYPE sem_t
 

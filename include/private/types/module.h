@@ -48,6 +48,7 @@ typedef void (*nbp_module_pfn_t)(
 
 struct nbp_module_details_t {
     const char* moduleName;
+    unsigned int moduleId;
     nbp_module_pfn_t moduleFunc;
     struct nbp_module_details_t* parent;
 

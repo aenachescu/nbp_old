@@ -213,6 +213,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     );                                                                         \
     nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func) = {         \
         .testName                   = name,                                    \
+        .testId                     = 0,                                       \
         .testFunc                   = NBP_PRIVATE_PP_CONCAT(nbp_test_, func),  \
         .module                     = NBP_NULL_POINTER,                        \
         .beforeTestFunc             = NBP_NULL_POINTER,                        \
@@ -335,6 +336,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_CALL_TEST_CTX(func, ctx)                                           \
     extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func);     \
+    NBP_PRIVATE_SCHEDULER_PREPROCESSING_CONTEXT(P_ ## ctx)                     \
     nbp_call_test_ctx(                                                         \
         & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
         ctx,                                                                   \
@@ -348,6 +350,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_INCLUDE_TEST(func)                                                 \
     extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_GET_TEST_PTR(func)                                                 \
+    & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func)
 
 /*
  * @public doc
@@ -377,6 +385,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define NBP_GET_TEST_NAME(test)                                                \
     test->testName
+
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_ID(test)                                                  \
+    test->testId
 
 /*
  * @public doc

@@ -42,6 +42,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #error "Not supported"
 #endif // end if NBP_OS_MAC
 
+/*
+ * We don't have default printer for custom OS
+ */
+#ifdef NBP_OS_CUSTOM
+#error "Not supported"
+#endif
+
 #endif // end if NBP_LIBRARY_MAIN
 
 #endif // end if NBP_PRIVATE_PRINTER_H

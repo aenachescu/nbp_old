@@ -46,6 +46,10 @@ static inline void write_message_to_file_2(const char* msg1, const char* msg2)
 
 #define SAMPLE_FORCE_SLEEP_MS(ms) usleep(ms * 1000)
 
+/*
+ * Semaphore wrapper
+ */
+
 #define SAMPLE_SEMAPHORE_TYPE sem_t
 
 #define SAMPLE_SEMAPHORE_DEFAULT_VALUE { .__align = 0 }
@@ -61,6 +65,23 @@ static inline void write_message_to_file_2(const char* msg1, const char* msg2)
 
 #define SAMPLE_SEMAPHORE_RELEASE(sem)                                          \
     sem_post(&sem) == 0 ? 0 : 1
+
+/*
+ * Atomic unsigned int wrapper
+ */
+
+#define SAMPLE_ATOMIC_UINT_TYPE unsigned int
+
+#define SAMPLE_ATOMIC_UINT_INIT(val) val
+
+#define SAMPLE_ATOMIC_UINT_LOAD(ptr)                                           \
+    __atomic_load_n((ptr), __ATOMIC_SEQ_CST)
+
+#define SAMPLE_ATOMIC_UINT_STORE(ptr, val)                                     \
+    __atomic_store_n((ptr), val, __ATOMIC_SEQ_CST)
+
+#define SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                           \
+    __sync_add_and_fetch((ptr), (value))
 
 #endif // end if NBP_OS_LINUX
 

@@ -40,4 +40,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #endif // end if NBP_CUSTOM_SCHEDULER
 
+#ifdef NBP_SCHEDULER_PREPROCESSING_CONTEXT
+
+#define NBP_PRIVATE_SCHEDULER_PREPROCESSING_CONTEXT(ctx)                       \
+    NBP_SCHEDULER_PREPROCESSING_CONTEXT(P ## ctx)
+
+#else // NBP_SCHEDULER_PREPROCESSING_CONTEXT is not defined
+
+#define NBP_PRIVATE_SCHEDULER_PREPROCESSING_CONTEXT(ctx)
+
+#endif // end if NBP_SCHEDULER_PREPROCESSING_CONTEXT
+
 #endif // end if NBP_PRIVATE_SCHEDULER_H

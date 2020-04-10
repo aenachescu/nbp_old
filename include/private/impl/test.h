@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef NBP_PRIVATE_IMPL_TEST_H
 #define NBP_PRIVATE_IMPL_TEST_H
 
+static unsigned int nbpTotalNumberOfTests = 0;
+
 static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
     nbp_module_details_t* module, nbp_before_test_pfn_t beforeTest,
     nbp_after_test_pfn_t afterTest)
@@ -30,8 +32,11 @@ static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
     );
     if (state != NBP_TEST_STATE_NOT_INITIALIZED) {
         NBP_HANDLE_ERROR(NBP_ERROR_TEST_ALREADY_CALLED);
-        return NBP_ERROR_TEST_ALREADY_CALLED;
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
+
+    test->testId = nbpTotalNumberOfTests;
+    nbpTotalNumberOfTests++;
 
     test->module = module;
     test->beforeTestFunc = beforeTest;

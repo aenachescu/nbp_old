@@ -55,6 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     );                                                                         \
     nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func) = {     \
         .moduleName        = name,                                             \
+        .moduleId          = 0,                                                \
         .moduleFunc        = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),         \
         .parent            = NBP_NULL_POINTER,                                 \
         .setup             = setupFunc,                                        \
@@ -202,12 +203,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * TODO: add docs
  */
+#define NBP_GET_MODULE_PTR(func)                                               \
+    & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_FOR_EACH_TEST(module, it)                                   \
+    for (it = module->firstTest; it != NBP_NULL_POINTER; it = it->next)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_FOR_EACH_SUBMODULE(module, it)                              \
+    for (it = module->firstModule; it != NBP_NULL_POINTER; it = it->next)
+
+/*
+ * TODO: add docs
+ */
 #define NBP_THIS_MODULE module
 
 /*
  * TODO: add docs
  */
 #define NBP_GET_MODULE_NAME(module) module->moduleName
+
+/*
+ * TODO: add docs
+ */
+#define NBP_MODULE_GET_ID(module) module->moduleId
 
 /*
  * TODO: add docs

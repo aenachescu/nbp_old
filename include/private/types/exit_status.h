@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NBP_EXIT_STATUS_EVENT_ERROR                             (int) -3
 #define NBP_EXIT_STATUS_MUTEX_ERROR                             (int) -4
 #define NBP_EXIT_STATUS_INVALID_SCHEDULER                       (int) -5
+#define NBP_EXIT_STATUS_OUT_OF_MEMORY                           (int) -6
 
 #endif // end if NBP_PRIVATE_TYPES_EXIT_STATUS_H
 
