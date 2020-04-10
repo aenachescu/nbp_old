@@ -135,6 +135,8 @@ run_test mt_scheduler_run_module_fixtures_in_parallel_sample 0
 
 if [ $status -ne 0 ]; then
     echo $'run_tests failed\n'
+else
+    echo $'run_tests passed\n'
 fi
 
 exit $status
