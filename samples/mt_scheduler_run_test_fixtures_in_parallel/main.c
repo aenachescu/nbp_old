@@ -22,10 +22,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../sample_utils.h"
 
 SAMPLE_SEMAPHORE_TYPE g_semaphores[4];
-SAMPLE_ATOMIC_UINT_TYPE g_counter1 = SAMPLE_ATOMIC_UINT_INIT(0);
-SAMPLE_ATOMIC_UINT_TYPE g_counter2 = SAMPLE_ATOMIC_UINT_INIT(0);
+SAMPLE_ATOMIC_UINT_TYPE g_setupCounter = SAMPLE_ATOMIC_UINT_INIT(0);
+SAMPLE_ATOMIC_UINT_TYPE g_teardownCounter = SAMPLE_ATOMIC_UINT_INIT(0);
 
-NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_fixtures_in_parallel, setup, teardown)
+NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_fixtures_in_parallel,
+    mainSetup, mainTeardown)
 {
     NBP_CALL_BEFORE_TEST(beforeTest);
     NBP_CALL_AFTER_TEST(afterTest);
@@ -33,28 +34,28 @@ NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_fixtures_in_parallel, setup, tear
     NBP_CALL_TEST(test2);
 }
 
-NBP_SETUP_MODULE(setup)
+NBP_SETUP_MODULE(mainSetup)
 {
     for (unsigned int i = 0; i < 4; ++i) {
         int err = SAMPLE_SEMAPHORE_INIT(g_semaphores[i]);
         if (err != 0) {
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_GENERIC,
-                "failed to init semaphores"
+                "failed to init semaphore"
             );
             NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
     }
 }
 
-NBP_TEARDOWN_MODULE(teardown)
+NBP_TEARDOWN_MODULE(mainTeardown)
 {
     for (unsigned int i = 0; i < 4; ++i) {
         int err = SAMPLE_SEMAPHORE_UNINIT(g_semaphores[i]);
         if (err != 0) {
             NBP_HANDLE_ERROR_CTX_STRING(
                 NBP_ERROR_GENERIC,
-                "failed to uninit semaphore1"
+                "failed to uninit semaphore"
             );
             NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
@@ -66,7 +67,7 @@ NBP_BEFORE_TEST(beforeTest)
     unsigned int order[] = {0, 1};
     int err;
 
-    if (SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&g_counter1, 1) != 1) {
+    if (SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&g_setupCounter, 1) != 1) {
         order[0] = 1;
         order[1] = 0;
     }
@@ -75,7 +76,7 @@ NBP_BEFORE_TEST(beforeTest)
     if (err != 0) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_GENERIC,
-            "failed to unlock semaphore"
+            "failed to release semaphore"
         );
         NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
@@ -84,7 +85,7 @@ NBP_BEFORE_TEST(beforeTest)
     if (err != 0) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_GENERIC,
-            "failed to lock semaphore"
+            "failed to wait semaphore"
         );
         NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
@@ -95,7 +96,7 @@ NBP_AFTER_TEST(afterTest)
     unsigned int order[] = {2, 3};
     int err;
 
-    if (SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&g_counter2, 1) != 1) {
+    if (SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&g_teardownCounter, 1) != 1) {
         order[0] = 3;
         order[1] = 2;
     }
@@ -104,7 +105,7 @@ NBP_AFTER_TEST(afterTest)
     if (err != 0) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_GENERIC,
-            "failed to unlock semaphore"
+            "failed to release semaphore"
         );
         NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
@@ -113,7 +114,7 @@ NBP_AFTER_TEST(afterTest)
     if (err != 0) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_GENERIC,
-            "failed to lock semaphore"
+            "failed to wait semaphore"
         );
         NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
