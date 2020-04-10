@@ -21,10 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../sample_utils.h"
 
-NBP_BEFORE_TEST(beforeTest)
+NBP_TEST_SETUP(testSetup)
 {
     write_message_to_file_2(
-        "before test",
+        "test setup",
         NBP_GET_TEST_NAME(NBP_THIS_TEST)
     );
 }
@@ -85,7 +85,7 @@ NBP_TEST(test2)
 
 NBP_MODULE_FIXTURES(module1, setupModule, teardownModule)
 {
-    NBP_CALL_BEFORE_TEST(beforeTest);
+    NBP_TEST_USE_SETUP(testSetup);
     NBP_CALL_AFTER_TEST(afterTest);
 
     NBP_CALL_TEST(test1);
@@ -93,7 +93,7 @@ NBP_MODULE_FIXTURES(module1, setupModule, teardownModule)
 
 NBP_MODULE_FIXTURES(module2, setupModule, teardownModule)
 {
-    NBP_CALL_BEFORE_TEST(beforeTest);
+    NBP_TEST_USE_SETUP(testSetup);
     NBP_CALL_AFTER_TEST(afterTest);
 
     NBP_CALL_TEST(test2);
@@ -101,7 +101,7 @@ NBP_MODULE_FIXTURES(module2, setupModule, teardownModule)
 
 NBP_MAIN_MODULE_FIXTURES(test_and_module_fixtures, setupModule, teardownModule)
 {
-    NBP_CALL_BEFORE_TEST(beforeTest);
+    NBP_TEST_USE_SETUP(testSetup);
     NBP_CALL_AFTER_TEST(afterTest);
 
     NBP_CALL_TEST(test_and_module_fixtures_test1);

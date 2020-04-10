@@ -28,7 +28,7 @@ SAMPLE_ATOMIC_UINT_TYPE g_teardownCounter = SAMPLE_ATOMIC_UINT_INIT(0);
 NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_fixtures_in_parallel,
     mainSetup, mainTeardown)
 {
-    NBP_CALL_BEFORE_TEST(beforeTest);
+    NBP_TEST_USE_SETUP(testSetup);
     NBP_CALL_AFTER_TEST(afterTest);
     NBP_CALL_TEST(test1);
     NBP_CALL_TEST(test2);
@@ -62,7 +62,7 @@ NBP_TEARDOWN_MODULE(mainTeardown)
     }
 }
 
-NBP_BEFORE_TEST(beforeTest)
+NBP_TEST_SETUP(testSetup)
 {
     unsigned int order[] = {0, 1};
     int err;

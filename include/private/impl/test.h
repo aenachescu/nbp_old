@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 static unsigned int nbpTotalNumberOfTests = 0;
 
 static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
-    nbp_module_details_t* module, nbp_before_test_pfn_t beforeTest,
+    nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,
     nbp_after_test_pfn_t afterTest)
 {
     unsigned int state = NBP_ATOMIC_UINT_CAS(
@@ -39,7 +39,7 @@ static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
     nbpTotalNumberOfTests++;
 
     test->module = module;
-    test->beforeTestFunc = beforeTest;
+    test->testSetupFunc = testSetup;
     test->afterTestFunc = afterTest;
     NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.num, 1);
     NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->taskNum, 1);
@@ -57,14 +57,14 @@ static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
 }
 
 void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
-    nbp_before_test_pfn_t beforeTest, nbp_after_test_pfn_t afterTest)
+    nbp_test_setup_pfn_t testSetup, nbp_after_test_pfn_t afterTest)
 {
     if (nbpSchedulerInterface->addTest == NBP_NULL_POINTER) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
         NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
     }
 
-    NBP_ERROR_TYPE err = nbp_test_init(test, module, beforeTest, afterTest);
+    NBP_ERROR_TYPE err = nbp_test_init(test, module, testSetup, afterTest);
     if (err != NBP_NO_ERROR) {
         return;
     }
@@ -74,7 +74,7 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
 }
 
 void nbp_call_test_ctx(nbp_test_details_t* test, void* ctx,
-    nbp_module_details_t* module, nbp_before_test_pfn_t beforeTest,
+    nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,
     nbp_after_test_pfn_t afterTest)
 {
     if (nbpSchedulerInterface->addTestCtx == NBP_NULL_POINTER) {
@@ -82,7 +82,7 @@ void nbp_call_test_ctx(nbp_test_details_t* test, void* ctx,
         NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
     }
 
-    NBP_ERROR_TYPE err = nbp_test_init(test, module, beforeTest, afterTest);
+    NBP_ERROR_TYPE err = nbp_test_init(test, module, testSetup, afterTest);
     if (err != NBP_NO_ERROR) {
         return;
     }

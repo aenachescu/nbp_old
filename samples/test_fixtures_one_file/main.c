@@ -21,18 +21,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../sample_utils.h"
 
-NBP_BEFORE_TEST(submodule3_before_test1)
+NBP_TEST_SETUP(submodule3_test_setup1)
 {
     write_message_to_file_2(
-        "submodule3_before_test1",
+        "submodule3_test_setup1",
         NBP_GET_TEST_NAME(NBP_THIS_TEST)
     );
 }
 
-NBP_BEFORE_TEST(submodule3_before_test2)
+NBP_TEST_SETUP(submodule3_test_setup2)
 {
     write_message_to_file_2(
-        "submodule3_before_test2",
+        "submodule3_test_setup2",
         NBP_GET_TEST_NAME(NBP_THIS_TEST)
     );
 }
@@ -53,18 +53,18 @@ NBP_AFTER_TEST(submodule4_after_test2)
     );
 }
 
-NBP_BEFORE_TEST(my_before_test1)
+NBP_TEST_SETUP(my_test_setup1)
 {
     write_message_to_file_2(
-        "my_before_test1",
+        "my_test_setup1",
         NBP_GET_TEST_NAME(NBP_THIS_TEST)
     );
 }
 
-NBP_BEFORE_TEST(my_before_test2)
+NBP_TEST_SETUP(my_test_setup2)
 {
     write_message_to_file_2(
-        "my_before_test2",
+        "my_test_setup2",
         NBP_GET_TEST_NAME(NBP_THIS_TEST)
     );
 }
@@ -129,13 +129,13 @@ NBP_TEST(test4)
 
 NBP_MODULE(submodule1)
 {
-    NBP_CALL_BEFORE_TEST(my_before_test1);
+    NBP_TEST_USE_SETUP(my_test_setup1);
     NBP_CALL_AFTER_TEST(my_after_test1);
 
     NBP_CALL_TEST(test1);
     NBP_CALL_TEST(test2);
 
-    NBP_CALL_BEFORE_TEST(my_before_test2);
+    NBP_TEST_USE_SETUP(my_test_setup2);
     NBP_CALL_AFTER_TEST(my_after_test2);
 
     NBP_CALL_TEST(test3);
@@ -168,13 +168,13 @@ NBP_TEST(test8)
 
 NBP_MODULE(submodule2)
 {
-    NBP_CALL_BEFORE_TEST(my_before_test1);
+    NBP_TEST_USE_SETUP(my_test_setup1);
     NBP_CALL_AFTER_TEST(my_after_test1);
 
     NBP_CALL_TEST(test5);
     NBP_CALL_TEST(test6);
 
-    NBP_RESET_BEFORE_TEST();
+    NBP_TEST_RESET_SETUP();
     NBP_RESET_AFTER_TEST();
 
     NBP_CALL_TEST(test7);
@@ -207,13 +207,13 @@ NBP_TEST(test12)
 
 NBP_MODULE(submodule3)
 {
-    NBP_CALL_BEFORE_TEST(submodule3_before_test1);
+    NBP_TEST_USE_SETUP(submodule3_test_setup1);
     NBP_CALL_TEST(test9);
 
-    NBP_RESET_BEFORE_TEST();
+    NBP_TEST_RESET_SETUP();
     NBP_CALL_TEST(test10);
 
-    NBP_CALL_BEFORE_TEST(submodule3_before_test2);
+    NBP_TEST_USE_SETUP(submodule3_test_setup2);
     NBP_CALL_TEST(test11);
     NBP_CALL_TEST(test12);
 }

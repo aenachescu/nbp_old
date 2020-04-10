@@ -42,7 +42,7 @@ typedef void(*nbp_teardown_module_pfn_t)(
 
 typedef void (*nbp_module_pfn_t)(
     struct nbp_module_details_t*, /* current module */
-    nbp_before_test_pfn_t, /* before test pfn */
+    nbp_test_setup_pfn_t, /* test setup pfn */
     nbp_after_test_pfn_t /* after test pfn */
 );
 

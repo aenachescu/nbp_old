@@ -46,13 +46,13 @@ NBP_TEST(test12)
 
 NBP_MODULE(submodule3)
 {
-    NBP_CALL_BEFORE_TEST(submodule3_before_test1);
+    NBP_TEST_USE_SETUP(submodule3_test_setup1);
     NBP_CALL_TEST(test9);
 
-    NBP_RESET_BEFORE_TEST();
+    NBP_TEST_RESET_SETUP();
     NBP_CALL_TEST(test10);
 
-    NBP_CALL_BEFORE_TEST(submodule3_before_test2);
+    NBP_TEST_USE_SETUP(submodule3_test_setup2);
     NBP_CALL_TEST(test11);
     NBP_CALL_TEST(test12);
 }

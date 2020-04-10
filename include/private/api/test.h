@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @brief
  *  Defines a function that can be called before running a test using the
- *  NBP_CALL_BEFORE_TEST macro.
+ *  NBP_TEST_USE_SETUP macro.
  *
  *  Use the NBP_THIS_TEST macro if you want to get info about the test that will
  *  run.
@@ -34,14 +34,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *         not just in the C file where it is defined.
  *
  * @code
- *  NBP_BEFORE_TEST(beforeMyTests)
+ *  NBP_TEST_SETUP(setupMyTests)
  *  {
  *      // do something
  *  }
  * @endcode
  */
-#define NBP_BEFORE_TEST(func)                                                  \
-    void NBP_PRIVATE_PP_CONCAT(nbp_before_test_, func)(                        \
+
+#define NBP_TEST_SETUP(func)                                                   \
+    void NBP_PRIVATE_PP_CONCAT(nbp_test_setup_, func)(                         \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
     )
 
@@ -50,41 +51,41 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @brief
  *  Calls the function `func` before running a test. The function must be
- *  defined using the NBP_BEFORE_TEST macro and it can be defined in any C file
+ *  defined using the NBP_TEST_SETUP macro and it can be defined in any C file
  *  not just in the current C file.
  *
  *  This macro must be used in the NBP_MODULE macro. This function will be
- *  called before any test that will run until another NBP_CALL_BEFORE_TEST
- *  macro will be used or until the NBP_RESET_BEFORE_TEST macro will be used.
+ *  called before any test that will run until another NBP_TEST_USE_SETUP
+ *  macro will be used or until the NBP_TEST_RESET_SETUP macro will be used.
  *
  * @params
- *  func - Represents the function name that was passed to the NBP_BEFORE_TEST
+ *  func - Represents the function name that was passed to the NBP_TEST_SETUP
  *         macro.
  *
  * @code
- *  NBP_BEFORE_TEST(beforeMyFirstTest)
+ *  NBP_TEST_SETUP(setupMyFirstTest)
  *  {
  *      // do something
  *  }
  *
- *  NBP_BEFORE_TEST(beforeMySecondAndThirdTest)
+ *  NBP_TEST_SETUP(setupMySecondAndThirdTest)
  *  {
  *      // do something
  *  }
  *
  *  NBP_MODULE(myFirstModule)
  *  {
- *      NBP_CALL_BEFORE_TEST(beforeMyFirstTest);
+ *      NBP_TEST_USE_SETUP(setupMyFirstTest);
  *      NBP_CALL_TEST(myFirstTest);
- *      NBP_CALL_BEFORE_TEST(beforeMySecondAndThirdTest);
+ *      NBP_TEST_USE_SETUP(setupMySecondAndThirdTest);
  *      NBP_CALL_TEST(mySecondTest);
  *      NBP_CALL_TEST(myThirdTest);
  *  }
  * @endcode
  */
-#define NBP_CALL_BEFORE_TEST(func)                                             \
-    NBP_BEFORE_TEST(func);                                                     \
-    beforeTest = NBP_PRIVATE_PP_CONCAT(nbp_before_test_, func)
+#define NBP_TEST_USE_SETUP(func)                                               \
+    NBP_TEST_SETUP(func);                                                      \
+    testSetup = NBP_PRIVATE_PP_CONCAT(nbp_test_setup_, func)
 
 /*
  * @public doc
@@ -94,24 +95,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  This macro must be used in the NBP_MODULE macro.
  *
  * @code
- *  NBP_BEFORE_TEST(beforeMyFirstTest)
+ *  NBP_TEST_SETUP(setupMyFirstTest)
  *  {
  *      // do something
  *  }
  *
  *  NBP_MODULE(myFirstModule)
  *  {
- *      NBP_CALL_BEFORE_TEST(beforeMyFirstTest);
+ *      NBP_TEST_USE_SETUP(setupMyFirstTest);
  *      NBP_CALL_TEST(myFirstTest);
- *      NBP_RESET_BEFORE_TEST();
+ *      NBP_TEST_RESET_SETUP();
  *      // no function will be called before mySecondTest and myThirdTest.
  *      NBP_CALL_TEST(mySecondTest);
  *      NBP_CALL_TEST(myThirdTest);
  *  }
  * @endcode
  */
-#define NBP_RESET_BEFORE_TEST()                                                \
-    beforeTest = NBP_NULL_POINTER
+#define NBP_TEST_RESET_SETUP()                                                 \
+    testSetup = NBP_NULL_POINTER
 
 /*
  * @public doc
@@ -216,7 +217,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .testId                     = 0,                                       \
         .testFunc                   = NBP_PRIVATE_PP_CONCAT(nbp_test_, func),  \
         .module                     = NBP_NULL_POINTER,                        \
-        .beforeTestFunc             = NBP_NULL_POINTER,                        \
+        .testSetupFunc              = NBP_NULL_POINTER,                        \
         .afterTestFunc              = NBP_NULL_POINTER,                        \
         .next                       = NBP_NULL_POINTER,                        \
         .prev                       = NBP_NULL_POINTER,                        \
@@ -327,7 +328,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     nbp_call_test(                                                             \
         & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
         module,                                                                \
-        beforeTest,                                                            \
+        testSetup,                                                             \
         afterTest                                                              \
     )
 
@@ -341,7 +342,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
         ctx,                                                                   \
         module,                                                                \
-        beforeTest,                                                            \
+        testSetup,                                                             \
         afterTest                                                              \
     )
 

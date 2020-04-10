@@ -20,18 +20,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../sample_utils.h"
 
-NBP_BEFORE_TEST(my_before_test1)
+NBP_TEST_SETUP(my_test_setup1)
 {
     write_message_to_file_2(
-        "my_before_test1",
+        "my_test_setup1",
         NBP_GET_TEST_NAME(NBP_THIS_TEST)
     );
 }
 
-NBP_BEFORE_TEST(my_before_test2)
+NBP_TEST_SETUP(my_test_setup2)
 {
     write_message_to_file_2(
-        "my_before_test2",
+        "my_test_setup2",
         NBP_GET_TEST_NAME(NBP_THIS_TEST)
     );
 }

@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 struct nbp_test_details_t;
 
-typedef void (*nbp_before_test_pfn_t)(
+typedef void (*nbp_test_setup_pfn_t)(
     struct nbp_test_details_t* /* current test */
 );
 
@@ -50,7 +50,7 @@ struct nbp_test_details_t {
     nbp_test_pfn_t testFunc;
     struct nbp_module_details_t* module;
 
-    nbp_before_test_pfn_t beforeTestFunc;
+    nbp_test_setup_pfn_t testSetupFunc;
     nbp_after_test_pfn_t afterTestFunc;
 
     struct nbp_test_details_t* next;

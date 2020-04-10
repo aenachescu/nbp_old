@@ -453,8 +453,8 @@ static void nbp_scheduler_run_test_running(nbp_test_details_t* test)
 {
     nbp_notify_printer_test_started(test);
 
-    if (test->beforeTestFunc) {
-        test->beforeTestFunc(test);
+    if (test->testSetupFunc) {
+        test->testSetupFunc(test);
     }
 
     test->testFunc(test);
