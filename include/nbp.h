@@ -42,7 +42,6 @@ SOFTWARE.
 // library implementation
 #include "private/utils/utils.h"
 #include "private/types/types.h"
-#include "private/memory_allocator/memory_allocator.h"
 #include "private/details/details.h"
 #include "private/impl/impl.h"
 

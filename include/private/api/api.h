@@ -28,6 +28,7 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_API_H
 #define NBP_PRIVATE_API_H
 
+#include "memory.h"
 #include "test.h"
 #include "module.h"
 #include "main.h"
