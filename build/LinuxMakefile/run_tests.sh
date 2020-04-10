@@ -17,6 +17,9 @@
 status=0
 sanopt=""
 
+binPath="../../bin/"
+samplesPath="../../samples/"
+
 function run_test {
     echo "running test $1"
 
@@ -25,32 +28,34 @@ function run_test {
     expected_output=""
     output=""
 
+    currentSamplePath="${samplesPath}${sample}/"
+    currentSampleBinPath="${binPath}$1/"
+    expectedPrinterOutputPath="${currentSamplePath}expected_linux_printer_output.txt"
+    expectedOutputPath="${currentSamplePath}expected_output.txt"
+
     # load expected test output
-    cd ../samples/$sample
-    expected_printer_output=$(<expected_linux_printer_output.txt)
-    if [ -f "expected_output.txt" ]; then
+    expected_printer_output=$(<${expectedPrinterOutputPath})
+    if [ -f "${expectedOutputPath}" ]; then
         has_output=1
-        expected_output=$(<expected_output.txt)
+        expected_output=$(<${expectedOutputPath})
     fi
-    cd ../../bin
 
     # run and get test output
-    cd $1
     if [ -f "output.txt" ]; then
         rm output.txt
     fi
     printer_output=""
     if [ -z "$sanopt" ]; then
-        printer_output=$(./$1)
+        printer_output=$(${currentSampleBinPath}$1)
     else
-        printer_output=$(env $sanopt ./$1)
+        printer_output=$(env $sanopt ${currentSampleBinPath}$1)
     fi
     testStatus=$?
 
     if [ -f "output.txt" ]; then
         output=$(<output.txt)
+        rm output.txt
     fi
-    cd ..
 
     # check test return code
     if [ $testStatus -ne $2 ]; then
@@ -93,8 +98,6 @@ if test "$#" -eq 1; then
     echo "$sanopt"
 fi
 
-cd ../../bin
-
 run_test basic_sample 0
 run_test modules_sample 0
 run_test modules_one_file_sample 0
@@ -129,8 +132,6 @@ run_test mt_scheduler_basic_sample 0
 run_test mt_scheduler_module_fixtures_ran_only_once_sample 0
 run_test mt_scheduler_run_test_fixtures_in_parallel_sample 0
 run_test mt_scheduler_run_module_fixtures_in_parallel_sample 0
-
-cd ../build/LinuxMakefile
 
 if [ $status -ne 0 ]; then
     echo $'run_tests failed\n'
