@@ -26,9 +26,9 @@ NBP_TEST_SETUP(testSetup)
     write_message_to_file_2("test setup", NBP_GET_TEST_NAME(NBP_THIS_TEST));
 }
 
-NBP_AFTER_TEST(afterTest)
+NBP_TEST_TEARDOWN(testTeardown)
 {
-    write_message_to_file_2("after test", NBP_GET_TEST_NAME(NBP_THIS_TEST));
+    write_message_to_file_2("test teardown", NBP_GET_TEST_NAME(NBP_THIS_TEST));
 }
 
 NBP_SETUP_MODULE(setupModule)
@@ -50,7 +50,7 @@ NBP_TEARDOWN_MODULE(teardownModule)
 NBP_MAIN_MODULE_FIXTURES(test_assert_sample, setupModule, teardownModule)
 {
     NBP_TEST_USE_SETUP(testSetup);
-    NBP_CALL_AFTER_TEST(afterTest);
+    NBP_TEST_USE_TEARDOWN(testTeardown);
 
     NBP_CALL_TEST(test1);
     NBP_CALL_MODULE(module1);
@@ -62,7 +62,7 @@ NBP_MAIN_MODULE_FIXTURES(test_assert_sample, setupModule, teardownModule)
 NBP_MODULE_FIXTURES(module1, setupModule, teardownModule)
 {
     NBP_TEST_USE_SETUP(testSetup);
-    NBP_CALL_AFTER_TEST(afterTest);
+    NBP_TEST_USE_TEARDOWN(testTeardown);
 
     NBP_CALL_MODULE(submodule1);
     NBP_CALL_TEST(test4);
@@ -72,7 +72,7 @@ NBP_MODULE_FIXTURES(module1, setupModule, teardownModule)
 NBP_MODULE_FIXTURES(module2, setupModule, teardownModule)
 {
     NBP_TEST_USE_SETUP(testSetup);
-    NBP_CALL_AFTER_TEST(afterTest);
+    NBP_TEST_USE_TEARDOWN(testTeardown);
 
     NBP_CALL_TEST(test5);
     NBP_CALL_MODULE(submodule3);
@@ -83,7 +83,7 @@ NBP_MODULE_FIXTURES(module2, setupModule, teardownModule)
 NBP_MODULE_FIXTURES(submodule1, setupModule, teardownModule)
 {
     NBP_TEST_USE_SETUP(testSetup);
-    NBP_CALL_AFTER_TEST(afterTest);
+    NBP_TEST_USE_TEARDOWN(testTeardown);
 
     NBP_CALL_TEST(test7);
     NBP_CALL_TEST(test8);
@@ -94,7 +94,7 @@ NBP_MODULE_FIXTURES(submodule1, setupModule, teardownModule)
 NBP_MODULE_FIXTURES(submodule2, setupModule, teardownModule)
 {
     NBP_TEST_USE_SETUP(testSetup);
-    NBP_CALL_AFTER_TEST(afterTest);
+    NBP_TEST_USE_TEARDOWN(testTeardown);
 
     NBP_CALL_TEST(test11);
     NBP_CALL_TEST(test12);
@@ -105,7 +105,7 @@ NBP_MODULE_FIXTURES(submodule2, setupModule, teardownModule)
 NBP_MODULE_FIXTURES(submodule3, setupModule, teardownModule)
 {
     NBP_TEST_USE_SETUP(testSetup);
-    NBP_CALL_AFTER_TEST(afterTest);
+    NBP_TEST_USE_TEARDOWN(testTeardown);
 
     NBP_CALL_TEST(test15);
     NBP_CALL_TEST(test16);
@@ -116,7 +116,7 @@ NBP_MODULE_FIXTURES(submodule3, setupModule, teardownModule)
 NBP_MODULE_FIXTURES(submodule4, setupModule, teardownModule)
 {
     NBP_TEST_USE_SETUP(testSetup);
-    NBP_CALL_AFTER_TEST(afterTest);
+    NBP_TEST_USE_TEARDOWN(testTeardown);
 
     NBP_CALL_TEST(test19);
     NBP_CALL_TEST(test20);

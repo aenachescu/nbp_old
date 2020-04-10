@@ -23,7 +23,7 @@ static unsigned int nbpTotalNumberOfTests = 0;
 
 static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
     nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,
-    nbp_after_test_pfn_t afterTest)
+    nbp_test_teardown_pfn_t testTeardown)
 {
     unsigned int state = NBP_ATOMIC_UINT_CAS(
         &test->testState,
@@ -40,7 +40,7 @@ static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
 
     test->module = module;
     test->testSetupFunc = testSetup;
-    test->afterTestFunc = afterTest;
+    test->testTeardownFunc = testTeardown;
     NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.num, 1);
     NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->taskNum, 1);
 
@@ -57,14 +57,14 @@ static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
 }
 
 void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
-    nbp_test_setup_pfn_t testSetup, nbp_after_test_pfn_t afterTest)
+    nbp_test_setup_pfn_t testSetup, nbp_test_teardown_pfn_t testTeardown)
 {
     if (nbpSchedulerInterface->addTest == NBP_NULL_POINTER) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
         NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
     }
 
-    NBP_ERROR_TYPE err = nbp_test_init(test, module, testSetup, afterTest);
+    NBP_ERROR_TYPE err = nbp_test_init(test, module, testSetup, testTeardown);
     if (err != NBP_NO_ERROR) {
         return;
     }
@@ -75,14 +75,14 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
 
 void nbp_call_test_ctx(nbp_test_details_t* test, void* ctx,
     nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,
-    nbp_after_test_pfn_t afterTest)
+    nbp_test_teardown_pfn_t testTeardown)
 {
     if (nbpSchedulerInterface->addTestCtx == NBP_NULL_POINTER) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
         NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
     }
 
-    NBP_ERROR_TYPE err = nbp_test_init(test, module, testSetup, afterTest);
+    NBP_ERROR_TYPE err = nbp_test_init(test, module, testSetup, testTeardown);
     if (err != NBP_NO_ERROR) {
         return;
     }

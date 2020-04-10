@@ -36,7 +36,7 @@ typedef void (*nbp_test_setup_pfn_t)(
     struct nbp_test_details_t* /* current test */
 );
 
-typedef void (*nbp_after_test_pfn_t)(
+typedef void (*nbp_test_teardown_pfn_t)(
     struct nbp_test_details_t* /* current test */
 );
 
@@ -51,7 +51,7 @@ struct nbp_test_details_t {
     struct nbp_module_details_t* module;
 
     nbp_test_setup_pfn_t testSetupFunc;
-    nbp_after_test_pfn_t afterTestFunc;
+    nbp_test_teardown_pfn_t testTeardownFunc;
 
     struct nbp_test_details_t* next;
     struct nbp_test_details_t* prev;

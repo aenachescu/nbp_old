@@ -51,7 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
         nbp_module_details_t*,                                                 \
         nbp_test_setup_pfn_t,                                                  \
-        nbp_after_test_pfn_t                                                   \
+        nbp_test_teardown_pfn_t                                                \
     );                                                                         \
     nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func) = {     \
         .moduleName        = name,                                             \
@@ -139,7 +139,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module,               \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_setup_pfn_t testSetup,             \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_after_test_pfn_t afterTest              \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_teardown_pfn_t testTeardown        \
     )
 
 /*

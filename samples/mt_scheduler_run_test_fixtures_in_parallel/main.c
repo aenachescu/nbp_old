@@ -29,7 +29,7 @@ NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_fixtures_in_parallel,
     mainSetup, mainTeardown)
 {
     NBP_TEST_USE_SETUP(testSetup);
-    NBP_CALL_AFTER_TEST(afterTest);
+    NBP_TEST_USE_TEARDOWN(testTeardown);
     NBP_CALL_TEST(test1);
     NBP_CALL_TEST(test2);
 }
@@ -91,7 +91,7 @@ NBP_TEST_SETUP(testSetup)
     }
 }
 
-NBP_AFTER_TEST(afterTest)
+NBP_TEST_TEARDOWN(testTeardown)
 {
     unsigned int order[] = {2, 3};
     int err;

@@ -119,7 +119,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @brief
  *  Defines a function that can be called after running a test using the
- *  NBP_CALL_AFTER_TEST macro.
+ *  NBP_TEST_USE_TEARDOWN macro.
  *
  *  Use the NBP_THIS_TEST macro if you want to get info about the test that was
  *  run.
@@ -129,14 +129,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *         not just in the C file where it is defined.
  *
  * @code
- *  NBP_AFTER_TEST(afterMyTests)
+ *  NBP_TEST_TEARDOWN(myTestsTeardown)
  *  {
  *      // do something
  *  }
  * @endcode
  */
-#define NBP_AFTER_TEST(func)                                                   \
-    void NBP_PRIVATE_PP_CONCAT(nbp_after_test_, func)(                         \
+#define NBP_TEST_TEARDOWN(func)                                                \
+    void NBP_PRIVATE_PP_CONCAT(nbp_test_teardown_, func)(                      \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
     )
 
@@ -145,41 +145,41 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @brief
  *  Calls the function `func` after running a test. The function must be defined
- *  using the NBP_AFTER_TEST macro and it can be defined in any C file not just
+ *  using the NBP_TEST_TEARDOWN macro and it can be defined in any C file not just
  *  in the current C file.
  *
  *  This macro must be used in the NBP_MODULE macro. This function will be
- *  called after any test that will run until another NBP_CALL_AFTER_TEST macro
- *  will be used or until the NBP_RESET_AFTER_TEST macro will be used.
+ *  called after any test that will run until another NBP_TEST_USE_TEARDOWN macro
+ *  will be used or until the NBP_TEST_RESET_TEARDOWN macro will be used.
  *
  * @params
- *  func - Represents the function name that was passed to the NBP_AFTER_TEST
+ *  func - Represents the function name that was passed to the NBP_TEST_TEARDOWN
  *         macro.
  *
  * @code
- *  NBP_AFTER_TEST(afterMyFirstTest)
+ *  NBP_TEST_TEARDOWN(myFirstTestSetup)
  *  {
  *      // do something
  *  }
  *
- *  NBP_AFTER_TEST(afterMySecondAndThirdTest)
+ *  NBP_TEST_TEARDOWN(mySecondAndThirdTestSetup)
  *  {
  *      // do something
  *  }
  *
  *  NBP_MODULE(myFirstModule)
  *  {
- *      NBP_CALL_AFTER_TEST(afterMyFirstTest);
+ *      NBP_TEST_USE_TEARDOWN(myFirstTestSetup);
  *      NBP_CALL_TEST(myFirstTest);
- *      NBP_CALL_AFTER_TEST(afterMySecondAndThirdTest);
+ *      NBP_TEST_USE_TEARDOWN(mySecondAndThirdTestSetup);
  *      NBP_CALL_TEST(mySecondTest);
  *      NBP_CALL_TEST(myThirdTest);
  *  }
  * @endcode
  */
-#define NBP_CALL_AFTER_TEST(func)                                              \
-    NBP_AFTER_TEST(func);                                                      \
-    afterTest = NBP_PRIVATE_PP_CONCAT(nbp_after_test_, func)
+#define NBP_TEST_USE_TEARDOWN(func)                                            \
+    NBP_TEST_TEARDOWN(func);                                                   \
+    testTeardown = NBP_PRIVATE_PP_CONCAT(nbp_test_teardown_, func)
 
 /*
  * @public doc
@@ -189,24 +189,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  This macro must be used in the NBP_MODULE macro.
  *
  * @code
- *  NBP_AFTER_TEST(afterMyFirstTest)
+ *  NBP_TEST_TEARDOWN(myFirstTestSetup)
  *  {
  *      // do something
  *  }
  *
  *  NBP_MODULE(myFirstModule)
  *  {
- *      NBP_CALL_AFTER_TEST(afterMyFirstTest);
+ *      NBP_TEST_USE_TEARDOWN(myFirstTestSetup);
  *      NBP_CALL_TEST(myFirstTest);
- *      NBP_RESET_AFTER_TEST();
+ *      NBP_TEST_RESET_TEARDOWN();
  *      // no function will be called after mySecondTest and myThirdTest.
  *      NBP_CALL_TEST(mySecondTest);
  *      NBP_CALL_TEST(myThirdTest);
  *  }
  * @endcode
  */
-#define NBP_RESET_AFTER_TEST()                                                 \
-    afterTest = NBP_NULL_POINTER
+#define NBP_TEST_RESET_TEARDOWN()                                              \
+    testTeardown = NBP_NULL_POINTER
 
 #define NBP_PRIVATE_TEST(func, name)                                           \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
@@ -218,7 +218,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         .testFunc                   = NBP_PRIVATE_PP_CONCAT(nbp_test_, func),  \
         .module                     = NBP_NULL_POINTER,                        \
         .testSetupFunc              = NBP_NULL_POINTER,                        \
-        .afterTestFunc              = NBP_NULL_POINTER,                        \
+        .testTeardownFunc           = NBP_NULL_POINTER,                        \
         .next                       = NBP_NULL_POINTER,                        \
         .prev                       = NBP_NULL_POINTER,                        \
         .testState                  =                                          \
@@ -329,7 +329,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
         module,                                                                \
         testSetup,                                                             \
-        afterTest                                                              \
+        testTeardown                                                           \
     )
 
 /*
@@ -343,7 +343,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         ctx,                                                                   \
         module,                                                                \
         testSetup,                                                             \
-        afterTest                                                              \
+        testTeardown                                                           \
     )
 
 /*

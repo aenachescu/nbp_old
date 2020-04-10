@@ -20,18 +20,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../sample_utils.h"
 
-NBP_AFTER_TEST(submodule4_after_test1)
+NBP_TEST_TEARDOWN(submodule4_test_teardown1)
 {
     write_message_to_file_2(
-        "submodule4_after_test1",
+        "submodule4_test_teardown1",
         NBP_GET_TEST_NAME(NBP_THIS_TEST)
     );
 }
 
-NBP_AFTER_TEST(submodule4_after_test2)
+NBP_TEST_TEARDOWN(submodule4_test_teardown2)
 {
     write_message_to_file_2(
-        "submodule4_after_test2",
+        "submodule4_test_teardown2",
         NBP_GET_TEST_NAME(NBP_THIS_TEST)
     );
 }

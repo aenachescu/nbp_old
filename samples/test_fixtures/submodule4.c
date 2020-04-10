@@ -46,13 +46,13 @@ NBP_TEST(test16)
 
 NBP_MODULE(submodule4)
 {
-    NBP_CALL_AFTER_TEST(submodule4_after_test1);
+    NBP_TEST_USE_TEARDOWN(submodule4_test_teardown1);
     NBP_CALL_TEST(test13);
 
-    NBP_RESET_AFTER_TEST();
+    NBP_TEST_RESET_TEARDOWN();
     NBP_CALL_TEST(test14);
 
-    NBP_CALL_AFTER_TEST(submodule4_after_test2);
+    NBP_TEST_USE_TEARDOWN(submodule4_test_teardown2);
     NBP_CALL_TEST(test15);
     NBP_CALL_TEST(test16);
 }

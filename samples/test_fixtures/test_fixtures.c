@@ -36,18 +36,18 @@ NBP_TEST_SETUP(my_test_setup2)
     );
 }
 
-NBP_AFTER_TEST(my_after_test1)
+NBP_TEST_TEARDOWN(my_test_teardown1)
 {
     write_message_to_file_2(
-        "my_after_test1",
+        "my_test_teardown1",
         NBP_GET_TEST_NAME(NBP_THIS_TEST)
     );
 }
 
-NBP_AFTER_TEST(my_after_test2)
+NBP_TEST_TEARDOWN(my_test_teardown2)
 {
     write_message_to_file_2(
-        "my_after_test2",
+        "my_test_teardown2",
         NBP_GET_TEST_NAME(NBP_THIS_TEST)
     );
 }

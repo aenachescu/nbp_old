@@ -465,8 +465,8 @@ static void nbp_scheduler_run_test_running(nbp_test_details_t* test)
         nbp_scheduler_skip_module(test->module);
     }
 
-    if (test->afterTestFunc) {
-        test->afterTestFunc(test);
+    if (test->testTeardownFunc) {
+        test->testTeardownFunc(test);
     }
 
     nbp_scheduler_update_test_state(test);

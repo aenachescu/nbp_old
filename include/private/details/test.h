@@ -23,7 +23,7 @@ void nbp_call_test(
     nbp_test_details_t*, /* test */
     nbp_module_details_t*, /* module */
     nbp_test_setup_pfn_t, /* test setup pfn */
-    nbp_after_test_pfn_t /* after test pfn */
+    nbp_test_teardown_pfn_t /* test teardown pfn */
 );
 
 void nbp_call_test_ctx(
@@ -31,7 +31,7 @@ void nbp_call_test_ctx(
     void* ctx, /* context */
     nbp_module_details_t*, /* module */
     nbp_test_setup_pfn_t, /* test setup pfn */
-    nbp_after_test_pfn_t /* after test pfn */
+    nbp_test_teardown_pfn_t /* test teardown pfn */
 );
 
 #endif // end if NBP_PRIVATE_DETAILS_TEST_H

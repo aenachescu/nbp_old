@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     void func(                                                                 \
         nbp_module_details_t*,                                                 \
         nbp_test_setup_pfn_t,                                                  \
-        nbp_after_test_pfn_t                                                   \
+        nbp_test_teardown_pfn_t                                                \
     );                                                                         \
     extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
     nbp_module_details_t* nbpMainModule =                                      \
