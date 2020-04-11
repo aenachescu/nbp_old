@@ -430,16 +430,16 @@ struct nbp_mt_scheduler_thread_t {
 };
 typedef struct nbp_mt_scheduler_thread_t nbp_mt_scheduler_thread_t;
 
-static nbp_mt_scheduler_data_t* nbpMtSchedulerData = NBP_NULL_POINTER;
-static nbp_mt_scheduler_data_t* nbpMtSchedulerDataLast = NBP_NULL_POINTER;
+static nbp_mt_scheduler_data_t* nbpMtSchedulerData = NBP_MEMORY_NULL_POINTER;
+static nbp_mt_scheduler_data_t* nbpMtSchedulerDataLast = NBP_MEMORY_NULL_POINTER;
 
-static nbp_mt_scheduler_test_t* nbpMtSchedulerTests = NBP_NULL_POINTER;
+static nbp_mt_scheduler_test_t* nbpMtSchedulerTests = NBP_MEMORY_NULL_POINTER;
 static unsigned int nbpMtSchedulerNumberOfTests = 0;
 static unsigned int nbpMtSchedulerNumberOfColumns = 0;
-static unsigned int* nbpMtSchedulerAdjacencyMatrix = NBP_NULL_POINTER;
+static unsigned int* nbpMtSchedulerAdjacencyMatrix = NBP_MEMORY_NULL_POINTER;
 
-static nbp_mt_scheduler_test_t* nbpMtSchedulerQueue = NBP_NULL_POINTER;
-static nbp_mt_scheduler_test_t* nbpMtSchedulerQueueLast = NBP_NULL_POINTER;
+static nbp_mt_scheduler_test_t* nbpMtSchedulerQueue = NBP_MEMORY_NULL_POINTER;
+static nbp_mt_scheduler_test_t* nbpMtSchedulerQueueLast = NBP_MEMORY_NULL_POINTER;
 
 static NBP_MT_SCHEDULER_MUTEX_TYPE nbpMtSchedulerMutex = PTHREAD_MUTEX_INITIALIZER;
 static NBP_MT_SCHEDULER_CONDVAR_TYPE nbpMtSchedulerCondVar = PTHREAD_COND_INITIALIZER;
@@ -477,7 +477,7 @@ nbp_mt_scheduler_rule_t nbp_mt_scheduler_create_empty_rule(
 
     rule.ruleType   = ruleType;
     rule.dataType   = NBP_MT_SCHEDULER_RULE_DATA_TYPE_EMPTY;
-    rule.test       = NBP_NULL_POINTER;
+    rule.test       = NBP_MEMORY_NULL_POINTER;
 
     return rule;
 }
@@ -492,14 +492,15 @@ void* nbp_mt_scheduler_create_ctx(unsigned long long numberOfRules, ...)
         size += ((numberOfRules - 1) * sizeof(nbp_mt_scheduler_rule_t));
     }
 
-    nbp_mt_scheduler_context_t* ctx = (nbp_mt_scheduler_context_t*) NBP_ALLOC(size);
-    if (ctx == NBP_NULL_POINTER) {
+    nbp_mt_scheduler_context_t* ctx =
+        (nbp_mt_scheduler_context_t*) NBP_MEMORY_ALLOC(size);
+    if (ctx == NBP_MEMORY_NULL_POINTER) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_ALLOC,
             "could not alloc context"
         );
         NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
-        return NBP_NULL_POINTER;
+        return NBP_MEMORY_NULL_POINTER;
     }
 
     va_start(args, numberOfRules);
@@ -516,7 +517,7 @@ void* nbp_mt_scheduler_create_ctx(unsigned long long numberOfRules, ...)
 
 static void nbp_mt_scheduler_queue_push(unsigned int testId)
 {
-    if (nbpMtSchedulerQueueLast == NBP_NULL_POINTER) {
+    if (nbpMtSchedulerQueueLast == NBP_MEMORY_NULL_POINTER) {
         nbpMtSchedulerQueue = &nbpMtSchedulerTests[testId];
         nbpMtSchedulerQueueLast = &nbpMtSchedulerTests[testId];
     } else {
@@ -527,11 +528,11 @@ static void nbp_mt_scheduler_queue_push(unsigned int testId)
 
 static nbp_mt_scheduler_test_t* nbp_mt_scheduler_queue_pop(unsigned int workerId)
 {
-    nbp_mt_scheduler_test_t* prev = NBP_NULL_POINTER;
+    nbp_mt_scheduler_test_t* prev = NBP_MEMORY_NULL_POINTER;
     nbp_mt_scheduler_test_t* test = nbpMtSchedulerQueue;
 
-    while (test != NBP_NULL_POINTER) {
-        if (test->requestedWorkerId == NBP_NULL_POINTER) {
+    while (test != NBP_MEMORY_NULL_POINTER) {
+        if (test->requestedWorkerId == NBP_MEMORY_NULL_POINTER) {
             break;
         }
 
@@ -549,7 +550,7 @@ static nbp_mt_scheduler_test_t* nbp_mt_scheduler_queue_pop(unsigned int workerId
     }
 
     // no test found for this worker
-    if (test == NBP_NULL_POINTER) {
+    if (test == NBP_MEMORY_NULL_POINTER) {
         return test;
     }
 
@@ -559,7 +560,7 @@ static nbp_mt_scheduler_test_t* nbp_mt_scheduler_queue_pop(unsigned int workerId
 
         // test is the only element in queue
         if (test == nbpMtSchedulerQueueLast) {
-            nbpMtSchedulerQueueLast = NBP_NULL_POINTER;
+            nbpMtSchedulerQueueLast = NBP_MEMORY_NULL_POINTER;
         }
 
         return test;
@@ -567,7 +568,7 @@ static nbp_mt_scheduler_test_t* nbp_mt_scheduler_queue_pop(unsigned int workerId
 
     // test is the last element in queue
     if (test == nbpMtSchedulerQueueLast) {
-        prev->nextInQueue = NBP_NULL_POINTER;
+        prev->nextInQueue = NBP_MEMORY_NULL_POINTER;
         nbpMtSchedulerQueueLast = prev;
 
         return test;
@@ -595,12 +596,13 @@ static void nbp_mt_scheduler_set_test_on_same_thread_with_test(
     test2 = &nbpMtSchedulerTests[testId2];
 
     if (test1->requestedWorkerId == test2->requestedWorkerId) {
-        if (test1->requestedWorkerId != NBP_NULL_POINTER) {
+        if (test1->requestedWorkerId != NBP_MEMORY_NULL_POINTER) {
             return;
         }
 
-        test1->requestedWorkerId = (unsigned int*) NBP_ALLOC(sizeof(unsigned int));
-        if (test1->requestedWorkerId == NBP_NULL_POINTER) {
+        test1->requestedWorkerId =
+            (unsigned int*) NBP_MEMORY_ALLOC(sizeof(unsigned int));
+        if (test1->requestedWorkerId == NBP_MEMORY_NULL_POINTER) {
             NBP_HANDLE_ERROR(NBP_ERROR_ALLOC);
             NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
         }
@@ -615,7 +617,7 @@ static void nbp_mt_scheduler_set_test_on_same_thread_with_test(
         return;
     }
 
-    if (test1->requestedWorkerId == NBP_NULL_POINTER) {
+    if (test1->requestedWorkerId == NBP_MEMORY_NULL_POINTER) {
         test1->requestedWorkerId = test2->requestedWorkerId;
 
         test1->nextTestOnThisWorker = test2->nextTestOnThisWorker;
@@ -624,7 +626,7 @@ static void nbp_mt_scheduler_set_test_on_same_thread_with_test(
         return;
     }
 
-    if (test2->requestedWorkerId == NBP_NULL_POINTER) {
+    if (test2->requestedWorkerId == NBP_MEMORY_NULL_POINTER) {
         test2->requestedWorkerId = test1->requestedWorkerId;
 
         test2->nextTestOnThisWorker = test1->nextTestOnThisWorker;
@@ -633,7 +635,7 @@ static void nbp_mt_scheduler_set_test_on_same_thread_with_test(
         return;
     }
 
-    NBP_FREE(test2->requestedWorkerId);
+    NBP_MEMORY_FREE(test2->requestedWorkerId);
     test2->requestedWorkerId = test1->requestedWorkerId;
 
     current = test2->nextTestOnThisWorker;
@@ -686,14 +688,14 @@ static void nbp_mt_scheduler_set_module_on_same_thread_with_module(
 static void nbp_mt_scheduler_set_module_on_same_thread(
     nbp_module_details_t* module)
 {
-    nbp_test_details_t* firstTest = NBP_NULL_POINTER;
+    nbp_test_details_t* firstTest = NBP_MEMORY_NULL_POINTER;
     nbp_test_details_t* test;
     nbp_module_details_t* submodule;
     unsigned int firstTestId;
     unsigned int testId;
 
     NBP_MODULE_FOR_EACH_TEST(module, test) {
-        if (firstTest == NBP_NULL_POINTER) {
+        if (firstTest == NBP_MEMORY_NULL_POINTER) {
             firstTest = test;
             firstTestId = NBP_TEST_GET_ID(firstTest);
         } else {
@@ -825,7 +827,7 @@ static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_f
 
     while (nbpMtSchedulerNumberOfDispatchedTests != nbpMtSchedulerNumberOfTests) {
         test = nbp_mt_scheduler_queue_pop(workerId);
-        if (test == NBP_NULL_POINTER) {
+        if (test == NBP_MEMORY_NULL_POINTER) {
             errCode = NBP_MT_SCHEDULER_CONDVAR_WAIT(
                 nbpMtSchedulerCondVar,
                 nbpMtSchedulerMutex
@@ -1031,10 +1033,10 @@ static void nbp_mt_scheduler_allocate_array_of_tests()
 {
     unsigned int index = 0;
 
-    nbpMtSchedulerTests = (nbp_mt_scheduler_test_t*) NBP_ALLOC(
+    nbpMtSchedulerTests = (nbp_mt_scheduler_test_t*) NBP_MEMORY_ALLOC(
         nbpMtSchedulerNumberOfTests * sizeof(nbp_mt_scheduler_test_t)
     );
-    if (nbpMtSchedulerTests == NBP_NULL_POINTER) {
+    if (nbpMtSchedulerTests == NBP_MEMORY_NULL_POINTER) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_ALLOC,
             "could not alloc array of tests"
@@ -1043,13 +1045,13 @@ static void nbp_mt_scheduler_allocate_array_of_tests()
     }
 
     for ( ; index < nbpMtSchedulerNumberOfTests; index++) {
-        nbpMtSchedulerTests[index].test = NBP_NULL_POINTER;
+        nbpMtSchedulerTests[index].test = NBP_MEMORY_NULL_POINTER;
         nbpMtSchedulerTests[index].numberOfPendingTests = 0;
 
-        nbpMtSchedulerTests[index].requestedWorkerId = NBP_NULL_POINTER;
-        nbpMtSchedulerTests[index].nextTestOnThisWorker = NBP_NULL_POINTER;
+        nbpMtSchedulerTests[index].requestedWorkerId = NBP_MEMORY_NULL_POINTER;
+        nbpMtSchedulerTests[index].nextTestOnThisWorker = NBP_MEMORY_NULL_POINTER;
 
-        nbpMtSchedulerTests[index].nextInQueue = NBP_NULL_POINTER;
+        nbpMtSchedulerTests[index].nextInQueue = NBP_MEMORY_NULL_POINTER;
     }
 }
 
@@ -1064,10 +1066,10 @@ static void nbp_mt_scheduler_allocate_adjacency_matrix()
 
     numberOfElements = nbpMtSchedulerNumberOfTests * nbpMtSchedulerNumberOfColumns;
 
-    nbpMtSchedulerAdjacencyMatrix = (unsigned int*) NBP_ALLOC(
+    nbpMtSchedulerAdjacencyMatrix = (unsigned int*) NBP_MEMORY_ALLOC(
         numberOfElements * sizeof(unsigned int)
     );
-    if (nbpMtSchedulerAdjacencyMatrix == NBP_NULL_POINTER) {
+    if (nbpMtSchedulerAdjacencyMatrix == NBP_MEMORY_NULL_POINTER) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_ALLOC,
             "could not alloc adjacency matrix"
@@ -1086,14 +1088,14 @@ static void nbp_mt_scheduler_processing_data()
     nbp_mt_scheduler_data_t* data = nbpMtSchedulerData;
     nbp_mt_scheduler_data_t* tmp;
 
-    while (data != NBP_NULL_POINTER) {
+    while (data != NBP_MEMORY_NULL_POINTER) {
         if (data->dataType == NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST) {
             testId = NBP_TEST_GET_ID(data->test);
             nbpMtSchedulerTests[testId].test = data->test;
 
-            if (data->ctx != NBP_NULL_POINTER) {
+            if (data->ctx != NBP_MEMORY_NULL_POINTER) {
                 nbp_mt_scheduler_processing_test_context(testId, data->ctx);
-                NBP_FREE(data->ctx);
+                NBP_MEMORY_FREE(data->ctx);
             }
         } else if (data->dataType == NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE) {
             nbp_mt_scheduler_processing_module_context(data->module, data->ctx);
@@ -1108,7 +1110,7 @@ static void nbp_mt_scheduler_processing_data()
         tmp = data;
         data = data->next;
 
-        NBP_FREE(tmp);
+        NBP_MEMORY_FREE(tmp);
     }
 
     // TODO: check if there is a cycle
@@ -1129,10 +1131,10 @@ static void nbp_mt_scheduler_create_threads_and_run()
 
     numberOfThreads--;
 
-    threads = (nbp_mt_scheduler_thread_t*) NBP_ALLOC(
+    threads = (nbp_mt_scheduler_thread_t*) NBP_MEMORY_ALLOC(
         numberOfThreads * sizeof(nbp_mt_scheduler_thread_t)
     );
-    if (threads == NBP_NULL_POINTER) {
+    if (threads == NBP_MEMORY_NULL_POINTER) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_ALLOC,
             "could not alloc array of threads"
@@ -1169,7 +1171,7 @@ static void nbp_mt_scheduler_create_threads_and_run()
         }
     }
 
-    NBP_FREE(threads);
+    NBP_MEMORY_FREE(threads);
 }
 
 NBP_SCHEDULER_FUNC_INIT(nbp_mt_scheduler_init)
@@ -1193,14 +1195,14 @@ NBP_SCHEDULER_FUNC_UNINIT(nbp_mt_scheduler_uninit)
 {
     NBP_ERROR_TYPE errCode;
 
-    nbpMtSchedulerData = NBP_NULL_POINTER;
-    nbpMtSchedulerDataLast = NBP_NULL_POINTER;
+    nbpMtSchedulerData = NBP_MEMORY_NULL_POINTER;
+    nbpMtSchedulerDataLast = NBP_MEMORY_NULL_POINTER;
 
-    nbpMtSchedulerTests = NBP_NULL_POINTER;
-    nbpMtSchedulerAdjacencyMatrix = NBP_NULL_POINTER;
+    nbpMtSchedulerTests = NBP_MEMORY_NULL_POINTER;
+    nbpMtSchedulerAdjacencyMatrix = NBP_MEMORY_NULL_POINTER;
 
-    nbpMtSchedulerQueue = NBP_NULL_POINTER;
-    nbpMtSchedulerQueueLast = NBP_NULL_POINTER;
+    nbpMtSchedulerQueue = NBP_MEMORY_NULL_POINTER;
+    nbpMtSchedulerQueueLast = NBP_MEMORY_NULL_POINTER;
 
     errCode = NBP_MT_SCHEDULER_MUTEX_UNINIT(nbpMtSchedulerMutex);
     if (errCode != NBP_NO_ERROR) {
@@ -1228,16 +1230,18 @@ NBP_SCHEDULER_FUNC_RUN(nbp_mt_scheduler_run)
 
     // TODO: free memory used by requestedWorkerId
 
-    NBP_FREE(nbpMtSchedulerAdjacencyMatrix);
-    NBP_FREE(nbpMtSchedulerTests);
+    NBP_MEMORY_FREE(nbpMtSchedulerAdjacencyMatrix);
+    NBP_MEMORY_FREE(nbpMtSchedulerTests);
 }
 
 NBP_SCHEDULER_FUNC_ADD_TEST(nbp_mt_scheduler_add_test)
 {
-    nbp_mt_scheduler_data_t* data = NBP_NULL_POINTER;
+    nbp_mt_scheduler_data_t* data = NBP_MEMORY_NULL_POINTER;
 
-    data = (nbp_mt_scheduler_data_t*) NBP_ALLOC(sizeof(nbp_mt_scheduler_data_t));
-    if (data == NBP_NULL_POINTER) {
+    data = (nbp_mt_scheduler_data_t*) NBP_MEMORY_ALLOC(
+        sizeof(nbp_mt_scheduler_data_t)
+    );
+    if (data == NBP_MEMORY_NULL_POINTER) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_ALLOC,
             "could not add test"
@@ -1247,10 +1251,10 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_mt_scheduler_add_test)
 
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST;
     data->test = NBP_THIS_TEST;
-    data->ctx = (nbp_mt_scheduler_context_t*) NBP_NULL_POINTER;
-    data->next = NBP_NULL_POINTER;
+    data->ctx = (nbp_mt_scheduler_context_t*) NBP_MEMORY_NULL_POINTER;
+    data->next = NBP_MEMORY_NULL_POINTER;
 
-    if (nbpMtSchedulerDataLast == NBP_NULL_POINTER) {
+    if (nbpMtSchedulerDataLast == NBP_MEMORY_NULL_POINTER) {
         nbpMtSchedulerData = data;
     } else {
         nbpMtSchedulerDataLast->next = data;
@@ -1262,10 +1266,12 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_mt_scheduler_add_test)
 
 NBP_SCHEDULER_FUNC_ADD_TEST_CTX(nbp_mt_scheduler_add_test_ctx)
 {
-    nbp_mt_scheduler_data_t* data = NBP_NULL_POINTER;
+    nbp_mt_scheduler_data_t* data = NBP_MEMORY_NULL_POINTER;
 
-    data = (nbp_mt_scheduler_data_t*) NBP_ALLOC(sizeof(nbp_mt_scheduler_data_t));
-    if (data == NBP_NULL_POINTER) {
+    data = (nbp_mt_scheduler_data_t*) NBP_MEMORY_ALLOC(
+        sizeof(nbp_mt_scheduler_data_t)
+    );
+    if (data == NBP_MEMORY_NULL_POINTER) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_ALLOC,
             "could not add test"
@@ -1276,9 +1282,9 @@ NBP_SCHEDULER_FUNC_ADD_TEST_CTX(nbp_mt_scheduler_add_test_ctx)
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST;
     data->test = NBP_THIS_TEST;
     data->ctx = (nbp_mt_scheduler_context_t*) NBP_SCHEDULER_CTX;
-    data->next = NBP_NULL_POINTER;
+    data->next = NBP_MEMORY_NULL_POINTER;
 
-    if (nbpMtSchedulerDataLast == NBP_NULL_POINTER) {
+    if (nbpMtSchedulerDataLast == NBP_MEMORY_NULL_POINTER) {
         nbpMtSchedulerData = data;
     } else {
         nbpMtSchedulerDataLast->next = data;
@@ -1290,10 +1296,12 @@ NBP_SCHEDULER_FUNC_ADD_TEST_CTX(nbp_mt_scheduler_add_test_ctx)
 
 NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(nbp_mt_scheduler_module_started_ctx)
 {
-    nbp_mt_scheduler_data_t* data = NBP_NULL_POINTER;
+    nbp_mt_scheduler_data_t* data = NBP_MEMORY_NULL_POINTER;
 
-    data = (nbp_mt_scheduler_data_t*) NBP_ALLOC(sizeof(nbp_mt_scheduler_data_t));
-    if (data == NBP_NULL_POINTER) {
+    data = (nbp_mt_scheduler_data_t*) NBP_MEMORY_ALLOC(
+        sizeof(nbp_mt_scheduler_data_t)
+    );
+    if (data == NBP_MEMORY_NULL_POINTER) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_ALLOC,
             "could not add module"
@@ -1304,9 +1312,9 @@ NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(nbp_mt_scheduler_module_started_ctx)
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE;
     data->module = NBP_THIS_MODULE;
     data->ctx = (nbp_mt_scheduler_context_t*) NBP_SCHEDULER_CTX;
-    data->next = NBP_NULL_POINTER;
+    data->next = NBP_MEMORY_NULL_POINTER;
 
-    if (nbpMtSchedulerDataLast == NBP_NULL_POINTER) {
+    if (nbpMtSchedulerDataLast == NBP_MEMORY_NULL_POINTER) {
         nbpMtSchedulerData = data;
     } else {
         nbpMtSchedulerDataLast->next = data;

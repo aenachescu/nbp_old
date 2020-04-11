@@ -31,27 +31,28 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#ifndef NBP_CUSTOM_MEMORY_ALLOCATOR
+#ifndef NBP_MEMORY_CUSTOM_ALLOCATOR
 
 #include <stdlib.h>
-#define NBP_ALLOC malloc
-#define NBP_FREE free
-#define NBP_NULL_POINTER NULL
+
+#define NBP_MEMORY_NULL_POINTER NULL
+#define NBP_MEMORY_ALLOC malloc
+#define NBP_MEMORY_FREE free
 
 #else // if custom memory allocator is enabled
 
-#ifndef NBP_ALLOC
-#error "Custom memory allocator is enabled but no alloc function is provided"
-#endif // end if NBP_ALLOC
+#ifndef NBP_MEMORY_NULL_POINTER
+#error "Custom memory allocator is enabled but NBP_MEMORY_NULL_POINTER is undefined"
+#endif // end if NBP_MEMORY_NULL_POINTER
 
-#ifndef NBP_FREE
-#error "Custom memory allocator is enabled but no free function is provided"
-#endif // end if NBP_FREE
+#ifndef NBP_MEMORY_ALLOC
+#error "Custom memory allocator is enabled but NBP_MEMORY_ALLOC is undefined"
+#endif // end if NBP_MEMORY_ALLOC
 
-#ifndef NBP_NULL_POINTER
-#error "Custom memory allocator is enabled but NBP_NULL_POINTER is undefined"
-#endif // end if NBP_NULL_POINTER
+#ifndef NBP_MEMORY_FREE
+#error "Custom memory allocator is enabled but NBP_MEMORY_FREE is undefined"
+#endif // end if NBP_MEMORY_FREE
 
-#endif // end if NBP_CUSTOM_MEMORY_ALLOCATOR
+#endif // end if NBP_MEMORY_CUSTOM_ALLOCATOR
 
 #endif // end if NBP_PRIVATE_MEMORY_ALLOCATOR_H

@@ -66,15 +66,15 @@ SOFTWARE.
         .moduleName        = name,                                             \
         .moduleId          = 0,                                                \
         .moduleFunc        = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),         \
-        .parent            = NBP_NULL_POINTER,                                 \
+        .parent            = NBP_MEMORY_NULL_POINTER,                          \
         .setup             = setupFunc,                                        \
         .teardown          = teardownFunc,                                     \
-        .firstTest         = NBP_NULL_POINTER,                                 \
-        .lastTest          = NBP_NULL_POINTER,                                 \
-        .firstModule       = NBP_NULL_POINTER,                                 \
-        .lastModule        = NBP_NULL_POINTER,                                 \
-        .next              = NBP_NULL_POINTER,                                 \
-        .prev              = NBP_NULL_POINTER,                                 \
+        .firstTest         = NBP_MEMORY_NULL_POINTER,                          \
+        .lastTest          = NBP_MEMORY_NULL_POINTER,                          \
+        .firstModule       = NBP_MEMORY_NULL_POINTER,                          \
+        .lastModule        = NBP_MEMORY_NULL_POINTER,                          \
+        .next              = NBP_MEMORY_NULL_POINTER,                          \
+        .prev              = NBP_MEMORY_NULL_POINTER,                          \
         .depth             = 0,                                                \
         .runEvent          = NBP_EVENT_DEFAULT_VALUE,                          \
         .setupEvent        = NBP_EVENT_DEFAULT_VALUE,                          \
@@ -155,7 +155,8 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_NAME(func, name)                                            \
-    NBP_PRIVATE_MODULE(func, name, NBP_NULL_POINTER, NBP_NULL_POINTER)
+    NBP_PRIVATE_MODULE(func, name, NBP_MEMORY_NULL_POINTER,                    \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
@@ -219,13 +220,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_FOR_EACH_TEST(module, it)                                   \
-    for (it = module->firstTest; it != NBP_NULL_POINTER; it = it->next)
+    for (it = module->firstTest; it != NBP_MEMORY_NULL_POINTER; it = it->next)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_FOR_EACH_SUBMODULE(module, it)                              \
-    for (it = module->firstModule; it != NBP_NULL_POINTER; it = it->next)
+    for (it = module->firstModule; it != NBP_MEMORY_NULL_POINTER; it = it->next)
 
 /*
  * TODO: add docs

@@ -46,7 +46,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_NO_FUNC_INIT                                             \
-    .init = NBP_NULL_POINTER
+    .init = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -66,7 +66,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_NO_FUNC_UNINIT                                           \
-    .uninit = NBP_NULL_POINTER
+    .uninit = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -100,7 +100,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_NO_FUNC_ADD_TEST                                         \
-    .addTest = NBP_NULL_POINTER
+    .addTest = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -121,7 +121,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_NO_FUNC_ADD_TEST_CTX                                     \
-    .addTestCtx = NBP_NULL_POINTER
+    .addTestCtx = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -141,7 +141,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_NO_FUNC_MODULE_STARTED                                   \
-    .moduleStarted = NBP_NULL_POINTER
+    .moduleStarted = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -162,7 +162,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_NO_FUNC_MODULE_STARTED_CTX                               \
-    .moduleStartedCtx = NBP_NULL_POINTER
+    .moduleStartedCtx = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -182,7 +182,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_NO_FUNC_MODULE_COMPLETED                                 \
-    .moduleCompleted = NBP_NULL_POINTER
+    .moduleCompleted = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs

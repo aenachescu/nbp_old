@@ -50,21 +50,21 @@ int nbp_command_run_all()
     nbpSchedulerRunEnabled = 0;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->init != NBP_NULL_POINTER) {
+        if (nbpPrinterInterfaces[i]->init != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->init();
         }
     }
 
-    if (nbpSchedulerInterface->run == NBP_NULL_POINTER) {
+    if (nbpSchedulerInterface->run == NBP_MEMORY_NULL_POINTER) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_RUN_FUNC);
         NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
     }
 
-    if (nbpSchedulerInterface->init != NBP_NULL_POINTER) {
+    if (nbpSchedulerInterface->init != NBP_MEMORY_NULL_POINTER) {
         nbpSchedulerInterface->init();
     }
 
-    nbp_call_module(nbpMainModule, NBP_NULL_POINTER);
+    nbp_call_module(nbpMainModule, NBP_MEMORY_NULL_POINTER);
 
     nbp_notify_printer_before_run(
         NBP_MODULE_GET_MODULES_NUM(nbpMainModule) + 1,
@@ -102,12 +102,12 @@ int nbp_command_run_all()
         NBP_MODULE_GET_FAILED_ASSERTS_NUM(nbpMainModule)
     );
 
-    if (nbpSchedulerInterface->uninit != NBP_NULL_POINTER) {
+    if (nbpSchedulerInterface->uninit != NBP_MEMORY_NULL_POINTER) {
         nbpSchedulerInterface->uninit();
     }
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->uninit != NBP_NULL_POINTER) {
+        if (nbpPrinterInterfaces[i]->uninit != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->uninit();
         }
     }
@@ -122,19 +122,19 @@ int nbp_command_run_all()
 int nbp_command_version()
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->init != NBP_NULL_POINTER) {
+        if (nbpPrinterInterfaces[i]->init != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->init();
         }
     }
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->handleVersionCommand != NBP_NULL_POINTER) {
+        if (nbpPrinterInterfaces[i]->handleVersionCommand != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->handleVersionCommand();
         }
     }
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->uninit != NBP_NULL_POINTER) {
+        if (nbpPrinterInterfaces[i]->uninit != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->uninit();
         }
     }

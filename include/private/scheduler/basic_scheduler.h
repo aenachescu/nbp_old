@@ -41,26 +41,26 @@ static nbp_scheduler_data_t* nbpSchedulerDataLast;
 
 NBP_SCHEDULER_FUNC_INIT(nbp_basic_scheduler_init)
 {
-    nbpSchedulerData.test = NBP_NULL_POINTER;
-    nbpSchedulerData.next = NBP_NULL_POINTER;
+    nbpSchedulerData.test = NBP_MEMORY_NULL_POINTER;
+    nbpSchedulerData.next = NBP_MEMORY_NULL_POINTER;
     nbpSchedulerDataLast = &nbpSchedulerData;
 }
 
 NBP_SCHEDULER_FUNC_UNINIT(nbp_basic_scheduler_uninit)
 {
     nbp_scheduler_data_t* data = nbpSchedulerData.next;
-    nbp_scheduler_data_t* tmp = NBP_NULL_POINTER;
-    while (data != NBP_NULL_POINTER) {
+    nbp_scheduler_data_t* tmp = NBP_MEMORY_NULL_POINTER;
+    while (data != NBP_MEMORY_NULL_POINTER) {
         tmp = data;
         data = data->next;
-        NBP_FREE(tmp);
+        NBP_MEMORY_FREE(tmp);
     }
 }
 
 NBP_SCHEDULER_FUNC_RUN(nbp_basic_scheduler_run)
 {
     nbp_scheduler_data_t* data = &nbpSchedulerData;
-    while (data->test != NBP_NULL_POINTER) {
+    while (data->test != NBP_MEMORY_NULL_POINTER) {
         NBP_SCHEDULER_RUN_TEST(data->test);
         data = data->next;
     }
@@ -70,9 +70,9 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_basic_scheduler_add_test)
 {
     nbpSchedulerDataLast->test = NBP_THIS_TEST;
     nbpSchedulerDataLast->next =
-        (nbp_scheduler_data_t*) NBP_ALLOC(sizeof(nbp_scheduler_data_t));
+        (nbp_scheduler_data_t*) NBP_MEMORY_ALLOC(sizeof(nbp_scheduler_data_t));
 
-    if (nbpSchedulerDataLast->next == NBP_NULL_POINTER) {
+    if (nbpSchedulerDataLast->next == NBP_MEMORY_NULL_POINTER) {
         NBP_HANDLE_ERROR_CTX_STRING(
             NBP_ERROR_ALLOC,
             "could not add test"
@@ -81,8 +81,8 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_basic_scheduler_add_test)
     }
 
     nbpSchedulerDataLast = nbpSchedulerDataLast->next;
-    nbpSchedulerDataLast->next = NBP_NULL_POINTER;
-    nbpSchedulerDataLast->test = NBP_NULL_POINTER;
+    nbpSchedulerDataLast->next = NBP_MEMORY_NULL_POINTER;
+    nbpSchedulerDataLast->test = NBP_MEMORY_NULL_POINTER;
 }
 
 NBP_DEFINE_SCHEDULER(

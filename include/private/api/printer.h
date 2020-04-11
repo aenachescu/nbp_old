@@ -46,7 +46,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_INIT                                               \
-    .init = NBP_NULL_POINTER
+    .init = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -66,7 +66,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_UNINIT                                             \
-    .uninit = NBP_NULL_POINTER
+    .uninit = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -86,7 +86,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_HANDLE_ERROR                                       \
-    .handleError = NBP_NULL_POINTER
+    .handleError = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -105,7 +105,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_HANDLE_VERSION_COMMAND                             \
-    .handleVersionCommand = NBP_NULL_POINTER
+    .handleVersionCommand = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -125,7 +125,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_STARTED                                       \
-    .testStarted = NBP_NULL_POINTER
+    .testStarted = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -145,7 +145,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_COMPLETED                                     \
-    .testCompleted = NBP_NULL_POINTER
+    .testCompleted = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -165,7 +165,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_STARTED                                     \
-    .moduleStarted = NBP_NULL_POINTER
+    .moduleStarted = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -185,7 +185,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_COMPLETED                                   \
-    .moduleCompleted = NBP_NULL_POINTER
+    .moduleCompleted = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -206,7 +206,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_BEFORE_RUN                                         \
-    .beforeRun = NBP_NULL_POINTER
+    .beforeRun = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -243,7 +243,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_AFTER_RUN                                          \
-    .afterRun = NBP_NULL_POINTER
+    .afterRun = NBP_MEMORY_NULL_POINTER
 
 
 /*
@@ -264,7 +264,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_SCHEDULING_TEST                                    \
-    .schedulingTest = NBP_NULL_POINTER
+    .schedulingTest = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -284,7 +284,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_BEFORE_SCHEDULING_MODULE                           \
-    .beforeSchedulingModule = NBP_NULL_POINTER
+    .beforeSchedulingModule = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -304,7 +304,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_AFTER_SCHEDULING_MODULE                            \
-    .afterSchedulingModule = NBP_NULL_POINTER
+    .afterSchedulingModule = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -329,7 +329,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_RESULT                                       \
-    .checkResult = NBP_NULL_POINTER
+    .checkResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -356,7 +356,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_OP_RESULT                                    \
-    .checkOpResult = NBP_NULL_POINTER
+    .checkOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -383,7 +383,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_CHAR_OP_RESULT                               \
-    .checkCharOpResult = NBP_NULL_POINTER
+    .checkCharOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -410,7 +410,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_SHORT_OP_RESULT                              \
-    .checkShortOpResult = NBP_NULL_POINTER
+    .checkShortOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -437,7 +437,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_USHORT_OP_RESULT                             \
-    .checkUShortOpResult = NBP_NULL_POINTER
+    .checkUShortOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -464,7 +464,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_INT_OP_RESULT                                \
-    .checkIntOpResult = NBP_NULL_POINTER
+    .checkIntOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -491,7 +491,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_UINT_OP_RESULT                               \
-    .checkUIntOpResult = NBP_NULL_POINTER
+    .checkUIntOpResult = NBP_MEMORY_NULL_POINTER
 
     /*
  * TODO: add docs
@@ -518,7 +518,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_LONG_OP_RESULT                               \
-    .checkLongOpResult = NBP_NULL_POINTER
+    .checkLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -545,7 +545,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_ULONG_OP_RESULT                              \
-    .checkULongOpResult = NBP_NULL_POINTER
+    .checkULongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -572,7 +572,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_LLONG_OP_RESULT                              \
-    .checkLLongOpResult = NBP_NULL_POINTER
+    .checkLLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -599,7 +599,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_ULLONG_OP_RESULT                             \
-    .checkULLongOpResult = NBP_NULL_POINTER
+    .checkULLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -626,7 +626,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_FLOAT_OP_RESULT                              \
-    .checkFloatOpResult = NBP_NULL_POINTER
+    .checkFloatOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -653,7 +653,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_DOUBLE_OP_RESULT                             \
-    .checkDoubleOpResult = NBP_NULL_POINTER
+    .checkDoubleOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -680,7 +680,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_CHECK_LDOUBLE_OP_RESULT                            \
-    .checkLDoubleOpResult = NBP_NULL_POINTER
+    .checkLDoubleOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -705,7 +705,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_RESULT                                 \
-    .testAssertResult = NBP_NULL_POINTER
+    .testAssertResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -732,7 +732,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_OP_RESULT                              \
-    .testAssertOpResult = NBP_NULL_POINTER
+    .testAssertOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -759,7 +759,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_CHAR_OP_RESULT                         \
-    .testAssertCharOpResult = NBP_NULL_POINTER
+    .testAssertCharOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -786,7 +786,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_SHORT_OP_RESULT                        \
-    .testAssertShortOpResult = NBP_NULL_POINTER
+    .testAssertShortOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -813,7 +813,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_USHORT_OP_RESULT                       \
-    .testAssertUShortOpResult = NBP_NULL_POINTER
+    .testAssertUShortOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -840,7 +840,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_INT_OP_RESULT                          \
-    .testAssertIntOpResult = NBP_NULL_POINTER
+    .testAssertIntOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -867,7 +867,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_UINT_OP_RESULT                         \
-    .testAssertUIntOpResult = NBP_NULL_POINTER
+    .testAssertUIntOpResult = NBP_MEMORY_NULL_POINTER
 
     /*
  * TODO: add docs
@@ -894,7 +894,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_LONG_OP_RESULT                         \
-    .testAssertLongOpResult = NBP_NULL_POINTER
+    .testAssertLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -921,7 +921,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_ULONG_OP_RESULT                        \
-    .testAssertULongOpResult = NBP_NULL_POINTER
+    .testAssertULongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -948,7 +948,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_LLONG_OP_RESULT                        \
-    .testAssertLLongOpResult = NBP_NULL_POINTER
+    .testAssertLLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -975,7 +975,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_ULLONG_OP_RESULT                       \
-    .testAssertULLongOpResult = NBP_NULL_POINTER
+    .testAssertULLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1002,7 +1002,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_FLOAT_OP_RESULT                        \
-    .testAssertFloatOpResult = NBP_NULL_POINTER
+    .testAssertFloatOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1029,7 +1029,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_DOUBLE_OP_RESULT                       \
-    .testAssertDoubleOpResult = NBP_NULL_POINTER
+    .testAssertDoubleOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1056,7 +1056,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT                      \
-    .testAssertLDoubleOpResult = NBP_NULL_POINTER
+    .testAssertLDoubleOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1081,7 +1081,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_RESULT                               \
-    .moduleAssertResult = NBP_NULL_POINTER
+    .moduleAssertResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1108,7 +1108,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_OP_RESULT                            \
-    .moduleAssertOpResult = NBP_NULL_POINTER
+    .moduleAssertOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1135,7 +1135,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_CHAR_OP_RESULT                       \
-    .moduleAssertCharOpResult = NBP_NULL_POINTER
+    .moduleAssertCharOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1162,7 +1162,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_SHORT_OP_RESULT                      \
-    .moduleAssertShortOpResult = NBP_NULL_POINTER
+    .moduleAssertShortOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1189,7 +1189,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_USHORT_OP_RESULT                     \
-    .moduleAssertUShortOpResult = NBP_NULL_POINTER
+    .moduleAssertUShortOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1216,7 +1216,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_INT_OP_RESULT                        \
-    .moduleAssertIntOpResult = NBP_NULL_POINTER
+    .moduleAssertIntOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1243,7 +1243,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_UINT_OP_RESULT                       \
-    .moduleAssertUIntOpResult = NBP_NULL_POINTER
+    .moduleAssertUIntOpResult = NBP_MEMORY_NULL_POINTER
 
     /*
  * TODO: add docs
@@ -1270,7 +1270,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_LONG_OP_RESULT                       \
-    .moduleAssertLongOpResult = NBP_NULL_POINTER
+    .moduleAssertLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1297,7 +1297,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_ULONG_OP_RESULT                      \
-    .moduleAssertULongOpResult = NBP_NULL_POINTER
+    .moduleAssertULongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1324,7 +1324,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_LLONG_OP_RESULT                      \
-    .moduleAssertLLongOpResult = NBP_NULL_POINTER
+    .moduleAssertLLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1351,7 +1351,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT                     \
-    .moduleAssertULLongOpResult = NBP_NULL_POINTER
+    .moduleAssertULLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1378,7 +1378,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT                      \
-    .moduleAssertFloatOpResult = NBP_NULL_POINTER
+    .moduleAssertFloatOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1405,7 +1405,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT                     \
-    .moduleAssertDoubleOpResult = NBP_NULL_POINTER
+    .moduleAssertDoubleOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1433,7 +1433,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT                    \
-    .moduleAssertLDoubleOpResult = NBP_NULL_POINTER
+    .moduleAssertLDoubleOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1458,7 +1458,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_RESULT                                      \
-    .assertResult = NBP_NULL_POINTER
+    .assertResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1485,7 +1485,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_OP_RESULT                                   \
-    .assertOpResult = NBP_NULL_POINTER
+    .assertOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1512,7 +1512,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_CHAR_OP_RESULT                              \
-    .assertCharOpResult = NBP_NULL_POINTER
+    .assertCharOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1539,7 +1539,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_SHORT_OP_RESULT                             \
-    .assertShortOpResult = NBP_NULL_POINTER
+    .assertShortOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1566,7 +1566,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_USHORT_OP_RESULT                            \
-    .assertUShortOpResult = NBP_NULL_POINTER
+    .assertUShortOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1593,7 +1593,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_INT_OP_RESULT                               \
-    .assertIntOpResult = NBP_NULL_POINTER
+    .assertIntOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1620,7 +1620,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_UINT_OP_RESULT                              \
-    .assertUIntOpResult = NBP_NULL_POINTER
+    .assertUIntOpResult = NBP_MEMORY_NULL_POINTER
 
     /*
  * TODO: add docs
@@ -1647,7 +1647,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_LONG_OP_RESULT                              \
-    .assertLongOpResult = NBP_NULL_POINTER
+    .assertLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1674,7 +1674,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_ULONG_OP_RESULT                             \
-    .assertULongOpResult = NBP_NULL_POINTER
+    .assertULongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1701,7 +1701,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_LLONG_OP_RESULT                             \
-    .assertLLongOpResult = NBP_NULL_POINTER
+    .assertLLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1728,7 +1728,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_ULLONG_OP_RESULT                            \
-    .assertULLongOpResult = NBP_NULL_POINTER
+    .assertULLongOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1755,7 +1755,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_FLOAT_OP_RESULT                             \
-    .assertFloatOpResult = NBP_NULL_POINTER
+    .assertFloatOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1782,7 +1782,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_DOUBLE_OP_RESULT                            \
-    .assertDoubleOpResult = NBP_NULL_POINTER
+    .assertDoubleOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1809,7 +1809,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_FUNC_ASSERT_LDOUBLE_OP_RESULT                           \
-    .assertLDoubleOpResult = NBP_NULL_POINTER
+    .assertLDoubleOpResult = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1910,7 +1910,7 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_FAIL_MSG NBP_NULL_POINTER
+#define NBP_PRINTER_NO_FAIL_MSG NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
@@ -1920,7 +1920,7 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_PASS_MSG NBP_NULL_POINTER
+#define NBP_PRINTER_NO_PASS_MSG NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs

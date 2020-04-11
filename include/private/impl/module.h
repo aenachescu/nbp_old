@@ -60,10 +60,10 @@ static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
 
     module->parent = parent;
 
-    if (parent != NBP_NULL_POINTER) {
+    if (parent != NBP_MEMORY_NULL_POINTER) {
         NBP_ATOMIC_UINT_ADD_AND_FETCH(&parent->ownModules.num, 1);
         NBP_ATOMIC_UINT_ADD_AND_FETCH(&parent->taskNum, 1);
-        if (parent->firstModule == NBP_NULL_POINTER) {
+        if (parent->firstModule == NBP_MEMORY_NULL_POINTER) {
             parent->firstModule = module;
             parent->lastModule = module;
         } else {
@@ -81,7 +81,7 @@ static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
 static void nbp_module_update_stats(nbp_module_details_t* module)
 {
     nbp_module_details_t* idx = module->firstModule;
-    while (idx != NBP_NULL_POINTER) {
+    while (idx != NBP_MEMORY_NULL_POINTER) {
         NBP_ATOMIC_UINT_ADD_AND_FETCH(
             &module->subModules.num,
             NBP_ATOMIC_UINT_LOAD(&idx->ownModules.num)
@@ -110,13 +110,13 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
 
     nbp_notify_printer_before_scheduling_module(module);
 
-    if (nbpSchedulerInterface->moduleStarted != NBP_NULL_POINTER) {
+    if (nbpSchedulerInterface->moduleStarted != NBP_MEMORY_NULL_POINTER) {
         nbpSchedulerInterface->moduleStarted(module);
     }
 
-    module->moduleFunc(module, NBP_NULL_POINTER, NBP_NULL_POINTER);
+    module->moduleFunc(module, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER);
 
-    if (nbpSchedulerInterface->moduleCompleted != NBP_NULL_POINTER) {
+    if (nbpSchedulerInterface->moduleCompleted != NBP_MEMORY_NULL_POINTER) {
         nbpSchedulerInterface->moduleCompleted(module);
     }
 
@@ -134,13 +134,13 @@ void nbp_call_module_ctx(nbp_module_details_t* module, void* ctx,
 
     nbp_notify_printer_before_scheduling_module(module);
 
-    if (nbpSchedulerInterface->moduleStartedCtx != NBP_NULL_POINTER) {
+    if (nbpSchedulerInterface->moduleStartedCtx != NBP_MEMORY_NULL_POINTER) {
         nbpSchedulerInterface->moduleStartedCtx(module, ctx);
     }
 
-    module->moduleFunc(module, NBP_NULL_POINTER, NBP_NULL_POINTER);
+    module->moduleFunc(module, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER);
 
-    if (nbpSchedulerInterface->moduleCompleted != NBP_NULL_POINTER) {
+    if (nbpSchedulerInterface->moduleCompleted != NBP_MEMORY_NULL_POINTER) {
         nbpSchedulerInterface->moduleCompleted(module);
     }
 

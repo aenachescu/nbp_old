@@ -36,7 +36,7 @@ SOFTWARE.
         nbp_error_t err;                                                       \
         err.errorCode = errCode;                                               \
         err.contextType = NBP_ERROR_CONTEXT_EMPTY;                             \
-        err.contextString = (const char*) NBP_NULL_POINTER;                    \
+        err.contextString = (const char*) NBP_MEMORY_NULL_POINTER;             \
         nbp_notify_printer_handle_error(err);                                  \
     } while (0)
 

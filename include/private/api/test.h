@@ -121,7 +121,7 @@ SOFTWARE.
  * @endcode
  */
 #define NBP_TEST_RESET_SETUP()                                                 \
-    testSetup = NBP_NULL_POINTER
+    testSetup = NBP_MEMORY_NULL_POINTER
 
 /*
  * @public doc
@@ -215,7 +215,7 @@ SOFTWARE.
  * @endcode
  */
 #define NBP_TEST_RESET_TEARDOWN()                                              \
-    testTeardown = NBP_NULL_POINTER
+    testTeardown = NBP_MEMORY_NULL_POINTER
 
 #define NBP_PRIVATE_TEST(func, name)                                           \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
@@ -225,11 +225,11 @@ SOFTWARE.
         .testName                   = name,                                    \
         .testId                     = 0,                                       \
         .testFunc                   = NBP_PRIVATE_PP_CONCAT(nbp_test_, func),  \
-        .module                     = NBP_NULL_POINTER,                        \
-        .testSetupFunc              = NBP_NULL_POINTER,                        \
-        .testTeardownFunc           = NBP_NULL_POINTER,                        \
-        .next                       = NBP_NULL_POINTER,                        \
-        .prev                       = NBP_NULL_POINTER,                        \
+        .module                     = NBP_MEMORY_NULL_POINTER,                 \
+        .testSetupFunc              = NBP_MEMORY_NULL_POINTER,                 \
+        .testTeardownFunc           = NBP_MEMORY_NULL_POINTER,                 \
+        .next                       = NBP_MEMORY_NULL_POINTER,                 \
+        .prev                       = NBP_MEMORY_NULL_POINTER,                 \
         .testState                  =                                          \
             NBP_ATOMIC_UINT_INIT(NBP_TEST_STATE_NOT_INITIALIZED),              \
         .flags                      =                                          \

@@ -53,7 +53,7 @@ static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
     NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.num, 1);
     NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->taskNum, 1);
 
-    if (module->firstTest == NBP_NULL_POINTER) {
+    if (module->firstTest == NBP_MEMORY_NULL_POINTER) {
         module->firstTest = test;
         module->lastTest = test;
     } else {
@@ -68,7 +68,7 @@ static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
 void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     nbp_test_setup_pfn_t testSetup, nbp_test_teardown_pfn_t testTeardown)
 {
-    if (nbpSchedulerInterface->addTest == NBP_NULL_POINTER) {
+    if (nbpSchedulerInterface->addTest == NBP_MEMORY_NULL_POINTER) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
         NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
     }
@@ -86,7 +86,7 @@ void nbp_call_test_ctx(nbp_test_details_t* test, void* ctx,
     nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,
     nbp_test_teardown_pfn_t testTeardown)
 {
-    if (nbpSchedulerInterface->addTestCtx == NBP_NULL_POINTER) {
+    if (nbpSchedulerInterface->addTestCtx == NBP_MEMORY_NULL_POINTER) {
         NBP_HANDLE_ERROR(NBP_ERROR_SCHEDULER_NO_ADD_TEST_FUNC);
         NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
     }
