@@ -32,37 +32,18 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_HANDLE_ERROR(errCode)                                              \
-    do {                                                                       \
-        nbp_error_t err;                                                       \
-        err.errorCode = errCode;                                               \
-        err.contextType = NBP_ERROR_CONTEXT_EMPTY;                             \
-        err.contextString = (const char*) NBP_MEMORY_NULL_POINTER;             \
-        nbp_notify_printer_handle_error(err);                                  \
-    } while (0)
+    nbp_notify_printer_handle_error(errCode)
 
 /*
  * TODO: add docs
  */
 #define NBP_HANDLE_ERROR_CTX_STRING(errCode, str)                              \
-    do {                                                                       \
-        nbp_error_t err;                                                       \
-        err.errorCode = errCode;                                               \
-        err.contextType = NBP_ERROR_CONTEXT_STRING;                            \
-        err.contextString = str;                                               \
-        nbp_notify_printer_handle_error(err);                                  \
-    } while (0)
-
+    nbp_notify_printer_handle_error_ctx_string(errCode, str)
 /*
  * TODO: add docs
  */
 #define NBP_HANDLE_ERROR_CTX_CUSTOM(errCode, ctx)                              \
-    do {                                                                       \
-        nbp_error_t err;                                                       \
-        err.errorCode = errCode;                                               \
-        err.contextType = NBP_ERROR_CONTEXT_CUSTOM;                            \
-        err.contextString = ctx;                                               \
-        nbp_notify_printer_handle_error(err);                                  \
-    } while (0)
+    nbp_notify_printer_handle_error_ctx_custom(errCode, ctx)
 
 /*
  * TODO: add docs

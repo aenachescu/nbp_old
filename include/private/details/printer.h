@@ -49,7 +49,17 @@ void nbp_notify_printer_module_completed(
 );
 
 void nbp_notify_printer_handle_error(
-    nbp_error_t /* error context */
+    int /* error code */
+);
+
+void nbp_notify_printer_handle_error_ctx_string(
+    int, /* error code */
+    const char* /* error context */
+);
+
+void nbp_notify_printer_handle_error_ctx_custom(
+    int, /* error code */
+    void* /* error context */
 );
 
 void nbp_notify_printer_before_run(

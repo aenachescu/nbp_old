@@ -49,8 +49,44 @@ const char* nbp_printer_operator_to_string(int op)
     return "unknown";
 }
 
-void nbp_notify_printer_handle_error(nbp_error_t err)
+void nbp_notify_printer_handle_error(int errCode)
 {
+    nbp_error_t err;
+
+    err.errorCode = errCode;
+    err.contextType = NBP_ERROR_CONTEXT_EMPTY;
+    err.contextString = NBP_MEMORY_NULL_POINTER;
+
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->handleError != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->handleError(err);
+        }
+    }
+}
+
+void nbp_notify_printer_handle_error_ctx_string(int errCode, const char* ctx)
+{
+    nbp_error_t err;
+
+    err.errorCode = errCode;
+    err.contextType = NBP_ERROR_CONTEXT_STRING;
+    err.contextString = ctx;
+
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->handleError != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->handleError(err);
+        }
+    }
+}
+
+void nbp_notify_printer_handle_error_ctx_custom(int errCode, void* ctx)
+{
+    nbp_error_t err;
+
+    err.errorCode = errCode;
+    err.contextType = NBP_ERROR_CONTEXT_CUSTOM;
+    err.contextCustom = ctx;
+
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->handleError != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->handleError(err);
