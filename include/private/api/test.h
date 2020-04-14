@@ -448,9 +448,9 @@ SOFTWARE.
  *  unsigned int which represents the total number of NBP_CHECK* macros
  *  executed by this test.
  */
-#define NBP_TEST_GET_CHECKS_NUM(test)                                          \
-    NBP_TEST_GET_PASSED_CHECKS_NUM(test) +                                     \
-    NBP_TEST_GET_FAILED_CHECKS_NUM(test)
+#define NBP_TEST_GET_NUMBER_OF_CHECKS(test)                                    \
+    NBP_TEST_GET_NUMBER_OF_PASSED_CHECKS(test) +                               \
+    NBP_TEST_GET_NUMBER_OF_FAILED_CHECKS(test)
 
 /*
  * @public doc
@@ -465,7 +465,7 @@ SOFTWARE.
  * @return
  *  unsigned int which represents the number of passed NBP_CHECK* macros.
  */
-#define NBP_TEST_GET_PASSED_CHECKS_NUM(test)                                   \
+#define NBP_TEST_GET_NUMBER_OF_PASSED_CHECKS(test)                             \
     NBP_ATOMIC_UINT_LOAD(&test->checks.numPassed)
 
 /*
@@ -481,7 +481,7 @@ SOFTWARE.
  * @return
  *  unsigned int which represents the number of failed NBP_CHECK* macros.
  */
-#define NBP_TEST_GET_FAILED_CHECKS_NUM(test)                                   \
+#define NBP_TEST_GET_NUMBER_OF_FAILED_CHECKS(test)                             \
     NBP_ATOMIC_UINT_LOAD(&test->checks.numFailed)
 
 /*
@@ -499,9 +499,9 @@ SOFTWARE.
  *  unsigned int which represents the total number of NBP_TEST_ASSERT* macros
  *  executed by this test.
  */
-#define NBP_TEST_GET_TEST_ASSERT_NUM(test)                                     \
-    NBP_TEST_GET_PASSED_TEST_ASSERT_NUM(test) +                                \
-    NBP_TEST_GET_FAILED_TEST_ASSERT_NUM(test)
+#define NBP_TEST_GET_NUMBER_OF_TEST_ASSERTS(test)                              \
+    NBP_TEST_GET_NUMBER_OF_PASSED_TEST_ASSERTS(test) +                         \
+    NBP_TEST_GET_NUMBER_OF_FAILED_TEST_ASSERTS(test)
 
 /*
  * @public doc
@@ -516,7 +516,7 @@ SOFTWARE.
  * @return
  *  unsigned int which represents the number of passed NBP_TEST_ASSERT* macros.
  */
-#define NBP_TEST_GET_PASSED_TEST_ASSERT_NUM(test)                              \
+#define NBP_TEST_GET_NUMBER_OF_PASSED_TEST_ASSERTS(test)                       \
     NBP_ATOMIC_UINT_LOAD(&test->testAsserts.numPassed)
 
 /*
@@ -532,7 +532,7 @@ SOFTWARE.
  * @return
  *  unsigned int which represents the number of failed NBP_TEST_ASSERT* macros.
  */
-#define NBP_TEST_GET_FAILED_TEST_ASSERT_NUM(test)                              \
+#define NBP_TEST_GET_NUMBER_OF_FAILED_TEST_ASSERTS(test)                       \
     NBP_ATOMIC_UINT_LOAD(&test->testAsserts.numFailed)
 
 /*
@@ -550,9 +550,9 @@ SOFTWARE.
  *  unsigned int which represents the total number of NBP_MODULE_ASSERT* macros
  *  executed by this test.
  */
-#define NBP_TEST_GET_MODULE_ASSERTS_NUM(test)                                  \
-    NBP_TEST_GET_PASSED_MODULE_ASSERTS_NUM(test) +                             \
-    NBP_TEST_GET_FAILED_MODULE_ASSERTS_NUM(test)
+#define NBP_TEST_GET_NUMBER_OF_MODULE_ASSERTS(test)                            \
+    NBP_TEST_GET_NUMBER_OF_PASSED_MODULE_ASSERTS(test) +                       \
+    NBP_TEST_GET_NUMBER_OF_FAILED_MODULE_ASSERTS(test)
 
 /*
  * @public doc
@@ -567,7 +567,7 @@ SOFTWARE.
  * @return
  *  unsigned int which represents the number of passed NBP_MODULE_ASSERT* macros.
  */
-#define NBP_TEST_GET_PASSED_MODULE_ASSERTS_NUM(test)                           \
+#define NBP_TEST_GET_NUMBER_OF_PASSED_MODULE_ASSERTS(test)                     \
     NBP_ATOMIC_UINT_LOAD(&test->moduleAsserts.numPassed)
 
 /*
@@ -583,7 +583,7 @@ SOFTWARE.
  * @return
  *  unsigned int which represents the number of failed NBP_MODULE_ASSERT* macros.
  */
-#define NBP_TEST_GET_FAILED_MODULE_ASSERTS_NUM(test)                           \
+#define NBP_TEST_GET_NUMBER_OF_FAILED_MODULE_ASSERTS(test)                     \
     NBP_ATOMIC_UINT_LOAD(&test->moduleAsserts.numFailed)
 
 /*
@@ -600,9 +600,9 @@ SOFTWARE.
  *  unsigned int which represents the total number of NBP_ASSERT* macros
  *  executed by this test.
  */
-#define NBP_TEST_GET_ASSERTS_NUM(test)                                         \
-    NBP_TEST_GET_PASSED_ASSERTS_NUM(test) +                                    \
-    NBP_TEST_GET_FAILED_ASSERTS_NUM(test)
+#define NBP_TEST_GET_NUMBER_OF_ASSERTS(test)                                   \
+    NBP_TEST_GET_NUMBER_OF_PASSED_ASSERTS(test) +                              \
+    NBP_TEST_GET_NUMBER_OF_FAILED_ASSERTS(test)
 
 /*
  * @public doc
@@ -617,7 +617,7 @@ SOFTWARE.
  * @return
  *  unsigned int which represents the number of passed NBP_ASSERT* macros.
  */
-#define NBP_TEST_GET_PASSED_ASSERTS_NUM(test)                                  \
+#define NBP_TEST_GET_NUMBER_OF_PASSED_ASSERTS(test)                            \
     NBP_ATOMIC_UINT_LOAD(&test->asserts.numPassed)
 
 /*
@@ -633,8 +633,7 @@ SOFTWARE.
  * @return
  *  unsigned int which represents the number of failed NBP_ASSERT* macros.
  */
-#define NBP_TEST_GET_FAILED_ASSERTS_NUM(test)                                  \
+#define NBP_TEST_GET_NUMBER_OF_FAILED_ASSERTS(test)                            \
     NBP_ATOMIC_UINT_LOAD(&test->asserts.numFailed)
 
 #endif // end if NBP_PRIVATE_API_TEST_H
-

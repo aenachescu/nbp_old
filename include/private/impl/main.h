@@ -67,8 +67,8 @@ int nbp_command_run_all()
     nbp_module_run(nbpMainModule, NBP_MEMORY_NULL_POINTER);
 
     nbp_notify_printer_before_run(
-        NBP_MODULE_GET_MODULES_NUM(nbpMainModule) + 1,
-        NBP_MODULE_GET_TESTS_NUM(nbpMainModule)
+        NBP_MODULE_GET_NUMBER_OF_MODULES(nbpMainModule) + 1,
+        NBP_MODULE_GET_NUMBER_OF_TESTS(nbpMainModule)
     );
 
     nbpSchedulerRunEnabled = 1;
@@ -77,29 +77,29 @@ int nbp_command_run_all()
 
     nbp_notify_printer_after_run(
         NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_PASSED ?
-            NBP_MODULE_GET_PASSED_MODULES_NUM(nbpMainModule) + 1 :
-            NBP_MODULE_GET_PASSED_MODULES_NUM(nbpMainModule),
+            NBP_MODULE_GET_NUMBER_OF_PASSED_MODULES(nbpMainModule) + 1 :
+            NBP_MODULE_GET_NUMBER_OF_PASSED_MODULES(nbpMainModule),
         NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_FAILED ?
-            NBP_MODULE_GET_FAILED_MODULES_NUM(nbpMainModule) + 1 :
-            NBP_MODULE_GET_FAILED_MODULES_NUM(nbpMainModule),
+            NBP_MODULE_GET_NUMBER_OF_FAILED_MODULES(nbpMainModule) + 1 :
+            NBP_MODULE_GET_NUMBER_OF_FAILED_MODULES(nbpMainModule),
         NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_SKIPPED ?
-            NBP_MODULE_GET_SKIPPED_MODULES_NUM(nbpMainModule) + 1 :
-            NBP_MODULE_GET_SKIPPED_MODULES_NUM(nbpMainModule),
-        NBP_MODULE_GET_PASSED_TESTS_NUM(nbpMainModule),
-        NBP_MODULE_GET_FAILED_TESTS_NUM(nbpMainModule),
-        NBP_MODULE_GET_SKIPPED_TESTS_NUM(nbpMainModule),
-        NBP_MODULE_GET_CHECKS_NUM(nbpMainModule),
-        NBP_MODULE_GET_PASSED_CHECKS_NUM(nbpMainModule),
-        NBP_MODULE_GET_FAILED_CHECKS_NUM(nbpMainModule),
-        NBP_MODULE_GET_TEST_ASSERTS_NUM(nbpMainModule),
-        NBP_MODULE_GET_PASSED_TEST_ASSERTS_NUM(nbpMainModule),
-        NBP_MODULE_GET_FAILED_TEST_ASSERTS_NUM(nbpMainModule),
-        NBP_MODULE_GET_MODULE_ASSERTS_NUM(nbpMainModule),
-        NBP_MODULE_GET_PASSED_MODULE_ASSERTS_NUM(nbpMainModule),
-        NBP_MODULE_GET_FAILED_MODULE_ASSERTS_NUM(nbpMainModule),
-        NBP_MODULE_GET_ASSERTS_NUM(nbpMainModule),
-        NBP_MODULE_GET_PASSED_ASSERTS_NUM(nbpMainModule),
-        NBP_MODULE_GET_FAILED_ASSERTS_NUM(nbpMainModule)
+            NBP_MODULE_GET_NUMBER_OF_SKIPPED_MODULES(nbpMainModule) + 1 :
+            NBP_MODULE_GET_NUMBER_OF_SKIPPED_MODULES(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_PASSED_TESTS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_FAILED_TESTS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_SKIPPED_TESTS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_CHECKS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_PASSED_CHECKS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_FAILED_CHECKS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_TEST_ASSERTS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_PASSED_TEST_ASSERTS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_FAILED_TEST_ASSERTS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_MODULE_ASSERTS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_PASSED_MODULE_ASSERTS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_FAILED_MODULE_ASSERTS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_ASSERTS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_PASSED_ASSERTS(nbpMainModule),
+        NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(nbpMainModule)
     );
 
     if (nbpSchedulerInterface->uninit != NBP_MEMORY_NULL_POINTER) {
