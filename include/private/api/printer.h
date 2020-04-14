@@ -1925,102 +1925,102 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_MODULES_NUM() modulesNum
+#define NBP_PRINTER_GET_NUMBER_OF_MODULES() modulesNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_PASSED_MODULES_NUM() passedModulesNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_MODULES() passedModulesNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_FAILED_MODULES_NUM() failedModulesNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_MODULES() failedModulesNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_SKIPPED_MODULES_NUM() skippedModulesNum
+#define NBP_PRINTER_GET_NUMBER_OF_SKIPPED_MODULES() skippedModulesNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_TESTS_NUM() testsNum
+#define NBP_PRINTER_GET_NUMBER_OF_TESTS() testsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_PASSED_TESTS_NUM() passedTestsNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_TESTS() passedTestsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_FAILED_TESTS_NUM() failedTestsNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_TESTS() failedTestsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_SKIPPED_TESTS_NUM() skippedTestsNum
+#define NBP_PRINTER_GET_NUMBER_OF_SKIPPED_TESTS() skippedTestsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_CHECKS_NUM() checksNum
+#define NBP_PRINTER_GET_NUMBER_OF_CHECKS() checksNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_PASSED_CHECKS_NUM() passedChecksNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_CHECKS() passedChecksNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_FAILED_CHECKS_NUM() failedChecksNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_CHECKS() failedChecksNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_TEST_ASSERTS_NUM() testAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_TEST_ASSERTS() testAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_PASSED_TEST_ASSERTS_NUM() passedTestAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_TEST_ASSERTS() passedTestAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_FAILED_TEST_ASSERTS_NUM() failedTestAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_TEST_ASSERTS() failedTestAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_MODULE_ASSERTS_NUM() moduleAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_MODULE_ASSERTS() moduleAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_PASSED_MODULE_ASSERTS_NUM() passedModuleAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_MODULE_ASSERTS() passedModuleAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_FAILED_MODULE_ASSERTS_NUM() failedModuleAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_MODULE_ASSERTS() failedModuleAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_ASSERTS_NUM() assertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_ASSERTS() assertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_PASSED_ASSERTS_NUM() passedAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_ASSERTS() passedAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_FAILED_ASSERTS_NUM() failedAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_ASSERTS() failedAssertsNum
 
 /*
  * TODO: add docs
@@ -2028,4 +2028,3 @@ SOFTWARE.
 #define NBP_PRINTER_GET_ERROR() err
 
 #endif // end if NBP_PRIVATE_API_PRINTER_H
-
