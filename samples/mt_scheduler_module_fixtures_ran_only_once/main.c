@@ -47,10 +47,10 @@ NBP_TEARDOWN_MODULE(teardown)
 
 NBP_MODULE_FIXTURES(module1, setup, teardown)
 {
-    NBP_CALL_TEST(test1);
-    NBP_CALL_TEST(test2);
-    NBP_CALL_TEST(test3);
-    NBP_CALL_TEST(test4);
+    NBP_TEST_RUN(test1);
+    NBP_TEST_RUN(test2);
+    NBP_TEST_RUN(test3);
+    NBP_TEST_RUN(test4);
 }
 
 NBP_TEST(test1)
@@ -98,8 +98,8 @@ NBP_TEST(test5)
 
 NBP_MAIN_MODULE(mt_scheduler_module_fixtures_ran_only_once)
 {
-    NBP_CALL_MODULE(module1);
-    NBP_CALL_TEST_CTX(
+    NBP_MODULE_RUN(module1);
+    NBP_TEST_RUN_CTX(
         test5,
         NBP_MT_SCHEDULER_CTX(
             NBP_MT_SCHEDULER_RUN_AFTER_MODULE(module1)

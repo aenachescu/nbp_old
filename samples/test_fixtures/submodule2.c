@@ -58,12 +58,12 @@ NBP_MODULE(submodule2)
     NBP_TEST_USE_SETUP(my_test_setup1);
     NBP_TEST_USE_TEARDOWN(my_test_teardown1);
 
-    NBP_CALL_TEST(test5);
-    NBP_CALL_TEST(test6);
+    NBP_TEST_RUN(test5);
+    NBP_TEST_RUN(test6);
 
     NBP_TEST_RESET_SETUP();
     NBP_TEST_RESET_TEARDOWN();
 
-    NBP_CALL_TEST(test7);
-    NBP_CALL_TEST(test8);
+    NBP_TEST_RUN(test7);
+    NBP_TEST_RUN(test8);
 }

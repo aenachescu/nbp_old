@@ -55,8 +55,8 @@ NBP_TEST(test12)
 
 NBP_MODULE_FIXTURES(submodule3, submodule3_setup, NBP_NO_TEARDOWN_FUNC)
 {
-    NBP_CALL_TEST(test9);
-    NBP_CALL_TEST(test10);
-    NBP_CALL_TEST(test11);
-    NBP_CALL_TEST(test12);
+    NBP_TEST_RUN(test9);
+    NBP_TEST_RUN(test10);
+    NBP_TEST_RUN(test11);
+    NBP_TEST_RUN(test12);
 }

@@ -186,9 +186,9 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_CALL_MODULE(func)                                                  \
+#define NBP_MODULE_RUN(func)                                                   \
     extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
-    nbp_call_module(                                                           \
+    nbp_module_run(                                                            \
         & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func),                       \
         module                                                                 \
     )
@@ -196,9 +196,9 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_CALL_MODULE_CTX(func, ctx)                                         \
+#define NBP_MODULE_RUN_CTX(func, ctx)                                          \
     extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
-    nbp_call_module_ctx(                                                       \
+    nbp_module_run_ctx(                                                        \
         & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func),                       \
         ctx,                                                                   \
         module                                                                 \

@@ -85,10 +85,10 @@ SOFTWARE.
  *  NBP_MODULE(myFirstModule)
  *  {
  *      NBP_TEST_USE_SETUP(setupMyFirstTest);
- *      NBP_CALL_TEST(myFirstTest);
+ *      NBP_TEST_RUN(myFirstTest);
  *      NBP_TEST_USE_SETUP(setupMySecondAndThirdTest);
- *      NBP_CALL_TEST(mySecondTest);
- *      NBP_CALL_TEST(myThirdTest);
+ *      NBP_TEST_RUN(mySecondTest);
+ *      NBP_TEST_RUN(myThirdTest);
  *  }
  * @endcode
  */
@@ -112,11 +112,11 @@ SOFTWARE.
  *  NBP_MODULE(myFirstModule)
  *  {
  *      NBP_TEST_USE_SETUP(setupMyFirstTest);
- *      NBP_CALL_TEST(myFirstTest);
+ *      NBP_TEST_RUN(myFirstTest);
  *      NBP_TEST_RESET_SETUP();
  *      // no function will be called before mySecondTest and myThirdTest.
- *      NBP_CALL_TEST(mySecondTest);
- *      NBP_CALL_TEST(myThirdTest);
+ *      NBP_TEST_RUN(mySecondTest);
+ *      NBP_TEST_RUN(myThirdTest);
  *  }
  * @endcode
  */
@@ -179,10 +179,10 @@ SOFTWARE.
  *  NBP_MODULE(myFirstModule)
  *  {
  *      NBP_TEST_USE_TEARDOWN(myFirstTestSetup);
- *      NBP_CALL_TEST(myFirstTest);
+ *      NBP_TEST_RUN(myFirstTest);
  *      NBP_TEST_USE_TEARDOWN(mySecondAndThirdTestSetup);
- *      NBP_CALL_TEST(mySecondTest);
- *      NBP_CALL_TEST(myThirdTest);
+ *      NBP_TEST_RUN(mySecondTest);
+ *      NBP_TEST_RUN(myThirdTest);
  *  }
  * @endcode
  */
@@ -206,11 +206,11 @@ SOFTWARE.
  *  NBP_MODULE(myFirstModule)
  *  {
  *      NBP_TEST_USE_TEARDOWN(myFirstTestSetup);
- *      NBP_CALL_TEST(myFirstTest);
+ *      NBP_TEST_RUN(myFirstTest);
  *      NBP_TEST_RESET_TEARDOWN();
  *      // no function will be called after mySecondTest and myThirdTest.
- *      NBP_CALL_TEST(mySecondTest);
- *      NBP_CALL_TEST(myThirdTest);
+ *      NBP_TEST_RUN(mySecondTest);
+ *      NBP_TEST_RUN(myThirdTest);
  *  }
  * @endcode
  */
@@ -259,7 +259,7 @@ SOFTWARE.
  * @public doc
  *
  * @brief
- *  Defines a test that can be called using the NBP_CALL_TEST macro.
+ *  Defines a test that can be ran using the NBP_TEST_RUN macro.
  *  Use the NBP_THIS_TEST macro if you want to get info about the test.
  *
  * @params
@@ -281,7 +281,7 @@ SOFTWARE.
  * @public doc
  *
  * @brief
- *  Defines a test that can be called using the NBP_CALL_TEST macro.
+ *  Defines a test that can be ran using the NBP_TEST_RUN macro.
  *  Use the NBP_THIS_TEST macro if you want to get info about the test.
  *
  * @params
@@ -327,14 +327,14 @@ SOFTWARE.
  *
  *  NBP_MODULE(myFirstModule)
  *  {
- *      NBP_CALL_TEST(myFirstTest);
- *      NBP_CALL_TEST(mySecondTest);
+ *      NBP_TEST_RUN(myFirstTest);
+ *      NBP_TEST_RUN(mySecondTest);
  *  }
  * @endcode
  */
-#define NBP_CALL_TEST(func)                                                    \
+#define NBP_TEST_RUN(func)                                                     \
     extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func);     \
-    nbp_call_test(                                                             \
+    nbp_test_run(                                                              \
         & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
         module,                                                                \
         testSetup,                                                             \
@@ -344,10 +344,10 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_CALL_TEST_CTX(func, ctx)                                           \
+#define NBP_TEST_RUN_CTX(func, ctx)                                            \
     extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func);     \
     NBP_PRIVATE_SCHEDULER_PREPROCESSING_CONTEXT(P_ ## ctx)                     \
-    nbp_call_test_ctx(                                                         \
+    nbp_test_run_ctx(                                                          \
         & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
         ctx,                                                                   \
         module,                                                                \

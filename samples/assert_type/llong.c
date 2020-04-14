@@ -96,10 +96,10 @@ NBP_TEST(assert_llong_le)
 
 NBP_MODULE(assert_llong)
 {
-    NBP_CALL_TEST(assert_llong_eq);
-    NBP_CALL_TEST(assert_llong_ne);
-    NBP_CALL_TEST(assert_llong_gt);
-    NBP_CALL_TEST(assert_llong_ge);
-    NBP_CALL_TEST(assert_llong_lt);
-    NBP_CALL_TEST(assert_llong_le);
+    NBP_TEST_RUN(assert_llong_eq);
+    NBP_TEST_RUN(assert_llong_ne);
+    NBP_TEST_RUN(assert_llong_gt);
+    NBP_TEST_RUN(assert_llong_ge);
+    NBP_TEST_RUN(assert_llong_lt);
+    NBP_TEST_RUN(assert_llong_le);
 }

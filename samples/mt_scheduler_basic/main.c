@@ -139,8 +139,8 @@ NBP_TEARDOWN_MODULE(main_module_teardown)
 
 NBP_MAIN_MODULE_FIXTURES(mt_scheduler_basic_sample, main_module_setup, main_module_teardown)
 {
-    NBP_CALL_TEST(test1);
-    NBP_CALL_TEST(test2);
-    NBP_CALL_TEST(test3);
-    NBP_CALL_TEST(test4);
+    NBP_TEST_RUN(test1);
+    NBP_TEST_RUN(test2);
+    NBP_TEST_RUN(test3);
+    NBP_TEST_RUN(test4);
 }

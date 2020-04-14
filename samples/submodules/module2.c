@@ -29,6 +29,6 @@ SOFTWARE.
 
 NBP_MODULE(module2)
 {
-    NBP_CALL_MODULE(submodule3);
-    NBP_CALL_MODULE(submodule4);
+    NBP_MODULE_RUN(submodule3);
+    NBP_MODULE_RUN(submodule4);
 }

@@ -32,58 +32,58 @@ SOFTWARE.
 
 NBP_MAIN_MODULE(check_sample)
 {
-    NBP_CALL_TEST(test1);
-    NBP_CALL_MODULE(module1);
-    NBP_CALL_TEST(test2);
-    NBP_CALL_MODULE(module2);
-    NBP_CALL_TEST(test3);
+    NBP_TEST_RUN(test1);
+    NBP_MODULE_RUN(module1);
+    NBP_TEST_RUN(test2);
+    NBP_MODULE_RUN(module2);
+    NBP_TEST_RUN(test3);
 }
 
 NBP_MODULE(module1)
 {
-    NBP_CALL_MODULE(submodule1);
-    NBP_CALL_TEST(test4);
-    NBP_CALL_MODULE(submodule2);
+    NBP_MODULE_RUN(submodule1);
+    NBP_TEST_RUN(test4);
+    NBP_MODULE_RUN(submodule2);
 }
 
 NBP_MODULE(module2)
 {
-    NBP_CALL_TEST(test5);
-    NBP_CALL_MODULE(submodule3);
-    NBP_CALL_MODULE(submodule4);
-    NBP_CALL_TEST(test6);
+    NBP_TEST_RUN(test5);
+    NBP_MODULE_RUN(submodule3);
+    NBP_MODULE_RUN(submodule4);
+    NBP_TEST_RUN(test6);
 }
 
 NBP_MODULE(submodule1)
 {
-    NBP_CALL_TEST(test7);
-    NBP_CALL_TEST(test8);
-    NBP_CALL_TEST(test9);
-    NBP_CALL_TEST(test10);
+    NBP_TEST_RUN(test7);
+    NBP_TEST_RUN(test8);
+    NBP_TEST_RUN(test9);
+    NBP_TEST_RUN(test10);
 }
 
 NBP_MODULE(submodule2)
 {
-    NBP_CALL_TEST(test11);
-    NBP_CALL_TEST(test12);
-    NBP_CALL_TEST(test13);
-    NBP_CALL_TEST(test14);
+    NBP_TEST_RUN(test11);
+    NBP_TEST_RUN(test12);
+    NBP_TEST_RUN(test13);
+    NBP_TEST_RUN(test14);
 }
 
 NBP_MODULE(submodule3)
 {
-    NBP_CALL_TEST(test15);
-    NBP_CALL_TEST(test16);
-    NBP_CALL_TEST(test17);
-    NBP_CALL_TEST(test18);
+    NBP_TEST_RUN(test15);
+    NBP_TEST_RUN(test16);
+    NBP_TEST_RUN(test17);
+    NBP_TEST_RUN(test18);
 }
 
 NBP_MODULE(submodule4)
 {
-    NBP_CALL_TEST(test19);
-    NBP_CALL_TEST(test20);
-    NBP_CALL_TEST(test21);
-    NBP_CALL_TEST(test22);
+    NBP_TEST_RUN(test19);
+    NBP_TEST_RUN(test20);
+    NBP_TEST_RUN(test21);
+    NBP_TEST_RUN(test22);
 }
 
 NBP_TEST(test1)

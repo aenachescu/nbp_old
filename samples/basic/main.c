@@ -72,8 +72,8 @@ NBP_TEST(test_my_div)
 
 NBP_MAIN_MODULE(basic_sample)
 {
-    NBP_CALL_TEST(test_my_add);
-    NBP_CALL_TEST(test_my_sub);
-    NBP_CALL_TEST(test_my_mul);
-    NBP_CALL_TEST(test_my_div);
+    NBP_TEST_RUN(test_my_add);
+    NBP_TEST_RUN(test_my_sub);
+    NBP_TEST_RUN(test_my_mul);
+    NBP_TEST_RUN(test_my_div);
 }

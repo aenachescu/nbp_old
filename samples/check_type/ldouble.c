@@ -96,10 +96,10 @@ NBP_TEST(check_ldouble_le)
 
 NBP_MODULE(check_ldouble)
 {
-    NBP_CALL_TEST(check_ldouble_eq);
-    NBP_CALL_TEST(check_ldouble_ne);
-    NBP_CALL_TEST(check_ldouble_gt);
-    NBP_CALL_TEST(check_ldouble_ge);
-    NBP_CALL_TEST(check_ldouble_lt);
-    NBP_CALL_TEST(check_ldouble_le);
+    NBP_TEST_RUN(check_ldouble_eq);
+    NBP_TEST_RUN(check_ldouble_ne);
+    NBP_TEST_RUN(check_ldouble_gt);
+    NBP_TEST_RUN(check_ldouble_ge);
+    NBP_TEST_RUN(check_ldouble_lt);
+    NBP_TEST_RUN(check_ldouble_le);
 }

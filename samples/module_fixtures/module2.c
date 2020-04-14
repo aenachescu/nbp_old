@@ -29,6 +29,6 @@ SOFTWARE.
 
 NBP_MODULE_FIXTURES(module2, module2_setup, module2_teardown)
 {
-    NBP_CALL_MODULE(submodule3);
-    NBP_CALL_MODULE(submodule4);
+    NBP_MODULE_RUN(submodule3);
+    NBP_MODULE_RUN(submodule4);
 }

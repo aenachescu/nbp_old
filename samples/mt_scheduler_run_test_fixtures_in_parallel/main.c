@@ -39,8 +39,8 @@ NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_fixtures_in_parallel,
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);
-    NBP_CALL_TEST(test1);
-    NBP_CALL_TEST(test2);
+    NBP_TEST_RUN(test1);
+    NBP_TEST_RUN(test2);
 }
 
 NBP_SETUP_MODULE(mainSetup)

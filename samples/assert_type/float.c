@@ -96,10 +96,10 @@ NBP_TEST(assert_float_le)
 
 NBP_MODULE(assert_float)
 {
-    NBP_CALL_TEST(assert_float_eq);
-    NBP_CALL_TEST(assert_float_ne);
-    NBP_CALL_TEST(assert_float_gt);
-    NBP_CALL_TEST(assert_float_ge);
-    NBP_CALL_TEST(assert_float_lt);
-    NBP_CALL_TEST(assert_float_le);
+    NBP_TEST_RUN(assert_float_eq);
+    NBP_TEST_RUN(assert_float_ne);
+    NBP_TEST_RUN(assert_float_gt);
+    NBP_TEST_RUN(assert_float_ge);
+    NBP_TEST_RUN(assert_float_lt);
+    NBP_TEST_RUN(assert_float_le);
 }

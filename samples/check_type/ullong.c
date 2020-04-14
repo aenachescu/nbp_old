@@ -96,10 +96,10 @@ NBP_TEST(check_ullong_le)
 
 NBP_MODULE(check_ullong)
 {
-    NBP_CALL_TEST(check_ullong_eq);
-    NBP_CALL_TEST(check_ullong_ne);
-    NBP_CALL_TEST(check_ullong_gt);
-    NBP_CALL_TEST(check_ullong_ge);
-    NBP_CALL_TEST(check_ullong_lt);
-    NBP_CALL_TEST(check_ullong_le);
+    NBP_TEST_RUN(check_ullong_eq);
+    NBP_TEST_RUN(check_ullong_ne);
+    NBP_TEST_RUN(check_ullong_gt);
+    NBP_TEST_RUN(check_ullong_ge);
+    NBP_TEST_RUN(check_ullong_lt);
+    NBP_TEST_RUN(check_ullong_le);
 }

@@ -30,16 +30,16 @@ SOFTWARE.
 
 NBP_MAIN_MODULE(assert_type)
 {
-    NBP_CALL_MODULE(assert_char);
-    NBP_CALL_MODULE(assert_short);
-    NBP_CALL_MODULE(assert_ushort);
-    NBP_CALL_MODULE(assert_int);
-    NBP_CALL_MODULE(assert_uint);
-    NBP_CALL_MODULE(assert_long);
-    NBP_CALL_MODULE(assert_ulong);
-    NBP_CALL_MODULE(assert_llong);
-    NBP_CALL_MODULE(assert_ullong);
-    NBP_CALL_MODULE(assert_float);
-    NBP_CALL_MODULE(assert_double);
-    NBP_CALL_MODULE(assert_ldouble);
+    NBP_MODULE_RUN(assert_char);
+    NBP_MODULE_RUN(assert_short);
+    NBP_MODULE_RUN(assert_ushort);
+    NBP_MODULE_RUN(assert_int);
+    NBP_MODULE_RUN(assert_uint);
+    NBP_MODULE_RUN(assert_long);
+    NBP_MODULE_RUN(assert_ulong);
+    NBP_MODULE_RUN(assert_llong);
+    NBP_MODULE_RUN(assert_ullong);
+    NBP_MODULE_RUN(assert_float);
+    NBP_MODULE_RUN(assert_double);
+    NBP_MODULE_RUN(assert_ldouble);
 }

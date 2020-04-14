@@ -96,10 +96,10 @@ NBP_TEST(module_assert_ulong_le)
 
 NBP_MODULE(module_assert_ulong)
 {
-    NBP_CALL_TEST(module_assert_ulong_eq);
-    NBP_CALL_TEST(module_assert_ulong_ne);
-    NBP_CALL_TEST(module_assert_ulong_gt);
-    NBP_CALL_TEST(module_assert_ulong_ge);
-    NBP_CALL_TEST(module_assert_ulong_lt);
-    NBP_CALL_TEST(module_assert_ulong_le);
+    NBP_TEST_RUN(module_assert_ulong_eq);
+    NBP_TEST_RUN(module_assert_ulong_ne);
+    NBP_TEST_RUN(module_assert_ulong_gt);
+    NBP_TEST_RUN(module_assert_ulong_ge);
+    NBP_TEST_RUN(module_assert_ulong_lt);
+    NBP_TEST_RUN(module_assert_ulong_le);
 }

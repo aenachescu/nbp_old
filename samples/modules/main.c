@@ -30,7 +30,7 @@ SOFTWARE.
 
 NBP_MAIN_MODULE(modules_sample)
 {
-    NBP_CALL_MODULE(basic_math);
-    NBP_CALL_MODULE(advanced_math);
+    NBP_MODULE_RUN(basic_math);
+    NBP_MODULE_RUN(advanced_math);
 }
 

@@ -102,7 +102,7 @@ static void nbp_module_update_stats(nbp_module_details_t* module)
     }
 }
 
-void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
+void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent)
 {
     if (nbp_module_init(module, parent) != NBP_NO_ERROR) {
         return;
@@ -125,7 +125,7 @@ void nbp_call_module(nbp_module_details_t* module, nbp_module_details_t* parent)
     nbp_module_update_stats(module);
 }
 
-void nbp_call_module_ctx(nbp_module_details_t* module, void* ctx,
+void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
     nbp_module_details_t* parent)
 {
     if (nbp_module_init(module, parent) != NBP_NO_ERROR) {

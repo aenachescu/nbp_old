@@ -96,10 +96,10 @@ NBP_TEST(check_int_le)
 
 NBP_MODULE(check_int)
 {
-    NBP_CALL_TEST(check_int_eq);
-    NBP_CALL_TEST(check_int_ne);
-    NBP_CALL_TEST(check_int_gt);
-    NBP_CALL_TEST(check_int_ge);
-    NBP_CALL_TEST(check_int_lt);
-    NBP_CALL_TEST(check_int_le);
+    NBP_TEST_RUN(check_int_eq);
+    NBP_TEST_RUN(check_int_ne);
+    NBP_TEST_RUN(check_int_gt);
+    NBP_TEST_RUN(check_int_ge);
+    NBP_TEST_RUN(check_int_lt);
+    NBP_TEST_RUN(check_int_le);
 }

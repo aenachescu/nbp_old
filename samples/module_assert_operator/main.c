@@ -99,10 +99,10 @@ NBP_TEST(module_assert_operator_le)
 
 NBP_MAIN_MODULE(module_assert_operator)
 {
-    NBP_CALL_TEST(module_assert_operator_eq);
-    NBP_CALL_TEST(module_assert_operator_ne);
-    NBP_CALL_TEST(module_assert_operator_gt);
-    NBP_CALL_TEST(module_assert_operator_ge);
-    NBP_CALL_TEST(module_assert_operator_lt);
-    NBP_CALL_TEST(module_assert_operator_le);
+    NBP_TEST_RUN(module_assert_operator_eq);
+    NBP_TEST_RUN(module_assert_operator_ne);
+    NBP_TEST_RUN(module_assert_operator_gt);
+    NBP_TEST_RUN(module_assert_operator_ge);
+    NBP_TEST_RUN(module_assert_operator_lt);
+    NBP_TEST_RUN(module_assert_operator_le);
 }

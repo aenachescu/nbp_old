@@ -55,8 +55,8 @@ NBP_TEST(test8)
 
 NBP_MODULE_FIXTURES(submodule2, submodule_setup, submodule_teardown)
 {
-    NBP_CALL_TEST(test5);
-    NBP_CALL_TEST(test6);
-    NBP_CALL_TEST(test7);
-    NBP_CALL_TEST(test8);
+    NBP_TEST_RUN(test5);
+    NBP_TEST_RUN(test6);
+    NBP_TEST_RUN(test7);
+    NBP_TEST_RUN(test8);
 }

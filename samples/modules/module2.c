@@ -51,6 +51,6 @@ NBP_TEST(test_my_div)
 
 NBP_MODULE(advanced_math)
 {
-    NBP_CALL_TEST(test_my_mul);
-    NBP_CALL_TEST(test_my_div);
+    NBP_TEST_RUN(test_my_mul);
+    NBP_TEST_RUN(test_my_div);
 }

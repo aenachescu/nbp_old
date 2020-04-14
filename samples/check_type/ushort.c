@@ -96,10 +96,10 @@ NBP_TEST(check_ushort_le)
 
 NBP_MODULE(check_ushort)
 {
-    NBP_CALL_TEST(check_ushort_eq);
-    NBP_CALL_TEST(check_ushort_ne);
-    NBP_CALL_TEST(check_ushort_gt);
-    NBP_CALL_TEST(check_ushort_ge);
-    NBP_CALL_TEST(check_ushort_lt);
-    NBP_CALL_TEST(check_ushort_le);
+    NBP_TEST_RUN(check_ushort_eq);
+    NBP_TEST_RUN(check_ushort_ne);
+    NBP_TEST_RUN(check_ushort_gt);
+    NBP_TEST_RUN(check_ushort_ge);
+    NBP_TEST_RUN(check_ushort_lt);
+    NBP_TEST_RUN(check_ushort_le);
 }

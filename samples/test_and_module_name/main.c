@@ -62,19 +62,19 @@ NBP_TEST_NAME(test2, "second test")
 
 NBP_MODULE_NAME(module1, "first module")
 {
-    NBP_CALL_TEST(test1);
+    NBP_TEST_RUN(test1);
 }
 
 NBP_MODULE_NAME(module2, "second module")
 {
-    NBP_CALL_TEST(test2);
+    NBP_TEST_RUN(test2);
 }
 
 NBP_MAIN_MODULE_NAME(test_and_module_name, "main module")
 {
-    NBP_CALL_TEST(test_and_module_name_test1);
-    NBP_CALL_MODULE(module1);
-    NBP_CALL_TEST(test_and_module_name_test2);
-    NBP_CALL_MODULE(module2);
-    NBP_CALL_TEST(test_and_module_name_test3);
+    NBP_TEST_RUN(test_and_module_name_test1);
+    NBP_MODULE_RUN(module1);
+    NBP_TEST_RUN(test_and_module_name_test2);
+    NBP_MODULE_RUN(module2);
+    NBP_TEST_RUN(test_and_module_name_test3);
 }

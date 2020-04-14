@@ -28,12 +28,12 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_DETAILS_MODULE_H
 #define NBP_PRIVATE_DETAILS_MODULE_H
 
-void nbp_call_module(
+void nbp_module_run(
     nbp_module_details_t*, /* module */
     nbp_module_details_t* /* parent */
 );
 
-void nbp_call_module_ctx(
+void nbp_module_run_ctx(
     nbp_module_details_t*, /* module */
     void* ctx, /* context */
     nbp_module_details_t* /* parent */

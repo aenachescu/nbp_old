@@ -94,10 +94,10 @@ NBP_TEST(module_assert_char_le)
 
 NBP_MODULE(module_assert_char)
 {
-    NBP_CALL_TEST(module_assert_char_eq);
-    NBP_CALL_TEST(module_assert_char_ne);
-    NBP_CALL_TEST(module_assert_char_gt);
-    NBP_CALL_TEST(module_assert_char_ge);
-    NBP_CALL_TEST(module_assert_char_lt);
-    NBP_CALL_TEST(module_assert_char_le);
+    NBP_TEST_RUN(module_assert_char_eq);
+    NBP_TEST_RUN(module_assert_char_ne);
+    NBP_TEST_RUN(module_assert_char_gt);
+    NBP_TEST_RUN(module_assert_char_ge);
+    NBP_TEST_RUN(module_assert_char_lt);
+    NBP_TEST_RUN(module_assert_char_le);
 }

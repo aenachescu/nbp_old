@@ -96,10 +96,10 @@ NBP_TEST(check_float_le)
 
 NBP_MODULE(check_float)
 {
-    NBP_CALL_TEST(check_float_eq);
-    NBP_CALL_TEST(check_float_ne);
-    NBP_CALL_TEST(check_float_gt);
-    NBP_CALL_TEST(check_float_ge);
-    NBP_CALL_TEST(check_float_lt);
-    NBP_CALL_TEST(check_float_le);
+    NBP_TEST_RUN(check_float_eq);
+    NBP_TEST_RUN(check_float_ne);
+    NBP_TEST_RUN(check_float_gt);
+    NBP_TEST_RUN(check_float_ge);
+    NBP_TEST_RUN(check_float_lt);
+    NBP_TEST_RUN(check_float_le);
 }

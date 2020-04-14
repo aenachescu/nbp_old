@@ -51,6 +51,6 @@ NBP_TEST(test_my_sub)
 
 NBP_MODULE(basic_math)
 {
-    NBP_CALL_TEST(test_my_add);
-    NBP_CALL_TEST(test_my_sub);
+    NBP_TEST_RUN(test_my_add);
+    NBP_TEST_RUN(test_my_sub);
 }

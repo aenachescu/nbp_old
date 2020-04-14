@@ -65,7 +65,7 @@ static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
     return NBP_NO_ERROR;
 }
 
-void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
+void nbp_test_run(nbp_test_details_t* test, nbp_module_details_t* module,
     nbp_test_setup_pfn_t testSetup, nbp_test_teardown_pfn_t testTeardown)
 {
     if (nbpSchedulerInterface->addTest == NBP_MEMORY_NULL_POINTER) {
@@ -82,7 +82,7 @@ void nbp_call_test(nbp_test_details_t* test, nbp_module_details_t* module,
     nbpSchedulerInterface->addTest(test);
 }
 
-void nbp_call_test_ctx(nbp_test_details_t* test, void* ctx,
+void nbp_test_run_ctx(nbp_test_details_t* test, void* ctx,
     nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,
     nbp_test_teardown_pfn_t testTeardown)
 {

@@ -44,10 +44,10 @@ NBP_TEST(test2)
 
 NBP_MODULE(module1)
 {
-    NBP_CALL_TEST(test1);
-    NBP_CALL_TEST(test2);
-    NBP_CALL_TEST(test3);
-    NBP_CALL_TEST(test4);
+    NBP_TEST_RUN(test1);
+    NBP_TEST_RUN(test2);
+    NBP_TEST_RUN(test3);
+    NBP_TEST_RUN(test4);
 }
 
 NBP_TEST(test3)
@@ -64,8 +64,8 @@ NBP_TEST(test4)
 
 NBP_MAIN_MODULE(modules_one_file_sample)
 {
-    NBP_CALL_MODULE(module1);
-    NBP_CALL_MODULE(module2);
+    NBP_MODULE_RUN(module1);
+    NBP_MODULE_RUN(module2);
 }
 
 NBP_TEST(test5)
@@ -82,10 +82,10 @@ NBP_TEST(test6)
 
 NBP_MODULE(module2)
 {
-    NBP_CALL_TEST(test5);
-    NBP_CALL_TEST(test6);
-    NBP_CALL_TEST(test7);
-    NBP_CALL_TEST(test8);
+    NBP_TEST_RUN(test5);
+    NBP_TEST_RUN(test6);
+    NBP_TEST_RUN(test7);
+    NBP_TEST_RUN(test8);
 }
 
 NBP_TEST(test7)

@@ -55,8 +55,8 @@ NBP_TEST(test16)
 
 NBP_MODULE(submodule4)
 {
-    NBP_CALL_TEST(test13);
-    NBP_CALL_TEST(test14);
-    NBP_CALL_TEST(test15);
-    NBP_CALL_TEST(test16);
+    NBP_TEST_RUN(test13);
+    NBP_TEST_RUN(test14);
+    NBP_TEST_RUN(test15);
+    NBP_TEST_RUN(test16);
 }

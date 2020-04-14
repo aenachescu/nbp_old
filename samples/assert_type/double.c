@@ -96,10 +96,10 @@ NBP_TEST(assert_double_le)
 
 NBP_MODULE(assert_double)
 {
-    NBP_CALL_TEST(assert_double_eq);
-    NBP_CALL_TEST(assert_double_ne);
-    NBP_CALL_TEST(assert_double_gt);
-    NBP_CALL_TEST(assert_double_ge);
-    NBP_CALL_TEST(assert_double_lt);
-    NBP_CALL_TEST(assert_double_le);
+    NBP_TEST_RUN(assert_double_eq);
+    NBP_TEST_RUN(assert_double_ne);
+    NBP_TEST_RUN(assert_double_gt);
+    NBP_TEST_RUN(assert_double_ge);
+    NBP_TEST_RUN(assert_double_lt);
+    NBP_TEST_RUN(assert_double_le);
 }

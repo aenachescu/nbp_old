@@ -96,10 +96,10 @@ NBP_TEST(test_assert_uint_le)
 
 NBP_MODULE(test_assert_uint)
 {
-    NBP_CALL_TEST(test_assert_uint_eq);
-    NBP_CALL_TEST(test_assert_uint_ne);
-    NBP_CALL_TEST(test_assert_uint_gt);
-    NBP_CALL_TEST(test_assert_uint_ge);
-    NBP_CALL_TEST(test_assert_uint_lt);
-    NBP_CALL_TEST(test_assert_uint_le);
+    NBP_TEST_RUN(test_assert_uint_eq);
+    NBP_TEST_RUN(test_assert_uint_ne);
+    NBP_TEST_RUN(test_assert_uint_gt);
+    NBP_TEST_RUN(test_assert_uint_ge);
+    NBP_TEST_RUN(test_assert_uint_lt);
+    NBP_TEST_RUN(test_assert_uint_le);
 }

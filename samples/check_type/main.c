@@ -30,16 +30,16 @@ SOFTWARE.
 
 NBP_MAIN_MODULE(check_type)
 {
-    NBP_CALL_MODULE(check_char);
-    NBP_CALL_MODULE(check_short);
-    NBP_CALL_MODULE(check_ushort);
-    NBP_CALL_MODULE(check_int);
-    NBP_CALL_MODULE(check_uint);
-    NBP_CALL_MODULE(check_long);
-    NBP_CALL_MODULE(check_ulong);
-    NBP_CALL_MODULE(check_llong);
-    NBP_CALL_MODULE(check_ullong);
-    NBP_CALL_MODULE(check_float);
-    NBP_CALL_MODULE(check_double);
-    NBP_CALL_MODULE(check_ldouble);
+    NBP_MODULE_RUN(check_char);
+    NBP_MODULE_RUN(check_short);
+    NBP_MODULE_RUN(check_ushort);
+    NBP_MODULE_RUN(check_int);
+    NBP_MODULE_RUN(check_uint);
+    NBP_MODULE_RUN(check_long);
+    NBP_MODULE_RUN(check_ulong);
+    NBP_MODULE_RUN(check_llong);
+    NBP_MODULE_RUN(check_ullong);
+    NBP_MODULE_RUN(check_float);
+    NBP_MODULE_RUN(check_double);
+    NBP_MODULE_RUN(check_ldouble);
 }
