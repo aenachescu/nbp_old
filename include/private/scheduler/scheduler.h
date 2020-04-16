@@ -37,7 +37,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #ifdef NBP_MT_SCHEDULER
-#include "basic_mt_scheduler.h"
+#include "mt_scheduler.h"
 #endif // end if NBP_MT_SCHEDULER
 
 /*
