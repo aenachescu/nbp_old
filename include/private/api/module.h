@@ -32,13 +32,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_NO_SETUP_FUNC                                                      \
-    nbp_empty_setup_func
+    nbp_module_empty_setup_func
 
 /*
  * TODO: add docs
  */
 #define NBP_SETUP_MODULE(func)                                                 \
-    void NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, func)(                       \
+    void NBP_PRIVATE_PP_CONCAT(nbp_module_setup_, func)(                       \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
     )
 
@@ -46,13 +46,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_NO_TEARDOWN_FUNC                                                   \
-    nbp_empty_teardown_func
+    nbp_module_empty_teardown_func
 
 /*
  * TODO: add docs
  */
 #define NBP_TEARDOWN_MODULE(func)                                              \
-    void NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, func)(                    \
+    void NBP_PRIVATE_PP_CONCAT(nbp_module_teardown_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
     )
 
@@ -173,8 +173,8 @@ SOFTWARE.
     NBP_PRIVATE_MODULE(                                                        \
         func,                                                                  \
         name,                                                                  \
-        NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, setupFunc),                   \
-        NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, teardownFunc)              \
+        NBP_PRIVATE_PP_CONCAT(nbp_module_setup_, setupFunc),                   \
+        NBP_PRIVATE_PP_CONCAT(nbp_module_teardown_, teardownFunc)              \
     )
 
 /*

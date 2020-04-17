@@ -41,11 +41,11 @@ SOFTWARE.
 
 struct nbp_module_details_t;
 
-typedef void(*nbp_setup_module_pfn_t)(
+typedef void(*nbp_module_setup_pfn_t)(
     struct nbp_module_details_t* /* current module */
 );
 
-typedef void(*nbp_teardown_module_pfn_t)(
+typedef void(*nbp_module_teardown_pfn_t)(
     struct nbp_module_details_t* /* current module */
 );
 
@@ -61,8 +61,8 @@ struct nbp_module_details_t {
     nbp_module_pfn_t moduleFunc;
     struct nbp_module_details_t* parent;
 
-    nbp_setup_module_pfn_t setup;
-    nbp_teardown_module_pfn_t teardown;
+    nbp_module_setup_pfn_t setup;
+    nbp_module_teardown_pfn_t teardown;
 
     struct nbp_test_details_t* firstTest;
     struct nbp_test_details_t* lastTest;
