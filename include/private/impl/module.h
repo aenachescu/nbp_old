@@ -120,9 +120,9 @@ void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent)
         nbpSchedulerInterface->moduleCompleted(module);
     }
 
-    nbp_printer_notify_after_scheduling_module(module);
-
     nbp_module_update_stats(module);
+
+    nbp_printer_notify_after_scheduling_module(module);
 }
 
 void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
@@ -144,9 +144,9 @@ void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
         nbpSchedulerInterface->moduleCompleted(module);
     }
 
-    nbp_printer_notify_after_scheduling_module(module);
-
     nbp_module_update_stats(module);
+
+    nbp_printer_notify_after_scheduling_module(module);
 }
 
 NBP_SETUP_MODULE(nbp_empty_setup_func)
