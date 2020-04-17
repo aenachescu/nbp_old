@@ -28,15 +28,15 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_SCHEDULER_MT_SCHEDULER_H
 #define NBP_PRIVATE_SCHEDULER_MT_SCHEDULER_H
 
-#define NBP_MT_SCHEDULER_RULE_TYPE_UNKNOWN                  (unsigned char) 0
-#define NBP_MT_SCHEDULER_RULE_TYPE_BEFORE                   (unsigned char) 1
-#define NBP_MT_SCHEDULER_RULE_TYPE_AFTER                    (unsigned char) 2
-#define NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD              (unsigned char) 3
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_UNKNOWN            (unsigned char) 0
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_BEFORE             (unsigned char) 1
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_AFTER              (unsigned char) 2
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD        (unsigned char) 3
 
-#define NBP_MT_SCHEDULER_RULE_DATA_TYPE_UNKNOWN             (unsigned char) 0
-#define NBP_MT_SCHEDULER_RULE_DATA_TYPE_EMPTY               (unsigned char) 1
-#define NBP_MT_SCHEDULER_RULE_DATA_TYPE_TEST                (unsigned char) 2
-#define NBP_MT_SCHEDULER_RULE_DATA_TYPE_MODULE              (unsigned char) 3
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_UNKNOWN       (unsigned char) 0
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_EMPTY         (unsigned char) 1
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_TEST          (unsigned char) 2
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_MODULE        (unsigned char) 3
 
 struct nbp_mt_scheduler_rule_t {
     unsigned char ruleType;
@@ -78,7 +78,7 @@ void* nbp_mt_scheduler_create_ctx(
  */
 #define NBP_MT_SCHEDULER_RUN_BEFORE_TEST(test)                                 \
     nbp_mt_schduler_create_rule_from_test(                                     \
-        NBP_MT_SCHEDULER_RULE_TYPE_BEFORE,                                     \
+        NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_BEFORE,                             \
         NBP_GET_TEST_PTR(test)                                                 \
     )
 
@@ -87,7 +87,7 @@ void* nbp_mt_scheduler_create_ctx(
  */
 #define NBP_MT_SCHEDULER_RUN_AFTER_TEST(test)                                  \
     nbp_mt_schduler_create_rule_from_test(                                     \
-        NBP_MT_SCHEDULER_RULE_TYPE_AFTER,                                      \
+        NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_AFTER,                              \
         NBP_GET_TEST_PTR(test)                                                 \
     )
 
@@ -96,7 +96,7 @@ void* nbp_mt_scheduler_create_ctx(
  */
 #define NBP_MT_SCHEDULER_RUN_BEFORE_MODULE(module)                             \
     nbp_mt_schduler_create_rule_from_module(                                   \
-        NBP_MT_SCHEDULER_RULE_TYPE_BEFORE,                                     \
+        NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_BEFORE,                             \
         NBP_GET_MODULE_PTR(module)                                             \
     )
 
@@ -105,7 +105,7 @@ void* nbp_mt_scheduler_create_ctx(
  */
 #define NBP_MT_SCHEDULER_RUN_AFTER_MODULE(module)                              \
     nbp_mt_schduler_create_rule_from_module(                                   \
-        NBP_MT_SCHEDULER_RULE_TYPE_AFTER,                                      \
+        NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_AFTER,                              \
         NBP_GET_MODULE_PTR(module)                                             \
     )
 
@@ -114,7 +114,7 @@ void* nbp_mt_scheduler_create_ctx(
  */
 #define NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_TEST(test)                    \
     nbp_mt_schduler_create_rule_from_test(                                     \
-        NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD,                                \
+        NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD,                        \
         NBP_GET_TEST_PTR(test)                                                 \
     )
 
@@ -123,18 +123,17 @@ void* nbp_mt_scheduler_create_ctx(
  */
 #define NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_MODULE(module)                \
     nbp_mt_schduler_create_rule_from_module(                                   \
-        NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD,                                \
+        NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD,                        \
         NBP_GET_MODULE_PTR(module)                                             \
     )
 
+/*
+ * TODO: add docs
+ */
 #define NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD                                    \
     nbp_mt_scheduler_create_empty_rule(                                        \
-        NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD                                 \
+        NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD                         \
     )
-
-#define NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(...)                      \
-    sizeof((nbp_mt_scheduler_rule_t[]){ __VA_ARGS__ }) /                       \
-    sizeof(nbp_mt_scheduler_rule_t)
 
 /*
  * TODO: add docs
@@ -144,6 +143,10 @@ void* nbp_mt_scheduler_create_ctx(
         NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(__VA_ARGS__),             \
         __VA_ARGS__                                                            \
     )
+
+#define NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(...)                      \
+    sizeof((nbp_mt_scheduler_rule_t[]){ __VA_ARGS__ }) /                       \
+    sizeof(nbp_mt_scheduler_rule_t)
 
 /*
  * NBP_SCHEDULER_PREPROCESSING_CONTEXT implementation
@@ -452,7 +455,7 @@ nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_test(
     nbp_mt_scheduler_rule_t rule;
 
     rule.ruleType   = ruleType;
-    rule.dataType   = NBP_MT_SCHEDULER_RULE_DATA_TYPE_TEST;
+    rule.dataType   = NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_TEST;
     rule.test       = test;
 
     return rule;
@@ -464,7 +467,7 @@ nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module(
     nbp_mt_scheduler_rule_t rule;
 
     rule.ruleType   = ruleType;
-    rule.dataType   = NBP_MT_SCHEDULER_RULE_DATA_TYPE_MODULE;
+    rule.dataType   = NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_MODULE;
     rule.module     = module;
 
     return rule;
@@ -476,7 +479,7 @@ nbp_mt_scheduler_rule_t nbp_mt_scheduler_create_empty_rule(
     nbp_mt_scheduler_rule_t rule;
 
     rule.ruleType   = ruleType;
-    rule.dataType   = NBP_MT_SCHEDULER_RULE_DATA_TYPE_EMPTY;
+    rule.dataType   = NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_EMPTY;
     rule.test       = NBP_MEMORY_NULL_POINTER;
 
     return rule;
@@ -895,20 +898,20 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
 
     for (index = 0; index < ctx->numberOfRules; index++) {
         rule = &ctx->rules[index];
-        if (rule->dataType == NBP_MT_SCHEDULER_RULE_DATA_TYPE_TEST) {
+        if (rule->dataType == NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_TEST) {
             ruleDataTestId = NBP_TEST_GET_ID(rule->test);
 
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_AFTER) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_AFTER) {
                 nbp_mt_scheduler_add_pending_test_to_test(ruleDataTestId, testId);
                 continue;
             }
 
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_BEFORE) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_BEFORE) {
                 nbp_mt_scheduler_add_pending_test_to_test(testId, ruleDataTestId);
                 continue;
             }
 
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD) {
                 nbp_mt_scheduler_set_test_on_same_thread_with_test(testId, ruleDataTestId);
                 continue;
             }
@@ -920,18 +923,18 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
             NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
 
-        if (rule->dataType == NBP_MT_SCHEDULER_RULE_DATA_TYPE_MODULE) {
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_AFTER) {
+        if (rule->dataType == NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_MODULE) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_AFTER) {
                 nbp_mt_scheduler_add_pending_module_to_test(rule->module, testId);
                 continue;
             }
 
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_BEFORE) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_BEFORE) {
                 nbp_mt_scheduler_add_pending_test_to_module(testId, rule->module);
                 continue;
             }
 
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD) {
                 nbp_mt_scheduler_set_module_on_same_thread_with_test(rule->module, testId);
                 continue;
             }
@@ -960,20 +963,20 @@ static void nbp_mt_scheduler_processing_module_context(
 
     for (index = 0; index < ctx->numberOfRules; index++) {
         rule = &ctx->rules[index];
-        if (rule->dataType == NBP_MT_SCHEDULER_RULE_DATA_TYPE_TEST) {
+        if (rule->dataType == NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_TEST) {
             ruleDataTestId = NBP_TEST_GET_ID(rule->test);
 
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_AFTER) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_AFTER) {
                 nbp_mt_scheduler_add_pending_test_to_module(ruleDataTestId, module);
                 continue;
             }
 
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_BEFORE) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_BEFORE) {
                 nbp_mt_scheduler_add_pending_module_to_test(module, ruleDataTestId);
                 continue;
             }
 
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD) {
                 nbp_mt_scheduler_set_module_on_same_thread_with_test(module, ruleDataTestId);
                 continue;
             }
@@ -985,18 +988,18 @@ static void nbp_mt_scheduler_processing_module_context(
             NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
 
-        if (rule->dataType == NBP_MT_SCHEDULER_RULE_DATA_TYPE_MODULE) {
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_AFTER) {
+        if (rule->dataType == NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_MODULE) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_AFTER) {
                 nbp_mt_scheduler_add_pending_module_to_module(rule->module, module);
                 continue;
             }
 
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_BEFORE) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_BEFORE) {
                 nbp_mt_scheduler_add_pending_module_to_module(module, rule->module);
                 continue;
             }
 
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD) {
                 nbp_mt_scheduler_set_module_on_same_thread_with_module(module, rule->module);
                 continue;
             }
@@ -1008,8 +1011,8 @@ static void nbp_mt_scheduler_processing_module_context(
             NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
 
-        if (rule->dataType == NBP_MT_SCHEDULER_RULE_DATA_TYPE_EMPTY) {
-            if (rule->ruleType == NBP_MT_SCHEDULER_RULE_TYPE_SAME_THREAD) {
+        if (rule->dataType == NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_EMPTY) {
+            if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD) {
                 nbp_mt_scheduler_set_module_on_same_thread(module);
                 continue;
             }
