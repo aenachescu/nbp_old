@@ -30,6 +30,14 @@ SOFTWARE.
 
 static unsigned int nbpTotalNumberOfModules = 0;
 
+NBP_SETUP_MODULE(nbp_empty_setup_func)
+{
+}
+
+NBP_TEARDOWN_MODULE(nbp_empty_teardown_func)
+{
+}
+
 static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
     nbp_module_details_t* parent)
 {
@@ -53,6 +61,18 @@ static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
     if (errCode != NBP_NO_ERROR) {
         NBP_HANDLE_ERROR(errCode);
         NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+    }
+
+    nbp_setup_module_pfn_t emptyModuleSetup =
+        NBP_PRIVATE_PP_CONCAT(nbp_setup_module_, nbp_empty_setup_func);
+    if (module->setup == emptyModuleSetup) {
+        module->setup = NBP_MEMORY_NULL_POINTER;
+    }
+
+    nbp_teardown_module_pfn_t emptyModuleTeardown =
+        NBP_PRIVATE_PP_CONCAT(nbp_teardown_module_, nbp_empty_teardown_func);
+    if (module->teardown == emptyModuleTeardown) {
+        module->teardown = NBP_MEMORY_NULL_POINTER;
     }
 
     module->moduleId = nbpTotalNumberOfTests;
@@ -147,14 +167,6 @@ void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
     nbp_module_update_stats(module);
 
     nbp_printer_notify_after_scheduling_module(module);
-}
-
-NBP_SETUP_MODULE(nbp_empty_setup_func)
-{
-}
-
-NBP_TEARDOWN_MODULE(nbp_empty_teardown_func)
-{
 }
 
 #endif // end if NBP_PRIVATE_IMPL_MODULE_H
