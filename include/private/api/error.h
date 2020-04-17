@@ -32,18 +32,18 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_HANDLE_ERROR(errCode)                                              \
-    nbp_notify_printer_handle_error(errCode)
+    nbp_printer_notify_handle_error(errCode)
 
 /*
  * TODO: add docs
  */
 #define NBP_HANDLE_ERROR_CTX_STRING(errCode, str)                              \
-    nbp_notify_printer_handle_error_ctx_string(errCode, str)
+    nbp_printer_notify_handle_error_ctx_string(errCode, str)
 /*
  * TODO: add docs
  */
 #define NBP_HANDLE_ERROR_CTX_CUSTOM(errCode, ctx)                              \
-    nbp_notify_printer_handle_error_ctx_custom(errCode, ctx)
+    nbp_printer_notify_handle_error_ctx_custom(errCode, ctx)
 
 /*
  * TODO: add docs

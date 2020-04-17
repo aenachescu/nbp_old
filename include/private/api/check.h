@@ -41,7 +41,7 @@ SOFTWARE.
 #define NBP_PRIVATE_CHECK_BASE(cond, failMsg, passMsg)                         \
     if (cond) {                                                                \
         NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numPassed, 1);             \
-        nbp_notify_printer_check_result(                                       \
+        nbp_printer_notify_check_result(                                       \
             test,                                                              \
             #cond,                                                             \
             NBP_CHECK_STATUS_PASSED,                                           \
@@ -51,7 +51,7 @@ SOFTWARE.
         );                                                                     \
     } else {                                                                   \
         NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numFailed, 1);             \
-        nbp_notify_printer_check_result(                                       \
+        nbp_printer_notify_check_result(                                       \
             test,                                                              \
             #cond,                                                             \
             NBP_CHECK_STATUS_FAILED,                                           \
@@ -64,7 +64,7 @@ SOFTWARE.
 #define NBP_PRIVATE_CHECK_OP_BASE(a, b, op, printerOp, failMsg, passMsg)       \
     if (a op b) {                                                              \
         NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numPassed, 1);             \
-        nbp_notify_printer_check_op_result(                                    \
+        nbp_printer_notify_check_op_result(                                    \
             test,                                                              \
             #a,                                                                \
             #b,                                                                \
@@ -76,7 +76,7 @@ SOFTWARE.
         );                                                                     \
     } else {                                                                   \
         NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numFailed, 1);             \
-        nbp_notify_printer_check_op_result(                                    \
+        nbp_printer_notify_check_op_result(                                    \
             test,                                                              \
             #a,                                                                \
             #b,                                                                \
@@ -88,9 +88,9 @@ SOFTWARE.
         );                                                                     \
     }
 
-#define NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(type)                         \
+#define NBP_PRIVATE_PRINTER_NOTIFY_CHECK_TYPE_OP(type)                         \
     NBP_PRIVATE_PP_CONCAT(                                                     \
-        NBP_PRIVATE_PP_CONCAT(nbp_notify_printer_check_, type),                \
+        NBP_PRIVATE_PP_CONCAT(nbp_printer_notify_check_, type),                \
         _op_result                                                             \
     )
 
@@ -100,7 +100,7 @@ SOFTWARE.
         type tmpA = a, tmpB = b;                                               \
         if (tmpA op tmpB) {                                                    \
             NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numPassed, 1);         \
-            NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(typeStr)(                 \
+            NBP_PRIVATE_PRINTER_NOTIFY_CHECK_TYPE_OP(typeStr)(                 \
                 test,                                                          \
                 tmpA,                                                          \
                 tmpB,                                                          \
@@ -112,7 +112,7 @@ SOFTWARE.
             );                                                                 \
         } else {                                                               \
             NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->checks.numFailed, 1);         \
-            NBP_PRIVATE_NOTIFY_PRINTER_CHECK_TYPE_OP(typeStr)(                 \
+            NBP_PRIVATE_PRINTER_NOTIFY_CHECK_TYPE_OP(typeStr)(                 \
                 test,                                                          \
                 tmpA,                                                          \
                 tmpB,                                                          \

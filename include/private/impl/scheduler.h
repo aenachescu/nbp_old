@@ -408,7 +408,7 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
         nbp_scheduler_update_module_state(module);
         nbp_scheduler_update_parent_stats(module);
 
-        nbp_notify_printer_module_completed(module);
+        nbp_printer_notify_module_completed(module);
 
         errCode = NBP_EVENT_UNINIT(module->runEvent);
         if (errCode != NBP_NO_ERROR) {
@@ -460,7 +460,7 @@ static void nbp_scheduler_skip_module(nbp_module_details_t* module)
 
 static void nbp_scheduler_run_test_running(nbp_test_details_t* test)
 {
-    nbp_notify_printer_test_started(test);
+    nbp_printer_notify_test_started(test);
 
     if (test->testSetupFunc) {
         test->testSetupFunc(test);
@@ -481,12 +481,12 @@ static void nbp_scheduler_run_test_running(nbp_test_details_t* test)
     nbp_scheduler_update_test_state(test);
     nbp_scheduler_update_module_stats(test);
 
-    nbp_notify_printer_test_completed(test);
+    nbp_printer_notify_test_completed(test);
 }
 
 static void nbp_scheduler_run_test_skipped(nbp_test_details_t* test)
 {
-    nbp_notify_printer_test_started(test);
+    nbp_printer_notify_test_started(test);
 
     unsigned int oldVal = NBP_ATOMIC_UINT_CAS(
         &test->testState,
@@ -503,7 +503,7 @@ static void nbp_scheduler_run_test_skipped(nbp_test_details_t* test)
 
     NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numSkipped, 1);
 
-    nbp_notify_printer_test_completed(test);
+    nbp_printer_notify_test_completed(test);
 }
 
 static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
@@ -538,7 +538,7 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
             NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
         }
 
-        nbp_notify_printer_module_started(module);
+        nbp_printer_notify_module_started(module);
 
         NBP_ERROR_TYPE errCode = NBP_SIGNAL_EVENT(module->runEvent);
         if (errCode != NBP_NO_ERROR) {

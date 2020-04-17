@@ -49,7 +49,7 @@ const char* nbp_printer_operator_to_string(int op)
     return "unknown";
 }
 
-void nbp_notify_printer_handle_error(int errCode)
+void nbp_printer_notify_handle_error(int errCode)
 {
     nbp_error_t err;
 
@@ -64,7 +64,7 @@ void nbp_notify_printer_handle_error(int errCode)
     }
 }
 
-void nbp_notify_printer_handle_error_ctx_string(int errCode, const char* ctx)
+void nbp_printer_notify_handle_error_ctx_string(int errCode, const char* ctx)
 {
     nbp_error_t err;
 
@@ -79,7 +79,7 @@ void nbp_notify_printer_handle_error_ctx_string(int errCode, const char* ctx)
     }
 }
 
-void nbp_notify_printer_handle_error_ctx_custom(int errCode, void* ctx)
+void nbp_printer_notify_handle_error_ctx_custom(int errCode, void* ctx)
 {
     nbp_error_t err;
 
@@ -94,7 +94,7 @@ void nbp_notify_printer_handle_error_ctx_custom(int errCode, void* ctx)
     }
 }
 
-void nbp_notify_printer_test_started(nbp_test_details_t* test)
+void nbp_printer_notify_test_started(nbp_test_details_t* test)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->testStarted != NBP_MEMORY_NULL_POINTER) {
@@ -103,7 +103,7 @@ void nbp_notify_printer_test_started(nbp_test_details_t* test)
     }
 }
 
-void nbp_notify_printer_test_completed(nbp_test_details_t* test)
+void nbp_printer_notify_test_completed(nbp_test_details_t* test)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->testCompleted != NBP_MEMORY_NULL_POINTER) {
@@ -112,7 +112,7 @@ void nbp_notify_printer_test_completed(nbp_test_details_t* test)
     }
 }
 
-void nbp_notify_printer_module_started(nbp_module_details_t* module)
+void nbp_printer_notify_module_started(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->moduleStarted != NBP_MEMORY_NULL_POINTER) {
@@ -121,7 +121,7 @@ void nbp_notify_printer_module_started(nbp_module_details_t* module)
     }
 }
 
-void nbp_notify_printer_module_completed(nbp_module_details_t* module)
+void nbp_printer_notify_module_completed(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->moduleCompleted != NBP_MEMORY_NULL_POINTER) {
@@ -130,7 +130,7 @@ void nbp_notify_printer_module_completed(nbp_module_details_t* module)
     }
 }
 
-void nbp_notify_printer_before_run(unsigned int modulesNum,
+void nbp_printer_notify_before_run(unsigned int modulesNum,
     unsigned int testsNum)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
@@ -140,7 +140,7 @@ void nbp_notify_printer_before_run(unsigned int modulesNum,
     }
 }
 
-void nbp_notify_printer_after_run(unsigned int passedModulesNum,
+void nbp_printer_notify_after_run(unsigned int passedModulesNum,
     unsigned int failedModulesNum, unsigned int skippedModulesNum,
     unsigned int passedTestsNum, unsigned int failedTestsNum,
     unsigned int skippedTestsNum, unsigned int checksNum,
@@ -177,7 +177,7 @@ void nbp_notify_printer_after_run(unsigned int passedModulesNum,
     }
 }
 
-void nbp_notify_printer_scheduling_test(nbp_test_details_t* test)
+void nbp_printer_notify_scheduling_test(nbp_test_details_t* test)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->schedulingTest != NBP_MEMORY_NULL_POINTER) {
@@ -186,7 +186,7 @@ void nbp_notify_printer_scheduling_test(nbp_test_details_t* test)
     }
 }
 
-void nbp_notify_printer_before_scheduling_module(nbp_module_details_t* module)
+void nbp_printer_notify_before_scheduling_module(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->beforeSchedulingModule != NBP_MEMORY_NULL_POINTER) {
@@ -195,7 +195,7 @@ void nbp_notify_printer_before_scheduling_module(nbp_module_details_t* module)
     }
 }
 
-void nbp_notify_printer_after_scheduling_module(nbp_module_details_t* module)
+void nbp_printer_notify_after_scheduling_module(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->afterSchedulingModule != NBP_MEMORY_NULL_POINTER) {
@@ -204,7 +204,7 @@ void nbp_notify_printer_after_scheduling_module(nbp_module_details_t* module)
     }
 }
 
-void nbp_notify_printer_check_result(nbp_test_details_t* test, const char* cond,
+void nbp_printer_notify_check_result(nbp_test_details_t* test, const char* cond,
     int passed, int line, const char* failMsg, const char* passMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
@@ -221,7 +221,7 @@ void nbp_notify_printer_check_result(nbp_test_details_t* test, const char* cond,
     }
 }
 
-void nbp_notify_printer_check_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_check_op_result(nbp_test_details_t* test,
     const char* a, const char* b, int op, int passed, int line,
     const char* failMsg, const char* passMsg )
 {
@@ -241,7 +241,7 @@ void nbp_notify_printer_check_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_check_char_op_result(nbp_test_details_t* test, char a,
+void nbp_printer_notify_check_char_op_result(nbp_test_details_t* test, char a,
     char b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -261,7 +261,7 @@ void nbp_notify_printer_check_char_op_result(nbp_test_details_t* test, char a,
     }
 }
 
-void nbp_notify_printer_check_short_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_check_short_op_result(nbp_test_details_t* test,
     short int a, short int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -281,7 +281,7 @@ void nbp_notify_printer_check_short_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_check_ushort_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_check_ushort_op_result(nbp_test_details_t* test,
     unsigned short int a, unsigned short int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -301,7 +301,7 @@ void nbp_notify_printer_check_ushort_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_check_int_op_result(nbp_test_details_t* test, int a,
+void nbp_printer_notify_check_int_op_result(nbp_test_details_t* test, int a,
     int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -321,7 +321,7 @@ void nbp_notify_printer_check_int_op_result(nbp_test_details_t* test, int a,
     }
 }
 
-void nbp_notify_printer_check_uint_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_check_uint_op_result(nbp_test_details_t* test,
     unsigned int a, unsigned int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -341,7 +341,7 @@ void nbp_notify_printer_check_uint_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_check_long_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_check_long_op_result(nbp_test_details_t* test,
     long int a, long int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -361,7 +361,7 @@ void nbp_notify_printer_check_long_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_check_ulong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_check_ulong_op_result(nbp_test_details_t* test,
     unsigned long int a, unsigned long int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -381,7 +381,7 @@ void nbp_notify_printer_check_ulong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_check_llong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_check_llong_op_result(nbp_test_details_t* test,
     long long int a, long long int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -401,7 +401,7 @@ void nbp_notify_printer_check_llong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_check_ullong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_check_ullong_op_result(nbp_test_details_t* test,
     unsigned long long int a, unsigned long long int b, int op, int passed,
     int line, const char* failMsg, const char* passMsg)
 {
@@ -421,7 +421,7 @@ void nbp_notify_printer_check_ullong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_check_float_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_check_float_op_result(nbp_test_details_t* test,
     float a, float b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -441,7 +441,7 @@ void nbp_notify_printer_check_float_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_check_double_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_check_double_op_result(nbp_test_details_t* test,
     double a, double b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -461,7 +461,7 @@ void nbp_notify_printer_check_double_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_check_ldouble_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_check_ldouble_op_result(nbp_test_details_t* test,
     long double a, long double b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -481,7 +481,7 @@ void nbp_notify_printer_check_ldouble_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_test_assert_result(nbp_test_details_t* test, const char* cond,
+void nbp_printer_notify_test_assert_result(nbp_test_details_t* test, const char* cond,
     int passed, int line, const char* failMsg, const char* passMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
@@ -498,7 +498,7 @@ void nbp_notify_printer_test_assert_result(nbp_test_details_t* test, const char*
     }
 }
 
-void nbp_notify_printer_test_assert_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_test_assert_op_result(nbp_test_details_t* test,
     const char* a, const char* b, int op, int passed, int line,
     const char* failMsg, const char* passMsg )
 {
@@ -518,7 +518,7 @@ void nbp_notify_printer_test_assert_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_test_assert_char_op_result(nbp_test_details_t* test, char a,
+void nbp_printer_notify_test_assert_char_op_result(nbp_test_details_t* test, char a,
     char b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -538,7 +538,7 @@ void nbp_notify_printer_test_assert_char_op_result(nbp_test_details_t* test, cha
     }
 }
 
-void nbp_notify_printer_test_assert_short_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_test_assert_short_op_result(nbp_test_details_t* test,
     short int a, short int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -558,7 +558,7 @@ void nbp_notify_printer_test_assert_short_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_test_assert_ushort_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_test_assert_ushort_op_result(nbp_test_details_t* test,
     unsigned short int a, unsigned short int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -578,7 +578,7 @@ void nbp_notify_printer_test_assert_ushort_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_test_assert_int_op_result(nbp_test_details_t* test, int a,
+void nbp_printer_notify_test_assert_int_op_result(nbp_test_details_t* test, int a,
     int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -598,7 +598,7 @@ void nbp_notify_printer_test_assert_int_op_result(nbp_test_details_t* test, int 
     }
 }
 
-void nbp_notify_printer_test_assert_uint_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_test_assert_uint_op_result(nbp_test_details_t* test,
     unsigned int a, unsigned int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -618,7 +618,7 @@ void nbp_notify_printer_test_assert_uint_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_test_assert_long_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_test_assert_long_op_result(nbp_test_details_t* test,
     long int a, long int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -638,7 +638,7 @@ void nbp_notify_printer_test_assert_long_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_test_assert_ulong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_test_assert_ulong_op_result(nbp_test_details_t* test,
     unsigned long int a, unsigned long int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -658,7 +658,7 @@ void nbp_notify_printer_test_assert_ulong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_test_assert_llong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_test_assert_llong_op_result(nbp_test_details_t* test,
     long long int a, long long int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -678,7 +678,7 @@ void nbp_notify_printer_test_assert_llong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_test_assert_ullong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_test_assert_ullong_op_result(nbp_test_details_t* test,
     unsigned long long int a, unsigned long long int b, int op, int passed,
     int line, const char* failMsg, const char* passMsg)
 {
@@ -698,7 +698,7 @@ void nbp_notify_printer_test_assert_ullong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_test_assert_float_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_test_assert_float_op_result(nbp_test_details_t* test,
     float a, float b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -718,7 +718,7 @@ void nbp_notify_printer_test_assert_float_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_test_assert_double_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_test_assert_double_op_result(nbp_test_details_t* test,
     double a, double b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -738,7 +738,7 @@ void nbp_notify_printer_test_assert_double_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_test_assert_ldouble_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_test_assert_ldouble_op_result(nbp_test_details_t* test,
     long double a, long double b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -758,7 +758,7 @@ void nbp_notify_printer_test_assert_ldouble_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_result(nbp_test_details_t* test,
     const char* cond, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -776,7 +776,7 @@ void nbp_notify_printer_module_assert_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_op_result(nbp_test_details_t* test,
     const char* a, const char* b, int op, int passed, int line,
     const char* failMsg, const char* passMsg )
 {
@@ -796,7 +796,7 @@ void nbp_notify_printer_module_assert_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_char_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_char_op_result(nbp_test_details_t* test,
     char a, char b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -816,7 +816,7 @@ void nbp_notify_printer_module_assert_char_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_short_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_short_op_result(nbp_test_details_t* test,
     short int a, short int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -836,7 +836,7 @@ void nbp_notify_printer_module_assert_short_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_ushort_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_ushort_op_result(nbp_test_details_t* test,
     unsigned short int a, unsigned short int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -856,7 +856,7 @@ void nbp_notify_printer_module_assert_ushort_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_int_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_int_op_result(nbp_test_details_t* test,
     int a, int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -876,7 +876,7 @@ void nbp_notify_printer_module_assert_int_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_uint_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_uint_op_result(nbp_test_details_t* test,
     unsigned int a, unsigned int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -896,7 +896,7 @@ void nbp_notify_printer_module_assert_uint_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_long_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_long_op_result(nbp_test_details_t* test,
     long int a, long int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -916,7 +916,7 @@ void nbp_notify_printer_module_assert_long_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_ulong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_ulong_op_result(nbp_test_details_t* test,
     unsigned long int a, unsigned long int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -936,7 +936,7 @@ void nbp_notify_printer_module_assert_ulong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_llong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_llong_op_result(nbp_test_details_t* test,
     long long int a, long long int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -956,7 +956,7 @@ void nbp_notify_printer_module_assert_llong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_ullong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_ullong_op_result(nbp_test_details_t* test,
     unsigned long long int a, unsigned long long int b, int op, int passed,
     int line, const char* failMsg, const char* passMsg)
 {
@@ -976,7 +976,7 @@ void nbp_notify_printer_module_assert_ullong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_float_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_float_op_result(nbp_test_details_t* test,
     float a, float b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -996,7 +996,7 @@ void nbp_notify_printer_module_assert_float_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_double_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_module_assert_double_op_result(nbp_test_details_t* test,
     double a, double b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -1016,7 +1016,7 @@ void nbp_notify_printer_module_assert_double_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_module_assert_ldouble_op_result(
+void nbp_printer_notify_module_assert_ldouble_op_result(
     nbp_test_details_t* test, long double a, long double b, int op, int passed,
     int line, const char* failMsg, const char* passMsg)
 {
@@ -1036,7 +1036,7 @@ void nbp_notify_printer_module_assert_ldouble_op_result(
     }
 }
 
-void nbp_notify_printer_assert_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_result(nbp_test_details_t* test,
     const char* cond, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -1054,7 +1054,7 @@ void nbp_notify_printer_assert_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_assert_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_op_result(nbp_test_details_t* test,
     const char* a, const char* b, int op, int passed, int line,
     const char* failMsg, const char* passMsg )
 {
@@ -1074,7 +1074,7 @@ void nbp_notify_printer_assert_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_assert_char_op_result(nbp_test_details_t* test, char a,
+void nbp_printer_notify_assert_char_op_result(nbp_test_details_t* test, char a,
     char b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -1094,7 +1094,7 @@ void nbp_notify_printer_assert_char_op_result(nbp_test_details_t* test, char a,
     }
 }
 
-void nbp_notify_printer_assert_short_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_short_op_result(nbp_test_details_t* test,
     short int a, short int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -1114,7 +1114,7 @@ void nbp_notify_printer_assert_short_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_assert_ushort_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_ushort_op_result(nbp_test_details_t* test,
     unsigned short int a, unsigned short int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -1134,7 +1134,7 @@ void nbp_notify_printer_assert_ushort_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_assert_int_op_result(nbp_test_details_t* test, int a,
+void nbp_printer_notify_assert_int_op_result(nbp_test_details_t* test, int a,
     int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -1154,7 +1154,7 @@ void nbp_notify_printer_assert_int_op_result(nbp_test_details_t* test, int a,
     }
 }
 
-void nbp_notify_printer_assert_uint_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_uint_op_result(nbp_test_details_t* test,
     unsigned int a, unsigned int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -1174,7 +1174,7 @@ void nbp_notify_printer_assert_uint_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_assert_long_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_long_op_result(nbp_test_details_t* test,
     long int a, long int b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -1194,7 +1194,7 @@ void nbp_notify_printer_assert_long_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_assert_ulong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_ulong_op_result(nbp_test_details_t* test,
     unsigned long int a, unsigned long int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -1214,7 +1214,7 @@ void nbp_notify_printer_assert_ulong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_assert_llong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_llong_op_result(nbp_test_details_t* test,
     long long int a, long long int b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {
@@ -1234,7 +1234,7 @@ void nbp_notify_printer_assert_llong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_assert_ullong_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_ullong_op_result(nbp_test_details_t* test,
     unsigned long long int a, unsigned long long int b, int op, int passed,
     int line, const char* failMsg, const char* passMsg)
 {
@@ -1254,7 +1254,7 @@ void nbp_notify_printer_assert_ullong_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_assert_float_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_float_op_result(nbp_test_details_t* test,
     float a, float b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -1274,7 +1274,7 @@ void nbp_notify_printer_assert_float_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_assert_double_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_double_op_result(nbp_test_details_t* test,
     double a, double b, int op, int passed, int line, const char* failMsg,
     const char* passMsg)
 {
@@ -1294,7 +1294,7 @@ void nbp_notify_printer_assert_double_op_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_notify_printer_assert_ldouble_op_result(nbp_test_details_t* test,
+void nbp_printer_notify_assert_ldouble_op_result(nbp_test_details_t* test,
     long double a, long double b, int op, int passed, int line,
     const char* failMsg, const char* passMsg)
 {

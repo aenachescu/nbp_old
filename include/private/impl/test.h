@@ -78,7 +78,7 @@ void nbp_test_run(nbp_test_details_t* test, nbp_module_details_t* module,
         return;
     }
 
-    nbp_notify_printer_scheduling_test(test);
+    nbp_printer_notify_scheduling_test(test);
     nbpSchedulerInterface->addTest(test);
 }
 
@@ -96,7 +96,7 @@ void nbp_test_run_ctx(nbp_test_details_t* test, void* ctx,
         return;
     }
 
-    nbp_notify_printer_scheduling_test(test);
+    nbp_printer_notify_scheduling_test(test);
     nbpSchedulerInterface->addTestCtx(test, ctx);
 }
 

@@ -32,42 +32,42 @@ const char* nbp_printer_operator_to_string(
     int
 );
 
-void nbp_notify_printer_test_started(
+void nbp_printer_notify_test_started(
     nbp_test_details_t* /* current test */
 );
 
-void nbp_notify_printer_test_completed(
+void nbp_printer_notify_test_completed(
     nbp_test_details_t* /* current test */
 );
 
-void nbp_notify_printer_module_started(
+void nbp_printer_notify_module_started(
     nbp_module_details_t* /* current module */
 );
 
-void nbp_notify_printer_module_completed(
+void nbp_printer_notify_module_completed(
     nbp_module_details_t* /* current module */
 );
 
-void nbp_notify_printer_handle_error(
+void nbp_printer_notify_handle_error(
     int /* error code */
 );
 
-void nbp_notify_printer_handle_error_ctx_string(
+void nbp_printer_notify_handle_error_ctx_string(
     int, /* error code */
     const char* /* error context */
 );
 
-void nbp_notify_printer_handle_error_ctx_custom(
+void nbp_printer_notify_handle_error_ctx_custom(
     int, /* error code */
     void* /* error context */
 );
 
-void nbp_notify_printer_before_run(
+void nbp_printer_notify_before_run(
     unsigned int, /* num of modules */
     unsigned int  /* num of tests   */
 );
 
-void nbp_notify_printer_after_run(
+void nbp_printer_notify_after_run(
     unsigned int, /* num of passed  modules             */
     unsigned int, /* num of failed  modules             */
     unsigned int, /* num of skipped modules             */
@@ -88,19 +88,19 @@ void nbp_notify_printer_after_run(
     unsigned int  /* num of failed  asserts             */
 );
 
-void nbp_notify_printer_scheduling_test(
+void nbp_printer_notify_scheduling_test(
     nbp_test_details_t* /* current test */
 );
 
-void nbp_notify_printer_before_scheduling_module(
+void nbp_printer_notify_before_scheduling_module(
     nbp_module_details_t* /* current module */
 );
 
-void nbp_notify_printer_after_scheduling_module(
+void nbp_printer_notify_after_scheduling_module(
     nbp_module_details_t* /* current module */
 );
 
-void nbp_notify_printer_check_result(
+void nbp_printer_notify_check_result(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
     int, /* status */
@@ -109,7 +109,7 @@ void nbp_notify_printer_check_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_op_result(
+void nbp_printer_notify_check_op_result(
     nbp_test_details_t*, /* current test */
     const char*, /* first value */
     const char*, /* second value */
@@ -120,7 +120,7 @@ void nbp_notify_printer_check_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_char_op_result(
+void nbp_printer_notify_check_char_op_result(
     nbp_test_details_t*, /* current test */
     char, /* first value */
     char, /* second value */
@@ -131,7 +131,7 @@ void nbp_notify_printer_check_char_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_short_op_result(
+void nbp_printer_notify_check_short_op_result(
     nbp_test_details_t*, /* current test */
     short int, /* first value */
     short int, /* second value */
@@ -142,7 +142,7 @@ void nbp_notify_printer_check_short_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_ushort_op_result(
+void nbp_printer_notify_check_ushort_op_result(
     nbp_test_details_t*, /* current test */
     unsigned short int, /* first value */
     unsigned short int, /* second value */
@@ -153,7 +153,7 @@ void nbp_notify_printer_check_ushort_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_int_op_result(
+void nbp_printer_notify_check_int_op_result(
     nbp_test_details_t*, /* current test */
     int, /* first value */
     int, /* second value */
@@ -164,7 +164,7 @@ void nbp_notify_printer_check_int_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_uint_op_result(
+void nbp_printer_notify_check_uint_op_result(
     nbp_test_details_t*, /* current test */
     unsigned int, /* first value */
     unsigned int, /* second value */
@@ -175,7 +175,7 @@ void nbp_notify_printer_check_uint_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_long_op_result(
+void nbp_printer_notify_check_long_op_result(
     nbp_test_details_t*, /* current test */
     long int, /* first value */
     long int, /* second value */
@@ -186,7 +186,7 @@ void nbp_notify_printer_check_long_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_ulong_op_result(
+void nbp_printer_notify_check_ulong_op_result(
     nbp_test_details_t*, /* current test */
     unsigned long int, /* first value */
     unsigned long int, /* second value */
@@ -197,7 +197,7 @@ void nbp_notify_printer_check_ulong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_llong_op_result(
+void nbp_printer_notify_check_llong_op_result(
     nbp_test_details_t*, /* current test */
     long long int, /* first value */
     long long int, /* second value */
@@ -208,7 +208,7 @@ void nbp_notify_printer_check_llong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_ullong_op_result(
+void nbp_printer_notify_check_ullong_op_result(
     nbp_test_details_t*, /* current test */
     unsigned long long int, /* first value */
     unsigned long long int, /* second value */
@@ -219,7 +219,7 @@ void nbp_notify_printer_check_ullong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_float_op_result(
+void nbp_printer_notify_check_float_op_result(
     nbp_test_details_t*, /* current test */
     float, /* first value */
     float, /* second value */
@@ -230,7 +230,7 @@ void nbp_notify_printer_check_float_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_double_op_result(
+void nbp_printer_notify_check_double_op_result(
     nbp_test_details_t*, /* current test */
     double, /* first value */
     double, /* second value */
@@ -241,7 +241,7 @@ void nbp_notify_printer_check_double_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_check_ldouble_op_result(
+void nbp_printer_notify_check_ldouble_op_result(
     nbp_test_details_t*, /* current test */
     long double, /* first value */
     long double, /* second value */
@@ -252,7 +252,7 @@ void nbp_notify_printer_check_ldouble_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_result(
+void nbp_printer_notify_test_assert_result(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
     int, /* status */
@@ -261,7 +261,7 @@ void nbp_notify_printer_test_assert_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_op_result(
+void nbp_printer_notify_test_assert_op_result(
     nbp_test_details_t*, /* current test */
     const char*, /* first value */
     const char*, /* second value */
@@ -272,7 +272,7 @@ void nbp_notify_printer_test_assert_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_char_op_result(
+void nbp_printer_notify_test_assert_char_op_result(
     nbp_test_details_t*, /* current test */
     char, /* first value */
     char, /* second value */
@@ -283,7 +283,7 @@ void nbp_notify_printer_test_assert_char_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_short_op_result(
+void nbp_printer_notify_test_assert_short_op_result(
     nbp_test_details_t*, /* current test */
     short int, /* first value */
     short int, /* second value */
@@ -294,7 +294,7 @@ void nbp_notify_printer_test_assert_short_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_ushort_op_result(
+void nbp_printer_notify_test_assert_ushort_op_result(
     nbp_test_details_t*, /* current test */
     unsigned short int, /* first value */
     unsigned short int, /* second value */
@@ -305,7 +305,7 @@ void nbp_notify_printer_test_assert_ushort_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_int_op_result(
+void nbp_printer_notify_test_assert_int_op_result(
     nbp_test_details_t*, /* current test */
     int, /* first value */
     int, /* second value */
@@ -316,7 +316,7 @@ void nbp_notify_printer_test_assert_int_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_uint_op_result(
+void nbp_printer_notify_test_assert_uint_op_result(
     nbp_test_details_t*, /* current test */
     unsigned int, /* first value */
     unsigned int, /* second value */
@@ -327,7 +327,7 @@ void nbp_notify_printer_test_assert_uint_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_long_op_result(
+void nbp_printer_notify_test_assert_long_op_result(
     nbp_test_details_t*, /* current test */
     long int, /* first value */
     long int, /* second value */
@@ -338,7 +338,7 @@ void nbp_notify_printer_test_assert_long_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_ulong_op_result(
+void nbp_printer_notify_test_assert_ulong_op_result(
     nbp_test_details_t*, /* current test */
     unsigned long int, /* first value */
     unsigned long int, /* second value */
@@ -349,7 +349,7 @@ void nbp_notify_printer_test_assert_ulong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_llong_op_result(
+void nbp_printer_notify_test_assert_llong_op_result(
     nbp_test_details_t*, /* current test */
     long long int, /* first value */
     long long int, /* second value */
@@ -360,7 +360,7 @@ void nbp_notify_printer_test_assert_llong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_ullong_op_result(
+void nbp_printer_notify_test_assert_ullong_op_result(
     nbp_test_details_t*, /* current test */
     unsigned long long int, /* first value */
     unsigned long long int, /* second value */
@@ -371,7 +371,7 @@ void nbp_notify_printer_test_assert_ullong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_float_op_result(
+void nbp_printer_notify_test_assert_float_op_result(
     nbp_test_details_t*, /* current test */
     float, /* first value */
     float, /* second value */
@@ -382,7 +382,7 @@ void nbp_notify_printer_test_assert_float_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_double_op_result(
+void nbp_printer_notify_test_assert_double_op_result(
     nbp_test_details_t*, /* current test */
     double, /* first value */
     double, /* second value */
@@ -393,7 +393,7 @@ void nbp_notify_printer_test_assert_double_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_test_assert_ldouble_op_result(
+void nbp_printer_notify_test_assert_ldouble_op_result(
     nbp_test_details_t*, /* current test */
     long double, /* first value */
     long double, /* second value */
@@ -404,7 +404,7 @@ void nbp_notify_printer_test_assert_ldouble_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_result(
+void nbp_printer_notify_module_assert_result(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
     int, /* status */
@@ -413,7 +413,7 @@ void nbp_notify_printer_module_assert_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_op_result(
+void nbp_printer_notify_module_assert_op_result(
     nbp_test_details_t*, /* current test */
     const char*, /* first value */
     const char*, /* second value */
@@ -424,7 +424,7 @@ void nbp_notify_printer_module_assert_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_char_op_result(
+void nbp_printer_notify_module_assert_char_op_result(
     nbp_test_details_t*, /* current test */
     char, /* first value */
     char, /* second value */
@@ -435,7 +435,7 @@ void nbp_notify_printer_module_assert_char_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_short_op_result(
+void nbp_printer_notify_module_assert_short_op_result(
     nbp_test_details_t*, /* current test */
     short int, /* first value */
     short int, /* second value */
@@ -446,7 +446,7 @@ void nbp_notify_printer_module_assert_short_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_ushort_op_result(
+void nbp_printer_notify_module_assert_ushort_op_result(
     nbp_test_details_t*, /* current test */
     unsigned short int, /* first value */
     unsigned short int, /* second value */
@@ -457,7 +457,7 @@ void nbp_notify_printer_module_assert_ushort_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_int_op_result(
+void nbp_printer_notify_module_assert_int_op_result(
     nbp_test_details_t*, /* current test */
     int, /* first value */
     int, /* second value */
@@ -468,7 +468,7 @@ void nbp_notify_printer_module_assert_int_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_uint_op_result(
+void nbp_printer_notify_module_assert_uint_op_result(
     nbp_test_details_t*, /* current test */
     unsigned int, /* first value */
     unsigned int, /* second value */
@@ -479,7 +479,7 @@ void nbp_notify_printer_module_assert_uint_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_long_op_result(
+void nbp_printer_notify_module_assert_long_op_result(
     nbp_test_details_t*, /* current test */
     long int, /* first value */
     long int, /* second value */
@@ -490,7 +490,7 @@ void nbp_notify_printer_module_assert_long_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_ulong_op_result(
+void nbp_printer_notify_module_assert_ulong_op_result(
     nbp_test_details_t*, /* current test */
     unsigned long int, /* first value */
     unsigned long int, /* second value */
@@ -501,7 +501,7 @@ void nbp_notify_printer_module_assert_ulong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_llong_op_result(
+void nbp_printer_notify_module_assert_llong_op_result(
     nbp_test_details_t*, /* current test */
     long long int, /* first value */
     long long int, /* second value */
@@ -512,7 +512,7 @@ void nbp_notify_printer_module_assert_llong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_ullong_op_result(
+void nbp_printer_notify_module_assert_ullong_op_result(
     nbp_test_details_t*, /* current test */
     unsigned long long int, /* first value */
     unsigned long long int, /* second value */
@@ -523,7 +523,7 @@ void nbp_notify_printer_module_assert_ullong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_float_op_result(
+void nbp_printer_notify_module_assert_float_op_result(
     nbp_test_details_t*, /* current test */
     float, /* first value */
     float, /* second value */
@@ -534,7 +534,7 @@ void nbp_notify_printer_module_assert_float_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_double_op_result(
+void nbp_printer_notify_module_assert_double_op_result(
     nbp_test_details_t*, /* current test */
     double, /* first value */
     double, /* second value */
@@ -545,7 +545,7 @@ void nbp_notify_printer_module_assert_double_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_module_assert_ldouble_op_result(
+void nbp_printer_notify_module_assert_ldouble_op_result(
     nbp_test_details_t*, /* current test */
     long double, /* first value */
     long double, /* second value */
@@ -556,7 +556,7 @@ void nbp_notify_printer_module_assert_ldouble_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_result(
+void nbp_printer_notify_assert_result(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
     int, /* status */
@@ -565,7 +565,7 @@ void nbp_notify_printer_assert_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_op_result(
+void nbp_printer_notify_assert_op_result(
     nbp_test_details_t*, /* current test */
     const char*, /* first value */
     const char*, /* second value */
@@ -576,7 +576,7 @@ void nbp_notify_printer_assert_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_char_op_result(
+void nbp_printer_notify_assert_char_op_result(
     nbp_test_details_t*, /* current test */
     char, /* first value */
     char, /* second value */
@@ -587,7 +587,7 @@ void nbp_notify_printer_assert_char_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_short_op_result(
+void nbp_printer_notify_assert_short_op_result(
     nbp_test_details_t*, /* current test */
     short int, /* first value */
     short int, /* second value */
@@ -598,7 +598,7 @@ void nbp_notify_printer_assert_short_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_ushort_op_result(
+void nbp_printer_notify_assert_ushort_op_result(
     nbp_test_details_t*, /* current test */
     unsigned short int, /* first value */
     unsigned short int, /* second value */
@@ -609,7 +609,7 @@ void nbp_notify_printer_assert_ushort_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_int_op_result(
+void nbp_printer_notify_assert_int_op_result(
     nbp_test_details_t*, /* current test */
     int, /* first value */
     int, /* second value */
@@ -620,7 +620,7 @@ void nbp_notify_printer_assert_int_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_uint_op_result(
+void nbp_printer_notify_assert_uint_op_result(
     nbp_test_details_t*, /* current test */
     unsigned int, /* first value */
     unsigned int, /* second value */
@@ -631,7 +631,7 @@ void nbp_notify_printer_assert_uint_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_long_op_result(
+void nbp_printer_notify_assert_long_op_result(
     nbp_test_details_t*, /* current test */
     long int, /* first value */
     long int, /* second value */
@@ -642,7 +642,7 @@ void nbp_notify_printer_assert_long_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_ulong_op_result(
+void nbp_printer_notify_assert_ulong_op_result(
     nbp_test_details_t*, /* current test */
     unsigned long int, /* first value */
     unsigned long int, /* second value */
@@ -653,7 +653,7 @@ void nbp_notify_printer_assert_ulong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_llong_op_result(
+void nbp_printer_notify_assert_llong_op_result(
     nbp_test_details_t*, /* current test */
     long long int, /* first value */
     long long int, /* second value */
@@ -664,7 +664,7 @@ void nbp_notify_printer_assert_llong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_ullong_op_result(
+void nbp_printer_notify_assert_ullong_op_result(
     nbp_test_details_t*, /* current test */
     unsigned long long int, /* first value */
     unsigned long long int, /* second value */
@@ -675,7 +675,7 @@ void nbp_notify_printer_assert_ullong_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_float_op_result(
+void nbp_printer_notify_assert_float_op_result(
     nbp_test_details_t*, /* current test */
     float, /* first value */
     float, /* second value */
@@ -686,7 +686,7 @@ void nbp_notify_printer_assert_float_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_double_op_result(
+void nbp_printer_notify_assert_double_op_result(
     nbp_test_details_t*, /* current test */
     double, /* first value */
     double, /* second value */
@@ -697,7 +697,7 @@ void nbp_notify_printer_assert_double_op_result(
     const char* /* pass message */
 );
 
-void nbp_notify_printer_assert_ldouble_op_result(
+void nbp_printer_notify_assert_ldouble_op_result(
     nbp_test_details_t*, /* current test */
     long double, /* first value */
     long double, /* second value */

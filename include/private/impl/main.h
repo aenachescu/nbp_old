@@ -66,7 +66,7 @@ int nbp_command_run_all()
 
     nbp_module_run(nbpMainModule, NBP_MEMORY_NULL_POINTER);
 
-    nbp_notify_printer_before_run(
+    nbp_printer_notify_before_run(
         NBP_MODULE_GET_NUMBER_OF_MODULES(nbpMainModule) + 1,
         NBP_MODULE_GET_NUMBER_OF_TESTS(nbpMainModule)
     );
@@ -75,7 +75,7 @@ int nbp_command_run_all()
     nbpSchedulerInterface->run();
     nbpSchedulerRunEnabled = 0;
 
-    nbp_notify_printer_after_run(
+    nbp_printer_notify_after_run(
         NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_PASSED ?
             NBP_MODULE_GET_NUMBER_OF_PASSED_MODULES(nbpMainModule) + 1 :
             NBP_MODULE_GET_NUMBER_OF_PASSED_MODULES(nbpMainModule),
