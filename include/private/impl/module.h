@@ -75,7 +75,7 @@ static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
         module->teardown = NBP_MEMORY_NULL_POINTER;
     }
 
-    module->moduleId = nbpTotalNumberOfTests;
+    module->moduleId = nbpTotalNumberOfModules;
     nbpTotalNumberOfModules++;
 
     module->parent = parent;
