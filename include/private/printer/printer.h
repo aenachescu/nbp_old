@@ -34,7 +34,7 @@ SOFTWARE.
  * Default nbp printer for Linux
  */
 #ifdef NBP_OS_LINUX
-#include "linux_basic_printer.h"
+#include "linux_printer.h"
 #endif // end if NBP_OS_LINUX
 
 /*
