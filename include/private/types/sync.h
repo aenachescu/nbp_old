@@ -68,12 +68,12 @@ SOFTWARE.
         ? NBP_NO_ERROR                                                         \
         : NBP_ERROR_FAILED_TO_UNINIT_EVENT
 
-#define NBP_WAIT_EVENT(ev)                                                     \
+#define NBP_EVENT_WAIT(ev)                                                     \
     sem_wait(&ev) == 0 && sem_post(&ev) == 0                                   \
         ? NBP_NO_ERROR                                                         \
         : NBP_ERROR_FAILED_TO_WAIT_EVENT
 
-#define NBP_SIGNAL_EVENT(ev)                                                   \
+#define NBP_EVENT_SIGNAL(ev)                                                   \
     sem_post(&ev) == 0                                                         \
         ? NBP_NO_ERROR                                                         \
         : NBP_ERROR_FAILED_TO_SIGNAL_EVENT
@@ -114,9 +114,9 @@ SOFTWARE.
 
 #define NBP_EVENT_UNINIT(ev) NBP_NO_ERROR
 
-#define NBP_WAIT_EVENT(ev) NBP_NO_ERROR
+#define NBP_EVENT_WAIT(ev) NBP_NO_ERROR
 
-#define NBP_SIGNAL_EVENT(ev) NBP_NO_ERROR
+#define NBP_EVENT_SIGNAL(ev) NBP_NO_ERROR
 
 #endif // end if NBP_MT_SUPPORT
 
