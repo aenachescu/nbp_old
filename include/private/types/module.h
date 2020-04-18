@@ -74,32 +74,32 @@ struct nbp_module_details_t {
     struct nbp_module_details_t* prev;
 
     unsigned int depth;
-    NBP_EVENT_TYPE runEvent;
-    NBP_EVENT_TYPE setupEvent;
-    NBP_ATOMIC_UINT_TYPE flags;
-    NBP_ATOMIC_UINT_TYPE moduleState;
+    NBP_SYNC_EVENT_TYPE runEvent;
+    NBP_SYNC_EVENT_TYPE setupEvent;
+    NBP_SYNC_ATOMIC_UINT_TYPE flags;
+    NBP_SYNC_ATOMIC_UINT_TYPE moduleState;
 
-    NBP_ATOMIC_UINT_TYPE taskNum;
-    NBP_ATOMIC_UINT_TYPE completedTaskNum;
+    NBP_SYNC_ATOMIC_UINT_TYPE taskNum;
+    NBP_SYNC_ATOMIC_UINT_TYPE completedTaskNum;
 
     struct {
-        NBP_ATOMIC_UINT_TYPE num;
-        NBP_ATOMIC_UINT_TYPE numPassed;
-        NBP_ATOMIC_UINT_TYPE numFailed;
-        NBP_ATOMIC_UINT_TYPE numSkipped;
+        NBP_SYNC_ATOMIC_UINT_TYPE num;
+        NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
+        NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
+        NBP_SYNC_ATOMIC_UINT_TYPE numSkipped;
     } ownTests, subTests;
 
     struct {
-        NBP_ATOMIC_UINT_TYPE num;
-        NBP_ATOMIC_UINT_TYPE numPassed;
-        NBP_ATOMIC_UINT_TYPE numFailed;
-        NBP_ATOMIC_UINT_TYPE numSkipped;
+        NBP_SYNC_ATOMIC_UINT_TYPE num;
+        NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
+        NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
+        NBP_SYNC_ATOMIC_UINT_TYPE numSkipped;
     } ownModules, subModules;
 
     struct {
         struct {
-            NBP_ATOMIC_UINT_TYPE numPassed;
-            NBP_ATOMIC_UINT_TYPE numFailed;
+            NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
+            NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
         } checks, testAsserts, moduleAsserts, asserts;
     } own, sub;
 };

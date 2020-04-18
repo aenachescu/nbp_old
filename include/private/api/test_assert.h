@@ -40,7 +40,7 @@ SOFTWARE.
 
 #define NBP_PRIVATE_TEST_ASSERT_BASE(cond, failMsg, passMsg)                   \
     if (cond) {                                                                \
-        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numPassed, 1);        \
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numPassed, 1);   \
         nbp_printer_notify_test_assert_result(                                 \
             test,                                                              \
             #cond,                                                             \
@@ -50,7 +50,7 @@ SOFTWARE.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numFailed, 1);        \
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numFailed, 1);   \
         nbp_printer_notify_test_assert_result(                                 \
             test,                                                              \
             #cond,                                                             \
@@ -64,7 +64,7 @@ SOFTWARE.
 
 #define NBP_PRIVATE_TEST_ASSERT_OP_BASE(a, b, op, printerOp, failMsg, passMsg) \
     if (a op b) {                                                              \
-        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numPassed, 1);        \
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numPassed, 1);   \
         nbp_printer_notify_test_assert_op_result(                              \
             test,                                                              \
             #a,                                                                \
@@ -76,7 +76,7 @@ SOFTWARE.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numFailed, 1);        \
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numFailed, 1);   \
         nbp_printer_notify_test_assert_op_result(                              \
             test,                                                              \
             #a,                                                                \
@@ -101,7 +101,10 @@ SOFTWARE.
     do {                                                                       \
         type tmpA = a, tmpB = b;                                               \
         if (tmpA op tmpB) {                                                    \
-            NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numPassed, 1);    \
+            NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                \
+                &test->testAsserts.numPassed,                                  \
+                1                                                              \
+            );                                                                 \
             NBP_PRIVATE_PRINTER_NOTIFY_TEST_ASSERT_TYPE_OP(typeStr)(           \
                 test,                                                          \
                 tmpA,                                                          \
@@ -113,7 +116,10 @@ SOFTWARE.
                 passMsg                                                        \
             );                                                                 \
         } else {                                                               \
-            NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numFailed, 1);    \
+            NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                \
+                &test->testAsserts.numFailed,                                  \
+                1                                                              \
+            );                                                                 \
             NBP_PRIVATE_PRINTER_NOTIFY_TEST_ASSERT_TYPE_OP(typeStr)(           \
                 test,                                                          \
                 tmpA,                                                          \

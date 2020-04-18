@@ -76,72 +76,72 @@ SOFTWARE.
         .next              = NBP_MEMORY_NULL_POINTER,                          \
         .prev              = NBP_MEMORY_NULL_POINTER,                          \
         .depth             = 0,                                                \
-        .runEvent          = NBP_EVENT_DEFAULT_VALUE,                          \
-        .setupEvent        = NBP_EVENT_DEFAULT_VALUE,                          \
+        .runEvent          = NBP_SYNC_EVENT_DEFAULT_VALUE,                     \
+        .setupEvent        = NBP_SYNC_EVENT_DEFAULT_VALUE,                     \
         .flags             =                                                   \
-            NBP_ATOMIC_UINT_INIT(NBP_MODULE_FLAGS_NOT_INITIALIZED),            \
+            NBP_SYNC_ATOMIC_UINT_INIT(NBP_MODULE_FLAGS_NOT_INITIALIZED),       \
         .moduleState       =                                                   \
-            NBP_ATOMIC_UINT_INIT(NBP_MODULE_STATE_NOT_INITIALIZED),            \
-        .taskNum           = NBP_ATOMIC_UINT_INIT(0),                          \
-        .completedTaskNum  = NBP_ATOMIC_UINT_INIT(0),                          \
+            NBP_SYNC_ATOMIC_UINT_INIT(NBP_MODULE_STATE_NOT_INITIALIZED),       \
+        .taskNum           = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+        .completedTaskNum  = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
         .ownTests = {                                                          \
-            .num           = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numPassed     = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numFailed     = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numSkipped    = NBP_ATOMIC_UINT_INIT(0),                          \
+            .num           = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numPassed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numFailed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numSkipped    = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
         },                                                                     \
         .subTests = {                                                          \
-            .num           = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numPassed     = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numFailed     = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numSkipped    = NBP_ATOMIC_UINT_INIT(0),                          \
+            .num           = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numPassed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numFailed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numSkipped    = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
         },                                                                     \
         .ownModules = {                                                        \
-            .num           = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numPassed     = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numFailed     = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numSkipped    = NBP_ATOMIC_UINT_INIT(0),                          \
+            .num           = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numPassed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numFailed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numSkipped    = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
         },                                                                     \
         .subModules = {                                                        \
-            .num           = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numPassed     = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numFailed     = NBP_ATOMIC_UINT_INIT(0),                          \
-            .numSkipped    = NBP_ATOMIC_UINT_INIT(0),                          \
+            .num           = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numPassed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numFailed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .numSkipped    = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
         },                                                                     \
         .own = {                                                               \
             .checks = {                                                        \
-                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
-                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
             },                                                                 \
             .testAsserts = {                                                   \
-                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
-                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
             },                                                                 \
             .moduleAsserts = {                                                 \
-                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
-                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
             },                                                                 \
             .asserts = {                                                       \
-                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
-                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
             },                                                                 \
         },                                                                     \
         .sub = {                                                               \
             .checks = {                                                        \
-                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
-                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
             },                                                                 \
             .testAsserts = {                                                   \
-                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
-                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
             },                                                                 \
             .moduleAsserts = {                                                 \
-                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
-                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
             },                                                                 \
             .asserts = {                                                       \
-                .numPassed = NBP_ATOMIC_UINT_INIT(0),                          \
-                .numFailed = NBP_ATOMIC_UINT_INIT(0),                          \
+                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
             },                                                                 \
         },                                                                     \
     };                                                                         \
@@ -252,61 +252,61 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_GET_MODULE_STATE(module)                                           \
-    NBP_ATOMIC_UINT_LOAD(&module->moduleState)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->moduleState)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_STATE(module)                                           \
-    NBP_ATOMIC_UINT_LOAD(&module->moduleState)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->moduleState)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_TESTS(module)                             \
-    NBP_ATOMIC_UINT_LOAD(&module->ownTests.num)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.num)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_PASSED_TESTS(module)                      \
-    NBP_ATOMIC_UINT_LOAD(&module->ownTests.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_FAILED_TESTS(module)                      \
-    NBP_ATOMIC_UINT_LOAD(&module->ownTests.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_SKIPPED_TESTS(module)                     \
-    NBP_ATOMIC_UINT_LOAD(&module->ownTests.numSkipped)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numSkipped)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUBTESTS(module)                              \
-    NBP_ATOMIC_UINT_LOAD(&module->subTests.num)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.num)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_PASSED_SUBTESTS(module)                       \
-    NBP_ATOMIC_UINT_LOAD(&module->subTests.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_FAILED_SUBTESTS(module)                       \
-    NBP_ATOMIC_UINT_LOAD(&module->subTests.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SKIPPED_SUBTESTS(module)                      \
-    NBP_ATOMIC_UINT_LOAD(&module->subTests.numSkipped)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numSkipped)
 
 /*
  * TODO: add docs
@@ -340,49 +340,49 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_MODULES(module)                           \
-    NBP_ATOMIC_UINT_LOAD(&module->ownModules.num)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.num)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_PASSED_MODULES(module)                    \
-    NBP_ATOMIC_UINT_LOAD(&module->ownModules.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_FAILED_MODULES(module)                    \
-    NBP_ATOMIC_UINT_LOAD(&module->ownModules.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_SKIPPED_MODULES(module)                   \
-    NBP_ATOMIC_UINT_LOAD(&module->ownModules.numSkipped)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numSkipped)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUBMODULES(module)                            \
-    NBP_ATOMIC_UINT_LOAD(&module->subModules.num)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.num)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_PASSED_SUBMODULES(module)                     \
-    NBP_ATOMIC_UINT_LOAD(&module->subModules.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_FAILED_SUBMODULES(module)                     \
-    NBP_ATOMIC_UINT_LOAD(&module->subModules.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numFailed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SKIPPED_SUBMODULES(module)                    \
-    NBP_ATOMIC_UINT_LOAD(&module->subModules.numSkipped)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numSkipped)
 
 /*
  * TODO: add docs
@@ -423,13 +423,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_PASSED_CHECKS(module)                     \
-    NBP_ATOMIC_UINT_LOAD(&module->own.checks.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->own.checks.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_FAILED_CHECKS(module)                     \
-    NBP_ATOMIC_UINT_LOAD(&module->own.checks.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->own.checks.numFailed)
 
 /*
  * TODO: add docs
@@ -442,13 +442,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUB_PASSED_CHECKS(module)                     \
-    NBP_ATOMIC_UINT_LOAD(&module->sub.checks.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->sub.checks.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUB_FAILED_CHECKS(module)                     \
-    NBP_ATOMIC_UINT_LOAD(&module->sub.checks.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->sub.checks.numFailed)
 
 /*
  * TODO: add docs
@@ -482,13 +482,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_PASSED_TEST_ASSERTS(module)               \
-    NBP_ATOMIC_UINT_LOAD(&module->own.testAsserts.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->own.testAsserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_FAILED_TEST_ASSERTS(module)               \
-    NBP_ATOMIC_UINT_LOAD(&module->own.testAsserts.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->own.testAsserts.numFailed)
 
 /*
  * TODO: add docs
@@ -501,13 +501,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUB_PASSED_TEST_ASSERTS(module)               \
-    NBP_ATOMIC_UINT_LOAD(&module->sub.testAsserts.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->sub.testAsserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUB_FAILED_TEST_ASSERTS(module)               \
-    NBP_ATOMIC_UINT_LOAD(&module->sub.testAsserts.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->sub.testAsserts.numFailed)
 
 /*
  * TODO: add docs
@@ -541,13 +541,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_PASSED_MODULE_ASSERTS(module)             \
-    NBP_ATOMIC_UINT_LOAD(&module->own.moduleAsserts.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->own.moduleAsserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_FAILED_MODULE_ASSERTS(module)             \
-    NBP_ATOMIC_UINT_LOAD(&module->own.moduleAsserts.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->own.moduleAsserts.numFailed)
 
 /*
  * TODO: add docs
@@ -560,13 +560,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUB_PASSED_MODULE_ASSERTS(module)             \
-    NBP_ATOMIC_UINT_LOAD(&module->sub.moduleAsserts.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->sub.moduleAsserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUB_FAILED_MODULE_ASSERTS(module)             \
-    NBP_ATOMIC_UINT_LOAD(&module->sub.moduleAsserts.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->sub.moduleAsserts.numFailed)
 
 /*
  * TODO: add docs
@@ -600,13 +600,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_PASSED_ASSERTS(module)                    \
-    NBP_ATOMIC_UINT_LOAD(&module->own.asserts.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->own.asserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_FAILED_ASSERTS(module)                    \
-    NBP_ATOMIC_UINT_LOAD(&module->own.asserts.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->own.asserts.numFailed)
 
 /*
  * TODO: add docs
@@ -619,13 +619,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUB_PASSED_ASSERTS(module)                    \
-    NBP_ATOMIC_UINT_LOAD(&module->sub.asserts.numPassed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->sub.asserts.numPassed)
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUB_FAILED_ASSERTS(module)                    \
-    NBP_ATOMIC_UINT_LOAD(&module->sub.asserts.numFailed)
+    NBP_SYNC_ATOMIC_UINT_LOAD(&module->sub.asserts.numFailed)
 
 /*
  * TODO: add docs

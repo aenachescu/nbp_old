@@ -34,7 +34,7 @@ static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
     nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,
     nbp_test_teardown_pfn_t testTeardown)
 {
-    unsigned int state = NBP_ATOMIC_UINT_CAS(
+    unsigned int state = NBP_SYNC_ATOMIC_UINT_CAS(
         &test->testState,
         NBP_TEST_STATE_NOT_INITIALIZED,
         NBP_TEST_STATE_READY
@@ -50,8 +50,8 @@ static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
     test->module = module;
     test->testSetupFunc = testSetup;
     test->testTeardownFunc = testTeardown;
-    NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.num, 1);
-    NBP_ATOMIC_UINT_ADD_AND_FETCH(&test->module->taskNum, 1);
+    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.num, 1);
+    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->taskNum, 1);
 
     if (module->firstTest == NBP_MEMORY_NULL_POINTER) {
         module->firstTest = test;

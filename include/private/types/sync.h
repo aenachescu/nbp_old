@@ -38,42 +38,42 @@ SOFTWARE.
  * Atomic unsigned int wrapper
  */
 
-#define NBP_ATOMIC_UINT_TYPE unsigned int
+#define NBP_SYNC_ATOMIC_UINT_TYPE unsigned int
 
-#define NBP_ATOMIC_UINT_INIT(val) val
+#define NBP_SYNC_ATOMIC_UINT_INIT(val) val
 
-#define NBP_ATOMIC_UINT_LOAD(ptr) __atomic_load_n((ptr), __ATOMIC_SEQ_CST)
+#define NBP_SYNC_ATOMIC_UINT_LOAD(ptr) __atomic_load_n((ptr), __ATOMIC_SEQ_CST)
 
-#define NBP_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                              \
+#define NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                         \
     __sync_add_and_fetch((ptr), (value))
 
-#define NBP_ATOMIC_UINT_CAS(ptr, oldVal, newVal)                               \
+#define NBP_SYNC_ATOMIC_UINT_CAS(ptr, oldVal, newVal)                          \
     __sync_val_compare_and_swap((ptr), (oldVal), (newVal))
 
 /*
  * Event wrapper
  */
 
-#define NBP_EVENT_TYPE sem_t
+#define NBP_SYNC_EVENT_TYPE sem_t
 
-#define NBP_EVENT_DEFAULT_VALUE { .__align = 0 }
+#define NBP_SYNC_EVENT_DEFAULT_VALUE { .__align = 0 }
 
-#define NBP_EVENT_INIT(ev)                                                     \
+#define NBP_SYNC_EVENT_INIT(ev)                                                \
     sem_init(&ev, 0, 0) == 0                                                   \
         ? NBP_NO_ERROR                                                         \
         : NBP_ERROR_FAILED_TO_INIT_EVENT
 
-#define NBP_EVENT_UNINIT(ev)                                                   \
+#define NBP_SYNC_EVENT_UNINIT(ev)                                              \
     sem_destroy(&ev) == 0                                                      \
         ? NBP_NO_ERROR                                                         \
         : NBP_ERROR_FAILED_TO_UNINIT_EVENT
 
-#define NBP_EVENT_WAIT(ev)                                                     \
+#define NBP_SYNC_EVENT_WAIT(ev)                                                \
     sem_wait(&ev) == 0 && sem_post(&ev) == 0                                   \
         ? NBP_NO_ERROR                                                         \
         : NBP_ERROR_FAILED_TO_WAIT_EVENT
 
-#define NBP_EVENT_NOTIFY(ev)                                                   \
+#define NBP_SYNC_EVENT_NOTIFY(ev)                                              \
     sem_post(&ev) == 0                                                         \
         ? NBP_NO_ERROR                                                         \
         : NBP_ERROR_FAILED_TO_SIGNAL_EVENT
@@ -94,29 +94,29 @@ SOFTWARE.
 
 #else // NBP_MT_SUPPORT not defined
 
-#define NBP_ATOMIC_UINT_TYPE unsigned int
+#define NBP_SYNC_ATOMIC_UINT_TYPE unsigned int
 
-#define NBP_ATOMIC_UINT_INIT(val) val
+#define NBP_SYNC_ATOMIC_UINT_INIT(val) val
 
-#define NBP_ATOMIC_UINT_LOAD(ptr) (*(ptr))
+#define NBP_SYNC_ATOMIC_UINT_LOAD(ptr) (*(ptr))
 
-#define NBP_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                              \
+#define NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                         \
     ((*(ptr)) += (value))
 
-#define NBP_ATOMIC_UINT_CAS(ptr, oldVal, newVal)                               \
+#define NBP_SYNC_ATOMIC_UINT_CAS(ptr, oldVal, newVal)                          \
     ((*(ptr)) == (oldVal) ? (*(ptr)) = (newVal), (oldVal) : (*(ptr)))
 
-#define NBP_EVENT_TYPE int
+#define NBP_SYNC_EVENT_TYPE int
 
-#define NBP_EVENT_DEFAULT_VALUE 0
+#define NBP_SYNC_EVENT_DEFAULT_VALUE 0
 
-#define NBP_EVENT_INIT(ev) NBP_NO_ERROR
+#define NBP_SYNC_EVENT_INIT(ev) NBP_NO_ERROR
 
-#define NBP_EVENT_UNINIT(ev) NBP_NO_ERROR
+#define NBP_SYNC_EVENT_UNINIT(ev) NBP_NO_ERROR
 
-#define NBP_EVENT_WAIT(ev) NBP_NO_ERROR
+#define NBP_SYNC_EVENT_WAIT(ev) NBP_NO_ERROR
 
-#define NBP_EVENT_NOTIFY(ev) NBP_NO_ERROR
+#define NBP_SYNC_EVENT_NOTIFY(ev) NBP_NO_ERROR
 
 #endif // end if NBP_MT_SUPPORT
 

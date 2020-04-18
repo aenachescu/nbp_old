@@ -41,7 +41,7 @@ NBP_TEARDOWN_MODULE(nbp_module_empty_teardown_func)
 static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
     nbp_module_details_t* parent)
 {
-    unsigned int state = NBP_ATOMIC_UINT_CAS(
+    unsigned int state = NBP_SYNC_ATOMIC_UINT_CAS(
         &module->moduleState,
         NBP_MODULE_STATE_NOT_INITIALIZED,
         NBP_MODULE_STATE_READY
@@ -51,13 +51,13 @@ static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
         NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
-    int errCode = NBP_EVENT_INIT(module->runEvent);
+    int errCode = NBP_SYNC_EVENT_INIT(module->runEvent);
     if (errCode != NBP_NO_ERROR) {
         NBP_HANDLE_ERROR(errCode);
         NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
     }
 
-    errCode = NBP_EVENT_INIT(module->setupEvent);
+    errCode = NBP_SYNC_EVENT_INIT(module->setupEvent);
     if (errCode != NBP_NO_ERROR) {
         NBP_HANDLE_ERROR(errCode);
         NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
@@ -81,8 +81,8 @@ static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
     module->parent = parent;
 
     if (parent != NBP_MEMORY_NULL_POINTER) {
-        NBP_ATOMIC_UINT_ADD_AND_FETCH(&parent->ownModules.num, 1);
-        NBP_ATOMIC_UINT_ADD_AND_FETCH(&parent->taskNum, 1);
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&parent->ownModules.num, 1);
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&parent->taskNum, 1);
         if (parent->firstModule == NBP_MEMORY_NULL_POINTER) {
             parent->firstModule = module;
             parent->lastModule = module;
@@ -102,21 +102,21 @@ static void nbp_module_update_stats(nbp_module_details_t* module)
 {
     nbp_module_details_t* idx = module->firstModule;
     while (idx != NBP_MEMORY_NULL_POINTER) {
-        NBP_ATOMIC_UINT_ADD_AND_FETCH(
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
             &module->subModules.num,
-            NBP_ATOMIC_UINT_LOAD(&idx->ownModules.num)
+            NBP_SYNC_ATOMIC_UINT_LOAD(&idx->ownModules.num)
         );
-        NBP_ATOMIC_UINT_ADD_AND_FETCH(
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
             &module->subModules.num,
-            NBP_ATOMIC_UINT_LOAD(&idx->subModules.num)
+            NBP_SYNC_ATOMIC_UINT_LOAD(&idx->subModules.num)
         );
-        NBP_ATOMIC_UINT_ADD_AND_FETCH(
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
             &module->subTests.num,
-            NBP_ATOMIC_UINT_LOAD(&idx->ownTests.num)
+            NBP_SYNC_ATOMIC_UINT_LOAD(&idx->ownTests.num)
         );
-        NBP_ATOMIC_UINT_ADD_AND_FETCH(
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
             &module->subTests.num,
-            NBP_ATOMIC_UINT_LOAD(&idx->subTests.num)
+            NBP_SYNC_ATOMIC_UINT_LOAD(&idx->subTests.num)
         );
         idx = idx->next;
     }

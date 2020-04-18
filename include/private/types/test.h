@@ -65,12 +65,12 @@ struct nbp_test_details_t {
     struct nbp_test_details_t* next;
     struct nbp_test_details_t* prev;
 
-    NBP_ATOMIC_UINT_TYPE testState;
-    NBP_ATOMIC_UINT_TYPE flags;
+    NBP_SYNC_ATOMIC_UINT_TYPE testState;
+    NBP_SYNC_ATOMIC_UINT_TYPE flags;
 
     struct {
-        NBP_ATOMIC_UINT_TYPE numPassed;
-        NBP_ATOMIC_UINT_TYPE numFailed;
+        NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
+        NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
     } checks, testAsserts, moduleAsserts, asserts;
 };
 typedef struct nbp_test_details_t nbp_test_details_t;
