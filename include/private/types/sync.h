@@ -73,7 +73,7 @@ SOFTWARE.
         ? NBP_NO_ERROR                                                         \
         : NBP_ERROR_FAILED_TO_WAIT_EVENT
 
-#define NBP_EVENT_SIGNAL(ev)                                                   \
+#define NBP_EVENT_NOTIFY(ev)                                                   \
     sem_post(&ev) == 0                                                         \
         ? NBP_NO_ERROR                                                         \
         : NBP_ERROR_FAILED_TO_SIGNAL_EVENT
@@ -116,7 +116,7 @@ SOFTWARE.
 
 #define NBP_EVENT_WAIT(ev) NBP_NO_ERROR
 
-#define NBP_EVENT_SIGNAL(ev) NBP_NO_ERROR
+#define NBP_EVENT_NOTIFY(ev) NBP_NO_ERROR
 
 #endif // end if NBP_MT_SUPPORT
 
