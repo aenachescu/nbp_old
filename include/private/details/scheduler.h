@@ -32,4 +32,8 @@ void nbp_scheduler_run_test(
     nbp_test_details_t* /* test */
 );
 
+void nbp_scheduler_complete_empty_modules(
+    nbp_module_details_t* /* module */
+);
+
 #endif // end if NBP_PRIVATE_DETAILS_SCHEDULER_H

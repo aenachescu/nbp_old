@@ -75,6 +75,8 @@ int nbp_command_run_all()
     nbpSchedulerInterface->run();
     nbpSchedulerRunEnabled = 0;
 
+    nbp_scheduler_complete_empty_modules(nbpMainModule);
+
     nbp_printer_notify_after_run(
         NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_PASSED ?
             NBP_MODULE_GET_NUMBER_OF_PASSED_MODULES(nbpMainModule) + 1 :
