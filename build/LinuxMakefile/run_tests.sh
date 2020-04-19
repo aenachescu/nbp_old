@@ -141,6 +141,7 @@ run_test mt_scheduler_basic_sample 0
 run_test mt_scheduler_module_fixtures_ran_only_once_sample 0
 run_test mt_scheduler_run_test_fixtures_in_parallel_sample 0
 run_test mt_scheduler_run_module_fixtures_in_parallel_sample 0
+run_test empty_modules_sample 1
 
 if [ $status -ne 0 ]; then
     echo $'run_tests failed\n'

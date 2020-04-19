@@ -61,6 +61,7 @@ declare -a arr=(
     "mt_scheduler_module_fixtures_ran_only_once_sample"
     "mt_scheduler_run_test_fixtures_in_parallel_sample"
     "mt_scheduler_run_module_fixtures_in_parallel_sample"
+    "empty_modules_sample"
 )
 
 files=""

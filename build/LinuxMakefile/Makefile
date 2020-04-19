@@ -819,6 +819,22 @@ clean_mt_scheduler_run_module_fixtures_in_parallel_sample:
 	rm -rf $(bin_folder_from_build_folder)$(name34)
 
 #
+# empty modules sample
+#
+files35=$(samples_folder_from_sample_bin_folder)empty_modules/main.c
+depends35=$(samples_folder_from_build_folder)empty_modules/main.c
+name35=empty_modules_sample
+
+empty_modules_sample: $(depends35) $(lib_files)
+	mkdir -p $(bin_folder_from_build_folder)$(name35) && \
+	cd $(bin_folder_from_build_folder)$(name35) && \
+	$(CC) -o $(name35) $(files35) $(include_folders) $(CFLAGS) &&\
+	cd $(build_folder_from_sample_bin_folder)
+
+clean_empty_modules_sample:
+	rm -rf $(bin_folder_from_build_folder)$(name35)
+
+#
 # make all
 #
 
@@ -857,6 +873,7 @@ all:\
 	mt_scheduler_module_fixtures_ran_only_once_sample\
 	mt_scheduler_run_test_fixtures_in_parallel_sample\
 	mt_scheduler_run_module_fixtures_in_parallel_sample\
+	empty_modules_sample\
 
 #
 # make clean
@@ -897,3 +914,4 @@ clean:\
 	clean_mt_scheduler_module_fixtures_ran_only_once_sample\
 	clean_mt_scheduler_run_test_fixtures_in_parallel_sample\
 	clean_mt_scheduler_run_module_fixtures_in_parallel_sample\
+	clean_empty_modules_sample\
