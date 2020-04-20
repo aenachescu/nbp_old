@@ -45,11 +45,11 @@ const char* nbp_printer_operator_to_string(int op)
             return "<=";
     }
 
-    NBP_HANDLE_ERROR(NBP_ERROR_UNKNOWN_OPERATOR);
+    NBP_ERROR_REPORT(NBP_ERROR_UNKNOWN_OPERATOR);
     return "unknown";
 }
 
-void nbp_printer_notify_handle_error(int errCode)
+void nbp_printer_notify_report_error(int errCode)
 {
     nbp_error_t err;
 
@@ -58,13 +58,13 @@ void nbp_printer_notify_handle_error(int errCode)
     err.contextString = NBP_MEMORY_NULL_POINTER;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->handleError != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->handleError(err);
+        if (nbpPrinterInterfaces[i]->reportError != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->reportError(err);
         }
     }
 }
 
-void nbp_printer_notify_handle_error_ctx_string(int errCode, const char* ctx)
+void nbp_printer_notify_report_error_ctx_string(int errCode, const char* ctx)
 {
     nbp_error_t err;
 
@@ -73,13 +73,13 @@ void nbp_printer_notify_handle_error_ctx_string(int errCode, const char* ctx)
     err.contextString = ctx;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->handleError != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->handleError(err);
+        if (nbpPrinterInterfaces[i]->reportError != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->reportError(err);
         }
     }
 }
 
-void nbp_printer_notify_handle_error_ctx_custom(int errCode, void* ctx)
+void nbp_printer_notify_report_error_ctx_custom(int errCode, void* ctx)
 {
     nbp_error_t err;
 
@@ -88,8 +88,8 @@ void nbp_printer_notify_handle_error_ctx_custom(int errCode, void* ctx)
     err.contextCustom = ctx;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->handleError != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->handleError(err);
+        if (nbpPrinterInterfaces[i]->reportError != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->reportError(err);
         }
     }
 }

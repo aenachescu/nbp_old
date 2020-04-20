@@ -71,7 +71,7 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_FUNC_HANDLE_ERROR(func)                                    \
+#define NBP_PRINTER_FUNC_REPORT_ERROR(func)                                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
         NBP_MAYBE_UNUSED_PARAMETER nbp_error_t err                             \
     )
@@ -79,14 +79,14 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_HANDLE_ERROR(func)                                \
-    .handleError = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+#define NBP_PRINTER_USE_FUNC_REPORT_ERROR(func)                                \
+    .reportError = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_FUNC_HANDLE_ERROR                                       \
-    .handleError = NBP_MEMORY_NULL_POINTER
+#define NBP_PRINTER_NO_FUNC_REPORT_ERROR                                       \
+    .reportError = NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs

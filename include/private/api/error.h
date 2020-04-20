@@ -31,19 +31,19 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_HANDLE_ERROR(errCode)                                              \
-    nbp_printer_notify_handle_error(errCode)
+#define NBP_ERROR_REPORT(errCode)                                              \
+    nbp_printer_notify_report_error(errCode)
 
 /*
  * TODO: add docs
  */
-#define NBP_HANDLE_ERROR_CTX_STRING(errCode, str)                              \
-    nbp_printer_notify_handle_error_ctx_string(errCode, str)
+#define NBP_ERROR_REPORT_CTX_STRING(errCode, str)                              \
+    nbp_printer_notify_report_error_ctx_string(errCode, str)
 /*
  * TODO: add docs
  */
-#define NBP_HANDLE_ERROR_CTX_CUSTOM(errCode, ctx)                              \
-    nbp_printer_notify_handle_error_ctx_custom(errCode, ctx)
+#define NBP_ERROR_REPORT_CTX_CUSTOM(errCode, ctx)                              \
+    nbp_printer_notify_report_error_ctx_custom(errCode, ctx)
 
 /*
  * TODO: add docs

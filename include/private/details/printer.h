@@ -48,16 +48,16 @@ void nbp_printer_notify_module_completed(
     nbp_module_details_t* /* current module */
 );
 
-void nbp_printer_notify_handle_error(
+void nbp_printer_notify_report_error(
     int /* error code */
 );
 
-void nbp_printer_notify_handle_error_ctx_string(
+void nbp_printer_notify_report_error_ctx_string(
     int, /* error code */
     const char* /* error context */
 );
 
-void nbp_printer_notify_handle_error_ctx_custom(
+void nbp_printer_notify_report_error_ctx_custom(
     int, /* error code */
     void* /* error context */
 );

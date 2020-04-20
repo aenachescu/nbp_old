@@ -73,7 +73,7 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_basic_scheduler_add_test)
         NBP_MEMORY_ALLOC(sizeof(nbp_basic_scheduler_data_t));
 
     if (nbpBasicSchedulerDataLast->next == NBP_MEMORY_NULL_POINTER) {
-        NBP_HANDLE_ERROR_CTX_STRING(
+        NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_ALLOC,
             "could not add test"
         );

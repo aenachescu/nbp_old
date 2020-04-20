@@ -97,7 +97,7 @@ NBP_SETUP_MODULE(main_module_setup)
 
     err = SAMPLE_SEMAPHORE_INIT(g_semaphore1);
     if (err == 1) {
-        NBP_HANDLE_ERROR_CTX_STRING(
+        NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_GENERIC,
             "failed to init semaphore1"
         );
@@ -106,7 +106,7 @@ NBP_SETUP_MODULE(main_module_setup)
 
     err = SAMPLE_SEMAPHORE_INIT(g_semaphore2);
     if (err == 1) {
-        NBP_HANDLE_ERROR_CTX_STRING(
+        NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_GENERIC,
             "failed to init semaphore2"
         );
@@ -120,7 +120,7 @@ NBP_TEARDOWN_MODULE(main_module_teardown)
 
     err = SAMPLE_SEMAPHORE_UNINIT(g_semaphore1);
     if (err == 1) {
-        NBP_HANDLE_ERROR_CTX_STRING(
+        NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_GENERIC,
             "failed to uninit semaphore1"
         );
@@ -129,7 +129,7 @@ NBP_TEARDOWN_MODULE(main_module_teardown)
 
     err = SAMPLE_SEMAPHORE_UNINIT(g_semaphore2);
     if (err == 1) {
-        NBP_HANDLE_ERROR_CTX_STRING(
+        NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_GENERIC,
             "failed to uninit semaphore2"
         );

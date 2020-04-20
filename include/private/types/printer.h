@@ -43,7 +43,7 @@ typedef void (*nbp_printer_uninit_pfn_t)(
     void
 );
 
-typedef void (*nbp_printer_handle_error_pfn_t)(
+typedef void (*nbp_printer_report_error_pfn_t)(
     nbp_error_t /* error context */
 );
 
@@ -717,7 +717,7 @@ struct nbp_printer_interface_t {
     nbp_printer_init_pfn_t init;
     nbp_printer_uninit_pfn_t uninit;
 
-    nbp_printer_handle_error_pfn_t handleError;
+    nbp_printer_report_error_pfn_t reportError;
 
     nbp_printer_handle_version_command_pfn_t handleVersionCommand;
 

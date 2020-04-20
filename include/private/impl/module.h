@@ -47,19 +47,19 @@ static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
         NBP_MODULE_STATE_READY
     );
     if (state != NBP_MODULE_STATE_NOT_INITIALIZED) {
-        NBP_HANDLE_ERROR(NBP_ERROR_MODULE_ALREADY_CALLED);
+        NBP_ERROR_REPORT(NBP_ERROR_MODULE_ALREADY_CALLED);
         NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
     }
 
     int errCode = NBP_SYNC_EVENT_INIT(module->runEvent);
     if (errCode != NBP_NO_ERROR) {
-        NBP_HANDLE_ERROR(errCode);
+        NBP_ERROR_REPORT(errCode);
         NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
     }
 
     errCode = NBP_SYNC_EVENT_INIT(module->setupEvent);
     if (errCode != NBP_NO_ERROR) {
-        NBP_HANDLE_ERROR(errCode);
+        NBP_ERROR_REPORT(errCode);
         NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
     }
 

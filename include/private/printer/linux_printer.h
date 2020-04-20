@@ -185,7 +185,7 @@ static nbp_linux_printer_data_t* nbp_linux_printer_create_data_from_test(
     do {
         data = (nbp_linux_printer_data_t*) NBP_MEMORY_ALLOC(sizeof(*data));
         if (data == NBP_MEMORY_NULL_POINTER) {
-            NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_ALLOC,
                 "could not allocate nbp_linux_printer_data_t struct from test"
             );
@@ -210,7 +210,7 @@ static nbp_linux_printer_data_t* nbp_linux_printer_create_data_from_module(
     do {
         data = (nbp_linux_printer_data_t*) NBP_MEMORY_ALLOC(sizeof(*data));
         if (data == NBP_MEMORY_NULL_POINTER) {
-            NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_ALLOC,
                 "could not allocate nbp_linux_printer_data_t struct from module"
             );
@@ -269,7 +269,7 @@ static nbp_linux_printer_messages_list_t* nbp_linux_printer_create_message(
             NBP_MEMORY_ALLOC(sizeof(nbp_linux_printer_messages_list_t));
 
         if (message == NBP_MEMORY_NULL_POINTER) {
-            NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_ALLOC,
                 "could not allocate nbp_linux_printer_messages_list_t struct"
             );
@@ -280,7 +280,7 @@ static nbp_linux_printer_messages_list_t* nbp_linux_printer_create_message(
         message->message = nbp_linux_printer_duplicate_str(msg);
 
         if (message->message == NBP_MEMORY_NULL_POINTER) {
-            NBP_HANDLE_ERROR_CTX_STRING(
+            NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_ALLOC,
                 "could not duplicate the message"
             );
@@ -304,7 +304,7 @@ static void nbp_linux_printer_add_message(nbp_test_details_t* test, char* msg)
     if (data == NBP_MEMORY_NULL_POINTER) {
         char errMsg[1024];
         snprintf(errMsg, 1024, "test [%s] not found", NBP_GET_TEST_NAME(test));
-        NBP_HANDLE_ERROR_CTX_STRING(NBP_ERROR_TEST_NOT_FOUND, errMsg);
+        NBP_ERROR_REPORT_CTX_STRING(NBP_ERROR_TEST_NOT_FOUND, errMsg);
         return;
     }
 
@@ -640,7 +640,7 @@ NBP_PRINTER_FUNC_UNINIT(nbp_linux_printer_uninit)
     NBP_LINUX_PRINTER_PRIVATE_MUTEX_UNINIT(nbpLinuxPrinterMutex);
 }
 
-NBP_PRINTER_FUNC_HANDLE_ERROR(nbp_linux_printer_handle_error)
+NBP_PRINTER_FUNC_REPORT_ERROR(nbp_linux_printer_report_error)
 {
     NBP_LINUX_PRINTER_PRIVATE_MUTEX_LOCK(nbpLinuxPrinterMutex);
 
@@ -2056,9 +2056,9 @@ NBP_DEFINE_PRINTER(
         nbp_linux_printer_uninit
     ),
 
-    // handle error callback
-    NBP_PRINTER_USE_FUNC_HANDLE_ERROR(
-        nbp_linux_printer_handle_error
+    // report error callback
+    NBP_PRINTER_USE_FUNC_REPORT_ERROR(
+        nbp_linux_printer_report_error
     ),
 
     // handle version command
