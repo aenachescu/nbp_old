@@ -75,6 +75,14 @@ int nbp_command_run_all()
     nbpSchedulerInterface->run();
     nbpSchedulerRunEnabled = 0;
 
+    extern NBP_SYNC_ATOMIC_UINT_TYPE nbpNumberOfRanTests;
+    extern unsigned int nbpTotalNumberOfTests;
+
+    if (NBP_SYNC_ATOMIC_UINT_LOAD(&nbpNumberOfRanTests) != nbpTotalNumberOfTests) {
+        NBP_ERROR_REPORT(NBP_ERROR_NOT_ALL_TESTS_RAN);
+        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+    }
+
     nbp_scheduler_complete_empty_modules(nbpMainModule);
 
     nbp_printer_notify_after_run(

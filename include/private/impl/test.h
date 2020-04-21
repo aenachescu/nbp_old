@@ -28,7 +28,7 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_IMPL_TEST_H
 #define NBP_PRIVATE_IMPL_TEST_H
 
-static unsigned int nbpTotalNumberOfTests = 0;
+unsigned int nbpTotalNumberOfTests = 0;
 
 static NBP_ERROR_TYPE nbp_test_init(nbp_test_details_t* test,
     nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,

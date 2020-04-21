@@ -57,6 +57,7 @@ SOFTWARE.
 #define NBP_ERROR_FAILED_TO_UNINIT_MUTEX                        (int) 20
 #define NBP_ERROR_FAILED_TO_LOCK_MUTEX                          (int) 21
 #define NBP_ERROR_FAILED_TO_UNLOCK_MUTEX                        (int) 22
+#define NBP_ERROR_NOT_ALL_TESTS_RAN                             (int) 23
 
 struct nbp_error_t {
     int errorCode;

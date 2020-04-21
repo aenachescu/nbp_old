@@ -28,7 +28,7 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_IMPL_MODULE_H
 #define NBP_PRIVATE_IMPL_MODULE_H
 
-static unsigned int nbpTotalNumberOfModules = 0;
+unsigned int nbpTotalNumberOfModules = 0;
 
 NBP_SETUP_MODULE(nbp_module_empty_setup_func)
 {

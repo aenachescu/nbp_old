@@ -28,6 +28,8 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_IMPL_SCHEDULER_H
 #define NBP_PRIVATE_IMPL_SCHEDULER_H
 
+NBP_SYNC_ATOMIC_UINT_TYPE nbpNumberOfRanTests = NBP_SYNC_ATOMIC_UINT_INIT(0);
+
 static void nbp_scheduler_update_module_stats(nbp_test_details_t* test)
 {
     nbp_module_details_t* m = test->module;
@@ -782,6 +784,8 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
     }
 
     nbp_scheduler_teardown_module(test->module);
+
+    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&nbpNumberOfRanTests, 1);
 }
 
 void nbp_scheduler_complete_empty_modules(nbp_module_details_t* module)
