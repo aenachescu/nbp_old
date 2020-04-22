@@ -5,38 +5,72 @@ include("${CMAKE_SOURCE_DIR}/SamplesConfig.cmake")
 
 option(CODE_COVERAGE "enable code coverage" OFF)
 option(SAMPLE_SLEEP "enable sleep in every test from samples" OFF)
+option(ADDRESS_SANITIZER "enable address sanitizer" OFF)
+option(THREAD_SANITIZER "enable thread sanitizer" OFF)
+option(LEAK_SANITIZER "enable leak sanitizer" OFF)
+option(UNDEFINED_BEHAVIOR_SANITIZER "enable UB sanitizer" OFF)
+
+set(CMAKE_VERBOSE_MAKEFILE on)
 
 # Default compiler and linker flags
 set(DEFAULT_FLAGS "-Wall -Wextra -Werror -Wconversion")
-set(COMPILER_FLAG "-DNBP_COMPILER_GCC")
 set(OS_FLAG "-DNBP_OS_LINUX")
 set(SANITIZERS "")
-
-if(SAMPLE_SLEEP MATCHES ON)
+set(GCOV_FLAGS "")
+set(GCOV_LINK_FLAGS "")
 set(SAMPLE_FLAGS "")
+
+if(NOT DEFINED COMPILER)
+set(CMAKE_C_COMPILER "gcc")
 else()
+set(CMAKE_C_COMPILER "${COMPILER}")
+endif()
+unset(COMPILER CACHE)
+
+if(NOT DEFINED COMPILER_FLAG)
+set(NBP_COMPILER_FLAG "-DNBP_COMPILER_GCC")
+else()
+set(NBP_COMPILER_FLAG "${COMPILER_FLAG}")
+endif()
+unset(COMPILER_FLAG CACHE)
+
+if(SAMPLE_SLEEP MATCHES OFF)
 set(SAMPLE_FLAGS "-DSAMPLE_DISABLE_SLEEP")
 endif()
-
-unset(SAMPLE_FLAGS CACHE)
+unset(SAMPLE_SLEEP CACHE)
 
 if(CODE_COVERAGE MATCHES ON)
 set(GCOV_FLAGS "-fprofile-arcs -ftest-coverage")
 set(GCOV_LINK_FLAGS "-lgcov --coverage")
-else()
-set(GCOV_FLAGS "")
-set(GCOV_LINK_FLAGS "")
 endif()
-
 unset(CODE_COVERAGE CACHE)
 
-CMAKE_DEPENDENT_OPTION
+if(ADDRESS_SANITIZER MATCHES ON)
+set(SANITIZERS "-g -fsanitize=address,pointer-compare,pointer-subtract")
+endif()
+unset(ADDRESS_SANITIZER CACHE)
 
-set(CFLAGS "${DEFAULT_FLAGS} ${GCOV_FLAGS} ${OS_FLAG} ${COMPILER_FLAG} ${SANITIZERS} ${SAMPLE_FLAGS}")
-set(LFLAGS "${GCOV_LINK_FLAGS}")
+if(THREAD_SANITIZER MATCHES ON)
+set(SANITIZERS "-g -fsanitize=thread")
+endif()
+unset(THREAD_SANITIZER CACHE)
 
-message("${CFLAGS}")
-message("${LFLAGS}")
+if(LEAK_SANITIZER MATCHES ON)
+set(SANITIZERS "-g -fsanitize=leak")
+endif()
+unset(LEAK_SANITIZER CACHE)
+
+if(UNDEFINED_BEHAVIOR_SANITIZER MATCHES ON)
+set(SANITIZERS "-g -fsanitize=undefined,shift,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,bounds-strict,alignment,object-size,float-divide-by-zero,float-cast-overflow,nonnull-attribute,returns-nonnull-attribute,bool,enum,vptr,pointer-overflow,builtin -fuse-ld=gold")
+endif()
+unset(UNDEFINED_BEHAVIOR_SANITIZER CACHE)
+
+set(CFLAGS "${DEFAULT_FLAGS} ${GCOV_FLAGS} ${OS_FLAG} ${NBP_COMPILER_FLAG} ${SANITIZERS} ${SAMPLE_FLAGS}")
+set(LFLAGS "${GCOV_LINK_FLAGS} ${SANITIZERS}")
+
+message("Compiler: ${CMAKE_C_COMPILER}")
+message("CFLAGS: ${CFLAGS}")
+message("LFLAGS: ${LFLAGS}")
 
 # Creating targets
 set(SAMPLES_SOURCE_DIR "${CMAKE_SOURCE_DIR}/../../samples")
@@ -47,7 +81,7 @@ foreach(SAMPLE SAMPLE_CFLAGS SAMPLE_LFLAGS IN ZIP_LISTS SAMPLES SAMPLES_CFLAGS S
     set(SAMPLE_TARGET_NAME "${SAMPLE}_sample")
     set(SAMPLE_BIN_DIR "${SAMPLES_BIN_DIR}/${SAMPLE_TARGET_NAME}")
 
-    message(STATUS "Configuring ${SAMPLE} with \n---- CFLAGS: ${SAMPLE_CFLAGS} \n---- LFLAGS: ${SAMPLE_LFLAGS}")
+    message(STATUS "Configuring ${SAMPLE} with \n---- SAMPLE_CFLAGS: ${SAMPLE_CFLAGS} \n---- SAMPLE_LFLAGS: ${SAMPLE_LFLAGS}")
 
     FILE(GLOB SAMPLE_SOURCES "${SAMPLES_SOURCE_DIR}/${SAMPLE}/*.c")
 
