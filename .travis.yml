@@ -48,28 +48,33 @@ matrix:
       before_install:
         - gem install coveralls-lcov
       script:
-        - cd build/LinuxMakefile
+        - cd build/LinuxCMake
 
         # gcc 5
+        - cmake . -DCOMPILER=gcc-5
+        - make
+        - ./run_tests.sh
         - make clean
-        - make all CC=gcc-5 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - ./run_tests.sh && ./run_coveralls.sh
         # gcc 6
-        - make clean
-        - make all CC=gcc-6 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cmake . -DCOMPILER=gcc-6
+        - make
         - ./run_tests.sh
+        - make clean
         # gcc 7
-        - make clean
-        - make all CC=gcc-7 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cmake . -DCOMPILER=gcc-7
+        - make
         - ./run_tests.sh
+        - make clean
         # gcc 8
-        - make clean
-        - make all CC=gcc-8 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cmake . -DCOMPILER=gcc-8
+        - make
         - ./run_tests.sh
+        - make clean
         # gcc 9
-        - make clean
-        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cmake . -DCOMPILER=gcc-9
+        - make
         - ./run_tests.sh
+        - make clean
 
     #
     # g++
@@ -91,28 +96,33 @@ matrix:
       before_install:
         - gem install coveralls-lcov
       script:
-        - cd build/LinuxMakefile
+        - cd build/LinuxCMake
 
         # g++ 5
+        - cmake . -DCOMPILER=g++-5 -DCOMPILER_FLAG=-DNBP_COMPILER_GPP
+        - make
+        - ./run_tests.sh
         - make clean
-        - make all CC=g++-5 COMPILER_FLAG=-DNBP_COMPILER_GPP SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - ./run_tests.sh && ./run_coveralls.sh
         # g++ 6
-        - make clean
-        - make all CC=g++-6 COMPILER_FLAG=-DNBP_COMPILER_GPP SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cmake . -DCOMPILER=g++-6 -DCOMPILER_FLAG=-DNBP_COMPILER_GPP
+        - make
         - ./run_tests.sh
+        - make clean
         # g++ 7
-        - make clean
-        - make all CC=g++-7 COMPILER_FLAG=-DNBP_COMPILER_GPP SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cmake . -DCOMPILER=g++-7 -DCOMPILER_FLAG=-DNBP_COMPILER_GPP
+        - make
         - ./run_tests.sh
+        - make clean
         # g++ 8
-        - make clean
-        - make all CC=g++-8 COMPILER_FLAG=-DNBP_COMPILER_GPP SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cmake . -DCOMPILER=g++-8 -DCOMPILER_FLAG=-DNBP_COMPILER_GPP
+        - make
         - ./run_tests.sh
+        - make clean
         # g++ 9
-        - make clean
-        - make all CC=g++-9 COMPILER_FLAG=-DNBP_COMPILER_GPP SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cmake . -DCOMPILER=g++-9 -DCOMPILER_FLAG=-DNBP_COMPILER_GPP
+        - make
         - ./run_tests.sh
+        - make clean
 
     #
     # clang
@@ -133,16 +143,18 @@ matrix:
       before_install:
         - gem install coveralls-lcov
       script:
-        - cd build/LinuxMakefile
+        - cd build/LinuxCMake
 
         # clang 7
-        - make clean
-        - make all CC=clang-7 COMPILER_FLAG=-DNBP_COMPILER_CLANG SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
-        - ./run_tests.sh && ./run_coveralls.sh
-        # clang 8
-        - make clean
-        - make all CC=clang-8 COMPILER_FLAG=-DNBP_COMPILER_CLANG SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP
+        - cmake . -DCOMPILER=clang-7 -DCOMPILER_FLAG=-DNBP_COMPILER_CLANG
+        - make
         - ./run_tests.sh
+        - make clean
+        # clang 8
+        - cmake . -DCOMPILER=clang-8 -DCOMPILER_FLAG=-DNBP_COMPILER_CLANG
+        - make
+        - ./run_tests.sh
+        - make clean
 
     #
     # gcc9 sanitizers
@@ -157,25 +169,29 @@ matrix:
           packages:
             - gcc-9
       script:
-        - cd build/LinuxMakefile
+        - cd build/LinuxCMake
 
         # address
-        - make clean
-        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP GCOV_FLAGS= SANITIZERS="-g -fsanitize=address,pointer-compare,pointer-subtract"
+        - cmake . -DCOMPILER=gcc-9 -DADDRESS_SANITIZER=ON
+        - make
         - ./run_tests.sh ASAN_OPTIONS="detect_invalid_pointer_pairs=1"
         - ./run_tests.sh ASAN_OPTIONS="detect_stack_use_after_return=1"
+        - make clean
 
         # thread
-        - make clean
-        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP GCOV_FLAGS= SANITIZERS="-g -fsanitize=thread"
+        - cmake . -DCOMPILER=gcc-9 -DTHREAD_SANITIZER=ON
+        - make
         - ./run_tests.sh
+        - make clean
 
         # leak
-        - make clean
-        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP GCOV_FLAGS= SANITIZERS="-g -fsanitize=leak"
+        - cmake . -DCOMPILER=gcc-9 -DLEAK_SANITIZER=ON
+        - make
         - ./run_tests.sh
+        - make clean
 
         # undefined behaviour
-        - make clean
-        - make all CC=gcc-9 COMPILER_FLAG=-DNBP_COMPILER_GCC SAMPLE_FLAGS=-DSAMPLE_DISABLE_SLEEP GCOV_FLAGS= SANITIZERS="-g -fsanitize=undefined,shift,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,bounds-strict,alignment,object-size,float-divide-by-zero,float-cast-overflow,nonnull-attribute,returns-nonnull-attribute,bool,enum,vptr,pointer-overflow,builtin -fuse-ld=gold"
+        - cmake . -DCOMPILER=gcc-9 -DUNDEFINED_BEHAVIOR_SANITIZER=ON
+        - make
         - ./run_tests.sh
+        - make clean
