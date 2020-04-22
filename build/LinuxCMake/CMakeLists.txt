@@ -40,7 +40,7 @@ endif()
 unset(SAMPLE_SLEEP CACHE)
 
 if(CODE_COVERAGE MATCHES ON)
-set(GCOV_FLAGS "-fprofile-arcs -ftest-coverage")
+set(GCOV_FLAGS "-fprofile-arcs -ftest-coverage -O0 -g")
 set(GCOV_LINK_FLAGS "-lgcov --coverage")
 endif()
 unset(CODE_COVERAGE CACHE)
@@ -81,7 +81,10 @@ foreach(SAMPLE SAMPLE_CFLAGS SAMPLE_LFLAGS IN ZIP_LISTS SAMPLES SAMPLES_CFLAGS S
     set(SAMPLE_TARGET_NAME "${SAMPLE}_sample")
     set(SAMPLE_BIN_DIR "${SAMPLES_BIN_DIR}/${SAMPLE_TARGET_NAME}")
 
-    message(STATUS "Configuring ${SAMPLE} with \n---- SAMPLE_CFLAGS: ${SAMPLE_CFLAGS} \n---- SAMPLE_LFLAGS: ${SAMPLE_LFLAGS}")
+    message(STATUS "Configuring ${SAMPLE} with\n"
+        "---- SAMPLE_CFLAGS: ${SAMPLE_CFLAGS}\n"
+        "---- SAMPLE_LFLAGS: ${SAMPLE_LFLAGS}"
+    )
 
     FILE(GLOB SAMPLE_SOURCES "${SAMPLES_SOURCE_DIR}/${SAMPLE}/*.c")
 
