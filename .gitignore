@@ -56,14 +56,7 @@ dkms.conf
 
 bin/*
 
-CMakeLists.txt.user
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-_deps
+build/LinuxCMake/CMakeCache.txt
+build/LinuxCMake/CMakeFiles/
+build/LinuxCMake/Makefile
+build/LinuxCMake/cmake_install.cmake
