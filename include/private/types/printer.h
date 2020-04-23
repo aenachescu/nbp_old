@@ -47,6 +47,10 @@ typedef void (*nbp_printer_report_error_pfn_t)(
     nbp_error_t /* error context */
 );
 
+typedef void (*nbp_printer_exit_triggered_pfn_t)(
+    int /* exit status */
+);
+
 typedef void (*nbp_printer_handle_version_command_pfn_t)(
     void
 );
@@ -718,6 +722,7 @@ struct nbp_printer_interface_t {
     nbp_printer_uninit_pfn_t uninit;
 
     nbp_printer_report_error_pfn_t reportError;
+    nbp_printer_exit_triggered_pfn_t exitTriggered;
 
     nbp_printer_handle_version_command_pfn_t handleVersionCommand;
 

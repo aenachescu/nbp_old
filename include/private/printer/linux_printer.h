@@ -2061,6 +2061,9 @@ NBP_DEFINE_PRINTER(
         nbp_linux_printer_report_error
     ),
 
+    // exit triggered
+    NBP_PRINTER_NO_FUNC_EXIT_TRIGGERED,
+
     // handle version command
     NBP_PRINTER_USE_FUNC_HANDLE_VERSION_COMMAND(
         nbp_linux_printer_handle_version_command

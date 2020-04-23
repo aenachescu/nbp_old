@@ -32,7 +32,9 @@ SOFTWARE.
 
 #include <stdlib.h>
 
-#define NBP_EXIT(exitCode) exit(exitCode)
+#define NBP_EXIT(exitCode)                                                     \
+    nbp_printer_notify_exit_triggered(exitCode);                               \
+    exit(exitCode)
 
 #else // NBP_CUSTOM_EXIT is defined
 

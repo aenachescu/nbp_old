@@ -94,6 +94,15 @@ void nbp_printer_notify_report_error_ctx_custom(int errCode, void* ctx)
     }
 }
 
+void nbp_printer_notify_exit_triggered(int exitStatus)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->exitTriggered != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->exitTriggered(exitStatus);
+        }
+    }
+}
+
 void nbp_printer_notify_test_started(nbp_test_details_t* test)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {

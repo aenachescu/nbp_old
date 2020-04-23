@@ -91,6 +91,26 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
+#define NBP_PRINTER_FUNC_EXIT_TRIGGERED(func)                                  \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+        NBP_MAYBE_UNUSED_PARAMETER int exitStatus                              \
+    )
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_USE_FUNC_EXIT_TRIGGERED(func)                              \
+    .exitTriggered = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_NO_FUNC_EXIT_TRIGGERED                                     \
+    .exitTriggered = NBP_MEMORY_NULL_POINTER
+
+/*
+ * TODO: add docs
+ */
 #define NBP_PRINTER_FUNC_HANDLE_VERSION_COMMAND(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
     )
@@ -2026,5 +2046,10 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_GET_ERROR() err
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_EXIT_STATUS() exitStatus
 
 #endif // end if NBP_PRIVATE_API_PRINTER_H
