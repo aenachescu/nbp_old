@@ -38,9 +38,13 @@ SOFTWARE.
 
 #else // NBP_CUSTOM_EXIT is defined
 
-#ifndef NBP_EXIT
+#ifndef NBP_EXIT_FUNC
 #error "Custom exit is enabled but no exit function is provided"
 #endif // end if NBP_EXIT
+
+#define NBP_EXIT(exitCode)                                                     \
+    nbp_printer_notify_exit_triggered(exitCode);                               \
+    NBP_EXIT_FUNC(exitCode)
 
 #endif // end if NBP_CUSTOM_EXIT
 
