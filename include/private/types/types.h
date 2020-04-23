@@ -28,8 +28,7 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_TYPES_H
 #define NBP_PRIVATE_TYPES_H
 
-#include "errors.h"
-#include "exit_status.h"
+#include "error.h"
 #include "sync.h"
 #include "test.h"
 #include "module.h"

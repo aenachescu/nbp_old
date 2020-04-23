@@ -46,36 +46,36 @@ SOFTWARE.
 
 #include <pthread.h>
 
-static inline NBP_ERROR_TYPE nbp_linux_printer_mutex_init(
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_init(
     pthread_mutex_t* mutex)
 {
     return pthread_mutex_init(mutex, NULL) == 0
-        ? NBP_NO_ERROR
-        : NBP_ERROR_FAILED_TO_INIT_MUTEX;
+        ? NBP_ERROR_CODE_SUCCESS
+        : NBP_ERROR_CODE_SYNC_ERROR;
 }
 
-static inline NBP_ERROR_TYPE nbp_linux_printer_mutex_uninit(
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_uninit(
     pthread_mutex_t* mutex)
 {
     return pthread_mutex_destroy(mutex) == 0
-        ? NBP_NO_ERROR
-        : NBP_ERROR_FAILED_TO_UNINIT_MUTEX;
+        ? NBP_ERROR_CODE_SUCCESS
+        : NBP_ERROR_CODE_SYNC_ERROR;
 }
 
-static inline NBP_ERROR_TYPE nbp_linux_printer_mutex_lock(
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_lock(
     pthread_mutex_t* mutex)
 {
     return pthread_mutex_lock(mutex) == 0
-        ? NBP_NO_ERROR
-        : NBP_ERROR_FAILED_TO_LOCK_MUTEX;
+        ? NBP_ERROR_CODE_SUCCESS
+        : NBP_ERROR_CODE_SYNC_ERROR;
 }
 
-static inline NBP_ERROR_TYPE nbp_linux_printer_mutex_unlock(
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_unlock(
     pthread_mutex_t* mutex)
 {
     return pthread_mutex_unlock(mutex) == 0
-        ? NBP_NO_ERROR
-        : NBP_ERROR_FAILED_TO_UNLOCK_MUTEX;
+        ? NBP_ERROR_CODE_SUCCESS
+        : NBP_ERROR_CODE_SYNC_ERROR;
 }
 
 #define NBP_LINUX_PRINTER_PRIVATE_DECLARE_MUTEX(name)                          \
@@ -95,24 +95,24 @@ static inline NBP_ERROR_TYPE nbp_linux_printer_mutex_unlock(
 
 #else // NBP_MT_SUPPORT not defined
 
-static inline NBP_ERROR_TYPE nbp_linux_printer_mutex_init()
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_init()
 {
-    return NBP_NO_ERROR;
+    return NBP_ERROR_CODE_SUCCESS;
 }
 
-static inline NBP_ERROR_TYPE nbp_linux_printer_mutex_uninit()
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_uninit()
 {
-    return NBP_NO_ERROR;
+    return NBP_ERROR_CODE_SUCCESS;
 }
 
-static inline NBP_ERROR_TYPE nbp_linux_printer_mutex_lock()
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_lock()
 {
-    return NBP_NO_ERROR;
+    return NBP_ERROR_CODE_SUCCESS;
 }
 
-static inline NBP_ERROR_TYPE nbp_linux_printer_mutex_unlock()
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_unlock()
 {
-    return NBP_NO_ERROR;
+    return NBP_ERROR_CODE_SUCCESS;
 }
 
 #define NBP_LINUX_PRINTER_PRIVATE_DECLARE_MUTEX(name)
@@ -186,7 +186,7 @@ static nbp_linux_printer_data_t* nbp_linux_printer_create_data_from_test(
         data = (nbp_linux_printer_data_t*) NBP_MEMORY_ALLOC(sizeof(*data));
         if (data == NBP_MEMORY_NULL_POINTER) {
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_ALLOC,
+                NBP_ERROR_CODE_OUT_OF_MEMORY,
                 "could not allocate nbp_linux_printer_data_t struct from test"
             );
             break;
@@ -211,7 +211,7 @@ static nbp_linux_printer_data_t* nbp_linux_printer_create_data_from_module(
         data = (nbp_linux_printer_data_t*) NBP_MEMORY_ALLOC(sizeof(*data));
         if (data == NBP_MEMORY_NULL_POINTER) {
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_ALLOC,
+                NBP_ERROR_CODE_OUT_OF_MEMORY,
                 "could not allocate nbp_linux_printer_data_t struct from module"
             );
             break;
@@ -270,7 +270,7 @@ static nbp_linux_printer_messages_list_t* nbp_linux_printer_create_message(
 
         if (message == NBP_MEMORY_NULL_POINTER) {
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_ALLOC,
+                NBP_ERROR_CODE_OUT_OF_MEMORY,
                 "could not allocate nbp_linux_printer_messages_list_t struct"
             );
             break;
@@ -281,7 +281,7 @@ static nbp_linux_printer_messages_list_t* nbp_linux_printer_create_message(
 
         if (message->message == NBP_MEMORY_NULL_POINTER) {
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_ALLOC,
+                NBP_ERROR_CODE_OUT_OF_MEMORY,
                 "could not duplicate the message"
             );
             break;
@@ -304,7 +304,7 @@ static void nbp_linux_printer_add_message(nbp_test_details_t* test, char* msg)
     if (data == NBP_MEMORY_NULL_POINTER) {
         char errMsg[1024];
         snprintf(errMsg, 1024, "test [%s] not found", NBP_GET_TEST_NAME(test));
-        NBP_ERROR_REPORT_CTX_STRING(NBP_ERROR_TEST_NOT_FOUND, errMsg);
+        NBP_ERROR_REPORT_CTX_STRING(NBP_ERROR_CODE_INTERNAL_ERROR, errMsg);
         return;
     }
 

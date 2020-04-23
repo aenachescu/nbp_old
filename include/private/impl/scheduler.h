@@ -180,10 +180,10 @@ end:
     );
     if (oldVal != NBP_MODULE_STATE_RUNNING) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_INVALID_MODULE_STATE,
+            NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
             "module is not running"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
     }
 
     if (module->parent == NBP_MEMORY_NULL_POINTER) {
@@ -203,10 +203,10 @@ end:
             break;
         default:
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_INVALID_MODULE_STATE,
+                NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
                 "unknown module state"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
     }
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(parentNum, 1);
@@ -238,10 +238,10 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
         );
         if (oldVal != NBP_TEST_STATE_RUNNING) {
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_INVALID_TEST_STATE,
+                NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
                 "test is not running"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_TEST_STATE);
         }
 
         NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numPassed, 1);
@@ -255,10 +255,10 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
     );
     if (oldVal != NBP_TEST_STATE_RUNNING) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_INVALID_TEST_STATE,
+            NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
             "test is not running"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_TEST_STATE);
     }
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numFailed, 1);
@@ -281,10 +281,10 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
     }
 
     if (oldVal == NBP_MODULE_FLAGS_PROCESSED) {
-        NBP_ERROR_TYPE errCode = NBP_SYNC_EVENT_WAIT(module->setupEvent);
-        if (errCode != NBP_NO_ERROR) {
+        NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_WAIT(module->setupEvent);
+        if (errCode != NBP_ERROR_CODE_SUCCESS) {
             NBP_ERROR_REPORT(errCode);
-            NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+            NBP_EXIT(errCode);
         }
 
         oldVal = NBP_SYNC_ATOMIC_UINT_LOAD(&module->flags);
@@ -293,8 +293,8 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
             return oldVal;
         }
 
-        NBP_ERROR_REPORT(NBP_ERROR_MODULE_FLAGS_INVALID_VALUE);
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
     }
 
     if (oldVal == NBP_MODULE_FLAGS_NOT_INITIALIZED) {
@@ -304,10 +304,10 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
                 module->setup(module);
             }
 
-            NBP_ERROR_TYPE errCode = NBP_SYNC_EVENT_NOTIFY(module->setupEvent);
-            if (errCode != NBP_NO_ERROR) {
+            NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_NOTIFY(module->setupEvent);
+            if (errCode != NBP_ERROR_CODE_SUCCESS) {
                 NBP_ERROR_REPORT(errCode);
-                NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+                NBP_EXIT(errCode);
             }
 
             return NBP_MODULE_FLAGS_PROCESSED;
@@ -320,18 +320,18 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
                 NBP_MODULE_FLAGS_SKIP
             );
             if (oldVal != NBP_MODULE_FLAGS_PROCESSED) {
-                NBP_ERROR_REPORT(NBP_ERROR_MODULE_FLAGS_INVALID_VALUE);
-                NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+                NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+                NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
             }
             return NBP_MODULE_FLAGS_SKIP;
         }
 
-        NBP_ERROR_REPORT(NBP_ERROR_MODULE_FLAGS_INVALID_VALUE);
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
     }
 
-    NBP_ERROR_REPORT(NBP_ERROR_MODULE_FLAGS_INVALID_VALUE);
-    NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+    NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+    NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
 }
 
 static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
@@ -374,16 +374,17 @@ static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
 
 error:
     NBP_ERROR_REPORT_CTX_STRING(
-        NBP_ERROR_INVALID_MODULE_STATS,
+        NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
         "the sum of numPassed, numFailed and numSkipped is not equal to num"
     );
-    NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+    NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
 }
 
 static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 {
     unsigned int num, flags;
-    NBP_ERROR_TYPE errCode;
+    NBP_ERROR_CODE_TYPE errCode;
+
     while (1) {
         num = NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&module->completedTaskNum, 1);
         if (NBP_SYNC_ATOMIC_UINT_LOAD(&module->taskNum) > num) {
@@ -392,10 +393,10 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 
         if (NBP_SYNC_ATOMIC_UINT_LOAD(&module->taskNum) < num) {
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_INVALID_MODULE_STATS,
+                NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
                 "there are too many completed tasks"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
         }
 
         nbp_scheduler_verify_module_stats(module);
@@ -413,15 +414,15 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
         nbp_printer_notify_module_completed(module);
 
         errCode = NBP_SYNC_EVENT_UNINIT(module->runEvent);
-        if (errCode != NBP_NO_ERROR) {
+        if (errCode != NBP_ERROR_CODE_SUCCESS) {
             NBP_ERROR_REPORT(errCode);
-            NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+            NBP_EXIT(errCode);
         }
 
         errCode = NBP_SYNC_EVENT_UNINIT(module->setupEvent);
-        if (errCode != NBP_NO_ERROR) {
+        if (errCode != NBP_ERROR_CODE_SUCCESS) {
             NBP_ERROR_REPORT(errCode);
-            NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+            NBP_EXIT(errCode);
         }
 
         module = module->parent;
@@ -497,10 +498,10 @@ static void nbp_scheduler_run_test_skipped(nbp_test_details_t* test)
     );
     if (oldVal != NBP_TEST_STATE_RUNNING) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_INVALID_TEST_STATE,
+            NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
             "test is not running"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_TEST_STATE);
     }
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numSkipped, 1);
@@ -521,10 +522,10 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
     );
 
     if (oldVal == NBP_MODULE_STATE_RUNNING) {
-        NBP_ERROR_TYPE errCode = NBP_SYNC_EVENT_WAIT(module->runEvent);
-        if (errCode != NBP_NO_ERROR) {
+        NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_WAIT(module->runEvent);
+        if (errCode != NBP_ERROR_CODE_SUCCESS) {
             NBP_ERROR_REPORT(errCode);
-            NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+            NBP_EXIT(errCode);
         }
 
         return NBP_MODULE_STATE_RUNNING;
@@ -534,28 +535,28 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
         unsigned int parentState = nbp_scheduler_run_module(module->parent);
         if (parentState != NBP_MODULE_STATE_RUNNING) {
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_INVALID_MODULE_STATE,
+                NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
                 "parent module is not running"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
         }
 
         nbp_printer_notify_module_started(module);
 
-        NBP_ERROR_TYPE errCode = NBP_SYNC_EVENT_NOTIFY(module->runEvent);
-        if (errCode != NBP_NO_ERROR) {
+        NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_NOTIFY(module->runEvent);
+        if (errCode != NBP_ERROR_CODE_SUCCESS) {
             NBP_ERROR_REPORT(errCode);
-            NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+            NBP_EXIT(errCode);
         }
 
         return NBP_MODULE_STATE_RUNNING;
     }
 
     NBP_ERROR_REPORT_CTX_STRING(
-        NBP_ERROR_INVALID_MODULE_STATE,
+        NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
         "module is not ready or running"
     );
-    NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+    NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
 }
 
 static void nbp_scheduler_complete_empty_module_ready(
@@ -565,7 +566,7 @@ static void nbp_scheduler_complete_empty_module_ready(
     unsigned int numberOfCompletedTasks;
     unsigned int moduleState;
     nbp_module_details_t* moduleIdx;
-    NBP_ERROR_TYPE errCode;
+    NBP_ERROR_CODE_TYPE errCode;
 
     // starting module
 
@@ -576,10 +577,10 @@ static void nbp_scheduler_complete_empty_module_ready(
     );
     if (moduleState != NBP_MODULE_STATE_READY) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_INVALID_MODULE_STATE,
+            NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
             "unexpected module state"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
     }
 
     nbp_printer_notify_module_started(module);
@@ -591,10 +592,10 @@ static void nbp_scheduler_complete_empty_module_ready(
         moduleState = NBP_SYNC_ATOMIC_UINT_LOAD(&moduleIdx->moduleState);
         if (moduleState != NBP_MODULE_STATE_READY) {
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_INVALID_MODULE_STATE,
+                NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
                 "unexpected module state"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
         }
 
         nbp_scheduler_complete_empty_module_ready(moduleIdx);
@@ -609,10 +610,10 @@ static void nbp_scheduler_complete_empty_module_ready(
 
     if (numberOfTasks != numberOfCompletedTasks) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_INVALID_MODULE_STATS,
+            NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
             "number of completed tasks is not equal to number of tasks"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
     }
 
     // update state & stats
@@ -624,10 +625,10 @@ static void nbp_scheduler_complete_empty_module_ready(
     );
     if (moduleState != NBP_MODULE_STATE_RUNNING) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_INVALID_MODULE_STATE,
+            NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
             "unexpected module state"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
     }
 
     nbp_scheduler_verify_module_stats(module);
@@ -644,15 +645,15 @@ static void nbp_scheduler_complete_empty_module_ready(
     // destroy events
 
     errCode = NBP_SYNC_EVENT_UNINIT(module->runEvent);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+        NBP_EXIT(errCode);
     }
 
     errCode = NBP_SYNC_EVENT_UNINIT(module->setupEvent);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+        NBP_EXIT(errCode);
     }
 }
 
@@ -664,7 +665,7 @@ static void nbp_scheduler_complete_empty_module_running(
     unsigned int numberOfTasks;
     unsigned int numberOfCompletedTasks;
     unsigned int flags;
-    NBP_ERROR_TYPE errCode;
+    NBP_ERROR_CODE_TYPE errCode;
 
     moduleIdx = module->firstModule;
     while (moduleIdx != NBP_MEMORY_NULL_POINTER) {
@@ -685,10 +686,10 @@ static void nbp_scheduler_complete_empty_module_running(
 
     if (numberOfTasks != numberOfCompletedTasks) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_INVALID_MODULE_STATS,
+            NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
             "number of completed tasks is not equal to number of tasks"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
     }
 
     nbp_scheduler_verify_module_stats(module);
@@ -716,15 +717,15 @@ static void nbp_scheduler_complete_empty_module_running(
     // destroy events
 
     errCode = NBP_SYNC_EVENT_UNINIT(module->runEvent);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+        NBP_EXIT(errCode);
     }
 
     errCode = NBP_SYNC_EVENT_UNINIT(module->setupEvent);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+        NBP_EXIT(errCode);
     }
 }
 
@@ -733,7 +734,7 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
     // the test can be run only from NBP_SCHEDULER_FUNC_RUN function
     extern int nbpSchedulerRunEnabled;
     if (nbpSchedulerRunEnabled != 1) {
-        NBP_ERROR_REPORT(NBP_ERROR_SCHEDULER_RUN_DISABLED);
+        NBP_ERROR_REPORT(NBP_ERROR_CODE_SCHEDULER_RUN_DISABLED);
         return;
     }
 
@@ -745,19 +746,19 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
 
     if (oldVal != NBP_TEST_STATE_READY) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_INVALID_TEST_STATE,
+            NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
             "test is not ready"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_TEST_STATE);
     }
 
     unsigned int moduleState = nbp_scheduler_run_module(test->module);
     if (moduleState != NBP_MODULE_STATE_RUNNING) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_INVALID_MODULE_STATE,
+            NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
             "module is not running"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
     }
 
     oldVal = NBP_SYNC_ATOMIC_UINT_CAS(
@@ -773,14 +774,14 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
         } else if (moduleFlags == NBP_MODULE_FLAGS_SKIP) {
             nbp_scheduler_run_test_skipped(test);
         } else {
-            NBP_ERROR_REPORT(NBP_ERROR_MODULE_FLAGS_INVALID_VALUE);
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+            NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
         }
     } else if (oldVal == NBP_TEST_FLAGS_SKIP) {
         nbp_scheduler_run_test_skipped(test);
     } else {
-        NBP_ERROR_REPORT(NBP_ERROR_TEST_FLAGS_INVALID_VALUE);
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
     }
 
     nbp_scheduler_teardown_module(test->module);

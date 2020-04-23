@@ -60,23 +60,23 @@ SOFTWARE.
 
 #define NBP_SYNC_EVENT_INIT(ev)                                                \
     sem_init(&ev, 0, 0) == 0                                                   \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_FAILED_TO_INIT_EVENT
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #define NBP_SYNC_EVENT_UNINIT(ev)                                              \
     sem_destroy(&ev) == 0                                                      \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_FAILED_TO_UNINIT_EVENT
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #define NBP_SYNC_EVENT_WAIT(ev)                                                \
     sem_wait(&ev) == 0 && sem_post(&ev) == 0                                   \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_FAILED_TO_WAIT_EVENT
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #define NBP_SYNC_EVENT_NOTIFY(ev)                                              \
     sem_post(&ev) == 0                                                         \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_FAILED_TO_SIGNAL_EVENT
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #endif // end if NBP_OS_LINUX
 
@@ -110,13 +110,13 @@ SOFTWARE.
 
 #define NBP_SYNC_EVENT_DEFAULT_VALUE 0
 
-#define NBP_SYNC_EVENT_INIT(ev) NBP_NO_ERROR
+#define NBP_SYNC_EVENT_INIT(ev) NBP_ERROR_CODE_SUCCESS
 
-#define NBP_SYNC_EVENT_UNINIT(ev) NBP_NO_ERROR
+#define NBP_SYNC_EVENT_UNINIT(ev) NBP_ERROR_CODE_SUCCESS
 
-#define NBP_SYNC_EVENT_WAIT(ev) NBP_NO_ERROR
+#define NBP_SYNC_EVENT_WAIT(ev) NBP_ERROR_CODE_SUCCESS
 
-#define NBP_SYNC_EVENT_NOTIFY(ev) NBP_NO_ERROR
+#define NBP_SYNC_EVENT_NOTIFY(ev) NBP_ERROR_CODE_SUCCESS
 
 #endif // end if NBP_MT_SUPPORT
 

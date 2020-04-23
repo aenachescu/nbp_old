@@ -93,7 +93,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_EXIT_TRIGGERED(func)                                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER int exitStatus                              \
+        NBP_MAYBE_UNUSED_PARAMETER int errorCode                               \
     )
 
 /*
@@ -2050,6 +2050,6 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_EXIT_STATUS() exitStatus
+#define NBP_PRINTER_GET_EXIT_ERROR_CODE() errorCode
 
 #endif // end if NBP_PRIVATE_API_PRINTER_H

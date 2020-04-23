@@ -56,8 +56,8 @@ int nbp_command_run_all()
     }
 
     if (nbpSchedulerInterface->run == NBP_MEMORY_NULL_POINTER) {
-        NBP_ERROR_REPORT(NBP_ERROR_SCHEDULER_NO_RUN_FUNC);
-        NBP_EXIT(NBP_EXIT_STATUS_INVALID_SCHEDULER);
+        NBP_ERROR_REPORT(NBP_ERROR_CODE_INVALID_SCHEDULER);
+        NBP_EXIT(NBP_ERROR_CODE_INVALID_SCHEDULER);
     }
 
     if (nbpSchedulerInterface->init != NBP_MEMORY_NULL_POINTER) {
@@ -79,8 +79,8 @@ int nbp_command_run_all()
     extern unsigned int nbpTotalNumberOfTests;
 
     if (NBP_SYNC_ATOMIC_UINT_LOAD(&nbpNumberOfRanTests) != nbpTotalNumberOfTests) {
-        NBP_ERROR_REPORT(NBP_ERROR_NOT_ALL_TESTS_RAN);
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_ERROR_REPORT(NBP_ERROR_CODE_NOT_ALL_TESTS_RAN);
+        NBP_EXIT(NBP_ERROR_CODE_NOT_ALL_TESTS_RAN);
     }
 
     nbp_scheduler_complete_empty_modules(nbpMainModule);
@@ -123,10 +123,10 @@ int nbp_command_run_all()
     }
 
     if (NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_PASSED) {
-        return NBP_EXIT_STATUS_PASSED;
+        return NBP_ERROR_CODE_SUCCESS;
     }
 
-    return NBP_EXIT_STATUS_FAILED;
+    return NBP_ERROR_CODE_TESTS_FAILED;
 }
 
 int nbp_command_version()
@@ -149,13 +149,13 @@ int nbp_command_version()
         }
     }
 
-    return NBP_EXIT_STATUS_PASSED;
+    return NBP_ERROR_CODE_SUCCESS;
 }
 
 int main(int argc, const char** argv)
 {
     if (argc < 1) {
-        return NBP_EXIT_STATUS_INVALID_CMDLINE;
+        return NBP_ERROR_CODE_INVALID_CMDLINE;
     }
 
     if (argc == 1) {
@@ -166,7 +166,7 @@ int main(int argc, const char** argv)
         return nbp_command_version();
     }
 
-    return NBP_EXIT_STATUS_INVALID_CMDLINE;
+    return NBP_ERROR_CODE_INVALID_CMDLINE;
 }
 
 #endif // end if NBP_PRIVATE_IMPL_MAIN_H

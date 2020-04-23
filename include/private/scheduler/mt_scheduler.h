@@ -247,10 +247,10 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
     int num = NBP_MT_SCHEDULER_NUMBER_OF_THREADS;
     if (num < 1) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_GENERIC,
+            NBP_ERROR_CODE_GENERIC_ERROR,
             "failed to get the number of threads"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
         return 1;
     }
 
@@ -274,10 +274,10 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
     int num = get_nprocs();
     if (num < 1) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_GENERIC,
+            NBP_ERROR_CODE_GENERIC_ERROR,
             "failed to get the number of threads"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
         return 1;
     }
 
@@ -316,13 +316,13 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
 
 #define NBP_MT_SCHEDULER_THREAD_CREATE(thread, func, param)                    \
     pthread_create(&thread, NULL, func, param) == 0                            \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_GENERIC
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_GENERIC_ERROR
 
 #define NBP_MT_SCHEDULER_THREAD_JOIN(thread)                                   \
     pthread_join(thread, NULL) == 0                                            \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_GENERIC
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_GENERIC_ERROR
 
 /*
  * Mutex wrapper
@@ -334,23 +334,23 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
 
 #define NBP_MT_SCHEDULER_MUTEX_INIT(mutex)                                     \
     pthread_mutex_init(&mutex, NULL) == 0                                      \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_GENERIC
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #define NBP_MT_SCHEDULER_MUTEX_UNINIT(mutex)                                   \
     pthread_mutex_destroy(&mutex) == 0                                         \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_GENERIC
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #define NBP_MT_SCHEDULER_MUTEX_LOCK(mutex)                                     \
     pthread_mutex_lock(&mutex) == 0                                            \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_GENERIC
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #define NBP_MT_SCHEDULER_MUTEX_UNLOCK(mutex)                                   \
     pthread_mutex_unlock(&mutex) == 0                                          \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_GENERIC
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 /*
  * Conditional variable wrapper
@@ -362,28 +362,28 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
 
 #define NBP_MT_SCHEDULER_CONDVAR_INIT(condvar)                                 \
     pthread_cond_init(&condvar, NULL) == 0                                     \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_GENERIC
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #define NBP_MT_SCHEDULER_CONDVAR_UNINIT(condvar)                               \
     pthread_cond_destroy(&condvar) == 0                                        \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_GENERIC
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #define NBP_MT_SCHEDULER_CONDVAR_WAIT(condvar, mutex)                          \
     pthread_cond_wait(&condvar, &mutex) == 0                                   \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_GENERIC
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #define NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ONE(condvar)                           \
     pthread_cond_signal(&condvar) == 0                                         \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_GENERIC
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #define NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ALL(condvar)                           \
     pthread_cond_broadcast(&condvar) == 0                                      \
-        ? NBP_NO_ERROR                                                         \
-        : NBP_ERROR_GENERIC
+        ? NBP_ERROR_CODE_SUCCESS                                               \
+        : NBP_ERROR_CODE_SYNC_ERROR
 
 #endif // end if NBP_OS_LINUX
 
@@ -499,10 +499,10 @@ void* nbp_mt_scheduler_create_ctx(unsigned long long numberOfRules, ...)
         (nbp_mt_scheduler_context_t*) NBP_MEMORY_ALLOC(size);
     if (ctx == NBP_MEMORY_NULL_POINTER) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_ALLOC,
+            NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not alloc context"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
+        NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
         return NBP_MEMORY_NULL_POINTER;
     }
 
@@ -606,8 +606,8 @@ static void nbp_mt_scheduler_set_test_on_same_thread_with_test(
         test1->requestedWorkerId =
             (unsigned int*) NBP_MEMORY_ALLOC(sizeof(unsigned int));
         if (test1->requestedWorkerId == NBP_MEMORY_NULL_POINTER) {
-            NBP_ERROR_REPORT(NBP_ERROR_ALLOC);
-            NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
+            NBP_ERROR_REPORT(NBP_ERROR_CODE_OUT_OF_MEMORY);
+            NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
         }
 
         *test1->requestedWorkerId = NBP_MT_SCHEDULER_PRIVATE_INVALID_WORKER_ID;
@@ -818,14 +818,14 @@ static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_f
 {
     unsigned int workerId = *((unsigned int*) param);
     nbp_mt_scheduler_test_t* test;
-    NBP_ERROR_TYPE errCode;
+    NBP_ERROR_CODE_TYPE errCode;
 
     (void)(workerId);
 
     errCode = NBP_MT_SCHEDULER_MUTEX_LOCK(nbpMtSchedulerMutex);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(errCode);
     }
 
     while (nbpMtSchedulerNumberOfDispatchedTests != nbpMtSchedulerNumberOfTests) {
@@ -835,9 +835,9 @@ static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_f
                 nbpMtSchedulerCondVar,
                 nbpMtSchedulerMutex
             );
-            if (errCode != NBP_NO_ERROR) {
+            if (errCode != NBP_ERROR_CODE_SUCCESS) {
                 NBP_ERROR_REPORT(errCode);
-                NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+                NBP_EXIT(errCode);
             }
 
             continue;
@@ -846,44 +846,44 @@ static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_f
         nbpMtSchedulerNumberOfDispatchedTests++;
 
         errCode = NBP_MT_SCHEDULER_MUTEX_UNLOCK(nbpMtSchedulerMutex);
-        if (errCode != NBP_NO_ERROR) {
+        if (errCode != NBP_ERROR_CODE_SUCCESS) {
             NBP_ERROR_REPORT(errCode);
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(errCode);
         }
 
         NBP_SCHEDULER_RUN_TEST(test->test);
 
         errCode = NBP_MT_SCHEDULER_MUTEX_LOCK(nbpMtSchedulerMutex);
-        if (errCode != NBP_NO_ERROR) {
+        if (errCode != NBP_ERROR_CODE_SUCCESS) {
             NBP_ERROR_REPORT(errCode);
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(errCode);
         }
 
         nbp_mt_scheduler_test_completed(NBP_TEST_GET_ID(test->test));
 
         errCode = NBP_MT_SCHEDULER_MUTEX_UNLOCK(nbpMtSchedulerMutex);
-        if (errCode != NBP_NO_ERROR) {
+        if (errCode != NBP_ERROR_CODE_SUCCESS) {
             NBP_ERROR_REPORT(errCode);
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(errCode);
         }
 
         errCode = NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ALL(nbpMtSchedulerCondVar);
-        if (errCode != NBP_NO_ERROR) {
+        if (errCode != NBP_ERROR_CODE_SUCCESS) {
             NBP_ERROR_REPORT(errCode);
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(errCode);
         }
 
         errCode = NBP_MT_SCHEDULER_MUTEX_LOCK(nbpMtSchedulerMutex);
-        if (errCode != NBP_NO_ERROR) {
+        if (errCode != NBP_ERROR_CODE_SUCCESS) {
             NBP_ERROR_REPORT(errCode);
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(errCode);
         }
     }
 
     errCode = NBP_MT_SCHEDULER_MUTEX_UNLOCK(nbpMtSchedulerMutex);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(errCode);
     }
 
     return NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE_DEFAULT_VALUE;
@@ -917,10 +917,10 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
             }
 
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_GENERIC,
+                NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown rule type"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
         }
 
         if (rule->dataType == NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_MODULE) {
@@ -940,17 +940,17 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
             }
 
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_GENERIC,
+                NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown rule type"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
         }
 
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_GENERIC,
+            NBP_ERROR_CODE_GENERIC_ERROR,
             "unknown rule data type"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
     }
 }
 
@@ -982,10 +982,10 @@ static void nbp_mt_scheduler_processing_module_context(
             }
 
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_GENERIC,
+                NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown rule type"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
         }
 
         if (rule->dataType == NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_MODULE) {
@@ -1005,10 +1005,10 @@ static void nbp_mt_scheduler_processing_module_context(
             }
 
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_GENERIC,
+                NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown rule type"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
         }
 
         if (rule->dataType == NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_EMPTY) {
@@ -1018,17 +1018,17 @@ static void nbp_mt_scheduler_processing_module_context(
             }
 
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_GENERIC,
+                NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown rule type"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
         }
 
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_GENERIC,
+            NBP_ERROR_CODE_GENERIC_ERROR,
             "unknown rule data type"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
     }
 }
 
@@ -1041,10 +1041,10 @@ static void nbp_mt_scheduler_allocate_array_of_tests()
     );
     if (nbpMtSchedulerTests == NBP_MEMORY_NULL_POINTER) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_ALLOC,
+            NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not alloc array of tests"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
+        NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
     }
 
     for ( ; index < nbpMtSchedulerNumberOfTests; index++) {
@@ -1074,10 +1074,10 @@ static void nbp_mt_scheduler_allocate_adjacency_matrix()
     );
     if (nbpMtSchedulerAdjacencyMatrix == NBP_MEMORY_NULL_POINTER) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_ALLOC,
+            NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not alloc adjacency matrix"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
+        NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
     }
 
     for ( ; index < numberOfElements; index++) {
@@ -1104,10 +1104,10 @@ static void nbp_mt_scheduler_processing_data()
             nbp_mt_scheduler_processing_module_context(data->module, data->ctx);
         } else {
             NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_GENERIC,
+                NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown data type"
             );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+            NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
         }
 
         tmp = data;
@@ -1130,7 +1130,7 @@ static void nbp_mt_scheduler_create_threads_and_run()
     unsigned int index = 0;
     unsigned int numberOfThreads = nbp_mt_scheduler_get_number_of_threads();
     nbp_mt_scheduler_thread_t* threads;
-    NBP_ERROR_TYPE err;
+    NBP_ERROR_CODE_TYPE err;
 
     numberOfThreads--;
 
@@ -1139,10 +1139,10 @@ static void nbp_mt_scheduler_create_threads_and_run()
     );
     if (threads == NBP_MEMORY_NULL_POINTER) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_ALLOC,
+            NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not alloc array of threads"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
+        NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
     }
 
     for ( ; index < numberOfThreads; index++) {
@@ -1152,12 +1152,9 @@ static void nbp_mt_scheduler_create_threads_and_run()
             nbp_mt_scheduler_worker_thread_func,
             (void*) &threads[index].workerId
         );
-        if (err != NBP_NO_ERROR) {
-            NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_GENERIC,
-                "could not create thread"
-            );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        if (err != NBP_ERROR_CODE_SUCCESS) {
+            NBP_ERROR_REPORT_CTX_STRING(err, "could not create thread");
+            NBP_EXIT(err);
         }
     }
 
@@ -1165,12 +1162,9 @@ static void nbp_mt_scheduler_create_threads_and_run()
 
     for (index = 0; index < numberOfThreads; index++) {
         err = NBP_MT_SCHEDULER_THREAD_JOIN(threads[index].thread);
-        if (err != NBP_NO_ERROR) {
-            NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_GENERIC,
-                "failed to join thread"
-            );
-            NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        if (err != NBP_ERROR_CODE_SUCCESS) {
+            NBP_ERROR_REPORT_CTX_STRING(err, "failed to join thread");
+            NBP_EXIT(err);
         }
     }
 
@@ -1179,24 +1173,24 @@ static void nbp_mt_scheduler_create_threads_and_run()
 
 NBP_SCHEDULER_FUNC_INIT(nbp_mt_scheduler_init)
 {
-    NBP_ERROR_TYPE errCode;
+    NBP_ERROR_CODE_TYPE errCode;
 
     errCode = NBP_MT_SCHEDULER_MUTEX_INIT(nbpMtSchedulerMutex);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT_CTX_STRING(errCode, "failed to init mutex");
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(errCode);
     }
 
     errCode = NBP_MT_SCHEDULER_CONDVAR_INIT(nbpMtSchedulerCondVar);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT_CTX_STRING(errCode, "failed to init conditional variable");
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(errCode);
     }
 }
 
 NBP_SCHEDULER_FUNC_UNINIT(nbp_mt_scheduler_uninit)
 {
-    NBP_ERROR_TYPE errCode;
+    NBP_ERROR_CODE_TYPE errCode;
 
     nbpMtSchedulerData = NBP_MEMORY_NULL_POINTER;
     nbpMtSchedulerDataLast = NBP_MEMORY_NULL_POINTER;
@@ -1208,15 +1202,15 @@ NBP_SCHEDULER_FUNC_UNINIT(nbp_mt_scheduler_uninit)
     nbpMtSchedulerQueueLast = NBP_MEMORY_NULL_POINTER;
 
     errCode = NBP_MT_SCHEDULER_MUTEX_UNINIT(nbpMtSchedulerMutex);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT_CTX_STRING(errCode, "failed to uninit mutex");
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(errCode);
     }
 
     errCode = NBP_MT_SCHEDULER_CONDVAR_UNINIT(nbpMtSchedulerCondVar);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT_CTX_STRING(errCode, "failed to uninit conditional variable");
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_EXIT(errCode);
     }
 }
 
@@ -1246,10 +1240,10 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_mt_scheduler_add_test)
     );
     if (data == NBP_MEMORY_NULL_POINTER) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_ALLOC,
+            NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not add test"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
+        NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
     }
 
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST;
@@ -1276,10 +1270,10 @@ NBP_SCHEDULER_FUNC_ADD_TEST_CTX(nbp_mt_scheduler_add_test_ctx)
     );
     if (data == NBP_MEMORY_NULL_POINTER) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_ALLOC,
+            NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not add test"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
+        NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
     }
 
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST;
@@ -1306,10 +1300,10 @@ NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(nbp_mt_scheduler_module_started_ctx)
     );
     if (data == NBP_MEMORY_NULL_POINTER) {
         NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_ALLOC,
+            NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not add module"
         );
-        NBP_EXIT(NBP_EXIT_STATUS_OUT_OF_MEMORY);
+        NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
     }
 
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE;

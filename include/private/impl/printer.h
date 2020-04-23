@@ -45,7 +45,7 @@ const char* nbp_printer_operator_to_string(int op)
             return "<=";
     }
 
-    NBP_ERROR_REPORT(NBP_ERROR_UNKNOWN_OPERATOR);
+    NBP_ERROR_REPORT(NBP_ERROR_CODE_UNKNOWN_OPERATOR);
     return "unknown";
 }
 
@@ -94,11 +94,11 @@ void nbp_printer_notify_report_error_ctx_custom(int errCode, void* ctx)
     }
 }
 
-void nbp_printer_notify_exit_triggered(int exitStatus)
+void nbp_printer_notify_exit_triggered(int errorCode)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->exitTriggered != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->exitTriggered(exitStatus);
+            nbpPrinterInterfaces[i]->exitTriggered(errorCode);
         }
     }
 }

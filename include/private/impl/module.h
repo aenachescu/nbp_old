@@ -38,7 +38,7 @@ NBP_TEARDOWN_MODULE(nbp_module_empty_teardown_func)
 {
 }
 
-static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
+static void nbp_module_init(nbp_module_details_t* module,
     nbp_module_details_t* parent)
 {
     unsigned int state = NBP_SYNC_ATOMIC_UINT_CAS(
@@ -47,20 +47,20 @@ static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
         NBP_MODULE_STATE_READY
     );
     if (state != NBP_MODULE_STATE_NOT_INITIALIZED) {
-        NBP_ERROR_REPORT(NBP_ERROR_MODULE_ALREADY_CALLED);
-        NBP_EXIT(NBP_EXIT_STATUS_GENERIC_ERROR);
+        NBP_ERROR_REPORT(NBP_ERROR_CODE_MODULE_ALREADY_RAN);
+        NBP_EXIT(NBP_ERROR_CODE_MODULE_ALREADY_RAN);
     }
 
     int errCode = NBP_SYNC_EVENT_INIT(module->runEvent);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+        NBP_EXIT(errCode);
     }
 
     errCode = NBP_SYNC_EVENT_INIT(module->setupEvent);
-    if (errCode != NBP_NO_ERROR) {
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
         NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(NBP_EXIT_STATUS_EVENT_ERROR);
+        NBP_EXIT(errCode);
     }
 
     nbp_module_setup_pfn_t emptyModuleSetup =
@@ -94,8 +94,6 @@ static NBP_ERROR_TYPE nbp_module_init(nbp_module_details_t* module,
 
         module->depth = parent->depth + 1;
     }
-
-    return NBP_NO_ERROR;
 }
 
 static void nbp_module_update_stats(nbp_module_details_t* module)
@@ -124,9 +122,7 @@ static void nbp_module_update_stats(nbp_module_details_t* module)
 
 void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent)
 {
-    if (nbp_module_init(module, parent) != NBP_NO_ERROR) {
-        return;
-    }
+    nbp_module_init(module, parent);
 
     nbp_printer_notify_before_scheduling_module(module);
 
@@ -148,9 +144,7 @@ void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent)
 void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
     nbp_module_details_t* parent)
 {
-    if (nbp_module_init(module, parent) != NBP_NO_ERROR) {
-        return;
-    }
+    nbp_module_init(module, parent);
 
     nbp_printer_notify_before_scheduling_module(module);
 

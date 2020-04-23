@@ -63,7 +63,7 @@ void nbp_printer_notify_report_error_ctx_custom(
 );
 
 void nbp_printer_notify_exit_triggered(
-    int /* exit status */
+    int /* error code */
 );
 
 void nbp_printer_notify_before_run(
