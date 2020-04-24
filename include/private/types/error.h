@@ -53,6 +53,8 @@ SOFTWARE.
 
 struct nbp_error_t {
     NBP_ERROR_CODE_TYPE errorCode;
+    int line;
+    const char* filename;
     int contextType;
     union {
         const char* contextString;

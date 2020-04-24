@@ -49,16 +49,22 @@ void nbp_printer_notify_module_completed(
 );
 
 void nbp_printer_notify_report_error(
-    int /* error code */
+    int, /* error code */
+    int, /* line */
+    const char* /* filename */
 );
 
 void nbp_printer_notify_report_error_ctx_string(
     int, /* error code */
+    int, /* line */
+    const char*, /* filename */
     const char* /* error context */
 );
 
 void nbp_printer_notify_report_error_ctx_custom(
     int, /* error code */
+    int, /* line */
+    const char*, /* filename */
     void* /* error context */
 );
 

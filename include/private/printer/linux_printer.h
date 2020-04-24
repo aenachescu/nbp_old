@@ -648,9 +648,11 @@ NBP_PRINTER_FUNC_REPORT_ERROR(nbp_linux_printer_report_error)
         case NBP_ERROR_CONTEXT_STRING:
             printf(
                 "\n" NBP_LINUX_PRINTER_PRIVATE_COLOR_RED
-                    "[error] code = %d, message = %s"
+                    "[error] code = %d, line = %d, file = %s, message = %s"
                 NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
                 NBP_ERROR_GET_CODE(NBP_PRINTER_GET_ERROR()),
+                NBP_ERROR_GET_LINE(NBP_PRINTER_GET_ERROR()),
+                NBP_ERROR_GET_FILENAME(NBP_PRINTER_GET_ERROR()),
                 NBP_ERROR_GET_CONTEXT_STRING(NBP_PRINTER_GET_ERROR())
             );
             break;
@@ -659,9 +661,11 @@ NBP_PRINTER_FUNC_REPORT_ERROR(nbp_linux_printer_report_error)
         default:
             printf(
                 "\n" NBP_LINUX_PRINTER_PRIVATE_COLOR_RED
-                    "[error] code = %d"
+                    "[error] code = %d, line = %d, file = %s"
                 NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-                NBP_ERROR_GET_CODE(NBP_PRINTER_GET_ERROR())
+                NBP_ERROR_GET_CODE(NBP_PRINTER_GET_ERROR()),
+                NBP_ERROR_GET_LINE(NBP_PRINTER_GET_ERROR()),
+                NBP_ERROR_GET_FILENAME(NBP_PRINTER_GET_ERROR())
             );
             break;
     }

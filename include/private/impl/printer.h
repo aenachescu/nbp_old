@@ -49,13 +49,16 @@ const char* nbp_printer_operator_to_string(int op)
     return "unknown";
 }
 
-void nbp_printer_notify_report_error(int errCode)
+void nbp_printer_notify_report_error(int errCode, int line,
+    const char* filename)
 {
     nbp_error_t err;
 
-    err.errorCode = errCode;
-    err.contextType = NBP_ERROR_CONTEXT_EMPTY;
-    err.contextString = NBP_MEMORY_NULL_POINTER;
+    err.errorCode       = errCode;
+    err.line            = line;
+    err.filename        = filename;
+    err.contextType     = NBP_ERROR_CONTEXT_EMPTY;
+    err.contextString   = NBP_MEMORY_NULL_POINTER;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->reportError != NBP_MEMORY_NULL_POINTER) {
@@ -64,13 +67,16 @@ void nbp_printer_notify_report_error(int errCode)
     }
 }
 
-void nbp_printer_notify_report_error_ctx_string(int errCode, const char* ctx)
+void nbp_printer_notify_report_error_ctx_string(int errCode, int line,
+    const char* filename, const char* ctx)
 {
     nbp_error_t err;
 
-    err.errorCode = errCode;
-    err.contextType = NBP_ERROR_CONTEXT_STRING;
-    err.contextString = ctx;
+    err.errorCode       = errCode;
+    err.line            = line;
+    err.filename        = filename;
+    err.contextType     = NBP_ERROR_CONTEXT_STRING;
+    err.contextString   = ctx;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->reportError != NBP_MEMORY_NULL_POINTER) {
@@ -79,13 +85,16 @@ void nbp_printer_notify_report_error_ctx_string(int errCode, const char* ctx)
     }
 }
 
-void nbp_printer_notify_report_error_ctx_custom(int errCode, void* ctx)
+void nbp_printer_notify_report_error_ctx_custom(int errCode, int line,
+    const char* filename, void* ctx)
 {
     nbp_error_t err;
 
-    err.errorCode = errCode;
-    err.contextType = NBP_ERROR_CONTEXT_CUSTOM;
-    err.contextCustom = ctx;
+    err.errorCode       = errCode;
+    err.line            = line;
+    err.filename        = filename;
+    err.contextType     = NBP_ERROR_CONTEXT_CUSTOM;
+    err.contextCustom   = ctx;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->reportError != NBP_MEMORY_NULL_POINTER) {

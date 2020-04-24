@@ -32,23 +32,33 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ERROR_REPORT(errCode)                                              \
-    nbp_printer_notify_report_error(errCode)
+    nbp_printer_notify_report_error(errCode, __LINE__, __FILE__)
 
 /*
  * TODO: add docs
  */
 #define NBP_ERROR_REPORT_CTX_STRING(errCode, str)                              \
-    nbp_printer_notify_report_error_ctx_string(errCode, str)
+    nbp_printer_notify_report_error_ctx_string(errCode, __LINE__, __FILE__, str)
 /*
  * TODO: add docs
  */
 #define NBP_ERROR_REPORT_CTX_CUSTOM(errCode, ctx)                              \
-    nbp_printer_notify_report_error_ctx_custom(errCode, ctx)
+    nbp_printer_notify_report_error_ctx_custom(errCode, __LINE__, __FILE__, ctx)
 
 /*
  * TODO: add docs
  */
 #define NBP_ERROR_GET_CODE(err) err.errorCode
+
+/*
+ * TODO: add docs
+ */
+#define NBP_ERROR_GET_LINE(err) err.line
+
+/*
+ * TODO: add docs
+ */
+#define NBP_ERROR_GET_FILENAME(err) err.filename
 
 /*
  * TODO: add docs
