@@ -40,9 +40,12 @@ SOFTWARE.
 
 #define NBP_PRIVATE_TEST_ASSERT_BASE(cond, failMsg, passMsg)                   \
     if (cond) {                                                                \
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numPassed, 1);   \
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                    \
+            &nbpParamTest->testAsserts.numPassed,                              \
+            1                                                                  \
+        );                                                                     \
         nbp_printer_notify_test_assert_result(                                 \
-            test,                                                              \
+            nbpParamTest,                                                      \
             #cond,                                                             \
             NBP_TEST_ASSERT_STATUS_PASSED,                                     \
             __LINE__,                                                          \
@@ -50,9 +53,12 @@ SOFTWARE.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numFailed, 1);   \
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                    \
+            &nbpParamTest->testAsserts.numFailed,                              \
+            1                                                                  \
+        );                                                                     \
         nbp_printer_notify_test_assert_result(                                 \
-            test,                                                              \
+            nbpParamTest,                                                      \
             #cond,                                                             \
             NBP_TEST_ASSERT_STATUS_FAILED,                                     \
             __LINE__,                                                          \
@@ -64,9 +70,12 @@ SOFTWARE.
 
 #define NBP_PRIVATE_TEST_ASSERT_OP_BASE(a, b, op, printerOp, failMsg, passMsg) \
     if (a op b) {                                                              \
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numPassed, 1);   \
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                    \
+            &nbpParamTest->testAsserts.numPassed,                              \
+            1                                                                  \
+        );                                                                     \
         nbp_printer_notify_test_assert_op_result(                              \
-            test,                                                              \
+            nbpParamTest,                                                      \
             #a,                                                                \
             #b,                                                                \
             printerOp,                                                         \
@@ -76,9 +85,12 @@ SOFTWARE.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->testAsserts.numFailed, 1);   \
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                    \
+            &nbpParamTest->testAsserts.numFailed,                              \
+            1                                                                  \
+        );                                                                     \
         nbp_printer_notify_test_assert_op_result(                              \
-            test,                                                              \
+            nbpParamTest,                                                      \
             #a,                                                                \
             #b,                                                                \
             printerOp,                                                         \
@@ -102,11 +114,11 @@ SOFTWARE.
         type tmpA = a, tmpB = b;                                               \
         if (tmpA op tmpB) {                                                    \
             NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                \
-                &test->testAsserts.numPassed,                                  \
+                &nbpParamTest->testAsserts.numPassed,                          \
                 1                                                              \
             );                                                                 \
             NBP_PRIVATE_PRINTER_NOTIFY_TEST_ASSERT_TYPE_OP(typeStr)(           \
-                test,                                                          \
+                nbpParamTest,                                                  \
                 tmpA,                                                          \
                 tmpB,                                                          \
                 printerOp,                                                     \
@@ -117,11 +129,11 @@ SOFTWARE.
             );                                                                 \
         } else {                                                               \
             NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                \
-                &test->testAsserts.numFailed,                                  \
+                &nbpParamTest->testAsserts.numFailed,                          \
                 1                                                              \
             );                                                                 \
             NBP_PRIVATE_PRINTER_NOTIFY_TEST_ASSERT_TYPE_OP(typeStr)(           \
-                test,                                                          \
+                nbpParamTest,                                                  \
                 tmpA,                                                          \
                 tmpB,                                                          \
                 printerOp,                                                     \

@@ -73,7 +73,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_REPORT_ERROR(func)                                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_error_t err                             \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_error_t nbpParamError                   \
     )
 
 /*
@@ -93,7 +93,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_EXIT_TRIGGERED(func)                                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER int errorCode                               \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamErrorCode                       \
     )
 
 /*
@@ -132,7 +132,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_STARTED(func)                                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
 /*
@@ -152,7 +152,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_COMPLETED(func)                                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
 /*
@@ -172,7 +172,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_STARTED(func)                                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
@@ -192,7 +192,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_COMPLETED(func)                                \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
@@ -212,8 +212,8 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_BEFORE_RUN(func)                                      \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int modulesNum,                    \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int testsNum                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamModulesNum,            \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamTestsNum               \
     )
 
 /*
@@ -233,24 +233,24 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_AFTER_RUN(func)                                       \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedModulesNum,              \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedModulesNum,              \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int skippedModulesNum,             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedTestsNum,                \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedTestsNum,                \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int skippedTestsNum,               \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int checksNum,                     \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedChecksNum,               \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedChecksNum,               \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int testAssertsNum,                \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedTestAssertsNum,          \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedTestAssertsNum,          \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int moduleAssertsNum,              \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedModuleAssertsNum,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedModuleAssertsNum,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int assertsNum,                    \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int passedAssertsNum,              \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int failedAssertsNum               \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedModulesNum,      \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedModulesNum,      \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamSkippedModulesNum,     \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedTestsNum,        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedTestsNum,        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamSkippedTestsNum,       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamChecksNum,             \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedChecksNum,       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedChecksNum,       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamTestAssertsNum,        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedTestAssertsNum,  \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedTestAssertsNum,  \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamModuleAssertsNum,      \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedModuleAssertsNum,\
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedModuleAssertsNum,\
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamAssertsNum,            \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedAssertsNum,      \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedAssertsNum       \
     )
 
 /*
@@ -271,7 +271,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_SCHEDULING_TEST(func)                                 \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
 /*
@@ -291,7 +291,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_BEFORE_SCHEDULING_MODULE(func)                        \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
@@ -311,7 +311,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_AFTER_SCHEDULING_MODULE(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
@@ -331,12 +331,12 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_RESULT(func)                                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* cond,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -356,14 +356,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_OP_RESULT(func)                                 \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* a,                              \
-        NBP_MAYBE_UNUSED_PARAMETER const char* b,                              \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -383,14 +383,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_CHAR_OP_RESULT(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER char a,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER char b,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
+        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -410,14 +410,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_SHORT_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER short int a,                                \
-        NBP_MAYBE_UNUSED_PARAMETER short int b,                                \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
+        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -437,14 +437,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_USHORT_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int a,                       \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int b,                       \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -464,14 +464,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_INT_OP_RESULT(func)                             \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int a,                                      \
-        NBP_MAYBE_UNUSED_PARAMETER int b,                                      \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -491,14 +491,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_UINT_OP_RESULT(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int a,                             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int b,                             \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -518,14 +518,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_LONG_OP_RESULT(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long int a,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER long int b,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
+        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -545,14 +545,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_ULONG_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int a,                        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int b,                        \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -572,14 +572,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_LLONG_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long long int a,                            \
-        NBP_MAYBE_UNUSED_PARAMETER long long int b,                            \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
+        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -599,14 +599,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_ULLONG_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int a,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int b,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -626,14 +626,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_FLOAT_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER float a,                                    \
-        NBP_MAYBE_UNUSED_PARAMETER float b,                                    \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
+        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -653,14 +653,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_DOUBLE_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER double a,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER double b,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
+        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -680,14 +680,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_CHECK_LDOUBLE_OP_RESULT(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long double a,                              \
-        NBP_MAYBE_UNUSED_PARAMETER long double b,                              \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -707,12 +707,12 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_RESULT(func)                              \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* cond,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -732,14 +732,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* a,                              \
-        NBP_MAYBE_UNUSED_PARAMETER const char* b,                              \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -759,14 +759,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_CHAR_OP_RESULT(func)                      \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER char a,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER char b,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
+        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -786,14 +786,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_SHORT_OP_RESULT(func)                     \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER short int a,                                \
-        NBP_MAYBE_UNUSED_PARAMETER short int b,                                \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
+        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -813,14 +813,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_USHORT_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int a,                       \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int b,                       \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -840,14 +840,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_INT_OP_RESULT(func)                       \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int a,                                      \
-        NBP_MAYBE_UNUSED_PARAMETER int b,                                      \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -867,14 +867,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_UINT_OP_RESULT(func)                      \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int a,                             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int b,                             \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -894,14 +894,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_LONG_OP_RESULT(func)                      \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long int a,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER long int b,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
+        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -921,14 +921,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_ULONG_OP_RESULT(func)                     \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int a,                        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int b,                        \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -948,14 +948,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_LLONG_OP_RESULT(func)                     \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long long int a,                            \
-        NBP_MAYBE_UNUSED_PARAMETER long long int b,                            \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
+        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -975,14 +975,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_ULLONG_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int a,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int b,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1002,14 +1002,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_FLOAT_OP_RESULT(func)                     \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER float a,                                    \
-        NBP_MAYBE_UNUSED_PARAMETER float b,                                    \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
+        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1029,14 +1029,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_DOUBLE_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER double a,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER double b,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
+        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1056,14 +1056,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT(func)                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long double a,                              \
-        NBP_MAYBE_UNUSED_PARAMETER long double b,                              \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1083,12 +1083,12 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_RESULT(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* cond,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1108,14 +1108,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_OP_RESULT(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* a,                              \
-        NBP_MAYBE_UNUSED_PARAMETER const char* b,                              \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1135,14 +1135,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_CHAR_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER char a,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER char b,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
+        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1162,14 +1162,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_SHORT_OP_RESULT(func)                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER short int a,                                \
-        NBP_MAYBE_UNUSED_PARAMETER short int b,                                \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
+        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1189,14 +1189,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_USHORT_OP_RESULT(func)                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int a,                       \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int b,                       \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1216,14 +1216,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_INT_OP_RESULT(func)                     \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int a,                                      \
-        NBP_MAYBE_UNUSED_PARAMETER int b,                                      \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1243,14 +1243,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_UINT_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int a,                             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int b,                             \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1270,14 +1270,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_LONG_OP_RESULT(func)                    \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long int a,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER long int b,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
+        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1297,14 +1297,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_ULONG_OP_RESULT(func)                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int a,                        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int b,                        \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1324,14 +1324,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_LLONG_OP_RESULT(func)                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long long int a,                            \
-        NBP_MAYBE_UNUSED_PARAMETER long long int b,                            \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
+        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1351,14 +1351,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT(func)                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int a,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int b,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1378,14 +1378,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT(func)                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER float a,                                    \
-        NBP_MAYBE_UNUSED_PARAMETER float b,                                    \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
+        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1405,14 +1405,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT(func)                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER double a,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER double b,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
+        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1432,14 +1432,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT(func)                 \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long double a,                              \
-        NBP_MAYBE_UNUSED_PARAMETER long double b,                              \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1460,12 +1460,12 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_RESULT(func)                                   \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* cond,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1485,14 +1485,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_OP_RESULT(func)                                \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* a,                              \
-        NBP_MAYBE_UNUSED_PARAMETER const char* b,                              \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1512,14 +1512,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_CHAR_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER char a,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER char b,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
+        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1539,14 +1539,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_SHORT_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER short int a,                                \
-        NBP_MAYBE_UNUSED_PARAMETER short int b,                                \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
+        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1566,14 +1566,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_USHORT_OP_RESULT(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int a,                       \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int b,                       \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1593,14 +1593,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_INT_OP_RESULT(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int a,                                      \
-        NBP_MAYBE_UNUSED_PARAMETER int b,                                      \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1620,14 +1620,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_UINT_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int a,                             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int b,                             \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1647,14 +1647,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_LONG_OP_RESULT(func)                           \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long int a,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER long int b,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
+        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1674,14 +1674,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_ULONG_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int a,                        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int b,                        \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1701,14 +1701,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_LLONG_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long long int a,                            \
-        NBP_MAYBE_UNUSED_PARAMETER long long int b,                            \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
+        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1728,14 +1728,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_ULLONG_OP_RESULT(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int a,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int b,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1755,14 +1755,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_FLOAT_OP_RESULT(func)                          \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER float a,                                    \
-        NBP_MAYBE_UNUSED_PARAMETER float b,                                    \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
+        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1782,14 +1782,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_DOUBLE_OP_RESULT(func)                         \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER double a,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER double b,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
+        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1809,14 +1809,14 @@ SOFTWARE.
  */
 #define NBP_PRINTER_FUNC_ASSERT_LDOUBLE_OP_RESULT(func)                        \
     static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long double a,                              \
-        NBP_MAYBE_UNUSED_PARAMETER long double b,                              \
-        NBP_MAYBE_UNUSED_PARAMETER int op,                                     \
-        NBP_MAYBE_UNUSED_PARAMETER int passed,                                 \
-        NBP_MAYBE_UNUSED_PARAMETER int line,                                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* failMsg,                        \
-        NBP_MAYBE_UNUSED_PARAMETER const char* passMsg                         \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
+        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
     )
 
 /*
@@ -1860,72 +1860,73 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_OPERATOR() op
+#define NBP_PRINTER_GET_OPERATOR() nbpParamOperator
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_OPERATOR_STR() nbp_printer_operator_to_string(op)
+#define NBP_PRINTER_GET_OPERATOR_STR()                                         \
+    nbp_printer_operator_to_string(nbpParamOperator)
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_CONDITION() cond
+#define NBP_PRINTER_GET_CONDITION() nbpParamCond
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_FIRST_VALUE() a
+#define NBP_PRINTER_GET_FIRST_VALUE() nbpParamVal1
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_SECOND_VALUE() b
+#define NBP_PRINTER_GET_SECOND_VALUE() nbpParamVal2
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_CHECK_STATUS() passed
+#define NBP_PRINTER_GET_CHECK_STATUS() nbpParamPassed
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_CHECK_LINE() line
+#define NBP_PRINTER_GET_CHECK_LINE() nbpParamLine
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_TEST_ASSERT_STATUS() passed
+#define NBP_PRINTER_GET_TEST_ASSERT_STATUS() nbpParamPassed
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_TEST_ASSERT_LINE() line
+#define NBP_PRINTER_GET_TEST_ASSERT_LINE() nbpParamLine
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_MODULE_ASSERT_STATUS() passed
+#define NBP_PRINTER_GET_MODULE_ASSERT_STATUS() nbpParamPassed
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_MODULE_ASSERT_LINE() line
+#define NBP_PRINTER_GET_MODULE_ASSERT_LINE() nbpParamLine
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_ASSERT_STATUS() passed
+#define NBP_PRINTER_GET_ASSERT_STATUS() nbpParamPassed
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_ASSERT_LINE() line
+#define NBP_PRINTER_GET_ASSERT_LINE() nbpParamLine
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_FAIL_MSG() failMsg
+#define NBP_PRINTER_GET_FAIL_MSG() nbpParamFailMsg
 
 /*
  * TODO: add docs
@@ -1935,7 +1936,7 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_PASS_MSG() passMsg
+#define NBP_PRINTER_GET_PASS_MSG() nbpParamPassMsg
 
 /*
  * TODO: add docs
@@ -1945,111 +1946,115 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_MODULES() modulesNum
+#define NBP_PRINTER_GET_NUMBER_OF_MODULES() nbpParamModulesNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_MODULES() passedModulesNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_MODULES() nbpParamPassedModulesNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_MODULES() failedModulesNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_MODULES() nbpParamFailedModulesNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_SKIPPED_MODULES() skippedModulesNum
+#define NBP_PRINTER_GET_NUMBER_OF_SKIPPED_MODULES() nbpParamSkippedModulesNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_TESTS() testsNum
+#define NBP_PRINTER_GET_NUMBER_OF_TESTS() nbpParamTestsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_TESTS() passedTestsNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_TESTS() nbpParamPassedTestsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_TESTS() failedTestsNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_TESTS() nbpParamFailedTestsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_SKIPPED_TESTS() skippedTestsNum
+#define NBP_PRINTER_GET_NUMBER_OF_SKIPPED_TESTS() nbpParamSkippedTestsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_CHECKS() checksNum
+#define NBP_PRINTER_GET_NUMBER_OF_CHECKS() nbpParamChecksNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_CHECKS() passedChecksNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_CHECKS() nbpParamPassedChecksNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_CHECKS() failedChecksNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_CHECKS() nbpParamFailedChecksNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_TEST_ASSERTS() testAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_TEST_ASSERTS() nbpParamTestAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_TEST_ASSERTS() passedTestAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_TEST_ASSERTS()                        \
+    nbpParamPassedTestAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_TEST_ASSERTS() failedTestAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_TEST_ASSERTS()                        \
+    nbpParamFailedTestAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_MODULE_ASSERTS() moduleAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_MODULE_ASSERTS() nbpParamModuleAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_MODULE_ASSERTS() passedModuleAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_MODULE_ASSERTS()                      \
+    nbpParamPassedModuleAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_MODULE_ASSERTS() failedModuleAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_MODULE_ASSERTS()                      \
+    nbpParamFailedModuleAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_ASSERTS() assertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_ASSERTS() nbpParamAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_ASSERTS() passedAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_PASSED_ASSERTS() nbpParamPassedAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_ASSERTS() failedAssertsNum
+#define NBP_PRINTER_GET_NUMBER_OF_FAILED_ASSERTS() nbpParamFailedAssertsNum
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_ERROR() err
+#define NBP_PRINTER_GET_ERROR() nbpParamError
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_EXIT_ERROR_CODE() errorCode
+#define NBP_PRINTER_GET_EXIT_ERROR_CODE() nbpParamErrorCode
 
 #endif // end if NBP_PRIVATE_API_PRINTER_H

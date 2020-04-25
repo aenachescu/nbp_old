@@ -87,7 +87,7 @@ SOFTWARE.
  */
 #define NBP_SCHEDULER_FUNC_ADD_TEST(func)                                      \
     static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
 /*
@@ -107,8 +107,8 @@ SOFTWARE.
  */
 #define NBP_SCHEDULER_FUNC_ADD_TEST_CTX(func)                                  \
     static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test,                   \
-        NBP_MAYBE_UNUSED_PARAMETER void* ctx                                   \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER void* nbpParamCtx                           \
     )
 
 /*
@@ -128,7 +128,7 @@ SOFTWARE.
  */
 #define NBP_SCHEDULER_FUNC_MODULE_STARTED(func)                                \
     static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
@@ -148,8 +148,8 @@ SOFTWARE.
  */
 #define NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(func)                            \
     static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module,               \
-        NBP_MAYBE_UNUSED_PARAMETER void* ctx                                   \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule,       \
+        NBP_MAYBE_UNUSED_PARAMETER void* nbpParamCtx                           \
     )
 
 /*
@@ -169,7 +169,7 @@ SOFTWARE.
  */
 #define NBP_SCHEDULER_FUNC_MODULE_COMPLETED(func)                              \
     static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
@@ -214,6 +214,6 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_SCHEDULER_CTX ctx
+#define NBP_SCHEDULER_CTX nbpParamCtx
 
 #endif // end if NBP_PRIVATE_API_SCHEDULER_H

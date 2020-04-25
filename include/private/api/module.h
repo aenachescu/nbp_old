@@ -39,7 +39,7 @@ SOFTWARE.
  */
 #define NBP_SETUP_MODULE(func)                                                 \
     void NBP_PRIVATE_PP_CONCAT(nbp_module_setup_, func)(                       \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
@@ -53,7 +53,7 @@ SOFTWARE.
  */
 #define NBP_TEARDOWN_MODULE(func)                                              \
     void NBP_PRIVATE_PP_CONCAT(nbp_module_teardown_, func)(                    \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module                \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 #define NBP_PRIVATE_MODULE(func, name, setupFunc, teardownFunc)                \
@@ -146,9 +146,9 @@ SOFTWARE.
         },                                                                     \
     };                                                                         \
     void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* module,               \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_setup_pfn_t testSetup,             \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_teardown_pfn_t testTeardown        \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule,       \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_setup_pfn_t nbpParamTestSetup,     \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_teardown_pfn_t nbpParamTestTeardown\
     )
 
 /*
@@ -190,7 +190,7 @@ SOFTWARE.
     extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
     nbp_module_run(                                                            \
         & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func),                       \
-        module                                                                 \
+        nbpParamModule                                                         \
     )
 
 /*
@@ -200,8 +200,8 @@ SOFTWARE.
     extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
     nbp_module_run_ctx(                                                        \
         & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func),                       \
-        ctx,                                                                   \
-        module                                                                 \
+        nbpParamCtx,                                                           \
+        nbpParamModule                                                         \
     )
 
 /*
@@ -231,7 +231,7 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_THIS_MODULE module
+#define NBP_THIS_MODULE nbpParamModule
 
 /*
  * TODO: add docs

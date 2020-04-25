@@ -52,7 +52,7 @@ SOFTWARE.
 
 #define NBP_TEST_SETUP(func)                                                   \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_setup_, func)(                         \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
 /*
@@ -94,7 +94,7 @@ SOFTWARE.
  */
 #define NBP_TEST_USE_SETUP(func)                                               \
     NBP_TEST_SETUP(func);                                                      \
-    testSetup = NBP_PRIVATE_PP_CONCAT(nbp_test_setup_, func)
+    nbpParamTestSetup = NBP_PRIVATE_PP_CONCAT(nbp_test_setup_, func)
 
 /*
  * @public doc
@@ -121,7 +121,7 @@ SOFTWARE.
  * @endcode
  */
 #define NBP_TEST_RESET_SETUP()                                                 \
-    testSetup = NBP_MEMORY_NULL_POINTER
+    nbpParamTestSetup = NBP_MEMORY_NULL_POINTER
 
 /*
  * @public doc
@@ -146,7 +146,7 @@ SOFTWARE.
  */
 #define NBP_TEST_TEARDOWN(func)                                                \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_teardown_, func)(                      \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
 /*
@@ -188,7 +188,7 @@ SOFTWARE.
  */
 #define NBP_TEST_USE_TEARDOWN(func)                                            \
     NBP_TEST_TEARDOWN(func);                                                   \
-    testTeardown = NBP_PRIVATE_PP_CONCAT(nbp_test_teardown_, func)
+    nbpParamTestTeardown = NBP_PRIVATE_PP_CONCAT(nbp_test_teardown_, func)
 
 /*
  * @public doc
@@ -215,7 +215,7 @@ SOFTWARE.
  * @endcode
  */
 #define NBP_TEST_RESET_TEARDOWN()                                              \
-    testTeardown = NBP_MEMORY_NULL_POINTER
+    nbpParamTestTeardown = NBP_MEMORY_NULL_POINTER
 
 #define NBP_PRIVATE_TEST(func, name)                                           \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
@@ -252,7 +252,7 @@ SOFTWARE.
         },                                                                     \
     };                                                                         \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* test                    \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
 /*
@@ -336,9 +336,9 @@ SOFTWARE.
     extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func);     \
     nbp_test_run(                                                              \
         & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
-        module,                                                                \
-        testSetup,                                                             \
-        testTeardown                                                           \
+        nbpParamModule,                                                        \
+        nbpParamTestSetup,                                                     \
+        nbpParamTestTeardown                                                   \
     )
 
 /*
@@ -350,9 +350,9 @@ SOFTWARE.
     nbp_test_run_ctx(                                                          \
         & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
         ctx,                                                                   \
-        module,                                                                \
-        testSetup,                                                             \
-        testTeardown                                                           \
+        nbpParamModule,                                                        \
+        nbpParamTestSetup,                                                     \
+        nbpParamTestTeardown                                                   \
     )
 
 /*
@@ -378,7 +378,7 @@ SOFTWARE.
  *  Pointer to nbp_test_details_t struct. Do not free or modify this structure,
  *  but you can store this pointer and use it via NBP_TEST_GET_* macros.
  */
-#define NBP_THIS_TEST test
+#define NBP_THIS_TEST nbpParamTest
 
 /*
  * @public doc
