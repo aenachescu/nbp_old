@@ -1320,7 +1320,7 @@ NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(nbp_mt_scheduler_module_started_ctx)
 }
 
 NBP_DEFINE_SCHEDULER(
-    nbpDefaultScheduler,
+    nbpMtScheduler,
     NBP_SCHEDULER_USE_FUNC_INIT(nbp_mt_scheduler_init),
     NBP_SCHEDULER_USE_FUNC_UNINIT(nbp_mt_scheduler_uninit),
     NBP_SCHEDULER_USE_FUNC_RUN(nbp_mt_scheduler_run),

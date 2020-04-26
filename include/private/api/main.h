@@ -44,15 +44,29 @@ SOFTWARE.
     unsigned int nbpPrinterInterfacesSize =                                    \
         sizeof(nbpPrinterInterfaces) / sizeof(nbpPrinterInterfaces[0]);
 
+#ifdef NBP_CUSTOM_SCHEDULER
+
+#error "Not supported"
+
+#else // NBP_CUSTOM_SCHEDULER not defined
+
+#ifdef NBP_BASIC_SCHEDULER
+#define NBP_MAIN_PRIVATE_SCHEDULER_NAME nbpBasicScheduler
+#endif // end if NBP_BASIC_SCHEDULER
+
+#ifdef NBP_MT_SCHEDULER
+#define NBP_MAIN_PRIVATE_SCHEDULER_NAME nbpMtScheduler
+#endif // end if NBP_MT_SCHEDULER
+
 /*
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE(func)                                                  \
     NBP_INCLUDE_PRINTER(nbpDefaultPrinter);                                    \
-    NBP_INCLUDE_SCHEDULER(nbpDefaultScheduler);                                \
+    NBP_INCLUDE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
-        NBP_USE_SCHEDULER(nbpDefaultScheduler),                                \
+        NBP_USE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                    \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpDefaultPrinter))                   \
     );                                                                         \
     NBP_MODULE(func)
@@ -62,10 +76,10 @@ SOFTWARE.
  */
 #define NBP_MAIN_MODULE_NAME(func, name)                                       \
     NBP_INCLUDE_PRINTER(nbpDefaultPrinter);                                    \
-    NBP_INCLUDE_SCHEDULER(nbpDefaultScheduler);                                \
+    NBP_INCLUDE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
-        NBP_USE_SCHEDULER(nbpDefaultScheduler),                                \
+        NBP_USE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                    \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpDefaultPrinter))                   \
     );                                                                         \
     NBP_MODULE_NAME(func, name)
@@ -75,10 +89,10 @@ SOFTWARE.
  */
 #define NBP_MAIN_MODULE_FIXTURES(func, setupFunc, teardownFunc)                \
     NBP_INCLUDE_PRINTER(nbpDefaultPrinter);                                    \
-    NBP_INCLUDE_SCHEDULER(nbpDefaultScheduler);                                \
+    NBP_INCLUDE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
-        NBP_USE_SCHEDULER(nbpDefaultScheduler),                                \
+        NBP_USE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                    \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpDefaultPrinter))                   \
     );                                                                         \
     NBP_MODULE_FIXTURES(func, setupFunc, teardownFunc)
@@ -88,13 +102,15 @@ SOFTWARE.
  */
 #define NBP_MAIN_MODULE_NAME_FIXTURES(func, name, setupFunc, teardownFunc)     \
     NBP_INCLUDE_PRINTER(nbpDefaultPrinter);                                    \
-    NBP_INCLUDE_SCHEDULER(nbpDefaultScheduler);                                \
+    NBP_INCLUDE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
     NBP_PRIVATE_MAIN_MODULE(                                                   \
         func,                                                                  \
-        NBP_USE_SCHEDULER(nbpDefaultScheduler),                                \
+        NBP_USE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                    \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpDefaultPrinter))                   \
     );                                                                         \
     NBP_MODULE_NAME_FIXTURES(func, name, setupFunc, teardownFunc)
+
+#endif // end if NBP_CUSTOM_SCHEDULER
 
 #endif // end if NBP_LIBRARY_MAIN
 

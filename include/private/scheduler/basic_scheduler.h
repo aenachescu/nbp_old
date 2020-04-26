@@ -86,7 +86,7 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_basic_scheduler_add_test)
 }
 
 NBP_DEFINE_SCHEDULER(
-    nbpDefaultScheduler,
+    nbpBasicScheduler,
     NBP_SCHEDULER_USE_FUNC_INIT(nbp_basic_scheduler_init),
     NBP_SCHEDULER_USE_FUNC_UNINIT(nbp_basic_scheduler_uninit),
     NBP_SCHEDULER_USE_FUNC_RUN(nbp_basic_scheduler_run),
