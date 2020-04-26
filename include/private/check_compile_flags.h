@@ -136,8 +136,8 @@ SOFTWARE.
 /*
  * If no printer is defined then define the default printer
  */
-#if !defined NBP_CUSTOM_PRINTER && !defined NBP_PRINTER
-#define NBP_PRINTER
-#endif // end if ! NBP_CUSTOM_PRINTER && ! NBP_PRINTER
+#if !defined NBP_CUSTOM_PRINTER && !defined NBP_DEFAULT_PRINTER
+#define NBP_DEFAULT_PRINTER
+#endif // end if ! NBP_CUSTOM_PRINTER && ! NBP_DEFAULT_PRINTER
 
 #endif // end if NBP_PRIVATE_CHECK_COMPILE_FLAGS_H

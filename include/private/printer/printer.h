@@ -28,6 +28,8 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_PRINTER_H
 #define NBP_PRIVATE_PRINTER_H
 
+#ifdef NBP_DEFAULT_PRINTER
+
 #ifdef NBP_LIBRARY_MAIN
 
 /*
@@ -59,5 +61,7 @@ SOFTWARE.
 #endif
 
 #endif // end if NBP_LIBRARY_MAIN
+
+#endif // end if NBP_DEFAULT_PRINTER
 
 #endif // end if NBP_PRIVATE_PRINTER_H
