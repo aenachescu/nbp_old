@@ -116,19 +116,19 @@ SOFTWARE.
 #endif // end if NBP_PRIVATE_SCHEDULER_TYPE
 #endif // end if NBP_MT_SCHEDULER
 
-#ifdef NBP_SCHEDULER
+#ifdef NBP_BASIC_SCHEDULER
 #ifdef NBP_PRIVATE_SCHEDULER_TYPE
-#error "Cannot enabe NBP_SCHEDULER because another scheduler is enabled"
+#error "Cannot enabe NBP_BASIC_SCHEDULER because another scheduler is enabled"
 #else // NBP_PRIVATE_SCHEDULER_TYPE not defined
 #define NBP_PRIVATE_SCHEDULER_TYPE
 #endif // end if NBP_PRIVATE_SCHEDULER_TYPE
-#endif // end if NBP_SCHEDULER
+#endif // end if NBP_BASIC_SCHEDULER
 
 /*
  * If no scheduler is defined then define the default scheduler
  */
 #ifndef NBP_PRIVATE_SCHEDULER_TYPE
-#define NBP_SCHEDULER
+#define NBP_BASIC_SCHEDULER
 #endif // end if NBP_PRIVATE_SCHEDULER_TYPE
 
 #undef NBP_PRIVATE_SCHEDULER_TYPE

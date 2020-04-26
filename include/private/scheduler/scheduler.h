@@ -43,9 +43,9 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#ifdef NBP_SCHEDULER
+#ifdef NBP_BASIC_SCHEDULER
 #include "basic_scheduler.h"
-#endif // end if NBP_SCHEDULER
+#endif // end if NBP_BASIC_SCHEDULER
 
 #endif // end if NBP_CUSTOM_SCHEDULER
 
