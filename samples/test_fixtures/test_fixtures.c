@@ -33,7 +33,7 @@ NBP_TEST_SETUP(my_test_setup1)
 {
     write_message_to_file_2(
         "my_test_setup1",
-        NBP_GET_TEST_NAME(NBP_THIS_TEST)
+        NBP_TEST_GET_NAME(NBP_TEST_THIS)
     );
 }
 
@@ -41,7 +41,7 @@ NBP_TEST_SETUP(my_test_setup2)
 {
     write_message_to_file_2(
         "my_test_setup2",
-        NBP_GET_TEST_NAME(NBP_THIS_TEST)
+        NBP_TEST_GET_NAME(NBP_TEST_THIS)
     );
 }
 
@@ -49,7 +49,7 @@ NBP_TEST_TEARDOWN(my_test_teardown1)
 {
     write_message_to_file_2(
         "my_test_teardown1",
-        NBP_GET_TEST_NAME(NBP_THIS_TEST)
+        NBP_TEST_GET_NAME(NBP_TEST_THIS)
     );
 }
 
@@ -57,6 +57,6 @@ NBP_TEST_TEARDOWN(my_test_teardown2)
 {
     write_message_to_file_2(
         "my_test_teardown2",
-        NBP_GET_TEST_NAME(NBP_THIS_TEST)
+        NBP_TEST_GET_NAME(NBP_TEST_THIS)
     );
 }

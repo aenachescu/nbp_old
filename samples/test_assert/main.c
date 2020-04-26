@@ -32,12 +32,12 @@ SOFTWARE.
 
 NBP_TEST_SETUP(testSetup)
 {
-    write_message_to_file_2("test setup", NBP_GET_TEST_NAME(NBP_THIS_TEST));
+    write_message_to_file_2("test setup", NBP_TEST_GET_NAME(NBP_TEST_THIS));
 }
 
 NBP_TEST_TEARDOWN(testTeardown)
 {
-    write_message_to_file_2("test teardown", NBP_GET_TEST_NAME(NBP_THIS_TEST));
+    write_message_to_file_2("test teardown", NBP_TEST_GET_NAME(NBP_TEST_THIS));
 }
 
 NBP_SETUP_MODULE(setupModule)

@@ -35,7 +35,7 @@ SOFTWARE.
  *  Defines a function that can be called before running a test using the
  *  NBP_TEST_USE_SETUP macro.
  *
- *  Use the NBP_THIS_TEST macro if you want to get info about the test that will
+ *  Use the NBP_TEST_THIS macro if you want to get info about the test that will
  *  run.
  *
  * @params
@@ -130,7 +130,7 @@ SOFTWARE.
  *  Defines a function that can be called after running a test using the
  *  NBP_TEST_USE_TEARDOWN macro.
  *
- *  Use the NBP_THIS_TEST macro if you want to get info about the test that was
+ *  Use the NBP_TEST_THIS macro if you want to get info about the test that was
  *  run.
  *
  * @params
@@ -217,7 +217,7 @@ SOFTWARE.
 #define NBP_TEST_RESET_TEARDOWN()                                              \
     nbpParamTestTeardown = NBP_MEMORY_NULL_POINTER
 
-#define NBP_PRIVATE_TEST(func, name)                                           \
+#define NBP_TEST_PRIVATE_IMPL(func, name)                                      \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
         nbp_test_details_t*                                                    \
     );                                                                         \
@@ -260,7 +260,7 @@ SOFTWARE.
  *
  * @brief
  *  Defines a test that can be ran using the NBP_TEST_RUN macro.
- *  Use the NBP_THIS_TEST macro if you want to get info about the test.
+ *  Use the NBP_TEST_THIS macro if you want to get info about the test.
  *
  * @params
  *  func - Represents the function name. It must be unique in the entire program
@@ -275,14 +275,14 @@ SOFTWARE.
  * @endcode
  */
 #define NBP_TEST(func)                                                         \
-    NBP_PRIVATE_TEST(func, #func)
+    NBP_TEST_PRIVATE_IMPL(func, #func)
 
 /*
  * @public doc
  *
  * @brief
  *  Defines a test that can be ran using the NBP_TEST_RUN macro.
- *  Use the NBP_THIS_TEST macro if you want to get info about the test.
+ *  Use the NBP_TEST_THIS macro if you want to get info about the test.
  *
  * @params
  *  func - Represents the function name. It must be unique in the entire program
@@ -297,7 +297,7 @@ SOFTWARE.
  * @endcode
  */
 #define NBP_TEST_NAME(func, name)                                              \
-    NBP_PRIVATE_TEST(func, name)
+    NBP_TEST_PRIVATE_IMPL(func, name)
 
 /*
  * @public doc
@@ -358,13 +358,13 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_INCLUDE_TEST(func)                                                 \
+#define NBP_TEST_INCLUDE(func)                                                 \
     extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func)
 
 /*
  * TODO: add docs
  */
-#define NBP_GET_TEST_PTR(func)                                                 \
+#define NBP_TEST_GET_PTR(func)                                                 \
     & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func)
 
 /*
@@ -378,7 +378,7 @@ SOFTWARE.
  *  Pointer to nbp_test_details_t struct. Do not free or modify this structure,
  *  but you can store this pointer and use it via NBP_TEST_GET_* macros.
  */
-#define NBP_THIS_TEST nbpParamTest
+#define NBP_TEST_THIS nbpParamTest
 
 /*
  * @public doc
@@ -388,12 +388,12 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  Pointer to const char. Do not free or modify this pointer.
  */
-#define NBP_GET_TEST_NAME(test)                                                \
+#define NBP_TEST_GET_NAME(test)                                                \
     test->testName
 
 /*
@@ -410,12 +410,12 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which is greater than 0.
  */
-#define NBP_GET_TEST_DEPTH(test)                                               \
+#define NBP_TEST_GET_DEPTH(test)                                               \
     NBP_GET_MODULE_DEPTH(test->module) + 1
 
 /*
@@ -426,12 +426,12 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents one of the NBP_TEST_STATE_* macros.
  */
-#define NBP_GET_TEST_STATE(test)                                               \
+#define NBP_TEST_GET_STATE(test)                                               \
     NBP_SYNC_ATOMIC_UINT_LOAD(&test->testState)
 
 /*
@@ -442,7 +442,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the total number of NBP_CHECK* macros
@@ -460,7 +460,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the number of passed NBP_CHECK* macros.
@@ -476,7 +476,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the number of failed NBP_CHECK* macros.
@@ -493,7 +493,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the total number of NBP_TEST_ASSERT* macros
@@ -511,7 +511,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the number of passed NBP_TEST_ASSERT* macros.
@@ -527,7 +527,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the number of failed NBP_TEST_ASSERT* macros.
@@ -544,7 +544,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the total number of NBP_MODULE_ASSERT* macros
@@ -562,7 +562,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the number of passed NBP_MODULE_ASSERT* macros.
@@ -578,7 +578,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the number of failed NBP_MODULE_ASSERT* macros.
@@ -594,7 +594,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the total number of NBP_ASSERT* macros
@@ -612,7 +612,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the number of passed NBP_ASSERT* macros.
@@ -628,7 +628,7 @@ SOFTWARE.
  *
  * @params
  *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_THIS_TEST macro.
+ *         the NBP_TEST_THIS macro.
  *
  * @return
  *  unsigned int which represents the number of failed NBP_ASSERT* macros.

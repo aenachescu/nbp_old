@@ -303,7 +303,7 @@ static void nbp_linux_printer_add_message(nbp_test_details_t* test, char* msg)
 
     if (data == NBP_MEMORY_NULL_POINTER) {
         char errMsg[1024];
-        snprintf(errMsg, 1024, "test [%s] not found", NBP_GET_TEST_NAME(test));
+        snprintf(errMsg, 1024, "test [%s] not found", NBP_TEST_GET_NAME(test));
         NBP_ERROR_REPORT_CTX_STRING(NBP_ERROR_CODE_INTERNAL_ERROR, errMsg);
         return;
     }
@@ -524,8 +524,8 @@ static void nbp_linux_printer_print_depth(unsigned int depth)
 
 static void nbp_linux_printer_print_test(nbp_linux_printer_test_t* test)
 {
-    unsigned int state = NBP_GET_TEST_STATE(test->test);
-    unsigned int depth = NBP_GET_TEST_DEPTH(test->test);
+    unsigned int state = NBP_TEST_GET_STATE(test->test);
+    unsigned int depth = NBP_TEST_GET_DEPTH(test->test);
 
     nbp_linux_printer_print_depth(depth);
     if (state == NBP_TEST_STATE_PASSED) {
@@ -533,24 +533,24 @@ static void nbp_linux_printer_print_test(nbp_linux_printer_test_t* test)
             NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN
                 "%s"
             NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-            NBP_GET_TEST_NAME(test->test)
+            NBP_TEST_GET_NAME(test->test)
         );
     } else if (state == NBP_TEST_STATE_FAILED) {
         printf(
             NBP_LINUX_PRINTER_PRIVATE_COLOR_RED
                 "%s"
             NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-            NBP_GET_TEST_NAME(test->test)
+            NBP_TEST_GET_NAME(test->test)
         );
     } else if (state == NBP_TEST_STATE_SKIPPED) {
         printf(
             NBP_LINUX_PRINTER_PRIVATE_COLOR_YELLOW
                 "%s"
             NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-            NBP_GET_TEST_NAME(test->test)
+            NBP_TEST_GET_NAME(test->test)
         );
     } else {
-        printf("%s\n", NBP_GET_TEST_NAME(test->test));
+        printf("%s\n", NBP_TEST_GET_NAME(test->test));
     }
 
     nbp_linux_printer_messages_list_t* msg = test->messages;
@@ -837,12 +837,12 @@ NBP_PRINTER_FUNC_SCHEDULING_TEST(nbp_linux_printer_scheduling_test)
 {
     if (nbpLinuxPrinterData == NBP_MEMORY_NULL_POINTER) {
         nbpLinuxPrinterData = nbp_linux_printer_create_data_from_test(
-            NBP_THIS_TEST
+            NBP_TEST_THIS
         );
         nbpLinuxPrinterDataLast = nbpLinuxPrinterData;
     } else {
         nbpLinuxPrinterDataLast->next = nbp_linux_printer_create_data_from_test(
-            NBP_THIS_TEST
+            NBP_TEST_THIS
         );
         if (nbpLinuxPrinterDataLast->next != NBP_MEMORY_NULL_POINTER) {
             nbpLinuxPrinterDataLast = nbpLinuxPrinterDataLast->next;
@@ -871,7 +871,7 @@ NBP_PRINTER_FUNC_BEFORE_SCHEDULING_MODULE(
 NBP_PRINTER_FUNC_CHECK_RESULT(nbp_linux_printer_check_result)
 {
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         NBP_PRINTER_GET_CONDITION(),
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -892,7 +892,7 @@ NBP_PRINTER_FUNC_CHECK_OP_RESULT(nbp_linux_printer_check_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -913,7 +913,7 @@ NBP_PRINTER_FUNC_CHECK_CHAR_OP_RESULT(nbp_linux_printer_check_char_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -934,7 +934,7 @@ NBP_PRINTER_FUNC_CHECK_SHORT_OP_RESULT(nbp_linux_printer_check_short_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -956,7 +956,7 @@ NBP_PRINTER_FUNC_CHECK_USHORT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -977,7 +977,7 @@ NBP_PRINTER_FUNC_CHECK_INT_OP_RESULT(nbp_linux_printer_check_int_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -998,7 +998,7 @@ NBP_PRINTER_FUNC_CHECK_UINT_OP_RESULT(nbp_linux_printer_check_uint_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -1019,7 +1019,7 @@ NBP_PRINTER_FUNC_CHECK_LONG_OP_RESULT(nbp_linux_printer_check_long_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -1040,7 +1040,7 @@ NBP_PRINTER_FUNC_CHECK_ULONG_OP_RESULT(nbp_linux_printer_check_ulong_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -1061,7 +1061,7 @@ NBP_PRINTER_FUNC_CHECK_LLONG_OP_RESULT(nbp_linux_printer_check_llong_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -1083,7 +1083,7 @@ NBP_PRINTER_FUNC_CHECK_ULLONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -1104,7 +1104,7 @@ NBP_PRINTER_FUNC_CHECK_FLOAT_OP_RESULT(nbp_linux_printer_check_float_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -1126,7 +1126,7 @@ NBP_PRINTER_FUNC_CHECK_DOUBLE_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -1148,7 +1148,7 @@ NBP_PRINTER_FUNC_CHECK_LDOUBLE_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_check_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_CHECK_LINE(),
@@ -1161,7 +1161,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_RESULT(
     nbp_linux_printer_test_assert_result)
 {
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         NBP_PRINTER_GET_CONDITION(),
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1183,7 +1183,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1205,7 +1205,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_CHAR_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1227,7 +1227,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_SHORT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1249,7 +1249,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_USHORT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1271,7 +1271,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_INT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1293,7 +1293,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_UINT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1315,7 +1315,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_LONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1337,7 +1337,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_ULONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1359,7 +1359,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_LLONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1381,7 +1381,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_ULLONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1403,7 +1403,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_FLOAT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1425,7 +1425,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_DOUBLE_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1447,7 +1447,7 @@ NBP_PRINTER_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_test_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_TEST_ASSERT_LINE(),
@@ -1460,7 +1460,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_RESULT(
     nbp_linux_printer_module_assert_result)
 {
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         NBP_PRINTER_GET_CONDITION(),
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1482,7 +1482,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1504,7 +1504,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_CHAR_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1526,7 +1526,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_SHORT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1548,7 +1548,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_USHORT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1570,7 +1570,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_INT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1592,7 +1592,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_UINT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1614,7 +1614,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_LONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1636,7 +1636,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_ULONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1658,7 +1658,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_LLONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1680,7 +1680,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1702,7 +1702,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1724,7 +1724,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1746,7 +1746,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_module_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_MODULE_ASSERT_LINE(),
@@ -1758,7 +1758,7 @@ NBP_PRINTER_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT(
 NBP_PRINTER_FUNC_ASSERT_RESULT(nbp_linux_printer_assert_result)
 {
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         NBP_PRINTER_GET_CONDITION(),
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -1779,7 +1779,7 @@ NBP_PRINTER_FUNC_ASSERT_OP_RESULT(nbp_linux_printer_assert_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -1800,7 +1800,7 @@ NBP_PRINTER_FUNC_ASSERT_CHAR_OP_RESULT(nbp_linux_printer_assert_char_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -1822,7 +1822,7 @@ NBP_PRINTER_FUNC_ASSERT_SHORT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -1844,7 +1844,7 @@ NBP_PRINTER_FUNC_ASSERT_USHORT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -1865,7 +1865,7 @@ NBP_PRINTER_FUNC_ASSERT_INT_OP_RESULT(nbp_linux_printer_assert_int_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -1886,7 +1886,7 @@ NBP_PRINTER_FUNC_ASSERT_UINT_OP_RESULT(nbp_linux_printer_assert_uint_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -1907,7 +1907,7 @@ NBP_PRINTER_FUNC_ASSERT_LONG_OP_RESULT(nbp_linux_printer_assert_long_op_result)
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -1929,7 +1929,7 @@ NBP_PRINTER_FUNC_ASSERT_ULONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -1951,7 +1951,7 @@ NBP_PRINTER_FUNC_ASSERT_LLONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -1973,7 +1973,7 @@ NBP_PRINTER_FUNC_ASSERT_ULLONG_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -1995,7 +1995,7 @@ NBP_PRINTER_FUNC_ASSERT_FLOAT_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -2017,7 +2017,7 @@ NBP_PRINTER_FUNC_ASSERT_DOUBLE_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),
@@ -2039,7 +2039,7 @@ NBP_PRINTER_FUNC_ASSERT_LDOUBLE_OP_RESULT(
         NBP_PRINTER_GET_SECOND_VALUE()
     );
     nbp_linux_printer_add_assert_result(
-        NBP_THIS_TEST,
+        NBP_TEST_THIS,
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_ASSERT_LINE(),

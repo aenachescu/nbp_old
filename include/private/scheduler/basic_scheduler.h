@@ -68,7 +68,7 @@ NBP_SCHEDULER_FUNC_RUN(nbp_basic_scheduler_run)
 
 NBP_SCHEDULER_FUNC_ADD_TEST(nbp_basic_scheduler_add_test)
 {
-    nbpBasicSchedulerDataLast->test = NBP_THIS_TEST;
+    nbpBasicSchedulerDataLast->test = NBP_TEST_THIS;
     nbpBasicSchedulerDataLast->next = (nbp_basic_scheduler_data_t*)
         NBP_MEMORY_ALLOC(sizeof(nbp_basic_scheduler_data_t));
 

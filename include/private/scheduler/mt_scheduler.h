@@ -79,7 +79,7 @@ void* nbp_mt_scheduler_create_ctx(
 #define NBP_MT_SCHEDULER_RUN_BEFORE_TEST(test)                                 \
     nbp_mt_schduler_create_rule_from_test(                                     \
         NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_BEFORE,                             \
-        NBP_GET_TEST_PTR(test)                                                 \
+        NBP_TEST_GET_PTR(test)                                                 \
     )
 
 /*
@@ -88,7 +88,7 @@ void* nbp_mt_scheduler_create_ctx(
 #define NBP_MT_SCHEDULER_RUN_AFTER_TEST(test)                                  \
     nbp_mt_schduler_create_rule_from_test(                                     \
         NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_AFTER,                              \
-        NBP_GET_TEST_PTR(test)                                                 \
+        NBP_TEST_GET_PTR(test)                                                 \
     )
 
 /*
@@ -115,7 +115,7 @@ void* nbp_mt_scheduler_create_ctx(
 #define NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_TEST(test)                    \
     nbp_mt_schduler_create_rule_from_test(                                     \
         NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD,                        \
-        NBP_GET_TEST_PTR(test)                                                 \
+        NBP_TEST_GET_PTR(test)                                                 \
     )
 
 /*
@@ -154,11 +154,11 @@ void* nbp_mt_scheduler_create_ctx(
 
 #define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_AFTER_TEST(     \
     name)                                                                      \
-    NBP_INCLUDE_TEST(name);
+    NBP_TEST_INCLUDE(name);
 
 #define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_BEFORE_TEST(    \
     name)                                                                      \
-    NBP_INCLUDE_TEST(name);
+    NBP_TEST_INCLUDE(name);
 
 #define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_AFTER_MODULE(   \
     name)                                                                      \
@@ -170,7 +170,7 @@ void* nbp_mt_scheduler_create_ctx(
 
 #define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_TEST(\
     name)                                                                      \
-    NBP_INCLUDE_TEST(name);
+    NBP_TEST_INCLUDE(name);
 
 #define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_MODULE(\
     name)                                                                      \
@@ -1247,7 +1247,7 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_mt_scheduler_add_test)
     }
 
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST;
-    data->test = NBP_THIS_TEST;
+    data->test = NBP_TEST_THIS;
     data->ctx = (nbp_mt_scheduler_context_t*) NBP_MEMORY_NULL_POINTER;
     data->next = NBP_MEMORY_NULL_POINTER;
 
@@ -1277,7 +1277,7 @@ NBP_SCHEDULER_FUNC_ADD_TEST_CTX(nbp_mt_scheduler_add_test_ctx)
     }
 
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST;
-    data->test = NBP_THIS_TEST;
+    data->test = NBP_TEST_THIS;
     data->ctx = (nbp_mt_scheduler_context_t*) NBP_SCHEDULER_CTX;
     data->next = NBP_MEMORY_NULL_POINTER;
 

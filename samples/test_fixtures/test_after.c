@@ -33,7 +33,7 @@ NBP_TEST_TEARDOWN(submodule4_test_teardown1)
 {
     write_message_to_file_2(
         "submodule4_test_teardown1",
-        NBP_GET_TEST_NAME(NBP_THIS_TEST)
+        NBP_TEST_GET_NAME(NBP_TEST_THIS)
     );
 }
 
@@ -41,6 +41,6 @@ NBP_TEST_TEARDOWN(submodule4_test_teardown2)
 {
     write_message_to_file_2(
         "submodule4_test_teardown2",
-        NBP_GET_TEST_NAME(NBP_THIS_TEST)
+        NBP_TEST_GET_NAME(NBP_TEST_THIS)
     );
 }
