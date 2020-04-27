@@ -187,7 +187,7 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_DEFINE_SCHEDULER(name, ...)                                        \
+#define NBP_SCHEDULER(name, ...)                                               \
     struct nbp_scheduler_interface_t                                           \
     NBP_PRIVATE_PP_CONCAT(nbpScheduler, name) = {                              \
         __VA_ARGS__                                                            \
@@ -196,13 +196,13 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_USE_SCHEDULER(name)                                                \
+#define NBP_SCHEDULER_GET_PTR(name)                                            \
     & NBP_PRIVATE_PP_CONCAT(nbpScheduler, name)
 
 /*
  * TODO: add docs
  */
-#define NBP_INCLUDE_SCHEDULER(name)                                            \
+#define NBP_SCHEDULER_INCLUDE(name)                                            \
     extern nbp_scheduler_interface_t NBP_PRIVATE_PP_CONCAT(nbpScheduler, name)
 
 /*

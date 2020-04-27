@@ -1319,7 +1319,7 @@ NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(nbp_mt_scheduler_module_started_ctx)
     nbpMtSchedulerDataLast = data;
 }
 
-NBP_DEFINE_SCHEDULER(
+NBP_SCHEDULER(
     nbpMtScheduler,
     NBP_SCHEDULER_USE_FUNC_INIT(nbp_mt_scheduler_init),
     NBP_SCHEDULER_USE_FUNC_UNINIT(nbp_mt_scheduler_uninit),

@@ -63,10 +63,10 @@ SOFTWARE.
  */
 #define NBP_MAIN_MODULE(func)                                                  \
     NBP_INCLUDE_PRINTER(nbpDefaultPrinter);                                    \
-    NBP_INCLUDE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
+    NBP_SCHEDULER_INCLUDE(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
     NBP_MAIN_PRIVATE_MODULE_IMPL(                                              \
         func,                                                                  \
-        NBP_USE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                    \
+        NBP_SCHEDULER_GET_PTR(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpDefaultPrinter))                   \
     );                                                                         \
     NBP_MODULE(func)
@@ -76,10 +76,10 @@ SOFTWARE.
  */
 #define NBP_MAIN_MODULE_NAME(func, name)                                       \
     NBP_INCLUDE_PRINTER(nbpDefaultPrinter);                                    \
-    NBP_INCLUDE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
+    NBP_SCHEDULER_INCLUDE(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
     NBP_MAIN_PRIVATE_MODULE_IMPL(                                              \
         func,                                                                  \
-        NBP_USE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                    \
+        NBP_SCHEDULER_GET_PTR(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpDefaultPrinter))                   \
     );                                                                         \
     NBP_MODULE_NAME(func, name)
@@ -89,10 +89,10 @@ SOFTWARE.
  */
 #define NBP_MAIN_MODULE_FIXTURES(func, setupFunc, teardownFunc)                \
     NBP_INCLUDE_PRINTER(nbpDefaultPrinter);                                    \
-    NBP_INCLUDE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
+    NBP_SCHEDULER_INCLUDE(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
     NBP_MAIN_PRIVATE_MODULE_IMPL(                                              \
         func,                                                                  \
-        NBP_USE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                    \
+        NBP_SCHEDULER_GET_PTR(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpDefaultPrinter))                   \
     );                                                                         \
     NBP_MODULE_FIXTURES(func, setupFunc, teardownFunc)
@@ -102,10 +102,10 @@ SOFTWARE.
  */
 #define NBP_MAIN_MODULE_NAME_FIXTURES(func, name, setupFunc, teardownFunc)     \
     NBP_INCLUDE_PRINTER(nbpDefaultPrinter);                                    \
-    NBP_INCLUDE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
+    NBP_SCHEDULER_INCLUDE(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
     NBP_MAIN_PRIVATE_MODULE_IMPL(                                              \
         func,                                                                  \
-        NBP_USE_SCHEDULER(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                    \
+        NBP_SCHEDULER_GET_PTR(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                \
         NBP_USE_PRINTERS(NBP_GET_PRINTER(nbpDefaultPrinter))                   \
     );                                                                         \
     NBP_MODULE_NAME_FIXTURES(func, name, setupFunc, teardownFunc)

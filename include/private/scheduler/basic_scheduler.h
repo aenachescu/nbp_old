@@ -85,7 +85,7 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_basic_scheduler_add_test)
     nbpBasicSchedulerDataLast->test = NBP_MEMORY_NULL_POINTER;
 }
 
-NBP_DEFINE_SCHEDULER(
+NBP_SCHEDULER(
     nbpBasicScheduler,
     NBP_SCHEDULER_USE_FUNC_INIT(nbp_basic_scheduler_init),
     NBP_SCHEDULER_USE_FUNC_UNINIT(nbp_basic_scheduler_uninit),
