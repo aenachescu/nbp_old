@@ -29,7 +29,7 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_SETUP_MODULE(setupMainModule)
+NBP_MODULE_SETUP(setupMainModule)
 {
     write_message_to_file("setup");
 }

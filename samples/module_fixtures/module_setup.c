@@ -29,18 +29,18 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_SETUP_MODULE(module1_setup)
+NBP_MODULE_SETUP(module1_setup)
 {
     write_message_to_file_2(
         "module1_setup",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_SETUP_MODULE(module2_setup)
+NBP_MODULE_SETUP(module2_setup)
 {
     write_message_to_file_2(
         "module2_setup",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }

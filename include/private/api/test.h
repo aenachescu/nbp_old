@@ -416,7 +416,7 @@ SOFTWARE.
  *  unsigned int which is greater than 0.
  */
 #define NBP_TEST_GET_DEPTH(test)                                               \
-    NBP_GET_MODULE_DEPTH(test->module) + 1
+    NBP_MODULE_GET_DEPTH(test->module) + 1
 
 /*
  * @public doc

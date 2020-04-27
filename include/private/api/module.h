@@ -31,13 +31,13 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_NO_SETUP_FUNC                                                      \
+#define NBP_MODULE_NO_SETUP                                                    \
     nbp_module_empty_setup_func
 
 /*
  * TODO: add docs
  */
-#define NBP_SETUP_MODULE(func)                                                 \
+#define NBP_MODULE_SETUP(func)                                                 \
     void NBP_PRIVATE_PP_CONCAT(nbp_module_setup_, func)(                       \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
@@ -45,18 +45,18 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_NO_TEARDOWN_FUNC                                                   \
+#define NBP_MODULE_NO_TEARDOWN                                                 \
     nbp_module_empty_teardown_func
 
 /*
  * TODO: add docs
  */
-#define NBP_TEARDOWN_MODULE(func)                                              \
+#define NBP_MODULE_TEARDOWN(func)                                              \
     void NBP_PRIVATE_PP_CONCAT(nbp_module_teardown_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
-#define NBP_PRIVATE_MODULE(func, name, setupFunc, teardownFunc)                \
+#define NBP_MODULE_PRIVATE_IMPL(func, name, setupFunc, teardownFunc)           \
     void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
         nbp_module_details_t*,                                                 \
         nbp_test_setup_pfn_t,                                                  \
@@ -155,7 +155,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_NAME(func, name)                                            \
-    NBP_PRIVATE_MODULE(func, name, NBP_MEMORY_NULL_POINTER,                    \
+    NBP_MODULE_PRIVATE_IMPL(func, name, NBP_MEMORY_NULL_POINTER,               \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -168,9 +168,9 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_NAME_FIXTURES(func, name, setupFunc, teardownFunc)          \
-    NBP_SETUP_MODULE(setupFunc);                                               \
-    NBP_TEARDOWN_MODULE(teardownFunc);                                         \
-    NBP_PRIVATE_MODULE(                                                        \
+    NBP_MODULE_SETUP(setupFunc);                                               \
+    NBP_MODULE_TEARDOWN(teardownFunc);                                         \
+    NBP_MODULE_PRIVATE_IMPL(                                                   \
         func,                                                                  \
         name,                                                                  \
         NBP_PRIVATE_PP_CONCAT(nbp_module_setup_, setupFunc),                   \
@@ -207,13 +207,13 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_INCLUDE_MODULE(func)                                               \
+#define NBP_MODULE_INCLUDE(func)                                               \
     extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func);
 
 /*
  * TODO: add docs
  */
-#define NBP_GET_MODULE_PTR(func)                                               \
+#define NBP_MODULE_GET_PTR(func)                                               \
     & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func)
 
 /*
@@ -231,12 +231,12 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_THIS_MODULE nbpParamModule
+#define NBP_MODULE_THIS nbpParamModule
 
 /*
  * TODO: add docs
  */
-#define NBP_GET_MODULE_NAME(module) module->moduleName
+#define NBP_MODULE_GET_NAME(module) module->moduleName
 
 /*
  * TODO: add docs
@@ -246,12 +246,12 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_GET_MODULE_DEPTH(module) module->depth
+#define NBP_MODULE_GET_DEPTH(module) module->depth
 
 /*
  * TODO: add docs
  */
-#define NBP_GET_MODULE_STATE(module)                                           \
+#define NBP_MODULE_GET_STATE(module)                                           \
     NBP_SYNC_ATOMIC_UINT_LOAD(&module->moduleState)
 
 /*

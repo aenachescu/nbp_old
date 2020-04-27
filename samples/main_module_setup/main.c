@@ -55,7 +55,7 @@ NBP_TEST(test4)
 }
 
 NBP_MAIN_MODULE_FIXTURES(main_module_setup, setupMainModule,
-    NBP_NO_TEARDOWN_FUNC)
+    NBP_MODULE_NO_TEARDOWN)
 {
     NBP_TEST_RUN(test1);
     NBP_TEST_RUN(test2);

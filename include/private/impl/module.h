@@ -30,11 +30,11 @@ SOFTWARE.
 
 unsigned int nbpTotalNumberOfModules = 0;
 
-NBP_SETUP_MODULE(nbp_module_empty_setup_func)
+NBP_MODULE_SETUP(nbp_module_empty_setup_func)
 {
 }
 
-NBP_TEARDOWN_MODULE(nbp_module_empty_teardown_func)
+NBP_MODULE_TEARDOWN(nbp_module_empty_teardown_func)
 {
 }
 

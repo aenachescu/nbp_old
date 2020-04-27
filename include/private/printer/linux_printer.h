@@ -565,32 +565,32 @@ static void nbp_linux_printer_print_test(nbp_linux_printer_test_t* test)
 
 static void nbp_linux_printer_print_module(nbp_linux_printer_module_t* module)
 {
-    unsigned int state = NBP_GET_MODULE_STATE(module->module);
+    unsigned int state = NBP_MODULE_GET_STATE(module->module);
 
-    nbp_linux_printer_print_depth(NBP_GET_MODULE_DEPTH(module->module));
+    nbp_linux_printer_print_depth(NBP_MODULE_GET_DEPTH(module->module));
     if (state == NBP_MODULE_STATE_PASSED) {
         printf(
             NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN
                 "%s"
             NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-            NBP_GET_MODULE_NAME(module->module)
+            NBP_MODULE_GET_NAME(module->module)
         );
     } else if (state == NBP_MODULE_STATE_FAILED) {
         printf(
             NBP_LINUX_PRINTER_PRIVATE_COLOR_RED
                 "%s"
             NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-            NBP_GET_MODULE_NAME(module->module)
+            NBP_MODULE_GET_NAME(module->module)
         );
     } else if (state == NBP_MODULE_STATE_SKIPPED) {
         printf(
             NBP_LINUX_PRINTER_PRIVATE_COLOR_YELLOW
                 "%s"
             NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-            NBP_GET_MODULE_NAME(module->module)
+            NBP_MODULE_GET_NAME(module->module)
         );
     } else {
-        printf("%s\n", NBP_GET_MODULE_NAME(module->module));
+        printf("%s\n", NBP_MODULE_GET_NAME(module->module));
     }
 }
 
@@ -855,12 +855,12 @@ NBP_PRINTER_FUNC_BEFORE_SCHEDULING_MODULE(
 {
     if (nbpLinuxPrinterData == NBP_MEMORY_NULL_POINTER) {
         nbpLinuxPrinterData = nbp_linux_printer_create_data_from_module(
-            NBP_THIS_MODULE
+            NBP_MODULE_THIS
         );
         nbpLinuxPrinterDataLast = nbpLinuxPrinterData;
     } else {
         nbpLinuxPrinterDataLast->next = nbp_linux_printer_create_data_from_module(
-            NBP_THIS_MODULE
+            NBP_MODULE_THIS
         );
         if (nbpLinuxPrinterDataLast->next != NBP_MEMORY_NULL_POINTER) {
             nbpLinuxPrinterDataLast = nbpLinuxPrinterDataLast->next;

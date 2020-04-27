@@ -91,7 +91,7 @@ NBP_TEST(test4)
     NBP_CHECK(1 + 1 == 2);
 }
 
-NBP_SETUP_MODULE(main_module_setup)
+NBP_MODULE_SETUP(main_module_setup)
 {
     int err;
 
@@ -114,7 +114,7 @@ NBP_SETUP_MODULE(main_module_setup)
     }
 }
 
-NBP_TEARDOWN_MODULE(main_module_teardown)
+NBP_MODULE_TEARDOWN(main_module_teardown)
 {
     int err;
 

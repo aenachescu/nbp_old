@@ -29,34 +29,34 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_SETUP_MODULE(submodule_setup)
+NBP_MODULE_SETUP(submodule_setup)
 {
     write_message_to_file_2(
         "submodule_setup",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_TEARDOWN_MODULE(submodule_teardown)
+NBP_MODULE_TEARDOWN(submodule_teardown)
 {
     write_message_to_file_2(
         "submodule_teardown",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_SETUP_MODULE(submodule3_setup)
+NBP_MODULE_SETUP(submodule3_setup)
 {
     write_message_to_file_2(
         "submodule3_setup",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_TEARDOWN_MODULE(submodule4_teardown)
+NBP_MODULE_TEARDOWN(submodule4_teardown)
 {
     write_message_to_file_2(
         "submodule4_teardown",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }

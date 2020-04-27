@@ -30,35 +30,35 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_SETUP_MODULE(module1_setup)
+NBP_MODULE_SETUP(module1_setup)
 {
     write_message_to_file_2(
         "module1_setup",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_SETUP_MODULE(module2_setup)
+NBP_MODULE_SETUP(module2_setup)
 {
     write_message_to_file_2(
         "module2_setup",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_TEARDOWN_MODULE(module1_teardown)
+NBP_MODULE_TEARDOWN(module1_teardown)
 {
     write_message_to_file_2(
         "module1_teardown",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_TEARDOWN_MODULE(module2_teardown)
+NBP_MODULE_TEARDOWN(module2_teardown)
 {
     write_message_to_file_2(
         "module2_teardown",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
@@ -168,7 +168,7 @@ NBP_TEST(test12)
     NBP_CHECK(4);
 }
 
-NBP_MODULE_FIXTURES(submodule3, submodule3_setup, NBP_NO_TEARDOWN_FUNC)
+NBP_MODULE_FIXTURES(submodule3, submodule3_setup, NBP_MODULE_NO_TEARDOWN)
 {
     NBP_TEST_RUN(test9);
     NBP_TEST_RUN(test10);
@@ -200,7 +200,7 @@ NBP_TEST(test16)
     NBP_CHECK(4);
 }
 
-NBP_MODULE_FIXTURES(submodule4, NBP_NO_SETUP_FUNC, submodule4_teardown)
+NBP_MODULE_FIXTURES(submodule4, NBP_MODULE_NO_SETUP, submodule4_teardown)
 {
     NBP_TEST_RUN(test13);
     NBP_TEST_RUN(test14);
@@ -208,34 +208,34 @@ NBP_MODULE_FIXTURES(submodule4, NBP_NO_SETUP_FUNC, submodule4_teardown)
     NBP_TEST_RUN(test16);
 }
 
-NBP_SETUP_MODULE(submodule_setup)
+NBP_MODULE_SETUP(submodule_setup)
 {
     write_message_to_file_2(
         "submodule_setup",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_TEARDOWN_MODULE(submodule_teardown)
+NBP_MODULE_TEARDOWN(submodule_teardown)
 {
     write_message_to_file_2(
         "submodule_teardown",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_SETUP_MODULE(submodule3_setup)
+NBP_MODULE_SETUP(submodule3_setup)
 {
     write_message_to_file_2(
         "submodule3_setup",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_TEARDOWN_MODULE(submodule4_teardown)
+NBP_MODULE_TEARDOWN(submodule4_teardown)
 {
     write_message_to_file_2(
         "submodule4_teardown",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }

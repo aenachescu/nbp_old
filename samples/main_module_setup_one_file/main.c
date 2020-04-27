@@ -30,7 +30,7 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_SETUP_MODULE(setupMainModule)
+NBP_MODULE_SETUP(setupMainModule)
 {
     write_message_to_file("setup");
 }
@@ -60,7 +60,7 @@ NBP_TEST(test4)
 }
 
 NBP_MAIN_MODULE_FIXTURES(main_module_setup_one_file, setupMainModule,
-    NBP_NO_TEARDOWN_FUNC)
+    NBP_MODULE_NO_TEARDOWN)
 {
     NBP_TEST_RUN(test1);
     NBP_TEST_RUN(test2);

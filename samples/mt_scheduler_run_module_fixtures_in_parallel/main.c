@@ -41,7 +41,7 @@ NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_fixtures_in_parallel,
     NBP_MODULE_RUN(module2);
 }
 
-NBP_SETUP_MODULE(mainSetup)
+NBP_MODULE_SETUP(mainSetup)
 {
     for (unsigned int i = 0; i < 4; ++i) {
         int err = SAMPLE_SEMAPHORE_INIT(g_semaphores[i]);
@@ -55,7 +55,7 @@ NBP_SETUP_MODULE(mainSetup)
     }
 }
 
-NBP_TEARDOWN_MODULE(mainTeardown)
+NBP_MODULE_TEARDOWN(mainTeardown)
 {
     for (unsigned int i = 0; i < 4; ++i) {
         int err = SAMPLE_SEMAPHORE_UNINIT(g_semaphores[i]);
@@ -69,7 +69,7 @@ NBP_TEARDOWN_MODULE(mainTeardown)
     }
 }
 
-NBP_SETUP_MODULE(setup)
+NBP_MODULE_SETUP(setup)
 {
     unsigned int order[] = {0, 1};
     int err;
@@ -98,7 +98,7 @@ NBP_SETUP_MODULE(setup)
     }
 }
 
-NBP_TEARDOWN_MODULE(teardown)
+NBP_MODULE_TEARDOWN(teardown)
 {
     unsigned int order[] = {2, 3};
     int err;

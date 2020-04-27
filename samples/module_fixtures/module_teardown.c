@@ -29,18 +29,18 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_TEARDOWN_MODULE(module1_teardown)
+NBP_MODULE_TEARDOWN(module1_teardown)
 {
     write_message_to_file_2(
         "module1_teardown",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_TEARDOWN_MODULE(module2_teardown)
+NBP_MODULE_TEARDOWN(module2_teardown)
 {
     write_message_to_file_2(
         "module2_teardown",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }

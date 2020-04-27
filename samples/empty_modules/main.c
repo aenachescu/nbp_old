@@ -30,19 +30,19 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_SETUP_MODULE(setupModule)
+NBP_MODULE_SETUP(setupModule)
 {
     write_message_to_file_2(
         "setup module",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
-NBP_TEARDOWN_MODULE(teardownModule)
+NBP_MODULE_TEARDOWN(teardownModule)
 {
     write_message_to_file_2(
         "teardown module",
-        NBP_GET_MODULE_NAME(NBP_THIS_MODULE)
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
 
