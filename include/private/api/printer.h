@@ -1834,7 +1834,7 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_DEFINE_PRINTER(name, ...)                                          \
+#define NBP_PRINTER(name, ...)                                                 \
     nbp_printer_interface_t NBP_PRIVATE_PP_CONCAT(nbpPrinter, name) = {        \
         __VA_ARGS__                                                            \
     }
@@ -1842,20 +1842,14 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_GET_PRINTER(name)                                                  \
+#define NBP_PRINTER_GET_PTR(name)                                              \
     & NBP_PRIVATE_PP_CONCAT(nbpPrinter, name)
 
 /*
  * TODO: add docs
  */
-#define NBP_INCLUDE_PRINTER(name)                                              \
+#define NBP_PRINTER_INCLUDE(name)                                              \
     extern nbp_printer_interface_t NBP_PRIVATE_PP_CONCAT(nbpPrinter, name)
-
-/*
- * TODO: add docs
- */
-#define NBP_USE_PRINTERS(...)                                                  \
-    { __VA_ARGS__ }
 
 /*
  * TODO: add docs

@@ -2048,7 +2048,7 @@ NBP_PRINTER_FUNC_ASSERT_LDOUBLE_OP_RESULT(
     );
 }
 
-NBP_DEFINE_PRINTER(
+NBP_PRINTER(
     // printer name
     nbpDefaultPrinter,
 
