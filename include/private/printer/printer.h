@@ -57,7 +57,7 @@ SOFTWARE.
  * We don't have default printer for custom OS
  */
 #ifdef NBP_OS_CUSTOM
-#error "Not supported"
+#error "Default printer is not supported on custom OS"
 #endif
 
 #endif // end if NBP_LIBRARY_MAIN
