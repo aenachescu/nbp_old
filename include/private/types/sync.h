@@ -92,7 +92,72 @@ SOFTWARE.
 #error "Not supported"
 #endif // end if NBP_OS_CUSTOM
 
+/*
+ * Check if atomic uint wrapper is defined, otherwise define a dummy atomic uint
+ * wrapper.
+ * If NBP_OS_* is not defined then the atomic uint wrapper will not be defined
+ * so the compiler will generate a lot of errors and the error message that
+ * says that there is no NBP_OS_* defined is hard to see.
+ */
+
+#ifndef NBP_SYNC_ATOMIC_UINT_TYPE
+#define NBP_SYNC_ATOMIC_UINT_TYPE unsigned int
+#endif // end if NBP_SYNC_ATOMIC_UINT_TYPE
+
+#ifndef NBP_SYNC_ATOMIC_UINT_INIT
+#define NBP_SYNC_ATOMIC_UINT_INIT(val) val
+#endif // end if NBP_SYNC_ATOMIC_UINT_INIT
+
+#ifndef NBP_SYNC_ATOMIC_UINT_LOAD
+#define NBP_SYNC_ATOMIC_UINT_LOAD(ptr) (*(ptr))
+#endif // end if NBP_SYNC_ATOMIC_UINT_LOAD
+
+#ifndef NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH
+#define NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                         \
+    ((*(ptr)) += (value))
+#endif // end if NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH
+
+#ifndef NBP_SYNC_ATOMIC_UINT_CAS
+#define NBP_SYNC_ATOMIC_UINT_CAS(ptr, oldVal, newVal)                          \
+    ((*(ptr)) == (oldVal) ? (*(ptr)) = (newVal), (oldVal) : (*(ptr)))
+#endif // end if NBP_SYNC_ATOMIC_UINT_CAS
+
+/*
+ * Check if event wrapper is defined, otherwise define a dummy event wrapper.
+ * If NBP_OS_* is not defined then the event wrapper will not be defined so the
+ * compiler will generate a lot of errors and the error message that says that
+ * there is no NBP_OS_* defined is hard to see.
+ */
+
+#ifndef NBP_SYNC_EVENT_TYPE
+#define NBP_SYNC_EVENT_TYPE int
+#endif // end if NBP_SYNC_EVENT_TYPE
+
+#ifndef NBP_SYNC_EVENT_DEFAULT_VALUE
+#define NBP_SYNC_EVENT_DEFAULT_VALUE 0
+#endif // end if NBP_SYNC_EVENT_DEFAULT_VALUE
+
+#ifndef NBP_SYNC_EVENT_INIT
+#define NBP_SYNC_EVENT_INIT(ev) NBP_ERROR_CODE_SUCCESS
+#endif // end if NBP_SYNC_EVENT_INIT
+
+#ifndef NBP_SYNC_EVENT_UNINIT
+#define NBP_SYNC_EVENT_UNINIT(ev) NBP_ERROR_CODE_SUCCESS
+#endif // end if NBP_SYNC_EVENT_UNINIT
+
+#ifndef NBP_SYNC_EVENT_WAIT
+#define NBP_SYNC_EVENT_WAIT(ev) NBP_ERROR_CODE_SUCCESS
+#endif // end if NBP_SYNC_EVENT_WAIT
+
+#ifndef NBP_SYNC_EVENT_NOTIFY
+#define NBP_SYNC_EVENT_NOTIFY(ev) NBP_ERROR_CODE_SUCCESS
+#endif // end if NBP_SYNC_EVENT_NOTIFY
+
 #else // NBP_MT_SUPPORT not defined
+
+/*
+ * Atomic unsigned int wrapper
+ */
 
 #define NBP_SYNC_ATOMIC_UINT_TYPE unsigned int
 
@@ -105,6 +170,10 @@ SOFTWARE.
 
 #define NBP_SYNC_ATOMIC_UINT_CAS(ptr, oldVal, newVal)                          \
     ((*(ptr)) == (oldVal) ? (*(ptr)) = (newVal), (oldVal) : (*(ptr)))
+
+/*
+ * Event wrapper
+ */
 
 #define NBP_SYNC_EVENT_TYPE int
 

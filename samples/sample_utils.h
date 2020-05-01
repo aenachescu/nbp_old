@@ -109,6 +109,70 @@ static inline void write_message_to_file_2(const char* msg1, const char* msg2)
 #error "Not supported"
 #endif // end if NBP_OS_CUSTOM
 
+/*
+ * Semaphore wrapper if there is no NBP_OS_* defined
+ */
+
+#ifndef SAMPLE_SEMAPHORE_TYPE
+#define SAMPLE_SEMAPHORE_TYPE int
+#endif // end if SAMPLE_SEMAPHORE_TYPE
+
+#ifndef SAMPLE_SEMAPHORE_DEFAULT_VALUE
+#define SAMPLE_SEMAPHORE_DEFAULT_VALUE 0
+#endif // end if SAMPLE_SEMAPHORE_DEFAULT_VALUE
+
+#ifndef SAMPLE_SEMAPHORE_INIT
+#define SAMPLE_SEMAPHORE_INIT(sem) 0
+#endif // end if SAMPLE_SEMAPHORE_INIT
+
+#ifndef SAMPLE_SEMAPHORE_UNINIT
+#define SAMPLE_SEMAPHORE_UNINIT(sem) 0
+#endif // end if SAMPLE_SEMAPHORE_UNINIT
+
+#ifndef SAMPLE_SEMAPHORE_WAIT
+#define SAMPLE_SEMAPHORE_WAIT(sem) 0
+#endif // end if SAMPLE_SEMAPHORE_WAIT
+
+#ifndef SAMPLE_SEMAPHORE_RELEASE
+#define SAMPLE_SEMAPHORE_RELEASE(sem) 0
+#endif // end if SAMPLE_SEMAPHORE_RELEASE
+
+/*
+ * Atomic uint wrapper if there is no NBP_OS_* defined
+ */
+
+#ifndef SAMPLE_ATOMIC_UINT_TYPE
+#define SAMPLE_ATOMIC_UINT_TYPE unsigned int
+#endif // end if SAMPLE_ATOMIC_UINT_TYPE
+
+#ifndef SAMPLE_ATOMIC_UINT_INIT
+#define SAMPLE_ATOMIC_UINT_INIT(val) val
+#endif // end if SAMPLE_ATOMIC_UINT_INIT
+
+#ifndef SAMPLE_ATOMIC_UINT_LOAD
+#define SAMPLE_ATOMIC_UINT_LOAD(ptr) (*(ptr))
+#endif // end if SAMPLE_ATOMIC_UINT_LOAD
+
+#ifndef SAMPLE_ATOMIC_UINT_STORE
+#define SAMPLE_ATOMIC_UINT_STORE(ptr, val) ((*(ptr)) = (val))
+#endif // end if SAMPLE_ATOMIC_UINT_STORE
+
+#ifndef SAMPLE_ATOMIC_UINT_ADD_AND_FETCH
+#define SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                           \
+    ((*(ptr)) += value)
+#endif // end if SAMPLE_ATOMIC_UINT_ADD_AND_FETCH
+
+/*
+ * SAMPLE_FORCE_SLEEP_MS implementation if there is no NBP_OS_* defined
+ */
+#ifndef SAMPLE_FORCE_SLEEP_MS
+#define SAMPLE_FORCE_SLEEP_MS(ms)
+#endif // end if SAMPLE_FORCE_SLEEP_MS
+
+/*
+ * Sample sleep implementation
+ */
+
 #ifdef SAMPLE_DISABLE_SLEEP
 #define SAMPLE_SLEEP()
 #else // SAMPLE_DISABLE_SLEEP not defined

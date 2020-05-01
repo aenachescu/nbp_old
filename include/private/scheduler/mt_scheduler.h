@@ -399,6 +399,101 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
 #error "Not supported"
 #endif // end if NBP_OS_CUSTOM
 
+/*
+ * Check if thread wrapper is defined, otherwise define a dummy thread wrapper.
+ * If NBP_OS_* is not defined then the thread wrapper will not be defined so the
+ * compiler will generate a lot of errors and the error message that says that
+ * there is no NBP_OS_* defined is hard to see.
+ */
+
+#ifndef NBP_MT_SCHEDULER_THREAD_TYPE
+#define NBP_MT_SCHEDULER_THREAD_TYPE int
+#endif // end if NBP_MT_SCHEDULER_THREAD_TYPE
+
+#ifndef NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE
+#define NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE void*
+#endif // end if NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE
+
+#ifndef NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE_DEFAULT_VALUE
+#define NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE_DEFAULT_VALUE ((void*) 0x0)
+#endif // end if NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE_DEFAULT_VALUE
+
+#ifndef NBP_MT_SCHEDULER_THREAD_CREATE
+#define NBP_MT_SCHEDULER_THREAD_CREATE(thread, func, param)                    \
+    NBP_ERROR_CODE_SUCCESS
+#endif // end if NBP_MT_SCHEDULER_THREAD_CREATE
+
+#ifndef NBP_MT_SCHEDULER_THREAD_JOIN
+#define NBP_MT_SCHEDULER_THREAD_JOIN(thread) NBP_ERROR_CODE_SUCCESS
+#endif // end if NBP_MT_SCHEDULER_THREAD_JOIN
+
+/*
+ * Check if mutex wrapper is defined, otherwise define a dummy mutex wrapper.
+ * If NBP_OS_* is not defined then the mutex wrapper will not be defined so the
+ * compiler will generate a lot of errors and the error message that says that
+ * there is no NBP_OS_* defined is hard to see.
+ */
+
+#ifndef NBP_MT_SCHEDULER_MUTEX_TYPE
+#define NBP_MT_SCHEDULER_MUTEX_TYPE int
+#endif // end if NBP_MT_SCHEDULER_MUTEX_TYPE
+
+#ifndef NBP_MT_SCHEDULER_MUTEX_INITIALIZER
+#define NBP_MT_SCHEDULER_MUTEX_INITIALIZER 0
+#endif // end if NBP_MT_SCHEDULER_MUTEX_INITIALIZER
+
+#ifndef NBP_MT_SCHEDULER_MUTEX_INIT
+#define NBP_MT_SCHEDULER_MUTEX_INIT(mutex) mutex++
+#endif // end if NBP_MT_SCHEDULER_MUTEX_INIT
+
+#ifndef NBP_MT_SCHEDULER_MUTEX_UNINIT
+#define NBP_MT_SCHEDULER_MUTEX_UNINIT(mutex) mutex++
+#endif // end if NBP_MT_SCHEDULER_MUTEX_UNINIT
+
+#ifndef NBP_MT_SCHEDULER_MUTEX_LOCK
+#define NBP_MT_SCHEDULER_MUTEX_LOCK(mutex) mutex++
+#endif // end if NBP_MT_SCHEDULER_MUTEX_LOCK
+
+#ifndef NBP_MT_SCHEDULER_MUTEX_UNLOCK
+#define NBP_MT_SCHEDULER_MUTEX_UNLOCK(mutex) mutex++
+#endif // end if NBP_MT_SCHEDULER_MUTEX_UNLOCK
+
+/*
+ * Check if conditional variable wrapper is defined, otherwise define a dummy
+ * conditional variable wrapper.
+ * If NBP_OS_* is not defined then the conditional variable wrapper will not be
+ * defined so the compiler will generate a lot of errors and the error message
+ * that says that there is no NBP_OS_* defined is hard to see.
+ */
+
+#ifndef NBP_MT_SCHEDULER_CONDVAR_TYPE
+#define NBP_MT_SCHEDULER_CONDVAR_TYPE int
+#endif // end if NBP_MT_SCHEDULER_CONDVAR_TYPE
+
+#ifndef NBP_MT_SCHEDULER_CONDVAR_INITIALIZER
+#define NBP_MT_SCHEDULER_CONDVAR_INITIALIZER 0
+#endif // end if NBP_MT_SCHEDULER_CONDVAR_INITIALIZER
+
+#ifndef NBP_MT_SCHEDULER_CONDVAR_INIT
+#define NBP_MT_SCHEDULER_CONDVAR_INIT(condvar) condvar++
+#endif // end if NBP_MT_SCHEDULER_CONDVAR_INIT
+
+#ifndef NBP_MT_SCHEDULER_CONDVAR_UNINIT
+#define NBP_MT_SCHEDULER_CONDVAR_UNINIT(condvar) condvar++
+#endif // end if NBP_MT_SCHEDULER_CONDVAR_UNINIT
+
+#ifndef NBP_MT_SCHEDULER_CONDVAR_WAIT
+#define NBP_MT_SCHEDULER_CONDVAR_WAIT(condvar, mutex) condvar++
+#endif // end if NBP_MT_SCHEDULER_CONDVAR_WAIT
+
+#ifndef NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ONE
+#define NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ONE(condvar) condvar++
+#endif // end if NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ONE
+
+#ifndef NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ALL
+#define NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ALL(condvar) condvar++
+#endif // end if NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ALL
+
 #define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_UNKNOWN  (unsigned char) 0
 #define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST     (unsigned char) 1
 #define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE   (unsigned char) 2
@@ -444,8 +539,8 @@ static unsigned int* nbpMtSchedulerAdjacencyMatrix = NBP_MEMORY_NULL_POINTER;
 static nbp_mt_scheduler_test_t* nbpMtSchedulerQueue = NBP_MEMORY_NULL_POINTER;
 static nbp_mt_scheduler_test_t* nbpMtSchedulerQueueLast = NBP_MEMORY_NULL_POINTER;
 
-static NBP_MT_SCHEDULER_MUTEX_TYPE nbpMtSchedulerMutex = PTHREAD_MUTEX_INITIALIZER;
-static NBP_MT_SCHEDULER_CONDVAR_TYPE nbpMtSchedulerCondVar = PTHREAD_COND_INITIALIZER;
+static NBP_MT_SCHEDULER_MUTEX_TYPE nbpMtSchedulerMutex = NBP_MT_SCHEDULER_MUTEX_INITIALIZER;
+static NBP_MT_SCHEDULER_CONDVAR_TYPE nbpMtSchedulerCondVar = NBP_MT_SCHEDULER_CONDVAR_INITIALIZER;
 
 static unsigned int nbpMtSchedulerNumberOfDispatchedTests = 0;
 
