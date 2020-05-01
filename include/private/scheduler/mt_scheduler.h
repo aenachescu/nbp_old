@@ -588,7 +588,7 @@ static void nbp_mt_scheduler_set_test_on_same_thread_with_test(
 {
     nbp_mt_scheduler_test_t* test1;
     nbp_mt_scheduler_test_t* test2;
-    nbp_mt_scheduler_test_t* last;
+    nbp_mt_scheduler_test_t* last = NBP_MEMORY_NULL_POINTER;
     nbp_mt_scheduler_test_t* current;
 
     if (testId1 == testId2) {
@@ -693,6 +693,7 @@ static void nbp_mt_scheduler_set_module_on_same_thread(
 {
     nbp_test_details_t* firstTest = NBP_MEMORY_NULL_POINTER;
     nbp_test_details_t* test;
+    nbp_module_details_t* firstSubmodule = NBP_MEMORY_NULL_POINTER;
     nbp_module_details_t* submodule;
     unsigned int firstTestId;
     unsigned int testId;
@@ -708,7 +709,21 @@ static void nbp_mt_scheduler_set_module_on_same_thread(
     }
 
     NBP_MODULE_FOR_EACH_SUBMODULE(module, submodule) {
-        nbp_mt_scheduler_set_module_on_same_thread_with_test(submodule, firstTestId);
+        if (firstTest != NBP_MEMORY_NULL_POINTER) {
+            nbp_mt_scheduler_set_module_on_same_thread_with_test(
+                submodule,
+                firstTestId
+            );
+        } else {
+            if (firstSubmodule == NBP_MEMORY_NULL_POINTER) {
+                firstSubmodule = submodule;
+            } else {
+                nbp_mt_scheduler_set_module_on_same_thread_with_module(
+                    firstSubmodule,
+                    submodule
+                );
+            }
+        }
     }
 }
 
