@@ -52,7 +52,6 @@ Mkfile.old
 dkms.conf
 
 .vscode/launch.json
-.vscode/settings.json
 
 bin/*
 
@@ -60,3 +59,5 @@ build/LinuxCMake/CMakeCache.txt
 build/LinuxCMake/CMakeFiles/
 build/LinuxCMake/Makefile
 build/LinuxCMake/cmake_install.cmake
+build/LinuxCMake/.cmake/
+build/LinuxCMake/compile_commands.json
