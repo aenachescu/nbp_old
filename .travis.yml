@@ -54,9 +54,10 @@ matrix:
         - cd build/LinuxCMake
 
         # gcc 5
-        - cmake . -DCOMPILER=gcc-5
+        - cmake . -DCOMPILER=gcc-5 -DCODE_COVERAGE=ON
         - make
         - ./run_tests.sh
+        - ./run_coveralls.sh
         - make clean
         # gcc 6
         - cmake . -DCOMPILER=gcc-6
