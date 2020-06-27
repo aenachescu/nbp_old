@@ -1,20 +1,20 @@
 # No Bugs in Production (NBP)
 # https://github.com/aenachescu/nbp
-# 
+#
 # Licensed under the MIT License <http://opensource.org/licenses/MIT>.
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2019-2020 Alin Enachescu <https://github.com/aenachescu>
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,7 +24,7 @@
 # SOFTWARE.
 
 path_to_bin="../../bin"
-path_to_project="/home/travis/build/aenachescu/nbp/"
+path_to_project="$( cd "$(dirname "$0")/../.." >/dev/null 2>&1 ; pwd -P )"
 
 declare -a arr=(
     "basic_sample"
@@ -69,7 +69,10 @@ files=""
 for i in "${arr[@]}"
 do
     files="$files -a $path_to_bin/$i/coverage.info"
-    lcov --directory $path_to_bin/$i/. --capture --output-file \
+    path_to_objects="$path_to_project/build/LinuxCMake/CMakeFiles/${i}.dir/${path_to_project}/samples/${i//_sample/}"
+    cp $path_to_objects/*.gcda $path_to_bin/$i/
+    cp $path_to_objects/*.gcno $path_to_bin/$i/
+    lcov --directory $path_to_bin/$i/ --capture --output-file \
         $path_to_bin/$i/coverage.info
 done
 
@@ -79,4 +82,4 @@ sed -i "s|$path_to_project||g" $path_to_bin/coverage.info
 
 cd ../../
 coveralls-lcov bin/coverage.info
-cd build/LinuxMakefile
+cd build/LinuxCMake
