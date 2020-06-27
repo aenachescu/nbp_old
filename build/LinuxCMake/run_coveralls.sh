@@ -81,5 +81,5 @@ lcov $files -o $path_to_bin/coverage.info
 sed -i "s|$path_to_project||g" $path_to_bin/coverage.info
 
 cd ../../
-coveralls-lcov bin/coverage.info
+coveralls-lcov -v bin/coverage.info
 cd build/LinuxCMake
