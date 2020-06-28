@@ -66,6 +66,8 @@ declare -a arr=(
 
 files=""
 
+lcov --version
+
 for i in "${arr[@]}"
 do
     files="$files -a $path_to_bin/$i/coverage.info"
