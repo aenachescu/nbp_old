@@ -95,22 +95,22 @@ static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_unlock(
 
 #else // NBP_MT_SUPPORT not defined
 
-static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_init()
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_init_empty()
 {
     return NBP_ERROR_CODE_SUCCESS;
 }
 
-static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_uninit()
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_uninit_empty()
 {
     return NBP_ERROR_CODE_SUCCESS;
 }
 
-static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_lock()
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_lock_empty()
 {
     return NBP_ERROR_CODE_SUCCESS;
 }
 
-static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_unlock()
+static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_unlock_empty()
 {
     return NBP_ERROR_CODE_SUCCESS;
 }
@@ -118,16 +118,16 @@ static inline NBP_ERROR_CODE_TYPE nbp_linux_printer_mutex_unlock()
 #define NBP_LINUX_PRINTER_PRIVATE_DECLARE_MUTEX(name)
 
 #define NBP_LINUX_PRINTER_PRIVATE_MUTEX_INIT(name)                             \
-    nbp_linux_printer_mutex_init()
+    nbp_linux_printer_mutex_init_empty()
 
 #define NBP_LINUX_PRINTER_PRIVATE_MUTEX_UNINIT(name)                           \
-    nbp_linux_printer_mutex_uninit()
+    nbp_linux_printer_mutex_uninit_empty()
 
 #define NBP_LINUX_PRINTER_PRIVATE_MUTEX_LOCK(name)                             \
-    nbp_linux_printer_mutex_lock()
+    nbp_linux_printer_mutex_lock_empty()
 
 #define NBP_LINUX_PRINTER_PRIVATE_MUTEX_UNLOCK(name)                           \
-    nbp_linux_printer_mutex_unlock()
+    nbp_linux_printer_mutex_unlock_empty()
 
 #endif // end if NBP_MT_SUPPORT
 
