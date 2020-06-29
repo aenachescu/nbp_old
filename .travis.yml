@@ -148,6 +148,7 @@ matrix:
             - clang-7
             - clang-8
             - lcov
+            - llvm-7
       before_install:
         - gem install coveralls-lcov
       script:
