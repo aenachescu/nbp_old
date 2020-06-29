@@ -44,12 +44,21 @@ matrix:
             - gcc-7
             - gcc-8
             - gcc-9
-            - lcov
       before_install:
         - gem install coveralls-lcov
       script:
+        # install cmake 3.17
         - mkdir -p cmake-3.17 && wget -qO- "https://cmake.org/files/v3.17/cmake-3.17.1-Linux-x86_64.tar.gz" | tar --strip-components=1 -xz -C cmake-3.17
         - export PATH=`pwd`/cmake-3.17/bin:$PATH
+
+        # install lcov 1.14
+        - mkdir lcov
+        - cd lcov
+        - wget https://github.com/linux-test-project/lcov/archive/v1.14.tar.gz
+        - tar xfvz v1.14.tar.gz
+        - cd lcov-1.14
+        - make install
+        - cd ../../
 
         - cd build/LinuxCMake
 
@@ -96,12 +105,21 @@ matrix:
             - g++-7
             - g++-8
             - g++-9
-            - lcov
       before_install:
         - gem install coveralls-lcov
       script:
+        # install cmake 3.17
         - mkdir -p cmake-3.17 && wget -qO- "https://cmake.org/files/v3.17/cmake-3.17.1-Linux-x86_64.tar.gz" | tar --strip-components=1 -xz -C cmake-3.17
         - export PATH=`pwd`/cmake-3.17/bin:$PATH
+
+        # install lcov 1.14
+        - mkdir lcov
+        - cd lcov
+        - wget https://github.com/linux-test-project/lcov/archive/v1.14.tar.gz
+        - tar xfvz v1.14.tar.gz
+        - cd lcov-1.14
+        - make install
+        - cd ../../
 
         - cd build/LinuxCMake
 
@@ -147,13 +165,22 @@ matrix:
           packages:
             - clang-7
             - clang-8
-            - lcov
             - llvm-7
       before_install:
         - gem install coveralls-lcov
       script:
+        # install cmake 3.17
         - mkdir -p cmake-3.17 && wget -qO- "https://cmake.org/files/v3.17/cmake-3.17.1-Linux-x86_64.tar.gz" | tar --strip-components=1 -xz -C cmake-3.17
         - export PATH=`pwd`/cmake-3.17/bin:$PATH
+
+        # install lcov 1.14
+        - mkdir lcov
+        - cd lcov
+        - wget https://github.com/linux-test-project/lcov/archive/v1.14.tar.gz
+        - tar xfvz v1.14.tar.gz
+        - cd lcov-1.14
+        - make install
+        - cd ../../
 
         - cd build/LinuxCMake
 
