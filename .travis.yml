@@ -57,7 +57,7 @@ matrix:
         - wget https://github.com/linux-test-project/lcov/archive/v1.14.tar.gz
         - tar xfvz v1.14.tar.gz
         - cd lcov-1.14
-        - make install
+        - sudo make install
         - cd ../../
 
         - cd build/LinuxCMake
@@ -118,7 +118,7 @@ matrix:
         - wget https://github.com/linux-test-project/lcov/archive/v1.14.tar.gz
         - tar xfvz v1.14.tar.gz
         - cd lcov-1.14
-        - make install
+        - sudo make install
         - cd ../../
 
         - cd build/LinuxCMake
@@ -179,7 +179,7 @@ matrix:
         - wget https://github.com/linux-test-project/lcov/archive/v1.14.tar.gz
         - tar xfvz v1.14.tar.gz
         - cd lcov-1.14
-        - make install
+        - sudo make install
         - cd ../../
 
         - cd build/LinuxCMake
