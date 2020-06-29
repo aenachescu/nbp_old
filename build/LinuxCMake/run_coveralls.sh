@@ -68,6 +68,11 @@ files=""
 
 lcov --version
 
+gcov_tool=""
+if [ $# -eq 1 ]; then
+gcov_tool="--gcov-tool $1"
+fi
+
 for i in "${arr[@]}"
 do
     files="$files -a $path_to_bin/$i/coverage.info"
@@ -75,10 +80,10 @@ do
     cp $path_to_objects/*.gcda $path_to_bin/$i/
     cp $path_to_objects/*.gcno $path_to_bin/$i/
     lcov --directory $path_to_bin/$i/ --capture --output-file \
-        $path_to_bin/$i/coverage.info
+        $path_to_bin/$i/coverage.info $gcov_tool
 done
 
-lcov $files -o $path_to_bin/coverage.info
+lcov $files -o $path_to_bin/coverage.info $gcov_tool
 
 sed -i "s|$path_to_project/||g" $path_to_bin/coverage.info
 
