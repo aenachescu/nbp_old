@@ -155,8 +155,12 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_NAME(func, name)                                            \
-    NBP_MODULE_PRIVATE_IMPL(func, name, NBP_MEMORY_NULL_POINTER,               \
-        NBP_MEMORY_NULL_POINTER)
+    NBP_MODULE_PRIVATE_IMPL(                                                   \
+        func,                                                                  \
+        name,                                                                  \
+        NBP_MEMORY_NULL_POINTER,                                               \
+        NBP_MEMORY_NULL_POINTER                                                \
+    )
 
 /*
  * TODO: add docs
