@@ -30,6 +30,14 @@ SOFTWARE.
 
 unsigned int nbpTotalNumberOfTests = 0;
 
+NBP_TEST_SETUP(nbp_test_empty_setup_func)
+{
+}
+
+NBP_TEST_TEARDOWN(nbp_test_empty_teardown_func)
+{
+}
+
 static void nbp_test_init(nbp_test_details_t* test,
     nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,
     nbp_test_teardown_pfn_t testTeardown)
