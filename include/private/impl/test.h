@@ -56,10 +56,32 @@ static void nbp_test_init(nbp_test_details_t* test,
     nbpTotalNumberOfTests++;
 
     test->module = module;
-    test->testSetupFunc = testSetup;
-    test->testTeardownFunc = testTeardown;
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.num, 1);
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->taskNum, 1);
+
+    // reset setup function if it is the same with empty setup function
+    if (test->testSetupFunc == nbp_test_setup_nbp_test_empty_setup_func) {
+        test->testSetupFunc = NBP_MEMORY_NULL_POINTER;
+    }
+
+    // set setup function
+    if (test->testSetupFunc == NBP_MEMORY_NULL_POINTER &&
+        testSetup != NBP_MEMORY_NULL_POINTER &&
+        testSetup != nbp_test_setup_nbp_test_empty_setup_func) {
+        test->testSetupFunc = testSetup;
+    }
+
+    // reset teardown function if it is the same with empty teardown function
+    if (test->testTeardownFunc == nbp_test_teardown_nbp_test_empty_teardown_func) {
+        test->testTeardownFunc = NBP_MEMORY_NULL_POINTER;
+    }
+
+    // set teardown function
+    if (test->testTeardownFunc == NBP_MEMORY_NULL_POINTER &&
+        testTeardown != NBP_MEMORY_NULL_POINTER &&
+        testTeardown != nbp_test_teardown_nbp_test_empty_teardown_func) {
+        test->testTeardownFunc = testTeardown;
+    }
 
     if (module->firstTest == NBP_MEMORY_NULL_POINTER) {
         module->firstTest = test;
