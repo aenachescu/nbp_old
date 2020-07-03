@@ -465,7 +465,7 @@ static void nbp_scheduler_run_test_running(nbp_test_details_t* test)
 {
     nbp_printer_notify_test_started(test);
 
-    if (test->testSetupFunc) {
+    if (test->testSetupFunc != NBP_MEMORY_NULL_POINTER) {
         test->testSetupFunc(test);
     }
 
@@ -477,7 +477,7 @@ static void nbp_scheduler_run_test_running(nbp_test_details_t* test)
         nbp_scheduler_skip_module(test->module);
     }
 
-    if (test->testTeardownFunc) {
+    if (test->testTeardownFunc != NBP_MEMORY_NULL_POINTER) {
         test->testTeardownFunc(test);
     }
 
