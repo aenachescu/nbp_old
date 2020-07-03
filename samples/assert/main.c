@@ -72,8 +72,6 @@ NBP_MODULE_FIXTURES(module1, setupModule, teardownModule)
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);
-    NBP_TEST_USE_SETUP(testSetup);
-    NBP_TEST_USE_TEARDOWN(testTeardown);
 
     NBP_TEST_RUN(test4);
     NBP_MODULE_RUN(submodule1);
