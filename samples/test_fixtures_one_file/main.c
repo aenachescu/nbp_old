@@ -78,6 +78,14 @@ NBP_TEST_SETUP(my_test_setup2)
     );
 }
 
+NBP_TEST_SETUP(my_test_setup3)
+{
+    write_message_to_file_2(
+        "my_test_setup3",
+        NBP_TEST_GET_NAME(NBP_TEST_THIS)
+    );
+}
+
 NBP_TEST_TEARDOWN(my_test_teardown1)
 {
     write_message_to_file_2(
@@ -94,10 +102,19 @@ NBP_TEST_TEARDOWN(my_test_teardown2)
     );
 }
 
+NBP_TEST_TEARDOWN(my_test_teardown3)
+{
+    write_message_to_file_2(
+        "my_test_teardown3",
+        NBP_TEST_GET_NAME(NBP_TEST_THIS)
+    );
+}
+
 NBP_MAIN_MODULE(test_fixtures_one_file_sample)
 {
     NBP_MODULE_RUN(module1);
     NBP_MODULE_RUN(module2);
+    NBP_MODULE_RUN(module3);
 }
 
 NBP_MODULE(module1)
@@ -110,6 +127,11 @@ NBP_MODULE(module2)
 {
     NBP_MODULE_RUN(submodule3);
     NBP_MODULE_RUN(submodule4);
+}
+
+NBP_MODULE(module3)
+{
+    NBP_MODULE_RUN(submodule5);
 }
 
 NBP_TEST(test1)
@@ -262,4 +284,71 @@ NBP_MODULE(submodule4)
     NBP_TEST_USE_TEARDOWN(submodule4_test_teardown2);
     NBP_TEST_RUN(test15);
     NBP_TEST_RUN(test16);
+}
+
+NBP_TEST_FIXTURES(test17, my_test_setup3, my_test_teardown3)
+{
+    SAMPLE_SLEEP();
+    NBP_CHECK(1);
+}
+
+NBP_TEST_FIXTURES(test18, my_test_setup3, NBP_TEST_NO_TEARDOWN)
+{
+    SAMPLE_SLEEP();
+    NBP_CHECK(1);
+}
+
+NBP_TEST_FIXTURES(test19, NBP_TEST_NO_SETUP, my_test_teardown3)
+{
+    SAMPLE_SLEEP();
+    NBP_CHECK(1);
+}
+
+NBP_TEST_FIXTURES(test20, NBP_TEST_NO_SETUP, NBP_TEST_NO_TEARDOWN)
+{
+    SAMPLE_SLEEP();
+    NBP_CHECK(1);
+}
+
+NBP_TEST_NAME_FIXTURES(test21, "test21", my_test_setup3, my_test_teardown3)
+{
+    SAMPLE_SLEEP();
+    NBP_CHECK(1);
+}
+
+NBP_TEST_NAME_FIXTURES(test22, "test22", my_test_setup3, NBP_TEST_NO_TEARDOWN)
+{
+    SAMPLE_SLEEP();
+    NBP_CHECK(1);
+}
+
+NBP_TEST_NAME_FIXTURES(test23, "test23", NBP_TEST_NO_SETUP, my_test_teardown3)
+{
+    SAMPLE_SLEEP();
+    NBP_CHECK(1);
+}
+
+NBP_TEST_NAME_FIXTURES(test24, "test24", NBP_TEST_NO_SETUP, NBP_TEST_NO_TEARDOWN)
+{
+    SAMPLE_SLEEP();
+    NBP_CHECK(1);
+}
+
+NBP_MODULE(submodule5)
+{
+    NBP_TEST_USE_SETUP(my_test_setup2);
+    NBP_TEST_USE_TEARDOWN(my_test_teardown2);
+
+    NBP_TEST_RUN(test17);
+    NBP_TEST_RUN(test18);
+    NBP_TEST_RUN(test19);
+    NBP_TEST_RUN(test20);
+
+    NBP_TEST_USE_SETUP(NBP_TEST_NO_SETUP);
+    NBP_TEST_USE_TEARDOWN(NBP_TEST_NO_TEARDOWN);
+
+    NBP_TEST_RUN(test21);
+    NBP_TEST_RUN(test22);
+    NBP_TEST_RUN(test23);
+    NBP_TEST_RUN(test24);
 }

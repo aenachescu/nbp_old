@@ -16,3 +16,15 @@ submodule3_test_setup2 test12
 submodule4_test_teardown1 test13
 submodule4_test_teardown2 test15
 submodule4_test_teardown2 test16
+my_test_setup3 test17
+my_test_teardown3 test17
+my_test_setup3 test18
+my_test_teardown2 test18
+my_test_setup2 test19
+my_test_teardown3 test19
+my_test_setup2 test20
+my_test_teardown2 test20
+my_test_setup3 test21
+my_test_teardown3 test21
+my_test_setup3 test22
+my_test_teardown3 test23
