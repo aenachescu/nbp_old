@@ -28,6 +28,7 @@ sanopt=""
 
 binPath="../../bin/"
 samplesPath="../../samples/"
+testsTime=0
 
 function run_test {
     echo "running test $1"
@@ -35,7 +36,11 @@ function run_test {
     sample=${1%_sample}
     has_output=0
     expected_output=""
+    printer_output=""
     output=""
+    testStartTime=""
+    testEndTime=""
+    testTime=""
 
     currentSamplePath="${samplesPath}${sample}/"
     currentSampleBinPath="${binPath}$1/"
@@ -49,17 +54,24 @@ function run_test {
         expected_output=$(<${expectedOutputPath})
     fi
 
-    # run and get test output
     if [ -f "output.txt" ]; then
         rm output.txt
     fi
-    printer_output=""
+
+    # run and get test output
     if [ -z "$sanopt" ]; then
+        testStartTime=$(date +%s.%N)
         printer_output=$(${currentSampleBinPath}$1)
     else
+        testStartTime=$(date +%s.%N)
         printer_output=$(env $sanopt ${currentSampleBinPath}$1)
     fi
     testStatus=$?
+
+    testEndTime=$(date +%s.%N)
+    testTime=$(echo "$testEndTime - $testStartTime" | bc)
+
+    testsTime=$(echo "$testsTime + $testTime" | bc)
 
     if [ -f "output.txt" ]; then
         output=$(<output.txt)
@@ -70,7 +82,8 @@ function run_test {
     if [ $testStatus -ne $2 ]; then
         echo "***** expected status: $2"
         echo "***** current status: $testStatus"
-        echo $'test failed\n'
+        echo -n $'\e[31mtest failed\e[39m'
+        LC_NUMERIC=C printf " (%02.4f s)\n\n" $testTime
         status=1
         return
     fi
@@ -81,7 +94,8 @@ function run_test {
         echo "$expected_printer_output"
         echo "***** printer output *****"
         echo "$printer_output"
-        echo $'test failed\n'
+        echo -n $'\e[31mtest failed\e[39m'
+        LC_NUMERIC=C printf " (%02.4f s)\n\n" $testTime
         status=1
         return
     fi
@@ -93,13 +107,15 @@ function run_test {
             echo "$expected_output"
             echo "***** output file *****"
             echo "$output"
-            echo $'test failed\n'
+            echo -n $'\e[31mtest failed\e[39m'
+            LC_NUMERIC=C printf " (%02.4f s)\n\n" $testTime
             status=1
             return
         fi
     fi
 
-    echo $'test passed\n'
+    echo -n $'\e[32mtest passed\e[39m'
+    LC_NUMERIC=C printf " (%02.4f s)\n\n" $testTime
 }
 
 if test "$#" -eq 1; then
@@ -144,9 +160,11 @@ run_test mt_scheduler_run_module_fixtures_in_parallel_sample 0
 run_test empty_modules_sample 1
 
 if [ $status -ne 0 ]; then
-    echo $'run_tests failed\n'
+    echo -n $'\e[31mrun_tests failed\e[39m'
 else
-    echo $'run_tests passed\n'
+    echo -n $'\e[32mrun_tests passed\e[39m'
 fi
+
+LC_NUMERIC=C printf " (%02.4f s)\n\n" $testsTime
 
 exit $status
