@@ -8,3 +8,15 @@ module2_setup module2
 submodule3_setup submodule3
 submodule4_teardown submodule4
 module2_teardown module2
+module3_setup1 submodule5
+module3_teardown1 submodule5
+module3_setup1 submodule6
+module3_teardown2 submodule6
+module3_setup2 submodule7
+module3_teardown1 submodule7
+module3_setup2 submodule8
+module3_teardown2 submodule8
+module3_setup1 submodule9
+module3_teardown1 submodule9
+module3_setup1 submodule10
+module3_teardown1 submodule11
