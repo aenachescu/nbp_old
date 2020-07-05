@@ -31,11 +31,6 @@ SOFTWARE.
 #ifdef NBP_LIBRARY_MAIN
 
 #define NBP_MAIN_PRIVATE_MODULE_IMPL(func, scheduler, printers)                \
-    void func(                                                                 \
-        nbp_module_details_t*,                                                 \
-        nbp_test_setup_pfn_t,                                                  \
-        nbp_test_teardown_pfn_t                                                \
-    );                                                                         \
     extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
     nbp_module_details_t* nbpMainModule =                                      \
         & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func);                       \
