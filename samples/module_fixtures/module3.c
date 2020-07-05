@@ -27,36 +27,25 @@ SOFTWARE.
 
 #include <nbp.h>
 
-#include "../sample_utils.h"
-
-NBP_MODULE_TEARDOWN(module1_teardown)
+NBP_MODULE(module3)
 {
-    write_message_to_file_2(
-        "module1_teardown",
-        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
-    );
-}
+    NBP_MODULE_USE_SETUP(module3_setup2);
+    NBP_MODULE_USE_TEARDOWN(module3_teardown2);
 
-NBP_MODULE_TEARDOWN(module2_teardown)
-{
-    write_message_to_file_2(
-        "module2_teardown",
-        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
-    );
-}
+    NBP_MODULE_RUN(submodule5);
+    NBP_MODULE_RUN(submodule6);
+    NBP_MODULE_RUN(submodule7);
+    NBP_MODULE_RUN(submodule8);
 
-NBP_MODULE_TEARDOWN(module3_teardown1)
-{
-    write_message_to_file_2(
-        "module3_teardown1",
-        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
-    );
-}
+    NBP_MODULE_USE_SETUP(NBP_MODULE_NO_SETUP);
+    NBP_MODULE_USE_TEARDOWN(NBP_MODULE_NO_TEARDOWN);
 
-NBP_MODULE_TEARDOWN(module3_teardown2)
-{
-    write_message_to_file_2(
-        "module3_teardown2",
-        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
-    );
+    NBP_MODULE_RUN(submodule9);
+    NBP_MODULE_RUN(submodule10);
+
+    NBP_MODULE_RESET_SETUP();
+    NBP_MODULE_RESET_TEARDOWN();
+
+    NBP_MODULE_RUN(submodule11);
+    NBP_MODULE_RUN(submodule12);
 }

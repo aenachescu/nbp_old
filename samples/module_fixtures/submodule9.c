@@ -29,34 +29,13 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_MODULE_TEARDOWN(module1_teardown)
+NBP_TEST(test21)
 {
-    write_message_to_file_2(
-        "module1_teardown",
-        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
-    );
+    SAMPLE_SLEEP();
+    NBP_CHECK(1);
 }
 
-NBP_MODULE_TEARDOWN(module2_teardown)
+NBP_MODULE_NAME_FIXTURES(submodule9, "submodule9", module3_setup1, module3_teardown1)
 {
-    write_message_to_file_2(
-        "module2_teardown",
-        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
-    );
-}
-
-NBP_MODULE_TEARDOWN(module3_teardown1)
-{
-    write_message_to_file_2(
-        "module3_teardown1",
-        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
-    );
-}
-
-NBP_MODULE_TEARDOWN(module3_teardown2)
-{
-    write_message_to_file_2(
-        "module3_teardown2",
-        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
-    );
+    NBP_TEST_RUN(test21);
 }

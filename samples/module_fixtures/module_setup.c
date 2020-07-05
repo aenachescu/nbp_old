@@ -44,3 +44,19 @@ NBP_MODULE_SETUP(module2_setup)
         NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
     );
 }
+
+NBP_MODULE_SETUP(module3_setup1)
+{
+    write_message_to_file_2(
+        "module3_setup1",
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
+    );
+}
+
+NBP_MODULE_SETUP(module3_setup2)
+{
+    write_message_to_file_2(
+        "module3_setup2",
+        NBP_MODULE_GET_NAME(NBP_MODULE_THIS)
+    );
+}
