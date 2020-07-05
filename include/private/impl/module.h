@@ -39,7 +39,8 @@ NBP_MODULE_TEARDOWN(nbp_module_empty_teardown_func)
 }
 
 static void nbp_module_init(nbp_module_details_t* module,
-    nbp_module_details_t* parent)
+    nbp_module_details_t* parent, nbp_module_setup_pfn_t setupFunc,
+    nbp_module_teardown_pfn_t teardownFunc)
 {
     unsigned int state = NBP_SYNC_ATOMIC_UINT_CAS(
         &module->moduleState,
@@ -69,10 +70,22 @@ static void nbp_module_init(nbp_module_details_t* module,
         module->setup = NBP_MEMORY_NULL_POINTER;
     }
 
+    if (module->setup == NBP_MEMORY_NULL_POINTER &&
+        setupFunc != NBP_MEMORY_NULL_POINTER &&
+        setupFunc != emptyModuleSetup) {
+        module->setup = setupFunc;
+    }
+
     nbp_module_teardown_pfn_t emptyModuleTeardown =
         NBP_PRIVATE_PP_CONCAT(nbp_module_teardown_, nbp_module_empty_teardown_func);
     if (module->teardown == emptyModuleTeardown) {
         module->teardown = NBP_MEMORY_NULL_POINTER;
+    }
+
+    if (module->teardown == NBP_MEMORY_NULL_POINTER &&
+        teardownFunc != NBP_MEMORY_NULL_POINTER &&
+        teardownFunc != emptyModuleTeardown) {
+        module->teardown = teardownFunc;
     }
 
     module->moduleId = nbpTotalNumberOfModules;
@@ -120,9 +133,10 @@ static void nbp_module_update_stats(nbp_module_details_t* module)
     }
 }
 
-void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent)
+void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent,
+    nbp_module_setup_pfn_t setupFunc, nbp_module_teardown_pfn_t teardownFunc)
 {
-    nbp_module_init(module, parent);
+    nbp_module_init(module, parent, setupFunc, teardownFunc);
 
     nbp_printer_notify_before_scheduling_module(module);
 
@@ -130,7 +144,13 @@ void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent)
         nbpSchedulerInterface->moduleStarted(module);
     }
 
-    module->moduleFunc(module, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER);
+    module->moduleFunc(
+        module,
+        NBP_MEMORY_NULL_POINTER,
+        NBP_MEMORY_NULL_POINTER,
+        NBP_MEMORY_NULL_POINTER,
+        NBP_MEMORY_NULL_POINTER
+    );
 
     if (nbpSchedulerInterface->moduleCompleted != NBP_MEMORY_NULL_POINTER) {
         nbpSchedulerInterface->moduleCompleted(module);
@@ -142,9 +162,10 @@ void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent)
 }
 
 void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
-    nbp_module_details_t* parent)
+    nbp_module_details_t* parent, nbp_module_setup_pfn_t setupFunc,
+    nbp_module_teardown_pfn_t teardownFunc)
 {
-    nbp_module_init(module, parent);
+    nbp_module_init(module, parent, setupFunc, teardownFunc);
 
     nbp_printer_notify_before_scheduling_module(module);
 
@@ -152,7 +173,13 @@ void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
         nbpSchedulerInterface->moduleStartedCtx(module, ctx);
     }
 
-    module->moduleFunc(module, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER);
+    module->moduleFunc(
+        module,
+        NBP_MEMORY_NULL_POINTER,
+        NBP_MEMORY_NULL_POINTER,
+        NBP_MEMORY_NULL_POINTER,
+        NBP_MEMORY_NULL_POINTER
+    );
 
     if (nbpSchedulerInterface->moduleCompleted != NBP_MEMORY_NULL_POINTER) {
         nbpSchedulerInterface->moduleCompleted(module);

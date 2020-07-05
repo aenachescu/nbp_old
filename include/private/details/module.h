@@ -30,13 +30,17 @@ SOFTWARE.
 
 void nbp_module_run(
     nbp_module_details_t*, /* module */
-    nbp_module_details_t* /* parent */
+    nbp_module_details_t*, /* parent */
+    nbp_module_setup_pfn_t, /* module setup pfn */
+    nbp_module_teardown_pfn_t /* module teardown pfn */
 );
 
 void nbp_module_run_ctx(
     nbp_module_details_t*, /* module */
     void* ctx, /* context */
-    nbp_module_details_t* /* parent */
+    nbp_module_details_t*, /* parent */
+    nbp_module_setup_pfn_t, /* module setup pfn */
+    nbp_module_teardown_pfn_t /* module teardown pfn */
 );
 
 #endif // end if NBP_PRIVATE_DETAILS_MODULE_H

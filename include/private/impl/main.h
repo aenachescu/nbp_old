@@ -64,7 +64,12 @@ int nbp_command_run_all()
         nbpSchedulerInterface->init();
     }
 
-    nbp_module_run(nbpMainModule, NBP_MEMORY_NULL_POINTER);
+    nbp_module_run(
+        nbpMainModule,
+        NBP_MEMORY_NULL_POINTER,
+        NBP_MEMORY_NULL_POINTER,
+        NBP_MEMORY_NULL_POINTER
+    );
 
     nbp_printer_notify_before_run(
         NBP_MODULE_GET_NUMBER_OF_MODULES(nbpMainModule) + 1,
