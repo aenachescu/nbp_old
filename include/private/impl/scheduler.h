@@ -300,7 +300,7 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
     if (oldVal == NBP_MODULE_FLAGS_NOT_INITIALIZED) {
         unsigned int parentFlags = nbp_scheduler_setup_module(module->parent);
         if (parentFlags == NBP_MODULE_FLAGS_PROCESSED) {
-            if (module->setup) {
+            if (module->setup != NBP_MEMORY_NULL_POINTER) {
                 module->setup(module);
             }
 
@@ -403,7 +403,7 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 
         flags = NBP_SYNC_ATOMIC_UINT_LOAD(&module->flags);
         if (flags == NBP_MODULE_FLAGS_PROCESSED) {
-            if (module->teardown) {
+            if (module->teardown != NBP_MEMORY_NULL_POINTER) {
                 module->teardown(module);
             }
         }
@@ -698,7 +698,7 @@ static void nbp_scheduler_complete_empty_module_running(
 
     flags = NBP_SYNC_ATOMIC_UINT_LOAD(&module->flags);
     if (flags == NBP_MODULE_FLAGS_PROCESSED) {
-        if (module->teardown) {
+        if (module->teardown != NBP_MEMORY_NULL_POINTER) {
             module->teardown(module);
         }
     }
