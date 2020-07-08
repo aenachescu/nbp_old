@@ -896,13 +896,14 @@ static void nbp_mt_scheduler_add_pending_module_to_module(
     }
 }
 
-static void nbp_mt_scheduler_test_completed(unsigned int testId)
+static int nbp_mt_scheduler_test_completed(unsigned int testId)
 {
     unsigned int bitsPerUint = sizeof(unsigned int) * 8;
     unsigned int columnIndex = 0;
     unsigned int rowIndex;
     unsigned int testIndex;
     unsigned int* matrixRowStart;
+    int notifyWorkers = 0;
 
     rowIndex = testId * nbpMtSchedulerNumberOfColumns;
     matrixRowStart = nbpMtSchedulerAdjacencyMatrix + rowIndex;
@@ -914,6 +915,7 @@ static void nbp_mt_scheduler_test_completed(unsigned int testId)
                 nbpMtSchedulerTests[testIndex].numberOfPendingTests--;
                 if (nbpMtSchedulerTests[testIndex].numberOfPendingTests == 0) {
                     nbp_mt_scheduler_queue_push(testIndex);
+                    notifyWorkers = 1;
                 }
             }
 
@@ -921,6 +923,8 @@ static void nbp_mt_scheduler_test_completed(unsigned int testId)
             matrixRowStart[columnIndex] >>= 1; /* TODO: portable lzcnt */
         }
     }
+
+    return notifyWorkers;
 }
 
 static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_func(
@@ -929,6 +933,7 @@ static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_f
     unsigned int workerId = *((unsigned int*) param);
     nbp_mt_scheduler_test_t* test;
     NBP_ERROR_CODE_TYPE errCode;
+    int notifyWorkers = 0;
 
     (void)(workerId);
 
@@ -969,7 +974,12 @@ static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_f
             NBP_EXIT(errCode);
         }
 
-        nbp_mt_scheduler_test_completed(NBP_TEST_GET_ID(test->test));
+        notifyWorkers = nbp_mt_scheduler_test_completed(
+            NBP_TEST_GET_ID(test->test)
+        );
+        if (notifyWorkers == 0) {
+            continue;
+        }
 
         errCode = NBP_MT_SCHEDULER_MUTEX_UNLOCK(nbpMtSchedulerMutex);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
