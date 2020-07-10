@@ -29,9 +29,9 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-SAMPLE_ATOMIC_UINT_TYPE test1Value;
-SAMPLE_ATOMIC_UINT_TYPE test2Value;
-SAMPLE_ATOMIC_UINT_TYPE test4Value;
+extern SAMPLE_ATOMIC_UINT_TYPE test1Value;
+extern SAMPLE_ATOMIC_UINT_TYPE test2Value;
+extern SAMPLE_ATOMIC_UINT_TYPE test4Value;
 
 NBP_TEST_FIXTURES(test4, NBP_TEST_NO_SETUP, test4_teardown)
 {

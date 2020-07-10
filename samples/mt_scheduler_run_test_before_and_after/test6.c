@@ -29,15 +29,16 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-SAMPLE_ATOMIC_UINT_TYPE test1Value;
-SAMPLE_ATOMIC_UINT_TYPE test2Value;
-SAMPLE_ATOMIC_UINT_TYPE test6Value;
+extern SAMPLE_ATOMIC_UINT_TYPE test1Value;
+extern SAMPLE_ATOMIC_UINT_TYPE test2Value;
+extern SAMPLE_ATOMIC_UINT_TYPE test6Value;
 
 NBP_TEST_FIXTURES(test6, NBP_TEST_NO_SETUP, test6_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+    SAMPLE_FORCE_SLEEP_MS(1000);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);

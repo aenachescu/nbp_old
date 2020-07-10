@@ -71,6 +71,8 @@ NBP_TEST_FIXTURES(test1, NBP_TEST_NO_SETUP, test1_teardown)
     NBP_CHECK(value == 4);
     value = SAMPLE_ATOMIC_UINT_LOAD(&module4Value);
     NBP_CHECK(value == 16);
+
+    SAMPLE_FORCE_SLEEP_MS(1000);
 }
 
 NBP_TEST_FIXTURES(test3, NBP_TEST_NO_SETUP, test3_teardown)
@@ -91,6 +93,7 @@ NBP_TEST_FIXTURES(test5, NBP_TEST_NO_SETUP, test5_teardown)
     unsigned int value;
 
     SAMPLE_SLEEP();
+    SAMPLE_FORCE_SLEEP_MS(1000);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
@@ -215,6 +218,8 @@ NBP_TEST(test15)
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_FORCE_SLEEP_MS(1000);
 }
 
 NBP_TEST(test16)
@@ -228,6 +233,8 @@ NBP_TEST(test16)
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_FORCE_SLEEP_MS(1000);
 }
 
 NBP_TEST(test17)
@@ -241,6 +248,8 @@ NBP_TEST(test17)
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_FORCE_SLEEP_MS(1000);
 }
 
 NBP_TEST(test18)
@@ -254,6 +263,8 @@ NBP_TEST(test18)
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_FORCE_SLEEP_MS(1000);
 }
 
 NBP_MODULE(module3)

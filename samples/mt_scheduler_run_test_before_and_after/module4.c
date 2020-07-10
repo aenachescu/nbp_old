@@ -45,6 +45,8 @@ NBP_TEST(test19)
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_FORCE_SLEEP_MS(1000);
 }
 
 NBP_TEST(test20)
@@ -58,6 +60,8 @@ NBP_TEST(test20)
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_FORCE_SLEEP_MS(1000);
 }
 
 NBP_TEST(test21)
@@ -71,6 +75,8 @@ NBP_TEST(test21)
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_FORCE_SLEEP_MS(1000);
 }
 
 NBP_TEST(test22)
@@ -84,6 +90,8 @@ NBP_TEST(test22)
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_FORCE_SLEEP_MS(1000);
 }
 
 NBP_MODULE(module4)

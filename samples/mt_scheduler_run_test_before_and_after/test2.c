@@ -69,4 +69,6 @@ NBP_TEST_FIXTURES(test2, NBP_TEST_NO_SETUP, test2_teardown)
     NBP_CHECK(value == 4);
     value = SAMPLE_ATOMIC_UINT_LOAD(&module4Value);
     NBP_CHECK(value == 16);
+
+    SAMPLE_FORCE_SLEEP_MS(1000);
 }
