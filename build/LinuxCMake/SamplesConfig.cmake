@@ -35,7 +35,8 @@ list(APPEND SAMPLES basic
 	mt_scheduler_module_fixtures_ran_only_once
 	mt_scheduler_run_test_fixtures_in_parallel
 	mt_scheduler_run_module_fixtures_in_parallel
-	empty_modules
+    empty_modules
+    mt_scheduler_run_test_before_and_after
 )
 
 # Custom flags lists for targets
@@ -74,6 +75,7 @@ list(APPEND SAMPLES_CFLAGS ""
     ${MT_SCHEDULER_FLAGS}
     ${MT_SCHEDULER_FLAGS}
     ""
+    ${MT_SCHEDULER_FLAGS}
 )
 
 list (APPEND SAMPLES_LFLAGS ""
@@ -111,4 +113,5 @@ list (APPEND SAMPLES_LFLAGS ""
     ${MT_SCHEDULER_LINK_FLAGS}
     ${MT_SCHEDULER_LINK_FLAGS}
     ""
+    ${MT_SCHEDULER_LINK_FLAGS}
 )
