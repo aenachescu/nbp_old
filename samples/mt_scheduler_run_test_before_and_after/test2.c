@@ -28,6 +28,7 @@ SOFTWARE.
 #include <nbp.h>
 
 #include "../sample_utils.h"
+#include "fixtures.h"
 
 extern SAMPLE_ATOMIC_UINT_TYPE test2Value;
 extern SAMPLE_ATOMIC_UINT_TYPE test3Value;
@@ -40,11 +41,26 @@ extern SAMPLE_ATOMIC_UINT_TYPE module2Value;
 extern SAMPLE_ATOMIC_UINT_TYPE module3Value;
 extern SAMPLE_ATOMIC_UINT_TYPE module4Value;
 
-NBP_TEST_FIXTURES(test2, NBP_TEST_NO_SETUP, test2_teardown)
+NBP_TEST_FIXTURES(test2, test2_setup, test2_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test2SetupValue);
+    NBP_CHECK(value == 2);
+
+    // check teardown values
+    NBP_CHECK(test2_test3TeardownValue == 0);
+    NBP_CHECK(test2_test4TeardownValue == 0);
+    NBP_CHECK(test2_test5TeardownValue == 1);
+    NBP_CHECK(test2_test6TeardownValue == 1);
+
+    NBP_CHECK(test2_module1TeardownValue == 0);
+    NBP_CHECK(test2_module2TeardownValue == 0);
+    NBP_CHECK(test2_module3TeardownValue == 5);
+    NBP_CHECK(test2_module4TeardownValue == 23);
 
     // check if it is ran before test3 and test4
     value = SAMPLE_ATOMIC_UINT_LOAD(&test3Value);
@@ -71,4 +87,6 @@ NBP_TEST_FIXTURES(test2, NBP_TEST_NO_SETUP, test2_teardown)
     NBP_CHECK(value == 16);
 
     SAMPLE_FORCE_SLEEP_MS(1000);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&test2Value, 1);
 }

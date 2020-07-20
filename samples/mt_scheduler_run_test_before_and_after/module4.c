@@ -28,17 +28,22 @@ SOFTWARE.
 #include <nbp.h>
 
 #include "../sample_utils.h"
+#include "fixtures.h"
 
 extern SAMPLE_ATOMIC_UINT_TYPE test1Value;
 extern SAMPLE_ATOMIC_UINT_TYPE test2Value;
 
 extern SAMPLE_ATOMIC_UINT_TYPE module4Value;
 
-NBP_TEST(test19)
+NBP_TEST_FIXTURES(test19, test19_setup, test19_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test19SetupValue);
+    NBP_CHECK(value == 3);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
@@ -47,13 +52,19 @@ NBP_TEST(test19)
     NBP_CHECK(value == 0);
 
     SAMPLE_FORCE_SLEEP_MS(1000);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test20)
+NBP_TEST_FIXTURES(test20, test20_setup, test20_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test20SetupValue);
+    NBP_CHECK(value == 3);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
@@ -62,13 +73,19 @@ NBP_TEST(test20)
     NBP_CHECK(value == 0);
 
     SAMPLE_FORCE_SLEEP_MS(1000);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test21)
+NBP_TEST_FIXTURES(test21, test21_setup, test21_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test21SetupValue);
+    NBP_CHECK(value == 3);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
@@ -77,13 +94,19 @@ NBP_TEST(test21)
     NBP_CHECK(value == 0);
 
     SAMPLE_FORCE_SLEEP_MS(1000);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test22)
+NBP_TEST_FIXTURES(test22, test22_setup, test22_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test22SetupValue);
+    NBP_CHECK(value == 3);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
@@ -92,11 +115,13 @@ NBP_TEST(test22)
     NBP_CHECK(value == 0);
 
     SAMPLE_FORCE_SLEEP_MS(1000);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_MODULE(module4)
+NBP_MODULE_FIXTURES(module4, module4_setup, module4_teardown)
 {
-    NBP_TEST_USE_TEARDOWN(module4_test_teardown);
+    NBP_MODULE_RUN(empty_module2);
 
     NBP_MODULE_RUN(submodule3);
 
@@ -109,10 +134,8 @@ NBP_MODULE(module4)
     NBP_TEST_RUN(test22);
 }
 
-NBP_MODULE(submodule3)
+NBP_MODULE_FIXTURES(submodule3, submodule3_setup, submodule3_teardown)
 {
-    NBP_TEST_USE_TEARDOWN(module4_test_teardown);
-
     NBP_MODULE_RUN(subsubmodule5);
 
     NBP_TEST_RUN(test35);
@@ -124,10 +147,8 @@ NBP_MODULE(submodule3)
     NBP_TEST_RUN(test38);
 }
 
-NBP_MODULE(submodule4)
+NBP_MODULE_FIXTURES(submodule4, submodule4_setup, submodule4_teardown)
 {
-    NBP_TEST_USE_TEARDOWN(module4_test_teardown);
-
     NBP_MODULE_RUN(subsubmodule7);
 
     NBP_TEST_RUN(test39);
@@ -139,182 +160,250 @@ NBP_MODULE(submodule4)
     NBP_TEST_RUN(test42);
 }
 
-NBP_MODULE(subsubmodule5)
+NBP_MODULE_FIXTURES(subsubmodule5, subsubmodule5_setup, subsubmodule5_teardown)
 {
-    NBP_TEST_USE_TEARDOWN(module4_test_teardown);
     NBP_TEST_RUN(test43);
 }
 
-NBP_MODULE(subsubmodule6)
+NBP_MODULE_FIXTURES(subsubmodule6, subsubmodule6_setup, subsubmodule6_teardown)
 {
-    NBP_TEST_USE_TEARDOWN(module4_test_teardown);
     NBP_TEST_RUN(test44);
 }
 
-NBP_MODULE(subsubmodule7)
+NBP_MODULE_FIXTURES(subsubmodule7, subsubmodule7_setup, subsubmodule7_teardown)
 {
-    NBP_TEST_USE_TEARDOWN(module4_test_teardown);
     NBP_TEST_RUN(test45);
 }
 
-NBP_MODULE(subsubmodule8)
+NBP_MODULE_FIXTURES(subsubmodule8, subsubmodule8_setup, subsubmodule8_teardown)
 {
-    NBP_TEST_USE_TEARDOWN(module4_test_teardown);
     NBP_TEST_RUN(test46);
 }
 
-NBP_TEST(test35)
+NBP_TEST_FIXTURES(test35, test35_setup, test35_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test35SetupValue);
+    NBP_CHECK(value == 4);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test36)
+NBP_TEST_FIXTURES(test36, test36_setup, test36_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test36SetupValue);
+    NBP_CHECK(value == 4);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test37)
+NBP_TEST_FIXTURES(test37, test37_setup, test37_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test37SetupValue);
+    NBP_CHECK(value == 4);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test38)
+NBP_TEST_FIXTURES(test38, test38_setup, test38_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test38SetupValue);
+    NBP_CHECK(value == 4);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test39)
+NBP_TEST_FIXTURES(test39, test39_setup, test39_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test39SetupValue);
+    NBP_CHECK(value == 4);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test40)
+NBP_TEST_FIXTURES(test40, test40_setup, test40_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test40SetupValue);
+    NBP_CHECK(value == 4);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test41)
+NBP_TEST_FIXTURES(test41, test41_setup, test41_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test41SetupValue);
+    NBP_CHECK(value == 4);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test42)
+NBP_TEST_FIXTURES(test42, test42_setup, test42_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test42SetupValue);
+    NBP_CHECK(value == 4);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test43)
+NBP_TEST_FIXTURES(test43, test43_setup, test43_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test43SetupValue);
+    NBP_CHECK(value == 5);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test44)
+NBP_TEST_FIXTURES(test44, test44_setup, test44_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test44SetupValue);
+    NBP_CHECK(value == 5);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test45)
+NBP_TEST_FIXTURES(test45, test45_setup, test45_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test45SetupValue);
+    NBP_CHECK(value == 5);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_TEST(test46)
+NBP_TEST_FIXTURES(test46, test46_setup, test46_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
+
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test46SetupValue);
+    NBP_CHECK(value == 5);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }

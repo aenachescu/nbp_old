@@ -28,21 +28,28 @@ SOFTWARE.
 #include <nbp.h>
 
 #include "../sample_utils.h"
+#include "fixtures.h"
 
 extern SAMPLE_ATOMIC_UINT_TYPE test1Value;
 extern SAMPLE_ATOMIC_UINT_TYPE test2Value;
 extern SAMPLE_ATOMIC_UINT_TYPE test6Value;
 
-NBP_TEST_FIXTURES(test6, NBP_TEST_NO_SETUP, test6_teardown)
+NBP_TEST_FIXTURES(test6, test6_setup, test6_teardown)
 {
     unsigned int value;
 
     SAMPLE_SLEEP();
     SAMPLE_FORCE_SLEEP_MS(1000);
 
+    // check setup values
+    value = SAMPLE_ATOMIC_UINT_LOAD(&test6SetupValue);
+    NBP_CHECK(value == 2);
+
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK(value == 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK(value == 0);
+
+    SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&test6Value, 1);
 }

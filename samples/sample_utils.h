@@ -48,6 +48,15 @@ static inline void write_message_to_file_2(const char* msg1, const char* msg2)
     }
 }
 
+static inline void write_uint_to_file(unsigned int value)
+{
+    FILE *fp = fopen("output.txt", "a");
+    if (fp != NULL) {
+        fprintf(fp, "%u\n", value);
+        fclose(fp);
+    }
+}
+
 #ifdef NBP_OS_LINUX
 
 #include <unistd.h>
