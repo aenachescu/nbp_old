@@ -43,13 +43,13 @@ NBP_TEST_FIXTURES(test6, test6_setup, test6_teardown)
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test6SetupValue);
-    NBP_CHECK(value == 2);
+    NBP_CHECK_UINT_EQ(value, 2);
 
     // check if it is ran before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK(value == 0);
+    NBP_CHECK_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK(value == 0);
+    NBP_CHECK_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&test6Value, 1);
 }

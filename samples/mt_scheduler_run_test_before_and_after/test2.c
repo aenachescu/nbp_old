@@ -49,42 +49,42 @@ NBP_TEST_FIXTURES(test2, test2_setup, test2_teardown)
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2SetupValue);
-    NBP_CHECK(value == 2);
+    NBP_CHECK_UINT_EQ(value, 2);
 
     // check teardown values
-    NBP_CHECK(test2_test3TeardownValue == 0);
-    NBP_CHECK(test2_test4TeardownValue == 0);
-    NBP_CHECK(test2_test5TeardownValue == 1);
-    NBP_CHECK(test2_test6TeardownValue == 1);
+    NBP_CHECK_UINT_EQ(test2_test3TeardownValue, 0);
+    NBP_CHECK_UINT_EQ(test2_test4TeardownValue, 0);
+    NBP_CHECK_UINT_EQ(test2_test5TeardownValue, 1);
+    NBP_CHECK_UINT_EQ(test2_test6TeardownValue, 1);
 
-    NBP_CHECK(test2_module1TeardownValue == 0);
-    NBP_CHECK(test2_module2TeardownValue == 0);
-    NBP_CHECK(test2_module3TeardownValue == 5);
-    NBP_CHECK(test2_module4TeardownValue == 23);
+    NBP_CHECK_UINT_EQ(test2_module1TeardownValue, 0);
+    NBP_CHECK_UINT_EQ(test2_module2TeardownValue, 0);
+    NBP_CHECK_UINT_EQ(test2_module3TeardownValue, 5);
+    NBP_CHECK_UINT_EQ(test2_module4TeardownValue, 23);
 
     // check if it is ran before test3 and test4
     value = SAMPLE_ATOMIC_UINT_LOAD(&test3Value);
-    NBP_CHECK(value == 0);
+    NBP_CHECK_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test4Value);
-    NBP_CHECK(value == 0);
+    NBP_CHECK_UINT_EQ(value, 0);
 
     // check if it is ran after test5 and test6
     value = SAMPLE_ATOMIC_UINT_LOAD(&test5Value);
-    NBP_CHECK(value == 1);
+    NBP_CHECK_UINT_EQ(value, 1);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test6Value);
-    NBP_CHECK(value == 1);
+    NBP_CHECK_UINT_EQ(value, 1);
 
     // check if it is ran before module1 and module2
     value = SAMPLE_ATOMIC_UINT_LOAD(&module1Value);
-    NBP_CHECK(value == 0);
+    NBP_CHECK_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&module2Value);
-    NBP_CHECK(value == 0);
+    NBP_CHECK_UINT_EQ(value, 0);
 
     // check if it is ran after module3 and module4
     value = SAMPLE_ATOMIC_UINT_LOAD(&module3Value);
-    NBP_CHECK(value == 4);
+    NBP_CHECK_UINT_EQ(value, 4);
     value = SAMPLE_ATOMIC_UINT_LOAD(&module4Value);
-    NBP_CHECK(value == 16);
+    NBP_CHECK_UINT_EQ(value, 16);
 
     SAMPLE_FORCE_SLEEP_MS(1000);
 
