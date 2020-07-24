@@ -382,16 +382,46 @@ error:
 
 static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 {
-    unsigned int num, flags;
+    unsigned int num = 0;
+    unsigned int flags = 0;
+    unsigned int numOfCompletedEmptySubmodules = 0;
+    unsigned int moduleState = 0;
     NBP_ERROR_CODE_TYPE errCode;
+    nbp_module_details_t* moduleIdx;
 
     while (1) {
+        numOfCompletedEmptySubmodules = 0;
         num = NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&module->completedTaskNum, 1);
-        if (NBP_SYNC_ATOMIC_UINT_LOAD(&module->taskNum) > num) {
+
+        if (module->emptySubmodulesNum != 0 &&
+            module->taskNum == num + module->emptySubmodulesNum) {
+            num += module->emptySubmodulesNum;
+
+            moduleIdx = module->firstModule;
+            while (moduleIdx != NBP_MEMORY_NULL_POINTER) {
+                moduleState = NBP_SYNC_ATOMIC_UINT_LOAD(&moduleIdx->moduleState);
+                if (moduleState == NBP_MODULE_STATE_READY) {
+                    nbp_scheduler_complete_empty_module(moduleIdx);
+                    numOfCompletedEmptySubmodules++;
+                }
+
+                moduleIdx = moduleIdx->next;
+            }
+
+            if (module->emptySubmodulesNum != numOfCompletedEmptySubmodules) {
+                NBP_ERROR_REPORT_CTX_STRING(
+                    NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
+                    "unexpected number of completed empty submodules"
+                );
+                NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+            }
+        }
+
+        if (module->taskNum > num) {
             break;
         }
 
-        if (NBP_SYNC_ATOMIC_UINT_LOAD(&module->taskNum) < num) {
+        if (module->taskNum < num) {
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
                 "there are too many completed tasks"
@@ -559,176 +589,6 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
     NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
 }
 
-static void nbp_scheduler_complete_empty_module_ready(
-    nbp_module_details_t* module)
-{
-    unsigned int numberOfTasks;
-    unsigned int numberOfCompletedTasks;
-    unsigned int moduleState;
-    nbp_module_details_t* moduleIdx;
-    NBP_ERROR_CODE_TYPE errCode;
-
-    // starting module
-
-    moduleState = NBP_SYNC_ATOMIC_UINT_CAS(
-        &module->moduleState,
-        NBP_MODULE_STATE_READY,
-        NBP_MODULE_STATE_RUNNING
-    );
-    if (moduleState != NBP_MODULE_STATE_READY) {
-        NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
-            "unexpected module state"
-        );
-        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
-    }
-
-    nbp_printer_notify_module_started(module);
-
-    // iterating over all empty submodules
-
-    moduleIdx = module->firstModule;
-    while (moduleIdx != NBP_MEMORY_NULL_POINTER) {
-        moduleState = NBP_SYNC_ATOMIC_UINT_LOAD(&moduleIdx->moduleState);
-        if (moduleState != NBP_MODULE_STATE_READY) {
-            NBP_ERROR_REPORT_CTX_STRING(
-                NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
-                "unexpected module state"
-            );
-            NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
-        }
-
-        nbp_scheduler_complete_empty_module_ready(moduleIdx);
-
-        moduleIdx = moduleIdx->next;
-    }
-
-    // sanity check
-
-    numberOfTasks = NBP_SYNC_ATOMIC_UINT_LOAD(&module->taskNum);
-    numberOfCompletedTasks = NBP_SYNC_ATOMIC_UINT_LOAD(&module->completedTaskNum);
-
-    if (numberOfTasks != numberOfCompletedTasks) {
-        NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
-            "number of completed tasks is not equal to number of tasks"
-        );
-        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
-    }
-
-    // update state & stats
-
-    moduleState = NBP_SYNC_ATOMIC_UINT_CAS(
-        &module->moduleState,
-        NBP_MODULE_STATE_RUNNING,
-        NBP_MODULE_STATE_PASSED
-    );
-    if (moduleState != NBP_MODULE_STATE_RUNNING) {
-        NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
-            "unexpected module state"
-        );
-        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
-    }
-
-    nbp_scheduler_verify_module_stats(module);
-
-    if (module->parent != NBP_MEMORY_NULL_POINTER) {
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&module->parent->completedTaskNum, 1);
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&module->parent->ownModules.numPassed, 1);
-    }
-
-    nbp_scheduler_update_parent_stats(module);
-
-    nbp_printer_notify_module_completed(module);
-
-    // destroy events
-
-    errCode = NBP_SYNC_EVENT_UNINIT(module->runEvent);
-    if (errCode != NBP_ERROR_CODE_SUCCESS) {
-        NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(errCode);
-    }
-
-    errCode = NBP_SYNC_EVENT_UNINIT(module->setupEvent);
-    if (errCode != NBP_ERROR_CODE_SUCCESS) {
-        NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(errCode);
-    }
-}
-
-static void nbp_scheduler_complete_empty_module_running(
-    nbp_module_details_t* module)
-{
-    nbp_module_details_t* moduleIdx;
-    unsigned int moduleState;
-    unsigned int numberOfTasks;
-    unsigned int numberOfCompletedTasks;
-    unsigned int flags;
-    NBP_ERROR_CODE_TYPE errCode;
-
-    moduleIdx = module->firstModule;
-    while (moduleIdx != NBP_MEMORY_NULL_POINTER) {
-        moduleState = NBP_SYNC_ATOMIC_UINT_LOAD(&moduleIdx->moduleState);
-        if (moduleState == NBP_MODULE_STATE_READY) {
-            nbp_scheduler_complete_empty_module_ready(moduleIdx);
-        } else if (moduleState == NBP_MODULE_STATE_RUNNING) {
-            nbp_scheduler_complete_empty_module_running(moduleIdx);
-        }
-
-        moduleIdx = moduleIdx->next;
-    }
-
-    // sanity check
-
-    numberOfTasks = NBP_SYNC_ATOMIC_UINT_LOAD(&module->taskNum);
-    numberOfCompletedTasks = NBP_SYNC_ATOMIC_UINT_LOAD(&module->completedTaskNum);
-
-    if (numberOfTasks != numberOfCompletedTasks) {
-        NBP_ERROR_REPORT_CTX_STRING(
-            NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
-            "number of completed tasks is not equal to number of tasks"
-        );
-        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
-    }
-
-    nbp_scheduler_verify_module_stats(module);
-
-    // call teardown
-
-    flags = NBP_SYNC_ATOMIC_UINT_LOAD(&module->flags);
-    if (flags == NBP_MODULE_FLAGS_PROCESSED) {
-        if (module->teardown != NBP_MEMORY_NULL_POINTER) {
-            module->teardown(module);
-        }
-    }
-
-    // update state & stats
-
-    if (module->parent != NBP_MEMORY_NULL_POINTER) {
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&module->parent->completedTaskNum, 1);
-    }
-
-    nbp_scheduler_update_module_state(module);
-    nbp_scheduler_update_parent_stats(module);
-
-    nbp_printer_notify_module_completed(module);
-
-    // destroy events
-
-    errCode = NBP_SYNC_EVENT_UNINIT(module->runEvent);
-    if (errCode != NBP_ERROR_CODE_SUCCESS) {
-        NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(errCode);
-    }
-
-    errCode = NBP_SYNC_EVENT_UNINIT(module->setupEvent);
-    if (errCode != NBP_ERROR_CODE_SUCCESS) {
-        NBP_ERROR_REPORT(errCode);
-        NBP_EXIT(errCode);
-    }
-}
-
 void nbp_scheduler_run_test(nbp_test_details_t* test)
 {
     // the test can be run only from NBP_SCHEDULER_FUNC_RUN function
@@ -789,15 +649,98 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&nbpNumberOfRanTests, 1);
 }
 
-void nbp_scheduler_complete_empty_modules(nbp_module_details_t* module)
+void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
 {
+    unsigned int numberOfCompletedTasks;
     unsigned int moduleState;
+    nbp_module_details_t* moduleIdx;
+    NBP_ERROR_CODE_TYPE errCode;
 
-    moduleState = NBP_SYNC_ATOMIC_UINT_LOAD(&module->moduleState);
-    if (moduleState == NBP_MODULE_STATE_READY) {
-        nbp_scheduler_complete_empty_module_ready(module);
-    } else if (moduleState == NBP_MODULE_STATE_RUNNING) {
-        nbp_scheduler_complete_empty_module_running(module);
+    // starting module
+
+    moduleState = NBP_SYNC_ATOMIC_UINT_CAS(
+        &module->moduleState,
+        NBP_MODULE_STATE_READY,
+        NBP_MODULE_STATE_RUNNING
+    );
+    if (moduleState != NBP_MODULE_STATE_READY) {
+        NBP_ERROR_REPORT_CTX_STRING(
+            NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
+            "unexpected module state"
+        );
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
+    }
+
+    nbp_printer_notify_module_started(module);
+
+    // iterating over all empty submodules
+
+    moduleIdx = module->firstModule;
+    while (moduleIdx != NBP_MEMORY_NULL_POINTER) {
+        moduleState = NBP_SYNC_ATOMIC_UINT_LOAD(&moduleIdx->moduleState);
+        if (moduleState != NBP_MODULE_STATE_READY) {
+            NBP_ERROR_REPORT_CTX_STRING(
+                NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
+                "unexpected module state"
+            );
+            NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
+        }
+
+        nbp_scheduler_complete_empty_module(moduleIdx);
+
+        moduleIdx = moduleIdx->next;
+    }
+
+    // sanity check
+
+    numberOfCompletedTasks = NBP_SYNC_ATOMIC_UINT_LOAD(&module->completedTaskNum);
+
+    if (module->taskNum != numberOfCompletedTasks) {
+        NBP_ERROR_REPORT_CTX_STRING(
+            NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
+            "number of completed tasks is not equal to number of tasks"
+        );
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+    }
+
+    // update state & stats
+
+    moduleState = NBP_SYNC_ATOMIC_UINT_CAS(
+        &module->moduleState,
+        NBP_MODULE_STATE_RUNNING,
+        NBP_MODULE_STATE_PASSED
+    );
+    if (moduleState != NBP_MODULE_STATE_RUNNING) {
+        NBP_ERROR_REPORT_CTX_STRING(
+            NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
+            "unexpected module state"
+        );
+        NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
+    }
+
+    nbp_scheduler_verify_module_stats(module);
+
+    if (module->parent != NBP_MEMORY_NULL_POINTER) {
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&module->parent->completedTaskNum, 1);
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&module->parent->ownModules.numPassed, 1);
+    }
+
+    nbp_scheduler_update_parent_stats(module);
+
+    nbp_printer_notify_module_completed(module);
+
+    // destroy events
+
+    errCode = NBP_SYNC_EVENT_UNINIT(module->runEvent);
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        NBP_ERROR_REPORT(errCode);
+        NBP_EXIT(errCode);
+    }
+
+    errCode = NBP_SYNC_EVENT_UNINIT(module->setupEvent);
+    if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        NBP_ERROR_REPORT(errCode);
+        NBP_EXIT(errCode);
     }
 }
 

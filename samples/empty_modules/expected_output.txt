@@ -1,6 +1,6 @@
 setup module empty_modules
 setup module module2
-setup module module3
 teardown module module2
+setup module module3
 teardown module module3
 teardown module empty_modules

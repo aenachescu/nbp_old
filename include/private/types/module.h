@@ -81,8 +81,11 @@ struct nbp_module_details_t {
     NBP_SYNC_ATOMIC_UINT_TYPE flags;
     NBP_SYNC_ATOMIC_UINT_TYPE moduleState;
 
-    NBP_SYNC_ATOMIC_UINT_TYPE taskNum;
+    unsigned int taskNum;
     NBP_SYNC_ATOMIC_UINT_TYPE completedTaskNum;
+
+    unsigned int isEmptyModule;
+    unsigned int emptySubmodulesNum;
 
     struct {
         NBP_SYNC_ATOMIC_UINT_TYPE num;

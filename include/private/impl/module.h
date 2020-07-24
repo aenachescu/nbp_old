@@ -95,7 +95,7 @@ static void nbp_module_init(nbp_module_details_t* module,
 
     if (parent != NBP_MEMORY_NULL_POINTER) {
         NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&parent->ownModules.num, 1);
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&parent->taskNum, 1);
+        parent->taskNum++;
         if (parent->firstModule == NBP_MEMORY_NULL_POINTER) {
             parent->firstModule = module;
             parent->lastModule = module;
@@ -129,6 +129,13 @@ static void nbp_module_update_stats(nbp_module_details_t* module)
             &module->subTests.num,
             NBP_SYNC_ATOMIC_UINT_LOAD(&idx->subTests.num)
         );
+
+        if (idx->isEmptyModule == 0) {
+            module->isEmptyModule = 0;
+        } else {
+            module->emptySubmodulesNum++;
+        }
+
         idx = idx->next;
     }
 }

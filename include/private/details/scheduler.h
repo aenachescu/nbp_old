@@ -32,7 +32,7 @@ void nbp_scheduler_run_test(
     nbp_test_details_t* /* test */
 );
 
-void nbp_scheduler_complete_empty_modules(
+void nbp_scheduler_complete_empty_module(
     nbp_module_details_t* /* module */
 );
 

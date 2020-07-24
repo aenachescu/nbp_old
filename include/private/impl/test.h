@@ -56,8 +56,9 @@ static void nbp_test_init(nbp_test_details_t* test,
     nbpTotalNumberOfTests++;
 
     test->module = module;
+    test->module->isEmptyModule = 0;
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.num, 1);
-    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->taskNum, 1);
+    test->module->taskNum++;
 
     // reset setup function if it is the same with empty setup function
     if (test->testSetupFunc == nbp_test_setup_nbp_test_empty_setup_func) {

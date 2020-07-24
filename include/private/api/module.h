@@ -91,85 +91,87 @@ SOFTWARE.
         nbp_test_teardown_pfn_t                                                \
     );                                                                         \
     nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func) = {     \
-        .moduleName        = name,                                             \
-        .moduleId          = 0,                                                \
-        .moduleFunc        = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),         \
-        .parent            = NBP_MEMORY_NULL_POINTER,                          \
-        .setup             = setupFunc,                                        \
-        .teardown          = teardownFunc,                                     \
-        .firstTest         = NBP_MEMORY_NULL_POINTER,                          \
-        .lastTest          = NBP_MEMORY_NULL_POINTER,                          \
-        .firstModule       = NBP_MEMORY_NULL_POINTER,                          \
-        .lastModule        = NBP_MEMORY_NULL_POINTER,                          \
-        .next              = NBP_MEMORY_NULL_POINTER,                          \
-        .prev              = NBP_MEMORY_NULL_POINTER,                          \
-        .depth             = 0,                                                \
-        .runEvent          = NBP_SYNC_EVENT_DEFAULT_VALUE,                     \
-        .setupEvent        = NBP_SYNC_EVENT_DEFAULT_VALUE,                     \
-        .flags             =                                                   \
+        .moduleName             = name,                                        \
+        .moduleId               = 0,                                           \
+        .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),    \
+        .parent                 = NBP_MEMORY_NULL_POINTER,                     \
+        .setup                  = setupFunc,                                   \
+        .teardown               = teardownFunc,                                \
+        .firstTest              = NBP_MEMORY_NULL_POINTER,                     \
+        .lastTest               = NBP_MEMORY_NULL_POINTER,                     \
+        .firstModule            = NBP_MEMORY_NULL_POINTER,                     \
+        .lastModule             = NBP_MEMORY_NULL_POINTER,                     \
+        .next                   = NBP_MEMORY_NULL_POINTER,                     \
+        .prev                   = NBP_MEMORY_NULL_POINTER,                     \
+        .depth                  = 0,                                           \
+        .runEvent               = NBP_SYNC_EVENT_DEFAULT_VALUE,                \
+        .setupEvent             = NBP_SYNC_EVENT_DEFAULT_VALUE,                \
+        .flags                  =                                              \
             NBP_SYNC_ATOMIC_UINT_INIT(NBP_MODULE_FLAGS_NOT_INITIALIZED),       \
-        .moduleState       =                                                   \
+        .moduleState            =                                              \
             NBP_SYNC_ATOMIC_UINT_INIT(NBP_MODULE_STATE_NOT_INITIALIZED),       \
-        .taskNum           = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-        .completedTaskNum  = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+        .taskNum                = 0,                                           \
+        .completedTaskNum       = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+        .isEmptyModule          = 1,                                           \
+        .emptySubmodulesNum     = 0,                                           \
         .ownTests = {                                                          \
-            .num           = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numPassed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numFailed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numSkipped    = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .num                = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numSkipped         = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
         },                                                                     \
         .subTests = {                                                          \
-            .num           = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numPassed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numFailed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numSkipped    = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .num                = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numSkipped         = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
         },                                                                     \
         .ownModules = {                                                        \
-            .num           = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numPassed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numFailed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numSkipped    = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .num                = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numSkipped         = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
         },                                                                     \
         .subModules = {                                                        \
-            .num           = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numPassed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numFailed     = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-            .numSkipped    = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+            .num                = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .numSkipped         = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
         },                                                                     \
         .own = {                                                               \
             .checks = {                                                        \
-                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             },                                                                 \
             .testAsserts = {                                                   \
-                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             },                                                                 \
             .moduleAsserts = {                                                 \
-                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             },                                                                 \
             .asserts = {                                                       \
-                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             },                                                                 \
         },                                                                     \
         .sub = {                                                               \
             .checks = {                                                        \
-                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             },                                                                 \
             .testAsserts = {                                                   \
-                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             },                                                                 \
             .moduleAsserts = {                                                 \
-                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             },                                                                 \
             .asserts = {                                                       \
-                .numPassed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
-                .numFailed = NBP_SYNC_ATOMIC_UINT_INIT(0),                     \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             },                                                                 \
         },                                                                     \
     };                                                                         \
