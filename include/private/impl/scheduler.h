@@ -36,38 +36,38 @@ static void nbp_scheduler_update_module_stats(nbp_test_details_t* test)
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
         &m->own.checks.numPassed,
-        NBP_SYNC_ATOMIC_UINT_LOAD(&test->checks.numPassed)
+        test->checks.numPassed
     );
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
         &m->own.checks.numFailed,
-        NBP_SYNC_ATOMIC_UINT_LOAD(&test->checks.numFailed)
+        test->checks.numFailed
     );
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
         &m->own.testAsserts.numPassed,
-        NBP_SYNC_ATOMIC_UINT_LOAD(&test->testAsserts.numPassed)
+        test->testAsserts.numPassed
     );
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
         &m->own.testAsserts.numFailed,
-        NBP_SYNC_ATOMIC_UINT_LOAD(&test->testAsserts.numFailed)
+        test->testAsserts.numFailed
     );
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
         &m->own.moduleAsserts.numPassed,
-        NBP_SYNC_ATOMIC_UINT_LOAD(&test->moduleAsserts.numPassed)
+        test->moduleAsserts.numPassed
     );
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
         &m->own.moduleAsserts.numFailed,
-        NBP_SYNC_ATOMIC_UINT_LOAD(&test->moduleAsserts.numFailed)
+        test->moduleAsserts.numFailed
     );
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
         &m->own.asserts.numPassed,
-        NBP_SYNC_ATOMIC_UINT_LOAD(&test->asserts.numPassed)
+        test->asserts.numPassed
     );
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
         &m->own.asserts.numFailed,
-        NBP_SYNC_ATOMIC_UINT_LOAD(&test->asserts.numFailed)
+        test->asserts.numFailed
     );
 }
 
@@ -152,19 +152,29 @@ static void nbp_scheduler_update_parent_stats(nbp_module_details_t* module)
 
 static void nbp_scheduler_update_module_state(nbp_module_details_t* module)
 {
-    unsigned int numTests = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.num);
-    unsigned int numModules = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.num);
+    unsigned int numPassedTests = NBP_SYNC_ATOMIC_UINT_LOAD(
+        &module->ownTests.numPassed
+    );
+    unsigned int numSkippedTests = NBP_SYNC_ATOMIC_UINT_LOAD(
+        &module->ownTests.numSkipped
+    );
+    unsigned int numPassedModules = NBP_SYNC_ATOMIC_UINT_LOAD(
+        &module->ownModules.numPassed
+    );
+    unsigned int numSkippedModules = NBP_SYNC_ATOMIC_UINT_LOAD(
+        &module->ownModules.numSkipped
+    );
     unsigned int oldVal;
     unsigned int state;
 
-    if (numTests == NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numPassed) &&
-        numModules == NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numPassed)) {
+    if (module->ownTests.num == numPassedTests &&
+        module->ownModules.num == numPassedModules) {
         state = NBP_MODULE_STATE_PASSED;
         goto end;
     }
 
-    if (numTests == NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numSkipped) &&
-        numModules == NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numSkipped)) {
+    if (module->ownTests.num == numSkippedTests &&
+        module->ownModules.num == numSkippedModules) {
         state = NBP_MODULE_STATE_SKIPPED;
         goto end;
     }
@@ -215,19 +225,19 @@ end:
 static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
 {
     do {
-        if (NBP_SYNC_ATOMIC_UINT_LOAD(&test->checks.numFailed) != 0) {
+        if (test->checks.numFailed != 0) {
             break;
         }
 
-        if (NBP_SYNC_ATOMIC_UINT_LOAD(&test->testAsserts.numFailed) != 0) {
+        if (test->testAsserts.numFailed != 0) {
             break;
         }
 
-        if (NBP_SYNC_ATOMIC_UINT_LOAD(&test->moduleAsserts.numFailed) != 0) {
+        if (test->moduleAsserts.numFailed != 0) {
             break;
         }
 
-        if (NBP_SYNC_ATOMIC_UINT_LOAD(&test->asserts.numFailed) != 0) {
+        if (test->asserts.numFailed != 0) {
             break;
         }
 
@@ -336,37 +346,33 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
 
 static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
 {
-    unsigned int total, passed, failed, skipped;
+    unsigned int passed, failed, skipped;
 
-    total   = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.num);
     passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numPassed);
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numSkipped);
-    if (total != passed + failed + skipped) {
+    if (module->ownTests.num != passed + failed + skipped) {
         goto error;
     }
 
-    total   = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.num);
     passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numPassed);
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numSkipped);
-    if (total != passed + failed + skipped) {
+    if (module->ownModules.num != passed + failed + skipped) {
         goto error;
     }
 
-    total   = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.num);
     passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numPassed);
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numSkipped);
-    if (total != passed + failed + skipped) {
+    if (module->subTests.num != passed + failed + skipped) {
         goto error;
     }
 
-    total   = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.num);
     passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numPassed);
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numSkipped);
-    if (total != passed + failed + skipped) {
+    if (module->subModules.num != passed + failed + skipped) {
         goto error;
     }
 
@@ -501,9 +507,9 @@ static void nbp_scheduler_run_test_running(nbp_test_details_t* test)
 
     test->testFunc(test);
 
-    if (NBP_SYNC_ATOMIC_UINT_LOAD(&test->asserts.numFailed) != 0) {
+    if (test->asserts.numFailed != 0) {
         nbp_scheduler_skip_module(nbpMainModule);
-    } else if (NBP_SYNC_ATOMIC_UINT_LOAD(&test->moduleAsserts.numFailed) != 0) {
+    } else if (test->moduleAsserts.numFailed != 0) {
         nbp_scheduler_skip_module(test->module);
     }
 

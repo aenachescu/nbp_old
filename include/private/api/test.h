@@ -247,20 +247,20 @@ SOFTWARE.
         .flags                      =                                          \
             NBP_SYNC_ATOMIC_UINT_INIT(NBP_TEST_FLAGS_NOT_INITIALIZED),         \
         .checks = {                                                            \
-            .numPassed              = NBP_SYNC_ATOMIC_UINT_INIT(0),            \
-            .numFailed              = NBP_SYNC_ATOMIC_UINT_INIT(0),            \
+            .numPassed              = 0,                                       \
+            .numFailed              = 0,                                       \
         },                                                                     \
         .testAsserts = {                                                       \
-            .numPassed              = NBP_SYNC_ATOMIC_UINT_INIT(0),            \
-            .numFailed              = NBP_SYNC_ATOMIC_UINT_INIT(0),            \
+            .numPassed              = 0,                                       \
+            .numFailed              = 0,                                       \
         },                                                                     \
         .moduleAsserts = {                                                     \
-            .numPassed              = NBP_SYNC_ATOMIC_UINT_INIT(0),            \
-            .numFailed              = NBP_SYNC_ATOMIC_UINT_INIT(0),            \
+            .numPassed              = 0,                                       \
+            .numFailed              = 0,                                       \
         },                                                                     \
         .asserts = {                                                           \
-            .numPassed              = NBP_SYNC_ATOMIC_UINT_INIT(0),            \
-            .numFailed              = NBP_SYNC_ATOMIC_UINT_INIT(0),            \
+            .numPassed              = 0,                                       \
+            .numFailed              = 0,                                       \
         },                                                                     \
     };                                                                         \
     void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
@@ -502,7 +502,7 @@ SOFTWARE.
  *  unsigned int which represents the number of passed NBP_CHECK* macros.
  */
 #define NBP_TEST_GET_NUMBER_OF_PASSED_CHECKS(test)                             \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&test->checks.numPassed)
+    test->checks.numPassed
 
 /*
  * @public doc
@@ -518,7 +518,7 @@ SOFTWARE.
  *  unsigned int which represents the number of failed NBP_CHECK* macros.
  */
 #define NBP_TEST_GET_NUMBER_OF_FAILED_CHECKS(test)                             \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&test->checks.numFailed)
+    test->checks.numFailed
 
 /*
  * @public doc
@@ -553,7 +553,7 @@ SOFTWARE.
  *  unsigned int which represents the number of passed NBP_TEST_ASSERT* macros.
  */
 #define NBP_TEST_GET_NUMBER_OF_PASSED_TEST_ASSERTS(test)                       \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&test->testAsserts.numPassed)
+    test->testAsserts.numPassed
 
 /*
  * @public doc
@@ -569,7 +569,7 @@ SOFTWARE.
  *  unsigned int which represents the number of failed NBP_TEST_ASSERT* macros.
  */
 #define NBP_TEST_GET_NUMBER_OF_FAILED_TEST_ASSERTS(test)                       \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&test->testAsserts.numFailed)
+    test->testAsserts.numFailed
 
 /*
  * @public doc
@@ -604,7 +604,7 @@ SOFTWARE.
  *  unsigned int which represents the number of passed NBP_MODULE_ASSERT* macros.
  */
 #define NBP_TEST_GET_NUMBER_OF_PASSED_MODULE_ASSERTS(test)                     \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&test->moduleAsserts.numPassed)
+    test->moduleAsserts.numPassed
 
 /*
  * @public doc
@@ -620,7 +620,7 @@ SOFTWARE.
  *  unsigned int which represents the number of failed NBP_MODULE_ASSERT* macros.
  */
 #define NBP_TEST_GET_NUMBER_OF_FAILED_MODULE_ASSERTS(test)                     \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&test->moduleAsserts.numFailed)
+    test->moduleAsserts.numFailed
 
 /*
  * @public doc
@@ -654,7 +654,7 @@ SOFTWARE.
  *  unsigned int which represents the number of passed NBP_ASSERT* macros.
  */
 #define NBP_TEST_GET_NUMBER_OF_PASSED_ASSERTS(test)                            \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&test->asserts.numPassed)
+    test->asserts.numPassed
 
 /*
  * @public doc
@@ -670,6 +670,6 @@ SOFTWARE.
  *  unsigned int which represents the number of failed NBP_ASSERT* macros.
  */
 #define NBP_TEST_GET_NUMBER_OF_FAILED_ASSERTS(test)                            \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&test->asserts.numFailed)
+    test->asserts.numFailed
 
 #endif // end if NBP_PRIVATE_API_TEST_H

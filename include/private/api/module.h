@@ -115,25 +115,25 @@ SOFTWARE.
         .isEmptyModule          = 1,                                           \
         .emptySubmodulesNum     = 0,                                           \
         .ownTests = {                                                          \
-            .num                = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .num                = 0,                                           \
             .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             .numSkipped         = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
         },                                                                     \
         .subTests = {                                                          \
-            .num                = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .num                = 0,                                           \
             .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             .numSkipped         = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
         },                                                                     \
         .ownModules = {                                                        \
-            .num                = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .num                = 0,                                           \
             .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             .numSkipped         = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
         },                                                                     \
         .subModules = {                                                        \
-            .num                = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .num                = 0,                                           \
             .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             .numSkipped         = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
@@ -305,7 +305,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_TESTS(module)                             \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.num)
+    module->ownTests.num
 
 /*
  * TODO: add docs
@@ -329,7 +329,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUBTESTS(module)                              \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.num)
+    module->subTests.num
 
 /*
  * TODO: add docs
@@ -381,7 +381,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_MODULES(module)                           \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.num)
+    module->ownModules.num
 
 /*
  * TODO: add docs
@@ -405,7 +405,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_GET_NUMBER_OF_SUBMODULES(module)                            \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.num)
+    module->subModules.num
 
 /*
  * TODO: add docs

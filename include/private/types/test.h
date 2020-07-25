@@ -69,8 +69,8 @@ struct nbp_test_details_t {
     NBP_SYNC_ATOMIC_UINT_TYPE flags;
 
     struct {
-        NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
-        NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
+        unsigned int numPassed;
+        unsigned int numFailed;
     } checks, testAsserts, moduleAsserts, asserts;
 };
 typedef struct nbp_test_details_t nbp_test_details_t;

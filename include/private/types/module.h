@@ -88,14 +88,14 @@ struct nbp_module_details_t {
     unsigned int emptySubmodulesNum;
 
     struct {
-        NBP_SYNC_ATOMIC_UINT_TYPE num;
+        unsigned int num;
         NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
         NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
         NBP_SYNC_ATOMIC_UINT_TYPE numSkipped;
     } ownTests, subTests;
 
     struct {
-        NBP_SYNC_ATOMIC_UINT_TYPE num;
+        unsigned int num;
         NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
         NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
         NBP_SYNC_ATOMIC_UINT_TYPE numSkipped;

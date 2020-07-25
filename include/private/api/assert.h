@@ -40,10 +40,7 @@ SOFTWARE.
 
 #define NBP_ASSERT_PRIVATE_IMPL(cond, failMsg, passMsg)                        \
     if (cond) {                                                                \
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                    \
-            &nbpParamTest->asserts.numPassed,                                  \
-            1                                                                  \
-        );                                                                     \
+        nbpParamTest->asserts.numPassed++;                                     \
         nbp_printer_notify_assert_result(                                      \
             nbpParamTest,                                                      \
             #cond,                                                             \
@@ -53,10 +50,7 @@ SOFTWARE.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                    \
-            &nbpParamTest->asserts.numFailed,                                  \
-            1                                                                  \
-        );                                                                     \
+        nbpParamTest->asserts.numFailed++;                                     \
         nbp_printer_notify_assert_result(                                      \
             nbpParamTest,                                                      \
             #cond,                                                             \
@@ -71,10 +65,7 @@ SOFTWARE.
 #define NBP_ASSERT_PRIVATE_OP_IMPL(a, b, op, printerOp, failMsg,               \
     passMsg)                                                                   \
     if (a op b) {                                                              \
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                    \
-            &nbpParamTest->asserts.numPassed,                                  \
-            1                                                                  \
-        );                                                                     \
+        nbpParamTest->asserts.numPassed++;                                     \
         nbp_printer_notify_assert_op_result(                                   \
             nbpParamTest,                                                      \
             #a,                                                                \
@@ -86,10 +77,7 @@ SOFTWARE.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                    \
-            &nbpParamTest->asserts.numFailed,                                  \
-            1                                                                  \
-        );                                                                     \
+        nbpParamTest->asserts.numFailed++;                                     \
         nbp_printer_notify_assert_op_result(                                   \
             nbpParamTest,                                                      \
             #a,                                                                \
@@ -114,10 +102,7 @@ SOFTWARE.
     do {                                                                       \
         type tmpA = a, tmpB = b;                                               \
         if (tmpA op tmpB) {                                                    \
-            NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                \
-                &nbpParamTest->asserts.numPassed,                              \
-                1                                                              \
-            );                                                                 \
+            nbpParamTest->asserts.numPassed++;                                 \
             NBP_ASSERT_PRIVATE_PRINTER_NOTIFY_ASSERT_TYPE_OP(typeStr)(         \
                 nbpParamTest,                                                  \
                 tmpA,                                                          \
@@ -129,10 +114,7 @@ SOFTWARE.
                 passMsg                                                        \
             );                                                                 \
         } else {                                                               \
-            NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(                                \
-                &nbpParamTest->asserts.numFailed,                              \
-                1                                                              \
-            );                                                                 \
+            nbpParamTest->asserts.numFailed++;                                 \
             NBP_ASSERT_PRIVATE_PRINTER_NOTIFY_ASSERT_TYPE_OP(typeStr)(         \
                 nbpParamTest,                                                  \
                 tmpA,                                                          \
