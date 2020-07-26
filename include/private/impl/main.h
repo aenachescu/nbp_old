@@ -88,8 +88,7 @@ int nbp_command_run_all()
         NBP_EXIT(NBP_ERROR_CODE_NOT_ALL_TESTS_RAN);
     }
 
-    if (nbpMainModule->isEmptyModule == 1 ||
-        nbpMainModule->emptySubmodulesNum != 0) {
+    if (nbpMainModule->isEmptyModule == 1) {
         nbp_scheduler_complete_empty_module(nbpMainModule);
     }
 
