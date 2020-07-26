@@ -57,6 +57,11 @@ static inline void write_uint_to_file(unsigned int value)
     }
 }
 
+static inline void write_message_to_console(const char* msg)
+{
+    printf("%s\n", msg);
+}
+
 #ifdef NBP_OS_LINUX
 
 #include <unistd.h>
