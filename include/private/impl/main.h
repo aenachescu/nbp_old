@@ -88,6 +88,11 @@ int nbp_command_run_all()
         NBP_EXIT(NBP_ERROR_CODE_NOT_ALL_TESTS_RAN);
     }
 
+    if (nbpMainModule->isEmptyModule == 1 ||
+        nbpMainModule->emptySubmodulesNum != 0) {
+        nbp_scheduler_complete_empty_module(nbpMainModule);
+    }
+
     nbp_printer_notify_after_run(
         NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_PASSED ?
             NBP_MODULE_GET_NUMBER_OF_PASSED_MODULES(nbpMainModule) + 1 :
