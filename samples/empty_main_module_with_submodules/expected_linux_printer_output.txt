@@ -1,0 +1,21 @@
+Running...[2K[32mempty_main_module_with_submodules[0m
+    [32mmodule1[0m
+        [32msubmodule1[0m
+        [32msubmodule2[0m
+    [32mmodule2[0m
+        [32msubmodule3[0m
+        [32msubmodule4[0m
+Passed  modules: [32m7[0m/7
+Failed  modules: [32m0[0m/7
+Skipped modules: [32m0[0m/7
+Passed  tests: [32m0[0m/0
+Failed  tests: [32m0[0m/0
+Skipped tests: [32m0[0m/0
+Passed checks: [32m0[0m/0
+Failed checks: [32m0[0m/0
+Passed test asserts: [32m0[0m/0
+Failed test asserts: [32m0[0m/0
+Passed module asserts: [32m0[0m/0
+Failed module asserts: [32m0[0m/0
+Passed asserts: [32m0[0m/0
+Failed asserts: [32m0[0m/0
