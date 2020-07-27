@@ -1,4 +1,4 @@
-Running...[2K[32mempty_main_module[0m
+Running...[2K[32mmt_scheduler_empty_main_module[0m
 Passed  modules: [32m1[0m/1
 Failed  modules: [32m0[0m/1
 Skipped modules: [32m0[0m/1

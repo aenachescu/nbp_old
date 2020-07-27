@@ -40,6 +40,7 @@ NBP_MODULE_TEARDOWN(teardownModule)
     write_message_to_console("this message should not be displayed");
 }
 
-NBP_MAIN_MODULE_FIXTURES(empty_main_module, setupModule, teardownModule)
+NBP_MAIN_MODULE_FIXTURES(mt_scheduler_empty_main_module, setupModule,
+    teardownModule)
 {
 }
