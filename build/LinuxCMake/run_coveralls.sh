@@ -68,6 +68,7 @@ declare -a arr=(
     "empty_main_module_with_submodules_sample"
     "mt_scheduler_empty_main_module_with_submodules_sample"
     "mt_scheduler_run_test_before_empty_module_sample"
+    "mt_scheduler_run_test_after_empty_module_sample"
 )
 
 files=""
