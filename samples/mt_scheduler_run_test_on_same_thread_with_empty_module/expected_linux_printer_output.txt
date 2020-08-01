@@ -1,8 +1,8 @@
 Running...[2KRunning... 1/1[2K[32mmt_scheduler_run_test_on_same_thread_with_empty_module[0m
     [32mtest1[0m
-    [32mmodule1[0m
-        [32msubmodule1[0m
-        [32msubmodule2[0m
+    [32mempty_module[0m
+        [32mempty_submodule1[0m
+        [32mempty_submodule2[0m
 Passed  modules: [32m4[0m/4
 Failed  modules: [32m0[0m/4
 Skipped modules: [32m0[0m/4

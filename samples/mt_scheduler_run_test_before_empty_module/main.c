@@ -32,11 +32,11 @@ SOFTWARE.
 
 NBP_MAIN_MODULE(mt_scheduler_run_test_before_empty_module)
 {
-    NBP_MODULE_RUN(module1);
+    NBP_MODULE_RUN(empty_module);
     NBP_TEST_RUN_CTX(
         test1,
         NBP_MT_SCHEDULER_CTX(
-            NBP_MT_SCHEDULER_RUN_BEFORE_MODULE(module1)
+            NBP_MT_SCHEDULER_RUN_BEFORE_MODULE(empty_module)
         )
     );
 }
@@ -47,16 +47,16 @@ NBP_TEST(test1)
     NBP_CHECK(1);
 }
 
-NBP_MODULE(module1)
+NBP_MODULE(empty_module)
 {
-    NBP_MODULE_RUN(submodule1);
-    NBP_MODULE_RUN(submodule2);
+    NBP_MODULE_RUN(empty_submodule1);
+    NBP_MODULE_RUN(empty_submodule2);
 }
 
-NBP_MODULE(submodule1)
+NBP_MODULE(empty_submodule1)
 {
 }
 
-NBP_MODULE(submodule2)
+NBP_MODULE(empty_submodule2)
 {
 }
