@@ -1221,7 +1221,13 @@ static void nbp_mt_scheduler_processing_data()
                 NBP_MEMORY_FREE(data->ctx);
             }
         } else if (data->dataType == NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE) {
-            nbp_mt_scheduler_processing_module_context(data->module, data->ctx);
+            if (data->ctx != NBP_MEMORY_NULL_POINTER) {
+                nbp_mt_scheduler_processing_module_context(
+                    data->module,
+                    data->ctx
+                );
+                NBP_MEMORY_FREE(data->ctx);
+            }
         } else {
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_GENERIC_ERROR,
