@@ -165,6 +165,7 @@ run_test empty_main_module_with_submodules_sample 0
 run_test mt_scheduler_empty_main_module_with_submodules_sample 0
 run_test mt_scheduler_run_test_before_empty_module_sample 0
 run_test mt_scheduler_run_test_after_empty_module_sample 0
+run_test mt_scheduler_run_test_on_same_thread_with_empty_module_sample 0
 
 if [ $status -ne 0 ]; then
     echo -n $'\e[31mrun_tests failed\e[39m'
