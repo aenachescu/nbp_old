@@ -32,13 +32,13 @@ SOFTWARE.
 
 NBP_MAIN_MODULE(mt_scheduler_run_module_after_empty_module)
 {
-    NBP_MODULE_RUN(empty_module);
     NBP_MODULE_RUN_CTX(
         module,
         NBP_MT_SCHEDULER_CTX(
             NBP_MT_SCHEDULER_RUN_AFTER_MODULE(empty_module)
         )
     );
+    NBP_MODULE_RUN(empty_module);
 }
 
 NBP_MODULE(module)
