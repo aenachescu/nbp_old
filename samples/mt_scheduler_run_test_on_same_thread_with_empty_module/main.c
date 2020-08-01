@@ -47,16 +47,26 @@ NBP_TEST(test1)
     NBP_CHECK(1);
 }
 
-NBP_MODULE(empty_module)
+NBP_MODULE_SETUP(setupEmptyModule)
+{
+    write_message_to_console("this message should not be displayed");
+}
+
+NBP_MODULE_TEARDOWN(teardownEmptyModule)
+{
+    write_message_to_console("this message should not be displayed");
+}
+
+NBP_MODULE_FIXTURES(empty_module, setupEmptyModule, teardownEmptyModule)
 {
     NBP_MODULE_RUN(empty_submodule1);
     NBP_MODULE_RUN(empty_submodule2);
 }
 
-NBP_MODULE(empty_submodule1)
+NBP_MODULE_FIXTURES(empty_submodule1, setupEmptyModule, teardownEmptyModule)
 {
 }
 
-NBP_MODULE(empty_submodule2)
+NBP_MODULE_FIXTURES(empty_submodule2, setupEmptyModule, teardownEmptyModule)
 {
 }
