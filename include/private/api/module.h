@@ -237,9 +237,10 @@ SOFTWARE.
  */
 #define NBP_MODULE_RUN_CTX(func, ctx)                                          \
     extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
+    NBP_PRIVATE_SCHEDULER_PREPROCESSING_CONTEXT(P_ ## ctx)                     \
     nbp_module_run_ctx(                                                        \
         & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func),                       \
-        nbpParamCtx,                                                           \
+        ctx,                                                                   \
         nbpParamModule,                                                        \
         nbpParamModuleSetup,                                                   \
         nbpParamModuleTeardown                                                 \
