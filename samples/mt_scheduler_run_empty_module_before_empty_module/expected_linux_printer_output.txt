@@ -1,0 +1,21 @@
+Running...[2K[32mmt_scheduler_run_empty_module_before_empty_module[0m
+    [32mempty_module2[0m
+        [32mempty_submodule3[0m
+        [32mempty_submodule4[0m
+    [32mempty_module1[0m
+        [32mempty_submodule1[0m
+        [32mempty_submodule2[0m
+Passed  modules: [32m7[0m/7
+Failed  modules: [32m0[0m/7
+Skipped modules: [32m0[0m/7
+Passed  tests: [32m0[0m/0
+Failed  tests: [32m0[0m/0
+Skipped tests: [32m0[0m/0
+Passed checks: [32m0[0m/0
+Failed checks: [32m0[0m/0
+Passed test asserts: [32m0[0m/0
+Failed test asserts: [32m0[0m/0
+Passed module asserts: [32m0[0m/0
+Failed module asserts: [32m0[0m/0
+Passed asserts: [32m0[0m/0
+Failed asserts: [32m0[0m/0
