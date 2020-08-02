@@ -77,6 +77,7 @@ declare -a arr=(
     "mt_scheduler_run_empty_module_before_test_sample"
     "mt_scheduler_run_empty_module_on_same_thread_with_test_sample"
     "mt_scheduler_run_empty_module_after_module_sample"
+    "mt_scheduler_run_empty_module_before_module_sample"
 )
 
 files=""
