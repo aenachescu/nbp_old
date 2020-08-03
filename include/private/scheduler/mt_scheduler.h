@@ -1242,6 +1242,9 @@ static void nbp_mt_scheduler_processing_data()
         NBP_MEMORY_FREE(tmp);
     }
 
+    nbpMtSchedulerData = NBP_MEMORY_NULL_POINTER;
+    nbpMtSchedulerDataLast = NBP_MEMORY_NULL_POINTER;
+
     // TODO: check if there is a cycle
 
     for (testId = 0; testId < nbpMtSchedulerNumberOfTests; testId++) {
@@ -1317,8 +1320,18 @@ NBP_SCHEDULER_FUNC_INIT(nbp_mt_scheduler_init)
 NBP_SCHEDULER_FUNC_UNINIT(nbp_mt_scheduler_uninit)
 {
     NBP_ERROR_CODE_TYPE errCode;
+    nbp_mt_scheduler_data_t* tmp;
 
-    nbpMtSchedulerData = NBP_MEMORY_NULL_POINTER;
+    while (nbpMtSchedulerData != NBP_MEMORY_NULL_POINTER) {
+        if (nbpMtSchedulerData->ctx != NBP_MEMORY_NULL_POINTER) {
+            NBP_MEMORY_FREE(nbpMtSchedulerData->ctx);
+        }
+
+        tmp = nbpMtSchedulerData;
+        nbpMtSchedulerData = nbpMtSchedulerData->next;
+
+        NBP_MEMORY_FREE(tmp);
+    }
     nbpMtSchedulerDataLast = NBP_MEMORY_NULL_POINTER;
 
     nbpMtSchedulerTests = NBP_MEMORY_NULL_POINTER;
