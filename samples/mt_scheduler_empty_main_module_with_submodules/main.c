@@ -30,6 +30,8 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
+// LCOV_EXCL_START
+
 NBP_MODULE_SETUP(setupModule)
 {
     write_message_to_console("this message should not be displayed");
@@ -39,6 +41,8 @@ NBP_MODULE_TEARDOWN(teardownModule)
 {
     write_message_to_console("this message should not be displayed");
 }
+
+// LCOV_EXCL_STOP
 
 NBP_MAIN_MODULE_FIXTURES(mt_scheduler_empty_main_module_with_submodules,
     setupModule, teardownModule)

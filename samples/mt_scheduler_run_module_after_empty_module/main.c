@@ -97,6 +97,8 @@ NBP_TEST(test6)
     NBP_CHECK(1);
 }
 
+// LCOV_EXCL_START
+
 NBP_MODULE_SETUP(setupEmptyModule)
 {
     write_message_to_console("this message should not be displayed");
@@ -106,6 +108,8 @@ NBP_MODULE_TEARDOWN(teardownEmptyModule)
 {
     write_message_to_console("this message should not be displayed");
 }
+
+// LCOV_EXCL_STOP
 
 NBP_MODULE_FIXTURES(empty_module, setupEmptyModule, teardownEmptyModule)
 {
