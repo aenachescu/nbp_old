@@ -250,6 +250,8 @@ SAMPLE_ATOMIC_UINT_TYPE subsubmodule7TeardownValue = SAMPLE_ATOMIC_UINT_INIT(0);
 SAMPLE_ATOMIC_UINT_TYPE subsubmodule8SetupValue = SAMPLE_ATOMIC_UINT_INIT(0);
 SAMPLE_ATOMIC_UINT_TYPE subsubmodule8TeardownValue = SAMPLE_ATOMIC_UINT_INIT(0);
 
+// LCOV_EXCL_START
+
 NBP_MODULE_SETUP(empty_module_setup)
 {
     write_message_to_file("this message should not be printed");
@@ -259,6 +261,8 @@ NBP_MODULE_TEARDOWN(empty_module_teardown)
 {
     write_message_to_file("this message should not be printed");
 }
+
+// LCOV_EXCL_STOP
 
 NBP_MODULE_SETUP(main_module_setup)
 {

@@ -46,11 +46,13 @@ NBP_MODULE_SETUP(mainSetup)
     for (unsigned int i = 0; i < 4; ++i) {
         int err = SAMPLE_SEMAPHORE_INIT(g_semaphores[i]);
         if (err != 0) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_SYNC_ERROR,
                 "failed to init semaphore"
             );
             NBP_EXIT(NBP_ERROR_CODE_SYNC_ERROR);
+            // LCOV_EXCL_STOP
         }
     }
 }
@@ -60,11 +62,13 @@ NBP_MODULE_TEARDOWN(mainTeardown)
     for (unsigned int i = 0; i < 4; ++i) {
         int err = SAMPLE_SEMAPHORE_UNINIT(g_semaphores[i]);
         if (err != 0) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_SYNC_ERROR,
                 "failed to uninit semaphore"
             );
             NBP_EXIT(NBP_ERROR_CODE_SYNC_ERROR);
+            // LCOV_EXCL_STOP
         }
     }
 }
@@ -81,20 +85,24 @@ NBP_MODULE_SETUP(setup)
 
     err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[order[0]]);
     if (err != 0) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
             "failed to release semaphore"
         );
         NBP_EXIT(NBP_ERROR_CODE_SYNC_ERROR);
+        // LCOV_EXCL_STOP
     }
 
     err = SAMPLE_SEMAPHORE_WAIT(g_semaphores[order[1]]);
     if (err != 0) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
             "failed to wait semaphore"
         );
         NBP_EXIT(NBP_ERROR_CODE_SYNC_ERROR);
+        // LCOV_EXCL_STOP
     }
 }
 
@@ -110,20 +118,24 @@ NBP_MODULE_TEARDOWN(teardown)
 
     err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[order[0]]);
     if (err != 0) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
             "failed to release semaphore"
         );
         NBP_EXIT(NBP_ERROR_CODE_SYNC_ERROR);
+        // LCOV_EXCL_STOP
     }
 
     err = SAMPLE_SEMAPHORE_WAIT(g_semaphores[order[1]]);
     if (err != 0) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
             "failed to wait semaphore"
         );
         NBP_EXIT(NBP_ERROR_CODE_SYNC_ERROR);
+        // LCOV_EXCL_STOP
     }
 }
 

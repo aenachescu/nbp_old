@@ -131,6 +131,9 @@ NBP_TEST(test2)
     NBP_MODULE_ASSERT(1 != 1);
 }
 
+// these tests are skipped
+// LCOV_EXCL_START
+
 NBP_TEST(test3)
 {
     SAMPLE_SLEEP();
@@ -144,3 +147,5 @@ NBP_TEST(test4)
 
     NBP_CHECK(1 == 1);
 }
+
+// LCOV_EXCL_STOP

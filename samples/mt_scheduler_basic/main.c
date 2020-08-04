@@ -97,20 +97,24 @@ NBP_MODULE_SETUP(main_module_setup)
 
     err = SAMPLE_SEMAPHORE_INIT(g_semaphore1);
     if (err == 1) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
             "failed to init semaphore1"
         );
         NBP_EXIT(NBP_ERROR_CODE_SYNC_ERROR);
+        // LCOV_EXCL_STOP
     }
 
     err = SAMPLE_SEMAPHORE_INIT(g_semaphore2);
     if (err == 1) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
             "failed to init semaphore2"
         );
         NBP_EXIT(NBP_ERROR_CODE_SYNC_ERROR);
+        // LCOV_EXCL_STOP
     }
 }
 
@@ -120,24 +124,29 @@ NBP_MODULE_TEARDOWN(main_module_teardown)
 
     err = SAMPLE_SEMAPHORE_UNINIT(g_semaphore1);
     if (err == 1) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
             "failed to uninit semaphore1"
         );
         NBP_EXIT(NBP_ERROR_CODE_SYNC_ERROR);
+        // LCOV_EXCL_STOP
     }
 
     err = SAMPLE_SEMAPHORE_UNINIT(g_semaphore2);
     if (err == 1) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
             "failed to uninit semaphore2"
         );
         NBP_EXIT(NBP_ERROR_CODE_SYNC_ERROR);
+        // LCOV_EXCL_STOP
     }
 }
 
-NBP_MAIN_MODULE_FIXTURES(mt_scheduler_basic_sample, main_module_setup, main_module_teardown)
+NBP_MAIN_MODULE_FIXTURES(mt_scheduler_basic_sample, main_module_setup,
+    main_module_teardown)
 {
     NBP_TEST_RUN(test1);
     NBP_TEST_RUN(test2);
