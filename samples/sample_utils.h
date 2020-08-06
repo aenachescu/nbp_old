@@ -66,6 +66,7 @@ static inline void write_message_to_console(const char* msg)
 
 #include <unistd.h>
 #include <semaphore.h>
+#include <pthread.h>
 
 #define SAMPLE_FORCE_SLEEP_MS(ms) usleep(ms * 1000)
 
@@ -105,6 +106,18 @@ static inline void write_message_to_console(const char* msg)
 
 #define SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                           \
     __sync_add_and_fetch((ptr), (value))
+
+/*
+ * Thread wrapper
+ */
+
+#define SAMPLE_THREAD_ID_TYPE pthread_t
+
+#define SAMPLE_THREAD_ID_INVALID_VALUE 0
+
+#define SAMPLE_THREAD_GET_ID() pthread_self()
+
+#define SAMPLE_THREAD_ID_EQUAL(a, b) pthread_equal(a, b)
 
 #endif // end if NBP_OS_LINUX
 
@@ -175,6 +188,26 @@ static inline void write_message_to_console(const char* msg)
 #define SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(ptr, value)                           \
     ((*(ptr)) += value)
 #endif // end if SAMPLE_ATOMIC_UINT_ADD_AND_FETCH
+
+/*
+ * Thread wrapper if there is no NBP_OS_* defined
+ */
+
+#ifndef SAMPLE_THREAD_ID_TYPE
+#define SAMPLE_THREAD_ID_TYPE int
+#endif // end if SAMPLE_THREAD_ID_TYPE
+
+#ifndef SAMPLE_THREAD_ID_INVALID_VALUE
+#define SAMPLE_THREAD_ID_INVALID_VALUE 0
+#endif // end if SAMPLE_THREAD_ID_INVALID_VALUE
+
+#ifndef SAMPLE_THREAD_GET_ID
+#define SAMPLE_THREAD_GET_ID() 0
+#endif // end if SAMPLE_THREAD_GET_ID
+
+#ifndef SAMPLE_THREAD_ID_EQUAL
+#define SAMPLE_THREAD_ID_EQUAL(a, b) 0
+#endif // end if SAMPLE_THREAD_ID_EQUAL
 
 /*
  * SAMPLE_FORCE_SLEEP_MS implementation if there is no NBP_OS_* defined
