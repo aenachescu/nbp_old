@@ -1,0 +1,43 @@
+Running...[2KRunning... 1/15[2KRunning... 2/15[2KRunning... 3/15[2KRunning... 4/15[2KRunning... 5/15[2KRunning... 6/15[2KRunning... 7/15[2KRunning... 8/15[2KRunning... 9/15[2KRunning... 10/15[2KRunning... 11/15[2KRunning... 12/15[2KRunning... 13/15[2KRunning... 14/15[2KRunning... 15/15[2K[32mmt_scheduler_run_module_on_same_thread[0m
+    [32mmodule[0m
+        [32mempty_module1[0m
+            [32mempty_submodule1[0m
+            [32mempty_submodule2[0m
+        [32msubmodule1[0m
+            [32msubsubmodule1[0m
+                [32mtest8[0m
+                [32mtest9[0m
+            [32mtest4[0m
+            [32msubsubmodule2[0m
+                [32mtest10[0m
+                [32mtest11[0m
+            [32mtest5[0m
+        [32mtest2[0m
+        [32mempty_module2[0m
+            [32mempty_submodule3[0m
+            [32mempty_submodule4[0m
+        [32msubmodule2[0m
+            [32mtest6[0m
+            [32msubsubmodule3[0m
+                [32mtest12[0m
+                [32mtest13[0m
+            [32mtest7[0m
+            [32msubsubmodule4[0m
+                [32mtest14[0m
+                [32mtest15[0m
+        [32mtest3[0m
+    [32mtest1[0m
+Passed  modules: [32m14[0m/14
+Failed  modules: [32m0[0m/14
+Skipped modules: [32m0[0m/14
+Passed  tests: [32m15[0m/15
+Failed  tests: [32m0[0m/15
+Skipped tests: [32m0[0m/15
+Passed checks: [32m14[0m/14
+Failed checks: [32m0[0m/14
+Passed test asserts: [32m0[0m/0
+Failed test asserts: [32m0[0m/0
+Passed module asserts: [32m0[0m/0
+Failed module asserts: [32m0[0m/0
+Passed asserts: [32m14[0m/14
+Failed asserts: [32m0[0m/14
