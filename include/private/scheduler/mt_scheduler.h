@@ -1366,6 +1366,9 @@ NBP_SCHEDULER_FUNC_UNINIT(nbp_mt_scheduler_uninit)
 
 NBP_SCHEDULER_FUNC_RUN(nbp_mt_scheduler_run)
 {
+    unsigned int index = 0;
+    nbp_mt_scheduler_test_t* test = NBP_MEMORY_NULL_POINTER;
+
     if (nbpMtSchedulerNumberOfTests == 0) {
         return;
     }
@@ -1375,7 +1378,18 @@ NBP_SCHEDULER_FUNC_RUN(nbp_mt_scheduler_run)
     nbp_mt_scheduler_processing_data();
     nbp_mt_scheduler_create_threads_and_run();
 
-    // TODO: free memory used by requestedWorkerId
+    for ( ; index < nbpMtSchedulerNumberOfTests; index++) {
+        test = &nbpMtSchedulerTests[index];
+        if (test->requestedWorkerId == NBP_MEMORY_NULL_POINTER) {
+            continue;
+        }
+
+        NBP_MEMORY_FREE(test->requestedWorkerId);
+        while (test->requestedWorkerId != NBP_MEMORY_NULL_POINTER) {
+            test->requestedWorkerId = NBP_MEMORY_NULL_POINTER;
+            test = test->nextTestOnThisWorker;
+        }
+    }
 
     NBP_MEMORY_FREE(nbpMtSchedulerAdjacencyMatrix);
     NBP_MEMORY_FREE(nbpMtSchedulerTests);
