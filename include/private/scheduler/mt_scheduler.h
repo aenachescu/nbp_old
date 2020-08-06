@@ -783,42 +783,53 @@ static void nbp_mt_scheduler_set_module_on_same_thread_with_module(
     }
 }
 
+static nbp_test_details_t* nbp_mt_scheduler_get_first_test_from_module(
+    nbp_module_details_t* module)
+{
+    nbp_test_details_t* firstTest = NBP_MEMORY_NULL_POINTER;
+    nbp_test_details_t* test;
+    nbp_module_details_t* submodule;
+
+    NBP_MODULE_FOR_EACH_TEST(module, test) {
+        return test;
+    }
+
+    NBP_MODULE_FOR_EACH_SUBMODULE(module, submodule) {
+        firstTest = nbp_mt_scheduler_get_first_test_from_module(submodule);
+        if (firstTest != NBP_MEMORY_NULL_POINTER) {
+            return firstTest;
+        }
+    }
+
+    return NBP_MEMORY_NULL_POINTER;
+}
+
 static void nbp_mt_scheduler_set_module_on_same_thread(
     nbp_module_details_t* module)
 {
     nbp_test_details_t* firstTest = NBP_MEMORY_NULL_POINTER;
     nbp_test_details_t* test;
-    nbp_module_details_t* firstSubmodule = NBP_MEMORY_NULL_POINTER;
     nbp_module_details_t* submodule;
     unsigned int firstTestId;
     unsigned int testId;
 
+    firstTest = nbp_mt_scheduler_get_first_test_from_module(module);
+    if (firstTest == NBP_MEMORY_NULL_POINTER) {
+        return;
+    }
+
+    firstTestId = NBP_TEST_GET_ID(firstTest);
+
     NBP_MODULE_FOR_EACH_TEST(module, test) {
-        if (firstTest == NBP_MEMORY_NULL_POINTER) {
-            firstTest = test;
-            firstTestId = NBP_TEST_GET_ID(firstTest);
-        } else {
-            testId = NBP_TEST_GET_ID(test);
-            nbp_mt_scheduler_set_test_on_same_thread_with_test(firstTestId, testId);
-        }
+        testId = NBP_TEST_GET_ID(test);
+        nbp_mt_scheduler_set_test_on_same_thread_with_test(firstTestId, testId);
     }
 
     NBP_MODULE_FOR_EACH_SUBMODULE(module, submodule) {
-        if (firstTest != NBP_MEMORY_NULL_POINTER) {
-            nbp_mt_scheduler_set_module_on_same_thread_with_test(
-                submodule,
-                firstTestId
-            );
-        } else {
-            if (firstSubmodule == NBP_MEMORY_NULL_POINTER) {
-                firstSubmodule = submodule;
-            } else {
-                nbp_mt_scheduler_set_module_on_same_thread_with_module(
-                    firstSubmodule,
-                    submodule
-                );
-            }
-        }
+        nbp_mt_scheduler_set_module_on_same_thread_with_test(
+            submodule,
+            firstTestId
+        );
     }
 }
 
