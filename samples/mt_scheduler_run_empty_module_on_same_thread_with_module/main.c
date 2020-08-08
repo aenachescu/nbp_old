@@ -30,8 +30,23 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
+SAMPLE_THREAD_ID_TYPE test1ThreadId = SAMPLE_THREAD_ID_INVALID_VALUE;
+SAMPLE_THREAD_ID_TYPE test2ThreadId = SAMPLE_THREAD_ID_INVALID_VALUE;
+SAMPLE_THREAD_ID_TYPE test3ThreadId = SAMPLE_THREAD_ID_INVALID_VALUE;
+SAMPLE_THREAD_ID_TYPE test4ThreadId = SAMPLE_THREAD_ID_INVALID_VALUE;
+SAMPLE_THREAD_ID_TYPE test5ThreadId = SAMPLE_THREAD_ID_INVALID_VALUE;
+SAMPLE_THREAD_ID_TYPE test6ThreadId = SAMPLE_THREAD_ID_INVALID_VALUE;
+
 NBP_MAIN_MODULE(mt_scheduler_run_empty_module_on_same_thread_with_module)
 {
+    NBP_TEST_RUN_CTX(
+        test7,
+        NBP_MT_SCHEDULER_CTX(
+            NBP_MT_SCHEDULER_RUN_AFTER_MODULE(module),
+            NBP_MT_SCHEDULER_RUN_AFTER_MODULE(empty_module)
+        )
+    );
+
     NBP_MODULE_RUN(module);
     NBP_MODULE_RUN_CTX(
         empty_module,
@@ -92,35 +107,58 @@ NBP_MODULE(submodule2)
 NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
-}
+
+    test1ThreadId = SAMPLE_THREAD_GET_ID();
+    NBP_ASSERT(test1ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);}
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+
+    test2ThreadId = SAMPLE_THREAD_GET_ID();
+    NBP_ASSERT(test2ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
 }
 
 NBP_TEST(test3)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+
+    test3ThreadId = SAMPLE_THREAD_GET_ID();
+    NBP_ASSERT(test3ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
 }
 
 NBP_TEST(test4)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+
+    test4ThreadId = SAMPLE_THREAD_GET_ID();
+    NBP_ASSERT(test4ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
 }
 
 NBP_TEST(test5)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+
+    test5ThreadId = SAMPLE_THREAD_GET_ID();
+    NBP_ASSERT(test5ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
 }
 
 NBP_TEST(test6)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+
+    test6ThreadId = SAMPLE_THREAD_GET_ID();
+    NBP_ASSERT(test6ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+}
+
+NBP_TEST(test7)
+{
+    SAMPLE_SLEEP();
+
+    NBP_CHECK(test1ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test2ThreadId));
+    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test3ThreadId));
+    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test4ThreadId));
+    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test5ThreadId));
+    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test6ThreadId));
 }

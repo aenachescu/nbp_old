@@ -678,6 +678,27 @@ static nbp_mt_scheduler_test_t* nbp_mt_scheduler_queue_pop(unsigned int workerId
     return test;
 }
 
+static nbp_test_details_t* nbp_mt_scheduler_get_first_test_from_module(
+    nbp_module_details_t* module)
+{
+    nbp_test_details_t* firstTest = NBP_MEMORY_NULL_POINTER;
+    nbp_test_details_t* test;
+    nbp_module_details_t* submodule;
+
+    NBP_MODULE_FOR_EACH_TEST(module, test) {
+        return test;
+    }
+
+    NBP_MODULE_FOR_EACH_SUBMODULE(module, submodule) {
+        firstTest = nbp_mt_scheduler_get_first_test_from_module(submodule);
+        if (firstTest != NBP_MEMORY_NULL_POINTER) {
+            return firstTest;
+        }
+    }
+
+    return NBP_MEMORY_NULL_POINTER;
+}
+
 static void nbp_mt_scheduler_set_test_on_same_thread_with_test(
     unsigned int testId1, unsigned int testId2)
 {
@@ -769,39 +790,36 @@ static void nbp_mt_scheduler_set_module_on_same_thread_with_test(
 static void nbp_mt_scheduler_set_module_on_same_thread_with_module(
     nbp_module_details_t* module1, nbp_module_details_t* module2)
 {
-    nbp_test_details_t* test;
-    nbp_module_details_t* submodule;
-    unsigned int testId;
+    nbp_test_details_t* module1FirstTest = NBP_MEMORY_NULL_POINTER;
+    nbp_test_details_t* module2FirstTest = NBP_MEMORY_NULL_POINTER;
+    unsigned int module1FirstTestId = 0;
+    unsigned int module2FirstTestId = 0;
 
-    NBP_MODULE_FOR_EACH_TEST(module1, test) {
-        testId = NBP_TEST_GET_ID(test);
-        nbp_mt_scheduler_set_module_on_same_thread_with_test(module2, testId);
+    module1FirstTest = nbp_mt_scheduler_get_first_test_from_module(module1);
+    if (module1FirstTest != NBP_MEMORY_NULL_POINTER) {
+        module1FirstTestId = NBP_TEST_GET_ID(module1FirstTest);
+        nbp_mt_scheduler_set_module_on_same_thread_with_test(
+            module1,
+            module1FirstTestId
+        );
     }
 
-    NBP_MODULE_FOR_EACH_SUBMODULE(module1, submodule) {
-        nbp_mt_scheduler_set_module_on_same_thread_with_module(submodule, module2);
-    }
-}
-
-static nbp_test_details_t* nbp_mt_scheduler_get_first_test_from_module(
-    nbp_module_details_t* module)
-{
-    nbp_test_details_t* firstTest = NBP_MEMORY_NULL_POINTER;
-    nbp_test_details_t* test;
-    nbp_module_details_t* submodule;
-
-    NBP_MODULE_FOR_EACH_TEST(module, test) {
-        return test;
+    module2FirstTest = nbp_mt_scheduler_get_first_test_from_module(module2);
+    if (module2FirstTest != NBP_MEMORY_NULL_POINTER) {
+        module2FirstTestId = NBP_TEST_GET_ID(module2FirstTest);
+        nbp_mt_scheduler_set_module_on_same_thread_with_test(
+            module2,
+            module2FirstTestId
+        );
     }
 
-    NBP_MODULE_FOR_EACH_SUBMODULE(module, submodule) {
-        firstTest = nbp_mt_scheduler_get_first_test_from_module(submodule);
-        if (firstTest != NBP_MEMORY_NULL_POINTER) {
-            return firstTest;
-        }
+    if (module1FirstTest != NBP_MEMORY_NULL_POINTER &&
+        module2FirstTest != NBP_MEMORY_NULL_POINTER) {
+        nbp_mt_scheduler_set_test_on_same_thread_with_test(
+            module1FirstTestId,
+            module2FirstTestId
+        );
     }
-
-    return NBP_MEMORY_NULL_POINTER;
 }
 
 static void nbp_mt_scheduler_set_module_on_same_thread(
