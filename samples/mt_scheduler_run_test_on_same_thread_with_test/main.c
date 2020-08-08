@@ -89,7 +89,8 @@ NBP_MAIN_MODULE(mt_scheduler_run_test_on_same_thread_with_test)
     NBP_TEST_RUN_CTX(
         test10,
         NBP_MT_SCHEDULER_CTX(
-            NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_TEST(test9)
+            NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_TEST(test9),
+            NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_TEST(test7)
         )
     );
     NBP_TEST_RUN_CTX(
