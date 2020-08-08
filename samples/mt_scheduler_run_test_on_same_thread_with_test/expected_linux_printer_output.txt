@@ -1,0 +1,18 @@
+Running...[2KRunning... 1/3[2KRunning... 2/3[2KRunning... 3/3[2K[32mmt_scheduler_run_test_on_same_thread_with_test[0m
+    [32mtest1[0m
+    [32mtest2[0m
+    [32mtest3[0m
+Passed  modules: [32m1[0m/1
+Failed  modules: [32m0[0m/1
+Skipped modules: [32m0[0m/1
+Passed  tests: [32m3[0m/3
+Failed  tests: [32m0[0m/3
+Skipped tests: [32m0[0m/3
+Passed checks: [32m2[0m/2
+Failed checks: [32m0[0m/2
+Passed test asserts: [32m0[0m/0
+Failed test asserts: [32m0[0m/0
+Passed module asserts: [32m0[0m/0
+Failed module asserts: [32m0[0m/0
+Passed asserts: [32m2[0m/2
+Failed asserts: [32m0[0m/2

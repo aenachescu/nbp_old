@@ -61,6 +61,7 @@ list(APPEND SAMPLES basic
     mt_scheduler_run_test_before_submodule
     mt_scheduler_run_module_on_same_thread
     mt_scheduler_run_module_on_same_thread_2
+    mt_scheduler_run_test_on_same_thread_with_test
 )
 
 # Custom flags lists for targets
@@ -124,6 +125,7 @@ list(APPEND SAMPLES_CFLAGS ""
     ${MT_SCHEDULER_FLAGS}
     ${MT_SCHEDULER_FLAGS}
     ${MT_SCHEDULER_FLAGS}
+    ${MT_SCHEDULER_FLAGS}
 )
 
 list (APPEND SAMPLES_LFLAGS ""
@@ -165,6 +167,7 @@ list (APPEND SAMPLES_LFLAGS ""
     ""
     ${MT_SCHEDULER_LINK_FLAGS}
     ""
+    ${MT_SCHEDULER_LINK_FLAGS}
     ${MT_SCHEDULER_LINK_FLAGS}
     ${MT_SCHEDULER_LINK_FLAGS}
     ${MT_SCHEDULER_LINK_FLAGS}
