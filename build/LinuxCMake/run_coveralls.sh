@@ -88,6 +88,7 @@ declare -a arr=(
     "mt_scheduler_run_module_on_same_thread_sample"
     "mt_scheduler_run_module_on_same_thread_2_sample"
     "mt_scheduler_run_test_on_same_thread_with_test_sample"
+    "mt_scheduler_run_test_on_same_thread_with_module_sample"
 )
 
 files=""

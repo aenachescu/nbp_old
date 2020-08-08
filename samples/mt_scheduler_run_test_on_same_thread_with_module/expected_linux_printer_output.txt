@@ -1,0 +1,66 @@
+Running...[2KRunning... 1/25[2KRunning... 2/25[2KRunning... 3/25[2KRunning... 4/25[2KRunning... 5/25[2KRunning... 6/25[2KRunning... 7/25[2KRunning... 8/25[2KRunning... 9/25[2KRunning... 10/25[2KRunning... 11/25[2KRunning... 12/25[2KRunning... 13/25[2KRunning... 14/25[2KRunning... 15/25[2KRunning... 16/25[2KRunning... 17/25[2KRunning... 18/25[2KRunning... 19/25[2KRunning... 20/25[2KRunning... 21/25[2KRunning... 22/25[2KRunning... 23/25[2KRunning... 24/25[2KRunning... 25/25[2K[32mmt_scheduler_run_test_on_same_thread_with_module[0m
+    [32mtest1[0m
+    [32mtest2[0m
+    [32mtest3[0m
+    [32mmodule1[0m
+        [32mempty_module1[0m
+            [32mempty_submodule1[0m
+            [32mempty_submodule2[0m
+        [32msubmodule1[0m
+            [32msubsubmodule1[0m
+                [32mtest10[0m
+                [32mtest11[0m
+            [32mtest6[0m
+            [32msubsubmodule2[0m
+                [32mtest12[0m
+                [32mtest13[0m
+            [32mtest7[0m
+        [32mtest4[0m
+        [32mempty_module2[0m
+            [32mempty_submodule3[0m
+            [32mempty_submodule4[0m
+        [32msubmodule2[0m
+            [32mtest8[0m
+            [32msubsubmodule3[0m
+                [32mtest14[0m
+                [32mtest15[0m
+            [32mtest9[0m
+            [32msubsubmodule4[0m
+                [32mtest16[0m
+                [32mtest17[0m
+        [32mtest5[0m
+    [32mmodule2[0m
+        [32mempty_module3[0m
+            [32mempty_submodule5[0m
+            [32mempty_submodule6[0m
+        [32msubmodule3[0m
+            [32msubsubmodule5[0m
+                [32mtest18[0m
+                [32mtest19[0m
+            [32msubsubmodule6[0m
+                [32mtest20[0m
+                [32mtest21[0m
+        [32mempty_module4[0m
+            [32mempty_submodule7[0m
+            [32mempty_submodule8[0m
+        [32msubmodule4[0m
+            [32msubsubmodule7[0m
+                [32mtest22[0m
+                [32mtest23[0m
+            [32msubsubmodule8[0m
+                [32mtest24[0m
+                [32mtest25[0m
+Passed  modules: [32m27[0m/27
+Failed  modules: [32m0[0m/27
+Skipped modules: [32m0[0m/27
+Passed  tests: [32m25[0m/25
+Failed  tests: [32m0[0m/25
+Skipped tests: [32m0[0m/25
+Passed checks: [32m24[0m/24
+Failed checks: [32m0[0m/24
+Passed test asserts: [32m0[0m/0
+Failed test asserts: [32m0[0m/0
+Passed module asserts: [32m0[0m/0
+Failed module asserts: [32m0[0m/0
+Passed asserts: [32m24[0m/24
+Failed asserts: [32m0[0m/24
