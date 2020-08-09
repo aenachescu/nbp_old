@@ -196,7 +196,11 @@ NBP_TEST(test8)
     SAMPLE_SLEEP();
     NBP_TEST_ASSERT(1);
     NBP_TEST_ASSERT(a == b);
+
+    // this assert is not executed because the above assert fails.
+    // LCOV_EXCL_START
     NBP_TEST_ASSERT_PASS_MSG(c == d, "peeeerfect");
+    // LCOV_EXCL_STOP
 }
 
 NBP_TEST(test9)

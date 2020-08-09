@@ -73,11 +73,13 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_basic_scheduler_add_test)
         NBP_MEMORY_ALLOC(sizeof(nbp_basic_scheduler_data_t));
 
     if (nbpBasicSchedulerDataLast->next == NBP_MEMORY_NULL_POINTER) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not add test"
         );
         return;
+        // LCOV_EXCL_STOP
     }
 
     nbpBasicSchedulerDataLast = nbpBasicSchedulerDataLast->next;

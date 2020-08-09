@@ -30,6 +30,10 @@ SOFTWARE.
 
 unsigned int nbpTotalNumberOfModules = 0;
 
+// these fixtures are not run because if they are used then the fixture pfn will
+// be replace with NBP_MEMORY_NULL_POINTER
+
+// LCOV_EXCL_START
 NBP_MODULE_SETUP(nbp_module_empty_setup_func)
 {
 }
@@ -37,6 +41,7 @@ NBP_MODULE_SETUP(nbp_module_empty_setup_func)
 NBP_MODULE_TEARDOWN(nbp_module_empty_teardown_func)
 {
 }
+// LCOV_EXCL_STOP
 
 static void nbp_module_init(nbp_module_details_t* module,
     nbp_module_details_t* parent, nbp_module_setup_pfn_t setupFunc,
@@ -54,14 +59,18 @@ static void nbp_module_init(nbp_module_details_t* module,
 
     int errCode = NBP_SYNC_EVENT_INIT(module->runEvent);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT(errCode);
         NBP_EXIT(errCode);
+        // LCOV_EXCL_STOP
     }
 
     errCode = NBP_SYNC_EVENT_INIT(module->setupEvent);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT(errCode);
         NBP_EXIT(errCode);
+        // LCOV_EXCL_STOP
     }
 
     nbp_module_setup_pfn_t emptyModuleSetup =

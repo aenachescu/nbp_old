@@ -189,23 +189,32 @@ NBP_TEST(test6)
     NBP_MODULE_ASSERT(1 != 1);
 }
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test7)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test8)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test9)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
 NBP_TEST(test10)
 {
@@ -249,53 +258,77 @@ NBP_TEST(test16)
     NBP_MODULE_ASSERT(1 == 1);
 }
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test17)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test18)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test19)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test20)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test21)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test22)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test23)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test24)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
 NBP_TEST(test25)
 {
@@ -303,23 +336,32 @@ NBP_TEST(test25)
     NBP_MODULE_ASSERT(1 != 1);
 }
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test26)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test27)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
+// this test is skipped
+// LCOV_EXCL_START
 NBP_TEST(test28)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT(1 == 1);
 }
+// LCOV_EXCL_STOP
 
 NBP_TEST(test29)
 {

@@ -30,6 +30,10 @@ SOFTWARE.
 
 unsigned int nbpTotalNumberOfTests = 0;
 
+// these fixtures are not run because if they are used then the fixture pfn will
+// be replace with NBP_MEMORY_NULL_POINTER
+
+// LCOV_EXCL_START
 NBP_TEST_SETUP(nbp_test_empty_setup_func)
 {
 }
@@ -37,6 +41,7 @@ NBP_TEST_SETUP(nbp_test_empty_setup_func)
 NBP_TEST_TEARDOWN(nbp_test_empty_teardown_func)
 {
 }
+// LCOV_EXCL_STOP
 
 static void nbp_test_init(nbp_test_details_t* test,
     nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,
