@@ -45,8 +45,10 @@ const char* nbp_printer_operator_to_string(int op)
             return "<=";
     }
 
+    // LCOV_EXCL_START
     NBP_ERROR_REPORT(NBP_ERROR_CODE_UNKNOWN_OPERATOR);
     return "unknown";
+    // LCOV_EXCL_STOP
 }
 
 void nbp_printer_notify_report_error(int errCode, int line,

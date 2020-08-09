@@ -189,11 +189,13 @@ end:
         state
     );
     if (oldVal != NBP_MODULE_STATE_RUNNING) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
             "module is not running"
         );
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
+        // LCOV_EXCL_STOP
     }
 
     if (module->parent == NBP_MEMORY_NULL_POINTER) {
@@ -212,11 +214,13 @@ end:
             parentNum = &module->parent->ownModules.numSkipped;
             break;
         default:
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
                 "unknown module state"
             );
             NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
+            // LCOV_EXCL_STOP
     }
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(parentNum, 1);
@@ -247,11 +251,13 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
             NBP_TEST_STATE_PASSED
         );
         if (oldVal != NBP_TEST_STATE_RUNNING) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
                 "test is not running"
             );
             NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_TEST_STATE);
+            // LCOV_EXCL_STOP
         }
 
         NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numPassed, 1);
@@ -264,11 +270,13 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
         NBP_TEST_STATE_FAILED
     );
     if (oldVal != NBP_TEST_STATE_RUNNING) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
             "test is not running"
         );
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_TEST_STATE);
+        // LCOV_EXCL_STOP
     }
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numFailed, 1);
@@ -293,8 +301,10 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
     if (oldVal == NBP_MODULE_FLAGS_PROCESSED) {
         NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_WAIT(module->setupEvent);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
+            // LCOV_EXCL_STOP
         }
 
         oldVal = NBP_SYNC_ATOMIC_UINT_LOAD(&module->flags);
@@ -303,8 +313,10 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
             return oldVal;
         }
 
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+        // LCOV_EXCL_STOP
     }
 
     if (oldVal == NBP_MODULE_FLAGS_NOT_INITIALIZED) {
@@ -316,8 +328,10 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
 
             NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_NOTIFY(module->setupEvent);
             if (errCode != NBP_ERROR_CODE_SUCCESS) {
+                // LCOV_EXCL_START
                 NBP_ERROR_REPORT(errCode);
                 NBP_EXIT(errCode);
+                // LCOV_EXCL_STOP
             }
 
             return NBP_MODULE_FLAGS_PROCESSED;
@@ -330,18 +344,24 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
                 NBP_MODULE_FLAGS_SKIP
             );
             if (oldVal != NBP_MODULE_FLAGS_PROCESSED) {
+                // LCOV_EXCL_START
                 NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
                 NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+                // LCOV_EXCL_STOP
             }
             return NBP_MODULE_FLAGS_SKIP;
         }
 
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+        // LCOV_EXCL_STOP
     }
 
+    // LCOV_EXCL_START
     NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
     NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+    // LCOV_EXCL_STOP
 }
 
 static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
@@ -352,38 +372,48 @@ static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numSkipped);
     if (module->ownTests.num != passed + failed + skipped) {
+        // LCOV_EXCL_START
         goto error;
+        // LCOV_EXCL_STOP
     }
 
     passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numPassed);
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numSkipped);
     if (module->ownModules.num != passed + failed + skipped) {
+        // LCOV_EXCL_START
         goto error;
+        // LCOV_EXCL_STOP
     }
 
     passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numPassed);
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numSkipped);
     if (module->subTests.num != passed + failed + skipped) {
+        // LCOV_EXCL_START
         goto error;
+        // LCOV_EXCL_STOP
     }
 
     passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numPassed);
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numSkipped);
     if (module->subModules.num != passed + failed + skipped) {
+        // LCOV_EXCL_START
         goto error;
+        // LCOV_EXCL_STOP
     }
 
     return;
 
+    // LCOV_EXCL_START
 error:
     NBP_ERROR_REPORT_CTX_STRING(
         NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
         "the sum of numPassed, numFailed and numSkipped is not equal to num"
     );
     NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+    // LCOV_EXCL_STOP
 }
 
 static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
@@ -415,11 +445,13 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
             }
 
             if (module->emptySubmodulesNum != numOfCompletedEmptySubmodules) {
+                // LCOV_EXCL_START
                 NBP_ERROR_REPORT_CTX_STRING(
                     NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
                     "unexpected number of completed empty submodules"
                 );
                 NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+                // LCOV_EXCL_STOP
             }
         }
 
@@ -428,11 +460,13 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
         }
 
         if (module->taskNum < num) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
                 "there are too many completed tasks"
             );
             NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+            // LCOV_EXCL_STOP
         }
 
         nbp_scheduler_verify_module_stats(module);
@@ -451,14 +485,18 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 
         errCode = NBP_SYNC_EVENT_UNINIT(module->runEvent);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
+            // LCOV_EXCL_STOP
         }
 
         errCode = NBP_SYNC_EVENT_UNINIT(module->setupEvent);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
+            // LCOV_EXCL_STOP
         }
 
         module = module->parent;
@@ -533,11 +571,13 @@ static void nbp_scheduler_run_test_skipped(nbp_test_details_t* test)
         NBP_TEST_STATE_SKIPPED
     );
     if (oldVal != NBP_TEST_STATE_RUNNING) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
             "test is not running"
         );
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_TEST_STATE);
+        // LCOV_EXCL_STOP
     }
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numSkipped, 1);
@@ -560,8 +600,10 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
     if (oldVal == NBP_MODULE_STATE_RUNNING) {
         NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_WAIT(module->runEvent);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
+            // LCOV_EXCL_STOP
         }
 
         return NBP_MODULE_STATE_RUNNING;
@@ -570,29 +612,35 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
     if (oldVal == NBP_MODULE_STATE_READY) {
         unsigned int parentState = nbp_scheduler_run_module(module->parent);
         if (parentState != NBP_MODULE_STATE_RUNNING) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
                 "parent module is not running"
             );
             NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
+            // LCOV_EXCL_STOP
         }
 
         nbp_printer_notify_module_started(module);
 
         NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_NOTIFY(module->runEvent);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
+            // LCOV_EXCL_STOP
         }
 
         return NBP_MODULE_STATE_RUNNING;
     }
 
+    // LCOV_EXCL_START
     NBP_ERROR_REPORT_CTX_STRING(
         NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
         "module is not ready or running"
     );
     NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
+    // LCOV_EXCL_STOP
 }
 
 void nbp_scheduler_run_test(nbp_test_details_t* test)
@@ -600,8 +648,10 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
     // the test can be run only from NBP_SCHEDULER_FUNC_RUN function
     extern int nbpSchedulerRunEnabled;
     if (nbpSchedulerRunEnabled != 1) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT(NBP_ERROR_CODE_SCHEDULER_RUN_DISABLED);
         return;
+        // LCOV_EXCL_STOP
     }
 
     unsigned int oldVal = NBP_SYNC_ATOMIC_UINT_CAS(
@@ -611,20 +661,24 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
     );
 
     if (oldVal != NBP_TEST_STATE_READY) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
             "test is not ready"
         );
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_TEST_STATE);
+        // LCOV_EXCL_STOP
     }
 
     unsigned int moduleState = nbp_scheduler_run_module(test->module);
     if (moduleState != NBP_MODULE_STATE_RUNNING) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
             "module is not running"
         );
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
+        // LCOV_EXCL_STOP
     }
 
     oldVal = NBP_SYNC_ATOMIC_UINT_CAS(
@@ -640,14 +694,18 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
         } else if (moduleFlags == NBP_MODULE_FLAGS_SKIP) {
             nbp_scheduler_run_test_skipped(test);
         } else {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
             NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+            // LCOV_EXCL_STOP
         }
     } else if (oldVal == NBP_TEST_FLAGS_SKIP) {
         nbp_scheduler_run_test_skipped(test);
     } else {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+        // LCOV_EXCL_STOP
     }
 
     nbp_scheduler_teardown_module(test->module);
@@ -670,11 +728,13 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
         NBP_MODULE_STATE_RUNNING
     );
     if (moduleState != NBP_MODULE_STATE_READY) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
             "unexpected module state"
         );
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
+        // LCOV_EXCL_STOP
     }
 
     nbp_printer_notify_module_started(module);
@@ -685,11 +745,13 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
     while (moduleIdx != NBP_MEMORY_NULL_POINTER) {
         moduleState = NBP_SYNC_ATOMIC_UINT_LOAD(&moduleIdx->moduleState);
         if (moduleState != NBP_MODULE_STATE_READY) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
                 "unexpected module state"
             );
             NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
+            // LCOV_EXCL_STOP
         }
 
         nbp_scheduler_complete_empty_module(moduleIdx);
@@ -702,11 +764,13 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
     numberOfCompletedTasks = NBP_SYNC_ATOMIC_UINT_LOAD(&module->completedTaskNum);
 
     if (module->taskNum != numberOfCompletedTasks) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
             "number of completed tasks is not equal to number of tasks"
         );
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
+        // LCOV_EXCL_STOP
     }
 
     // update state & stats
@@ -717,11 +781,13 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
         NBP_MODULE_STATE_PASSED
     );
     if (moduleState != NBP_MODULE_STATE_RUNNING) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
             "unexpected module state"
         );
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE);
+        // LCOV_EXCL_STOP
     }
 
     nbp_scheduler_verify_module_stats(module);
@@ -739,14 +805,18 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
 
     errCode = NBP_SYNC_EVENT_UNINIT(module->runEvent);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT(errCode);
         NBP_EXIT(errCode);
+        // LCOV_EXCL_STOP
     }
 
     errCode = NBP_SYNC_EVENT_UNINIT(module->setupEvent);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT(errCode);
         NBP_EXIT(errCode);
+        // LCOV_EXCL_STOP
     }
 }
 

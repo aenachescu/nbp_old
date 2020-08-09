@@ -318,12 +318,14 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
 {
     int num = NBP_MT_SCHEDULER_NUMBER_OF_THREADS;
     if (num < 1) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_GENERIC_ERROR,
             "failed to get the number of threads"
         );
         NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
         return 1;
+        // LCOV_EXCL_STOP
     }
 
     return (unsigned int) num;
@@ -345,12 +347,14 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
 {
     int num = get_nprocs();
     if (num < 1) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_GENERIC_ERROR,
             "failed to get the number of threads"
         );
         NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
         return 1;
+        // LCOV_EXCL_STOP
     }
 
     return (unsigned int) num;
@@ -665,12 +669,14 @@ void* nbp_mt_scheduler_create_ctx(unsigned long long numberOfRules, ...)
     nbp_mt_scheduler_context_t* ctx =
         (nbp_mt_scheduler_context_t*) NBP_MEMORY_ALLOC(size);
     if (ctx == NBP_MEMORY_NULL_POINTER) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not alloc context"
         );
         NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
         return NBP_MEMORY_NULL_POINTER;
+        // LCOV_EXCL_STOP
     }
 
     va_start(args, numberOfRules);
@@ -794,8 +800,10 @@ static void nbp_mt_scheduler_set_test_on_same_thread_with_test(
         test1->requestedWorkerId =
             (unsigned int*) NBP_MEMORY_ALLOC(sizeof(unsigned int));
         if (test1->requestedWorkerId == NBP_MEMORY_NULL_POINTER) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(NBP_ERROR_CODE_OUT_OF_MEMORY);
             NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
+            // LCOV_EXCL_STOP
         }
 
         *test1->requestedWorkerId = NBP_MT_SCHEDULER_PRIVATE_INVALID_WORKER_ID;
@@ -1040,8 +1048,10 @@ static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_f
 
     errCode = NBP_MT_SCHEDULER_MUTEX_LOCK(nbpMtSchedulerMutex);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT(errCode);
         NBP_EXIT(errCode);
+        // LCOV_EXCL_STOP
     }
 
     while (nbpMtSchedulerNumberOfDispatchedTests != nbpMtSchedulerNumberOfTests) {
@@ -1052,8 +1062,10 @@ static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_f
                 nbpMtSchedulerMutex
             );
             if (errCode != NBP_ERROR_CODE_SUCCESS) {
+                // LCOV_EXCL_START
                 NBP_ERROR_REPORT(errCode);
                 NBP_EXIT(errCode);
+                // LCOV_EXCL_STOP
             }
 
             continue;
@@ -1063,16 +1075,20 @@ static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_f
 
         errCode = NBP_MT_SCHEDULER_MUTEX_UNLOCK(nbpMtSchedulerMutex);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
+            // LCOV_EXCL_STOP
         }
 
         NBP_SCHEDULER_RUN_TEST(test->test);
 
         errCode = NBP_MT_SCHEDULER_MUTEX_LOCK(nbpMtSchedulerMutex);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
+            // LCOV_EXCL_STOP
         }
 
         notifyWorkers = nbp_mt_scheduler_test_completed(
@@ -1084,27 +1100,35 @@ static NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE nbp_mt_scheduler_worker_thread_f
 
         errCode = NBP_MT_SCHEDULER_MUTEX_UNLOCK(nbpMtSchedulerMutex);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
+            // LCOV_EXCL_STOP
         }
 
         errCode = NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ALL(nbpMtSchedulerCondVar);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
+            // LCOV_EXCL_STOP
         }
 
         errCode = NBP_MT_SCHEDULER_MUTEX_LOCK(nbpMtSchedulerMutex);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
+            // LCOV_EXCL_STOP
         }
     }
 
     errCode = NBP_MT_SCHEDULER_MUTEX_UNLOCK(nbpMtSchedulerMutex);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT(errCode);
         NBP_EXIT(errCode);
+        // LCOV_EXCL_STOP
     }
 
     return NBP_MT_SCHEDULER_THREAD_FUNC_RETURN_TYPE_DEFAULT_VALUE;
@@ -1137,11 +1161,13 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
                 continue;
             }
 
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown rule type"
             );
             NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
+            // LCOV_EXCL_STOP
         }
 
         if (rule->dataType == NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_MODULE) {
@@ -1160,18 +1186,22 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
                 continue;
             }
 
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown rule type"
             );
             NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
+            // LCOV_EXCL_STOP
         }
 
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_GENERIC_ERROR,
             "unknown rule data type"
         );
         NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
+        // LCOV_EXCL_STOP
     }
 }
 
@@ -1202,11 +1232,13 @@ static void nbp_mt_scheduler_processing_module_context(
                 continue;
             }
 
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown rule type"
             );
             NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
+            // LCOV_EXCL_STOP
         }
 
         if (rule->dataType == NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_MODULE) {
@@ -1225,11 +1257,13 @@ static void nbp_mt_scheduler_processing_module_context(
                 continue;
             }
 
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown rule type"
             );
             NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
+            // LCOV_EXCL_STOP
         }
 
         if (rule->dataType == NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_EMPTY) {
@@ -1238,18 +1272,22 @@ static void nbp_mt_scheduler_processing_module_context(
                 continue;
             }
 
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown rule type"
             );
             NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
+            // LCOV_EXCL_STOP
         }
 
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_GENERIC_ERROR,
             "unknown rule data type"
         );
         NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
+        // LCOV_EXCL_STOP
     }
 }
 
@@ -1261,11 +1299,13 @@ static void nbp_mt_scheduler_allocate_array_of_tests()
         nbpMtSchedulerNumberOfTests * sizeof(nbp_mt_scheduler_test_t)
     );
     if (nbpMtSchedulerTests == NBP_MEMORY_NULL_POINTER) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not alloc array of tests"
         );
         NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
+        // LCOV_EXCL_STOP
     }
 
     for ( ; index < nbpMtSchedulerNumberOfTests; index++) {
@@ -1294,11 +1334,13 @@ static void nbp_mt_scheduler_allocate_adjacency_matrix()
         numberOfElements * sizeof(unsigned int)
     );
     if (nbpMtSchedulerAdjacencyMatrix == NBP_MEMORY_NULL_POINTER) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not alloc adjacency matrix"
         );
         NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
+        // LCOV_EXCL_STOP
     }
 
     for ( ; index < numberOfElements; index++) {
@@ -1330,11 +1372,13 @@ static void nbp_mt_scheduler_processing_data()
                 NBP_MEMORY_FREE(data->ctx);
             }
         } else {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_GENERIC_ERROR,
                 "unknown data type"
             );
             NBP_EXIT(NBP_ERROR_CODE_GENERIC_ERROR);
+            // LCOV_EXCL_STOP
         }
 
         tmp = data;
@@ -1368,11 +1412,13 @@ static void nbp_mt_scheduler_create_threads_and_run()
         numberOfThreads * sizeof(nbp_mt_scheduler_thread_t)
     );
     if (threads == NBP_MEMORY_NULL_POINTER) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not alloc array of threads"
         );
         NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
+        // LCOV_EXCL_STOP
     }
 
     for ( ; index < numberOfThreads; index++) {
@@ -1383,8 +1429,10 @@ static void nbp_mt_scheduler_create_threads_and_run()
             (void*) &threads[index].workerId
         );
         if (err != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(err, "could not create thread");
             NBP_EXIT(err);
+            // LCOV_EXCL_STOP
         }
     }
 
@@ -1393,8 +1441,10 @@ static void nbp_mt_scheduler_create_threads_and_run()
     for (index = 0; index < numberOfThreads; index++) {
         err = NBP_MT_SCHEDULER_THREAD_JOIN(threads[index].thread);
         if (err != NBP_ERROR_CODE_SUCCESS) {
+            // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(err, "failed to join thread");
             NBP_EXIT(err);
+            // LCOV_EXCL_STOP
         }
     }
 
@@ -1407,14 +1457,18 @@ NBP_SCHEDULER_FUNC_INIT(nbp_mt_scheduler_init)
 
     errCode = NBP_MT_SCHEDULER_MUTEX_INIT(nbpMtSchedulerMutex);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(errCode, "failed to init mutex");
         NBP_EXIT(errCode);
+        // LCOV_EXCL_STOP
     }
 
     errCode = NBP_MT_SCHEDULER_CONDVAR_INIT(nbpMtSchedulerCondVar);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(errCode, "failed to init conditional variable");
         NBP_EXIT(errCode);
+        // LCOV_EXCL_STOP
     }
 }
 
@@ -1443,14 +1497,18 @@ NBP_SCHEDULER_FUNC_UNINIT(nbp_mt_scheduler_uninit)
 
     errCode = NBP_MT_SCHEDULER_MUTEX_UNINIT(nbpMtSchedulerMutex);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(errCode, "failed to uninit mutex");
         NBP_EXIT(errCode);
+        // LCOV_EXCL_STOP
     }
 
     errCode = NBP_MT_SCHEDULER_CONDVAR_UNINIT(nbpMtSchedulerCondVar);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(errCode, "failed to uninit conditional variable");
         NBP_EXIT(errCode);
+        // LCOV_EXCL_STOP
     }
 }
 
@@ -1493,11 +1551,13 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_mt_scheduler_add_test)
         sizeof(nbp_mt_scheduler_data_t)
     );
     if (data == NBP_MEMORY_NULL_POINTER) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not add test"
         );
         NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
+        // LCOV_EXCL_STOP
     }
 
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST;
@@ -1523,11 +1583,13 @@ NBP_SCHEDULER_FUNC_ADD_TEST_CTX(nbp_mt_scheduler_add_test_ctx)
         sizeof(nbp_mt_scheduler_data_t)
     );
     if (data == NBP_MEMORY_NULL_POINTER) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not add test"
         );
         NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
+        // LCOV_EXCL_STOP
     }
 
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST;
@@ -1553,11 +1615,13 @@ NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(nbp_mt_scheduler_module_started_ctx)
         sizeof(nbp_mt_scheduler_data_t)
     );
     if (data == NBP_MEMORY_NULL_POINTER) {
+        // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_OUT_OF_MEMORY,
             "could not add module"
         );
         NBP_EXIT(NBP_ERROR_CODE_OUT_OF_MEMORY);
+        // LCOV_EXCL_STOP
     }
 
     data->dataType = NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE;
