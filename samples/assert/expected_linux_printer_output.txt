@@ -8,9 +8,9 @@ Running...[2KRunning... 1/32[2KRunning... 2/32[2KRunning... 3/32[2KRunni
             [32mtest15[0m
             [32mtest16[0m
         [31mtest5[0m
-            [31m1 != 1 (181)[0m
-        [31mtest6[0m
             [31m1 != 1 (187)[0m
+        [31mtest6[0m
+            [31m1 != 1 (193)[0m
         [33mtest7[0m
         [33msubmodule2[0m
             [33mtest17[0m

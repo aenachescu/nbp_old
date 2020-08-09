@@ -32,10 +32,10 @@ Running...[2KRunning... 1/22[2KRunning... 2/22[2KRunning... 3/22[2KRunni
             [32mtest18[0m
         [31msubmodule4[0m
             [31mtest19[0m
-                [31mfunc1() == func2(2) (276)[0m
+                [31mfunc1() == func2(2) (280)[0m
             [31mtest20[0m
-                [32mfunc2(1) == func2(1) (pass) (283)[0m
-                [31mfunc2(2) == func2(1) (fail) (284)[0m
+                [32mfunc2(1) == func2(1) (pass) (287)[0m
+                [31mfunc2(2) == func2(1) (fail) (288)[0m
             [32mtest21[0m
             [32mtest22[0m
         [31mtest6[0m
