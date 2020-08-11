@@ -57,6 +57,15 @@ static inline void write_uint_to_file(unsigned int value)
     }
 }
 
+static inline void write_uint_to_file_2(unsigned int value, unsigned int value2)
+{
+    FILE *fp = fopen("output.txt", "a");
+    if (fp != NULL) {
+        fprintf(fp, "%u %u\n", value, value2);
+        fclose(fp);
+    }
+}
+
 static inline void write_message_to_console(const char* msg)
 {
     printf("%s\n", msg);
