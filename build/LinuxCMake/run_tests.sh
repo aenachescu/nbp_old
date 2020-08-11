@@ -185,6 +185,7 @@ run_test mt_scheduler_run_module_on_same_thread_sample 0
 run_test mt_scheduler_run_module_on_same_thread_2_sample 0
 run_test mt_scheduler_run_test_on_same_thread_with_test_sample 0
 run_test mt_scheduler_run_test_on_same_thread_with_module_sample 0
+run_test fixtures_order_sample 0
 
 if [ $status -ne 0 ]; then
     echo -n $'\e[31mrun_tests failed\e[39m'
