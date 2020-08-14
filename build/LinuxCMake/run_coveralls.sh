@@ -91,6 +91,7 @@ declare -a arr=(
     "mt_scheduler_run_test_on_same_thread_with_module_sample"
     "fixtures_order_sample"
     "mt_scheduler_fixtures_order_sample"
+    "mt_scheduler_run_module_before_and_after_sample"
 )
 
 files=""
