@@ -439,6 +439,12 @@ SOFTWARE.
     test->testId
 
 /*
+ * TODO: add docs
+ */
+#define NBP_TEST_GET_MODULE(test)                                              \
+    test->module
+
+/*
  * @public doc
  *
  * @brief
