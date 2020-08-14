@@ -278,6 +278,11 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
+#define NBP_MODULE_GET_PARENT(module) module->parent
+
+/*
+ * TODO: add docs
+ */
 #define NBP_MODULE_GET_NAME(module) module->moduleName
 
 /*
