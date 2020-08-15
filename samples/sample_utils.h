@@ -338,6 +338,7 @@ void sample_utils_init()
 void sample_utils_uninit()
 {
     sample_utils_test_data_t* data = NBP_MEMORY_NULL_POINTER;
+    sample_utils_test_data_t* dataTmp = NBP_MEMORY_NULL_POINTER;
     int err;
 
     err = SAMPLE_MUTEX_LOCK(sampleUtilsTestDataListMutex);
@@ -348,8 +349,9 @@ void sample_utils_uninit()
 
     data = sampleUtilsTestDataListHead;
     while (data != NBP_MEMORY_NULL_POINTER) {
-        NBP_MEMORY_FREE(data);
+        dataTmp = data;
         data = data->next;
+        NBP_MEMORY_FREE(dataTmp);
     }
 
     sampleUtilsTestDataListHead = NBP_MEMORY_NULL_POINTER;
@@ -453,7 +455,7 @@ sample_utils_test_data_t* sample_utils_get_test_data_or_create(const char* name)
 
 int sample_utils_increment_run_data_recursively(nbp_test_details_t* test)
 {
-    int err;
+    int err = 0;
     int ret = 1;
     nbp_module_details_t* module = NBP_MEMORY_NULL_POINTER;
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
