@@ -43,26 +43,26 @@ list(APPEND SAMPLES basic
     mt_scheduler_empty_main_module_with_submodules
     mt_scheduler_run_test_before_empty_module
     mt_scheduler_run_test_after_empty_module
-    mt_scheduler_run_test_on_same_thread_with_empty_module
+    mt_scheduler_run_test_on_same_thread_as_empty_module
     mt_scheduler_run_module_after_empty_module
     mt_scheduler_run_module_before_empty_module
-    mt_scheduler_run_module_on_same_thread_with_empty_module
+    mt_scheduler_run_module_on_same_thread_as_empty_module
     mt_scheduler_run_empty_module_after_test
     mt_scheduler_run_empty_module_before_test
-    mt_scheduler_run_empty_module_on_same_thread_with_test
+    mt_scheduler_run_empty_module_on_same_thread_as_test
     mt_scheduler_run_empty_module_after_module
     mt_scheduler_run_empty_module_before_module
-    mt_scheduler_run_empty_module_on_same_thread_with_module
+    mt_scheduler_run_empty_module_on_same_thread_as_module
     mt_scheduler_run_empty_module_after_empty_module
     mt_scheduler_run_empty_module_before_empty_module
-    mt_scheduler_run_empty_module_on_same_thread_with_empty_module
+    mt_scheduler_run_empty_module_on_same_thread_as_empty_module
     mt_scheduler_run_empty_module_on_same_thread
     mt_scheduler_run_test_before_test_from_other_module
     mt_scheduler_run_test_before_submodule
     mt_scheduler_run_module_on_same_thread
     mt_scheduler_run_module_on_same_thread_2
-    mt_scheduler_run_test_on_same_thread_with_test
-    mt_scheduler_run_test_on_same_thread_with_module
+    mt_scheduler_run_test_on_same_thread_as_test
+    mt_scheduler_run_test_on_same_thread_as_module
     fixtures_order
     mt_scheduler_fixtures_order
     mt_scheduler_run_module_before_and_after

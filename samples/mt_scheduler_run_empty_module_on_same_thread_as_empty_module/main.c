@@ -30,13 +30,13 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_MAIN_MODULE(mt_scheduler_run_empty_module_on_same_thread_with_test)
+NBP_MAIN_MODULE(mt_scheduler_run_empty_module_on_same_thread_as_empty_module)
 {
-    NBP_TEST_RUN(test1);
+    NBP_MODULE_RUN(empty_module2);
     NBP_MODULE_RUN_CTX(
-        empty_module,
+        empty_module1,
         NBP_MT_SCHEDULER_CTX(
-            NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_TEST(test1)
+            NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_AS_MODULE(empty_module2)
         )
     );
 }
@@ -55,7 +55,7 @@ NBP_MODULE_TEARDOWN(teardownEmptyModule)
 
 // LCOV_EXCL_STOP
 
-NBP_MODULE_FIXTURES(empty_module, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE_FIXTURES(empty_module1, setupEmptyModule, teardownEmptyModule)
 {
     NBP_MODULE_RUN(empty_submodule1);
     NBP_MODULE_RUN(empty_submodule2);
@@ -69,8 +69,16 @@ NBP_MODULE_FIXTURES(empty_submodule2, setupEmptyModule, teardownEmptyModule)
 {
 }
 
-NBP_TEST(test1)
+NBP_MODULE_FIXTURES(empty_module2, setupEmptyModule, teardownEmptyModule)
 {
-    SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_MODULE_RUN(empty_submodule3);
+    NBP_MODULE_RUN(empty_submodule4);
+}
+
+NBP_MODULE_FIXTURES(empty_submodule3, setupEmptyModule, teardownEmptyModule)
+{
+}
+
+NBP_MODULE_FIXTURES(empty_submodule4, setupEmptyModule, teardownEmptyModule)
+{
 }

@@ -1,4 +1,4 @@
-Running...[2KRunning... 1/7[2KRunning... 2/7[2KRunning... 3/7[2KRunning... 4/7[2KRunning... 5/7[2KRunning... 6/7[2KRunning... 7/7[2K[32mmt_scheduler_run_module_on_same_thread_with_empty_module[0m
+Running...[2KRunning... 1/7[2KRunning... 2/7[2KRunning... 3/7[2KRunning... 4/7[2KRunning... 5/7[2KRunning... 6/7[2KRunning... 7/7[2K[32mmt_scheduler_run_empty_module_on_same_thread_as_module[0m
     [32mtest7[0m
     [32mmodule[0m
         [32msubmodule1[0m

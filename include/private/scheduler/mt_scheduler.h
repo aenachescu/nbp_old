@@ -112,7 +112,7 @@ void* nbp_mt_scheduler_create_ctx(
 /*
  * TODO: add docs
  */
-#define NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_TEST(test)                    \
+#define NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_AS_TEST(test)                      \
     nbp_mt_schduler_create_rule_from_test(                                     \
         NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD,                        \
         NBP_TEST_GET_PTR(test)                                                 \
@@ -121,7 +121,7 @@ void* nbp_mt_scheduler_create_ctx(
 /*
  * TODO: add docs
  */
-#define NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_MODULE(module)                \
+#define NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_AS_MODULE(module)                  \
     nbp_mt_schduler_create_rule_from_module(                                   \
         NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD,                        \
         NBP_MODULE_GET_PTR(module)                                             \
@@ -168,11 +168,11 @@ void* nbp_mt_scheduler_create_ctx(
     name)                                                                      \
     NBP_MODULE_INCLUDE(name);
 
-#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_TEST(\
+#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_AS_TEST(\
     name)                                                                      \
     NBP_TEST_INCLUDE(name);
 
-#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_MODULE(\
+#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_AS_MODULE(\
     name)                                                                      \
     NBP_MODULE_INCLUDE(name);
 
@@ -777,7 +777,7 @@ static nbp_test_details_t* nbp_mt_scheduler_get_first_test_from_module(
     return NBP_MEMORY_NULL_POINTER;
 }
 
-static void nbp_mt_scheduler_set_test_on_same_thread_with_test(
+static void nbp_mt_scheduler_set_test_on_same_thread_as_test(
     unsigned int testId1, unsigned int testId2)
 {
     nbp_mt_scheduler_test_t* test1;
@@ -850,7 +850,7 @@ static void nbp_mt_scheduler_set_test_on_same_thread_with_test(
     last->nextTestOnThisWorker = current;
 }
 
-static void nbp_mt_scheduler_set_module_on_same_thread_with_test(
+static void nbp_mt_scheduler_set_module_on_same_thread_as_test(
     nbp_module_details_t* module, unsigned int testId)
 {
     nbp_test_details_t* test;
@@ -859,15 +859,15 @@ static void nbp_mt_scheduler_set_module_on_same_thread_with_test(
 
     NBP_MODULE_FOR_EACH_TEST(module, test) {
         testId2 = NBP_TEST_GET_ID(test);
-        nbp_mt_scheduler_set_test_on_same_thread_with_test(testId, testId2);
+        nbp_mt_scheduler_set_test_on_same_thread_as_test(testId, testId2);
     }
 
     NBP_MODULE_FOR_EACH_SUBMODULE(module, submodule) {
-        nbp_mt_scheduler_set_module_on_same_thread_with_test(submodule, testId);
+        nbp_mt_scheduler_set_module_on_same_thread_as_test(submodule, testId);
     }
 }
 
-static void nbp_mt_scheduler_set_module_on_same_thread_with_module(
+static void nbp_mt_scheduler_set_module_on_same_thread_as_module(
     nbp_module_details_t* module1, nbp_module_details_t* module2)
 {
     nbp_test_details_t* module1FirstTest = NBP_MEMORY_NULL_POINTER;
@@ -878,7 +878,7 @@ static void nbp_mt_scheduler_set_module_on_same_thread_with_module(
     module1FirstTest = nbp_mt_scheduler_get_first_test_from_module(module1);
     if (module1FirstTest != NBP_MEMORY_NULL_POINTER) {
         module1FirstTestId = NBP_TEST_GET_ID(module1FirstTest);
-        nbp_mt_scheduler_set_module_on_same_thread_with_test(
+        nbp_mt_scheduler_set_module_on_same_thread_as_test(
             module1,
             module1FirstTestId
         );
@@ -887,7 +887,7 @@ static void nbp_mt_scheduler_set_module_on_same_thread_with_module(
     module2FirstTest = nbp_mt_scheduler_get_first_test_from_module(module2);
     if (module2FirstTest != NBP_MEMORY_NULL_POINTER) {
         module2FirstTestId = NBP_TEST_GET_ID(module2FirstTest);
-        nbp_mt_scheduler_set_module_on_same_thread_with_test(
+        nbp_mt_scheduler_set_module_on_same_thread_as_test(
             module2,
             module2FirstTestId
         );
@@ -895,7 +895,7 @@ static void nbp_mt_scheduler_set_module_on_same_thread_with_module(
 
     if (module1FirstTest != NBP_MEMORY_NULL_POINTER &&
         module2FirstTest != NBP_MEMORY_NULL_POINTER) {
-        nbp_mt_scheduler_set_test_on_same_thread_with_test(
+        nbp_mt_scheduler_set_test_on_same_thread_as_test(
             module1FirstTestId,
             module2FirstTestId
         );
@@ -920,11 +920,11 @@ static void nbp_mt_scheduler_set_module_on_same_thread(
 
     NBP_MODULE_FOR_EACH_TEST(module, test) {
         testId = NBP_TEST_GET_ID(test);
-        nbp_mt_scheduler_set_test_on_same_thread_with_test(firstTestId, testId);
+        nbp_mt_scheduler_set_test_on_same_thread_as_test(firstTestId, testId);
     }
 
     NBP_MODULE_FOR_EACH_SUBMODULE(module, submodule) {
-        nbp_mt_scheduler_set_module_on_same_thread_with_test(
+        nbp_mt_scheduler_set_module_on_same_thread_as_test(
             submodule,
             firstTestId
         );
@@ -1157,7 +1157,7 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
             }
 
             if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD) {
-                nbp_mt_scheduler_set_test_on_same_thread_with_test(testId, ruleDataTestId);
+                nbp_mt_scheduler_set_test_on_same_thread_as_test(testId, ruleDataTestId);
                 continue;
             }
 
@@ -1182,7 +1182,7 @@ static void nbp_mt_scheduler_processing_test_context(unsigned int testId,
             }
 
             if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD) {
-                nbp_mt_scheduler_set_module_on_same_thread_with_test(rule->module, testId);
+                nbp_mt_scheduler_set_module_on_same_thread_as_test(rule->module, testId);
                 continue;
             }
 
@@ -1228,7 +1228,7 @@ static void nbp_mt_scheduler_processing_module_context(
             }
 
             if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD) {
-                nbp_mt_scheduler_set_module_on_same_thread_with_test(module, ruleDataTestId);
+                nbp_mt_scheduler_set_module_on_same_thread_as_test(module, ruleDataTestId);
                 continue;
             }
 
@@ -1253,7 +1253,7 @@ static void nbp_mt_scheduler_processing_module_context(
             }
 
             if (rule->ruleType == NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD) {
-                nbp_mt_scheduler_set_module_on_same_thread_with_module(module, rule->module);
+                nbp_mt_scheduler_set_module_on_same_thread_as_module(module, rule->module);
                 continue;
             }
 

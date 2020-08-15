@@ -37,7 +37,7 @@ SAMPLE_THREAD_ID_TYPE test4ThreadId = SAMPLE_THREAD_ID_INVALID_VALUE;
 SAMPLE_THREAD_ID_TYPE test5ThreadId = SAMPLE_THREAD_ID_INVALID_VALUE;
 SAMPLE_THREAD_ID_TYPE test6ThreadId = SAMPLE_THREAD_ID_INVALID_VALUE;
 
-NBP_MAIN_MODULE(mt_scheduler_run_module_on_same_thread_with_empty_module)
+NBP_MAIN_MODULE(mt_scheduler_run_module_on_same_thread_as_empty_module)
 {
     NBP_TEST_RUN_CTX(
         test7,
@@ -50,7 +50,7 @@ NBP_MAIN_MODULE(mt_scheduler_run_module_on_same_thread_with_empty_module)
     NBP_MODULE_RUN_CTX(
         module,
         NBP_MT_SCHEDULER_CTX(
-            NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_WITH_MODULE(empty_module)
+            NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_AS_MODULE(empty_module)
         )
     );
     NBP_MODULE_RUN(empty_module);

@@ -1,4 +1,4 @@
-Running...[2KRunning... 1/1[2K[32mmt_scheduler_run_test_on_same_thread_with_empty_module[0m
+Running...[2KRunning... 1/1[2K[32mmt_scheduler_run_test_on_same_thread_as_empty_module[0m
     [32mtest1[0m
     [32mempty_module[0m
         [32mempty_submodule1[0m
