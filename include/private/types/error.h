@@ -36,7 +36,7 @@ SOFTWARE.
 
 #define NBP_ERROR_CODE_SUCCESS                                  (int) 0
 #define NBP_ERROR_CODE_TESTS_FAILED                             (int) 1
-#define NBP_ERROR_CODE_NOT_ALL_TESTS_RAN                        (int) 2
+#define NBP_ERROR_CODE_NOT_ALL_TESTS_RUN                        (int) 2
 #define NBP_ERROR_CODE_OUT_OF_MEMORY                            (int) 3
 #define NBP_ERROR_CODE_UNKNOWN_OPERATOR                         (int) 4
 #define NBP_ERROR_CODE_INVALID_SCHEDULER                        (int) 5
@@ -46,8 +46,8 @@ SOFTWARE.
 #define NBP_ERROR_CODE_GENERIC_ERROR                            (int) 9
 #define NBP_ERROR_CODE_INTERNAL_ERROR                           (int) 10
 #define NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA                 (int) 11
-#define NBP_ERROR_CODE_TEST_ALREADY_RAN                         (int) 12
-#define NBP_ERROR_CODE_MODULE_ALREADY_RAN                       (int) 13
+#define NBP_ERROR_CODE_TEST_ALREADY_RUN                         (int) 12
+#define NBP_ERROR_CODE_MODULE_ALREADY_RUN                       (int) 13
 #define NBP_ERROR_CODE_UNEXPECTED_TEST_STATE                    (int) 14
 #define NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE                  (int) 15
 

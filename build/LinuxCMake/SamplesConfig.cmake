@@ -32,7 +32,7 @@ list(APPEND SAMPLES basic
     module_assert
     assert
     mt_scheduler_basic
-    mt_scheduler_module_fixtures_ran_only_once
+    mt_scheduler_module_fixtures_run_only_once
     mt_scheduler_run_test_fixtures_in_parallel
     mt_scheduler_run_module_fixtures_in_parallel
     empty_modules

@@ -271,7 +271,7 @@ SOFTWARE.
  * @public doc
  *
  * @brief
- *  Defines a test that can be ran using the NBP_TEST_RUN macro.
+ *  Defines a test that can be run using the NBP_TEST_RUN macro.
  *  Use the NBP_TEST_THIS macro if you want to get info about the test.
  *
  * @params
@@ -293,7 +293,7 @@ SOFTWARE.
  * @public doc
  *
  * @brief
- *  Defines a test that can be ran using the NBP_TEST_RUN macro.
+ *  Defines a test that can be run using the NBP_TEST_RUN macro.
  *  Use the NBP_TEST_THIS macro if you want to get info about the test.
  *
  * @params

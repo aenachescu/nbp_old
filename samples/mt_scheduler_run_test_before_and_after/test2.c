@@ -62,25 +62,25 @@ NBP_TEST_FIXTURES(test2, test2_setup, test2_teardown)
     NBP_CHECK_UINT_EQ(test2_module3TeardownValue, 5);
     NBP_CHECK_UINT_EQ(test2_module4TeardownValue, 23);
 
-    // check if it is ran before test3 and test4
+    // check if it is run before test3 and test4
     value = SAMPLE_ATOMIC_UINT_LOAD(&test3Value);
     NBP_CHECK_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test4Value);
     NBP_CHECK_UINT_EQ(value, 0);
 
-    // check if it is ran after test5 and test6
+    // check if it is run after test5 and test6
     value = SAMPLE_ATOMIC_UINT_LOAD(&test5Value);
     NBP_CHECK_UINT_EQ(value, 1);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test6Value);
     NBP_CHECK_UINT_EQ(value, 1);
 
-    // check if it is ran before module1 and module2
+    // check if it is run before module1 and module2
     value = SAMPLE_ATOMIC_UINT_LOAD(&module1Value);
     NBP_CHECK_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&module2Value);
     NBP_CHECK_UINT_EQ(value, 0);
 
-    // check if it is ran after module3 and module4
+    // check if it is run after module3 and module4
     value = SAMPLE_ATOMIC_UINT_LOAD(&module3Value);
     NBP_CHECK_UINT_EQ(value, 4);
     value = SAMPLE_ATOMIC_UINT_LOAD(&module4Value);

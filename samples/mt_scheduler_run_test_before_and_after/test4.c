@@ -48,7 +48,7 @@ NBP_TEST_FIXTURES(test4, test4_setup, test4_teardown)
     NBP_CHECK_UINT_EQ(test4_test1TeardownValue, 1);
     NBP_CHECK_UINT_EQ(test4_test2TeardownValue, 1);
 
-    // check if it is ran after test1 and test2
+    // check if it is run after test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
     NBP_CHECK_UINT_EQ(value, 1);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);

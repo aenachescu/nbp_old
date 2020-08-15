@@ -53,8 +53,8 @@ static void nbp_module_init(nbp_module_details_t* module,
         NBP_MODULE_STATE_READY
     );
     if (state != NBP_MODULE_STATE_NOT_INITIALIZED) {
-        NBP_ERROR_REPORT(NBP_ERROR_CODE_MODULE_ALREADY_RAN);
-        NBP_EXIT(NBP_ERROR_CODE_MODULE_ALREADY_RAN);
+        NBP_ERROR_REPORT(NBP_ERROR_CODE_MODULE_ALREADY_RUN);
+        NBP_EXIT(NBP_ERROR_CODE_MODULE_ALREADY_RUN);
     }
 
     int errCode = NBP_SYNC_EVENT_INIT(module->runEvent);

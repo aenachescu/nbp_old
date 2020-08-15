@@ -96,7 +96,7 @@ NBP_TEST(test5)
     NBP_CHECK(counter == 1);
 }
 
-NBP_MAIN_MODULE(mt_scheduler_module_fixtures_ran_only_once)
+NBP_MAIN_MODULE(mt_scheduler_module_fixtures_run_only_once)
 {
     NBP_MODULE_RUN(module1);
     NBP_TEST_RUN_CTX(

@@ -1,4 +1,4 @@
-Running...[2KRunning... 1/5[2KRunning... 2/5[2KRunning... 3/5[2KRunning... 4/5[2KRunning... 5/5[2K[32mmt_scheduler_module_fixtures_ran_only_once[0m
+Running...[2KRunning... 1/5[2KRunning... 2/5[2KRunning... 3/5[2KRunning... 4/5[2KRunning... 5/5[2K[32mmt_scheduler_module_fixtures_run_only_once[0m
     [32mmodule1[0m
         [32mtest1[0m
         [32mtest2[0m

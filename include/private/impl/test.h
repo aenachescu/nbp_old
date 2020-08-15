@@ -53,8 +53,8 @@ static void nbp_test_init(nbp_test_details_t* test,
         NBP_TEST_STATE_READY
     );
     if (state != NBP_TEST_STATE_NOT_INITIALIZED) {
-        NBP_ERROR_REPORT(NBP_ERROR_CODE_TEST_ALREADY_RAN);
-        NBP_EXIT(NBP_ERROR_CODE_TEST_ALREADY_RAN);
+        NBP_ERROR_REPORT(NBP_ERROR_CODE_TEST_ALREADY_RUN);
+        NBP_EXIT(NBP_ERROR_CODE_TEST_ALREADY_RUN);
     }
 
     test->testId = nbpTotalNumberOfTests;
