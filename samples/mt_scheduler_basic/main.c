@@ -40,7 +40,7 @@ NBP_TEST(test1)
     int err = SAMPLE_SEMAPHORE_RELEASE(g_semaphore1);
     NBP_ASSERT(err == 0);
 
-    err = SAMPLE_SEMAPHORE_WAIT(g_semaphore2);
+    err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphore2);
     NBP_ASSERT(err == 0);
 
     NBP_CHECK(1 + 1 == 2);
@@ -53,7 +53,7 @@ NBP_TEST(test2)
     int err = SAMPLE_SEMAPHORE_RELEASE(g_semaphore1);
     NBP_ASSERT(err == 0);
 
-    err = SAMPLE_SEMAPHORE_WAIT(g_semaphore2);
+    err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphore2);
     NBP_ASSERT(err == 0);
 
     NBP_CHECK(1 + 1 == 2);
@@ -66,7 +66,7 @@ NBP_TEST(test3)
     int err = SAMPLE_SEMAPHORE_RELEASE(g_semaphore1);
     NBP_ASSERT(err == 0);
 
-    err = SAMPLE_SEMAPHORE_WAIT(g_semaphore2);
+    err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphore2);
     NBP_ASSERT(err == 0);
 
     NBP_CHECK(1 + 1 == 2);
@@ -79,7 +79,7 @@ NBP_TEST(test4)
     int i, err;
 
     for (i = 0; i < 3; i++) {
-        err = SAMPLE_SEMAPHORE_WAIT(g_semaphore1);
+        err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphore1);
         NBP_ASSERT(err == 0);
     }
 

@@ -137,7 +137,7 @@ NBP_TEST_FIXTURES(test1, test1_setup, test1_teardown)
     int i, err;
 
     for (i = 0; i < 7; i++) {
-        err = SAMPLE_SEMAPHORE_WAIT(g_semaphore);
+        err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphore);
         NBP_ASSERT(err == 0);
     }
 

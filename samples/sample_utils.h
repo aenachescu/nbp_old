@@ -80,6 +80,8 @@ static inline void write_message_to_console(const char* msg)
 
 #define SAMPLE_FORCE_SLEEP_MS(ms) usleep(ms * 1000)
 
+int sample_semaphore_timedwait_ms(sem_t *sem, unsigned int timeMs);
+
 /*
  * Semaphore wrapper
  */
@@ -96,6 +98,9 @@ static inline void write_message_to_console(const char* msg)
 
 #define SAMPLE_SEMAPHORE_WAIT(sem)                                             \
     sem_wait(&sem) == 0 ? 0 : 1
+
+#define SAMPLE_SEMAPHORE_TIMEDWAIT_MS(sem, timeMs)                             \
+    sample_semaphore_timedwait_ms(&sem, timeMs)
 
 #define SAMPLE_SEMAPHORE_RELEASE(sem)                                          \
     sem_post(&sem) == 0 ? 0 : 1
@@ -148,6 +153,40 @@ static inline void write_message_to_console(const char* msg)
 #define SAMPLE_MUTEX_UNLOCK(name)                                              \
     pthread_mutex_unlock(&name) == 0 ? 0 : 1
 
+#ifdef NBP_LIBRARY_MAIN
+
+#include <time.h>
+
+int sample_semaphore_timedwait_ms(sem_t *sem, unsigned int timeMs)
+{
+    int err;
+    struct timespec ts;
+    unsigned long long int nsec;
+
+    err = clock_gettime(CLOCK_REALTIME, &ts);
+    if (err != 0) {
+        return 1;
+    }
+
+    ts.tv_sec += (timeMs / 1000);
+    timeMs = timeMs % 1000;
+
+    nsec = timeMs * 1000000;
+    nsec += (unsigned long long int) ts.tv_nsec;
+
+    ts.tv_sec += (time_t) (nsec / 1000000000);
+    ts.tv_nsec = (long int) (nsec % 1000000000);
+
+    err = sem_timedwait(sem, &ts);
+    if (err != 0) {
+        return 1;
+    }
+
+    return 0;
+}
+
+#endif // end if NBP_LIBRARY_MAIN
+
 #endif // end if NBP_OS_LINUX
 
 #ifdef NBP_OS_WINDOWS
@@ -188,6 +227,10 @@ static inline void write_message_to_console(const char* msg)
 #ifndef SAMPLE_SEMAPHORE_WAIT
 #define SAMPLE_SEMAPHORE_WAIT(sem) 0
 #endif // end if SAMPLE_SEMAPHORE_WAIT
+
+#ifndef SAMPLE_SEMAPHORE_TIMEDWAIT_MS
+#define SAMPLE_SEMAPHORE_TIMEDWAIT_MS(sem, timeMs) 0
+#endif // end if SAMPLE_SEMAPHORE_TIMEDWAIT_MS
 
 #ifndef SAMPLE_SEMAPHORE_RELEASE
 #define SAMPLE_SEMAPHORE_RELEASE(sem) 0
@@ -278,6 +321,11 @@ static inline void write_message_to_console(const char* msg)
 #else // SAMPLE_DISABLE_SLEEP not defined
 #define SAMPLE_SLEEP() SAMPLE_FORCE_SLEEP_MS(200)
 #endif // end if SAMPLE_DISABLE_SLEEP
+
+#define SAMPLE_DEFAULT_SEMAPHORE_TIMEOUT_MS (unsigned int) 10000
+
+#define SAMPLE_SEMAPHORE_WAIT_TIMEOUT(sem)                                     \
+    SAMPLE_SEMAPHORE_TIMEDWAIT_MS(sem, SAMPLE_DEFAULT_SEMAPHORE_TIMEOUT_MS)
 
 struct sample_utils_test_data_t
 {

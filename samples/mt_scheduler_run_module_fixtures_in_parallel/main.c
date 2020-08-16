@@ -94,7 +94,7 @@ NBP_MODULE_SETUP(setup)
         // LCOV_EXCL_STOP
     }
 
-    err = SAMPLE_SEMAPHORE_WAIT(g_semaphores[order[1]]);
+    err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[order[1]]);
     if (err != 0) {
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
@@ -127,7 +127,7 @@ NBP_MODULE_TEARDOWN(teardown)
         // LCOV_EXCL_STOP
     }
 
-    err = SAMPLE_SEMAPHORE_WAIT(g_semaphores[order[1]]);
+    err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[order[1]]);
     if (err != 0) {
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
