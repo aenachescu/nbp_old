@@ -285,20 +285,20 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
 static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
 {
     if (module == NBP_MEMORY_NULL_POINTER) {
-        return NBP_MODULE_FLAGS_PROCESSED;
+        return NBP_MODULE_PRIVATE_SKIP_PROCESSED;
     }
 
     unsigned int oldVal = NBP_SYNC_ATOMIC_UINT_CAS(
-        &module->flags,
-        NBP_MODULE_FLAGS_NOT_INITIALIZED,
-        NBP_MODULE_FLAGS_PROCESSED
+        &module->isSkipped,
+        NBP_MODULE_PRIVATE_SKIP_NOT_SET,
+        NBP_MODULE_PRIVATE_SKIP_PROCESSED
     );
 
-    if (oldVal == NBP_MODULE_FLAGS_SKIP) {
-        return NBP_MODULE_FLAGS_SKIP;
+    if (oldVal == NBP_MODULE_PRIVATE_SKIP_SET) {
+        return NBP_MODULE_PRIVATE_SKIP_SET;
     }
 
-    if (oldVal == NBP_MODULE_FLAGS_PROCESSED) {
+    if (oldVal == NBP_MODULE_PRIVATE_SKIP_PROCESSED) {
         NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_WAIT(module->setupEvent);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
             // LCOV_EXCL_START
@@ -307,9 +307,9 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
             // LCOV_EXCL_STOP
         }
 
-        oldVal = NBP_SYNC_ATOMIC_UINT_LOAD(&module->flags);
-        if (oldVal == NBP_MODULE_FLAGS_PROCESSED ||
-            oldVal == NBP_MODULE_FLAGS_SKIP) {
+        oldVal = NBP_SYNC_ATOMIC_UINT_LOAD(&module->isSkipped);
+        if (oldVal == NBP_MODULE_PRIVATE_SKIP_PROCESSED ||
+            oldVal == NBP_MODULE_PRIVATE_SKIP_SET) {
             return oldVal;
         }
 
@@ -319,9 +319,9 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
         // LCOV_EXCL_STOP
     }
 
-    if (oldVal == NBP_MODULE_FLAGS_NOT_INITIALIZED) {
+    if (oldVal == NBP_MODULE_PRIVATE_SKIP_NOT_SET) {
         unsigned int parentFlags = nbp_scheduler_setup_module(module->parent);
-        if (parentFlags == NBP_MODULE_FLAGS_PROCESSED) {
+        if (parentFlags == NBP_MODULE_PRIVATE_SKIP_PROCESSED) {
             if (module->setup != NBP_MEMORY_NULL_POINTER) {
                 module->setup(module);
             }
@@ -334,22 +334,22 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
                 // LCOV_EXCL_STOP
             }
 
-            return NBP_MODULE_FLAGS_PROCESSED;
+            return NBP_MODULE_PRIVATE_SKIP_PROCESSED;
         }
 
-        if (parentFlags == NBP_MODULE_FLAGS_SKIP) {
+        if (parentFlags == NBP_MODULE_PRIVATE_SKIP_SET) {
             oldVal = NBP_SYNC_ATOMIC_UINT_CAS(
-                &module->flags,
-                NBP_MODULE_FLAGS_PROCESSED,
-                NBP_MODULE_FLAGS_SKIP
+                &module->isSkipped,
+                NBP_MODULE_PRIVATE_SKIP_PROCESSED,
+                NBP_MODULE_PRIVATE_SKIP_SET
             );
-            if (oldVal != NBP_MODULE_FLAGS_PROCESSED) {
+            if (oldVal != NBP_MODULE_PRIVATE_SKIP_PROCESSED) {
                 // LCOV_EXCL_START
                 NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
                 NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
                 // LCOV_EXCL_STOP
             }
-            return NBP_MODULE_FLAGS_SKIP;
+            return NBP_MODULE_PRIVATE_SKIP_SET;
         }
 
         // LCOV_EXCL_START
@@ -419,7 +419,7 @@ error:
 static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 {
     unsigned int num = 0;
-    unsigned int flags = 0;
+    unsigned int isSkipped = 0;
     unsigned int numOfCompletedEmptySubmodules = 0;
     unsigned int moduleState = 0;
     NBP_ERROR_CODE_TYPE errCode;
@@ -471,8 +471,8 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 
         nbp_scheduler_verify_module_stats(module);
 
-        flags = NBP_SYNC_ATOMIC_UINT_LOAD(&module->flags);
-        if (flags == NBP_MODULE_FLAGS_PROCESSED) {
+        isSkipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->isSkipped);
+        if (isSkipped == NBP_MODULE_PRIVATE_SKIP_PROCESSED) {
             if (module->teardown != NBP_MEMORY_NULL_POINTER) {
                 module->teardown(module);
             }
@@ -511,23 +511,23 @@ static void nbp_scheduler_skip_module(nbp_module_details_t* module)
     nbp_test_details_t* testIdx = module->firstTest;
     while (testIdx != NBP_MEMORY_NULL_POINTER) {
         NBP_SYNC_ATOMIC_UINT_CAS(
-            &testIdx->flags,
-            NBP_TEST_FLAGS_NOT_INITIALIZED,
-            NBP_TEST_FLAGS_SKIP
+            &testIdx->isSkipped,
+            NBP_TEST_PRIVATE_SKIP_NOT_SET,
+            NBP_TEST_PRIVATE_SKIP_SET
         );
         testIdx = testIdx->next;
     }
 
     nbp_module_details_t* moduleIdx = module->firstModule;
-    unsigned int flags;
+    unsigned int isSkipped;
     while (moduleIdx != NBP_MEMORY_NULL_POINTER) {
-        flags = NBP_SYNC_ATOMIC_UINT_CAS(
-            &moduleIdx->flags,
-            NBP_MODULE_FLAGS_NOT_INITIALIZED,
-            NBP_MODULE_FLAGS_SKIP
+        isSkipped = NBP_SYNC_ATOMIC_UINT_CAS(
+            &moduleIdx->isSkipped,
+            NBP_MODULE_PRIVATE_SKIP_NOT_SET,
+            NBP_MODULE_PRIVATE_SKIP_SET
         );
 
-        if (flags == NBP_MODULE_FLAGS_PROCESSED) {
+        if (isSkipped == NBP_MODULE_PRIVATE_SKIP_PROCESSED) {
             nbp_scheduler_skip_module(moduleIdx);
         }
 
@@ -745,16 +745,16 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
     }
 
     oldVal = NBP_SYNC_ATOMIC_UINT_CAS(
-        &test->flags,
-        NBP_TEST_FLAGS_NOT_INITIALIZED,
-        NBP_TEST_FLAGS_PROCESSED
+        &test->isSkipped,
+        NBP_TEST_PRIVATE_SKIP_NOT_SET,
+        NBP_TEST_PRIVATE_SKIP_PROCESSED
     );
 
-    if (oldVal == NBP_TEST_FLAGS_NOT_INITIALIZED) {
+    if (oldVal == NBP_TEST_PRIVATE_SKIP_NOT_SET) {
         unsigned int moduleFlags = nbp_scheduler_setup_module(test->module);
-        if (moduleFlags == NBP_MODULE_FLAGS_PROCESSED) {
+        if (moduleFlags == NBP_MODULE_PRIVATE_SKIP_PROCESSED) {
             nbp_scheduler_run_test_running(test);
-        } else if (moduleFlags == NBP_MODULE_FLAGS_SKIP) {
+        } else if (moduleFlags == NBP_MODULE_PRIVATE_SKIP_SET) {
             nbp_scheduler_run_test_skipped(test);
         } else {
             // LCOV_EXCL_START
@@ -762,7 +762,7 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
             NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
             // LCOV_EXCL_STOP
         }
-    } else if (oldVal == NBP_TEST_FLAGS_SKIP) {
+    } else if (oldVal == NBP_TEST_PRIVATE_SKIP_SET) {
         nbp_scheduler_run_test_skipped(test);
     } else {
         // LCOV_EXCL_START

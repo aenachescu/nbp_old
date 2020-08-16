@@ -244,8 +244,8 @@ SOFTWARE.
         .prev                       = NBP_MEMORY_NULL_POINTER,                 \
         .testState                  =                                          \
             NBP_SYNC_ATOMIC_UINT_INIT(NBP_TEST_STATE_NOT_INITIALIZED),         \
-        .flags                      =                                          \
-            NBP_SYNC_ATOMIC_UINT_INIT(NBP_TEST_FLAGS_NOT_INITIALIZED),         \
+        .isSkipped                  =                                          \
+            NBP_SYNC_ATOMIC_UINT_INIT(NBP_TEST_PRIVATE_SKIP_NOT_SET),          \
         .checks = {                                                            \
             .numPassed              = 0,                                       \
             .numFailed              = 0,                                       \

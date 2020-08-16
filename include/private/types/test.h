@@ -35,9 +35,11 @@ SOFTWARE.
 #define NBP_TEST_STATE_FAILED           (unsigned int) 4
 #define NBP_TEST_STATE_SKIPPED          (unsigned int) 5
 
-#define NBP_TEST_FLAGS_NOT_INITIALIZED  (unsigned int) 0
-#define NBP_TEST_FLAGS_SKIP             (unsigned int) 1
-#define NBP_TEST_FLAGS_PROCESSED        (unsigned int) 2
+#define NBP_TEST_PRIVATE_SKIP_NOT_SET   (unsigned int) 0
+#define NBP_TEST_PRIVATE_SKIP_SET       (unsigned int) 1
+#define NBP_TEST_PRIVATE_SKIP_PROCESSED (unsigned int) 2
+
+#define NBP_TEST_FLAG_NONE              (unsigned int) 0
 
 struct nbp_test_details_t;
 
@@ -66,7 +68,7 @@ struct nbp_test_details_t {
     struct nbp_test_details_t* prev;
 
     NBP_SYNC_ATOMIC_UINT_TYPE testState;
-    NBP_SYNC_ATOMIC_UINT_TYPE flags;
+    NBP_SYNC_ATOMIC_UINT_TYPE isSkipped;
 
     struct {
         unsigned int numPassed;

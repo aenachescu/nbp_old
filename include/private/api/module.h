@@ -106,8 +106,8 @@ SOFTWARE.
         .depth                  = 0,                                           \
         .runEvent               = NBP_SYNC_EVENT_DEFAULT_VALUE,                \
         .setupEvent             = NBP_SYNC_EVENT_DEFAULT_VALUE,                \
-        .flags                  =                                              \
-            NBP_SYNC_ATOMIC_UINT_INIT(NBP_MODULE_FLAGS_NOT_INITIALIZED),       \
+        .isSkipped              =                                              \
+            NBP_SYNC_ATOMIC_UINT_INIT(NBP_MODULE_PRIVATE_SKIP_NOT_SET),        \
         .moduleState            =                                              \
             NBP_SYNC_ATOMIC_UINT_INIT(NBP_MODULE_STATE_NOT_INITIALIZED),       \
         .taskNum                = 0,                                           \

@@ -35,9 +35,12 @@ SOFTWARE.
 #define NBP_MODULE_STATE_FAILED           (unsigned int) 4
 #define NBP_MODULE_STATE_SKIPPED          (unsigned int) 5
 
-#define NBP_MODULE_FLAGS_NOT_INITIALIZED  (unsigned int) 0
-#define NBP_MODULE_FLAGS_SKIP             (unsigned int) 1
-#define NBP_MODULE_FLAGS_PROCESSED        (unsigned int) 2
+#define NBP_MODULE_PRIVATE_SKIP_NOT_SET   (unsigned int) 0
+#define NBP_MODULE_PRIVATE_SKIP_SET       (unsigned int) 1
+#define NBP_MODULE_PRIVATE_SKIP_PROCESSED (unsigned int) 2
+
+#define NBP_MODULE_FLAG_NONE              (unsigned int) 0
+
 
 struct nbp_module_details_t;
 
@@ -78,7 +81,7 @@ struct nbp_module_details_t {
     unsigned int depth;
     NBP_SYNC_EVENT_TYPE runEvent;
     NBP_SYNC_EVENT_TYPE setupEvent;
-    NBP_SYNC_ATOMIC_UINT_TYPE flags;
+    NBP_SYNC_ATOMIC_UINT_TYPE isSkipped;
     NBP_SYNC_ATOMIC_UINT_TYPE moduleState;
 
     unsigned int taskNum;
