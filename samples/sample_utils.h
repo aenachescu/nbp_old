@@ -213,27 +213,27 @@ int sample_semaphore_timedwait_ms(sem_t *sem, unsigned int timeMs)
 #endif // end if SAMPLE_SEMAPHORE_TYPE
 
 #ifndef SAMPLE_SEMAPHORE_DEFAULT_VALUE
-#define SAMPLE_SEMAPHORE_DEFAULT_VALUE 0
+#define SAMPLE_SEMAPHORE_DEFAULT_VALUE 1
 #endif // end if SAMPLE_SEMAPHORE_DEFAULT_VALUE
 
 #ifndef SAMPLE_SEMAPHORE_INIT
-#define SAMPLE_SEMAPHORE_INIT(sem) 0
+#define SAMPLE_SEMAPHORE_INIT(sem) 1
 #endif // end if SAMPLE_SEMAPHORE_INIT
 
 #ifndef SAMPLE_SEMAPHORE_UNINIT
-#define SAMPLE_SEMAPHORE_UNINIT(sem) 0
+#define SAMPLE_SEMAPHORE_UNINIT(sem) 1
 #endif // end if SAMPLE_SEMAPHORE_UNINIT
 
 #ifndef SAMPLE_SEMAPHORE_WAIT
-#define SAMPLE_SEMAPHORE_WAIT(sem) 0
+#define SAMPLE_SEMAPHORE_WAIT(sem) 1
 #endif // end if SAMPLE_SEMAPHORE_WAIT
 
 #ifndef SAMPLE_SEMAPHORE_TIMEDWAIT_MS
-#define SAMPLE_SEMAPHORE_TIMEDWAIT_MS(sem, timeMs) 0
+#define SAMPLE_SEMAPHORE_TIMEDWAIT_MS(sem, timeMs) 1
 #endif // end if SAMPLE_SEMAPHORE_TIMEDWAIT_MS
 
 #ifndef SAMPLE_SEMAPHORE_RELEASE
-#define SAMPLE_SEMAPHORE_RELEASE(sem) 0
+#define SAMPLE_SEMAPHORE_RELEASE(sem) 1
 #endif // end if SAMPLE_SEMAPHORE_RELEASE
 
 /*
@@ -290,19 +290,19 @@ int sample_semaphore_timedwait_ms(sem_t *sem, unsigned int timeMs)
 #endif // end if SAMPLE_MUTEX_DECLARE
 
 #ifndef SAMPLE_MUTEX_INIT
-#define SAMPLE_MUTEX_INIT(name) 0
+#define SAMPLE_MUTEX_INIT(name) 1
 #endif // end if SAMPLE_MUTEX_INIT
 
 #ifndef SAMPLE_MUTEX_UNINIT
-#define SAMPLE_MUTEX_UNINIT(name) 0
+#define SAMPLE_MUTEX_UNINIT(name) 1
 #endif // end if SAMPLE_MUTEX_UNINIT
 
 #ifndef SAMPLE_MUTEX_LOCK
-#define SAMPLE_MUTEX_LOCK(name) 0
+#define SAMPLE_MUTEX_LOCK(name) 1
 #endif // end if SAMPLE_MUTEX_LOCK
 
 #ifndef SAMPLE_MUTEX_UNLOCK
-#define SAMPLE_MUTEX_UNLOCK(name) 0
+#define SAMPLE_MUTEX_UNLOCK(name) 1
 #endif // end if SAMPLE_MUTEX_UNLOCK
 
 /*

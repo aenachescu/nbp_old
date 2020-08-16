@@ -496,11 +496,11 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
 
 #ifndef NBP_MT_SCHEDULER_THREAD_CREATE
 #define NBP_MT_SCHEDULER_THREAD_CREATE(thread, func, param)                    \
-    NBP_ERROR_CODE_SUCCESS
+    NBP_ERROR_CODE_GENERIC_ERROR
 #endif // end if NBP_MT_SCHEDULER_THREAD_CREATE
 
 #ifndef NBP_MT_SCHEDULER_THREAD_JOIN
-#define NBP_MT_SCHEDULER_THREAD_JOIN(thread) NBP_ERROR_CODE_SUCCESS
+#define NBP_MT_SCHEDULER_THREAD_JOIN(thread) NBP_ERROR_CODE_GENERIC_ERROR
 #endif // end if NBP_MT_SCHEDULER_THREAD_JOIN
 
 /*
