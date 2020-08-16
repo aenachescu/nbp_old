@@ -643,6 +643,69 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
     // LCOV_EXCL_STOP
 }
 
+void nbp_scheduler_notify_init(void)
+{
+    if (nbpSchedulerInterface->init != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->init();
+    }
+}
+
+void nbp_scheduler_notify_uninit(void)
+{
+    if (nbpSchedulerInterface->uninit != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->uninit();
+    }
+}
+
+void nbp_scheduler_notify_run(void)
+{
+    if (nbpSchedulerInterface->run != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->run();
+    }
+}
+
+void nbp_scheduler_notify_add_test(nbp_test_details_t* test)
+{
+    if (nbpSchedulerInterface->addTest != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->addTest(test);
+    } else {
+        NBP_ERROR_REPORT(NBP_ERROR_CODE_INVALID_SCHEDULER);
+        NBP_EXIT(NBP_ERROR_CODE_INVALID_SCHEDULER);
+    }
+}
+
+void nbp_scheduler_notify_add_test_ctx(nbp_test_details_t* test, void* ctx)
+{
+    if (nbpSchedulerInterface->addTestCtx != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->addTestCtx(test, ctx);
+    } else {
+        NBP_ERROR_REPORT(NBP_ERROR_CODE_INVALID_SCHEDULER);
+        NBP_EXIT(NBP_ERROR_CODE_INVALID_SCHEDULER);
+    }
+}
+
+void nbp_scheduler_notify_module_started(nbp_module_details_t* module)
+{
+    if (nbpSchedulerInterface->moduleStarted != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->moduleStarted(module);
+    }
+}
+
+void nbp_scheduler_notify_module_started_ctx(nbp_module_details_t* module,
+    void* ctx)
+{
+    if (nbpSchedulerInterface->moduleStartedCtx != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->moduleStartedCtx(module, ctx);
+    }
+}
+
+void nbp_scheduler_notify_module_completed(nbp_module_details_t* module)
+{
+    if (nbpSchedulerInterface->moduleCompleted != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->moduleCompleted(module);
+    }
+}
+
 void nbp_scheduler_run_test(nbp_test_details_t* test)
 {
     // the test can be run only from NBP_SCHEDULER_FUNC_RUN function

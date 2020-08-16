@@ -46,7 +46,7 @@ typedef void (*nbp_scheduler_add_test_pfn_t)(
 
 typedef void (*nbp_scheduler_add_test_ctx_pfn_t)(
     nbp_test_details_t*, /* current test */
-    void* ctx
+    void* /* context */
 );
 
 typedef void (*nbp_scheduler_module_started_pfn_t)(
@@ -55,7 +55,7 @@ typedef void (*nbp_scheduler_module_started_pfn_t)(
 
 typedef void (*nbp_scheduler_module_started_ctx_pfn_t)(
     nbp_module_details_t*, /* current module */
-    void* ctx
+    void* /* context */
 );
 
 typedef void (*nbp_scheduler_module_completed_pfn_t)(

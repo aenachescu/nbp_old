@@ -60,9 +60,7 @@ int nbp_command_run_all()
         NBP_EXIT(NBP_ERROR_CODE_INVALID_SCHEDULER);
     }
 
-    if (nbpSchedulerInterface->init != NBP_MEMORY_NULL_POINTER) {
-        nbpSchedulerInterface->init();
-    }
+    nbp_scheduler_notify_init();
 
     nbp_module_run(
         nbpMainModule,
@@ -77,7 +75,7 @@ int nbp_command_run_all()
     );
 
     nbpSchedulerRunEnabled = 1;
-    nbpSchedulerInterface->run();
+    nbp_scheduler_notify_run();
     nbpSchedulerRunEnabled = 0;
 
     extern NBP_SYNC_ATOMIC_UINT_TYPE nbpNumberOfRunTests;
@@ -119,9 +117,7 @@ int nbp_command_run_all()
         NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(nbpMainModule)
     );
 
-    if (nbpSchedulerInterface->uninit != NBP_MEMORY_NULL_POINTER) {
-        nbpSchedulerInterface->uninit();
-    }
+    nbp_scheduler_notify_uninit();
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->uninit != NBP_MEMORY_NULL_POINTER) {

@@ -102,30 +102,20 @@ static void nbp_test_init(nbp_test_details_t* test,
 void nbp_test_run(nbp_test_details_t* test, nbp_module_details_t* module,
     nbp_test_setup_pfn_t testSetup, nbp_test_teardown_pfn_t testTeardown)
 {
-    if (nbpSchedulerInterface->addTest == NBP_MEMORY_NULL_POINTER) {
-        NBP_ERROR_REPORT(NBP_ERROR_CODE_INVALID_SCHEDULER);
-        NBP_EXIT(NBP_ERROR_CODE_INVALID_SCHEDULER);
-    }
-
     nbp_test_init(test, module, testSetup, testTeardown);
 
     nbp_printer_notify_scheduling_test(test);
-    nbpSchedulerInterface->addTest(test);
+    nbp_scheduler_notify_add_test(test);
 }
 
 void nbp_test_run_ctx(nbp_test_details_t* test, void* ctx,
     nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,
     nbp_test_teardown_pfn_t testTeardown)
 {
-    if (nbpSchedulerInterface->addTestCtx == NBP_MEMORY_NULL_POINTER) {
-        NBP_ERROR_REPORT(NBP_ERROR_CODE_INVALID_SCHEDULER);
-        NBP_EXIT(NBP_ERROR_CODE_INVALID_SCHEDULER);
-    }
-
     nbp_test_init(test, module, testSetup, testTeardown);
 
     nbp_printer_notify_scheduling_test(test);
-    nbpSchedulerInterface->addTestCtx(test, ctx);
+    nbp_scheduler_notify_add_test_ctx(test, ctx);
 }
 
 #endif // end if NBP_PRIVATE_IMPL_TEST_H

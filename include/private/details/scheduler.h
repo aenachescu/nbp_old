@@ -28,6 +28,40 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_DETAILS_SCHEDULER_H
 #define NBP_PRIVATE_DETAILS_SCHEDULER_H
 
+void nbp_scheduler_notify_init(
+    void
+);
+
+void nbp_scheduler_notify_uninit(
+    void
+);
+
+void nbp_scheduler_notify_run(
+    void
+);
+
+void nbp_scheduler_notify_add_test(
+    nbp_test_details_t* /* test */
+);
+
+void nbp_scheduler_notify_add_test_ctx(
+    nbp_test_details_t*, /* test */
+    void* /* context */
+);
+
+void nbp_scheduler_notify_module_started(
+    nbp_module_details_t* /* module */
+);
+
+void nbp_scheduler_notify_module_started_ctx(
+    nbp_module_details_t*, /* module */
+    void* /* context */
+);
+
+void nbp_scheduler_notify_module_completed(
+    nbp_module_details_t* /* module */
+);
+
 void nbp_scheduler_run_test(
     nbp_test_details_t* /* test */
 );
