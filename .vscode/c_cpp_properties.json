@@ -3,9 +3,10 @@
         {
             "name": "Linux-x64",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/include/**"
             ],
             "defines": [
+                "NBP_LIBRARY_MAIN",
                 "NBP_OS_LINUX",
                 "NBP_COMPILER_GCC"
             ],
@@ -17,9 +18,10 @@
         {
             "name": "Linux-x64-MT",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/include/**"
             ],
             "defines": [
+                "NBP_LIBRARY_MAIN",
                 "NBP_OS_LINUX",
                 "NBP_COMPILER_GCC",
                 "NBP_MT_SCHEDULER",
@@ -28,8 +30,7 @@
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64",
-            "configurationProvider": "ms-vscode.cmake-tools"
+            "intelliSenseMode": "clang-x64"
         }
     ],
     "version": 4
