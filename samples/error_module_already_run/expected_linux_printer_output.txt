@@ -1,0 +1,2 @@
+
+[31m[error] code = 13, line = 56, file = /home/alin/projects/nbp/build/LinuxCMake/../../include/private/impl/module.h[0m
