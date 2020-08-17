@@ -69,6 +69,7 @@ list(APPEND SAMPLES basic
     version_command
     mt_scheduler_empty_context
     empty_tests
+    error_test_already_run
 )
 
 # Custom flags lists for targets
@@ -140,6 +141,7 @@ list(APPEND SAMPLES_CFLAGS ""
     ""
     ${MT_SCHEDULER_FLAGS}
     ""
+    ""
 )
 
 list (APPEND SAMPLES_LFLAGS ""
@@ -209,5 +211,6 @@ list (APPEND SAMPLES_LFLAGS ""
     ${MT_SCHEDULER_LINK_FLAGS}
     ""
     ${MT_SCHEDULER_LINK_FLAGS}
+    ""
     ""
 )

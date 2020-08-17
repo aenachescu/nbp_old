@@ -95,6 +95,7 @@ declare -a arr=(
     "version_command_sample"
     "mt_scheduler_empty_context_sample"
     "empty_tests_sample"
+    "error_test_already_run_sample"
 )
 
 files=""
