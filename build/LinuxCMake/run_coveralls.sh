@@ -94,6 +94,7 @@ declare -a arr=(
     "mt_scheduler_run_module_before_and_after_sample"
     "version_command_sample"
     "mt_scheduler_empty_context_sample"
+    "empty_tests_sample"
 )
 
 files=""

@@ -195,6 +195,7 @@ run_test mt_scheduler_fixtures_order_sample 0
 run_test mt_scheduler_run_module_before_and_after_sample 0
 run_test version_command_sample 0 "--version"
 run_test mt_scheduler_empty_context_sample 0
+run_test empty_tests_sample 0
 
 if [ $status -ne 0 ]; then
     echo -n $'\e[31mrun_tests failed\e[39m'
