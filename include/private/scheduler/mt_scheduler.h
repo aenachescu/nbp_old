@@ -141,7 +141,7 @@ void* nbp_mt_scheduler_create_ctx(
 #define NBP_MT_SCHEDULER_CTX(...)                                              \
     nbp_mt_scheduler_create_ctx(                                               \
         NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(__VA_ARGS__),             \
-        __VA_ARGS__                                                            \
+        ## __VA_ARGS__                                                         \
     )
 
 #define NBP_MT_SCHEDULER_PRIVATE_GET_NUMBER_OF_RULES(...)                      \
