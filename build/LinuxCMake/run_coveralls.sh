@@ -92,6 +92,7 @@ declare -a arr=(
     "fixtures_order_sample"
     "mt_scheduler_fixtures_order_sample"
     "mt_scheduler_run_module_before_and_after_sample"
+    "version_command_sample"
 )
 
 files=""

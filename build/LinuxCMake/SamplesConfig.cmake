@@ -66,6 +66,7 @@ list(APPEND SAMPLES basic
     fixtures_order
     mt_scheduler_fixtures_order
     mt_scheduler_run_module_before_and_after
+    version_command
 )
 
 # Custom flags lists for targets
@@ -134,6 +135,7 @@ list(APPEND SAMPLES_CFLAGS ""
     ""
     ${MT_SCHEDULER_FLAGS}
     ${MT_SCHEDULER_FLAGS}
+    ""
 )
 
 list (APPEND SAMPLES_LFLAGS ""
@@ -201,4 +203,5 @@ list (APPEND SAMPLES_LFLAGS ""
     ""
     ${MT_SCHEDULER_LINK_FLAGS}
     ${MT_SCHEDULER_LINK_FLAGS}
+    ""
 )

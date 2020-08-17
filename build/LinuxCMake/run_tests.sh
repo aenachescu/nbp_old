@@ -41,11 +41,16 @@ function run_test {
     testStartTime=""
     testEndTime=""
     testTime=""
+    cmdline=""
 
     currentSamplePath="${samplesPath}${sample}/"
     currentSampleBinPath="${binPath}$1/"
     expectedPrinterOutputPath="${currentSamplePath}expected_linux_printer_output.txt"
     expectedOutputPath="${currentSamplePath}expected_output.txt"
+
+    if test "$#" -eq 3; then
+        cmdline=$3
+    fi
 
     # load expected test output
     expected_printer_output=$(<${expectedPrinterOutputPath})
@@ -61,10 +66,10 @@ function run_test {
     # run and get test output
     if [ -z "$sanopt" ]; then
         testStartTime=$(date +%s.%N)
-        printer_output=$(${currentSampleBinPath}$1)
+        printer_output=$(${currentSampleBinPath}$1 $cmdline)
     else
         testStartTime=$(date +%s.%N)
-        printer_output=$(env $sanopt ${currentSampleBinPath}$1)
+        printer_output=$(env $sanopt ${currentSampleBinPath}$1 $cmdline)
     fi
     testStatus=$?
 
@@ -188,6 +193,7 @@ run_test mt_scheduler_run_test_on_same_thread_as_module_sample 0
 run_test fixtures_order_sample 0
 run_test mt_scheduler_fixtures_order_sample 0
 run_test mt_scheduler_run_module_before_and_after_sample 0
+run_test version_command_sample 0 "--version"
 
 if [ $status -ne 0 ]; then
     echo -n $'\e[31mrun_tests failed\e[39m'
