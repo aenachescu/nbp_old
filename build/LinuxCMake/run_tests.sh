@@ -35,7 +35,9 @@ function run_test {
 
     sample=${1%_sample}
     has_output=0
+    has_printer_output=0
     expected_output=""
+    expected_printer_output=""
     printer_output=""
     output=""
     testStartTime=""
@@ -52,8 +54,13 @@ function run_test {
         cmdline=$3
     fi
 
-    # load expected test output
-    expected_printer_output=$(<${expectedPrinterOutputPath})
+    # load expected printer output
+    if [ -f "${expectedPrinterOutputPath}" ]; then
+        has_printer_output=1
+        expected_printer_output=$(<${expectedPrinterOutputPath})
+    fi
+
+    # load expected output
     if [ -f "${expectedOutputPath}" ]; then
         has_output=1
         expected_output=$(<${expectedOutputPath})
@@ -94,15 +101,17 @@ function run_test {
     fi
 
     # check printer output
-    if [ "$expected_printer_output" != "$printer_output" ]; then
-        echo "***** expected printer output *****"
-        echo "$expected_printer_output"
-        echo "***** printer output *****"
-        echo "$printer_output"
-        echo -n $'\e[31mtest failed\e[39m'
-        LC_NUMERIC=C printf " (%02.4f s)\n\n" $testTime
-        status=1
-        return
+    if [ $has_printer_output -eq 1 ]; then
+        if [ "$expected_printer_output" != "$printer_output" ]; then
+            echo "***** expected printer output *****"
+            echo "$expected_printer_output"
+            echo "***** printer output *****"
+            echo "$printer_output"
+            echo -n $'\e[31mtest failed\e[39m'
+            LC_NUMERIC=C printf " (%02.4f s)\n\n" $testTime
+            status=1
+            return
+        fi
     fi
 
     # check output file
