@@ -99,7 +99,7 @@ NBP_TEST_FIXTURES(test2, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -569,7 +569,7 @@ NBP_TEST_FIXTURES(test21, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -591,7 +591,7 @@ NBP_TEST_FIXTURES(test22, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -613,7 +613,7 @@ NBP_TEST_FIXTURES(test23, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -635,7 +635,7 @@ NBP_TEST_FIXTURES(test24, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -657,7 +657,7 @@ NBP_TEST_FIXTURES(test25, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -679,7 +679,7 @@ NBP_TEST_FIXTURES(test26, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -701,7 +701,7 @@ NBP_TEST_FIXTURES(test27, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -723,7 +723,7 @@ NBP_TEST_FIXTURES(test28, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -745,7 +745,7 @@ NBP_TEST_FIXTURES(test29, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -767,7 +767,7 @@ NBP_TEST_FIXTURES(test30, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -789,7 +789,7 @@ NBP_TEST_FIXTURES(test31, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -811,7 +811,7 @@ NBP_TEST_FIXTURES(test32, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -833,7 +833,7 @@ NBP_TEST_FIXTURES(test33, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -855,7 +855,7 @@ NBP_TEST_FIXTURES(test34, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -877,7 +877,7 @@ NBP_TEST_FIXTURES(test35, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -899,7 +899,7 @@ NBP_TEST_FIXTURES(test36, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1002,7 +1002,7 @@ NBP_TEST_FIXTURES(test37, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1061,7 +1061,7 @@ NBP_TEST_FIXTURES(test38, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1120,7 +1120,7 @@ NBP_TEST_FIXTURES(test39, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1179,7 +1179,7 @@ NBP_TEST_FIXTURES(test40, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1238,7 +1238,7 @@ NBP_TEST_FIXTURES(test41, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1297,7 +1297,7 @@ NBP_TEST_FIXTURES(test42, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1356,7 +1356,7 @@ NBP_TEST_FIXTURES(test43, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1415,7 +1415,7 @@ NBP_TEST_FIXTURES(test44, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1474,7 +1474,7 @@ NBP_TEST_FIXTURES(test45, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1533,7 +1533,7 @@ NBP_TEST_FIXTURES(test46, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1592,7 +1592,7 @@ NBP_TEST_FIXTURES(test47, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1651,7 +1651,7 @@ NBP_TEST_FIXTURES(test48, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1710,7 +1710,7 @@ NBP_TEST_FIXTURES(test49, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1769,7 +1769,7 @@ NBP_TEST_FIXTURES(test50, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1828,7 +1828,7 @@ NBP_TEST_FIXTURES(test51, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
@@ -1887,7 +1887,7 @@ NBP_TEST_FIXTURES(test52, test_setup, test_teardown)
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
     NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);

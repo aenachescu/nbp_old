@@ -86,7 +86,7 @@ NBP_TEST_FIXTURES(test2, test2_setup, test2_teardown)
     value = SAMPLE_ATOMIC_UINT_LOAD(&module4Value);
     NBP_CHECK_UINT_EQ(value, 16);
 
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&test2Value, 1);
 }

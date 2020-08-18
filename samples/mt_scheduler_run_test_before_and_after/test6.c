@@ -39,7 +39,7 @@ NBP_TEST_FIXTURES(test6, test6_setup, test6_teardown)
     unsigned int value;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test6SetupValue);

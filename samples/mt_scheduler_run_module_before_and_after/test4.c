@@ -34,7 +34,7 @@ NBP_TEST_FIXTURES(test4, test_setup, test_teardown)
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(500);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("module3");
     NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);

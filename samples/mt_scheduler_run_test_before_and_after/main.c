@@ -88,7 +88,7 @@ NBP_TEST_FIXTURES(test1, test1_setup, test1_teardown)
     value = SAMPLE_ATOMIC_UINT_LOAD(&module4Value);
     NBP_CHECK_UINT_EQ(value, 16);
 
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&test1Value, 1);
 }
@@ -121,7 +121,7 @@ NBP_TEST_FIXTURES(test5, test5_setup, test5_teardown)
     unsigned int value;
 
     SAMPLE_SLEEP();
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test5SetupValue);
@@ -284,7 +284,7 @@ NBP_TEST_FIXTURES(test15, test15_setup, test15_teardown)
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK_UINT_EQ(value, 0);
 
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module3Value, 1);
 }
@@ -305,7 +305,7 @@ NBP_TEST_FIXTURES(test16, test16_setup, test16_teardown)
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK_UINT_EQ(value, 0);
 
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module3Value, 1);
 }
@@ -326,7 +326,7 @@ NBP_TEST_FIXTURES(test17, test17_setup, test17_teardown)
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK_UINT_EQ(value, 0);
 
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module3Value, 1);
 }
@@ -347,7 +347,7 @@ NBP_TEST_FIXTURES(test18, test18_setup, test18_teardown)
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK_UINT_EQ(value, 0);
 
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module3Value, 1);
 }

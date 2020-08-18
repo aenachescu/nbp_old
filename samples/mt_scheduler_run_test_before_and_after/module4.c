@@ -51,7 +51,7 @@ NBP_TEST_FIXTURES(test19, test19_setup, test19_teardown)
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK_UINT_EQ(value, 0);
 
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -72,7 +72,7 @@ NBP_TEST_FIXTURES(test20, test20_setup, test20_teardown)
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK_UINT_EQ(value, 0);
 
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -93,7 +93,7 @@ NBP_TEST_FIXTURES(test21, test21_setup, test21_teardown)
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK_UINT_EQ(value, 0);
 
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -114,7 +114,7 @@ NBP_TEST_FIXTURES(test22, test22_setup, test22_teardown)
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
     NBP_CHECK_UINT_EQ(value, 0);
 
-    SAMPLE_FORCE_SLEEP_MS(1000);
+    SAMPLE_FORCE_SLEEP_MS(100);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
