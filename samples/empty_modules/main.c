@@ -131,7 +131,7 @@ NBP_TEST(test2)
     NBP_MODULE_ASSERT(1 != 1);
 }
 
-// these tests are skipped
+// these lines are excluded from coverage because these tests are skipped
 // LCOV_EXCL_START
 
 NBP_TEST(test3)

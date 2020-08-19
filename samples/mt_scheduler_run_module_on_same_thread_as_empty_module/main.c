@@ -135,6 +135,8 @@ NBP_TEST(test7)
     NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test6ThreadId));
 }
 
+// these lines are excluded from coverage because if a module has no test then
+// the setup and teardown functions are not run
 // LCOV_EXCL_START
 
 NBP_MODULE_SETUP(setupEmptyModule)

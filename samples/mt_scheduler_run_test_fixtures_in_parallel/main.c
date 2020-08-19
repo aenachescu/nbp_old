@@ -48,6 +48,8 @@ NBP_MODULE_SETUP(mainSetup)
     for (unsigned int i = 0; i < 4; ++i) {
         int err = SAMPLE_SEMAPHORE_INIT(g_semaphores[i]);
         if (err != 0) {
+            // these lines are excluded from coverage because it is pretty hard
+            // to trigger an error for SAMPLE_SEMAPHORE_INIT
             // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_SYNC_ERROR,
@@ -64,6 +66,8 @@ NBP_MODULE_TEARDOWN(mainTeardown)
     for (unsigned int i = 0; i < 4; ++i) {
         int err = SAMPLE_SEMAPHORE_UNINIT(g_semaphores[i]);
         if (err != 0) {
+            // these lines are excluded from coverage because it is pretty hard
+            // to trigger an error for SAMPLE_SEMAPHORE_UNINIT
             // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_SYNC_ERROR,
@@ -87,6 +91,8 @@ NBP_TEST_SETUP(testSetup)
 
     err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[order[0]]);
     if (err != 0) {
+        // these lines are excluded from coverage because it is pretty hard to
+        // trigger an error for SAMPLE_SEMAPHORE_RELEASE
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
@@ -98,6 +104,8 @@ NBP_TEST_SETUP(testSetup)
 
     err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[order[1]]);
     if (err != 0) {
+        // these lines are excluded from coverage because it is pretty hard to
+        // trigger an error for SAMPLE_SEMAPHORE_WAIT_TIMEOUT
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
@@ -120,6 +128,8 @@ NBP_TEST_TEARDOWN(testTeardown)
 
     err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[order[0]]);
     if (err != 0) {
+        // these lines are excluded from coverage because it is pretty hard to
+        // trigger an error for SAMPLE_SEMAPHORE_RELEASE
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
@@ -131,6 +141,8 @@ NBP_TEST_TEARDOWN(testTeardown)
 
     err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[order[1]]);
     if (err != 0) {
+        // these lines are excluded from coverage because it is pretty hard to
+        // trigger an error for SAMPLE_SEMAPHORE_WAIT_TIMEOUT
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,

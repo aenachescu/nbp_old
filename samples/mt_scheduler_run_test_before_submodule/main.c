@@ -93,6 +93,8 @@ NBP_MODULE_SETUP(main_module_setup)
 
     err = SAMPLE_SEMAPHORE_INIT(g_semaphore);
     if (err == 1) {
+        // these lines are excluded from coverage because it is pretty hard to
+        // trigger an error for SAMPLE_SEMAPHORE_INIT
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,
@@ -109,6 +111,8 @@ NBP_MODULE_TEARDOWN(main_module_teardown)
 
     err = SAMPLE_SEMAPHORE_UNINIT(g_semaphore);
     if (err == 1) {
+        // these lines are excluded from coverage because it is pretty hard to
+        // trigger an error for SAMPLE_SEMAPHORE_UNINIT
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_SYNC_ERROR,

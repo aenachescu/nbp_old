@@ -185,6 +185,8 @@ static nbp_linux_printer_data_t* nbp_linux_printer_create_data_from_test(
     do {
         data = (nbp_linux_printer_data_t*) NBP_MEMORY_ALLOC(sizeof(*data));
         if (data == NBP_MEMORY_NULL_POINTER) {
+            // these lines are excluded from coverage because it is pretty hard
+            // to trigger an error for memory allocation.
             // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_OUT_OF_MEMORY,
@@ -212,6 +214,8 @@ static nbp_linux_printer_data_t* nbp_linux_printer_create_data_from_module(
     do {
         data = (nbp_linux_printer_data_t*) NBP_MEMORY_ALLOC(sizeof(*data));
         if (data == NBP_MEMORY_NULL_POINTER) {
+            // these lines are excluded from coverage because it is pretty hard
+            // to trigger an error for memory allocation.
             // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_OUT_OF_MEMORY,
@@ -273,6 +277,8 @@ static nbp_linux_printer_messages_list_t* nbp_linux_printer_create_message(
             NBP_MEMORY_ALLOC(sizeof(nbp_linux_printer_messages_list_t));
 
         if (message == NBP_MEMORY_NULL_POINTER) {
+            // these lines are excluded from coverage because it is pretty hard
+            // to trigger an error for memory allocation.
             // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_OUT_OF_MEMORY,
@@ -286,6 +292,8 @@ static nbp_linux_printer_messages_list_t* nbp_linux_printer_create_message(
         message->message = nbp_linux_printer_duplicate_str(msg);
 
         if (message->message == NBP_MEMORY_NULL_POINTER) {
+            // these lines are excluded from coverage because it is pretty hard
+            // to trigger an error for memory allocation.
             // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_OUT_OF_MEMORY,
@@ -310,6 +318,8 @@ static void nbp_linux_printer_add_message(nbp_test_details_t* test, char* msg)
     nbp_linux_printer_data_t* data = nbp_linux_printer_find_printer_test(test);
 
     if (data == NBP_MEMORY_NULL_POINTER) {
+        // these lines are excluded from coverage because it is impossible to
+        // not find a test if there's no bug in nbp core.
         // LCOV_EXCL_START
         char errMsg[1024];
         snprintf(errMsg, 1024, "test [%s] not found", NBP_TEST_GET_NAME(test));

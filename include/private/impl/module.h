@@ -32,7 +32,6 @@ unsigned int nbpTotalNumberOfModules = 0;
 
 // these fixtures are not run because if they are used then the fixture pfn will
 // be replace with NBP_MEMORY_NULL_POINTER
-
 // LCOV_EXCL_START
 NBP_MODULE_SETUP(nbp_module_empty_setup_func)
 {
@@ -59,6 +58,8 @@ static void nbp_module_init(nbp_module_details_t* module,
 
     int errCode = NBP_SYNC_EVENT_INIT(module->runEvent);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // these lines are excluded from coverage because it is pretty hard to
+        // trigger an error for NBP_SYNC_EVENT_INIT.
         // LCOV_EXCL_START
         NBP_ERROR_REPORT(errCode);
         NBP_EXIT(errCode);
@@ -67,6 +68,8 @@ static void nbp_module_init(nbp_module_details_t* module,
 
     errCode = NBP_SYNC_EVENT_INIT(module->setupEvent);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // these lines are excluded from coverage because it is pretty hard to
+        // trigger an error for NBP_SYNC_EVENT_INIT.
         // LCOV_EXCL_START
         NBP_ERROR_REPORT(errCode);
         NBP_EXIT(errCode);

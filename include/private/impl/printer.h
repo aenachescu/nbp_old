@@ -45,6 +45,8 @@ const char* nbp_printer_operator_to_string(int op)
             return "<=";
     }
 
+    // these lines are excluded from coverage because it is almost impossible to
+    // use other operator.
     // LCOV_EXCL_START
     NBP_ERROR_REPORT(NBP_ERROR_CODE_UNKNOWN_OPERATOR);
     return "unknown";

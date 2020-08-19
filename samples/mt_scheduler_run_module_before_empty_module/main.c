@@ -97,6 +97,8 @@ NBP_TEST(test6)
     NBP_CHECK(1);
 }
 
+// these lines are excluded from coverage because if a module has no test then
+// the setup and teardown functions are not run
 // LCOV_EXCL_START
 
 NBP_MODULE_SETUP(setupEmptyModule)

@@ -189,7 +189,7 @@ NBP_TEST(test6)
     NBP_MODULE_ASSERT(1 != 1);
 }
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test7)
 {
@@ -198,7 +198,7 @@ NBP_TEST(test7)
 }
 // LCOV_EXCL_STOP
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test8)
 {
@@ -207,7 +207,7 @@ NBP_TEST(test8)
 }
 // LCOV_EXCL_STOP
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test9)
 {
@@ -258,7 +258,7 @@ NBP_TEST(test16)
     NBP_MODULE_ASSERT(1 == 1);
 }
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test17)
 {
@@ -267,7 +267,7 @@ NBP_TEST(test17)
 }
 // LCOV_EXCL_STOP
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test18)
 {
@@ -276,7 +276,7 @@ NBP_TEST(test18)
 }
 // LCOV_EXCL_STOP
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test19)
 {
@@ -285,7 +285,7 @@ NBP_TEST(test19)
 }
 // LCOV_EXCL_STOP
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test20)
 {
@@ -294,7 +294,7 @@ NBP_TEST(test20)
 }
 // LCOV_EXCL_STOP
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test21)
 {
@@ -303,7 +303,7 @@ NBP_TEST(test21)
 }
 // LCOV_EXCL_STOP
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test22)
 {
@@ -312,7 +312,7 @@ NBP_TEST(test22)
 }
 // LCOV_EXCL_STOP
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test23)
 {
@@ -321,7 +321,7 @@ NBP_TEST(test23)
 }
 // LCOV_EXCL_STOP
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test24)
 {
@@ -336,7 +336,7 @@ NBP_TEST(test25)
     NBP_MODULE_ASSERT(1 != 1);
 }
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test26)
 {
@@ -345,7 +345,7 @@ NBP_TEST(test26)
 }
 // LCOV_EXCL_STOP
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test27)
 {
@@ -354,7 +354,7 @@ NBP_TEST(test27)
 }
 // LCOV_EXCL_STOP
 
-// this test is skipped
+// these lines are excluded from coverage because this test is skipped
 // LCOV_EXCL_START
 NBP_TEST(test28)
 {

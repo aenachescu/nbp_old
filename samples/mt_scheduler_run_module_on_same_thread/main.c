@@ -45,6 +45,8 @@ SAMPLE_THREAD_ID_TYPE test13ThreadId    = SAMPLE_THREAD_ID_INVALID_VALUE;
 SAMPLE_THREAD_ID_TYPE test14ThreadId    = SAMPLE_THREAD_ID_INVALID_VALUE;
 SAMPLE_THREAD_ID_TYPE test15ThreadId    = SAMPLE_THREAD_ID_INVALID_VALUE;
 
+// these lines are excluded from coverage because if a module has no test then
+// the setup and teardown functions are not run
 // LCOV_EXCL_START
 
 NBP_MODULE_SETUP(setupEmptyModule)

@@ -73,6 +73,8 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_basic_scheduler_add_test)
         NBP_MEMORY_ALLOC(sizeof(nbp_basic_scheduler_data_t));
 
     if (nbpBasicSchedulerDataLast->next == NBP_MEMORY_NULL_POINTER) {
+        // these lines are excluded from coverage because it is pretty hard
+        // to trigger an error for memory allocation.
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_OUT_OF_MEMORY,

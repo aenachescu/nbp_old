@@ -250,6 +250,8 @@ SAMPLE_ATOMIC_UINT_TYPE subsubmodule7TeardownValue = SAMPLE_ATOMIC_UINT_INIT(0);
 SAMPLE_ATOMIC_UINT_TYPE subsubmodule8SetupValue = SAMPLE_ATOMIC_UINT_INIT(0);
 SAMPLE_ATOMIC_UINT_TYPE subsubmodule8TeardownValue = SAMPLE_ATOMIC_UINT_INIT(0);
 
+// these lines are excluded from coverage because if a module has no test then
+// the setup and teardown functions are not run
 // LCOV_EXCL_START
 
 NBP_MODULE_SETUP(empty_module_setup)

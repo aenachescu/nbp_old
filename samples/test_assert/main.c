@@ -197,7 +197,7 @@ NBP_TEST(test8)
     NBP_TEST_ASSERT(1);
     NBP_TEST_ASSERT(a == b);
 
-    // this assert is not executed because the above assert fails.
+    // this line is excluded from coverage because the above asser fails
     // LCOV_EXCL_START
     NBP_TEST_ASSERT_PASS_MSG(c == d, "peeeerfect");
     // LCOV_EXCL_STOP

@@ -29,6 +29,8 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
+// these lines are excluded from coverage because if a module has no test then
+// the setup and teardown functions are not run
 // LCOV_EXCL_START
 
 NBP_MODULE_SETUP(empty_module_setup)

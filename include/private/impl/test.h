@@ -32,7 +32,6 @@ unsigned int nbpTotalNumberOfTests = 0;
 
 // these fixtures are not run because if they are used then the fixture pfn will
 // be replace with NBP_MEMORY_NULL_POINTER
-
 // LCOV_EXCL_START
 NBP_TEST_SETUP(nbp_test_empty_setup_func)
 {

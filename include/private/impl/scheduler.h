@@ -189,6 +189,8 @@ end:
         state
     );
     if (oldVal != NBP_MODULE_STATE_RUNNING) {
+        // these lines are excluded from coverage because it is impossible to
+        // have other state if there is no sync issue
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
@@ -214,6 +216,8 @@ end:
             parentNum = &module->parent->ownModules.numSkipped;
             break;
         default:
+            // these lines are excluded from coverage because it is impossible
+            // to have other state if there is no sync issue
             // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
@@ -251,6 +255,8 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
             NBP_TEST_STATE_PASSED
         );
         if (oldVal != NBP_TEST_STATE_RUNNING) {
+            // these lines are excluded from coverage because it is impossible
+            // to have other state if there is no sync issue
             // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
@@ -270,6 +276,8 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
         NBP_TEST_STATE_FAILED
     );
     if (oldVal != NBP_TEST_STATE_RUNNING) {
+        // these lines are excluded from coverage because it is impossible to
+        // have other state if there is no sync issue
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
@@ -301,6 +309,8 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
     if (oldVal == NBP_MODULE_PRIVATE_SKIP_PROCESSED) {
         NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_WAIT(module->setupEvent);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // these lines are excluded from coverage because it is pretty hard
+            // to trigger an error for NBP_SYNC_EVENT_WAIT
             // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
@@ -313,6 +323,8 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
             return oldVal;
         }
 
+        // these lines are excluded from coverage because it is impossible to
+        // have other value if there is no sync issue
         // LCOV_EXCL_START
         NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
@@ -328,6 +340,8 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
 
             NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_NOTIFY(module->setupEvent);
             if (errCode != NBP_ERROR_CODE_SUCCESS) {
+                // these lines are excluded from coverage because it is pretty
+                // hard to trigger an error for NBP_SYNC_EVENT_WAIT
                 // LCOV_EXCL_START
                 NBP_ERROR_REPORT(errCode);
                 NBP_EXIT(errCode);
@@ -344,6 +358,8 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
                 NBP_MODULE_PRIVATE_SKIP_SET
             );
             if (oldVal != NBP_MODULE_PRIVATE_SKIP_PROCESSED) {
+                // these lines are excluded from coverage because it is
+                // impossible to have other value if there is no sync issue
                 // LCOV_EXCL_START
                 NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
                 NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
@@ -352,12 +368,16 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
             return NBP_MODULE_PRIVATE_SKIP_SET;
         }
 
+        // these lines are excluded from coverage because it is impossible to
+        // have other value if there is no sync issue
         // LCOV_EXCL_START
         NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
         // LCOV_EXCL_STOP
     }
 
+    // these lines are excluded from coverage because it is impossible to have
+    // other value if there is no sync issue
     // LCOV_EXCL_START
     NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
     NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
@@ -372,6 +392,8 @@ static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numSkipped);
     if (module->ownTests.num != passed + failed + skipped) {
+        // this line is excluded from coverage because it is impossible to have
+        // other value if there is no sync issue
         // LCOV_EXCL_START
         goto error;
         // LCOV_EXCL_STOP
@@ -381,6 +403,8 @@ static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numSkipped);
     if (module->ownModules.num != passed + failed + skipped) {
+        // this line is excluded from coverage because it is impossible to have
+        // other value if there is no sync issue
         // LCOV_EXCL_START
         goto error;
         // LCOV_EXCL_STOP
@@ -390,6 +414,8 @@ static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numSkipped);
     if (module->subTests.num != passed + failed + skipped) {
+        // this line is excluded from coverage because it is impossible to have
+        // other value if there is no sync issue
         // LCOV_EXCL_START
         goto error;
         // LCOV_EXCL_STOP
@@ -399,6 +425,8 @@ static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
     failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numFailed);
     skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numSkipped);
     if (module->subModules.num != passed + failed + skipped) {
+        // this line is excluded from coverage because it is impossible to have
+        // other value if there is no sync issue
         // LCOV_EXCL_START
         goto error;
         // LCOV_EXCL_STOP
@@ -406,6 +434,8 @@ static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
 
     return;
 
+    // these lines are excluded from coverage because it is impossible to have
+    // other value if there is no sync issue
     // LCOV_EXCL_START
 error:
     NBP_ERROR_REPORT_CTX_STRING(
@@ -445,6 +475,8 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
             }
 
             if (module->emptySubmodulesNum != numOfCompletedEmptySubmodules) {
+                // these lines are excluded from coverage because it is
+                // impossible to have other value if there is no sync issue
                 // LCOV_EXCL_START
                 NBP_ERROR_REPORT_CTX_STRING(
                     NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
@@ -460,6 +492,9 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
         }
 
         if (module->taskNum < num) {
+            // these lines are excluded from coverage because it is impossible
+            // to have more completed task than the number of task if there is
+            // no sync issue
             // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
@@ -485,6 +520,8 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 
         errCode = NBP_SYNC_EVENT_UNINIT(module->runEvent);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // these lines are excluded from coverage because it is pretty hard
+            // to trigger an error for NBP_SYNC_EVENT_UNINIT
             // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
@@ -493,6 +530,8 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 
         errCode = NBP_SYNC_EVENT_UNINIT(module->setupEvent);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // these lines are excluded from coverage because it is pretty hard
+            // to trigger an error for NBP_SYNC_EVENT_UNINIT
             // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
@@ -571,6 +610,8 @@ static void nbp_scheduler_run_test_skipped(nbp_test_details_t* test)
         NBP_TEST_STATE_SKIPPED
     );
     if (oldVal != NBP_TEST_STATE_RUNNING) {
+        // these lines are excluded from coverage because it is impossible to
+        // have other state if there is no sync issue
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
@@ -600,6 +641,8 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
     if (oldVal == NBP_MODULE_STATE_RUNNING) {
         NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_WAIT(module->runEvent);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // these lines are excluded from coverage because it is pretty hard
+            // to trigger an error for NBP_SYNC_EVENT_WAIT
             // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
@@ -612,6 +655,8 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
     if (oldVal == NBP_MODULE_STATE_READY) {
         unsigned int parentState = nbp_scheduler_run_module(module->parent);
         if (parentState != NBP_MODULE_STATE_RUNNING) {
+            // these lines are excluded from coverage because it is impossible
+            // to have other state if there is no sync issue
             // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
@@ -625,6 +670,8 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
 
         NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_NOTIFY(module->runEvent);
         if (errCode != NBP_ERROR_CODE_SUCCESS) {
+            // these lines are excluded from coverage because it is pretty hard
+            // to trigger an error for NBP_SYNC_EVENT_NOTIFY
             // LCOV_EXCL_START
             NBP_ERROR_REPORT(errCode);
             NBP_EXIT(errCode);
@@ -634,6 +681,8 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
         return NBP_MODULE_STATE_RUNNING;
     }
 
+    // these lines are excluded from coverage because it is impossible to have
+    // other state if there is no sync issue
     // LCOV_EXCL_START
     NBP_ERROR_REPORT_CTX_STRING(
         NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
@@ -711,6 +760,8 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
     // the test can be run only from NBP_SCHEDULER_FUNC_RUN function
     extern int nbpSchedulerRunEnabled;
     if (nbpSchedulerRunEnabled != 1) {
+        // these lines are excluded from coverage because it is pretty hard to
+        // trigger this error
         // LCOV_EXCL_START
         NBP_ERROR_REPORT(NBP_ERROR_CODE_SCHEDULER_RUN_DISABLED);
         return;
@@ -724,6 +775,8 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
     );
 
     if (oldVal != NBP_TEST_STATE_READY) {
+        // these lines are excluded from coverage because it is impossible to
+        // have other state if there is no sync issue
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_TEST_STATE,
@@ -735,6 +788,8 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
 
     unsigned int moduleState = nbp_scheduler_run_module(test->module);
     if (moduleState != NBP_MODULE_STATE_RUNNING) {
+        // these lines are excluded from coverage because it is impossible to
+        // have other state if there is no sync issue
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
@@ -757,6 +812,8 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
         } else if (moduleFlags == NBP_MODULE_PRIVATE_SKIP_SET) {
             nbp_scheduler_run_test_skipped(test);
         } else {
+            // these lines are excluded from coverage because it is impossible
+            // to have other value if there is no sync issue
             // LCOV_EXCL_START
             NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
             NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
@@ -765,6 +822,8 @@ void nbp_scheduler_run_test(nbp_test_details_t* test)
     } else if (oldVal == NBP_TEST_PRIVATE_SKIP_SET) {
         nbp_scheduler_run_test_skipped(test);
     } else {
+        // these lines are excluded from coverage because it is impossible to
+        // have other value if there is no sync issue
         // LCOV_EXCL_START
         NBP_ERROR_REPORT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
         NBP_EXIT(NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA);
@@ -791,6 +850,8 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
         NBP_MODULE_STATE_RUNNING
     );
     if (moduleState != NBP_MODULE_STATE_READY) {
+        // these lines are excluded from coverage because it is impossible to
+        // have other state if there is no sync issue
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
@@ -808,6 +869,8 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
     while (moduleIdx != NBP_MEMORY_NULL_POINTER) {
         moduleState = NBP_SYNC_ATOMIC_UINT_LOAD(&moduleIdx->moduleState);
         if (moduleState != NBP_MODULE_STATE_READY) {
+            // these lines are excluded from coverage because it is impossible
+            // to have other state if there is no sync issue
             // LCOV_EXCL_START
             NBP_ERROR_REPORT_CTX_STRING(
                 NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
@@ -827,6 +890,8 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
     numberOfCompletedTasks = NBP_SYNC_ATOMIC_UINT_LOAD(&module->completedTaskNum);
 
     if (module->taskNum != numberOfCompletedTasks) {
+        // these lines are excluded from coverage because it is impossible to
+        // have other value if there is no sync issue
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_INTERNAL_DATA,
@@ -844,6 +909,8 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
         NBP_MODULE_STATE_PASSED
     );
     if (moduleState != NBP_MODULE_STATE_RUNNING) {
+        // these lines are excluded from coverage because it is impossible to
+        // have other state if there is no sync issue
         // LCOV_EXCL_START
         NBP_ERROR_REPORT_CTX_STRING(
             NBP_ERROR_CODE_UNEXPECTED_MODULE_STATE,
@@ -868,6 +935,8 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
 
     errCode = NBP_SYNC_EVENT_UNINIT(module->runEvent);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // these lines are excluded from coverage because it is pretty hard to
+        // trigger an error for NBP_SYNC_EVENT_UNINIT
         // LCOV_EXCL_START
         NBP_ERROR_REPORT(errCode);
         NBP_EXIT(errCode);
@@ -876,6 +945,8 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
 
     errCode = NBP_SYNC_EVENT_UNINIT(module->setupEvent);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
+        // these lines are excluded from coverage because it is pretty hard to
+        // trigger an error for NBP_SYNC_EVENT_UNINIT
         // LCOV_EXCL_START
         NBP_ERROR_REPORT(errCode);
         NBP_EXIT(errCode);

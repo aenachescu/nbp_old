@@ -41,6 +41,8 @@ NBP_MAIN_MODULE(mt_scheduler_run_empty_module_on_same_thread_as_test)
     );
 }
 
+// these lines are excluded from coverage because if a module has no test then
+// the setup and teardown functions are not run
 // LCOV_EXCL_START
 
 NBP_MODULE_SETUP(setupEmptyModule)
