@@ -71,6 +71,7 @@ list(APPEND SAMPLES basic
     empty_tests
     error_test_already_run
     error_module_already_run
+    more_tests_with_same_name
 )
 
 # Custom flags lists for targets
@@ -144,6 +145,7 @@ list(APPEND SAMPLES_CFLAGS ""
     ""
     ""
     ""
+    ""
 )
 
 list (APPEND SAMPLES_LFLAGS ""
@@ -213,6 +215,7 @@ list (APPEND SAMPLES_LFLAGS ""
     ${MT_SCHEDULER_LINK_FLAGS}
     ""
     ${MT_SCHEDULER_LINK_FLAGS}
+    ""
     ""
     ""
     ""
