@@ -98,6 +98,7 @@ declare -a arr=(
     "error_test_already_run_sample"
     "error_module_already_run_sample"
     "more_tests_with_same_name_sample"
+    "more_modules_with_same_name_sample"
 )
 
 files=""
