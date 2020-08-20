@@ -258,6 +258,7 @@ run_test error_module_already_run_sample 13 0 1
 run_test more_tests_with_same_name_sample 0 1 1
 run_test more_modules_with_same_name_sample 0 1 1
 run_test module_and_test_with_same_name_sample 0 1 1
+run_test mt_scheduler_run_module_on_same_thread_as_test_sample 0 1 0
 
 if [ $status -ne 0 ]; then
     echo -n $'\e[31mrun_tests failed\e[39m'
