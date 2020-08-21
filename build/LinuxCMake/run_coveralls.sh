@@ -101,6 +101,7 @@ declare -a arr=(
     "more_modules_with_same_name_sample"
     "module_and_test_with_same_name_sample"
     "mt_scheduler_run_module_on_same_thread_as_test_sample"
+    "mt_scheduler_run_module_on_same_thread_as_module_sample"
 )
 
 files=""
