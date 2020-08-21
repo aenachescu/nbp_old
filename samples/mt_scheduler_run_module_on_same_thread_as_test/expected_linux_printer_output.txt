@@ -1,4 +1,8 @@
-Running...[2KRunning... 1/26[2KRunning... 2/26[2KRunning... 3/26[2KRunning... 4/26[2KRunning... 5/26[2KRunning... 6/26[2KRunning... 7/26[2KRunning... 8/26[2KRunning... 9/26[2KRunning... 10/26[2KRunning... 11/26[2KRunning... 12/26[2KRunning... 13/26[2KRunning... 14/26[2KRunning... 15/26[2KRunning... 16/26[2KRunning... 17/26[2KRunning... 18/26[2KRunning... 19/26[2KRunning... 20/26[2KRunning... 21/26[2KRunning... 22/26[2KRunning... 23/26[2KRunning... 24/26[2KRunning... 25/26[2KRunning... 26/26[2K[32mmt_scheduler_run_module_on_same_thread_as_test[0m
+Running...[2KRunning... 1/34[2KRunning... 2/34[2KRunning... 3/34[2KRunning... 4/34[2KRunning... 5/34[2KRunning... 6/34[2KRunning... 7/34[2KRunning... 8/34[2KRunning... 9/34[2KRunning... 10/34[2KRunning... 11/34[2KRunning... 12/34[2KRunning... 13/34[2KRunning... 14/34[2KRunning... 15/34[2KRunning... 16/34[2KRunning... 17/34[2KRunning... 18/34[2KRunning... 19/34[2KRunning... 20/34[2KRunning... 21/34[2KRunning... 22/34[2KRunning... 23/34[2KRunning... 24/34[2KRunning... 25/34[2KRunning... 26/34[2KRunning... 27/34[2KRunning... 28/34[2KRunning... 29/34[2KRunning... 30/34[2KRunning... 31/34[2KRunning... 32/34[2KRunning... 33/34[2KRunning... 34/34[2K[32mmt_scheduler_run_module_on_same_thread_as_test[0m
+    [32mtest27[0m
+    [32mtest28[0m
+    [32mtest29[0m
+    [32mtest30[0m
     [32mtest1[0m
     [32mtest2[0m
     [32mtest3[0m
@@ -51,17 +55,21 @@ Running...[2KRunning... 1/26[2KRunning... 2/26[2KRunning... 3/26[2KRunni
             [32msubsubmodule8[0m
                 [32mtest25[0m
                 [32mtest26[0m
+    [32mtest31[0m
+    [32mtest32[0m
+    [32mtest33[0m
+    [32mtest34[0m
 Passed  modules: [32m27[0m/27
 Failed  modules: [32m0[0m/27
 Skipped modules: [32m0[0m/27
-Passed  tests: [32m26[0m/26
-Failed  tests: [32m0[0m/26
-Skipped tests: [32m0[0m/26
-Passed checks: [32m25[0m/25
-Failed checks: [32m0[0m/25
+Passed  tests: [32m34[0m/34
+Failed  tests: [32m0[0m/34
+Skipped tests: [32m0[0m/34
+Passed checks: [32m35[0m/35
+Failed checks: [32m0[0m/35
 Passed test asserts: [32m0[0m/0
 Failed test asserts: [32m0[0m/0
 Passed module asserts: [32m0[0m/0
 Failed module asserts: [32m0[0m/0
-Passed asserts: [32m25[0m/25
-Failed asserts: [32m0[0m/25
+Passed asserts: [32m57[0m/57
+Failed asserts: [32m0[0m/57
