@@ -95,7 +95,7 @@ function run_test {
             return
         fi
     elif [ -f "${expectedPrinterOutputPath}" ]; then
-        echo $'\e[33mwarning\e[39m - has_printer_output is not set but the file exists'
+        echo $'\e[33mwarning\e[39m - has_printer_output is not set but the expected_linux_printer_output.txt file exists'
         warnings=$(( $warnings + 1 ))
     fi
 
@@ -110,7 +110,7 @@ function run_test {
             return
         fi
     elif [ -f "${expectedOutputPath}" ]; then
-        echo $'\e[33mwarning\e[39m - has_output is not set but the file exists'
+        echo $'\e[33mwarning\e[39m - has_output is not set but the expected_output.txt file exists'
         warnings=$(( $warnings + 1 ))
     fi
 
@@ -134,6 +134,10 @@ function run_test {
     testsTime=$(echo "$testsTime + $testTime" | bc)
 
     if [ -f "output.txt" ]; then
+        if [ $has_output -eq 0 ]; then
+            echo $'\e[33mwarning\e[39m - has_output is not set but the output.txt file exists'
+            warnings=$(( $warnings + 1 ))
+        fi
         output=$(<output.txt)
         rm output.txt
     fi
