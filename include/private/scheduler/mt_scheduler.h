@@ -152,144 +152,34 @@ void* nbp_mt_scheduler_create_ctx(
  * NBP_SCHEDULER_PREPROCESSING_CONTEXT implementation
  */
 
-#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_AFTER_TEST(     \
-    name)                                                                      \
+#define NBP_PP_EAT_PP_NBP_MT_SCHEDULER_RUN_AFTER_TEST(name)                    \
     NBP_TEST_INCLUDE(name);
 
-#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_BEFORE_TEST(    \
-    name)                                                                      \
+#define NBP_PP_EAT_PP_NBP_MT_SCHEDULER_RUN_BEFORE_TEST(name)                   \
     NBP_TEST_INCLUDE(name);
 
-#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_AFTER_MODULE(   \
-    name)                                                                      \
+#define NBP_PP_EAT_PP_NBP_MT_SCHEDULER_RUN_AFTER_MODULE(name)                  \
     NBP_MODULE_INCLUDE(name);
 
-#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_BEFORE_MODULE(  \
-    name)                                                                      \
+#define NBP_PP_EAT_PP_NBP_MT_SCHEDULER_RUN_BEFORE_MODULE(name)                 \
     NBP_MODULE_INCLUDE(name);
 
-#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_AS_TEST(\
-    name)                                                                      \
+#define NBP_PP_EAT_PP_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_AS_TEST(name)        \
     NBP_TEST_INCLUDE(name);
 
-#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_AS_MODULE(\
-    name)                                                                      \
+#define NBP_PP_EAT_PP_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD_AS_MODULE(name)      \
     NBP_MODULE_INCLUDE(name);
 
-#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD
+#define NBP_PP_EAT_PP_NBP_MT_SCHEDULER_RUN_ON_SAME_THREAD
 
-// it's used when NBP_MT_SCHEDULER_CTX is called without rules
-#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_P_
-
-#define NBP_MT_SCHEDULER_PRIVATE_PP_CONCAT(a, b)                               \
-    NBP_MT_SCHEDULER_PRIVATE_PP_CONCAT_HELPER(a, b)
-
-#define NBP_MT_SCHEDULER_PRIVATE_PP_CONCAT_HELPER(a, b) a ## b
-
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_1(rule)                    \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_2(rule, ...)               \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_1(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_3(rule, ...)               \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_2(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_4(rule, ...)               \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_3(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_5(rule, ...)               \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_4(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_6(rule, ...)               \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_5(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_7(rule, ...)               \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_6(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_8(rule, ...)               \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_7(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_9(rule, ...)               \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_8(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_10(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_9(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_11(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_10(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_12(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_11(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_13(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_12(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_14(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_13(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_15(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_14(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_16(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_15(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_17(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_16(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_18(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_17(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_19(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_18(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_20(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_19(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_21(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_20(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_22(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_21(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_23(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_22(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_24(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_23(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_25(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_24(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_26(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_25(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_27(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_26(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_28(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_27(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_29(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_28(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_30(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_29(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_31(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_30(P_ ## __VA_ARGS__)
-#define NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_32(rule, ...)              \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## rule                                   \
-    NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_31(P_ ## __VA_ARGS__)
-
-#define NBP_MT_SCHEDULER_PRIVATE_PP_EAT_PP_NBP_MT_SCHEDULER_CTX(...)           \
-    NBP_MT_SCHEDULER_PRIVATE_PP_CONCAT(                                        \
-        NBP_MT_SCHEDULER_PRIVATE_PP_PROCESSING_RULE_,                          \
-        NBP_PP_VARCOUNT(P_ ## __VA_ARGS__)                                     \
-    )(P_ ## __VA_ARGS__)
+#define NBP_PP_EAT_PP_NBP_MT_SCHEDULER_CTX(...)                                \
+    NBP_PP_CONCAT(                                                             \
+        NBP_PP_PROCESSING_PARAM_,                                              \
+        NBP_PP_VARCOUNT(PP_ ## __VA_ARGS__)                                    \
+    )(PP_ ## __VA_ARGS__)
 
 #define NBP_SCHEDULER_PREPROCESSING_CONTEXT(ctx)                               \
-    NBP_MT_SCHEDULER_PRIVATE_PP_EAT_ ## ctx
+    NBP_PP_EAT_ ## ctx
 
 #ifdef NBP_LIBRARY_MAIN
 
