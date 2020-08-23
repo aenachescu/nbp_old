@@ -77,7 +77,7 @@ static void nbp_module_init(nbp_module_details_t* module,
     }
 
     nbp_module_setup_pfn_t emptyModuleSetup =
-        NBP_PRIVATE_PP_CONCAT(nbp_module_setup_, nbp_module_empty_setup_func);
+        NBP_PP_CONCAT(nbp_module_setup_, nbp_module_empty_setup_func);
     if (module->setup == emptyModuleSetup) {
         module->setup = NBP_MEMORY_NULL_POINTER;
     }
@@ -89,7 +89,7 @@ static void nbp_module_init(nbp_module_details_t* module,
     }
 
     nbp_module_teardown_pfn_t emptyModuleTeardown =
-        NBP_PRIVATE_PP_CONCAT(nbp_module_teardown_, nbp_module_empty_teardown_func);
+        NBP_PP_CONCAT(nbp_module_teardown_, nbp_module_empty_teardown_func);
     if (module->teardown == emptyModuleTeardown) {
         module->teardown = NBP_MEMORY_NULL_POINTER;
     }

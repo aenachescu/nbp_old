@@ -30,7 +30,7 @@ SOFTWARE.
 
 #define NBP_PP_PRIVATE_CONCAT_HELPER(a, b) a ## b
 
-#define NBP_PRIVATE_PP_CONCAT(a, b) NBP_PP_PRIVATE_CONCAT_HELPER(a, b)
+#define NBP_PP_CONCAT(a, b) NBP_PP_PRIVATE_CONCAT_HELPER(a, b)
 
 #define NBP_PP_PRIVATE_VARCOUNT_HELPER(                                        \
     _, _32, _31, _30, _29, _28, _27, _26, _25, _24, _23, _22, _21, _20, _19,   \

@@ -31,9 +31,9 @@ SOFTWARE.
 #ifdef NBP_LIBRARY_MAIN
 
 #define NBP_MAIN_PRIVATE_MODULE_IMPL(func, scheduler, printers)                \
-    extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
+    extern nbp_module_details_t NBP_PP_CONCAT(nbpModuleDetails, func);         \
     nbp_module_details_t* nbpMainModule =                                      \
-        & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func);                       \
+        & NBP_PP_CONCAT(nbpModuleDetails, func);                               \
     nbp_scheduler_interface_t* nbpSchedulerInterface = scheduler;              \
     nbp_printer_interface_t* nbpPrinterInterfaces[] = printers;                \
     unsigned int nbpPrinterInterfacesSize =                                    \

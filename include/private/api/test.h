@@ -57,7 +57,7 @@ SOFTWARE.
  */
 
 #define NBP_TEST_SETUP(func)                                                   \
-    void NBP_PRIVATE_PP_CONCAT(nbp_test_setup_, func)(                         \
+    void NBP_PP_CONCAT(nbp_test_setup_, func)(                                 \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
@@ -100,7 +100,7 @@ SOFTWARE.
  */
 #define NBP_TEST_USE_SETUP(func)                                               \
     NBP_TEST_SETUP(func);                                                      \
-    nbpParamTestSetup = NBP_PRIVATE_PP_CONCAT(nbp_test_setup_, func)
+    nbpParamTestSetup = NBP_PP_CONCAT(nbp_test_setup_, func)
 
 /*
  * @public doc
@@ -157,7 +157,7 @@ SOFTWARE.
  * @endcode
  */
 #define NBP_TEST_TEARDOWN(func)                                                \
-    void NBP_PRIVATE_PP_CONCAT(nbp_test_teardown_, func)(                      \
+    void NBP_PP_CONCAT(nbp_test_teardown_, func)(                              \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
@@ -200,7 +200,7 @@ SOFTWARE.
  */
 #define NBP_TEST_USE_TEARDOWN(func)                                            \
     NBP_TEST_TEARDOWN(func);                                                   \
-    nbpParamTestTeardown = NBP_PRIVATE_PP_CONCAT(nbp_test_teardown_, func)
+    nbpParamTestTeardown = NBP_PP_CONCAT(nbp_test_teardown_, func)
 
 /*
  * @public doc
@@ -230,13 +230,13 @@ SOFTWARE.
     nbpParamTestTeardown = NBP_MEMORY_NULL_POINTER
 
 #define NBP_TEST_PRIVATE_IMPL(func, name, setupFunc, teardownFunc)             \
-    void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
+    void NBP_PP_CONCAT(nbp_test_, func)(                                       \
         nbp_test_details_t*                                                    \
     );                                                                         \
-    nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func) = {         \
+    nbp_test_details_t NBP_PP_CONCAT(nbpTestDetails, func) = {                 \
         .testName                   = name,                                    \
         .testId                     = 0,                                       \
-        .testFunc                   = NBP_PRIVATE_PP_CONCAT(nbp_test_, func),  \
+        .testFunc                   = NBP_PP_CONCAT(nbp_test_, func),          \
         .module                     = NBP_MEMORY_NULL_POINTER,                 \
         .testSetupFunc              = setupFunc,                               \
         .testTeardownFunc           = teardownFunc,                            \
@@ -263,7 +263,7 @@ SOFTWARE.
             .numFailed              = 0,                                       \
         },                                                                     \
     };                                                                         \
-    void NBP_PRIVATE_PP_CONCAT(nbp_test_, func)(                               \
+    void NBP_PP_CONCAT(nbp_test_, func)(                                       \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
@@ -331,8 +331,8 @@ SOFTWARE.
     NBP_TEST_PRIVATE_IMPL(                                                     \
         func,                                                                  \
         name,                                                                  \
-        NBP_PRIVATE_PP_CONCAT(nbp_test_setup_, setupFunc),                     \
-        NBP_PRIVATE_PP_CONCAT(nbp_test_teardown_, teardownFunc)                \
+        NBP_PP_CONCAT(nbp_test_setup_, setupFunc),                             \
+        NBP_PP_CONCAT(nbp_test_teardown_, teardownFunc)                        \
     )
 
 /*
@@ -369,9 +369,9 @@ SOFTWARE.
  * @endcode
  */
 #define NBP_TEST_RUN(func)                                                     \
-    extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func);     \
+    extern nbp_test_details_t NBP_PP_CONCAT(nbpTestDetails, func);             \
     nbp_test_run(                                                              \
-        & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
+        & NBP_PP_CONCAT(nbpTestDetails, func),                                 \
         nbpParamModule,                                                        \
         nbpParamTestSetup,                                                     \
         nbpParamTestTeardown                                                   \
@@ -381,10 +381,10 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_TEST_RUN_CTX(func, ctx)                                            \
-    extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func);     \
+    extern nbp_test_details_t NBP_PP_CONCAT(nbpTestDetails, func);             \
     NBP_PRIVATE_SCHEDULER_PREPROCESSING_CONTEXT(P_ ## ctx)                     \
     nbp_test_run_ctx(                                                          \
-        & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func),                         \
+        & NBP_PP_CONCAT(nbpTestDetails, func),                                 \
         ctx,                                                                   \
         nbpParamModule,                                                        \
         nbpParamTestSetup,                                                     \
@@ -395,13 +395,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_TEST_INCLUDE(func)                                                 \
-    extern nbp_test_details_t NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func)
+    extern nbp_test_details_t NBP_PP_CONCAT(nbpTestDetails, func)
 
 /*
  * TODO: add docs
  */
 #define NBP_TEST_GET_PTR(func)                                                 \
-    & NBP_PRIVATE_PP_CONCAT(nbpTestDetails, func)
+    & NBP_PP_CONCAT(nbpTestDetails, func)
 
 /*
  * @public doc

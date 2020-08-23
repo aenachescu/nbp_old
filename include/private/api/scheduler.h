@@ -32,7 +32,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_CALLBACK_INIT(func)                                      \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
+    static void NBP_PP_CONCAT(nbp_scheduler_callback_, func)(                  \
         void                                                                   \
     )
 
@@ -40,7 +40,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_CALLBACK_UNINIT(func)                                    \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
+    static void NBP_PP_CONCAT(nbp_scheduler_callback_, func)(                  \
         void                                                                   \
     )
 
@@ -48,7 +48,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_CALLBACK_RUN(func)                                       \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
+    static void NBP_PP_CONCAT(nbp_scheduler_callback_, func)(                  \
         void                                                                   \
     )
 
@@ -56,7 +56,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_CALLBACK_RUN_TEST(func)                                  \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
+    static void NBP_PP_CONCAT(nbp_scheduler_callback_, func)(                  \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
@@ -64,7 +64,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_CALLBACK_RUN_TEST_CTX(func)                              \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
+    static void NBP_PP_CONCAT(nbp_scheduler_callback_, func)(                  \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER void* nbpParamCtx                           \
     )
@@ -73,7 +73,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_CALLBACK_RUN_MODULE(func)                                \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
+    static void NBP_PP_CONCAT(nbp_scheduler_callback_, func)(                  \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
@@ -81,7 +81,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_CALLBACK_RUN_MODULE_CTX(func)                            \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
+    static void NBP_PP_CONCAT(nbp_scheduler_callback_, func)(                  \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule,       \
         NBP_MAYBE_UNUSED_PARAMETER void* nbpParamCtx                           \
     )
@@ -90,7 +90,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_CALLBACK_RUN_MODULE_COMPLETED(func)                      \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
+    static void NBP_PP_CONCAT(nbp_scheduler_callback_, func)(                  \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
@@ -103,17 +103,17 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER(name, ...)                                               \
-    void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_config_, name)(                   \
+    void NBP_PP_CONCAT(nbp_scheduler_config_, name)(                           \
         NBP_MAYBE_UNUSED_PARAMETER nbp_scheduler_interface_t* nbpParamScheduler\
     )                                                                          \
     {                                                                          \
         NBP_SCHEDULER_PRIVATE_GENERATE_CONFIG(P_ ## __VA_ARGS__)               \
     }                                                                          \
     struct nbp_scheduler_interface_t                                           \
-    NBP_PRIVATE_PP_CONCAT(nbpScheduler, name) = {                              \
+    NBP_PP_CONCAT(nbpScheduler, name) = {                                      \
         .schedulerName              = #name,                                   \
         .configFunc                 =                                          \
-            NBP_PRIVATE_PP_CONCAT(nbp_scheduler_config_, name),                \
+            NBP_PP_CONCAT(nbp_scheduler_config_, name),                        \
         .initCbk                    = NBP_MEMORY_NULL_POINTER,                 \
         .uninitCbk                  = NBP_MEMORY_NULL_POINTER,                 \
         .runCbk                     = NBP_MEMORY_NULL_POINTER,                 \
@@ -128,13 +128,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_GET_PTR(name)                                            \
-    & NBP_PRIVATE_PP_CONCAT(nbpScheduler, name)
+    & NBP_PP_CONCAT(nbpScheduler, name)
 
 /*
  * TODO: add docs
  */
 #define NBP_SCHEDULER_INCLUDE(name)                                            \
-    extern nbp_scheduler_interface_t NBP_PRIVATE_PP_CONCAT(nbpScheduler, name)
+    extern nbp_scheduler_interface_t NBP_PP_CONCAT(nbpScheduler, name)
 
 /*
  * TODO: add docs
@@ -148,7 +148,7 @@ SOFTWARE.
 #define NBP_SCHEDULER_CTX nbpParamCtx
 
 #define NBP_SCHEDULER_PRIVATE_GENERATE_CONFIG(...)                             \
-    NBP_PRIVATE_PP_CONCAT(                                                     \
+    NBP_PP_CONCAT(                                                             \
         NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_,                     \
         NBP_PP_VARCOUNT(P ## __VA_ARGS__)                                      \
     )(P ## __VA_ARGS__)                                                        \
@@ -166,44 +166,44 @@ SOFTWARE.
 #define NBP_SCHEDULER_PRIVATE_PP_EAT_P_
 
 #define NBP_SCHEDULER_PRIVATE_PP_EAT_PP_NBP_SCHEDULER_CALLBACKS(...)           \
-    NBP_PRIVATE_PP_CONCAT(                                                     \
+    NBP_PP_CONCAT(                                                             \
         NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_,                  \
         NBP_PP_VARCOUNT(P_ ## __VA_ARGS__)                                     \
     )(P_ ## __VA_ARGS__)
 
 #define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACKS(...)            \
-    NBP_PRIVATE_PP_CONCAT(                                                     \
+    NBP_PP_CONCAT(                                                             \
         NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_,                  \
         NBP_PP_VARCOUNT(P_ ## __VA_ARGS__)                                     \
     )(P_ ## __VA_ARGS__)
 
 #define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_INIT(func)       \
     nbpParamScheduler->initCbk =                                               \
-        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+        NBP_PP_CONCAT(nbp_scheduler_callback_, func);
 #define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_UNINIT(func)     \
     nbpParamScheduler->uninitCbk =                                             \
-        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+        NBP_PP_CONCAT(nbp_scheduler_callback_, func);
 #define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN(func)        \
     nbpParamScheduler->runCbk =                                                \
-        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+        NBP_PP_CONCAT(nbp_scheduler_callback_, func);
 #define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN_TEST(func)   \
     nbpParamScheduler->runTestCbk =                                            \
-        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+        NBP_PP_CONCAT(nbp_scheduler_callback_, func);
 #define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN_TEST_CTX(    \
     func)                                                                      \
     nbpParamScheduler->runTestCtxCbk =                                         \
-        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+        NBP_PP_CONCAT(nbp_scheduler_callback_, func);
 #define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN_MODULE(func) \
     nbpParamScheduler->runModuleCbk =                                          \
-        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+        NBP_PP_CONCAT(nbp_scheduler_callback_, func);
 #define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN_MODULE_CTX(  \
     func)                                                                      \
     nbpParamScheduler->runModuleCtxCbk =                                       \
-        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+        NBP_PP_CONCAT(nbp_scheduler_callback_, func);
 #define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN_MODULE_COMPLETED(\
     func)                                                                      \
     nbpParamScheduler->runModuleCompletedCbk =                                 \
-        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+        NBP_PP_CONCAT(nbp_scheduler_callback_, func);
 
 /*
  * These macros are used to parse the parameters passed to the NBP_SCHEDULER

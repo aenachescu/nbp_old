@@ -32,7 +32,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_INIT(func)                                            \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         void                                                                   \
     )
 
@@ -40,7 +40,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_INIT(func)                                        \
-    .init = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .init = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -52,7 +52,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_UNINIT(func)                                          \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         void                                                                   \
     )
 
@@ -60,7 +60,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_UNINIT(func)                                      \
-    .uninit = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .uninit = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -72,7 +72,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_REPORT_ERROR(func)                                    \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_error_t nbpParamError                   \
     )
 
@@ -80,7 +80,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_REPORT_ERROR(func)                                \
-    .reportError = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .reportError = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -92,7 +92,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_EXIT_TRIGGERED(func)                                  \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamErrorCode                       \
     )
 
@@ -100,7 +100,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_EXIT_TRIGGERED(func)                              \
-    .exitTriggered = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .exitTriggered = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -112,14 +112,14 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_HANDLE_VERSION_COMMAND(func)                          \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
     )
 
 /*
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_HANDLE_VERSION_COMMAND(func)                      \
-    .handleVersionCommand = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .handleVersionCommand = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -131,7 +131,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_STARTED(func)                                    \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
@@ -139,7 +139,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_STARTED(func)                                \
-    .testStarted = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testStarted = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -151,7 +151,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_COMPLETED(func)                                  \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
@@ -159,7 +159,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_COMPLETED(func)                              \
-    .testCompleted = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testCompleted = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -171,7 +171,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_STARTED(func)                                  \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
@@ -179,7 +179,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_STARTED(func)                              \
-    .moduleStarted = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleStarted = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -191,7 +191,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_COMPLETED(func)                                \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
@@ -199,7 +199,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_COMPLETED(func)                            \
-    .moduleCompleted = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleCompleted = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -211,7 +211,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_BEFORE_RUN(func)                                      \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamModulesNum,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamTestsNum               \
     )
@@ -220,7 +220,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_BEFORE_RUN(func)                                  \
-    .beforeRun = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .beforeRun = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -232,7 +232,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_AFTER_RUN(func)                                       \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedModulesNum,      \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedModulesNum,      \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamSkippedModulesNum,     \
@@ -257,7 +257,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_AFTER_RUN(func)                                   \
-    .afterRun = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .afterRun = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -270,7 +270,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_SCHEDULING_TEST(func)                                 \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
@@ -278,7 +278,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_SCHEDULING_TEST(func)                             \
-    .schedulingTest = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .schedulingTest = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -290,7 +290,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_BEFORE_SCHEDULING_MODULE(func)                        \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
@@ -298,7 +298,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_BEFORE_SCHEDULING_MODULE(func)                    \
-    .beforeSchedulingModule = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .beforeSchedulingModule = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -310,7 +310,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_AFTER_SCHEDULING_MODULE(func)                         \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
@@ -318,7 +318,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_AFTER_SCHEDULING_MODULE(func)                     \
-    .afterSchedulingModule = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .afterSchedulingModule = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -330,7 +330,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_RESULT(func)                                    \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
@@ -343,7 +343,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_RESULT(func)                                \
-    .checkResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -355,7 +355,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_OP_RESULT(func)                                 \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
@@ -370,7 +370,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_OP_RESULT(func)                             \
-    .checkOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -382,7 +382,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_CHAR_OP_RESULT(func)                            \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
@@ -397,7 +397,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_CHAR_OP_RESULT(func)                        \
-    .checkCharOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkCharOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -409,7 +409,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_SHORT_OP_RESULT(func)                           \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
@@ -424,7 +424,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_SHORT_OP_RESULT(func)                       \
-    .checkShortOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -436,7 +436,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_USHORT_OP_RESULT(func)                          \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
@@ -451,7 +451,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_USHORT_OP_RESULT(func)                      \
-    .checkUShortOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkUShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -463,7 +463,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_INT_OP_RESULT(func)                             \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
@@ -478,7 +478,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_INT_OP_RESULT(func)                         \
-    .checkIntOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -490,7 +490,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_UINT_OP_RESULT(func)                            \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
@@ -505,7 +505,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_UINT_OP_RESULT(func)                        \
-    .checkUIntOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkUIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -517,7 +517,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_LONG_OP_RESULT(func)                            \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
@@ -532,7 +532,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_LONG_OP_RESULT(func)                        \
-    .checkLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -544,7 +544,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_ULONG_OP_RESULT(func)                           \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
@@ -559,7 +559,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_ULONG_OP_RESULT(func)                       \
-    .checkULongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkULongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -571,7 +571,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_LLONG_OP_RESULT(func)                           \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
@@ -586,7 +586,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_LLONG_OP_RESULT(func)                       \
-    .checkLLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkLLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -598,7 +598,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_ULLONG_OP_RESULT(func)                          \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
@@ -613,7 +613,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_ULLONG_OP_RESULT(func)                      \
-    .checkULLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkULLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -625,7 +625,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_FLOAT_OP_RESULT(func)                           \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
@@ -640,7 +640,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_FLOAT_OP_RESULT(func)                       \
-    .checkFloatOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkFloatOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -652,7 +652,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_DOUBLE_OP_RESULT(func)                          \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
@@ -667,7 +667,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_DOUBLE_OP_RESULT(func)                      \
-    .checkDoubleOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -679,7 +679,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_CHECK_LDOUBLE_OP_RESULT(func)                         \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
@@ -694,7 +694,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_CHECK_LDOUBLE_OP_RESULT(func)                     \
-    .checkLDoubleOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .checkLDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -706,7 +706,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_RESULT(func)                              \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
@@ -719,7 +719,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_RESULT(func)                          \
-    .testAssertResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -731,7 +731,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_OP_RESULT(func)                           \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
@@ -746,7 +746,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_OP_RESULT(func)                       \
-    .testAssertOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -758,7 +758,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_CHAR_OP_RESULT(func)                      \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
@@ -773,7 +773,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_CHAR_OP_RESULT(func)                  \
-    .testAssertCharOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertCharOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -785,7 +785,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_SHORT_OP_RESULT(func)                     \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
@@ -800,7 +800,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_SHORT_OP_RESULT(func)                 \
-    .testAssertShortOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -812,7 +812,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_USHORT_OP_RESULT(func)                    \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
@@ -827,7 +827,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_USHORT_OP_RESULT(func)                \
-    .testAssertUShortOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertUShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -839,7 +839,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_INT_OP_RESULT(func)                       \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
@@ -854,7 +854,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_INT_OP_RESULT(func)                   \
-    .testAssertIntOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -866,7 +866,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_UINT_OP_RESULT(func)                      \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
@@ -881,7 +881,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_UINT_OP_RESULT(func)                  \
-    .testAssertUIntOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertUIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -893,7 +893,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_LONG_OP_RESULT(func)                      \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
@@ -908,7 +908,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_LONG_OP_RESULT(func)                  \
-    .testAssertLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -920,7 +920,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_ULONG_OP_RESULT(func)                     \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
@@ -935,7 +935,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_ULONG_OP_RESULT(func)                 \
-    .testAssertULongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertULongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -947,7 +947,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_LLONG_OP_RESULT(func)                     \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
@@ -962,7 +962,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_LLONG_OP_RESULT(func)                 \
-    .testAssertLLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertLLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -974,7 +974,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_ULLONG_OP_RESULT(func)                    \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
@@ -989,7 +989,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_ULLONG_OP_RESULT(func)                \
-    .testAssertULLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertULLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1001,7 +1001,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_FLOAT_OP_RESULT(func)                     \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
@@ -1016,7 +1016,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_FLOAT_OP_RESULT(func)                 \
-    .testAssertFloatOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertFloatOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1028,7 +1028,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_DOUBLE_OP_RESULT(func)                    \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
@@ -1043,7 +1043,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_DOUBLE_OP_RESULT(func)                \
-    .testAssertDoubleOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1055,7 +1055,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT(func)                   \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
@@ -1070,7 +1070,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT(func)               \
-    .testAssertLDoubleOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .testAssertLDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1082,7 +1082,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_RESULT(func)                            \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
@@ -1095,7 +1095,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_RESULT(func)                        \
-    .moduleAssertResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1107,7 +1107,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_OP_RESULT(func)                         \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
@@ -1122,7 +1122,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_OP_RESULT(func)                     \
-    .moduleAssertOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1134,7 +1134,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_CHAR_OP_RESULT(func)                    \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
@@ -1149,7 +1149,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_CHAR_OP_RESULT(func)                \
-    .moduleAssertCharOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertCharOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1161,7 +1161,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_SHORT_OP_RESULT(func)                   \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
@@ -1176,7 +1176,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_SHORT_OP_RESULT(func)               \
-    .moduleAssertShortOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1188,7 +1188,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_USHORT_OP_RESULT(func)                  \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
@@ -1203,7 +1203,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_USHORT_OP_RESULT(func)              \
-    .moduleAssertUShortOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertUShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1215,7 +1215,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_INT_OP_RESULT(func)                     \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
@@ -1230,7 +1230,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_INT_OP_RESULT(func)                 \
-    .moduleAssertIntOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1242,7 +1242,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_UINT_OP_RESULT(func)                    \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
@@ -1257,7 +1257,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_UINT_OP_RESULT(func)                \
-    .moduleAssertUIntOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertUIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1269,7 +1269,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_LONG_OP_RESULT(func)                    \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
@@ -1284,7 +1284,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_LONG_OP_RESULT(func)                \
-    .moduleAssertLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1296,7 +1296,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_ULONG_OP_RESULT(func)                   \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
@@ -1311,7 +1311,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_ULONG_OP_RESULT(func)               \
-    .moduleAssertULongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertULongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1323,7 +1323,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_LLONG_OP_RESULT(func)                   \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
@@ -1338,7 +1338,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_LLONG_OP_RESULT(func)               \
-    .moduleAssertLLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertLLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1350,7 +1350,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT(func)                  \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
@@ -1365,7 +1365,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT(func)              \
-    .moduleAssertULLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertULLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1377,7 +1377,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT(func)                   \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
@@ -1392,7 +1392,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT(func)               \
-    .moduleAssertFloatOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertFloatOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1404,7 +1404,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT(func)                  \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
@@ -1419,7 +1419,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT(func)              \
-    .moduleAssertDoubleOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .moduleAssertDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1431,7 +1431,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT(func)                 \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
@@ -1447,7 +1447,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT(func)             \
     .moduleAssertLDoubleOpResult =                                             \
-        NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+        NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1459,7 +1459,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_RESULT(func)                                   \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
@@ -1472,7 +1472,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_RESULT(func)                               \
-    .assertResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1484,7 +1484,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_OP_RESULT(func)                                \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
@@ -1499,7 +1499,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_OP_RESULT(func)                            \
-    .assertOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1511,7 +1511,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_CHAR_OP_RESULT(func)                           \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
@@ -1526,7 +1526,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_CHAR_OP_RESULT(func)                       \
-    .assertCharOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertCharOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1538,7 +1538,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_SHORT_OP_RESULT(func)                          \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
@@ -1553,7 +1553,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_SHORT_OP_RESULT(func)                      \
-    .assertShortOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1565,7 +1565,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_USHORT_OP_RESULT(func)                         \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
@@ -1580,7 +1580,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_USHORT_OP_RESULT(func)                     \
-    .assertUShortOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertUShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1592,7 +1592,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_INT_OP_RESULT(func)                            \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
@@ -1607,7 +1607,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_INT_OP_RESULT(func)                        \
-    .assertIntOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1619,7 +1619,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_UINT_OP_RESULT(func)                           \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
@@ -1634,7 +1634,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_UINT_OP_RESULT(func)                       \
-    .assertUIntOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertUIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1646,7 +1646,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_LONG_OP_RESULT(func)                           \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
@@ -1661,7 +1661,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_LONG_OP_RESULT(func)                       \
-    .assertLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1673,7 +1673,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_ULONG_OP_RESULT(func)                          \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
@@ -1688,7 +1688,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_ULONG_OP_RESULT(func)                      \
-    .assertULongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertULongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1700,7 +1700,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_LLONG_OP_RESULT(func)                          \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
@@ -1715,7 +1715,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_LLONG_OP_RESULT(func)                      \
-    .assertLLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertLLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1727,7 +1727,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_ULLONG_OP_RESULT(func)                         \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
@@ -1742,7 +1742,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_ULLONG_OP_RESULT(func)                     \
-    .assertULLongOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertULLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1754,7 +1754,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_FLOAT_OP_RESULT(func)                          \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
@@ -1769,7 +1769,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_FLOAT_OP_RESULT(func)                      \
-    .assertFloatOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertFloatOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1781,7 +1781,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_DOUBLE_OP_RESULT(func)                         \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
@@ -1796,7 +1796,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_DOUBLE_OP_RESULT(func)                     \
-    .assertDoubleOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1808,7 +1808,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_FUNC_ASSERT_LDOUBLE_OP_RESULT(func)                        \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)(                \
+    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
@@ -1823,7 +1823,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_USE_FUNC_ASSERT_LDOUBLE_OP_RESULT(func)                    \
-    .assertLDoubleOpResult = NBP_PRIVATE_PP_CONCAT(nbp_printer_func_, func)
+    .assertLDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
@@ -1835,7 +1835,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER(name, ...)                                                 \
-    nbp_printer_interface_t NBP_PRIVATE_PP_CONCAT(nbpPrinter, name) = {        \
+    nbp_printer_interface_t NBP_PP_CONCAT(nbpPrinter, name) = {                \
         __VA_ARGS__                                                            \
     }
 
@@ -1843,13 +1843,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_GET_PTR(name)                                              \
-    & NBP_PRIVATE_PP_CONCAT(nbpPrinter, name)
+    & NBP_PP_CONCAT(nbpPrinter, name)
 
 /*
  * TODO: add docs
  */
 #define NBP_PRINTER_INCLUDE(name)                                              \
-    extern nbp_printer_interface_t NBP_PRIVATE_PP_CONCAT(nbpPrinter, name)
+    extern nbp_printer_interface_t NBP_PP_CONCAT(nbpPrinter, name)
 
 /*
  * TODO: add docs

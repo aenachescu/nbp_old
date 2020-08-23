@@ -89,8 +89,8 @@ SOFTWARE.
     }
 
 #define NBP_CHECK_PRIVATE_PRINTER_NOTIFY_CHECK_TYPE_OP(type)                   \
-    NBP_PRIVATE_PP_CONCAT(                                                     \
-        NBP_PRIVATE_PP_CONCAT(nbp_printer_notify_check_, type),                \
+    NBP_PP_CONCAT(                                                             \
+        NBP_PP_CONCAT(nbp_printer_notify_check_, type),                        \
         _op_result                                                             \
     )
 

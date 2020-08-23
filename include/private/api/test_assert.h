@@ -91,8 +91,8 @@ SOFTWARE.
     }
 
 #define NBP_TEST_ASSERT_PRIVATE_PRINTER_NOTIFY_TEST_ASSERT_TYPE_OP(type)       \
-    NBP_PRIVATE_PP_CONCAT(                                                     \
-        NBP_PRIVATE_PP_CONCAT(nbp_printer_notify_test_assert_, type),          \
+    NBP_PP_CONCAT(                                                             \
+        NBP_PP_CONCAT(nbp_printer_notify_test_assert_, type),                  \
         _op_result                                                             \
     )
 

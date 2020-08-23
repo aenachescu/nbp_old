@@ -38,7 +38,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_SETUP(func)                                                 \
-    void NBP_PRIVATE_PP_CONCAT(nbp_module_setup_, func)(                       \
+    void NBP_PP_CONCAT(nbp_module_setup_, func)(                               \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
@@ -47,7 +47,7 @@ SOFTWARE.
  */
 #define NBP_MODULE_USE_SETUP(func)                                             \
     NBP_MODULE_SETUP(func);                                                    \
-    nbpParamModuleSetup = NBP_PRIVATE_PP_CONCAT(nbp_module_setup_, func)
+    nbpParamModuleSetup = NBP_PP_CONCAT(nbp_module_setup_, func)
 
 /*
  * TODO: add docs
@@ -65,7 +65,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_TEARDOWN(func)                                              \
-    void NBP_PRIVATE_PP_CONCAT(nbp_module_teardown_, func)(                    \
+    void NBP_PP_CONCAT(nbp_module_teardown_, func)(                            \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
@@ -74,7 +74,7 @@ SOFTWARE.
  */
 #define NBP_MODULE_USE_TEARDOWN(func)                                          \
     NBP_MODULE_TEARDOWN(func);                                                 \
-    nbpParamModuleTeardown = NBP_PRIVATE_PP_CONCAT(nbp_module_teardown_, func)
+    nbpParamModuleTeardown = NBP_PP_CONCAT(nbp_module_teardown_, func)
 
 /*
  * TODO: add docs
@@ -83,17 +83,17 @@ SOFTWARE.
     nbpParamModuleTeardown = NBP_MEMORY_NULL_POINTER
 
 #define NBP_MODULE_PRIVATE_IMPL(func, name, setupFunc, teardownFunc)           \
-    void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
+    void NBP_PP_CONCAT(nbp_module_, func)(                                     \
         nbp_module_details_t*,                                                 \
         nbp_module_setup_pfn_t,                                                \
         nbp_module_teardown_pfn_t,                                             \
         nbp_test_setup_pfn_t,                                                  \
         nbp_test_teardown_pfn_t                                                \
     );                                                                         \
-    nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func) = {     \
+    nbp_module_details_t NBP_PP_CONCAT(nbpModuleDetails, func) = {             \
         .moduleName             = name,                                        \
         .moduleId               = 0,                                           \
-        .moduleFunc             = NBP_PRIVATE_PP_CONCAT(nbp_module_, func),    \
+        .moduleFunc             = NBP_PP_CONCAT(nbp_module_, func),            \
         .parent                 = NBP_MEMORY_NULL_POINTER,                     \
         .setup                  = setupFunc,                                   \
         .teardown               = teardownFunc,                                \
@@ -175,7 +175,7 @@ SOFTWARE.
             },                                                                 \
         },                                                                     \
     };                                                                         \
-    void NBP_PRIVATE_PP_CONCAT(nbp_module_, func)(                             \
+    void NBP_PP_CONCAT(nbp_module_, func)(                                     \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule,       \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_setup_pfn_t nbpParamModuleSetup, \
         NBP_MAYBE_UNUSED_PARAMETER                                             \
@@ -210,8 +210,8 @@ SOFTWARE.
     NBP_MODULE_PRIVATE_IMPL(                                                   \
         func,                                                                  \
         name,                                                                  \
-        NBP_PRIVATE_PP_CONCAT(nbp_module_setup_, setupFunc),                   \
-        NBP_PRIVATE_PP_CONCAT(nbp_module_teardown_, teardownFunc)              \
+        NBP_PP_CONCAT(nbp_module_setup_, setupFunc),                           \
+        NBP_PP_CONCAT(nbp_module_teardown_, teardownFunc)                      \
     )
 
 /*
@@ -224,9 +224,9 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_RUN(func)                                                   \
-    extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
+    extern nbp_module_details_t NBP_PP_CONCAT(nbpModuleDetails, func);         \
     nbp_module_run(                                                            \
-        & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func),                       \
+        & NBP_PP_CONCAT(nbpModuleDetails, func),                               \
         nbpParamModule,                                                        \
         nbpParamModuleSetup,                                                   \
         nbpParamModuleTeardown                                                 \
@@ -236,10 +236,10 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_RUN_CTX(func, ctx)                                          \
-    extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func); \
+    extern nbp_module_details_t NBP_PP_CONCAT(nbpModuleDetails, func);         \
     NBP_PRIVATE_SCHEDULER_PREPROCESSING_CONTEXT(P_ ## ctx)                     \
     nbp_module_run_ctx(                                                        \
-        & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func),                       \
+        & NBP_PP_CONCAT(nbpModuleDetails, func),                               \
         ctx,                                                                   \
         nbpParamModule,                                                        \
         nbpParamModuleSetup,                                                   \
@@ -250,13 +250,13 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MODULE_INCLUDE(func)                                               \
-    extern nbp_module_details_t NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func);
+    extern nbp_module_details_t NBP_PP_CONCAT(nbpModuleDetails, func);
 
 /*
  * TODO: add docs
  */
 #define NBP_MODULE_GET_PTR(func)                                               \
-    & NBP_PRIVATE_PP_CONCAT(nbpModuleDetails, func)
+    & NBP_PP_CONCAT(nbpModuleDetails, func)
 
 /*
  * TODO: add docs
