@@ -39,8 +39,6 @@ SOFTWARE.
 #define NBP_TEST_PRIVATE_SKIP_SET       (unsigned int) 1
 #define NBP_TEST_PRIVATE_SKIP_PROCESSED (unsigned int) 2
 
-#define NBP_TEST_FLAG_NONE              (unsigned int) 0
-
 struct nbp_test_details_t;
 
 typedef void (*nbp_test_setup_pfn_t)(

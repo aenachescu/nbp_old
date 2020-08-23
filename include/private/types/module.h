@@ -39,9 +39,6 @@ SOFTWARE.
 #define NBP_MODULE_PRIVATE_SKIP_SET       (unsigned int) 1
 #define NBP_MODULE_PRIVATE_SKIP_PROCESSED (unsigned int) 2
 
-#define NBP_MODULE_FLAG_NONE              (unsigned int) 0
-
-
 struct nbp_module_details_t;
 
 typedef void(*nbp_module_setup_pfn_t)(
