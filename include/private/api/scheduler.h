@@ -31,82 +31,40 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_SCHEDULER_FUNC_INIT(func)                                          \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+#define NBP_SCHEDULER_CALLBACK_INIT(func)                                      \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
         void                                                                   \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_SCHEDULER_USE_FUNC_INIT(func)                                      \
-    .init = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_NO_FUNC_INIT                                             \
-    .init = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_FUNC_UNINIT(func)                                        \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+#define NBP_SCHEDULER_CALLBACK_UNINIT(func)                                    \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
         void                                                                   \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_SCHEDULER_USE_FUNC_UNINIT(func)                                    \
-    .uninit = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_NO_FUNC_UNINIT                                           \
-    .uninit = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_FUNC_RUN(func)                                           \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+#define NBP_SCHEDULER_CALLBACK_RUN(func)                                       \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
         void                                                                   \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_SCHEDULER_USE_FUNC_RUN(func)                                       \
-    .run = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_FUNC_ADD_TEST(func)                                      \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+#define NBP_SCHEDULER_CALLBACK_RUN_TEST(func)                                  \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_SCHEDULER_USE_FUNC_ADD_TEST(func)                                  \
-    .addTest = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_NO_FUNC_ADD_TEST                                         \
-    .addTest = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_FUNC_ADD_TEST_CTX(func)                                  \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+#define NBP_SCHEDULER_CALLBACK_RUN_TEST_CTX(func)                              \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER void* nbpParamCtx                           \
     )
@@ -114,40 +72,16 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_SCHEDULER_USE_FUNC_ADD_TEST_CTX(func)                              \
-    .addTestCtx = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_NO_FUNC_ADD_TEST_CTX                                     \
-    .addTestCtx = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_FUNC_MODULE_STARTED(func)                                \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+#define NBP_SCHEDULER_CALLBACK_RUN_MODULE(func)                                \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_SCHEDULER_USE_FUNC_MODULE_STARTED(func)                            \
-    .moduleStarted = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_NO_FUNC_MODULE_STARTED                                   \
-    .moduleStarted = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(func)                            \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+#define NBP_SCHEDULER_CALLBACK_RUN_MODULE_CTX(func)                            \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule,       \
         NBP_MAYBE_UNUSED_PARAMETER void* nbpParamCtx                           \
     )
@@ -155,42 +89,39 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_SCHEDULER_USE_FUNC_MODULE_STARTED_CTX(func)                        \
-    .moduleStartedCtx = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_NO_FUNC_MODULE_STARTED_CTX                               \
-    .moduleStartedCtx = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_FUNC_MODULE_COMPLETED(func)                              \
-    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)(              \
+#define NBP_SCHEDULER_CALLBACK_RUN_MODULE_COMPLETED(func)                      \
+    static void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func)(          \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_SCHEDULER_USE_FUNC_MODULE_COMPLETED(func)                          \
-    .moduleCompleted = NBP_PRIVATE_PP_CONCAT(nbp_scheduler_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_NO_FUNC_MODULE_COMPLETED                                 \
-    .moduleCompleted = NBP_MEMORY_NULL_POINTER
+#define NBP_SCHEDULER_CALLBACKS(...)
 
 /*
  * TODO: add docs
  */
 #define NBP_SCHEDULER(name, ...)                                               \
+    void NBP_PRIVATE_PP_CONCAT(nbp_scheduler_config_, name)(                   \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_scheduler_interface_t* nbpParamScheduler\
+    )                                                                          \
+    {                                                                          \
+        NBP_SCHEDULER_PRIVATE_GENERATE_CONFIG(P_ ## __VA_ARGS__)               \
+    }                                                                          \
     struct nbp_scheduler_interface_t                                           \
     NBP_PRIVATE_PP_CONCAT(nbpScheduler, name) = {                              \
-        __VA_ARGS__                                                            \
+        .schedulerName              = #name,                                   \
+        .configFunc                 =                                          \
+            NBP_PRIVATE_PP_CONCAT(nbp_scheduler_config_, name),                \
+        .initCbk                    = NBP_MEMORY_NULL_POINTER,                 \
+        .uninitCbk                  = NBP_MEMORY_NULL_POINTER,                 \
+        .runCbk                     = NBP_MEMORY_NULL_POINTER,                 \
+        .runTestCbk                 = NBP_MEMORY_NULL_POINTER,                 \
+        .runTestCtxCbk              = NBP_MEMORY_NULL_POINTER,                 \
+        .runModuleCbk               = NBP_MEMORY_NULL_POINTER,                 \
+        .runModuleCtxCbk            = NBP_MEMORY_NULL_POINTER,                 \
+        .runModuleCompletedCbk      = NBP_MEMORY_NULL_POINTER,                 \
     }
 
 /*
@@ -215,5 +146,263 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_SCHEDULER_CTX nbpParamCtx
+
+#define NBP_SCHEDULER_PRIVATE_GENERATE_CONFIG(...)                             \
+    NBP_PRIVATE_PP_CONCAT(                                                     \
+        NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_,                     \
+        NBP_PP_VARCOUNT(P ## __VA_ARGS__)                                      \
+    )(P ## __VA_ARGS__)                                                        \
+
+/*
+ * This macro is generated when the NBP_SCHEDULER macro is used only with the
+ * 'name' parameter.
+ */
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_PP_
+
+/*
+ * This macro is generated when the NBP_SCHEDULER_CALLBACKS macro is used with
+ * no parameter.
+ */
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_P_
+
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_PP_NBP_SCHEDULER_CALLBACKS(...)           \
+    NBP_PRIVATE_PP_CONCAT(                                                     \
+        NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_,                  \
+        NBP_PP_VARCOUNT(P_ ## __VA_ARGS__)                                     \
+    )(P_ ## __VA_ARGS__)
+
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACKS(...)            \
+    NBP_PRIVATE_PP_CONCAT(                                                     \
+        NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_,                  \
+        NBP_PP_VARCOUNT(P_ ## __VA_ARGS__)                                     \
+    )(P_ ## __VA_ARGS__)
+
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_INIT(func)       \
+    nbpParamScheduler->initCbk =                                               \
+        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_UNINIT(func)     \
+    nbpParamScheduler->uninitCbk =                                             \
+        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN(func)        \
+    nbpParamScheduler->runCbk =                                                \
+        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN_TEST(func)   \
+    nbpParamScheduler->runTestCbk =                                            \
+        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN_TEST_CTX(    \
+    func)                                                                      \
+    nbpParamScheduler->runTestCtxCbk =                                         \
+        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN_MODULE(func) \
+    nbpParamScheduler->runModuleCbk =                                          \
+        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN_MODULE_CTX(  \
+    func)                                                                      \
+    nbpParamScheduler->runModuleCtxCbk =                                       \
+        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+#define NBP_SCHEDULER_PRIVATE_PP_EAT_P_NBP_SCHEDULER_CALLBACK_RUN_MODULE_COMPLETED(\
+    func)                                                                      \
+    nbpParamScheduler->runModuleCompletedCbk =                                 \
+        NBP_PRIVATE_PP_CONCAT(nbp_scheduler_callback_, func);
+
+/*
+ * These macros are used to parse the parameters passed to the NBP_SCHEDULER
+ * macro.
+ */
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_1(param)              \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_2(param, ...)         \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_1(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_3(param, ...)         \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_2(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_4(param, ...)         \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_3(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_5(param, ...)         \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_4(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_6(param, ...)         \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_5(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_7(param, ...)         \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_6(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_8(param, ...)         \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_7(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_9(param, ...)         \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_8(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_10(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_9(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_11(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_10(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_12(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_11(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_13(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_12(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_14(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_13(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_15(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_14(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_16(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_15(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_17(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_16(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_18(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_17(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_19(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_18(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_20(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_19(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_21(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_20(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_22(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_21(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_23(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_22(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_24(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_23(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_25(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_24(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_26(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_25(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_27(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_26(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_28(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_27(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_29(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_28(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_30(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_29(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_31(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_30(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_32(param, ...)        \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CONFIG_PARAM_31(P_ ## __VA_ARGS__)
+
+/*
+ * These macros are used to parse the parameters passed to the
+ * NBP_SCHEDULER_CALLBACKS macro.
+ */
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_1(param)           \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_2(param, ...)      \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_1(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_3(param, ...)      \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_2(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_4(param, ...)      \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_3(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_5(param, ...)      \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_4(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_6(param, ...)      \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_5(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_7(param, ...)      \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_6(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_8(param, ...)      \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_7(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_9(param, ...)      \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_8(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_10(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_9(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_11(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_10(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_12(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_11(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_13(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_12(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_14(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_13(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_15(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_14(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_16(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_15(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_17(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_16(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_18(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_17(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_19(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_18(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_20(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_19(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_21(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_20(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_22(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_21(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_23(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_22(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_24(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_23(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_25(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_24(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_26(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_25(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_27(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_26(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_28(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_27(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_29(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_28(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_30(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_29(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_31(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_30(P_ ## __VA_ARGS__)
+#define NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_32(param, ...)     \
+    NBP_SCHEDULER_PRIVATE_PP_EAT_ ## param                                     \
+    NBP_SCHEDULER_PRIVATE_PP_PROCESSING_CALLBACKS_PARAM_31(P_ ## __VA_ARGS__)
 
 #endif // end if NBP_PRIVATE_API_SCHEDULER_H

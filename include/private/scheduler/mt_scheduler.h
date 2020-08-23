@@ -1501,7 +1501,7 @@ static void nbp_mt_scheduler_create_threads_and_run()
     NBP_MEMORY_FREE(threads);
 }
 
-NBP_SCHEDULER_FUNC_INIT(nbp_mt_scheduler_init)
+NBP_SCHEDULER_CALLBACK_INIT(nbp_mt_scheduler_init)
 {
     NBP_ERROR_CODE_TYPE errCode;
 
@@ -1526,7 +1526,7 @@ NBP_SCHEDULER_FUNC_INIT(nbp_mt_scheduler_init)
     }
 }
 
-NBP_SCHEDULER_FUNC_UNINIT(nbp_mt_scheduler_uninit)
+NBP_SCHEDULER_CALLBACK_UNINIT(nbp_mt_scheduler_uninit)
 {
     NBP_ERROR_CODE_TYPE errCode;
     nbp_mt_scheduler_data_t* tmp;
@@ -1570,7 +1570,7 @@ NBP_SCHEDULER_FUNC_UNINIT(nbp_mt_scheduler_uninit)
     }
 }
 
-NBP_SCHEDULER_FUNC_RUN(nbp_mt_scheduler_run)
+NBP_SCHEDULER_CALLBACK_RUN(nbp_mt_scheduler_run)
 {
     unsigned int index = 0;
     nbp_mt_scheduler_test_t* test = NBP_MEMORY_NULL_POINTER;
@@ -1601,7 +1601,7 @@ NBP_SCHEDULER_FUNC_RUN(nbp_mt_scheduler_run)
     NBP_MEMORY_FREE(nbpMtSchedulerTests);
 }
 
-NBP_SCHEDULER_FUNC_ADD_TEST(nbp_mt_scheduler_add_test)
+NBP_SCHEDULER_CALLBACK_RUN_TEST(nbp_mt_scheduler_run_test)
 {
     nbp_mt_scheduler_data_t* data = NBP_MEMORY_NULL_POINTER;
 
@@ -1635,7 +1635,7 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_mt_scheduler_add_test)
     nbpMtSchedulerNumberOfTests++;
 }
 
-NBP_SCHEDULER_FUNC_ADD_TEST_CTX(nbp_mt_scheduler_add_test_ctx)
+NBP_SCHEDULER_CALLBACK_RUN_TEST_CTX(nbp_mt_scheduler_run_test_ctx)
 {
     nbp_mt_scheduler_data_t* data = NBP_MEMORY_NULL_POINTER;
 
@@ -1669,7 +1669,7 @@ NBP_SCHEDULER_FUNC_ADD_TEST_CTX(nbp_mt_scheduler_add_test_ctx)
     nbpMtSchedulerNumberOfTests++;
 }
 
-NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(nbp_mt_scheduler_module_started_ctx)
+NBP_SCHEDULER_CALLBACK_RUN_MODULE_CTX(nbp_mt_scheduler_run_module_ctx)
 {
     nbp_mt_scheduler_data_t* data = NBP_MEMORY_NULL_POINTER;
 
@@ -1703,14 +1703,14 @@ NBP_SCHEDULER_FUNC_MODULE_STARTED_CTX(nbp_mt_scheduler_module_started_ctx)
 
 NBP_SCHEDULER(
     nbpMtScheduler,
-    NBP_SCHEDULER_USE_FUNC_INIT(nbp_mt_scheduler_init),
-    NBP_SCHEDULER_USE_FUNC_UNINIT(nbp_mt_scheduler_uninit),
-    NBP_SCHEDULER_USE_FUNC_RUN(nbp_mt_scheduler_run),
-    NBP_SCHEDULER_USE_FUNC_ADD_TEST(nbp_mt_scheduler_add_test),
-    NBP_SCHEDULER_USE_FUNC_ADD_TEST_CTX(nbp_mt_scheduler_add_test_ctx),
-    NBP_SCHEDULER_NO_FUNC_MODULE_STARTED,
-    NBP_SCHEDULER_USE_FUNC_MODULE_STARTED_CTX(nbp_mt_scheduler_module_started_ctx),
-    NBP_SCHEDULER_NO_FUNC_MODULE_COMPLETED
+    NBP_SCHEDULER_CALLBACKS(
+        NBP_SCHEDULER_CALLBACK_INIT(nbp_mt_scheduler_init),
+        NBP_SCHEDULER_CALLBACK_UNINIT(nbp_mt_scheduler_uninit),
+        NBP_SCHEDULER_CALLBACK_RUN(nbp_mt_scheduler_run),
+        NBP_SCHEDULER_CALLBACK_RUN_TEST(nbp_mt_scheduler_run_test),
+        NBP_SCHEDULER_CALLBACK_RUN_TEST_CTX(nbp_mt_scheduler_run_test_ctx),
+        NBP_SCHEDULER_CALLBACK_RUN_MODULE_CTX(nbp_mt_scheduler_run_module_ctx)
+    )
 );
 
 /*

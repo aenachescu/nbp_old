@@ -39,14 +39,14 @@ typedef struct nbp_basic_scheduler_data_t nbp_basic_scheduler_data_t;
 static nbp_basic_scheduler_data_t nbpBasicSchedulerData;
 static nbp_basic_scheduler_data_t* nbpBasicSchedulerDataLast;
 
-NBP_SCHEDULER_FUNC_INIT(nbp_basic_scheduler_init)
+NBP_SCHEDULER_CALLBACK_INIT(nbp_basic_scheduler_init)
 {
     nbpBasicSchedulerData.test = NBP_MEMORY_NULL_POINTER;
     nbpBasicSchedulerData.next = NBP_MEMORY_NULL_POINTER;
     nbpBasicSchedulerDataLast = &nbpBasicSchedulerData;
 }
 
-NBP_SCHEDULER_FUNC_UNINIT(nbp_basic_scheduler_uninit)
+NBP_SCHEDULER_CALLBACK_UNINIT(nbp_basic_scheduler_uninit)
 {
     nbp_basic_scheduler_data_t* data = nbpBasicSchedulerData.next;
     nbp_basic_scheduler_data_t* tmp = NBP_MEMORY_NULL_POINTER;
@@ -57,7 +57,7 @@ NBP_SCHEDULER_FUNC_UNINIT(nbp_basic_scheduler_uninit)
     }
 }
 
-NBP_SCHEDULER_FUNC_RUN(nbp_basic_scheduler_run)
+NBP_SCHEDULER_CALLBACK_RUN(nbp_basic_scheduler_run)
 {
     nbp_basic_scheduler_data_t* data = &nbpBasicSchedulerData;
     while (data->test != NBP_MEMORY_NULL_POINTER) {
@@ -66,7 +66,7 @@ NBP_SCHEDULER_FUNC_RUN(nbp_basic_scheduler_run)
     }
 }
 
-NBP_SCHEDULER_FUNC_ADD_TEST(nbp_basic_scheduler_add_test)
+NBP_SCHEDULER_CALLBACK_RUN_TEST(nbp_basic_scheduler_run_test)
 {
     nbpBasicSchedulerDataLast->test = NBP_TEST_THIS;
     nbpBasicSchedulerDataLast->next = (nbp_basic_scheduler_data_t*)
@@ -91,14 +91,12 @@ NBP_SCHEDULER_FUNC_ADD_TEST(nbp_basic_scheduler_add_test)
 
 NBP_SCHEDULER(
     nbpBasicScheduler,
-    NBP_SCHEDULER_USE_FUNC_INIT(nbp_basic_scheduler_init),
-    NBP_SCHEDULER_USE_FUNC_UNINIT(nbp_basic_scheduler_uninit),
-    NBP_SCHEDULER_USE_FUNC_RUN(nbp_basic_scheduler_run),
-    NBP_SCHEDULER_USE_FUNC_ADD_TEST(nbp_basic_scheduler_add_test),
-    NBP_SCHEDULER_NO_FUNC_ADD_TEST_CTX,
-    NBP_SCHEDULER_NO_FUNC_MODULE_STARTED,
-    NBP_SCHEDULER_NO_FUNC_MODULE_STARTED_CTX,
-    NBP_SCHEDULER_NO_FUNC_MODULE_COMPLETED
+    NBP_SCHEDULER_CALLBACKS(
+        NBP_SCHEDULER_CALLBACK_INIT(nbp_basic_scheduler_init),
+        NBP_SCHEDULER_CALLBACK_UNINIT(nbp_basic_scheduler_uninit),
+        NBP_SCHEDULER_CALLBACK_RUN(nbp_basic_scheduler_run),
+        NBP_SCHEDULER_CALLBACK_RUN_TEST(nbp_basic_scheduler_run_test)
+    )
 );
 
 #endif // end if NBP_LIBRARY_MAIN

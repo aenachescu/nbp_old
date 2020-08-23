@@ -28,49 +28,59 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_TYPES_SCHEDULER_H
 #define NBP_PRIVATE_TYPES_SCHEDULER_H
 
-typedef void (*nbp_scheduler_init_pfn_t)(
+struct nbp_scheduler_interface_t;
+typedef struct nbp_scheduler_interface_t nbp_scheduler_interface_t;
+
+typedef void (*nbp_scheduler_config_pfn_t)(
+    nbp_scheduler_interface_t*
+);
+
+typedef void (*nbp_scheduler_callback_init_pfn_t)(
     void
 );
 
-typedef void (*nbp_scheduler_uninit_pfn_t)(
+typedef void (*nbp_scheduler_callback_uninit_pfn_t)(
     void
 );
 
-typedef void (*nbp_scheduler_run_pfn_t)(
+typedef void (*nbp_scheduler_callback_run_pfn_t)(
     void
 );
 
-typedef void (*nbp_scheduler_add_test_pfn_t)(
+typedef void (*nbp_scheduler_callback_add_test_pfn_t)(
     nbp_test_details_t* /* current test */
 );
 
-typedef void (*nbp_scheduler_add_test_ctx_pfn_t)(
+typedef void (*nbp_scheduler_callback_add_test_ctx_pfn_t)(
     nbp_test_details_t*, /* current test */
     void* /* context */
 );
 
-typedef void (*nbp_scheduler_module_started_pfn_t)(
+typedef void (*nbp_scheduler_callback_module_started_pfn_t)(
     nbp_module_details_t* /* current module */
 );
 
-typedef void (*nbp_scheduler_module_started_ctx_pfn_t)(
+typedef void (*nbp_scheduler_callback_module_started_ctx_pfn_t)(
     nbp_module_details_t*, /* current module */
     void* /* context */
 );
 
-typedef void (*nbp_scheduler_module_completed_pfn_t)(
+typedef void (*nbp_scheduler_callback_module_completed_pfn_t)(
     nbp_module_details_t* /* current module */
 );
 
 struct nbp_scheduler_interface_t {
-    nbp_scheduler_init_pfn_t init;
-    nbp_scheduler_uninit_pfn_t uninit;
-    nbp_scheduler_run_pfn_t run;
-    nbp_scheduler_add_test_pfn_t addTest;
-    nbp_scheduler_add_test_ctx_pfn_t addTestCtx;
-    nbp_scheduler_module_started_pfn_t moduleStarted;
-    nbp_scheduler_module_started_ctx_pfn_t moduleStartedCtx;
-    nbp_scheduler_module_completed_pfn_t moduleCompleted;
+    const char* schedulerName;
+    nbp_scheduler_config_pfn_t configFunc;
+
+    nbp_scheduler_callback_init_pfn_t initCbk;
+    nbp_scheduler_callback_uninit_pfn_t uninitCbk;
+    nbp_scheduler_callback_run_pfn_t runCbk;
+    nbp_scheduler_callback_add_test_pfn_t runTestCbk;
+    nbp_scheduler_callback_add_test_ctx_pfn_t runTestCtxCbk;
+    nbp_scheduler_callback_module_started_pfn_t runModuleCbk;
+    nbp_scheduler_callback_module_started_ctx_pfn_t runModuleCtxCbk;
+    nbp_scheduler_callback_module_completed_pfn_t runModuleCompletedCbk;
 };
 typedef struct nbp_scheduler_interface_t nbp_scheduler_interface_t;
 

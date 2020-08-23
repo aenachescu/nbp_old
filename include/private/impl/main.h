@@ -55,7 +55,9 @@ int nbp_command_run_all()
         }
     }
 
-    if (nbpSchedulerInterface->run == NBP_MEMORY_NULL_POINTER) {
+    nbpSchedulerInterface->configFunc(nbpSchedulerInterface);
+
+    if (nbpSchedulerInterface->runCbk == NBP_MEMORY_NULL_POINTER) {
         NBP_ERROR_REPORT(NBP_ERROR_CODE_INVALID_SCHEDULER);
         NBP_EXIT(NBP_ERROR_CODE_INVALID_SCHEDULER);
     }

@@ -694,29 +694,29 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
 
 void nbp_scheduler_notify_init(void)
 {
-    if (nbpSchedulerInterface->init != NBP_MEMORY_NULL_POINTER) {
-        nbpSchedulerInterface->init();
+    if (nbpSchedulerInterface->initCbk != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->initCbk();
     }
 }
 
 void nbp_scheduler_notify_uninit(void)
 {
-    if (nbpSchedulerInterface->uninit != NBP_MEMORY_NULL_POINTER) {
-        nbpSchedulerInterface->uninit();
+    if (nbpSchedulerInterface->uninitCbk != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->uninitCbk();
     }
 }
 
 void nbp_scheduler_notify_run(void)
 {
-    if (nbpSchedulerInterface->run != NBP_MEMORY_NULL_POINTER) {
-        nbpSchedulerInterface->run();
+    if (nbpSchedulerInterface->runCbk != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->runCbk();
     }
 }
 
 void nbp_scheduler_notify_add_test(nbp_test_details_t* test)
 {
-    if (nbpSchedulerInterface->addTest != NBP_MEMORY_NULL_POINTER) {
-        nbpSchedulerInterface->addTest(test);
+    if (nbpSchedulerInterface->runTestCbk != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->runTestCbk(test);
     } else {
         NBP_ERROR_REPORT(NBP_ERROR_CODE_INVALID_SCHEDULER);
         NBP_EXIT(NBP_ERROR_CODE_INVALID_SCHEDULER);
@@ -725,8 +725,8 @@ void nbp_scheduler_notify_add_test(nbp_test_details_t* test)
 
 void nbp_scheduler_notify_add_test_ctx(nbp_test_details_t* test, void* ctx)
 {
-    if (nbpSchedulerInterface->addTestCtx != NBP_MEMORY_NULL_POINTER) {
-        nbpSchedulerInterface->addTestCtx(test, ctx);
+    if (nbpSchedulerInterface->runTestCtxCbk != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->runTestCtxCbk(test, ctx);
     } else {
         NBP_ERROR_REPORT(NBP_ERROR_CODE_INVALID_SCHEDULER);
         NBP_EXIT(NBP_ERROR_CODE_INVALID_SCHEDULER);
@@ -735,23 +735,23 @@ void nbp_scheduler_notify_add_test_ctx(nbp_test_details_t* test, void* ctx)
 
 void nbp_scheduler_notify_module_started(nbp_module_details_t* module)
 {
-    if (nbpSchedulerInterface->moduleStarted != NBP_MEMORY_NULL_POINTER) {
-        nbpSchedulerInterface->moduleStarted(module);
+    if (nbpSchedulerInterface->runModuleCbk != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->runModuleCbk(module);
     }
 }
 
 void nbp_scheduler_notify_module_started_ctx(nbp_module_details_t* module,
     void* ctx)
 {
-    if (nbpSchedulerInterface->moduleStartedCtx != NBP_MEMORY_NULL_POINTER) {
-        nbpSchedulerInterface->moduleStartedCtx(module, ctx);
+    if (nbpSchedulerInterface->runModuleCtxCbk != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->runModuleCtxCbk(module, ctx);
     }
 }
 
 void nbp_scheduler_notify_module_completed(nbp_module_details_t* module)
 {
-    if (nbpSchedulerInterface->moduleCompleted != NBP_MEMORY_NULL_POINTER) {
-        nbpSchedulerInterface->moduleCompleted(module);
+    if (nbpSchedulerInterface->runModuleCompletedCbk != NBP_MEMORY_NULL_POINTER) {
+        nbpSchedulerInterface->runModuleCompletedCbk(module);
     }
 }
 
