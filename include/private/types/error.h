@@ -28,9 +28,9 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_TYPES_ERROR_H
 #define NBP_PRIVATE_TYPES_ERROR_H
 
-#define NBP_ERROR_CONTEXT_EMPTY                                 (int) 0
-#define NBP_ERROR_CONTEXT_STRING                                (int) 1
-#define NBP_ERROR_CONTEXT_CUSTOM                                (int) 2
+#define NBP_ERROR_CONTEXT_EMPTY                     (unsigned int) 0x30000000
+#define NBP_ERROR_CONTEXT_STRING                    (unsigned int) 0x30000001
+#define NBP_ERROR_CONTEXT_CUSTOM                    (unsigned int) 0x30000002
 
 #define NBP_ERROR_CODE_TYPE int
 
@@ -55,7 +55,7 @@ struct nbp_error_t {
     NBP_ERROR_CODE_TYPE errorCode;
     int line;
     const char* filename;
-    int contextType;
+    unsigned int contextType;
     union {
         const char* contextString;
         void* contextCustom;

@@ -28,16 +28,16 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_TYPES_TEST_H
 #define NBP_PRIVATE_TYPES_TEST_H
 
-#define NBP_TEST_STATE_NOT_INITIALIZED  (unsigned int) 0
-#define NBP_TEST_STATE_READY            (unsigned int) 1
-#define NBP_TEST_STATE_RUNNING          (unsigned int) 2
-#define NBP_TEST_STATE_PASSED           (unsigned int) 3
-#define NBP_TEST_STATE_FAILED           (unsigned int) 4
-#define NBP_TEST_STATE_SKIPPED          (unsigned int) 5
+#define NBP_TEST_STATE_NOT_INITIALIZED  (unsigned int) 0x10000000
+#define NBP_TEST_STATE_READY            (unsigned int) 0x10000001
+#define NBP_TEST_STATE_RUNNING          (unsigned int) 0x10000002
+#define NBP_TEST_STATE_PASSED           (unsigned int) 0x10000003
+#define NBP_TEST_STATE_FAILED           (unsigned int) 0x10000004
+#define NBP_TEST_STATE_SKIPPED          (unsigned int) 0x10000005
 
-#define NBP_TEST_PRIVATE_SKIP_NOT_SET   (unsigned int) 0
-#define NBP_TEST_PRIVATE_SKIP_SET       (unsigned int) 1
-#define NBP_TEST_PRIVATE_SKIP_PROCESSED (unsigned int) 2
+#define NBP_TEST_PRIVATE_SKIP_NOT_SET   (unsigned int) 0x11000000
+#define NBP_TEST_PRIVATE_SKIP_SET       (unsigned int) 0x11000001
+#define NBP_TEST_PRIVATE_SKIP_PROCESSED (unsigned int) 0x11000002
 
 struct nbp_test_details_t;
 

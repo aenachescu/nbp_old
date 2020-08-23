@@ -359,7 +359,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -386,7 +386,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -413,7 +413,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -440,7 +440,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -467,7 +467,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -494,7 +494,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -521,7 +521,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -548,7 +548,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -575,7 +575,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -602,7 +602,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -629,7 +629,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -656,7 +656,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -683,7 +683,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -735,7 +735,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -762,7 +762,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -789,7 +789,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -816,7 +816,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -843,7 +843,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -870,7 +870,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -897,7 +897,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -924,7 +924,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -951,7 +951,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -978,7 +978,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1005,7 +1005,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1032,7 +1032,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1059,7 +1059,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1111,7 +1111,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1138,7 +1138,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1165,7 +1165,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1192,7 +1192,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1219,7 +1219,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1246,7 +1246,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1273,7 +1273,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1300,7 +1300,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1327,7 +1327,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1354,7 +1354,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1381,7 +1381,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1408,7 +1408,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1435,7 +1435,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1488,7 +1488,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1515,7 +1515,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
         NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1542,7 +1542,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
         NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1569,7 +1569,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1596,7 +1596,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1623,7 +1623,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1650,7 +1650,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
         NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1677,7 +1677,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1704,7 +1704,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
         NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1731,7 +1731,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
         NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1758,7 +1758,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
         NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1785,7 +1785,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
         NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
@@ -1812,7 +1812,7 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
         NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamOperator,                       \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \

@@ -28,19 +28,19 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_SCHEDULER_MT_SCHEDULER_H
 #define NBP_PRIVATE_SCHEDULER_MT_SCHEDULER_H
 
-#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_UNKNOWN            (unsigned char) 0
-#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_BEFORE             (unsigned char) 1
-#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_AFTER              (unsigned char) 2
-#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD        (unsigned char) 3
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_UNKNOWN            (unsigned int) 0x60000000
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_BEFORE             (unsigned int) 0x60000001
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_AFTER              (unsigned int) 0x60000002
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_TYPE_SAME_THREAD        (unsigned int) 0x60000003
 
-#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_UNKNOWN       (unsigned char) 0
-#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_EMPTY         (unsigned char) 1
-#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_TEST          (unsigned char) 2
-#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_MODULE        (unsigned char) 3
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_UNKNOWN       (unsigned int) 0x61000000
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_EMPTY         (unsigned int) 0x61000001
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_TEST          (unsigned int) 0x61000002
+#define NBP_MT_SCHEDULER_PRIVATE_RULE_DATA_TYPE_MODULE        (unsigned int) 0x61000003
 
 struct nbp_mt_scheduler_rule_t {
-    unsigned char ruleType;
-    unsigned char dataType;
+    unsigned int ruleType;
+    unsigned int dataType;
     union {
         nbp_test_details_t* test;
         nbp_module_details_t* module;
@@ -55,17 +55,17 @@ struct nbp_mt_scheduler_context_t {
 typedef struct nbp_mt_scheduler_context_t nbp_mt_scheduler_context_t;
 
 nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_test(
-    unsigned char ruleType,
+    unsigned int ruleType,
     nbp_test_details_t* test
 );
 
 nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module(
-    unsigned char ruleType,
+    unsigned int ruleType,
     nbp_module_details_t* module
 );
 
 nbp_mt_scheduler_rule_t nbp_mt_scheduler_create_empty_rule(
-    unsigned char ruleType
+    unsigned int ruleType
 );
 
 void* nbp_mt_scheduler_create_ctx(
@@ -574,14 +574,14 @@ unsigned int nbp_mt_scheduler_get_number_of_threads()
 #define NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ALL(condvar) condvar++
 #endif // end if NBP_MT_SCHEDULER_CONDVAR_NOTIFY_ALL
 
-#define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_UNKNOWN  (unsigned char) 0
-#define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST     (unsigned char) 1
-#define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE   (unsigned char) 2
+#define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_UNKNOWN  (unsigned int) 0x62000000
+#define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_TEST     (unsigned int) 0x62000001
+#define NBP_MT_SCHEDULER_PRIVATE_DATA_TYPE_MODULE   (unsigned int) 0x62000002
 
-#define NBP_MT_SCHEDULER_PRIVATE_INVALID_WORKER_ID  (unsigned int) -1
+#define NBP_MT_SCHEDULER_PRIVATE_INVALID_WORKER_ID  (unsigned int) 0xFFFFFFFF
 
 struct nbp_mt_scheduler_data_t {
-    unsigned char dataType;
+    unsigned int dataType;
     union {
         nbp_test_details_t* test;
         nbp_module_details_t* module;
@@ -625,7 +625,7 @@ static NBP_MT_SCHEDULER_CONDVAR_TYPE nbpMtSchedulerCondVar = NBP_MT_SCHEDULER_CO
 static unsigned int nbpMtSchedulerNumberOfDispatchedTests = 0;
 
 nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_test(
-    unsigned char ruleType, nbp_test_details_t* test)
+    unsigned int ruleType, nbp_test_details_t* test)
 {
     nbp_mt_scheduler_rule_t rule;
 
@@ -637,7 +637,7 @@ nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_test(
 }
 
 nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module(
-    unsigned char ruleType, nbp_module_details_t* module)
+    unsigned int ruleType, nbp_module_details_t* module)
 {
     nbp_mt_scheduler_rule_t rule;
 
@@ -649,7 +649,7 @@ nbp_mt_scheduler_rule_t nbp_mt_schduler_create_rule_from_module(
 }
 
 nbp_mt_scheduler_rule_t nbp_mt_scheduler_create_empty_rule(
-    unsigned char ruleType)
+    unsigned int ruleType)
 {
     nbp_mt_scheduler_rule_t rule;
 

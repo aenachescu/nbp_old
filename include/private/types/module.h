@@ -28,16 +28,16 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_TYPES_MODULE_H
 #define NBP_PRIVATE_TYPES_MODULE_H
 
-#define NBP_MODULE_STATE_NOT_INITIALIZED  (unsigned int) 0
-#define NBP_MODULE_STATE_READY            (unsigned int) 1
-#define NBP_MODULE_STATE_RUNNING          (unsigned int) 2
-#define NBP_MODULE_STATE_PASSED           (unsigned int) 3
-#define NBP_MODULE_STATE_FAILED           (unsigned int) 4
-#define NBP_MODULE_STATE_SKIPPED          (unsigned int) 5
+#define NBP_MODULE_STATE_NOT_INITIALIZED  (unsigned int) 0x20000000
+#define NBP_MODULE_STATE_READY            (unsigned int) 0x20000001
+#define NBP_MODULE_STATE_RUNNING          (unsigned int) 0x20000002
+#define NBP_MODULE_STATE_PASSED           (unsigned int) 0x20000003
+#define NBP_MODULE_STATE_FAILED           (unsigned int) 0x20000004
+#define NBP_MODULE_STATE_SKIPPED          (unsigned int) 0x20000005
 
-#define NBP_MODULE_PRIVATE_SKIP_NOT_SET   (unsigned int) 0
-#define NBP_MODULE_PRIVATE_SKIP_SET       (unsigned int) 1
-#define NBP_MODULE_PRIVATE_SKIP_PROCESSED (unsigned int) 2
+#define NBP_MODULE_PRIVATE_SKIP_NOT_SET   (unsigned int) 0x21000000
+#define NBP_MODULE_PRIVATE_SKIP_SET       (unsigned int) 0x21000001
+#define NBP_MODULE_PRIVATE_SKIP_PROCESSED (unsigned int) 0x21000002
 
 struct nbp_module_details_t;
 

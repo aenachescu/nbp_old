@@ -38,9 +38,9 @@ SOFTWARE.
 
 #define NBP_LINUX_PRINTER_PRIVATE_CLEAR_LINE                "\x1B[2K\r"
 
-#define NBP_LINUX_PRINTER_PRIVATE_PRINTER_TYPE_UNKNOWN      (int) 0
-#define NBP_LINUX_PRINTER_PRIVATE_PRINTER_TYPE_TEST         (int) 1
-#define NBP_LINUX_PRINTER_PRIVATE_PRINTER_TYPE_MODULE       (int) 2
+#define NBP_LINUX_PRINTER_PRIVATE_PRINTER_TYPE_UNKNOWN      (unsigned int) 0x50000000
+#define NBP_LINUX_PRINTER_PRIVATE_PRINTER_TYPE_TEST         (unsigned int) 0x50000001
+#define NBP_LINUX_PRINTER_PRIVATE_PRINTER_TYPE_MODULE       (unsigned int) 0x50000002
 
 #ifdef NBP_MT_SUPPORT
 
@@ -150,7 +150,7 @@ struct nbp_linux_printer_module_t {
 typedef struct nbp_linux_printer_module_t nbp_linux_printer_module_t;
 
 struct nbp_linux_printer_data_t {
-    int type;
+    unsigned int type;
     union {
         nbp_linux_printer_test_t test;
         nbp_linux_printer_module_t module;
