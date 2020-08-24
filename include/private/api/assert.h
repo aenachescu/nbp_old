@@ -62,14 +62,16 @@ SOFTWARE.
         return;                                                                \
     }
 
-#define NBP_ASSERT_PRIVATE_OP_IMPL(a, b, op, printerOp, failMsg,               \
-    passMsg)                                                                   \
+#define NBP_ASSERT_PRIVATE_OP_IMPL(a, b, op, printerOp, failMsg, passMsg)      \
     if (a op b) {                                                              \
+        nbp_printer_type_value_t tmpA, tmpB;                                   \
+        tmpA.stringValue = #a; tmpB.stringValue = #b;                          \
         nbpParamTest->asserts.numPassed++;                                     \
-        nbp_printer_notify_assert_op_result(                                   \
+        nbp_printer_notify_assert_type_op_result(                              \
             nbpParamTest,                                                      \
-            #a,                                                                \
-            #b,                                                                \
+            tmpA,                                                              \
+            tmpB,                                                              \
+            NBP_PRINTER_TYPE_NONE,                                             \
             printerOp,                                                         \
             NBP_ASSERT_STATUS_PASSED,                                          \
             __LINE__,                                                          \
@@ -77,11 +79,14 @@ SOFTWARE.
             passMsg                                                            \
         );                                                                     \
     } else {                                                                   \
+        nbp_printer_type_value_t tmpA, tmpB;                                   \
+        tmpA.stringValue = #a; tmpB.stringValue = #b;                          \
         nbpParamTest->asserts.numFailed++;                                     \
-        nbp_printer_notify_assert_op_result(                                   \
+        nbp_printer_notify_assert_type_op_result(                              \
             nbpParamTest,                                                      \
-            #a,                                                                \
-            #b,                                                                \
+            tmpA,                                                              \
+            tmpB,                                                              \
+            NBP_PRINTER_TYPE_NONE,                                             \
             printerOp,                                                         \
             NBP_ASSERT_STATUS_FAILED,                                          \
             __LINE__,                                                          \
@@ -91,22 +96,18 @@ SOFTWARE.
         return;                                                                \
     }
 
-#define NBP_ASSERT_PRIVATE_PRINTER_NOTIFY_ASSERT_TYPE_OP(type)                 \
-    NBP_PP_CONCAT(                                                             \
-        NBP_PP_CONCAT(nbp_printer_notify_assert_, type),                       \
-        _op_result                                                             \
-    )
-
-#define NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, op, printerOp, type,             \
-    typeStr, failMsg, passMsg)                                                 \
+#define NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, op, printerOp, type, valuePrefix,\
+    failMsg, passMsg)                                                          \
     do {                                                                       \
-        type tmpA = a, tmpB = b;                                               \
-        if (tmpA op tmpB) {                                                    \
+        nbp_printer_type_value_t tmpA, tmpB;                                   \
+        tmpA.valuePrefix ## Value = a; tmpB.valuePrefix ## Value = b;          \
+        if (tmpA.valuePrefix ## Value op tmpB.valuePrefix ## Value) {          \
             nbpParamTest->asserts.numPassed++;                                 \
-            NBP_ASSERT_PRIVATE_PRINTER_NOTIFY_ASSERT_TYPE_OP(typeStr)(         \
+            nbp_printer_notify_assert_type_op_result(                          \
                 nbpParamTest,                                                  \
                 tmpA,                                                          \
                 tmpB,                                                          \
+                type,                                                          \
                 printerOp,                                                     \
                 NBP_ASSERT_STATUS_PASSED,                                      \
                 __LINE__,                                                      \
@@ -115,10 +116,48 @@ SOFTWARE.
             );                                                                 \
         } else {                                                               \
             nbpParamTest->asserts.numFailed++;                                 \
-            NBP_ASSERT_PRIVATE_PRINTER_NOTIFY_ASSERT_TYPE_OP(typeStr)(         \
+            nbp_printer_notify_assert_type_op_result(                          \
                 nbpParamTest,                                                  \
                 tmpA,                                                          \
                 tmpB,                                                          \
+                type,                                                          \
+                printerOp,                                                     \
+                NBP_ASSERT_STATUS_FAILED,                                      \
+                __LINE__,                                                      \
+                failMsg,                                                       \
+                NBP_MEMORY_NULL_POINTER                                        \
+            );                                                                 \
+            return;                                                            \
+        }                                                                      \
+    } while (0);
+
+#define NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, op, printerOp, failMsg,       \
+    passMsg)                                                                   \
+    do {                                                                       \
+        long double ldA, ldB;                                                  \
+        nbp_printer_type_value_t tmpA, tmpB;                                   \
+        ldA = a; ldB = b;                                                      \
+        tmpA.ldoubleValue = &ldA; tmpB.ldoubleValue = &ldB;                    \
+        if (ldA op ldB) {                                                      \
+            nbpParamTest->asserts.numPassed++;                                 \
+            nbp_printer_notify_assert_type_op_result(                          \
+                nbpParamTest,                                                  \
+                tmpA,                                                          \
+                tmpB,                                                          \
+                NBP_PRINTER_TYPE_LDOUBLE,                                      \
+                printerOp,                                                     \
+                NBP_ASSERT_STATUS_PASSED,                                      \
+                __LINE__,                                                      \
+                NBP_MEMORY_NULL_POINTER,                                       \
+                passMsg                                                        \
+            );                                                                 \
+        } else {                                                               \
+            nbpParamTest->asserts.numFailed++;                                 \
+            nbp_printer_notify_assert_type_op_result(                          \
+                nbpParamTest,                                                  \
+                tmpA,                                                          \
+                tmpB,                                                          \
+                NBP_PRINTER_TYPE_LDOUBLE,                                      \
                 printerOp,                                                     \
                 NBP_ASSERT_STATUS_FAILED,                                      \
                 __LINE__,                                                      \
@@ -343,168 +382,174 @@ SOFTWARE.
  */
 #define NBP_ASSERT_CHAR_EQ(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        char, char, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_EQ_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        char, char, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_EQ_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        char, char, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_EQ_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        char, char, failMsg, passMsg)
+        NBP_PRINTER_TYPE_CHAR, char, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_NE(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        char, char, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_NE_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        char, char, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_NE_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        char, char, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_NE_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        char, char, failMsg, passMsg)
+        NBP_PRINTER_TYPE_CHAR, char, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_GT(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        char, char, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_GT_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        char, char, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_GT_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        char, char, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_GT_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        char, char, failMsg, passMsg)
+        NBP_PRINTER_TYPE_CHAR, char, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_GE(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        char, char, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_GE_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        char, char, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_GE_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        char, char, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_GE_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        char, char, failMsg, passMsg)
+        NBP_PRINTER_TYPE_CHAR, char, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_LT(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        char, char, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_LT_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        char, char, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_LT_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        char, char, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_LT_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        char, char, failMsg, passMsg)
+        NBP_PRINTER_TYPE_CHAR, char, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_LE(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        char, char, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_LE_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        char, char, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_CHAR, char, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_LE_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        char, char, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_CHAR, char, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_LE_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        char, char, failMsg, passMsg)
+        NBP_PRINTER_TYPE_CHAR, char, failMsg, passMsg)
 
 /******************************************************************************
  *                                                                            *
@@ -519,168 +564,174 @@ SOFTWARE.
  */
 #define NBP_ASSERT_SHORT_EQ(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        short int, short, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_EQ_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        short int, short, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_EQ_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        short int, short, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_EQ_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        short int, short, failMsg, passMsg)
+        NBP_PRINTER_TYPE_SHORT, short, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_NE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        short int, short, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_NE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        short int, short, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_NE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        short int, short, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_NE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        short int, short, failMsg, passMsg)
+        NBP_PRINTER_TYPE_SHORT, short, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_GT(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        short int, short, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_GT_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        short int, short, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_GT_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        short int, short, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_GT_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        short int, short, failMsg, passMsg)
+        NBP_PRINTER_TYPE_SHORT, short, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_GE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        short int, short, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_GE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        short int, short, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_GE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        short int, short, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_GE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        short int, short, failMsg, passMsg)
+        NBP_PRINTER_TYPE_SHORT, short, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_LT(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        short int, short, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_LT_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        short int, short, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_LT_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        short int, short, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_LT_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        short int, short, failMsg, passMsg)
+        NBP_PRINTER_TYPE_SHORT, short, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_LE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        short int, short, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_LE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        short int, short, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_SHORT, short, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_LE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        short int, short, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_SHORT, short, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_LE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        short int, short, failMsg, passMsg)
+        NBP_PRINTER_TYPE_SHORT, short, failMsg, passMsg)
 
 /******************************************************************************
  *                                                                            *
@@ -695,7 +746,7 @@ SOFTWARE.
  */
 #define NBP_ASSERT_USHORT_EQ(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER,                   \
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -703,28 +754,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_USHORT_EQ_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned short int, ushort, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_USHORT, ushort, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_EQ_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_EQ_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned short int, ushort, failMsg, passMsg)
+        NBP_PRINTER_TYPE_USHORT, ushort, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_NE(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER,                   \
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -732,28 +783,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_USHORT_NE_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned short int, ushort, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_USHORT, ushort, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_NE_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_NE_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned short int, ushort, failMsg, passMsg)
+        NBP_PRINTER_TYPE_USHORT, ushort, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_GT(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER,                   \
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -761,28 +812,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_USHORT_GT_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned short int, ushort, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_USHORT, ushort, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_GT_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_GT_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned short int, ushort, failMsg, passMsg)
+        NBP_PRINTER_TYPE_USHORT, ushort, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_GE(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER,                   \
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -790,28 +841,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_USHORT_GE_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned short int, ushort, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_USHORT, ushort, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_GE_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_GE_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned short int, ushort, failMsg, passMsg)
+        NBP_PRINTER_TYPE_USHORT, ushort, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_LT(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER,                   \
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -819,28 +870,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_USHORT_LT_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned short int, ushort, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_USHORT, ushort, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_LT_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_LT_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned short int, ushort, failMsg, passMsg)
+        NBP_PRINTER_TYPE_USHORT, ushort, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_LE(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER,                   \
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -848,21 +899,21 @@ SOFTWARE.
  */
 #define NBP_ASSERT_USHORT_LE_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned short int, ushort, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_USHORT, ushort, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_LE_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned short int, ushort, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_USHORT, ushort, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_LE_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned short int, ushort, failMsg, passMsg)
+        NBP_PRINTER_TYPE_USHORT, ushort, failMsg, passMsg)
 
 /******************************************************************************
  *                                                                            *
@@ -877,168 +928,174 @@ SOFTWARE.
  */
 #define NBP_ASSERT_INT_EQ(a, b)                                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        int, int, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER,                    \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_EQ_FAIL_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        int, int, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_EQ_PASS_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        int, int, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_EQ_MSG(a, b, failMsg, passMsg)                          \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        int, int, failMsg, passMsg)
+        NBP_PRINTER_TYPE_INT, int, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_NE(a, b)                                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        int, int, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER,                    \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_NE_FAIL_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        int, int, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_NE_PASS_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        int, int, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_NE_MSG(a, b, failMsg, passMsg)                          \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        int, int, failMsg, passMsg)
+        NBP_PRINTER_TYPE_INT, int, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_GT(a, b)                                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        int, int, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER,                    \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_GT_FAIL_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        int, int, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_GT_PASS_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        int, int, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_GT_MSG(a, b, failMsg, passMsg)                          \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        int, int, failMsg, passMsg)
+        NBP_PRINTER_TYPE_INT, int, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_GE(a, b)                                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        int, int, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER,                    \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_GE_FAIL_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        int, int, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_GE_PASS_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        int, int, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_GE_MSG(a, b, failMsg, passMsg)                          \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        int, int, failMsg, passMsg)
+        NBP_PRINTER_TYPE_INT, int, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_LT(a, b)                                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        int, int, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER,                    \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_LT_FAIL_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        int, int, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_LT_PASS_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        int, int, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_LT_MSG(a, b, failMsg, passMsg)                          \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        int, int, failMsg, passMsg)
+        NBP_PRINTER_TYPE_INT, int, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_LE(a, b)                                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        int, int, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER,                    \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_LE_FAIL_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        int, int, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_INT, int, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_LE_PASS_MSG(a, b, msg)                                  \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        int, int, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_INT, int, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_LE_MSG(a, b, failMsg, passMsg)                          \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        int, int, failMsg, passMsg)
+        NBP_PRINTER_TYPE_INT, int, failMsg, passMsg)
 
 /******************************************************************************
  *                                                                            *
@@ -1053,168 +1110,174 @@ SOFTWARE.
  */
 #define NBP_ASSERT_UINT_EQ(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_EQ_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned int, uint, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_EQ_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_EQ_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned int, uint, failMsg, passMsg)
+        NBP_PRINTER_TYPE_UINT, uint, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_NE(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_NE_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned int, uint, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_NE_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_NE_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned int, uint, failMsg, passMsg)
+        NBP_PRINTER_TYPE_UINT, uint, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_GT(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_GT_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned int, uint, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_GT_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_GT_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned int, uint, failMsg, passMsg)
+        NBP_PRINTER_TYPE_UINT, uint, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_GE(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_GE_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned int, uint, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_GE_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_GE_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned int, uint, failMsg, passMsg)
+        NBP_PRINTER_TYPE_UINT, uint, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_LT(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_LT_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned int, uint, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_LT_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_LT_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned int, uint, failMsg, passMsg)
+        NBP_PRINTER_TYPE_UINT, uint, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_LE(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_LE_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned int, uint, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_UINT, uint, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_LE_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned int, uint, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_UINT, uint, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_LE_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned int, uint, failMsg, passMsg)
+        NBP_PRINTER_TYPE_UINT, uint, failMsg, passMsg)
 
 /******************************************************************************
  *                                                                            *
@@ -1229,168 +1292,174 @@ SOFTWARE.
  */
 #define NBP_ASSERT_LONG_EQ(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long int, long, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_EQ_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long int, long, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_EQ_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long int, long, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_EQ_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long int, long, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LONG, long, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_NE(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long int, long, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_NE_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long int, long, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_NE_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long int, long, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_NE_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long int, long, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LONG, long, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_GT(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long int, long, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_GT_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long int, long, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_GT_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long int, long, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_GT_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long int, long, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LONG, long, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_GE(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long int, long, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_GE_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long int, long, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_GE_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long int, long, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_GE_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long int, long, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LONG, long, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_LT(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long int, long, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_LT_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long int, long, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_LT_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long int, long, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_LT_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long int, long, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LONG, long, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_LE(a, b)                                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long int, long, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER,                  \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_LE_FAIL_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long int, long, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LONG, long, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_LE_PASS_MSG(a, b, msg)                                 \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long int, long, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LONG, long, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_LE_MSG(a, b, failMsg, passMsg)                         \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long int, long, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LONG, long, failMsg, passMsg)
 
 /******************************************************************************
  *                                                                            *
@@ -1405,7 +1474,7 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULONG_EQ(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER,                     \
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER,                \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1413,28 +1482,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULONG_EQ_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned long int, ulong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULONG, ulong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_EQ_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_EQ_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned long int, ulong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULONG, ulong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_NE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER,                     \
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER,                \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1442,28 +1511,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULONG_NE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned long int, ulong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULONG, ulong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_NE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_NE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned long int, ulong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULONG, ulong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_GT(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER,                     \
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER,                \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1471,28 +1540,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULONG_GT_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned long int, ulong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULONG, ulong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_GT_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_GT_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned long int, ulong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULONG, ulong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_GE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER,                     \
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER,                \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1500,28 +1569,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULONG_GE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned long int, ulong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULONG, ulong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_GE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_GE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned long int, ulong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULONG, ulong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_LT(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER,                     \
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER,                \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1529,28 +1598,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULONG_LT_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned long int, ulong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULONG, ulong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_LT_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_LT_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned long int, ulong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULONG, ulong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_LE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER,                     \
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER,                \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1558,21 +1627,21 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULONG_LE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned long int, ulong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULONG, ulong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_LE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned long int, ulong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULONG, ulong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_LE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned long int, ulong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULONG, ulong, failMsg, passMsg)
 
 /******************************************************************************
  *                                                                            *
@@ -1587,168 +1656,174 @@ SOFTWARE.
  */
 #define NBP_ASSERT_LLONG_EQ(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_EQ_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long long int, llong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_EQ_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_EQ_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long long int, llong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LLONG, llong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_NE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_NE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long long int, llong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_NE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_NE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long long int, llong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LLONG, llong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_GT(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_GT_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long long int, llong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_GT_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_GT_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long long int, llong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LLONG, llong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_GE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_GE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long long int, llong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_GE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_GE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long long int, llong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LLONG, llong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_LT(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_LT_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long long int, llong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_LT_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_LT_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long long int, llong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LLONG, llong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_LE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_LE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long long int, llong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_LLONG, llong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_LE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long long int, llong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_LLONG, llong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_LE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long long int, llong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_LLONG, llong, failMsg, passMsg)
 
 /******************************************************************************
  *                                                                            *
@@ -1763,7 +1838,7 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULLONG_EQ(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER,               \
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1771,28 +1846,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULLONG_EQ_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned long long int, ullong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULLONG, ullong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_EQ_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_EQ_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        unsigned long long int, ullong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_NE(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER,               \
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1800,28 +1875,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULLONG_NE_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned long long int, ullong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULLONG, ullong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_NE_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_NE_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        unsigned long long int, ullong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_GT(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER,               \
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1829,28 +1904,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULLONG_GT_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned long long int, ullong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULLONG, ullong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_GT_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_GT_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        unsigned long long int, ullong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_GE(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER,               \
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1858,28 +1933,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULLONG_GE_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned long long int, ullong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULLONG, ullong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_GE_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_GE_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        unsigned long long int, ullong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_LT(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER,               \
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1887,28 +1962,28 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULLONG_LT_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned long long int, ullong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULLONG, ullong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_LT_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_LT_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        unsigned long long int, ullong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_LE(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER,               \
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER,              \
         NBP_MEMORY_NULL_POINTER)
 
 /*
@@ -1916,21 +1991,21 @@ SOFTWARE.
  */
 #define NBP_ASSERT_ULLONG_LE_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned long long int, ullong, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_ULLONG, ullong, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_LE_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned long long int, ullong, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_LE_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        unsigned long long int, ullong, failMsg, passMsg)
+        NBP_PRINTER_TYPE_ULLONG, ullong, failMsg, passMsg)
 
 /******************************************************************************
  *                                                                            *
@@ -1945,168 +2020,174 @@ SOFTWARE.
  */
 #define NBP_ASSERT_FLOAT_EQ(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        float, float, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_EQ_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        float, float, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_EQ_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        float, float, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_EQ_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        float, float, failMsg, passMsg)
+        NBP_PRINTER_TYPE_FLOAT, float, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_NE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        float, float, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_NE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        float, float, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_NE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        float, float, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_NE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        float, float, failMsg, passMsg)
+        NBP_PRINTER_TYPE_FLOAT, float, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_GT(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        float, float, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_GT_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        float, float, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_GT_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        float, float, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_GT_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        float, float, failMsg, passMsg)
+        NBP_PRINTER_TYPE_FLOAT, float, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_GE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        float, float, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_GE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        float, float, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_GE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        float, float, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_GE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        float, float, failMsg, passMsg)
+        NBP_PRINTER_TYPE_FLOAT, float, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_LT(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        float, float, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_LT_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        float, float, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_LT_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        float, float, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_LT_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        float, float, failMsg, passMsg)
+        NBP_PRINTER_TYPE_FLOAT, float, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_LE(a, b)                                              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        float, float, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER,                \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_LE_FAIL_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        float, float, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_FLOAT, float, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_LE_PASS_MSG(a, b, msg)                                \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        float, float, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_FLOAT, float, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_LE_MSG(a, b, failMsg, passMsg)                        \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        float, float, failMsg, passMsg)
+        NBP_PRINTER_TYPE_FLOAT, float, failMsg, passMsg)
 
 /******************************************************************************
  *                                                                            *
@@ -2121,168 +2202,174 @@ SOFTWARE.
  */
 #define NBP_ASSERT_DOUBLE_EQ(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        double, double, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER,              \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_EQ_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        double, double, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_EQ_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        double, double, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_EQ_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        double, double, failMsg, passMsg)
+        NBP_PRINTER_TYPE_DOUBLE, double, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_NE(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        double, double, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER,              \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_NE_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        double, double, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_NE_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        double, double, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_NE_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        double, double, failMsg, passMsg)
+        NBP_PRINTER_TYPE_DOUBLE, double, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_GT(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        double, double, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER,              \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_GT_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        double, double, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_GT_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        double, double, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_GT_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        double, double, failMsg, passMsg)
+        NBP_PRINTER_TYPE_DOUBLE, double, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_GE(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        double, double, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER,              \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_GE_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        double, double, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_GE_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        double, double, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_GE_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        double, double, failMsg, passMsg)
+        NBP_PRINTER_TYPE_DOUBLE, double, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_LT(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        double, double, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER,              \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_LT_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        double, double, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_LT_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        double, double, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_LT_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        double, double, failMsg, passMsg)
+        NBP_PRINTER_TYPE_DOUBLE, double, failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_LE(a, b)                                             \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        double, double, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER,              \
+        NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_LE_FAIL_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        double, double, msg, NBP_MEMORY_NULL_POINTER)
+        NBP_PRINTER_TYPE_DOUBLE, double, msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_LE_PASS_MSG(a, b, msg)                               \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        double, double, NBP_MEMORY_NULL_POINTER, msg)
+        NBP_PRINTER_TYPE_DOUBLE, double, NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_LE_MSG(a, b, failMsg, passMsg)                       \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        double, double, failMsg, passMsg)
+        NBP_PRINTER_TYPE_DOUBLE, double, failMsg, passMsg)
 
 /******************************************************************************
  *                                                                            *
@@ -2296,168 +2383,168 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_EQ(a, b)                                            \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,      \
+        NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_EQ_FAIL_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long double, ldouble, msg, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,      \
+        msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_EQ_PASS_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, msg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,      \
+        NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_EQ_MSG(a, b, failMsg, passMsg)                      \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
-        long double, ldouble, failMsg, passMsg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,      \
+        failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_NE(a, b)                                            \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,      \
+        NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_NE_FAIL_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long double, ldouble, msg, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,      \
+        msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_NE_PASS_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, msg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,      \
+        NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_NE_MSG(a, b, failMsg, passMsg)                      \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
-        long double, ldouble, failMsg, passMsg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,      \
+        failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_GT(a, b)                                            \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,       \
+        NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_GT_FAIL_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long double, ldouble, msg, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,       \
+        msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_GT_PASS_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, msg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,       \
+        NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_GT_MSG(a, b, failMsg, passMsg)                      \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
-        long double, ldouble, failMsg, passMsg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,       \
+        failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_GE(a, b)                                            \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,      \
+        NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_GE_FAIL_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long double, ldouble, msg, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,      \
+        msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_GE_PASS_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, msg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,      \
+        NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_GE_MSG(a, b, failMsg, passMsg)                      \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
-        long double, ldouble, failMsg, passMsg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,      \
+        failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_LT(a, b)                                            \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,       \
+        NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_LT_FAIL_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long double, ldouble, msg, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,       \
+        msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_LT_PASS_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, msg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,       \
+        NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_LT_MSG(a, b, failMsg, passMsg)                      \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
-        long double, ldouble, failMsg, passMsg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,       \
+        failMsg, passMsg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_LE(a, b)                                            \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,      \
+        NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_LE_FAIL_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long double, ldouble, msg, NBP_MEMORY_NULL_POINTER)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,      \
+        msg, NBP_MEMORY_NULL_POINTER)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_LE_PASS_MSG(a, b, msg)                              \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long double, ldouble, NBP_MEMORY_NULL_POINTER, msg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,      \
+        NBP_MEMORY_NULL_POINTER, msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_LE_MSG(a, b, failMsg, passMsg)                      \
-    NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
-        long double, ldouble, failMsg, passMsg)
+    NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,      \
+        failMsg, passMsg)
 
 #endif // end if NBP_PRIVATE_API_ASSERT_H

@@ -28,6 +28,9 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_IMPL_PRINTER_H
 #define NBP_PRIVATE_IMPL_PRINTER_H
 
+extern nbp_printer_interface_t* nbpPrinterInterfaces[];
+extern unsigned int nbpPrinterInterfacesSize;
+
 const char* nbp_printer_operator_to_string(unsigned int op)
 {
     switch (op) {
@@ -53,6 +56,25 @@ const char* nbp_printer_operator_to_string(unsigned int op)
     // LCOV_EXCL_STOP
 }
 
+void nbp_printer_notify_init(void)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        nbpPrinterInterfaces[i]->configFunc(nbpPrinterInterfaces[i]);
+        if (nbpPrinterInterfaces[i]->initCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->initCbk();
+        }
+    }
+}
+
+void nbp_printer_notify_uninit(void)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->uninitCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->uninitCbk();
+        }
+    }
+}
+
 void nbp_printer_notify_report_error(int errCode, int line,
     const char* filename)
 {
@@ -65,8 +87,8 @@ void nbp_printer_notify_report_error(int errCode, int line,
     err.contextString   = NBP_MEMORY_NULL_POINTER;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->reportError != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->reportError(err);
+        if (nbpPrinterInterfaces[i]->reportErrorCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->reportErrorCbk(err);
         }
     }
 }
@@ -83,8 +105,8 @@ void nbp_printer_notify_report_error_ctx_string(int errCode, int line,
     err.contextString   = ctx;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->reportError != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->reportError(err);
+        if (nbpPrinterInterfaces[i]->reportErrorCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->reportErrorCbk(err);
         }
     }
 }
@@ -101,8 +123,8 @@ void nbp_printer_notify_report_error_ctx_custom(int errCode, int line,
     err.contextCustom   = ctx;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->reportError != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->reportError(err);
+        if (nbpPrinterInterfaces[i]->reportErrorCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->reportErrorCbk(err);
         }
     }
 }
@@ -110,8 +132,17 @@ void nbp_printer_notify_report_error_ctx_custom(int errCode, int line,
 void nbp_printer_notify_exit_triggered(int errorCode)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->exitTriggered != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->exitTriggered(errorCode);
+        if (nbpPrinterInterfaces[i]->exitTriggeredCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->exitTriggeredCbk(errorCode);
+        }
+    }
+}
+
+void nbp_printer_notify_handle_version_command(void)
+{
+    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->handleVersionCommandCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->handleVersionCommandCbk();
         }
     }
 }
@@ -119,8 +150,8 @@ void nbp_printer_notify_exit_triggered(int errorCode)
 void nbp_printer_notify_test_started(nbp_test_details_t* test)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testStarted != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testStarted(test);
+        if (nbpPrinterInterfaces[i]->testStartedCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->testStartedCbk(test);
         }
     }
 }
@@ -128,8 +159,8 @@ void nbp_printer_notify_test_started(nbp_test_details_t* test)
 void nbp_printer_notify_test_completed(nbp_test_details_t* test)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testCompleted != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testCompleted(test);
+        if (nbpPrinterInterfaces[i]->testCompletedCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->testCompletedCbk(test);
         }
     }
 }
@@ -137,8 +168,8 @@ void nbp_printer_notify_test_completed(nbp_test_details_t* test)
 void nbp_printer_notify_module_started(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleStarted != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleStarted(module);
+        if (nbpPrinterInterfaces[i]->moduleStartedCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->moduleStartedCbk(module);
         }
     }
 }
@@ -146,8 +177,8 @@ void nbp_printer_notify_module_started(nbp_module_details_t* module)
 void nbp_printer_notify_module_completed(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleCompleted != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleCompleted(module);
+        if (nbpPrinterInterfaces[i]->moduleCompletedCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->moduleCompletedCbk(module);
         }
     }
 }
@@ -156,8 +187,8 @@ void nbp_printer_notify_before_run(unsigned int modulesNum,
     unsigned int testsNum)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->beforeRun != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->beforeRun(modulesNum, testsNum);
+        if (nbpPrinterInterfaces[i]->beforeRunCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->beforeRunCbk(modulesNum, testsNum);
         }
     }
 }
@@ -174,8 +205,8 @@ void nbp_printer_notify_after_run(unsigned int passedModulesNum,
     unsigned int failedAssertsNum)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->afterRun != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->afterRun(
+        if (nbpPrinterInterfaces[i]->afterRunCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->afterRunCbk(
                 passedModulesNum,
                 failedModulesNum,
                 skippedModulesNum,
@@ -199,42 +230,42 @@ void nbp_printer_notify_after_run(unsigned int passedModulesNum,
     }
 }
 
-void nbp_printer_notify_scheduling_test(nbp_test_details_t* test)
+void nbp_printer_notify_run_test(nbp_test_details_t* test)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->schedulingTest != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->schedulingTest(test);
+        if (nbpPrinterInterfaces[i]->runTestCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->runTestCbk(test);
         }
     }
 }
 
-void nbp_printer_notify_before_scheduling_module(nbp_module_details_t* module)
+void nbp_printer_notify_run_module(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->beforeSchedulingModule != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->beforeSchedulingModule(module);
+        if (nbpPrinterInterfaces[i]->runModuleCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->runModuleCbk(module);
         }
     }
 }
 
-void nbp_printer_notify_after_scheduling_module(nbp_module_details_t* module)
+void nbp_printer_notify_run_module_completed(nbp_module_details_t* module)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->afterSchedulingModule != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->afterSchedulingModule(module);
+        if (nbpPrinterInterfaces[i]->runModuleCompletedCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->runModuleCompletedCbk(module);
         }
     }
 }
 
 void nbp_printer_notify_check_result(nbp_test_details_t* test, const char* cond,
-    int passed, int line, const char* failMsg, const char* passMsg)
+    int status, int line, const char* failMsg, const char* passMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkResult(
+        if (nbpPrinterInterfaces[i]->checkResultCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->checkResultCbk(
                 test,
                 cond,
-                passed,
+                status,
                 line,
                 failMsg,
                 passMsg
@@ -243,258 +274,20 @@ void nbp_printer_notify_check_result(nbp_test_details_t* test, const char* cond,
     }
 }
 
-void nbp_printer_notify_check_op_result(nbp_test_details_t* test,
-    const char* a, const char* b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg )
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_char_op_result(nbp_test_details_t* test, char a,
-    char b, unsigned int op, int passed, int line, const char* failMsg,
+void nbp_printer_notify_check_type_op_result(nbp_test_details_t* test,
+    nbp_printer_type_value_t a, nbp_printer_type_value_t b, unsigned int type,
+    unsigned int op, int status, int line, const char* failMsg,
     const char* passMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkCharOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkCharOpResult(
+        if (nbpPrinterInterfaces[i]->checkTypeOpResultCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->checkTypeOpResultCbk(
                 test,
                 a,
                 b,
+                type,
                 op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_short_op_result(nbp_test_details_t* test,
-    short int a, short int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkShortOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkShortOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_ushort_op_result(nbp_test_details_t* test,
-    unsigned short int a, unsigned short int b, unsigned int op, int passed,
-    int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkUShortOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkUShortOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_int_op_result(nbp_test_details_t* test, int a,
-    int b, unsigned int op, int passed, int line, const char* failMsg,
-    const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkIntOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkIntOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_uint_op_result(nbp_test_details_t* test,
-    unsigned int a, unsigned int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkUIntOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkUIntOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_long_op_result(nbp_test_details_t* test,
-    long int a, long int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_ulong_op_result(nbp_test_details_t* test,
-    unsigned long int a, unsigned long int b, unsigned int op, int passed,
-    int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkULongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkULongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_llong_op_result(nbp_test_details_t* test,
-    long long int a, long long int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkLLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkLLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_ullong_op_result(nbp_test_details_t* test,
-    unsigned long long int a, unsigned long long int b, unsigned int op,
-    int passed, int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkULLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkULLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_float_op_result(nbp_test_details_t* test,
-    float a, float b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkFloatOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkFloatOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_double_op_result(nbp_test_details_t* test,
-    double a, double b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkDoubleOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkDoubleOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_check_ldouble_op_result(nbp_test_details_t* test,
-    long double a, long double b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->checkLDoubleOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->checkLDoubleOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
+                status,
                 line,
                 failMsg,
                 passMsg
@@ -504,14 +297,14 @@ void nbp_printer_notify_check_ldouble_op_result(nbp_test_details_t* test,
 }
 
 void nbp_printer_notify_test_assert_result(nbp_test_details_t* test, const char* cond,
-    int passed, int line, const char* failMsg, const char* passMsg)
+    int status, int line, const char* failMsg, const char* passMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertResult(
+        if (nbpPrinterInterfaces[i]->testAssertResultCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->testAssertResultCbk(
                 test,
                 cond,
-                passed,
+                status,
                 line,
                 failMsg,
                 passMsg
@@ -520,258 +313,20 @@ void nbp_printer_notify_test_assert_result(nbp_test_details_t* test, const char*
     }
 }
 
-void nbp_printer_notify_test_assert_op_result(nbp_test_details_t* test,
-    const char* a, const char* b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg )
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_char_op_result(nbp_test_details_t* test,
-    char a, char b, unsigned int op, int passed, int line, const char* failMsg,
+void nbp_printer_notify_test_assert_type_op_result(nbp_test_details_t* test,
+    nbp_printer_type_value_t a, nbp_printer_type_value_t b, unsigned int type,
+    unsigned int op, int status, int line, const char* failMsg,
     const char* passMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertCharOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertCharOpResult(
+        if (nbpPrinterInterfaces[i]->testAssertTypeOpResultCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->testAssertTypeOpResultCbk(
                 test,
                 a,
                 b,
+                type,
                 op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_short_op_result(nbp_test_details_t* test,
-    short int a, short int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertShortOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertShortOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_ushort_op_result(nbp_test_details_t* test,
-    unsigned short int a, unsigned short int b, unsigned int op, int passed,
-    int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertUShortOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertUShortOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_int_op_result(nbp_test_details_t* test,
-    int a, int b, unsigned int op, int passed, int line, const char* failMsg,
-    const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertIntOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertIntOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_uint_op_result(nbp_test_details_t* test,
-    unsigned int a, unsigned int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertUIntOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertUIntOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_long_op_result(nbp_test_details_t* test,
-    long int a, long int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_ulong_op_result(nbp_test_details_t* test,
-    unsigned long int a, unsigned long int b, unsigned int op, int passed,
-    int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertULongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertULongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_llong_op_result(nbp_test_details_t* test,
-    long long int a, long long int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertLLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertLLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_ullong_op_result(nbp_test_details_t* test,
-    unsigned long long int a, unsigned long long int b, unsigned int op,
-    int passed, int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertULLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertULLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_float_op_result(nbp_test_details_t* test,
-    float a, float b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertFloatOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertFloatOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_double_op_result(nbp_test_details_t* test,
-    double a, double b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertDoubleOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertDoubleOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_test_assert_ldouble_op_result(nbp_test_details_t* test,
-    long double a, long double b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->testAssertLDoubleOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->testAssertLDoubleOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
+                status,
                 line,
                 failMsg,
                 passMsg
@@ -781,15 +336,15 @@ void nbp_printer_notify_test_assert_ldouble_op_result(nbp_test_details_t* test,
 }
 
 void nbp_printer_notify_module_assert_result(nbp_test_details_t* test,
-    const char* cond, int passed, int line, const char* failMsg,
+    const char* cond, int status, int line, const char* failMsg,
     const char* passMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertResult(
+        if (nbpPrinterInterfaces[i]->moduleAssertResultCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->moduleAssertResultCbk(
                 test,
                 cond,
-                passed,
+                status,
                 line,
                 failMsg,
                 passMsg
@@ -798,258 +353,20 @@ void nbp_printer_notify_module_assert_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_printer_notify_module_assert_op_result(nbp_test_details_t* test,
-    const char* a, const char* b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg )
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_char_op_result(nbp_test_details_t* test,
-    char a, char b, unsigned int op, int passed, int line, const char* failMsg,
+void nbp_printer_notify_module_assert_type_op_result(nbp_test_details_t* test,
+    nbp_printer_type_value_t a, nbp_printer_type_value_t b, unsigned int type,
+    unsigned int op, int status, int line, const char* failMsg,
     const char* passMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertCharOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertCharOpResult(
+        if (nbpPrinterInterfaces[i]->moduleAssertTypeOpResultCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->moduleAssertTypeOpResultCbk(
                 test,
                 a,
                 b,
+                type,
                 op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_short_op_result(nbp_test_details_t* test,
-    short int a, short int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertShortOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertShortOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_ushort_op_result(nbp_test_details_t* test,
-    unsigned short int a, unsigned short int b, unsigned int op, int passed,
-    int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertUShortOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertUShortOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_int_op_result(nbp_test_details_t* test,
-    int a, int b, unsigned int op, int passed, int line, const char* failMsg,
-    const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertIntOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertIntOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_uint_op_result(nbp_test_details_t* test,
-    unsigned int a, unsigned int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertUIntOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertUIntOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_long_op_result(nbp_test_details_t* test,
-    long int a, long int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_ulong_op_result(nbp_test_details_t* test,
-    unsigned long int a, unsigned long int b, unsigned int op, int passed,
-    int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertULongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertULongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_llong_op_result(nbp_test_details_t* test,
-    long long int a, long long int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertLLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertLLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_ullong_op_result(nbp_test_details_t* test,
-    unsigned long long int a, unsigned long long int b, unsigned int op,
-    int passed, int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertULLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertULLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_float_op_result(nbp_test_details_t* test,
-    float a, float b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertFloatOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertFloatOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_double_op_result(nbp_test_details_t* test,
-    double a, double b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertDoubleOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertDoubleOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_module_assert_ldouble_op_result(
-    nbp_test_details_t* test, long double a, long double b, unsigned int op,
-    int passed, int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->moduleAssertLDoubleOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->moduleAssertLDoubleOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
+                status,
                 line,
                 failMsg,
                 passMsg
@@ -1059,15 +376,15 @@ void nbp_printer_notify_module_assert_ldouble_op_result(
 }
 
 void nbp_printer_notify_assert_result(nbp_test_details_t* test,
-    const char* cond, int passed, int line, const char* failMsg,
+    const char* cond, int status, int line, const char* failMsg,
     const char* passMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertResult(
+        if (nbpPrinterInterfaces[i]->assertResultCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->assertResultCbk(
                 test,
                 cond,
-                passed,
+                status,
                 line,
                 failMsg,
                 passMsg
@@ -1076,258 +393,20 @@ void nbp_printer_notify_assert_result(nbp_test_details_t* test,
     }
 }
 
-void nbp_printer_notify_assert_op_result(nbp_test_details_t* test,
-    const char* a, const char* b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg )
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_char_op_result(nbp_test_details_t* test, char a,
-    char b, unsigned int op, int passed, int line, const char* failMsg,
+void nbp_printer_notify_assert_type_op_result(nbp_test_details_t* test,
+    nbp_printer_type_value_t a, nbp_printer_type_value_t b, unsigned int type,
+    unsigned int op, int status, int line, const char* failMsg,
     const char* passMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertCharOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertCharOpResult(
+        if (nbpPrinterInterfaces[i]->assertTypeOpResultCbk != NBP_MEMORY_NULL_POINTER) {
+            nbpPrinterInterfaces[i]->assertTypeOpResultCbk(
                 test,
                 a,
                 b,
+                type,
                 op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_short_op_result(nbp_test_details_t* test,
-    short int a, short int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertShortOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertShortOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_ushort_op_result(nbp_test_details_t* test,
-    unsigned short int a, unsigned short int b, unsigned int op, int passed,
-    int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertUShortOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertUShortOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_int_op_result(nbp_test_details_t* test, int a,
-    int b, unsigned int op, int passed, int line, const char* failMsg,
-    const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertIntOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertIntOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_uint_op_result(nbp_test_details_t* test,
-    unsigned int a, unsigned int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertUIntOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertUIntOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_long_op_result(nbp_test_details_t* test,
-    long int a, long int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_ulong_op_result(nbp_test_details_t* test,
-    unsigned long int a, unsigned long int b, unsigned int op, int passed,
-    int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertULongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertULongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_llong_op_result(nbp_test_details_t* test,
-    long long int a, long long int b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertLLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertLLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_ullong_op_result(nbp_test_details_t* test,
-    unsigned long long int a, unsigned long long int b, unsigned int op,
-    int passed, int line, const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertULLongOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertULLongOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_float_op_result(nbp_test_details_t* test,
-    float a, float b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertFloatOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertFloatOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_double_op_result(nbp_test_details_t* test,
-    double a, double b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertDoubleOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertDoubleOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
-                line,
-                failMsg,
-                passMsg
-            );
-        }
-    }
-}
-
-void nbp_printer_notify_assert_ldouble_op_result(nbp_test_details_t* test,
-    long double a, long double b, unsigned int op, int passed, int line,
-    const char* failMsg, const char* passMsg)
-{
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->assertLDoubleOpResult != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->assertLDoubleOpResult(
-                test,
-                a,
-                b,
-                op,
-                passed,
+                status,
                 line,
                 failMsg,
                 passMsg

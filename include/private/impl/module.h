@@ -145,7 +145,7 @@ void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent,
 {
     nbp_module_init(module, parent, setupFunc, teardownFunc);
 
-    nbp_printer_notify_before_scheduling_module(module);
+    nbp_printer_notify_run_module(module);
 
     nbp_scheduler_notify_module_started(module);
 
@@ -161,7 +161,7 @@ void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent,
 
     nbp_module_update_stats(module);
 
-    nbp_printer_notify_after_scheduling_module(module);
+    nbp_printer_notify_run_module_completed(module);
 }
 
 void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
@@ -170,7 +170,7 @@ void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
 {
     nbp_module_init(module, parent, setupFunc, teardownFunc);
 
-    nbp_printer_notify_before_scheduling_module(module);
+    nbp_printer_notify_run_module(module);
 
     nbp_scheduler_notify_module_started_ctx(module, ctx);
 
@@ -186,7 +186,7 @@ void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
 
     nbp_module_update_stats(module);
 
-    nbp_printer_notify_after_scheduling_module(module);
+    nbp_printer_notify_run_module_completed(module);
 }
 
 #endif // end if NBP_PRIVATE_IMPL_MODULE_H

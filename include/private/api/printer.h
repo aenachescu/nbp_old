@@ -31,187 +31,79 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_FUNC_INIT(func)                                            \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_INIT(func)                                        \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         void                                                                   \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_INIT(func)                                        \
-    .init = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_INIT                                               \
-    .init = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_UNINIT(func)                                          \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_UNINIT(func)                                      \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         void                                                                   \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_UNINIT(func)                                      \
-    .uninit = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_UNINIT                                             \
-    .uninit = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_REPORT_ERROR(func)                                    \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_REPORT_ERROR(func)                                \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_error_t nbpParamError                   \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_REPORT_ERROR(func)                                \
-    .reportError = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_REPORT_ERROR                                       \
-    .reportError = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_EXIT_TRIGGERED(func)                                  \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_EXIT_TRIGGERED(func)                              \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamErrorCode                       \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_EXIT_TRIGGERED(func)                              \
-    .exitTriggered = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_EXIT_TRIGGERED                                     \
-    .exitTriggered = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_HANDLE_VERSION_COMMAND(func)                          \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_HANDLE_VERSION_COMMAND(func)                      \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_HANDLE_VERSION_COMMAND(func)                      \
-    .handleVersionCommand = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_HANDLE_VERSION_COMMAND                             \
-    .handleVersionCommand = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_STARTED(func)                                    \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_TEST_STARTED(func)                                \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_TEST_STARTED(func)                                \
-    .testStarted = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_STARTED                                       \
-    .testStarted = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_COMPLETED(func)                                  \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_TEST_COMPLETED(func)                              \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_TEST_COMPLETED(func)                              \
-    .testCompleted = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_COMPLETED                                     \
-    .testCompleted = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_STARTED(func)                                  \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_MODULE_STARTED(func)                              \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_MODULE_STARTED(func)                              \
-    .moduleStarted = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_STARTED                                     \
-    .moduleStarted = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_COMPLETED(func)                                \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_MODULE_COMPLETED(func)                            \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_MODULE_COMPLETED(func)                            \
-    .moduleCompleted = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_COMPLETED                                   \
-    .moduleCompleted = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_BEFORE_RUN(func)                                      \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_BEFORE_RUN(func)                                  \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamModulesNum,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamTestsNum               \
     )
@@ -219,20 +111,8 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_BEFORE_RUN(func)                                  \
-    .beforeRun = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_BEFORE_RUN                                         \
-    .beforeRun = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_AFTER_RUN(func)                                       \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_AFTER_RUN(func)                                   \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedModulesNum,      \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedModulesNum,      \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamSkippedModulesNum,     \
@@ -253,87 +133,39 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedAssertsNum       \
     )
 
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_AFTER_RUN(func)                                   \
-    .afterRun = NBP_PP_CONCAT(nbp_printer_func_, func)
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_FUNC_AFTER_RUN                                          \
-    .afterRun = NBP_MEMORY_NULL_POINTER
-
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_SCHEDULING_TEST(func)                                 \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_RUN_TEST(func)                                    \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_SCHEDULING_TEST(func)                             \
-    .schedulingTest = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_SCHEDULING_TEST                                    \
-    .schedulingTest = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_BEFORE_SCHEDULING_MODULE(func)                        \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_RUN_MODULE(func)                                  \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_BEFORE_SCHEDULING_MODULE(func)                    \
-    .beforeSchedulingModule = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_BEFORE_SCHEDULING_MODULE                           \
-    .beforeSchedulingModule = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_AFTER_SCHEDULING_MODULE(func)                         \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_RUN_MODULE_COMPLETED(func)                        \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_AFTER_SCHEDULING_MODULE(func)                     \
-    .afterSchedulingModule = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_AFTER_SCHEDULING_MODULE                            \
-    .afterSchedulingModule = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_RESULT(func)                                    \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_CHECK_RESULT(func)                                \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
@@ -342,25 +174,14 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_CHECK_RESULT(func)                                \
-    .checkResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_RESULT                                       \
-    .checkResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_OP_RESULT(func)                                 \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_CHECK_TYPE_OP_RESULT(func)                        \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_printer_type_value_t nbpParamVal1,      \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_printer_type_value_t nbpParamVal2,      \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamType,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
@@ -369,347 +190,11 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_CHECK_OP_RESULT(func)                             \
-    .checkOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_OP_RESULT                                    \
-    .checkOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_CHAR_OP_RESULT(func)                            \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
-        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_CHAR_OP_RESULT(func)                        \
-    .checkCharOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_CHAR_OP_RESULT                               \
-    .checkCharOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_SHORT_OP_RESULT(func)                           \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
-        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_SHORT_OP_RESULT(func)                       \
-    .checkShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_SHORT_OP_RESULT                              \
-    .checkShortOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_USHORT_OP_RESULT(func)                          \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_USHORT_OP_RESULT(func)                      \
-    .checkUShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_USHORT_OP_RESULT                             \
-    .checkUShortOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_INT_OP_RESULT(func)                             \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_INT_OP_RESULT(func)                         \
-    .checkIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_INT_OP_RESULT                                \
-    .checkIntOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_UINT_OP_RESULT(func)                            \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_UINT_OP_RESULT(func)                        \
-    .checkUIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_UINT_OP_RESULT                               \
-    .checkUIntOpResult = NBP_MEMORY_NULL_POINTER
-
-    /*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_LONG_OP_RESULT(func)                            \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
-        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_LONG_OP_RESULT(func)                        \
-    .checkLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_LONG_OP_RESULT                               \
-    .checkLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_ULONG_OP_RESULT(func)                           \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_ULONG_OP_RESULT(func)                       \
-    .checkULongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_ULONG_OP_RESULT                              \
-    .checkULongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_LLONG_OP_RESULT(func)                           \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
-        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_LLONG_OP_RESULT(func)                       \
-    .checkLLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_LLONG_OP_RESULT                              \
-    .checkLLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_ULLONG_OP_RESULT(func)                          \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_ULLONG_OP_RESULT(func)                      \
-    .checkULLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_ULLONG_OP_RESULT                             \
-    .checkULLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_FLOAT_OP_RESULT(func)                           \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
-        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_FLOAT_OP_RESULT(func)                       \
-    .checkFloatOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_FLOAT_OP_RESULT                              \
-    .checkFloatOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_DOUBLE_OP_RESULT(func)                          \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
-        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_DOUBLE_OP_RESULT(func)                      \
-    .checkDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_DOUBLE_OP_RESULT                             \
-    .checkDoubleOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_CHECK_LDOUBLE_OP_RESULT(func)                         \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_CHECK_LDOUBLE_OP_RESULT(func)                     \
-    .checkLDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_CHECK_LDOUBLE_OP_RESULT                            \
-    .checkLDoubleOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_RESULT(func)                              \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_TEST_ASSERT_RESULT(func)                          \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
@@ -718,25 +203,14 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_RESULT(func)                          \
-    .testAssertResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_RESULT                                 \
-    .testAssertResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_OP_RESULT(func)                           \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_TEST_ASSERT_TYPE_OP_RESULT(func)                  \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_printer_type_value_t nbpParamVal1,      \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_printer_type_value_t nbpParamVal2,      \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamType,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
@@ -745,347 +219,11 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_OP_RESULT(func)                       \
-    .testAssertOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_OP_RESULT                              \
-    .testAssertOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_CHAR_OP_RESULT(func)                      \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
-        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_CHAR_OP_RESULT(func)                  \
-    .testAssertCharOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_CHAR_OP_RESULT                         \
-    .testAssertCharOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_SHORT_OP_RESULT(func)                     \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
-        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_SHORT_OP_RESULT(func)                 \
-    .testAssertShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_SHORT_OP_RESULT                        \
-    .testAssertShortOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_USHORT_OP_RESULT(func)                    \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_USHORT_OP_RESULT(func)                \
-    .testAssertUShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_USHORT_OP_RESULT                       \
-    .testAssertUShortOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_INT_OP_RESULT(func)                       \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_INT_OP_RESULT(func)                   \
-    .testAssertIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_INT_OP_RESULT                          \
-    .testAssertIntOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_UINT_OP_RESULT(func)                      \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_UINT_OP_RESULT(func)                  \
-    .testAssertUIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_UINT_OP_RESULT                         \
-    .testAssertUIntOpResult = NBP_MEMORY_NULL_POINTER
-
-    /*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_LONG_OP_RESULT(func)                      \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
-        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_LONG_OP_RESULT(func)                  \
-    .testAssertLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_LONG_OP_RESULT                         \
-    .testAssertLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_ULONG_OP_RESULT(func)                     \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_ULONG_OP_RESULT(func)                 \
-    .testAssertULongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_ULONG_OP_RESULT                        \
-    .testAssertULongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_LLONG_OP_RESULT(func)                     \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
-        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_LLONG_OP_RESULT(func)                 \
-    .testAssertLLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_LLONG_OP_RESULT                        \
-    .testAssertLLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_ULLONG_OP_RESULT(func)                    \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_ULLONG_OP_RESULT(func)                \
-    .testAssertULLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_ULLONG_OP_RESULT                       \
-    .testAssertULLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_FLOAT_OP_RESULT(func)                     \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
-        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_FLOAT_OP_RESULT(func)                 \
-    .testAssertFloatOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_FLOAT_OP_RESULT                        \
-    .testAssertFloatOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_DOUBLE_OP_RESULT(func)                    \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
-        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_DOUBLE_OP_RESULT(func)                \
-    .testAssertDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_DOUBLE_OP_RESULT                       \
-    .testAssertDoubleOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT(func)                   \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT(func)               \
-    .testAssertLDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_TEST_ASSERT_LDOUBLE_OP_RESULT                      \
-    .testAssertLDoubleOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_RESULT(func)                            \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_MODULE_ASSERT_RESULT(func)                        \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
@@ -1094,25 +232,14 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_RESULT(func)                        \
-    .moduleAssertResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_RESULT                               \
-    .moduleAssertResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_OP_RESULT(func)                         \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_MODULE_ASSERT_TYPE_OP_RESULT(func)                \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_printer_type_value_t nbpParamVal1,      \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_printer_type_value_t nbpParamVal2,      \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamType,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
@@ -1121,348 +248,11 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_OP_RESULT(func)                     \
-    .moduleAssertOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_OP_RESULT                            \
-    .moduleAssertOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_CHAR_OP_RESULT(func)                    \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
-        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_CHAR_OP_RESULT(func)                \
-    .moduleAssertCharOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_CHAR_OP_RESULT                       \
-    .moduleAssertCharOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_SHORT_OP_RESULT(func)                   \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
-        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_SHORT_OP_RESULT(func)               \
-    .moduleAssertShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_SHORT_OP_RESULT                      \
-    .moduleAssertShortOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_USHORT_OP_RESULT(func)                  \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_USHORT_OP_RESULT(func)              \
-    .moduleAssertUShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_USHORT_OP_RESULT                     \
-    .moduleAssertUShortOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_INT_OP_RESULT(func)                     \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_INT_OP_RESULT(func)                 \
-    .moduleAssertIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_INT_OP_RESULT                        \
-    .moduleAssertIntOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_UINT_OP_RESULT(func)                    \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_UINT_OP_RESULT(func)                \
-    .moduleAssertUIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_UINT_OP_RESULT                       \
-    .moduleAssertUIntOpResult = NBP_MEMORY_NULL_POINTER
-
-    /*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_LONG_OP_RESULT(func)                    \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
-        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_LONG_OP_RESULT(func)                \
-    .moduleAssertLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_LONG_OP_RESULT                       \
-    .moduleAssertLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_ULONG_OP_RESULT(func)                   \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_ULONG_OP_RESULT(func)               \
-    .moduleAssertULongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_ULONG_OP_RESULT                      \
-    .moduleAssertULongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_LLONG_OP_RESULT(func)                   \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
-        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_LLONG_OP_RESULT(func)               \
-    .moduleAssertLLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_LLONG_OP_RESULT                      \
-    .moduleAssertLLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT(func)                  \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT(func)              \
-    .moduleAssertULLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_ULLONG_OP_RESULT                     \
-    .moduleAssertULLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT(func)                   \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
-        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT(func)               \
-    .moduleAssertFloatOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_FLOAT_OP_RESULT                      \
-    .moduleAssertFloatOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT(func)                  \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
-        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT(func)              \
-    .moduleAssertDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_DOUBLE_OP_RESULT                     \
-    .moduleAssertDoubleOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT(func)                 \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT(func)             \
-    .moduleAssertLDoubleOpResult =                                             \
-        NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_MODULE_ASSERT_LDOUBLE_OP_RESULT                    \
-    .moduleAssertLDoubleOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_RESULT(func)                                   \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_ASSERT_RESULT(func)                               \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
@@ -1471,25 +261,14 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_ASSERT_RESULT(func)                               \
-    .assertResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_RESULT                                      \
-    .assertResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_OP_RESULT(func)                                \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
+#define NBP_PRINTER_CALLBACK_ASSERT_TYPE_OP_RESULT(func)                       \
+    static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal1,                   \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamVal2,                   \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_printer_type_value_t nbpParamVal1,      \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_printer_type_value_t nbpParamVal2,      \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamType,                  \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
+        NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
@@ -1498,345 +277,44 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_USE_FUNC_ASSERT_OP_RESULT(func)                            \
-    .assertOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_OP_RESULT                                   \
-    .assertOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_CHAR_OP_RESULT(func)                           \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal1,                          \
-        NBP_MAYBE_UNUSED_PARAMETER char nbpParamVal2,                          \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_CHAR_OP_RESULT(func)                       \
-    .assertCharOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_CHAR_OP_RESULT                              \
-    .assertCharOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_SHORT_OP_RESULT(func)                          \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal1,                     \
-        NBP_MAYBE_UNUSED_PARAMETER short int nbpParamVal2,                     \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_SHORT_OP_RESULT(func)                      \
-    .assertShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_SHORT_OP_RESULT                             \
-    .assertShortOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_USHORT_OP_RESULT(func)                         \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal1,            \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned short int nbpParamVal2,            \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_USHORT_OP_RESULT(func)                     \
-    .assertUShortOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_USHORT_OP_RESULT                            \
-    .assertUShortOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_INT_OP_RESULT(func)                            \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal1,                           \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamVal2,                           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_INT_OP_RESULT(func)                        \
-    .assertIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_INT_OP_RESULT                               \
-    .assertIntOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_UINT_OP_RESULT(func)                           \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal1,                  \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamVal2,                  \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_UINT_OP_RESULT(func)                       \
-    .assertUIntOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_UINT_OP_RESULT                              \
-    .assertUIntOpResult = NBP_MEMORY_NULL_POINTER
-
-    /*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_LONG_OP_RESULT(func)                           \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal1,                      \
-        NBP_MAYBE_UNUSED_PARAMETER long int nbpParamVal2,                      \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_LONG_OP_RESULT(func)                       \
-    .assertLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_LONG_OP_RESULT                              \
-    .assertLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_ULONG_OP_RESULT(func)                          \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal1,             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long int nbpParamVal2,             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_ULONG_OP_RESULT(func)                      \
-    .assertULongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_ULONG_OP_RESULT                             \
-    .assertULongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_LLONG_OP_RESULT(func)                          \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal1,                 \
-        NBP_MAYBE_UNUSED_PARAMETER long long int nbpParamVal2,                 \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_LLONG_OP_RESULT(func)                      \
-    .assertLLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_LLONG_OP_RESULT                             \
-    .assertLLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_ULLONG_OP_RESULT(func)                         \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal1,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned long long int nbpParamVal2,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_ULLONG_OP_RESULT(func)                     \
-    .assertULLongOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_ULLONG_OP_RESULT                            \
-    .assertULLongOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_FLOAT_OP_RESULT(func)                          \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal1,                         \
-        NBP_MAYBE_UNUSED_PARAMETER float nbpParamVal2,                         \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_FLOAT_OP_RESULT(func)                      \
-    .assertFloatOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_FLOAT_OP_RESULT                             \
-    .assertFloatOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_DOUBLE_OP_RESULT(func)                         \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal1,                        \
-        NBP_MAYBE_UNUSED_PARAMETER double nbpParamVal2,                        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_DOUBLE_OP_RESULT(func)                     \
-    .assertDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_DOUBLE_OP_RESULT                            \
-    .assertDoubleOpResult = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_FUNC_ASSERT_LDOUBLE_OP_RESULT(func)                        \
-    static void NBP_PP_CONCAT(nbp_printer_func_, func)(                        \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
-        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal1,                   \
-        NBP_MAYBE_UNUSED_PARAMETER long double nbpParamVal2,                   \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamPassed,                         \
-        NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
-    )
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_USE_FUNC_ASSERT_LDOUBLE_OP_RESULT(func)                    \
-    .assertLDoubleOpResult = NBP_PP_CONCAT(nbp_printer_func_, func)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_NO_FUNC_ASSERT_LDOUBLE_OP_RESULT                           \
-    .assertLDoubleOpResult = NBP_MEMORY_NULL_POINTER
+#define NBP_PRINTER_CALLBACKS(...)
 
 /*
  * TODO: add docs
  */
 #define NBP_PRINTER(name, ...)                                                 \
+    void NBP_PP_CONCAT(nbp_printer_config_, name)(                             \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_printer_interface_t* nbpParamPrinter    \
+    )                                                                          \
+    {                                                                          \
+        NBP_PRINTER_PRIVATE_GENERATE_CONFIG(P_ ## __VA_ARGS__)                 \
+    }                                                                          \
     nbp_printer_interface_t NBP_PP_CONCAT(nbpPrinter, name) = {                \
-        __VA_ARGS__                                                            \
+        .printerName                        = #name,                           \
+        .configFunc                         =                                  \
+            NBP_PP_CONCAT(nbp_printer_config_, name),                          \
+        .initCbk                            = NBP_MEMORY_NULL_POINTER,         \
+        .uninitCbk                          = NBP_MEMORY_NULL_POINTER,         \
+        .reportErrorCbk                     = NBP_MEMORY_NULL_POINTER,         \
+        .exitTriggeredCbk                   = NBP_MEMORY_NULL_POINTER,         \
+        .handleVersionCommandCbk            = NBP_MEMORY_NULL_POINTER,         \
+        .testStartedCbk                     = NBP_MEMORY_NULL_POINTER,         \
+        .testCompletedCbk                   = NBP_MEMORY_NULL_POINTER,         \
+        .moduleStartedCbk                   = NBP_MEMORY_NULL_POINTER,         \
+        .moduleCompletedCbk                 = NBP_MEMORY_NULL_POINTER,         \
+        .beforeRunCbk                       = NBP_MEMORY_NULL_POINTER,         \
+        .afterRunCbk                        = NBP_MEMORY_NULL_POINTER,         \
+        .runTestCbk                         = NBP_MEMORY_NULL_POINTER,         \
+        .runModuleCbk                       = NBP_MEMORY_NULL_POINTER,         \
+        .runModuleCompletedCbk              = NBP_MEMORY_NULL_POINTER,         \
+        .checkResultCbk                     = NBP_MEMORY_NULL_POINTER,         \
+        .checkTypeOpResultCbk               = NBP_MEMORY_NULL_POINTER,         \
+        .testAssertResultCbk                = NBP_MEMORY_NULL_POINTER,         \
+        .testAssertTypeOpResultCbk          = NBP_MEMORY_NULL_POINTER,         \
+        .moduleAssertResultCbk              = NBP_MEMORY_NULL_POINTER,         \
+        .moduleAssertTypeOpResultCbk        = NBP_MEMORY_NULL_POINTER,         \
+        .assertResultCbk                    = NBP_MEMORY_NULL_POINTER,         \
+        .assertTypeOpResultCbk              = NBP_MEMORY_NULL_POINTER          \
     }
 
 /*
@@ -1870,52 +348,162 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_FIRST_VALUE() nbpParamVal1
+#define NBP_PRINTER_GET_VALUE_TYPE() nbpParamType
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_SECOND_VALUE() nbpParamVal2
+#define NBP_PRINTER_GET_FIRST_VALUE() nbpParamVal1.stringValue
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_CHECK_STATUS() nbpParamPassed
+#define NBP_PRINTER_GET_SECOND_VALUE() nbpParamVal2.stringValue
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_CHECK_LINE() nbpParamLine
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_CHAR() nbpParamVal1.charValue
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_TEST_ASSERT_STATUS() nbpParamPassed
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_CHAR() nbpParamVal2.charValue
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_TEST_ASSERT_LINE() nbpParamLine
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_SHORT() nbpParamVal1.shortValue
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_MODULE_ASSERT_STATUS() nbpParamPassed
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_SHORT() nbpParamVal2.shortValue
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_MODULE_ASSERT_LINE() nbpParamLine
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_USHORT() nbpParamVal1.ushortValue
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_ASSERT_STATUS() nbpParamPassed
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_USHORT() nbpParamVal2.ushortValue
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_ASSERT_LINE() nbpParamLine
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_INT() nbpParamVal1.intValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_INT() nbpParamVal2.intValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_UINT() nbpParamVal1.uintValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_UINT() nbpParamVal2.uintValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_LONG() nbpParamVal1.longValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_LONG() nbpParamVal2.longValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_ULONG() nbpParamVal1.ulongValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_ULONG() nbpParamVal2.ulongValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_LLONG() nbpParamVal1.llongValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_LLONG() nbpParamVal2.llongValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_ULLONG() nbpParamVal1.ullongValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_ULLONG() nbpParamVal2.ullongValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_FLOAT() nbpParamVal1.floatValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_FLOAT() nbpParamVal2.floatValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_DOUBLE() nbpParamVal1.doubleValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_DOUBLE() nbpParamVal2.doubleValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_FIRST_VALUE_AS_LDOUBLE() *nbpParamVal1.ldoubleValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_SECOND_VALUE_AS_LDOUBLE() *nbpParamVal2.ldoubleValue
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_LINE_NUMBER() nbpParamLine
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_CHECK_STATUS() nbpParamStatus
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_TEST_ASSERT_STATUS() nbpParamStatus
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_MODULE_ASSERT_STATUS() nbpParamStatus
+
+/*
+ * TODO: add docs
+ */
+#define NBP_PRINTER_GET_ASSERT_STATUS() nbpParamStatus
 
 /*
  * TODO: add docs
@@ -2050,5 +638,84 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_GET_EXIT_ERROR_CODE() nbpParamErrorCode
+
+#define NBP_PRINTER_PRIVATE_GENERATE_CONFIG(...)                               \
+    NBP_PP_CONCAT(                                                             \
+        NBP_PP_PROCESSING_PARAM_,                                              \
+        NBP_PP_VARCOUNT(P ## __VA_ARGS__)                                      \
+    )(P ## __VA_ARGS__)
+
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACKS(...)                               \
+    NBP_PP_CONCAT(                                                             \
+        NBP_PP_PROCESSING_PARAM_2_,                                            \
+        NBP_PP_VARCOUNT(PP_ ## __VA_ARGS__)                                    \
+    )(PP_ ## __VA_ARGS__)
+
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_INIT(func)                          \
+    nbpParamPrinter->initCbk =                                                 \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_UNINIT(func)                        \
+    nbpParamPrinter->uninitCbk =                                               \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_REPORT_ERROR(func)                  \
+    nbpParamPrinter->reportErrorCbk =                                          \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_EXIT_TRIGGERED(func)                \
+    nbpParamPrinter->exitTriggeredCbk =                                        \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_HANDLE_VERSION_COMMAND(func)        \
+    nbpParamPrinter->handleVersionCommandCbk =                                 \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_TEST_STARTED(func)                  \
+    nbpParamPrinter->testStartedCbk =                                          \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_TEST_COMPLETED(func)                \
+    nbpParamPrinter->testCompletedCbk =                                        \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_MODULE_STARTED(func)                \
+    nbpParamPrinter->moduleStartedCbk =                                        \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_MODULE_COMPLETED(func)              \
+    nbpParamPrinter->moduleCompletedCbk =                                      \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_BEFORE_RUN(func)                    \
+    nbpParamPrinter->beforeRunCbk =                                            \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_AFTER_RUN(func)                     \
+    nbpParamPrinter->afterRunCbk =                                             \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_RUN_TEST(func)                      \
+    nbpParamPrinter->runTestCbk =                                              \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_RUN_MODULE(func)                    \
+    nbpParamPrinter->runModuleCbk =                                            \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_RUN_MODULE_COMPLETED(func)          \
+    nbpParamPrinter->runModuleCompletedCbk =                                   \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_CHECK_RESULT(func)                  \
+    nbpParamPrinter->checkResultCbk =                                          \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_CHECK_TYPE_OP_RESULT(func)          \
+    nbpParamPrinter->checkTypeOpResultCbk =                                    \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_TEST_ASSERT_RESULT(func)            \
+    nbpParamPrinter->testAssertResultCbk =                                     \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_TEST_ASSERT_TYPE_OP_RESULT(func)    \
+    nbpParamPrinter->testAssertTypeOpResultCbk =                               \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_MODULE_ASSERT_RESULT(func)          \
+    nbpParamPrinter->moduleAssertResultCbk =                                   \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_MODULE_ASSERT_TYPE_OP_RESULT(func)  \
+    nbpParamPrinter->moduleAssertTypeOpResultCbk =                             \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_ASSERT_RESULT(func)                 \
+    nbpParamPrinter->assertResultCbk =                                         \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
+#define NBP_PP_EAT_PP_NBP_PRINTER_CALLBACK_ASSERT_TYPE_OP_RESULT(func)         \
+    nbpParamPrinter->assertTypeOpResultCbk =                                   \
+        NBP_PP_CONCAT(nbp_printer_callback_, func);
 
 #endif // end if NBP_PRIVATE_API_PRINTER_H

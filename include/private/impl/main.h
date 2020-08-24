@@ -30,8 +30,6 @@ SOFTWARE.
 
 extern nbp_module_details_t* nbpMainModule;
 extern nbp_scheduler_interface_t* nbpSchedulerInterface;
-extern nbp_printer_interface_t* nbpPrinterInterfaces[];
-extern unsigned int nbpPrinterInterfacesSize;
 
 int nbpSchedulerRunEnabled;
 
@@ -49,11 +47,7 @@ int nbp_command_run_all()
 {
     nbpSchedulerRunEnabled = 0;
 
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->init != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->init();
-        }
-    }
+    nbp_printer_notify_init();
 
     nbpSchedulerInterface->configFunc(nbpSchedulerInterface);
 
@@ -120,12 +114,7 @@ int nbp_command_run_all()
     );
 
     nbp_scheduler_notify_uninit();
-
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->uninit != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->uninit();
-        }
-    }
+    nbp_printer_notify_uninit();
 
     if (NBP_MODULE_GET_STATE(nbpMainModule) == NBP_MODULE_STATE_PASSED) {
         return NBP_ERROR_CODE_SUCCESS;
@@ -136,23 +125,9 @@ int nbp_command_run_all()
 
 int nbp_command_version()
 {
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->init != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->init();
-        }
-    }
-
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->handleVersionCommand != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->handleVersionCommand();
-        }
-    }
-
-    for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
-        if (nbpPrinterInterfaces[i]->uninit != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->uninit();
-        }
-    }
+    nbp_printer_notify_init();
+    nbp_printer_notify_handle_version_command();
+    nbp_printer_notify_uninit();
 
     return NBP_ERROR_CODE_SUCCESS;
 }

@@ -103,7 +103,7 @@ void nbp_test_run(nbp_test_details_t* test, nbp_module_details_t* module,
 {
     nbp_test_init(test, module, testSetup, testTeardown);
 
-    nbp_printer_notify_scheduling_test(test);
+    nbp_printer_notify_run_test(test);
     nbp_scheduler_notify_add_test(test);
 }
 
@@ -113,7 +113,7 @@ void nbp_test_run_ctx(nbp_test_details_t* test, void* ctx,
 {
     nbp_test_init(test, module, testSetup, testTeardown);
 
-    nbp_printer_notify_scheduling_test(test);
+    nbp_printer_notify_run_test(test);
     nbp_scheduler_notify_add_test_ctx(test, ctx);
 }
 

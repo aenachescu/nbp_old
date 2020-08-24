@@ -28,55 +28,94 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_TYPES_PRINTER_H
 #define NBP_PRIVATE_TYPES_PRINTER_H
 
-#define NBP_PRINTER_OPERATOR_EQ     (unsigned int) 0x40000001
-#define NBP_PRINTER_OPERATOR_NE     (unsigned int) 0x40000002
-#define NBP_PRINTER_OPERATOR_LT     (unsigned int) 0x40000003
-#define NBP_PRINTER_OPERATOR_LE     (unsigned int) 0x40000004
-#define NBP_PRINTER_OPERATOR_GT     (unsigned int) 0x40000005
-#define NBP_PRINTER_OPERATOR_GE     (unsigned int) 0x40000006
+#define NBP_PRINTER_OPERATOR_EQ         (unsigned int) 0x40000001
+#define NBP_PRINTER_OPERATOR_NE         (unsigned int) 0x40000002
+#define NBP_PRINTER_OPERATOR_LT         (unsigned int) 0x40000003
+#define NBP_PRINTER_OPERATOR_LE         (unsigned int) 0x40000004
+#define NBP_PRINTER_OPERATOR_GT         (unsigned int) 0x40000005
+#define NBP_PRINTER_OPERATOR_GE         (unsigned int) 0x40000006
 
-typedef void (*nbp_printer_init_pfn_t)(
+#define NBP_PRINTER_TYPE_NONE           (unsigned int) 0x41000000
+#define NBP_PRINTER_TYPE_CHAR           (unsigned int) 0x41000001
+#define NBP_PRINTER_TYPE_SHORT          (unsigned int) 0x41000002
+#define NBP_PRINTER_TYPE_USHORT         (unsigned int) 0x41000003
+#define NBP_PRINTER_TYPE_INT            (unsigned int) 0x41000004
+#define NBP_PRINTER_TYPE_UINT           (unsigned int) 0x41000005
+#define NBP_PRINTER_TYPE_LONG           (unsigned int) 0x41000006
+#define NBP_PRINTER_TYPE_ULONG          (unsigned int) 0x41000007
+#define NBP_PRINTER_TYPE_LLONG          (unsigned int) 0x41000008
+#define NBP_PRINTER_TYPE_ULLONG         (unsigned int) 0x41000009
+#define NBP_PRINTER_TYPE_FLOAT          (unsigned int) 0x4100000A
+#define NBP_PRINTER_TYPE_DOUBLE         (unsigned int) 0x4100000B
+#define NBP_PRINTER_TYPE_LDOUBLE        (unsigned int) 0x4100000C
+
+union nbp_printer_type_value_t
+{
+    const char* stringValue;
+    char charValue;
+    short int shortValue;
+    unsigned short int ushortValue;
+    int intValue;
+    unsigned int uintValue;
+    long int longValue;
+    unsigned long int ulongValue;
+    long long int llongValue;
+    unsigned long long int ullongValue;
+    float floatValue;
+    double doubleValue;
+    long double* ldoubleValue;
+};
+typedef union nbp_printer_type_value_t nbp_printer_type_value_t;
+
+struct nbp_printer_interface_t;
+typedef struct nbp_printer_interface_t nbp_printer_interface_t;
+
+typedef void (*nbp_printer_config_pfn_t)(
+    nbp_printer_interface_t*
+);
+
+typedef void (*nbp_printer_callback_init_pfn_t)(
     void
 );
 
-typedef void (*nbp_printer_uninit_pfn_t)(
+typedef void (*nbp_printer_callback_uninit_pfn_t)(
     void
 );
 
-typedef void (*nbp_printer_report_error_pfn_t)(
+typedef void (*nbp_printer_callback_report_error_pfn_t)(
     nbp_error_t /* error context */
 );
 
-typedef void (*nbp_printer_exit_triggered_pfn_t)(
+typedef void (*nbp_printer_callback_exit_triggered_pfn_t)(
     int /* exit status */
 );
 
-typedef void (*nbp_printer_handle_version_command_pfn_t)(
+typedef void (*nbp_printer_callback_handle_version_command_pfn_t)(
     void
 );
 
-typedef void (*nbp_printer_test_started_pfn_t)(
+typedef void (*nbp_printer_callback_test_started_pfn_t)(
     nbp_test_details_t* /* current test */
 );
 
-typedef void (*nbp_printer_test_completed_pfn_t)(
+typedef void (*nbp_printer_callback_test_completed_pfn_t)(
     nbp_test_details_t* /* current test */
 );
 
-typedef void (*nbp_printer_module_started_pfn_t)(
+typedef void (*nbp_printer_callback_module_started_pfn_t)(
     nbp_module_details_t* /* current module */
 );
 
-typedef void (*nbp_printer_module_completed_pfn_t)(
+typedef void (*nbp_printer_callback_module_completed_pfn_t)(
     nbp_module_details_t* /* current module */
 );
 
-typedef void (*nbp_printer_before_run_pfn_t)(
+typedef void (*nbp_printer_callback_before_run_pfn_t)(
     unsigned int, /* num of modules */
     unsigned int  /* num of tests   */
 );
 
-typedef void (*nbp_printer_after_run_pfn_t)(
+typedef void (*nbp_printer_callback_after_run_pfn_t)(
     unsigned int, /* num of passed  modules             */
     unsigned int, /* num of failed  modules             */
     unsigned int, /* num of skipped modules             */
@@ -97,19 +136,19 @@ typedef void (*nbp_printer_after_run_pfn_t)(
     unsigned int  /* num of failed  asserts             */
 );
 
-typedef void (*nbp_printer_scheduling_test_pfn_t) (
+typedef void (*nbp_printer_callback_run_test_pfn_t) (
     nbp_test_details_t* /* current test */
 );
 
-typedef void (*nbp_printer_before_scheduling_module_pfn_t) (
+typedef void (*nbp_printer_callback_run_module_pfn_t) (
     nbp_module_details_t* /* current module */
 );
 
-typedef void (*nbp_printer_after_scheduling_module_pfn_t) (
+typedef void (*nbp_printer_callback_run_module_completed_pfn_t) (
     nbp_module_details_t* /* current module */
 );
 
-typedef void (*nbp_printer_check_result_pfn_t)(
+typedef void (*nbp_printer_callback_check_result_pfn_t)(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
     int, /* status */
@@ -118,10 +157,11 @@ typedef void (*nbp_printer_check_result_pfn_t)(
     const char* /* pass message */
 );
 
-typedef void (*nbp_printer_check_op_result_pfn_t)(
+typedef void (*nbp_printer_callback_check_type_op_result_pfn_t)(
     nbp_test_details_t*, /* current test */
-    const char*, /* first value */
-    const char*, /* second value */
+    nbp_printer_type_value_t, /* first value */
+    nbp_printer_type_value_t, /* second value */
+    unsigned int, /* type */
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
@@ -129,139 +169,7 @@ typedef void (*nbp_printer_check_op_result_pfn_t)(
     const char* /* pass message */
 );
 
-typedef void (*nbp_printer_check_char_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    char, /* first value */
-    char, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_check_short_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    short int, /* first value */
-    short int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_check_ushort_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned short int, /* first value */
-    unsigned short int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_check_int_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    int, /* first value */
-    int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_check_uint_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned int, /* first value */
-    unsigned int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_check_long_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long int, /* first value */
-    long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_check_ulong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned long int, /* first value */
-    unsigned long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_check_llong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long long int, /* first value */
-    long long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_check_ullong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned long long int, /* first value */
-    unsigned long long int, /* last value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_check_float_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    float, /* first value */
-    float, /* last value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_check_double_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    double, /* first value */
-    double, /* last value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_check_ldouble_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long double, /* first value */
-    long double, /* last value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_result_pfn_t)(
+typedef void (*nbp_printer_callback_test_assert_result_pfn_t)(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
     int, /*status */
@@ -270,10 +178,11 @@ typedef void (*nbp_printer_test_assert_result_pfn_t)(
     const char* /* pass message */
 );
 
-typedef void (*nbp_printer_test_assert_op_result_pfn_t)(
+typedef void (*nbp_printer_callback_test_assert_type_op_result_pfn_t)(
     nbp_test_details_t*, /* current test */
-    const char*, /* first value */
-    const char*, /* second value */
+    nbp_printer_type_value_t, /* first value */
+    nbp_printer_type_value_t, /* second value */
+    unsigned int, /* type */
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
@@ -281,139 +190,7 @@ typedef void (*nbp_printer_test_assert_op_result_pfn_t)(
     const char* /* pass message */
 );
 
-typedef void (*nbp_printer_test_assert_char_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    char, /* first value */
-    char, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_short_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    short int, /* first value */
-    short int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_ushort_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned short int, /* first value */
-    unsigned short int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_int_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    int, /* first value */
-    int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_uint_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned int, /* first value */
-    unsigned int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_long_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long int, /* first value */
-    long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_ulong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned long int, /* first value */
-    unsigned long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_llong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long long int, /* first value */
-    long long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_ullong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned long long int, /* first value */
-    unsigned long long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_float_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    float, /* first value */
-    float, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_double_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    double, /* first value */
-    double, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_test_assert_ldouble_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long double, /* first value */
-    long double, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_result_pfn_t)(
+typedef void (*nbp_printer_callback_module_assert_result_pfn_t)(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
     int, /*status */
@@ -422,10 +199,11 @@ typedef void (*nbp_printer_module_assert_result_pfn_t)(
     const char* /* pass message */
 );
 
-typedef void (*nbp_printer_module_assert_op_result_pfn_t)(
+typedef void (*nbp_printer_callback_module_assert_type_op_result_pfn_t)(
     nbp_test_details_t*, /* current test */
-    const char*, /* first value */
-    const char*, /* second value */
+    nbp_printer_type_value_t, /* first value */
+    nbp_printer_type_value_t, /* second value */
+    unsigned int, /* type */
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
@@ -433,139 +211,7 @@ typedef void (*nbp_printer_module_assert_op_result_pfn_t)(
     const char* /* pass message */
 );
 
-typedef void (*nbp_printer_module_assert_char_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    char, /* first value */
-    char, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_short_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    short int, /* first value */
-    short int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_ushort_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned short int, /* first value */
-    unsigned short int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_int_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    int, /* first value */
-    int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_uint_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned int, /* first value */
-    unsigned int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_long_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long int, /* first value */
-    long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_ulong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned long int, /* first value */
-    unsigned long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_llong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long long int, /* first value */
-    long long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_ullong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned long long int, /* first value */
-    unsigned long long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_float_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    float, /* first value */
-    float, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_double_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    double, /* first value */
-    double, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_module_assert_ldouble_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long double, /* first value */
-    long double, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_result_pfn_t)(
+typedef void (*nbp_printer_callback_assert_result_pfn_t)(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
     int, /*status */
@@ -574,142 +220,11 @@ typedef void (*nbp_printer_assert_result_pfn_t)(
     const char* /* pass message */
 );
 
-typedef void (*nbp_printer_assert_op_result_pfn_t)(
+typedef void (*nbp_printer_callback_assert_type_op_result_pfn_t)(
     nbp_test_details_t*, /* current test */
-    const char*, /* first value */
-    const char*, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_char_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    char, /* first value */
-    char, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_short_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    short int, /* first value */
-    short int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_ushort_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned short int, /* first value */
-    unsigned short int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_int_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    int, /* first value */
-    int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_uint_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned int, /* first value */
-    unsigned int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_long_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long int, /* first value */
-    long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_ulong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned long int, /* first value */
-    unsigned long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_llong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long long int, /* first value */
-    long long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_ullong_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    unsigned long long int, /* first value */
-    unsigned long long int, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_float_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    float, /* first value */
-    float, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_double_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    double, /* first value */
-    double, /* second value */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
-);
-
-typedef void (*nbp_printer_assert_ldouble_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    long double, /* first value */
-    long double, /* second value */
+    nbp_printer_type_value_t, /* first value */
+    nbp_printer_type_value_t, /* second value */
+    unsigned int, /* type */
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
@@ -718,91 +233,42 @@ typedef void (*nbp_printer_assert_ldouble_op_result_pfn_t)(
 );
 
 struct nbp_printer_interface_t {
-    nbp_printer_init_pfn_t init;
-    nbp_printer_uninit_pfn_t uninit;
+    const char* printerName;
+    nbp_printer_config_pfn_t configFunc;
 
-    nbp_printer_report_error_pfn_t reportError;
-    nbp_printer_exit_triggered_pfn_t exitTriggered;
+    nbp_printer_callback_init_pfn_t initCbk;
+    nbp_printer_callback_uninit_pfn_t uninitCbk;
 
-    nbp_printer_handle_version_command_pfn_t handleVersionCommand;
+    nbp_printer_callback_report_error_pfn_t reportErrorCbk;
+    nbp_printer_callback_exit_triggered_pfn_t exitTriggeredCbk;
 
-    nbp_printer_test_started_pfn_t testStarted;
-    nbp_printer_test_completed_pfn_t testCompleted;
+    nbp_printer_callback_handle_version_command_pfn_t handleVersionCommandCbk;
 
-    nbp_printer_module_started_pfn_t moduleStarted;
-    nbp_printer_module_completed_pfn_t moduleCompleted;
+    nbp_printer_callback_test_started_pfn_t testStartedCbk;
+    nbp_printer_callback_test_completed_pfn_t testCompletedCbk;
 
-    nbp_printer_before_run_pfn_t beforeRun;
-    nbp_printer_after_run_pfn_t afterRun;
+    nbp_printer_callback_module_started_pfn_t moduleStartedCbk;
+    nbp_printer_callback_module_completed_pfn_t moduleCompletedCbk;
 
-    nbp_printer_scheduling_test_pfn_t schedulingTest;
+    nbp_printer_callback_before_run_pfn_t beforeRunCbk;
+    nbp_printer_callback_after_run_pfn_t afterRunCbk;
 
-    nbp_printer_before_scheduling_module_pfn_t beforeSchedulingModule;
-    nbp_printer_after_scheduling_module_pfn_t afterSchedulingModule;
+    nbp_printer_callback_run_test_pfn_t runTestCbk;
 
-    // callbacks for NBP_CHECK_* macros
-    nbp_printer_check_result_pfn_t checkResult;
-    nbp_printer_check_op_result_pfn_t checkOpResult;
-    nbp_printer_check_char_op_result_pfn_t checkCharOpResult;
-    nbp_printer_check_short_op_result_pfn_t checkShortOpResult;
-    nbp_printer_check_ushort_op_result_pfn_t checkUShortOpResult;
-    nbp_printer_check_int_op_result_pfn_t checkIntOpResult;
-    nbp_printer_check_uint_op_result_pfn_t checkUIntOpResult;
-    nbp_printer_check_long_op_result_pfn_t checkLongOpResult;
-    nbp_printer_check_ulong_op_result_pfn_t checkULongOpResult;
-    nbp_printer_check_llong_op_result_pfn_t checkLLongOpResult;
-    nbp_printer_check_ullong_op_result_pfn_t checkULLongOpResult;
-    nbp_printer_check_float_op_result_pfn_t checkFloatOpResult;
-    nbp_printer_check_double_op_result_pfn_t checkDoubleOpResult;
-    nbp_printer_check_ldouble_op_result_pfn_t checkLDoubleOpResult;
+    nbp_printer_callback_run_module_pfn_t runModuleCbk;
+    nbp_printer_callback_run_module_completed_pfn_t runModuleCompletedCbk;
 
-    // callbacks for NBP_TEST_ASSERT_* macros
-    nbp_printer_test_assert_result_pfn_t testAssertResult;
-    nbp_printer_test_assert_op_result_pfn_t testAssertOpResult;
-    nbp_printer_test_assert_char_op_result_pfn_t testAssertCharOpResult;
-    nbp_printer_test_assert_short_op_result_pfn_t testAssertShortOpResult;
-    nbp_printer_test_assert_ushort_op_result_pfn_t testAssertUShortOpResult;
-    nbp_printer_test_assert_int_op_result_pfn_t testAssertIntOpResult;
-    nbp_printer_test_assert_uint_op_result_pfn_t testAssertUIntOpResult;
-    nbp_printer_test_assert_long_op_result_pfn_t testAssertLongOpResult;
-    nbp_printer_test_assert_ulong_op_result_pfn_t testAssertULongOpResult;
-    nbp_printer_test_assert_llong_op_result_pfn_t testAssertLLongOpResult;
-    nbp_printer_test_assert_ullong_op_result_pfn_t testAssertULLongOpResult;
-    nbp_printer_test_assert_float_op_result_pfn_t testAssertFloatOpResult;
-    nbp_printer_test_assert_double_op_result_pfn_t testAssertDoubleOpResult;
-    nbp_printer_test_assert_ldouble_op_result_pfn_t testAssertLDoubleOpResult;
+    nbp_printer_callback_check_result_pfn_t checkResultCbk;
+    nbp_printer_callback_check_type_op_result_pfn_t checkTypeOpResultCbk;
 
-    // callbacks for NBP_MODULE_ASSERT_* macros
-    nbp_printer_module_assert_result_pfn_t moduleAssertResult;
-    nbp_printer_module_assert_op_result_pfn_t moduleAssertOpResult;
-    nbp_printer_module_assert_char_op_result_pfn_t moduleAssertCharOpResult;
-    nbp_printer_module_assert_short_op_result_pfn_t moduleAssertShortOpResult;
-    nbp_printer_module_assert_ushort_op_result_pfn_t moduleAssertUShortOpResult;
-    nbp_printer_module_assert_int_op_result_pfn_t moduleAssertIntOpResult;
-    nbp_printer_module_assert_uint_op_result_pfn_t moduleAssertUIntOpResult;
-    nbp_printer_module_assert_long_op_result_pfn_t moduleAssertLongOpResult;
-    nbp_printer_module_assert_ulong_op_result_pfn_t moduleAssertULongOpResult;
-    nbp_printer_module_assert_llong_op_result_pfn_t moduleAssertLLongOpResult;
-    nbp_printer_module_assert_ullong_op_result_pfn_t moduleAssertULLongOpResult;
-    nbp_printer_module_assert_float_op_result_pfn_t moduleAssertFloatOpResult;
-    nbp_printer_module_assert_double_op_result_pfn_t moduleAssertDoubleOpResult;
-    nbp_printer_module_assert_ldouble_op_result_pfn_t moduleAssertLDoubleOpResult;
+    nbp_printer_callback_test_assert_result_pfn_t testAssertResultCbk;
+    nbp_printer_callback_test_assert_type_op_result_pfn_t testAssertTypeOpResultCbk;
 
-    // callbacks for NBP_ASSERT_* macros
-    nbp_printer_assert_result_pfn_t assertResult;
-    nbp_printer_assert_op_result_pfn_t assertOpResult;
-    nbp_printer_assert_char_op_result_pfn_t assertCharOpResult;
-    nbp_printer_assert_short_op_result_pfn_t assertShortOpResult;
-    nbp_printer_assert_ushort_op_result_pfn_t assertUShortOpResult;
-    nbp_printer_assert_int_op_result_pfn_t assertIntOpResult;
-    nbp_printer_assert_uint_op_result_pfn_t assertUIntOpResult;
-    nbp_printer_assert_long_op_result_pfn_t assertLongOpResult;
-    nbp_printer_assert_ulong_op_result_pfn_t assertULongOpResult;
-    nbp_printer_assert_llong_op_result_pfn_t assertLLongOpResult;
-    nbp_printer_assert_ullong_op_result_pfn_t assertULLongOpResult;
-    nbp_printer_assert_float_op_result_pfn_t assertFloatOpResult;
-    nbp_printer_assert_double_op_result_pfn_t assertDoubleOpResult;
-    nbp_printer_assert_ldouble_op_result_pfn_t assertLDoubleOpResult;
+    nbp_printer_callback_module_assert_result_pfn_t moduleAssertResultCbk;
+    nbp_printer_callback_module_assert_type_op_result_pfn_t moduleAssertTypeOpResultCbk;
+
+    nbp_printer_callback_assert_result_pfn_t assertResultCbk;
+    nbp_printer_callback_assert_type_op_result_pfn_t assertTypeOpResultCbk;
 };
 
 typedef struct nbp_printer_interface_t nbp_printer_interface_t;
