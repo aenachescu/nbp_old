@@ -48,15 +48,12 @@ int nbp_command_run_all()
     nbpSchedulerRunEnabled = 0;
 
     nbp_printer_notify_init();
-
-    nbpSchedulerInterface->configFunc(nbpSchedulerInterface);
+    nbp_scheduler_notify_init();
 
     if (nbpSchedulerInterface->runCbk == NBP_MEMORY_NULL_POINTER) {
         NBP_ERROR_REPORT(NBP_ERROR_CODE_INVALID_SCHEDULER);
         NBP_EXIT(NBP_ERROR_CODE_INVALID_SCHEDULER);
     }
-
-    nbp_scheduler_notify_init();
 
     nbp_module_run(
         nbpMainModule,

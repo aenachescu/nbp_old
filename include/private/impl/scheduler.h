@@ -694,6 +694,8 @@ static unsigned int nbp_scheduler_run_module(nbp_module_details_t* module)
 
 void nbp_scheduler_notify_init(void)
 {
+    nbpSchedulerInterface->configFunc(nbpSchedulerInterface);
+
     if (nbpSchedulerInterface->initCbk != NBP_MEMORY_NULL_POINTER) {
         nbpSchedulerInterface->initCbk();
     }
