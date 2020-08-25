@@ -28,6 +28,9 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_TYPES_TEST_H
 #define NBP_PRIVATE_TYPES_TEST_H
 
+/*
+ * TODO: add docs
+ */
 #define NBP_TEST_STATE_NOT_INITIALIZED  (unsigned int) 0x10000000
 #define NBP_TEST_STATE_READY            (unsigned int) 0x10000001
 #define NBP_TEST_STATE_RUNNING          (unsigned int) 0x10000002

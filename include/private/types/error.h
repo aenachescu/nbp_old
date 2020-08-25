@@ -28,12 +28,21 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_TYPES_ERROR_H
 #define NBP_PRIVATE_TYPES_ERROR_H
 
+/*
+ * TODO: add docs
+ */
 #define NBP_ERROR_CONTEXT_EMPTY                     (unsigned int) 0x30000000
 #define NBP_ERROR_CONTEXT_STRING                    (unsigned int) 0x30000001
 #define NBP_ERROR_CONTEXT_CUSTOM                    (unsigned int) 0x30000002
 
+/*
+ * TODO: add docs
+ */
 #define NBP_ERROR_CODE_TYPE int
 
+/*
+ * TODO: add docs
+ */
 #define NBP_ERROR_CODE_SUCCESS                                  (int) 0
 #define NBP_ERROR_CODE_TESTS_FAILED                             (int) 1
 #define NBP_ERROR_CODE_NOT_ALL_TESTS_RUN                        (int) 2

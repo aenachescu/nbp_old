@@ -28,6 +28,9 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_TYPES_MODULE_H
 #define NBP_PRIVATE_TYPES_MODULE_H
 
+/*
+ * TODO: add docs
+ */
 #define NBP_MODULE_STATE_NOT_INITIALIZED  (unsigned int) 0x20000000
 #define NBP_MODULE_STATE_READY            (unsigned int) 0x20000001
 #define NBP_MODULE_STATE_RUNNING          (unsigned int) 0x20000002

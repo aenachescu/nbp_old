@@ -28,6 +28,9 @@ SOFTWARE.
 #ifndef NBP_PRIVATE_TYPES_PRINTER_H
 #define NBP_PRIVATE_TYPES_PRINTER_H
 
+/*
+ * TODO: add docs
+ */
 #define NBP_PRINTER_OPERATOR_EQ         (unsigned int) 0x40000001
 #define NBP_PRINTER_OPERATOR_NE         (unsigned int) 0x40000002
 #define NBP_PRINTER_OPERATOR_LT         (unsigned int) 0x40000003
@@ -35,6 +38,9 @@ SOFTWARE.
 #define NBP_PRINTER_OPERATOR_GT         (unsigned int) 0x40000005
 #define NBP_PRINTER_OPERATOR_GE         (unsigned int) 0x40000006
 
+/*
+ * TODO: add docs
+ */
 #define NBP_PRINTER_TYPE_NONE           (unsigned int) 0x41000000
 #define NBP_PRINTER_TYPE_CHAR           (unsigned int) 0x41000001
 #define NBP_PRINTER_TYPE_SHORT          (unsigned int) 0x41000002

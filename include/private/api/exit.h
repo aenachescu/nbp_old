@@ -32,12 +32,18 @@ SOFTWARE.
 
 #include <stdlib.h>
 
+/*
+ * TODO: add docs
+ */
 #define NBP_EXIT(errorCode)                                                    \
     nbp_printer_notify_exit_triggered(errorCode);                              \
     exit(errorCode)
 
 #else // NBP_CUSTOM_EXIT is defined
 
+/*
+ * TODO: add docs
+ */
 #ifndef NBP_EXIT_FUNC
 #error "Custom exit is enabled but no exit function is provided"
 #endif // end if NBP_EXIT

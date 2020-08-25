@@ -35,8 +35,19 @@ SOFTWARE.
 
 #include <stdlib.h>
 
+/*
+ * TODO: add docs
+ */
 #define NBP_MEMORY_NULL_POINTER NULL
+
+/*
+ * TODO: add docs
+ */
 #define NBP_MEMORY_ALLOC malloc
+
+/*
+ * TODO: add docs
+ */
 #define NBP_MEMORY_FREE free
 
 #else // if custom memory allocator is enabled
