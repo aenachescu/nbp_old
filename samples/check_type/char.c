@@ -42,54 +42,54 @@ NBP_TEST(check_char_eq)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_CHAR_EQ(get_char_b(), char_b);
-    NBP_CHECK_CHAR_EQ_FAIL_MSG(get_char_b(), char_b, "check failed");
-    NBP_CHECK_CHAR_EQ_PASS_MSG(get_char_b(), char_b, "check passed");
-    NBP_CHECK_CHAR_EQ_MSG(get_char_b(), char_b, "check failed", "check passed");
+    NBP_CHECK_CHAR_EQ(get_char_b(), char_b, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_CHAR_EQ(get_char_b(), char_b, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_CHAR_EQ(get_char_b(), char_b, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_char_ne)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_CHAR_NE(get_char_b(), char_a);
-    NBP_CHECK_CHAR_NE_FAIL_MSG(get_char_b(), char_a, "check failed");
-    NBP_CHECK_CHAR_NE_PASS_MSG(get_char_b(), char_a, "check passed");
-    NBP_CHECK_CHAR_NE_MSG(get_char_b(), char_a, "check failed", "check passed");
+    NBP_CHECK_CHAR_NE(get_char_b(), char_a, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_CHAR_NE(get_char_b(), char_a, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_CHAR_NE(get_char_b(), char_a, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_char_gt)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_CHAR_GT(get_char_b(), char_a);
-    NBP_CHECK_CHAR_GT_FAIL_MSG(get_char_b(), char_a, "check failed");
-    NBP_CHECK_CHAR_GT_PASS_MSG(get_char_b(), char_a, "check passed");
-    NBP_CHECK_CHAR_GT_MSG(get_char_b(), char_a, "check failed", "check passed");
+    NBP_CHECK_CHAR_GT(get_char_b(), char_a, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_CHAR_GT(get_char_b(), char_a, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_CHAR_GT(get_char_b(), char_a, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_char_ge)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_CHAR_GE(get_char_b(), char_a);
-    NBP_CHECK_CHAR_GE_FAIL_MSG(get_char_b(), char_b, "check failed");
-    NBP_CHECK_CHAR_GE_PASS_MSG(get_char_b(), char_a, "check passed");
-    NBP_CHECK_CHAR_GE_MSG(get_char_b(), char_b, "check failed", "check passed");
+    NBP_CHECK_CHAR_GE(get_char_b(), char_b, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_CHAR_GE(get_char_b(), char_a, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_CHAR_GE(get_char_b(), char_b, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_char_lt)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_CHAR_LT(get_char_b(), char_c);
-    NBP_CHECK_CHAR_LT_FAIL_MSG(get_char_b(), char_c, "check failed");
-    NBP_CHECK_CHAR_LT_PASS_MSG(get_char_b(), char_c, "check passed");
-    NBP_CHECK_CHAR_LT_MSG(get_char_b(), char_c, "check failed", "check passed");
+    NBP_CHECK_CHAR_LT(get_char_b(), char_c, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_CHAR_LT(get_char_b(), char_c, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_CHAR_LT(get_char_b(), char_c, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_char_le)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_CHAR_LE(get_char_b(), char_c);
-    NBP_CHECK_CHAR_LE_FAIL_MSG(get_char_b(), char_b, "check failed");
-    NBP_CHECK_CHAR_LE_PASS_MSG(get_char_b(), char_c, "check passed");
-    NBP_CHECK_CHAR_LE_MSG(get_char_b(), char_b, "check failed", "check passed");
+    NBP_CHECK_CHAR_LE(get_char_b(), char_b, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_CHAR_LE(get_char_b(), char_c, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_CHAR_LE(get_char_b(), char_b, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_MODULE(check_char)

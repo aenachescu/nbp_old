@@ -153,8 +153,8 @@ typedef void (*nbp_printer_callback_check_result_pfn_t)(
     const char*, /* condition */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 typedef void (*nbp_printer_callback_check_type_op_result_pfn_t)(
@@ -165,8 +165,8 @@ typedef void (*nbp_printer_callback_check_type_op_result_pfn_t)(
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 typedef void (*nbp_printer_callback_test_assert_result_pfn_t)(
@@ -174,8 +174,8 @@ typedef void (*nbp_printer_callback_test_assert_result_pfn_t)(
     const char*, /* condition */
     int, /*status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 typedef void (*nbp_printer_callback_test_assert_type_op_result_pfn_t)(
@@ -186,8 +186,8 @@ typedef void (*nbp_printer_callback_test_assert_type_op_result_pfn_t)(
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 typedef void (*nbp_printer_callback_module_assert_result_pfn_t)(
@@ -195,8 +195,8 @@ typedef void (*nbp_printer_callback_module_assert_result_pfn_t)(
     const char*, /* condition */
     int, /*status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 typedef void (*nbp_printer_callback_module_assert_type_op_result_pfn_t)(
@@ -207,8 +207,8 @@ typedef void (*nbp_printer_callback_module_assert_type_op_result_pfn_t)(
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 typedef void (*nbp_printer_callback_assert_result_pfn_t)(
@@ -216,8 +216,8 @@ typedef void (*nbp_printer_callback_assert_result_pfn_t)(
     const char*, /* condition */
     int, /*status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 typedef void (*nbp_printer_callback_assert_type_op_result_pfn_t)(
@@ -228,8 +228,8 @@ typedef void (*nbp_printer_callback_assert_type_op_result_pfn_t)(
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 struct nbp_printer_interface_t {

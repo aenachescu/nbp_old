@@ -44,54 +44,54 @@ NBP_TEST(module_assert_ulong_eq)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_ULONG_EQ(get_ulong(), ulong_);
-    NBP_MODULE_ASSERT_ULONG_EQ_FAIL_MSG(get_ulong(), ulong_, "module_assert failed");
-    NBP_MODULE_ASSERT_ULONG_EQ_PASS_MSG(get_ulong(), ulong_, "module_assert passed");
-    NBP_MODULE_ASSERT_ULONG_EQ_MSG(get_ulong(), ulong_, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_ULONG_EQ(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_ULONG_EQ(get_ulong(), ulong_, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_ULONG_EQ(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_ulong_ne)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_ULONG_NE(get_ulong(), ulong_min);
-    NBP_MODULE_ASSERT_ULONG_NE_FAIL_MSG(get_ulong(), ulong_min, "module_assert failed");
-    NBP_MODULE_ASSERT_ULONG_NE_PASS_MSG(get_ulong(), ulong_min, "module_assert passed");
-    NBP_MODULE_ASSERT_ULONG_NE_MSG(get_ulong(), ulong_min, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_ULONG_NE(get_ulong(), ulong_min, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_ULONG_NE(get_ulong(), ulong_min, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_ULONG_NE(get_ulong(), ulong_min, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_ulong_gt)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_ULONG_GT(get_ulong(), ulong_min);
-    NBP_MODULE_ASSERT_ULONG_GT_FAIL_MSG(get_ulong(), ulong_min, "module_assert failed");
-    NBP_MODULE_ASSERT_ULONG_GT_PASS_MSG(get_ulong(), ulong_min, "module_assert passed");
-    NBP_MODULE_ASSERT_ULONG_GT_MSG(get_ulong(), ulong_min, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_ULONG_GT(get_ulong(), ulong_min, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_ULONG_GT(get_ulong(), ulong_min, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_ULONG_GT(get_ulong(), ulong_min, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_ulong_ge)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_ULONG_GE(get_ulong(), ulong_min);
-    NBP_MODULE_ASSERT_ULONG_GE_FAIL_MSG(get_ulong(), ulong_, "module_assert failed");
-    NBP_MODULE_ASSERT_ULONG_GE_PASS_MSG(get_ulong(), ulong_min, "module_assert passed");
-    NBP_MODULE_ASSERT_ULONG_GE_MSG(get_ulong(), ulong_, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_ULONG_GE(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_ULONG_GE(get_ulong(), ulong_min, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_ULONG_GE(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_ulong_lt)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_ULONG_LT(get_ulong(), ulong_max);
-    NBP_MODULE_ASSERT_ULONG_LT_FAIL_MSG(get_ulong(), ulong_max, "module_assert failed");
-    NBP_MODULE_ASSERT_ULONG_LT_PASS_MSG(get_ulong(), ulong_max, "module_assert passed");
-    NBP_MODULE_ASSERT_ULONG_LT_MSG(get_ulong(), ulong_max, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_ULONG_LT(get_ulong(), ulong_max, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_ULONG_LT(get_ulong(), ulong_max, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_ULONG_LT(get_ulong(), ulong_max, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_ulong_le)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_ULONG_LE(get_ulong(), ulong_max);
-    NBP_MODULE_ASSERT_ULONG_LE_FAIL_MSG(get_ulong(), ulong_, "module_assert failed");
-    NBP_MODULE_ASSERT_ULONG_LE_PASS_MSG(get_ulong(), ulong_max, "module_assert passed");
-    NBP_MODULE_ASSERT_ULONG_LE_MSG(get_ulong(), ulong_, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_ULONG_LE(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_ULONG_LE(get_ulong(), ulong_max, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_ULONG_LE(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_MODULE(module_assert_ulong)

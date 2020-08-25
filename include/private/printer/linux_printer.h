@@ -487,7 +487,7 @@ static void nbp_linux_printer_add_check_result(nbp_test_details_t* test,
     char buffer[1024] = { 0 };
 
     if (passed == NBP_CHECK_STATUS_PASSED) {
-        if (passMsg == NBP_PRINTER_NO_PASS_MSG) {
+        if (passMsg == NBP_PRINTER_NO_SUCCESS_MESSAGE) {
             return;
         }
 
@@ -502,7 +502,7 @@ static void nbp_linux_printer_add_check_result(nbp_test_details_t* test,
             line
         );
     } else {
-        if (failMsg == NBP_PRINTER_NO_FAIL_MSG) {
+        if (failMsg == NBP_PRINTER_NO_FAILURE_MESSAGE) {
             snprintf(
                 buffer,
                 1024,
@@ -536,7 +536,7 @@ static void nbp_linux_printer_add_test_assert_result(nbp_test_details_t* test,
     char buffer[1024] = { 0 };
 
     if (passed == NBP_TEST_ASSERT_STATUS_PASSED) {
-        if (passMsg == NBP_PRINTER_NO_PASS_MSG) {
+        if (passMsg == NBP_PRINTER_NO_SUCCESS_MESSAGE) {
             return;
         }
 
@@ -551,7 +551,7 @@ static void nbp_linux_printer_add_test_assert_result(nbp_test_details_t* test,
             line
         );
     } else {
-        if (failMsg == NBP_PRINTER_NO_FAIL_MSG) {
+        if (failMsg == NBP_PRINTER_NO_FAILURE_MESSAGE) {
             snprintf(
                 buffer,
                 1024,
@@ -585,7 +585,7 @@ static void nbp_linux_printer_add_module_assert_result(nbp_test_details_t* test,
     char buffer[1024] = { 0 };
 
     if (passed == NBP_MODULE_ASSERT_STATUS_PASSED) {
-        if (passMsg == NBP_PRINTER_NO_PASS_MSG) {
+        if (passMsg == NBP_PRINTER_NO_SUCCESS_MESSAGE) {
             return;
         }
 
@@ -600,7 +600,7 @@ static void nbp_linux_printer_add_module_assert_result(nbp_test_details_t* test,
             line
         );
     } else {
-        if (failMsg == NBP_PRINTER_NO_FAIL_MSG) {
+        if (failMsg == NBP_PRINTER_NO_FAILURE_MESSAGE) {
             snprintf(
                 buffer,
                 1024,
@@ -634,7 +634,7 @@ static void nbp_linux_printer_add_assert_result(nbp_test_details_t* test,
     char buffer[1024] = { 0 };
 
     if (passed == NBP_ASSERT_STATUS_PASSED) {
-        if (passMsg == NBP_PRINTER_NO_PASS_MSG) {
+        if (passMsg == NBP_PRINTER_NO_SUCCESS_MESSAGE) {
             return;
         }
 
@@ -649,7 +649,7 @@ static void nbp_linux_printer_add_assert_result(nbp_test_details_t* test,
             line
         );
     } else {
-        if (failMsg == NBP_PRINTER_NO_FAIL_MSG) {
+        if (failMsg == NBP_PRINTER_NO_FAILURE_MESSAGE) {
             snprintf(
                 buffer,
                 1024,
@@ -1035,8 +1035,8 @@ NBP_PRINTER_CALLBACK_CHECK_RESULT(nbp_linux_printer_check_result)
         NBP_PRINTER_GET_CONDITION(),
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAIL_MSG(),
-        NBP_PRINTER_GET_PASS_MSG()
+        NBP_PRINTER_GET_FAILURE_MESSAGE(),
+        NBP_PRINTER_GET_SUCCESS_MESSAGE()
     );
 }
 
@@ -1049,8 +1049,8 @@ NBP_PRINTER_CALLBACK_CHECK_TYPE_OP_RESULT(nbp_linux_printer_check_type_op_result
         buff,
         NBP_PRINTER_GET_CHECK_STATUS(),
         NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAIL_MSG(),
-        NBP_PRINTER_GET_PASS_MSG()
+        NBP_PRINTER_GET_FAILURE_MESSAGE(),
+        NBP_PRINTER_GET_SUCCESS_MESSAGE()
     );
 }
 
@@ -1061,8 +1061,8 @@ NBP_PRINTER_CALLBACK_TEST_ASSERT_RESULT(nbp_linux_printer_test_assert_result)
         NBP_PRINTER_GET_CONDITION(),
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAIL_MSG(),
-        NBP_PRINTER_GET_PASS_MSG()
+        NBP_PRINTER_GET_FAILURE_MESSAGE(),
+        NBP_PRINTER_GET_SUCCESS_MESSAGE()
     );
 }
 
@@ -1075,8 +1075,8 @@ NBP_PRINTER_CALLBACK_TEST_ASSERT_TYPE_OP_RESULT(nbp_linux_printer_test_assert_ty
         buff,
         NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
         NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAIL_MSG(),
-        NBP_PRINTER_GET_PASS_MSG()
+        NBP_PRINTER_GET_FAILURE_MESSAGE(),
+        NBP_PRINTER_GET_SUCCESS_MESSAGE()
     );
 }
 
@@ -1087,8 +1087,8 @@ NBP_PRINTER_CALLBACK_MODULE_ASSERT_RESULT(nbp_linux_printer_module_assert_result
         NBP_PRINTER_GET_CONDITION(),
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAIL_MSG(),
-        NBP_PRINTER_GET_PASS_MSG()
+        NBP_PRINTER_GET_FAILURE_MESSAGE(),
+        NBP_PRINTER_GET_SUCCESS_MESSAGE()
     );
 }
 
@@ -1101,8 +1101,8 @@ NBP_PRINTER_CALLBACK_MODULE_ASSERT_TYPE_OP_RESULT(nbp_linux_printer_module_asser
         buff,
         NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
         NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAIL_MSG(),
-        NBP_PRINTER_GET_PASS_MSG()
+        NBP_PRINTER_GET_FAILURE_MESSAGE(),
+        NBP_PRINTER_GET_SUCCESS_MESSAGE()
     );
 }
 
@@ -1113,8 +1113,8 @@ NBP_PRINTER_CALLBACK_ASSERT_RESULT(nbp_linux_printer_assert_result)
         NBP_PRINTER_GET_CONDITION(),
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAIL_MSG(),
-        NBP_PRINTER_GET_PASS_MSG()
+        NBP_PRINTER_GET_FAILURE_MESSAGE(),
+        NBP_PRINTER_GET_SUCCESS_MESSAGE()
     );
 }
 
@@ -1127,8 +1127,8 @@ NBP_PRINTER_CALLBACK_ASSERT_TYPE_OP_RESULT(nbp_linux_printer_assert_type_op_resu
         buff,
         NBP_PRINTER_GET_ASSERT_STATUS(),
         NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAIL_MSG(),
-        NBP_PRINTER_GET_PASS_MSG()
+        NBP_PRINTER_GET_FAILURE_MESSAGE(),
+        NBP_PRINTER_GET_SUCCESS_MESSAGE()
     );
 }
 

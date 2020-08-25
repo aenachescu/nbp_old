@@ -25,21 +25,27 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef NBP_PRIVATE_API_H
-#define NBP_PRIVATE_API_H
+#ifndef NBP_PRIVATE_API_ASSERTION_H
+#define NBP_PRIVATE_API_ASSERTION_H
 
-#include "memory.h"
-#include "test.h"
-#include "module.h"
-#include "main.h"
-#include "assertion.h"
-#include "check.h"
-#include "assert.h"
-#include "test_assert.h"
-#include "module_assert.h"
-#include "scheduler.h"
-#include "printer.h"
-#include "error.h"
-#include "exit.h"
+/*
+ * TODO: add docs
+ */
+#define NBP_SUCCESS_MESSAGE(msg)
 
-#endif // end if NBP_PRIVATE_API_H
+/*
+ * TODO: add docs
+ */
+#define NBP_FAILURE_MESSAGE(msg)
+
+#define NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(...)                  \
+    NBP_PP_CONCAT(                                                             \
+        NBP_PP_PROCESSING_PARAM_,                                              \
+        NBP_PP_VARCOUNT(P ## __VA_ARGS__)                                      \
+    )(P ## __VA_ARGS__)
+
+#define NBP_PP_EAT_PP_NBP_SUCCESS_MESSAGE(msg) nbpParamSuccessMessage = msg;
+
+#define NBP_PP_EAT_PP_NBP_FAILURE_MESSAGE(msg) nbpParamFailureMessage = msg;
+
+#endif // end if NBP_PRIVATE_API_ASSERTION_H

@@ -258,7 +258,7 @@ void nbp_printer_notify_run_module_completed(nbp_module_details_t* module)
 }
 
 void nbp_printer_notify_check_result(nbp_test_details_t* test, const char* cond,
-    int status, int line, const char* failMsg, const char* passMsg)
+    int status, int line, const char* failureMsg, const char* successMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->checkResultCbk != NBP_MEMORY_NULL_POINTER) {
@@ -267,8 +267,8 @@ void nbp_printer_notify_check_result(nbp_test_details_t* test, const char* cond,
                 cond,
                 status,
                 line,
-                failMsg,
-                passMsg
+                failureMsg,
+                successMsg
             );
         }
     }
@@ -276,8 +276,8 @@ void nbp_printer_notify_check_result(nbp_test_details_t* test, const char* cond,
 
 void nbp_printer_notify_check_type_op_result(nbp_test_details_t* test,
     nbp_printer_type_value_t a, nbp_printer_type_value_t b, unsigned int type,
-    unsigned int op, int status, int line, const char* failMsg,
-    const char* passMsg)
+    unsigned int op, int status, int line, const char* failureMsg,
+    const char* successMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->checkTypeOpResultCbk != NBP_MEMORY_NULL_POINTER) {
@@ -289,15 +289,15 @@ void nbp_printer_notify_check_type_op_result(nbp_test_details_t* test,
                 op,
                 status,
                 line,
-                failMsg,
-                passMsg
+                failureMsg,
+                successMsg
             );
         }
     }
 }
 
 void nbp_printer_notify_test_assert_result(nbp_test_details_t* test, const char* cond,
-    int status, int line, const char* failMsg, const char* passMsg)
+    int status, int line, const char* failureMsg, const char* successMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->testAssertResultCbk != NBP_MEMORY_NULL_POINTER) {
@@ -306,8 +306,8 @@ void nbp_printer_notify_test_assert_result(nbp_test_details_t* test, const char*
                 cond,
                 status,
                 line,
-                failMsg,
-                passMsg
+                failureMsg,
+                successMsg
             );
         }
     }
@@ -315,8 +315,8 @@ void nbp_printer_notify_test_assert_result(nbp_test_details_t* test, const char*
 
 void nbp_printer_notify_test_assert_type_op_result(nbp_test_details_t* test,
     nbp_printer_type_value_t a, nbp_printer_type_value_t b, unsigned int type,
-    unsigned int op, int status, int line, const char* failMsg,
-    const char* passMsg)
+    unsigned int op, int status, int line, const char* failureMsg,
+    const char* successMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->testAssertTypeOpResultCbk != NBP_MEMORY_NULL_POINTER) {
@@ -328,16 +328,16 @@ void nbp_printer_notify_test_assert_type_op_result(nbp_test_details_t* test,
                 op,
                 status,
                 line,
-                failMsg,
-                passMsg
+                failureMsg,
+                successMsg
             );
         }
     }
 }
 
 void nbp_printer_notify_module_assert_result(nbp_test_details_t* test,
-    const char* cond, int status, int line, const char* failMsg,
-    const char* passMsg)
+    const char* cond, int status, int line, const char* failureMsg,
+    const char* successMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->moduleAssertResultCbk != NBP_MEMORY_NULL_POINTER) {
@@ -346,8 +346,8 @@ void nbp_printer_notify_module_assert_result(nbp_test_details_t* test,
                 cond,
                 status,
                 line,
-                failMsg,
-                passMsg
+                failureMsg,
+                successMsg
             );
         }
     }
@@ -355,8 +355,8 @@ void nbp_printer_notify_module_assert_result(nbp_test_details_t* test,
 
 void nbp_printer_notify_module_assert_type_op_result(nbp_test_details_t* test,
     nbp_printer_type_value_t a, nbp_printer_type_value_t b, unsigned int type,
-    unsigned int op, int status, int line, const char* failMsg,
-    const char* passMsg)
+    unsigned int op, int status, int line, const char* failureMsg,
+    const char* successMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->moduleAssertTypeOpResultCbk != NBP_MEMORY_NULL_POINTER) {
@@ -368,16 +368,16 @@ void nbp_printer_notify_module_assert_type_op_result(nbp_test_details_t* test,
                 op,
                 status,
                 line,
-                failMsg,
-                passMsg
+                failureMsg,
+                successMsg
             );
         }
     }
 }
 
 void nbp_printer_notify_assert_result(nbp_test_details_t* test,
-    const char* cond, int status, int line, const char* failMsg,
-    const char* passMsg)
+    const char* cond, int status, int line, const char* failureMsg,
+    const char* successMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->assertResultCbk != NBP_MEMORY_NULL_POINTER) {
@@ -386,8 +386,8 @@ void nbp_printer_notify_assert_result(nbp_test_details_t* test,
                 cond,
                 status,
                 line,
-                failMsg,
-                passMsg
+                failureMsg,
+                successMsg
             );
         }
     }
@@ -395,8 +395,8 @@ void nbp_printer_notify_assert_result(nbp_test_details_t* test,
 
 void nbp_printer_notify_assert_type_op_result(nbp_test_details_t* test,
     nbp_printer_type_value_t a, nbp_printer_type_value_t b, unsigned int type,
-    unsigned int op, int status, int line, const char* failMsg,
-    const char* passMsg)
+    unsigned int op, int status, int line, const char* failureMsg,
+    const char* successMsg)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->assertTypeOpResultCbk != NBP_MEMORY_NULL_POINTER) {
@@ -408,8 +408,8 @@ void nbp_printer_notify_assert_type_op_result(nbp_test_details_t* test,
                 op,
                 status,
                 line,
-                failMsg,
-                passMsg
+                failureMsg,
+                successMsg
             );
         }
     }

@@ -44,54 +44,54 @@ NBP_TEST(module_assert_long_eq)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_LONG_EQ(get_long(), long_);
-    NBP_MODULE_ASSERT_LONG_EQ_FAIL_MSG(get_long(), long_, "module_assert failed");
-    NBP_MODULE_ASSERT_LONG_EQ_PASS_MSG(get_long(), long_, "module_assert passed");
-    NBP_MODULE_ASSERT_LONG_EQ_MSG(get_long(), long_, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_LONG_EQ(get_long(), long_, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_LONG_EQ(get_long(), long_, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_LONG_EQ(get_long(), long_, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_long_ne)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_LONG_NE(get_long(), long_min);
-    NBP_MODULE_ASSERT_LONG_NE_FAIL_MSG(get_long(), long_min, "module_assert failed");
-    NBP_MODULE_ASSERT_LONG_NE_PASS_MSG(get_long(), long_min, "module_assert passed");
-    NBP_MODULE_ASSERT_LONG_NE_MSG(get_long(), long_min, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_LONG_NE(get_long(), long_min, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_LONG_NE(get_long(), long_min, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_LONG_NE(get_long(), long_min, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_long_gt)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_LONG_GT(get_long(), long_min);
-    NBP_MODULE_ASSERT_LONG_GT_FAIL_MSG(get_long(), long_min, "module_assert failed");
-    NBP_MODULE_ASSERT_LONG_GT_PASS_MSG(get_long(), long_min, "module_assert passed");
-    NBP_MODULE_ASSERT_LONG_GT_MSG(get_long(), long_min, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_LONG_GT(get_long(), long_min, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_LONG_GT(get_long(), long_min, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_LONG_GT(get_long(), long_min, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_long_ge)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_LONG_GE(get_long(), long_min);
-    NBP_MODULE_ASSERT_LONG_GE_FAIL_MSG(get_long(), long_, "module_assert failed");
-    NBP_MODULE_ASSERT_LONG_GE_PASS_MSG(get_long(), long_min, "module_assert passed");
-    NBP_MODULE_ASSERT_LONG_GE_MSG(get_long(), long_, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_LONG_GE(get_long(), long_, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_LONG_GE(get_long(), long_min, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_LONG_GE(get_long(), long_, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_long_lt)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_LONG_LT(get_long(), long_max);
-    NBP_MODULE_ASSERT_LONG_LT_FAIL_MSG(get_long(), long_max, "module_assert failed");
-    NBP_MODULE_ASSERT_LONG_LT_PASS_MSG(get_long(), long_max, "module_assert passed");
-    NBP_MODULE_ASSERT_LONG_LT_MSG(get_long(), long_max, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_LONG_LT(get_long(), long_max, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_LONG_LT(get_long(), long_max, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_LONG_LT(get_long(), long_max, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_long_le)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_LONG_LE(get_long(), long_max);
-    NBP_MODULE_ASSERT_LONG_LE_FAIL_MSG(get_long(), long_, "module_assert failed");
-    NBP_MODULE_ASSERT_LONG_LE_PASS_MSG(get_long(), long_max, "module_assert passed");
-    NBP_MODULE_ASSERT_LONG_LE_MSG(get_long(), long_, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_LONG_LE(get_long(), long_, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_LONG_LE(get_long(), long_max, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_LONG_LE(get_long(), long_, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_MODULE(module_assert_long)

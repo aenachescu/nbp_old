@@ -167,8 +167,8 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMsg,             \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMsg              \
     )
 
 /*
@@ -183,8 +183,8 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMsg,             \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMsg              \
     )
 
 /*
@@ -196,8 +196,8 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMsg,             \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMsg              \
     )
 
 /*
@@ -212,8 +212,8 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMsg,             \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMsg              \
     )
 
 /*
@@ -225,8 +225,8 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMsg,             \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMsg              \
     )
 
 /*
@@ -241,8 +241,8 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMsg,             \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMsg              \
     )
 
 /*
@@ -254,8 +254,8 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamCond,                   \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMsg,             \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMsg              \
     )
 
 /*
@@ -270,8 +270,8 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamOperator,              \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamStatus,                         \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailMsg,                \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamPassMsg                 \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMsg,             \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMsg              \
     )
 
 /*
@@ -508,22 +508,22 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_FAIL_MSG() nbpParamFailMsg
+#define NBP_PRINTER_GET_FAILURE_MESSAGE() nbpParamFailureMsg
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_FAIL_MSG NBP_MEMORY_NULL_POINTER
+#define NBP_PRINTER_NO_FAILURE_MESSAGE NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_PASS_MSG() nbpParamPassMsg
+#define NBP_PRINTER_GET_SUCCESS_MESSAGE() nbpParamSuccessMsg
 
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_NO_PASS_MSG NBP_MEMORY_NULL_POINTER
+#define NBP_PRINTER_NO_SUCCESS_MESSAGE NBP_MEMORY_NULL_POINTER
 
 /*
  * TODO: add docs

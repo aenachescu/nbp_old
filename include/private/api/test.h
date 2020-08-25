@@ -231,7 +231,9 @@ SOFTWARE.
 
 #define NBP_TEST_PRIVATE_IMPL(func, name, setupFunc, teardownFunc)             \
     void NBP_PP_CONCAT(nbp_test_, func)(                                       \
-        nbp_test_details_t*                                                    \
+        nbp_test_details_t*,                                                   \
+        const char*,                                                           \
+        const char*                                                            \
     );                                                                         \
     nbp_test_details_t NBP_PP_CONCAT(nbpTestDetails, func) = {                 \
         .testName                   = name,                                    \
@@ -264,7 +266,9 @@ SOFTWARE.
         },                                                                     \
     };                                                                         \
     void NBP_PP_CONCAT(nbp_test_, func)(                                       \
-        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMessage,         \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMessage          \
     )
 
 /*

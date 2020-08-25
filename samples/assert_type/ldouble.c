@@ -44,54 +44,54 @@ NBP_TEST(assert_ldouble_eq)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_);
-    NBP_ASSERT_LDOUBLE_EQ_FAIL_MSG(get_ldouble(), ldouble_, "assert failed");
-    NBP_ASSERT_LDOUBLE_EQ_PASS_MSG(get_ldouble(), ldouble_, "assert passed");
-    NBP_ASSERT_LDOUBLE_EQ_MSG(get_ldouble(), ldouble_, "assert failed", "assert passed");
+    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_ldouble_ne)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min);
-    NBP_ASSERT_LDOUBLE_NE_FAIL_MSG(get_ldouble(), ldouble_min, "assert failed");
-    NBP_ASSERT_LDOUBLE_NE_PASS_MSG(get_ldouble(), ldouble_min, "assert passed");
-    NBP_ASSERT_LDOUBLE_NE_MSG(get_ldouble(), ldouble_min, "assert failed", "assert passed");
+    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_ldouble_gt)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min);
-    NBP_ASSERT_LDOUBLE_GT_FAIL_MSG(get_ldouble(), ldouble_min, "assert failed");
-    NBP_ASSERT_LDOUBLE_GT_PASS_MSG(get_ldouble(), ldouble_min, "assert passed");
-    NBP_ASSERT_LDOUBLE_GT_MSG(get_ldouble(), ldouble_min, "assert failed", "assert passed");
+    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_ldouble_ge)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_min);
-    NBP_ASSERT_LDOUBLE_GE_FAIL_MSG(get_ldouble(), ldouble_, "assert failed");
-    NBP_ASSERT_LDOUBLE_GE_PASS_MSG(get_ldouble(), ldouble_min, "assert passed");
-    NBP_ASSERT_LDOUBLE_GE_MSG(get_ldouble(), ldouble_, "assert failed", "assert passed");
+    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_min, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_ldouble_lt)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max);
-    NBP_ASSERT_LDOUBLE_LT_FAIL_MSG(get_ldouble(), ldouble_max, "assert failed");
-    NBP_ASSERT_LDOUBLE_LT_PASS_MSG(get_ldouble(), ldouble_max, "assert passed");
-    NBP_ASSERT_LDOUBLE_LT_MSG(get_ldouble(), ldouble_max, "assert failed", "assert passed");
+    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_ldouble_le)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_max);
-    NBP_ASSERT_LDOUBLE_LE_FAIL_MSG(get_ldouble(), ldouble_, "assert failed");
-    NBP_ASSERT_LDOUBLE_LE_PASS_MSG(get_ldouble(), ldouble_max, "assert passed");
-    NBP_ASSERT_LDOUBLE_LE_MSG(get_ldouble(), ldouble_, "assert failed", "assert passed");
+    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_max, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_MODULE(assert_ldouble)

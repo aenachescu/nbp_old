@@ -117,47 +117,47 @@ NBP_MODULE_FIXTURES(module1, module_setup, module_teardown)
 NBP_TEST_NAME_FIXTURES(test1, "test", test1_setup, test1_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test1");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test1"));
 }
 
 NBP_TEST_FIXTURES(test2, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test2");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test2"));
 }
 
 NBP_TEST_NAME_FIXTURES(test3, "test", test3_setup, test3_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test3");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test3"));
 }
 
 NBP_TEST_FIXTURES(test4, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test4");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test4"));
 }
 
 NBP_TEST_FIXTURES(test5, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test5");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test5"));
 }
 
 NBP_TEST_NAME_FIXTURES(test6, "test", test6_setup, test6_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test6");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test6"));
 }
 
 NBP_TEST_FIXTURES(test7, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test7");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test7"));
 }
 
 NBP_TEST_NAME_FIXTURES(test8, "test", test8_setup, test8_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test8");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test8"));
 }

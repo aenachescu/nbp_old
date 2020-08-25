@@ -582,7 +582,7 @@ static void nbp_scheduler_run_test_running(nbp_test_details_t* test)
         test->testSetupFunc(test);
     }
 
-    test->testFunc(test);
+    test->testFunc(test, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER);
 
     if (test->asserts.numFailed != 0) {
         nbp_scheduler_skip_module(nbpMainModule);

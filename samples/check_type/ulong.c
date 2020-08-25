@@ -44,54 +44,54 @@ NBP_TEST(check_ulong_eq)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_ULONG_EQ(get_ulong(), ulong_);
-    NBP_CHECK_ULONG_EQ_FAIL_MSG(get_ulong(), ulong_, "check failed");
-    NBP_CHECK_ULONG_EQ_PASS_MSG(get_ulong(), ulong_, "check passed");
-    NBP_CHECK_ULONG_EQ_MSG(get_ulong(), ulong_, "check failed", "check passed");
+    NBP_CHECK_ULONG_EQ(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_ULONG_EQ(get_ulong(), ulong_, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_ULONG_EQ(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ulong_ne)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_ULONG_NE(get_ulong(), ulong_min);
-    NBP_CHECK_ULONG_NE_FAIL_MSG(get_ulong(), ulong_min, "check failed");
-    NBP_CHECK_ULONG_NE_PASS_MSG(get_ulong(), ulong_min, "check passed");
-    NBP_CHECK_ULONG_NE_MSG(get_ulong(), ulong_min, "check failed", "check passed");
+    NBP_CHECK_ULONG_NE(get_ulong(), ulong_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_ULONG_NE(get_ulong(), ulong_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_ULONG_NE(get_ulong(), ulong_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ulong_gt)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_ULONG_GT(get_ulong(), ulong_min);
-    NBP_CHECK_ULONG_GT_FAIL_MSG(get_ulong(), ulong_min, "check failed");
-    NBP_CHECK_ULONG_GT_PASS_MSG(get_ulong(), ulong_min, "check passed");
-    NBP_CHECK_ULONG_GT_MSG(get_ulong(), ulong_min, "check failed", "check passed");
+    NBP_CHECK_ULONG_GT(get_ulong(), ulong_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_ULONG_GT(get_ulong(), ulong_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_ULONG_GT(get_ulong(), ulong_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ulong_ge)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_ULONG_GE(get_ulong(), ulong_min);
-    NBP_CHECK_ULONG_GE_FAIL_MSG(get_ulong(), ulong_, "check failed");
-    NBP_CHECK_ULONG_GE_PASS_MSG(get_ulong(), ulong_min, "check passed");
-    NBP_CHECK_ULONG_GE_MSG(get_ulong(), ulong_, "check failed", "check passed");
+    NBP_CHECK_ULONG_GE(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_ULONG_GE(get_ulong(), ulong_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_ULONG_GE(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ulong_lt)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_ULONG_LT(get_ulong(), ulong_max);
-    NBP_CHECK_ULONG_LT_FAIL_MSG(get_ulong(), ulong_max, "check failed");
-    NBP_CHECK_ULONG_LT_PASS_MSG(get_ulong(), ulong_max, "check passed");
-    NBP_CHECK_ULONG_LT_MSG(get_ulong(), ulong_max, "check failed", "check passed");
+    NBP_CHECK_ULONG_LT(get_ulong(), ulong_max, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_ULONG_LT(get_ulong(), ulong_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_ULONG_LT(get_ulong(), ulong_max, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ulong_le)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_ULONG_LE(get_ulong(), ulong_max);
-    NBP_CHECK_ULONG_LE_FAIL_MSG(get_ulong(), ulong_, "check failed");
-    NBP_CHECK_ULONG_LE_PASS_MSG(get_ulong(), ulong_max, "check passed");
-    NBP_CHECK_ULONG_LE_MSG(get_ulong(), ulong_, "check failed", "check passed");
+    NBP_CHECK_ULONG_LE(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_ULONG_LE(get_ulong(), ulong_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_ULONG_LE(get_ulong(), ulong_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_MODULE(check_ulong)

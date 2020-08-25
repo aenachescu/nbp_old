@@ -50,7 +50,9 @@ typedef void (*nbp_test_teardown_pfn_t)(
 );
 
 typedef void (*nbp_test_pfn_t)(
-    struct nbp_test_details_t* /* current test */
+    struct nbp_test_details_t*, /* current test */
+    const char*, /* success message */
+    const char* /* failure message */
 );
 
 struct nbp_test_details_t {

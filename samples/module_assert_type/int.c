@@ -44,54 +44,54 @@ NBP_TEST(module_assert_int_eq)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_INT_EQ(get_int(), int_);
-    NBP_MODULE_ASSERT_INT_EQ_FAIL_MSG(get_int(), int_, "module_assert failed");
-    NBP_MODULE_ASSERT_INT_EQ_PASS_MSG(get_int(), int_, "module_assert passed");
-    NBP_MODULE_ASSERT_INT_EQ_MSG(get_int(), int_, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_INT_EQ(get_int(), int_, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_INT_EQ(get_int(), int_, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_INT_EQ(get_int(), int_, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_int_ne)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_INT_NE(get_int(), int_min);
-    NBP_MODULE_ASSERT_INT_NE_FAIL_MSG(get_int(), int_min, "module_assert failed");
-    NBP_MODULE_ASSERT_INT_NE_PASS_MSG(get_int(), int_min, "module_assert passed");
-    NBP_MODULE_ASSERT_INT_NE_MSG(get_int(), int_min, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_INT_NE(get_int(), int_min, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_INT_NE(get_int(), int_min, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_INT_NE(get_int(), int_min, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_int_gt)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_INT_GT(get_int(), int_min);
-    NBP_MODULE_ASSERT_INT_GT_FAIL_MSG(get_int(), int_min, "module_assert failed");
-    NBP_MODULE_ASSERT_INT_GT_PASS_MSG(get_int(), int_min, "module_assert passed");
-    NBP_MODULE_ASSERT_INT_GT_MSG(get_int(), int_min, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_INT_GT(get_int(), int_min, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_INT_GT(get_int(), int_min, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_INT_GT(get_int(), int_min, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_int_ge)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_INT_GE(get_int(), int_min);
-    NBP_MODULE_ASSERT_INT_GE_FAIL_MSG(get_int(), int_, "module_assert failed");
-    NBP_MODULE_ASSERT_INT_GE_PASS_MSG(get_int(), int_min, "module_assert passed");
-    NBP_MODULE_ASSERT_INT_GE_MSG(get_int(), int_, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_INT_GE(get_int(), int_, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_INT_GE(get_int(), int_min, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_INT_GE(get_int(), int_, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_int_lt)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_INT_LT(get_int(), int_max);
-    NBP_MODULE_ASSERT_INT_LT_FAIL_MSG(get_int(), int_max, "module_assert failed");
-    NBP_MODULE_ASSERT_INT_LT_PASS_MSG(get_int(), int_max, "module_assert passed");
-    NBP_MODULE_ASSERT_INT_LT_MSG(get_int(), int_max, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_INT_LT(get_int(), int_max, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_INT_LT(get_int(), int_max, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_INT_LT(get_int(), int_max, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_TEST(module_assert_int_le)
 {
     SAMPLE_SLEEP();
     NBP_MODULE_ASSERT_INT_LE(get_int(), int_max);
-    NBP_MODULE_ASSERT_INT_LE_FAIL_MSG(get_int(), int_, "module_assert failed");
-    NBP_MODULE_ASSERT_INT_LE_PASS_MSG(get_int(), int_max, "module_assert passed");
-    NBP_MODULE_ASSERT_INT_LE_MSG(get_int(), int_, "module_assert failed", "module_assert passed");
+    NBP_MODULE_ASSERT_INT_LE(get_int(), int_, NBP_FAILURE_MESSAGE("module_assert failed"));
+    NBP_MODULE_ASSERT_INT_LE(get_int(), int_max, NBP_SUCCESS_MESSAGE("module_assert passed"));
+    NBP_MODULE_ASSERT_INT_LE(get_int(), int_, NBP_FAILURE_MESSAGE("module_assert failed"), NBP_SUCCESS_MESSAGE("module_assert passed"));
 }
 
 NBP_MODULE(module_assert_int)

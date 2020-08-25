@@ -44,54 +44,54 @@ NBP_TEST(check_float_eq)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_FLOAT_EQ(get_float(), float_);
-    NBP_CHECK_FLOAT_EQ_FAIL_MSG(get_float(), float_, "check failed");
-    NBP_CHECK_FLOAT_EQ_PASS_MSG(get_float(), float_, "check passed");
-    NBP_CHECK_FLOAT_EQ_MSG(get_float(), float_, "check failed", "check passed");
+    NBP_CHECK_FLOAT_EQ(get_float(), float_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_FLOAT_EQ(get_float(), float_, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_FLOAT_EQ(get_float(), float_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_float_ne)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_FLOAT_NE(get_float(), float_min);
-    NBP_CHECK_FLOAT_NE_FAIL_MSG(get_float(), float_min, "check failed");
-    NBP_CHECK_FLOAT_NE_PASS_MSG(get_float(), float_min, "check passed");
-    NBP_CHECK_FLOAT_NE_MSG(get_float(), float_min, "check failed", "check passed");
+    NBP_CHECK_FLOAT_NE(get_float(), float_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_FLOAT_NE(get_float(), float_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_FLOAT_NE(get_float(), float_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_float_gt)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_FLOAT_GT(get_float(), float_min);
-    NBP_CHECK_FLOAT_GT_FAIL_MSG(get_float(), float_min, "check failed");
-    NBP_CHECK_FLOAT_GT_PASS_MSG(get_float(), float_min, "check passed");
-    NBP_CHECK_FLOAT_GT_MSG(get_float(), float_min, "check failed", "check passed");
+    NBP_CHECK_FLOAT_GT(get_float(), float_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_FLOAT_GT(get_float(), float_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_FLOAT_GT(get_float(), float_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_float_ge)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_FLOAT_GE(get_float(), float_min);
-    NBP_CHECK_FLOAT_GE_FAIL_MSG(get_float(), float_, "check failed");
-    NBP_CHECK_FLOAT_GE_PASS_MSG(get_float(), float_min, "check passed");
-    NBP_CHECK_FLOAT_GE_MSG(get_float(), float_, "check failed", "check passed");
+    NBP_CHECK_FLOAT_GE(get_float(), float_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_FLOAT_GE(get_float(), float_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_FLOAT_GE(get_float(), float_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_float_lt)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_FLOAT_LT(get_float(), float_max);
-    NBP_CHECK_FLOAT_LT_FAIL_MSG(get_float(), float_max, "check failed");
-    NBP_CHECK_FLOAT_LT_PASS_MSG(get_float(), float_max, "check passed");
-    NBP_CHECK_FLOAT_LT_MSG(get_float(), float_max, "check failed", "check passed");
+    NBP_CHECK_FLOAT_LT(get_float(), float_max, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_FLOAT_LT(get_float(), float_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_FLOAT_LT(get_float(), float_max, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_float_le)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_FLOAT_LE(get_float(), float_max);
-    NBP_CHECK_FLOAT_LE_FAIL_MSG(get_float(), float_, "check failed");
-    NBP_CHECK_FLOAT_LE_PASS_MSG(get_float(), float_max, "check passed");
-    NBP_CHECK_FLOAT_LE_MSG(get_float(), float_, "check failed", "check passed");
+    NBP_CHECK_FLOAT_LE(get_float(), float_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_FLOAT_LE(get_float(), float_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_FLOAT_LE(get_float(), float_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_MODULE(check_float)

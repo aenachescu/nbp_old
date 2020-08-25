@@ -44,54 +44,54 @@ NBP_TEST(check_llong_eq)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_LLONG_EQ(get_llong(), llong_);
-    NBP_CHECK_LLONG_EQ_FAIL_MSG(get_llong(), llong_, "check failed");
-    NBP_CHECK_LLONG_EQ_PASS_MSG(get_llong(), llong_, "check passed");
-    NBP_CHECK_LLONG_EQ_MSG(get_llong(), llong_, "check failed", "check passed");
+    NBP_CHECK_LLONG_EQ(get_llong(), llong_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_LLONG_EQ(get_llong(), llong_, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_LLONG_EQ(get_llong(), llong_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_llong_ne)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_LLONG_NE(get_llong(), llong_min);
-    NBP_CHECK_LLONG_NE_FAIL_MSG(get_llong(), llong_min, "check failed");
-    NBP_CHECK_LLONG_NE_PASS_MSG(get_llong(), llong_min, "check passed");
-    NBP_CHECK_LLONG_NE_MSG(get_llong(), llong_min, "check failed", "check passed");
+    NBP_CHECK_LLONG_NE(get_llong(), llong_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_LLONG_NE(get_llong(), llong_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_LLONG_NE(get_llong(), llong_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_llong_gt)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_LLONG_GT(get_llong(), llong_min);
-    NBP_CHECK_LLONG_GT_FAIL_MSG(get_llong(), llong_min, "check failed");
-    NBP_CHECK_LLONG_GT_PASS_MSG(get_llong(), llong_min, "check passed");
-    NBP_CHECK_LLONG_GT_MSG(get_llong(), llong_min, "check failed", "check passed");
+    NBP_CHECK_LLONG_GT(get_llong(), llong_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_LLONG_GT(get_llong(), llong_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_LLONG_GT(get_llong(), llong_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_llong_ge)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_LLONG_GE(get_llong(), llong_min);
-    NBP_CHECK_LLONG_GE_FAIL_MSG(get_llong(), llong_, "check failed");
-    NBP_CHECK_LLONG_GE_PASS_MSG(get_llong(), llong_min, "check passed");
-    NBP_CHECK_LLONG_GE_MSG(get_llong(), llong_, "check failed", "check passed");
+    NBP_CHECK_LLONG_GE(get_llong(), llong_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_LLONG_GE(get_llong(), llong_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_LLONG_GE(get_llong(), llong_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_llong_lt)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_LLONG_LT(get_llong(), llong_max);
-    NBP_CHECK_LLONG_LT_FAIL_MSG(get_llong(), llong_max, "check failed");
-    NBP_CHECK_LLONG_LT_PASS_MSG(get_llong(), llong_max, "check passed");
-    NBP_CHECK_LLONG_LT_MSG(get_llong(), llong_max, "check failed", "check passed");
+    NBP_CHECK_LLONG_LT(get_llong(), llong_max, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_LLONG_LT(get_llong(), llong_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_LLONG_LT(get_llong(), llong_max, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_llong_le)
 {
     SAMPLE_SLEEP();
     NBP_CHECK_LLONG_LE(get_llong(), llong_max);
-    NBP_CHECK_LLONG_LE_FAIL_MSG(get_llong(), llong_, "check failed");
-    NBP_CHECK_LLONG_LE_PASS_MSG(get_llong(), llong_max, "check passed");
-    NBP_CHECK_LLONG_LE_MSG(get_llong(), llong_, "check failed", "check passed");
+    NBP_CHECK_LLONG_LE(get_llong(), llong_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_CHECK_LLONG_LE(get_llong(), llong_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_CHECK_LLONG_LE(get_llong(), llong_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_MODULE(check_llong)

@@ -127,8 +127,8 @@ void nbp_printer_notify_check_result(
     const char*, /* condition */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 void nbp_printer_notify_check_type_op_result(
@@ -139,8 +139,8 @@ void nbp_printer_notify_check_type_op_result(
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 void nbp_printer_notify_test_assert_result(
@@ -148,8 +148,8 @@ void nbp_printer_notify_test_assert_result(
     const char*, /* condition */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 void nbp_printer_notify_test_assert_type_op_result(
@@ -160,8 +160,8 @@ void nbp_printer_notify_test_assert_type_op_result(
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 void nbp_printer_notify_module_assert_result(
@@ -169,8 +169,8 @@ void nbp_printer_notify_module_assert_result(
     const char*, /* condition */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 void nbp_printer_notify_module_assert_type_op_result(
@@ -181,8 +181,8 @@ void nbp_printer_notify_module_assert_type_op_result(
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 void nbp_printer_notify_assert_result(
@@ -190,8 +190,8 @@ void nbp_printer_notify_assert_result(
     const char*, /* condition */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 void nbp_printer_notify_assert_type_op_result(
@@ -202,8 +202,8 @@ void nbp_printer_notify_assert_type_op_result(
     unsigned int, /* operator */
     int, /* status */
     int, /* line */
-    const char*, /* fail message */
-    const char* /* pass message */
+    const char*, /* failure message */
+    const char* /* success message */
 );
 
 #endif // end if NBP_PRIVATE_DETAILS_PRINTER_H

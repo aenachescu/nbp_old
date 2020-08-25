@@ -255,131 +255,131 @@ NBP_MODULE_NAME_FIXTURES(submodule4, "foo", submodule4_setup, submodule4_teardow
 NBP_TEST_NAME_FIXTURES(test1, "foo", test1_setup, test1_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test1");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test1"));
 }
 
 NBP_TEST_FIXTURES(test2, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test2");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test2"));
 }
 
 NBP_TEST_NAME_FIXTURES(test3, "foo", test3_setup, test3_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test3");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test3"));
 }
 
 NBP_TEST_FIXTURES(test4, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test4");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test4"));
 }
 
 NBP_TEST_FIXTURES(test5, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test5");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test5"));
 }
 
 NBP_TEST_NAME_FIXTURES(test6, "foo", test6_setup, test6_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test6");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test6"));
 }
 
 NBP_TEST_NAME_FIXTURES(test7, "foo", test7_setup, test7_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test7");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test7"));
 }
 
 NBP_TEST_NAME_FIXTURES(test8, "foo", test8_setup, test8_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test8");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test8"));
 }
 
 NBP_TEST_FIXTURES(test9, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test9");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test9"));
 }
 
 NBP_TEST_FIXTURES(test10, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test10");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test10"));
 }
 
 NBP_TEST_NAME_FIXTURES(test11, "foo", test11_setup, test11_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test11");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test11"));
 }
 
 NBP_TEST_NAME_FIXTURES(test12, "foo", test12_setup, test12_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test12");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test12"));
 }
 
 NBP_TEST_FIXTURES(test13, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test13");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test13"));
 }
 
 NBP_TEST_FIXTURES(test14, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test14");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test14"));
 }
 
 NBP_TEST_FIXTURES(test15, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test15");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test15"));
 }
 
 NBP_TEST_FIXTURES(test16, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test16");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test16"));
 }
 
 NBP_TEST_NAME_FIXTURES(test17, "foo", test17_setup, test17_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test17");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test17"));
 }
 
 NBP_TEST_NAME_FIXTURES(test18, "foo", test18_setup, test18_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test18");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test18"));
 }
 
 NBP_TEST_FIXTURES(test19, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test19");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test19"));
 }
 
 NBP_TEST_FIXTURES(test20, test_setup, test_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test20");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test20"));
 }
 
 NBP_TEST_NAME_FIXTURES(test21, "foo", test21_setup, test21_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test21");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test21"));
 }
 
 NBP_TEST_NAME_FIXTURES(test22, "foo", test22_setup, test22_teardown)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_PASS_MSG(1 == 1, "test22");
+    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("test22"));
 }

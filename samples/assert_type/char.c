@@ -42,54 +42,54 @@ NBP_TEST(assert_char_eq)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_CHAR_EQ(get_char_b(), char_b);
-    NBP_ASSERT_CHAR_EQ_FAIL_MSG(get_char_b(), char_b, "assert failed");
-    NBP_ASSERT_CHAR_EQ_PASS_MSG(get_char_b(), char_b, "assert passed");
-    NBP_ASSERT_CHAR_EQ_MSG(get_char_b(), char_b, "assert failed", "assert passed");
+    NBP_ASSERT_CHAR_EQ(get_char_b(), char_b, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_CHAR_EQ(get_char_b(), char_b, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_CHAR_EQ(get_char_b(), char_b, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_char_ne)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_CHAR_NE(get_char_b(), char_a);
-    NBP_ASSERT_CHAR_NE_FAIL_MSG(get_char_b(), char_a, "assert failed");
-    NBP_ASSERT_CHAR_NE_PASS_MSG(get_char_b(), char_a, "assert passed");
-    NBP_ASSERT_CHAR_NE_MSG(get_char_b(), char_a, "assert failed", "assert passed");
+    NBP_ASSERT_CHAR_NE(get_char_b(), char_a, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_CHAR_NE(get_char_b(), char_a, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_CHAR_NE(get_char_b(), char_a, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_char_gt)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_CHAR_GT(get_char_b(), char_a);
-    NBP_ASSERT_CHAR_GT_FAIL_MSG(get_char_b(), char_a, "assert failed");
-    NBP_ASSERT_CHAR_GT_PASS_MSG(get_char_b(), char_a, "assert passed");
-    NBP_ASSERT_CHAR_GT_MSG(get_char_b(), char_a, "assert failed", "assert passed");
+    NBP_ASSERT_CHAR_GT(get_char_b(), char_a, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_CHAR_GT(get_char_b(), char_a, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_CHAR_GT(get_char_b(), char_a, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_char_ge)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_CHAR_GE(get_char_b(), char_a);
-    NBP_ASSERT_CHAR_GE_FAIL_MSG(get_char_b(), char_b, "assert failed");
-    NBP_ASSERT_CHAR_GE_PASS_MSG(get_char_b(), char_a, "assert passed");
-    NBP_ASSERT_CHAR_GE_MSG(get_char_b(), char_b, "assert failed", "assert passed");
+    NBP_ASSERT_CHAR_GE(get_char_b(), char_b, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_CHAR_GE(get_char_b(), char_a, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_CHAR_GE(get_char_b(), char_b, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_char_lt)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_CHAR_LT(get_char_b(), char_c);
-    NBP_ASSERT_CHAR_LT_FAIL_MSG(get_char_b(), char_c, "assert failed");
-    NBP_ASSERT_CHAR_LT_PASS_MSG(get_char_b(), char_c, "assert passed");
-    NBP_ASSERT_CHAR_LT_MSG(get_char_b(), char_c, "assert failed", "assert passed");
+    NBP_ASSERT_CHAR_LT(get_char_b(), char_c, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_CHAR_LT(get_char_b(), char_c, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_CHAR_LT(get_char_b(), char_c, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_char_le)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_CHAR_LE(get_char_b(), char_c);
-    NBP_ASSERT_CHAR_LE_FAIL_MSG(get_char_b(), char_b, "assert failed");
-    NBP_ASSERT_CHAR_LE_PASS_MSG(get_char_b(), char_c, "assert passed");
-    NBP_ASSERT_CHAR_LE_MSG(get_char_b(), char_b, "assert failed", "assert passed");
+    NBP_ASSERT_CHAR_LE(get_char_b(), char_b, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_CHAR_LE(get_char_b(), char_c, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_CHAR_LE(get_char_b(), char_b, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_MODULE(assert_char)
