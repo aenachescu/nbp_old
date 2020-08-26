@@ -185,12 +185,6 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_MODULE_GET_STATE(module)                                           \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->moduleState)
-
-/*
- * TODO: add docs
- */
 #define NBP_MODULE_GET_NUMBER_OF_OWN_TESTS(module)                             \
     module->ownTests.num
 
