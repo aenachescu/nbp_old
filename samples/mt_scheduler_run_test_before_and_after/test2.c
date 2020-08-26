@@ -41,7 +41,7 @@ extern SAMPLE_ATOMIC_UINT_TYPE module2Value;
 extern SAMPLE_ATOMIC_UINT_TYPE module3Value;
 extern SAMPLE_ATOMIC_UINT_TYPE module4Value;
 
-NBP_TEST_FIXTURES(test2, test2_setup, test2_teardown)
+NBP_TEST(test2, NBP_TEST_FIXTURES(test2_setup, test2_teardown))
 {
     unsigned int value;
 

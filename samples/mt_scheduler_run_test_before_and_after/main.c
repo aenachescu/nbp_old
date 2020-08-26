@@ -43,7 +43,7 @@ SAMPLE_ATOMIC_UINT_TYPE module2Value = SAMPLE_ATOMIC_UINT_INIT(0);
 SAMPLE_ATOMIC_UINT_TYPE module3Value = SAMPLE_ATOMIC_UINT_INIT(0);
 SAMPLE_ATOMIC_UINT_TYPE module4Value = SAMPLE_ATOMIC_UINT_INIT(0);
 
-NBP_TEST_FIXTURES(test1, test1_setup, test1_teardown)
+NBP_TEST(test1, NBP_TEST_FIXTURES(test1_setup, test1_teardown))
 {
     unsigned int value;
 
@@ -93,7 +93,7 @@ NBP_TEST_FIXTURES(test1, test1_setup, test1_teardown)
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&test1Value, 1);
 }
 
-NBP_TEST_FIXTURES(test3, test3_setup, test3_teardown)
+NBP_TEST(test3, NBP_TEST_FIXTURES(test3_setup, test3_teardown))
 {
     unsigned int value;
 
@@ -116,7 +116,7 @@ NBP_TEST_FIXTURES(test3, test3_setup, test3_teardown)
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&test3Value, 1);
 }
 
-NBP_TEST_FIXTURES(test5, test5_setup, test5_teardown)
+NBP_TEST(test5, NBP_TEST_FIXTURES(test5_setup, test5_teardown))
 {
     unsigned int value;
 
@@ -180,7 +180,7 @@ NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_before_and_after,
     NBP_TEST_RUN(test6);
 }
 
-NBP_TEST_FIXTURES(test7, test7_setup, test7_teardown)
+NBP_TEST(test7, NBP_TEST_FIXTURES(test7_setup, test7_teardown))
 {
     unsigned int value;
 
@@ -203,7 +203,7 @@ NBP_TEST_FIXTURES(test7, test7_setup, test7_teardown)
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module1Value, 1);
 }
 
-NBP_TEST_FIXTURES(test8, test8_setup, test8_teardown)
+NBP_TEST(test8, NBP_TEST_FIXTURES(test8_setup, test8_teardown))
 {
     unsigned int value;
 
@@ -222,7 +222,7 @@ NBP_TEST_FIXTURES(test8, test8_setup, test8_teardown)
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module1Value, 1);
 }
 
-NBP_TEST_FIXTURES(test9, test9_setup, test9_teardown)
+NBP_TEST(test9, NBP_TEST_FIXTURES(test9_setup, test9_teardown))
 {
     unsigned int value;
 
@@ -241,7 +241,7 @@ NBP_TEST_FIXTURES(test9, test9_setup, test9_teardown)
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module1Value, 1);
 }
 
-NBP_TEST_FIXTURES(test10, test10_setup, test10_teardown)
+NBP_TEST(test10, NBP_TEST_FIXTURES(test10_setup, test10_teardown))
 {
     unsigned int value;
 
@@ -268,7 +268,7 @@ NBP_MODULE_FIXTURES(module1, module1_setup, module1_teardown)
     NBP_TEST_RUN(test10);
 }
 
-NBP_TEST_FIXTURES(test15, test15_setup, test15_teardown)
+NBP_TEST(test15, NBP_TEST_FIXTURES(test15_setup, test15_teardown))
 {
     unsigned int value;
 
@@ -289,7 +289,7 @@ NBP_TEST_FIXTURES(test15, test15_setup, test15_teardown)
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module3Value, 1);
 }
 
-NBP_TEST_FIXTURES(test16, test16_setup, test16_teardown)
+NBP_TEST(test16, NBP_TEST_FIXTURES(test16_setup, test16_teardown))
 {
     unsigned int value;
 
@@ -310,7 +310,7 @@ NBP_TEST_FIXTURES(test16, test16_setup, test16_teardown)
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module3Value, 1);
 }
 
-NBP_TEST_FIXTURES(test17, test17_setup, test17_teardown)
+NBP_TEST(test17, NBP_TEST_FIXTURES(test17_setup, test17_teardown))
 {
     unsigned int value;
 
@@ -331,7 +331,7 @@ NBP_TEST_FIXTURES(test17, test17_setup, test17_teardown)
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module3Value, 1);
 }
 
-NBP_TEST_FIXTURES(test18, test18_setup, test18_teardown)
+NBP_TEST(test18, NBP_TEST_FIXTURES(test18_setup, test18_teardown))
 {
     unsigned int value;
 

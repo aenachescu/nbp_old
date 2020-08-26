@@ -34,7 +34,7 @@ extern SAMPLE_ATOMIC_UINT_TYPE test1Value;
 extern SAMPLE_ATOMIC_UINT_TYPE test2Value;
 extern SAMPLE_ATOMIC_UINT_TYPE test4Value;
 
-NBP_TEST_FIXTURES(test4, test4_setup, test4_teardown)
+NBP_TEST(test4, NBP_TEST_FIXTURES(test4_setup, test4_teardown))
 {
     unsigned int value;
 

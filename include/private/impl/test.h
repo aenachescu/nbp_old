@@ -56,6 +56,8 @@ static void nbp_test_init(nbp_test_details_t* test,
         NBP_EXIT(NBP_ERROR_CODE_TEST_ALREADY_RUN);
     }
 
+    test->configFunc(test);
+
     test->testId = nbpTotalNumberOfTests;
     nbpTotalNumberOfTests++;
 

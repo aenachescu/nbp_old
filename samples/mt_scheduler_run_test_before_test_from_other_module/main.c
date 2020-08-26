@@ -134,7 +134,7 @@ NBP_TEST_TEARDOWN(test3_teardown)
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&test3TeardownValue, 1);
 }
 
-NBP_TEST_FIXTURES(test1, test1_setup, test1_teardown)
+NBP_TEST(test1, NBP_TEST_FIXTURES(test1_setup, test1_teardown))
 {
     SAMPLE_SLEEP();
 
@@ -157,7 +157,7 @@ NBP_TEST(test2)
     NBP_ASSERT(err == 0);
 }
 
-NBP_TEST_FIXTURES(test3, test3_setup, test3_teardown)
+NBP_TEST(test3, NBP_TEST_FIXTURES(test3_setup, test3_teardown))
 {
     SAMPLE_SLEEP();
 

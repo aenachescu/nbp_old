@@ -87,7 +87,7 @@ NBP_MODULE_FIXTURES(subsubmodule20, module_setup, module_teardown)
     NBP_TEST_RUN(test96);
 }
 
-NBP_TEST_FIXTURES(test75, test_setup, test_teardown)
+NBP_TEST(test75, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -108,7 +108,7 @@ NBP_TEST_FIXTURES(test75, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test76, test_setup, test_teardown)
+NBP_TEST(test76, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -129,7 +129,7 @@ NBP_TEST_FIXTURES(test76, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test77, test_setup, test_teardown)
+NBP_TEST(test77, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -150,7 +150,7 @@ NBP_TEST_FIXTURES(test77, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test78, test_setup, test_teardown)
+NBP_TEST(test78, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -171,7 +171,7 @@ NBP_TEST_FIXTURES(test78, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test79, test_setup, test_teardown)
+NBP_TEST(test79, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -192,7 +192,7 @@ NBP_TEST_FIXTURES(test79, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test80, test_setup, test_teardown)
+NBP_TEST(test80, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -213,7 +213,7 @@ NBP_TEST_FIXTURES(test80, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test81, test_setup, test_teardown)
+NBP_TEST(test81, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -234,7 +234,7 @@ NBP_TEST_FIXTURES(test81, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test82, test_setup, test_teardown)
+NBP_TEST(test82, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -255,7 +255,7 @@ NBP_TEST_FIXTURES(test82, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test83, test_setup, test_teardown)
+NBP_TEST(test83, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -276,7 +276,7 @@ NBP_TEST_FIXTURES(test83, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test84, test_setup, test_teardown)
+NBP_TEST(test84, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -297,7 +297,7 @@ NBP_TEST_FIXTURES(test84, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test85, test_setup, test_teardown)
+NBP_TEST(test85, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -318,7 +318,7 @@ NBP_TEST_FIXTURES(test85, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test86, test_setup, test_teardown)
+NBP_TEST(test86, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -339,7 +339,7 @@ NBP_TEST_FIXTURES(test86, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test87, test_setup, test_teardown)
+NBP_TEST(test87, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -360,7 +360,7 @@ NBP_TEST_FIXTURES(test87, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test88, test_setup, test_teardown)
+NBP_TEST(test88, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -381,7 +381,7 @@ NBP_TEST_FIXTURES(test88, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test89, test_setup, test_teardown)
+NBP_TEST(test89, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -402,7 +402,7 @@ NBP_TEST_FIXTURES(test89, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test90, test_setup, test_teardown)
+NBP_TEST(test90, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -423,7 +423,7 @@ NBP_TEST_FIXTURES(test90, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test91, test_setup, test_teardown)
+NBP_TEST(test91, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -444,7 +444,7 @@ NBP_TEST_FIXTURES(test91, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test92, test_setup, test_teardown)
+NBP_TEST(test92, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -465,7 +465,7 @@ NBP_TEST_FIXTURES(test92, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test93, test_setup, test_teardown)
+NBP_TEST(test93, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -486,7 +486,7 @@ NBP_TEST_FIXTURES(test93, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test94, test_setup, test_teardown)
+NBP_TEST(test94, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -507,7 +507,7 @@ NBP_TEST_FIXTURES(test94, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test95, test_setup, test_teardown)
+NBP_TEST(test95, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 
@@ -528,7 +528,7 @@ NBP_TEST_FIXTURES(test95, test_setup, test_teardown)
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
 
-NBP_TEST_FIXTURES(test96, test_setup, test_teardown)
+NBP_TEST(test96, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 

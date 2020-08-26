@@ -29,7 +29,7 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_TEST_FIXTURES(test4, test_setup, test_teardown)
+NBP_TEST(test4, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     sample_utils_test_data_t* testData = NBP_MEMORY_NULL_POINTER;
 

@@ -52,6 +52,10 @@ typedef void (*nbp_test_teardown_pfn_t)(
     struct nbp_test_details_t* /* current test */
 );
 
+typedef void (*nbp_test_config_pfn_t)(
+    struct nbp_test_details_t* /* current test */
+);
+
 typedef void (*nbp_test_pfn_t)(
     struct nbp_test_details_t*, /* current test */
     const char*, /* success message */
@@ -62,6 +66,7 @@ struct nbp_test_details_t {
     const char* testName;
     unsigned int testId;
     nbp_test_pfn_t testFunc;
+    nbp_test_config_pfn_t configFunc;
     struct nbp_module_details_t* module;
 
     nbp_test_setup_pfn_t testSetupFunc;

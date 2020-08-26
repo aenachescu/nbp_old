@@ -30,31 +30,31 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_TEST_NAME(test_and_module_name_test1, "first test")
+NBP_TEST(test_and_module_name_test1, NBP_TEST_NAME("first test"))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
-NBP_TEST_NAME(test_and_module_name_test2, "second test")
+NBP_TEST(test_and_module_name_test2, NBP_TEST_NAME("second test"))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
-NBP_TEST_NAME(test_and_module_name_test3, "third test")
+NBP_TEST(test_and_module_name_test3, NBP_TEST_NAME("third test"))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
-NBP_TEST_NAME(test1, "first test")
+NBP_TEST(test1, NBP_TEST_NAME("first test"))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
-NBP_TEST_NAME(test2, "second test")
+NBP_TEST(test2, NBP_TEST_NAME("second test"))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);

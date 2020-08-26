@@ -286,49 +286,49 @@ NBP_MODULE(submodule4)
     NBP_TEST_RUN(test16);
 }
 
-NBP_TEST_FIXTURES(test17, my_test_setup3, my_test_teardown3)
+NBP_TEST(test17, NBP_TEST_FIXTURES(my_test_setup3, my_test_teardown3))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
-NBP_TEST_FIXTURES(test18, my_test_setup3, NBP_TEST_NO_TEARDOWN)
+NBP_TEST(test18, NBP_TEST_SETUP(my_test_setup3))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
-NBP_TEST_FIXTURES(test19, NBP_TEST_NO_SETUP, my_test_teardown3)
+NBP_TEST(test19, NBP_TEST_TEARDOWN(my_test_teardown3))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
-NBP_TEST_FIXTURES(test20, NBP_TEST_NO_SETUP, NBP_TEST_NO_TEARDOWN)
+NBP_TEST(test20)
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
-NBP_TEST_NAME_FIXTURES(test21, "test21", my_test_setup3, my_test_teardown3)
+NBP_TEST(test21, NBP_TEST_NAME("test21"), NBP_TEST_FIXTURES(my_test_setup3, my_test_teardown3))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
-NBP_TEST_NAME_FIXTURES(test22, "test22", my_test_setup3, NBP_TEST_NO_TEARDOWN)
+NBP_TEST(test22, NBP_TEST_NAME("test22"), NBP_TEST_SETUP(my_test_setup3))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
-NBP_TEST_NAME_FIXTURES(test23, "test23", NBP_TEST_NO_SETUP, my_test_teardown3)
+NBP_TEST(test23, NBP_TEST_NAME("test23"), NBP_TEST_TEARDOWN(my_test_teardown3))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);
 }
 
-NBP_TEST_NAME_FIXTURES(test24, "test24", NBP_TEST_NO_SETUP, NBP_TEST_NO_TEARDOWN)
+NBP_TEST(test24, NBP_TEST_NAME("test24"))
 {
     SAMPLE_SLEEP();
     NBP_CHECK(1);

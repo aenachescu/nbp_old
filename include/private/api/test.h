@@ -229,19 +229,29 @@ SOFTWARE.
 #define NBP_TEST_RESET_TEARDOWN()                                              \
     nbpParamTestTeardown = NBP_MEMORY_NULL_POINTER
 
-#define NBP_TEST_PRIVATE_IMPL(func, name, setupFunc, teardownFunc)             \
+/*
+ * TODO: add docs
+ */
+#define NBP_TEST(func, ...)                                                    \
+    void NBP_PP_CONCAT(nbp_test_config_, func)(                                \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest            \
+    )                                                                          \
+    {                                                                          \
+        NBP_TEST_PRIVATE_GENERATE_CONFIG(P_ ## __VA_ARGS__)                    \
+    }                                                                          \
     void NBP_PP_CONCAT(nbp_test_, func)(                                       \
         nbp_test_details_t*,                                                   \
         const char*,                                                           \
         const char*                                                            \
     );                                                                         \
     nbp_test_details_t NBP_PP_CONCAT(nbpTestDetails, func) = {                 \
-        .testName                   = name,                                    \
+        .testName                   = #func,                                   \
         .testId                     = 0,                                       \
         .testFunc                   = NBP_PP_CONCAT(nbp_test_, func),          \
+        .configFunc                 = NBP_PP_CONCAT(nbp_test_config_, func),   \
         .module                     = NBP_MEMORY_NULL_POINTER,                 \
-        .testSetupFunc              = setupFunc,                               \
-        .testTeardownFunc           = teardownFunc,                            \
+        .testSetupFunc              = NBP_MEMORY_NULL_POINTER,                 \
+        .testTeardownFunc           = NBP_MEMORY_NULL_POINTER,                 \
         .next                       = NBP_MEMORY_NULL_POINTER,                 \
         .prev                       = NBP_MEMORY_NULL_POINTER,                 \
         .testState                  =                                          \
@@ -272,72 +282,14 @@ SOFTWARE.
     )
 
 /*
- * @public doc
- *
- * @brief
- *  Defines a test that can be run using the NBP_TEST_RUN macro.
- *  Use the NBP_TEST_THIS macro if you want to get info about the test.
- *
- * @params
- *  func - Represents the function name. It must be unique in the entire program
- *         not just in the C file where it is defined. At the same time in this
- *         macro it represents the name of the test.
- *
- * @code
- *  NBP_TEST(myTest)
- *  {
- *      // do something
- *  }
- * @endcode
+ * TODO: add docs
  */
-#define NBP_TEST(func)                                                         \
-    NBP_TEST_NAME(func, #func)
-
-/*
- * @public doc
- *
- * @brief
- *  Defines a test that can be run using the NBP_TEST_RUN macro.
- *  Use the NBP_TEST_THIS macro if you want to get info about the test.
- *
- * @params
- *  func - Represents the function name. It must be unique in the entire program
- *         not just in the C file where it is defined.
- *  name - const char* that represents the test name.
- *
- * @code
- *  NBP_TEST_NAME(myTest, "it tests if something is wrong...")
- *  {
- *      // do something
- *  }
- * @endcode
- */
-#define NBP_TEST_NAME(func, name)                                              \
-    NBP_TEST_PRIVATE_IMPL(                                                     \
-        func,                                                                  \
-        name,                                                                  \
-        NBP_MEMORY_NULL_POINTER,                                               \
-        NBP_MEMORY_NULL_POINTER                                                \
-    )
+#define NBP_TEST_NAME(name)
 
 /*
  * TODO: add docs
  */
-#define NBP_TEST_FIXTURES(func, setupFunc, teardownFunc)                       \
-    NBP_TEST_NAME_FIXTURES(func, #func, setupFunc, teardownFunc)
-
-/*
- * TODO: add docs
- */
-#define NBP_TEST_NAME_FIXTURES(func, name, setupFunc, teardownFunc)            \
-    NBP_TEST_SETUP(setupFunc);                                                 \
-    NBP_TEST_TEARDOWN(teardownFunc);                                           \
-    NBP_TEST_PRIVATE_IMPL(                                                     \
-        func,                                                                  \
-        name,                                                                  \
-        NBP_PP_CONCAT(nbp_test_setup_, setupFunc),                             \
-        NBP_PP_CONCAT(nbp_test_teardown_, teardownFunc)                        \
-    )
+#define NBP_TEST_FIXTURES(setup, teardown)
 
 /*
  * @public doc
@@ -681,5 +633,24 @@ SOFTWARE.
  */
 #define NBP_TEST_GET_NUMBER_OF_FAILED_ASSERTS(test)                            \
     test->asserts.numFailed
+
+#define NBP_TEST_PRIVATE_GENERATE_CONFIG(...)                                  \
+    NBP_PP_CONCAT(                                                             \
+        NBP_PP_PROCESSING_PARAM_,                                              \
+        NBP_PP_VARCOUNT(P ## __VA_ARGS__)                                      \
+    )(P ## __VA_ARGS__)
+
+#define NBP_PP_EAT_PP_NBP_TEST_NAME(name)                                      \
+    nbpParamTest->testName = name;
+#define NBP_PP_EAT_PP_NBP_TEST_SETUP(setup)                                    \
+    NBP_TEST_SETUP(setup);                                                     \
+    nbpParamTest->testSetupFunc = NBP_PP_CONCAT(nbp_test_setup_, setup);
+#define NBP_PP_EAT_PP_NBP_TEST_TEARDOWN(teardown)                              \
+    NBP_TEST_TEARDOWN(teardown);                                               \
+    nbpParamTest->testTeardownFunc =                                           \
+        NBP_PP_CONCAT(nbp_test_teardown_, teardown);
+#define NBP_PP_EAT_PP_NBP_TEST_FIXTURES(setup, teardown)                       \
+    NBP_PP_EAT_PP_NBP_TEST_SETUP(setup)                                        \
+    NBP_PP_EAT_PP_NBP_TEST_TEARDOWN(teardown)
 
 #endif // end if NBP_PRIVATE_API_TEST_H

@@ -63,14 +63,14 @@ NBP_MODULE_FIXTURES(module1, module_setup, module_teardown)
     NBP_TEST_RUN(test1);
 }
 
-NBP_TEST_FIXTURES(test1, test_setup, test_teardown)
+NBP_TEST(test1, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_console("this message should not be displayed");
     NBP_CHECK(1 == 1);
 }
 
-NBP_TEST_FIXTURES(test2, test_setup, test_teardown)
+NBP_TEST(test2, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_console("this message should not be displayed");
