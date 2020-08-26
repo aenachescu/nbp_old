@@ -291,6 +291,7 @@ SOFTWARE.
     }                                                                          \
     nbp_printer_interface_t NBP_PP_CONCAT(nbpPrinter, name) = {                \
         .printerName                        = #name,                           \
+        .isInitialized                      = 0,                               \
         .configFunc                         =                                  \
             NBP_PP_CONCAT(nbp_printer_config_, name),                          \
         .initCbk                            = NBP_MEMORY_NULL_POINTER,         \

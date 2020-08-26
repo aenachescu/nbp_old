@@ -63,6 +63,7 @@ void nbp_printer_notify_init(void)
         if (nbpPrinterInterfaces[i]->initCbk != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->initCbk();
         }
+        nbpPrinterInterfaces[i]->isInitialized = 1;
     }
 }
 
@@ -72,6 +73,7 @@ void nbp_printer_notify_uninit(void)
         if (nbpPrinterInterfaces[i]->uninitCbk != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->uninitCbk();
         }
+        nbpPrinterInterfaces[i]->isInitialized = 0;
     }
 }
 
@@ -87,6 +89,10 @@ void nbp_printer_notify_report_error(int errCode, int line,
     err.contextString   = NBP_MEMORY_NULL_POINTER;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->isInitialized == 0) {
+            continue;
+        }
+
         if (nbpPrinterInterfaces[i]->reportErrorCbk != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->reportErrorCbk(err);
         }
@@ -105,6 +111,10 @@ void nbp_printer_notify_report_error_ctx_string(int errCode, int line,
     err.contextString   = ctx;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->isInitialized == 0) {
+            continue;
+        }
+
         if (nbpPrinterInterfaces[i]->reportErrorCbk != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->reportErrorCbk(err);
         }
@@ -123,6 +133,10 @@ void nbp_printer_notify_report_error_ctx_custom(int errCode, int line,
     err.contextCustom   = ctx;
 
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->isInitialized == 0) {
+            continue;
+        }
+
         if (nbpPrinterInterfaces[i]->reportErrorCbk != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->reportErrorCbk(err);
         }
@@ -132,6 +146,10 @@ void nbp_printer_notify_report_error_ctx_custom(int errCode, int line,
 void nbp_printer_notify_exit_triggered(int errorCode)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
+        if (nbpPrinterInterfaces[i]->isInitialized == 0) {
+            continue;
+        }
+
         if (nbpPrinterInterfaces[i]->exitTriggeredCbk != NBP_MEMORY_NULL_POINTER) {
             nbpPrinterInterfaces[i]->exitTriggeredCbk(errorCode);
         }

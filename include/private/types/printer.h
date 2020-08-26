@@ -240,6 +240,7 @@ typedef void (*nbp_printer_callback_assert_type_op_result_pfn_t)(
 
 struct nbp_printer_interface_t {
     const char* printerName;
+    int isInitialized;
     nbp_printer_config_pfn_t configFunc;
 
     nbp_printer_callback_init_pfn_t initCbk;
