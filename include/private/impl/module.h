@@ -30,18 +30,6 @@ SOFTWARE.
 
 unsigned int nbpTotalNumberOfModules = 0;
 
-// these fixtures are not run because if they are used then the fixture pfn will
-// be replace with NBP_MEMORY_NULL_POINTER
-// LCOV_EXCL_START
-NBP_MODULE_SETUP(nbp_module_empty_setup_func)
-{
-}
-
-NBP_MODULE_TEARDOWN(nbp_module_empty_teardown_func)
-{
-}
-// LCOV_EXCL_STOP
-
 static void nbp_module_init(nbp_module_details_t* module,
     nbp_module_details_t* parent, nbp_module_setup_pfn_t setupFunc,
     nbp_module_teardown_pfn_t teardownFunc)
@@ -78,27 +66,13 @@ static void nbp_module_init(nbp_module_details_t* module,
         // LCOV_EXCL_STOP
     }
 
-    nbp_module_setup_pfn_t emptyModuleSetup =
-        NBP_PP_CONCAT(nbp_module_setup_, nbp_module_empty_setup_func);
-    if (module->setupFunc == emptyModuleSetup) {
-        module->setupFunc = NBP_MEMORY_NULL_POINTER;
-    }
-
     if (module->setupFunc == NBP_MEMORY_NULL_POINTER &&
-        setupFunc != NBP_MEMORY_NULL_POINTER &&
-        setupFunc != emptyModuleSetup) {
+        setupFunc != NBP_MEMORY_NULL_POINTER) {
         module->setupFunc = setupFunc;
     }
 
-    nbp_module_teardown_pfn_t emptyModuleTeardown =
-        NBP_PP_CONCAT(nbp_module_teardown_, nbp_module_empty_teardown_func);
-    if (module->teardownFunc == emptyModuleTeardown) {
-        module->teardownFunc = NBP_MEMORY_NULL_POINTER;
-    }
-
     if (module->teardownFunc == NBP_MEMORY_NULL_POINTER &&
-        teardownFunc != NBP_MEMORY_NULL_POINTER &&
-        teardownFunc != emptyModuleTeardown) {
+        teardownFunc != NBP_MEMORY_NULL_POINTER) {
         module->teardownFunc = teardownFunc;
     }
 

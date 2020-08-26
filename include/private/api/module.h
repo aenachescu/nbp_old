@@ -31,12 +31,6 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_MODULE_NO_SETUP                                                    \
-    nbp_module_empty_setup_func
-
-/*
- * TODO: add docs
- */
 #define NBP_MODULE_SETUP(func)                                                 \
     void NBP_PP_CONCAT(nbp_module_setup_, func)(                               \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
@@ -54,12 +48,6 @@ SOFTWARE.
  */
 #define NBP_MODULE_RESET_SETUP()                                               \
     nbpParamModuleSetup = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_MODULE_NO_TEARDOWN                                                 \
-    nbp_module_empty_teardown_func
 
 /*
  * TODO: add docs
@@ -82,6 +70,9 @@ SOFTWARE.
 #define NBP_MODULE_RESET_TEARDOWN()                                            \
     nbpParamModuleTeardown = NBP_MEMORY_NULL_POINTER
 
+/*
+ * TODO: add docs
+ */
 #define NBP_MODULE(func, ...)                                                  \
     void NBP_PP_CONCAT(nbp_module_config_, func)(                              \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
