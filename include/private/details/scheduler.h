@@ -40,25 +40,25 @@ void nbp_scheduler_notify_run(
     void
 );
 
-void nbp_scheduler_notify_add_test(
+void nbp_scheduler_notify_run_test(
     nbp_test_details_t* /* test */
 );
 
-void nbp_scheduler_notify_add_test_ctx(
+void nbp_scheduler_notify_run_test_ctx(
     nbp_test_details_t*, /* test */
     void* /* context */
 );
 
-void nbp_scheduler_notify_module_started(
+void nbp_scheduler_notify_run_module(
     nbp_module_details_t* /* module */
 );
 
-void nbp_scheduler_notify_module_started_ctx(
+void nbp_scheduler_notify_run_module_ctx(
     nbp_module_details_t*, /* module */
     void* /* context */
 );
 
-void nbp_scheduler_notify_module_completed(
+void nbp_scheduler_notify_run_module_completed(
     nbp_module_details_t* /* module */
 );
 

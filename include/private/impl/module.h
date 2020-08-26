@@ -147,7 +147,7 @@ void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent,
 
     nbp_printer_notify_run_module(module);
 
-    nbp_scheduler_notify_module_started(module);
+    nbp_scheduler_notify_run_module(module);
 
     module->moduleFunc(
         module,
@@ -157,7 +157,7 @@ void nbp_module_run(nbp_module_details_t* module, nbp_module_details_t* parent,
         NBP_MEMORY_NULL_POINTER
     );
 
-    nbp_scheduler_notify_module_completed(module);
+    nbp_scheduler_notify_run_module_completed(module);
 
     nbp_module_update_stats(module);
 
@@ -172,7 +172,7 @@ void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
 
     nbp_printer_notify_run_module(module);
 
-    nbp_scheduler_notify_module_started_ctx(module, ctx);
+    nbp_scheduler_notify_run_module_ctx(module, ctx);
 
     module->moduleFunc(
         module,
@@ -182,7 +182,7 @@ void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
         NBP_MEMORY_NULL_POINTER
     );
 
-    nbp_scheduler_notify_module_completed(module);
+    nbp_scheduler_notify_run_module_completed(module);
 
     nbp_module_update_stats(module);
 
