@@ -57,30 +57,30 @@ NBP_MODULE_TEARDOWN(teardownEmptyModule)
 
 // LCOV_EXCL_STOP
 
-NBP_MODULE_FIXTURES(empty_module1, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_module1, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule1);
     NBP_MODULE_RUN(empty_submodule2);
 }
 
-NBP_MODULE_FIXTURES(empty_submodule1, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule1, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule2, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule2, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_module2, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_module2, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule3);
     NBP_MODULE_RUN(empty_submodule4);
 }
 
-NBP_MODULE_FIXTURES(empty_submodule3, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule3, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule4, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule4, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }

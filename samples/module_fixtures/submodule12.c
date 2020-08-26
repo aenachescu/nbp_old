@@ -35,7 +35,7 @@ NBP_TEST(test24)
     NBP_CHECK(1);
 }
 
-NBP_MODULE_NAME_FIXTURES(submodule12, "submodule12", NBP_MODULE_NO_SETUP, NBP_MODULE_NO_TEARDOWN)
+NBP_MODULE(submodule12, NBP_MODULE_NAME("submodule12"))
 {
     NBP_TEST_RUN(test24);
 }

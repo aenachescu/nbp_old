@@ -210,31 +210,31 @@ NBP_MODULE(module9)
     NBP_TEST_RUN(test57);
 }
 
-NBP_MODULE_FIXTURES(empty_module5, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_module5, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule9);
     NBP_MODULE_RUN(empty_submodule10);
 }
 
-NBP_MODULE_FIXTURES(empty_module6, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_module6, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule11);
     NBP_MODULE_RUN(empty_submodule12);
 }
 
-NBP_MODULE_FIXTURES(empty_submodule9, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule9, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule10, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule10, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule11, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule11, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule12, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule12, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
@@ -402,31 +402,31 @@ NBP_MODULE(module10)
     NBP_MODULE_RUN(submodule8);
 }
 
-NBP_MODULE_FIXTURES(empty_module7, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_module7, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule13);
     NBP_MODULE_RUN(empty_submodule14);
 }
 
-NBP_MODULE_FIXTURES(empty_module8, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_module8, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule15);
     NBP_MODULE_RUN(empty_submodule16);
 }
 
-NBP_MODULE_FIXTURES(empty_submodule13, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule13, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule14, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule14, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule15, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule15, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule16, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule16, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 

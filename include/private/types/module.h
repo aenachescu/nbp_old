@@ -52,6 +52,10 @@ typedef void(*nbp_module_teardown_pfn_t)(
     struct nbp_module_details_t* /* current module */
 );
 
+typedef void (*nbp_module_config_pfn_t)(
+    struct nbp_module_details_t* /* current module */
+);
+
 typedef void (*nbp_module_pfn_t)(
     struct nbp_module_details_t*, /* current module */
     nbp_module_setup_pfn_t, /* module setup pfn */
@@ -64,10 +68,11 @@ struct nbp_module_details_t {
     const char* moduleName;
     unsigned int moduleId;
     nbp_module_pfn_t moduleFunc;
+    nbp_module_config_pfn_t configFunc;
     struct nbp_module_details_t* parent;
 
-    nbp_module_setup_pfn_t setup;
-    nbp_module_teardown_pfn_t teardown;
+    nbp_module_setup_pfn_t setupFunc;
+    nbp_module_teardown_pfn_t teardownFunc;
 
     struct nbp_test_details_t* firstTest;
     struct nbp_test_details_t* lastTest;

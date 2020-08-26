@@ -145,8 +145,8 @@ NBP_MODULE_TEARDOWN(main_module_teardown)
     }
 }
 
-NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_module_on_same_thread_as_module,
-    main_module_setup, main_module_teardown)
+NBP_MAIN_MODULE(mt_scheduler_run_module_on_same_thread_as_module,
+    NBP_MODULE_FIXTURES(main_module_setup, main_module_teardown))
 {
     NBP_TEST_RUN(test2);
     NBP_TEST_RUN(test3);
@@ -479,31 +479,31 @@ NBP_MODULE(module1)
     NBP_TEST_RUN(test11);
 }
 
-NBP_MODULE_FIXTURES(empty_module1, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_module1, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule1);
     NBP_MODULE_RUN(empty_submodule2);
 }
 
-NBP_MODULE_FIXTURES(empty_module2, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_module2, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule3);
     NBP_MODULE_RUN(empty_submodule4);
 }
 
-NBP_MODULE_FIXTURES(empty_submodule1, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule1, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule2, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule2, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule3, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule3, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule4, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule4, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
@@ -671,31 +671,31 @@ NBP_MODULE(module2)
     NBP_MODULE_RUN(submodule4);
 }
 
-NBP_MODULE_FIXTURES(empty_module3, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_module3, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule5);
     NBP_MODULE_RUN(empty_submodule6);
 }
 
-NBP_MODULE_FIXTURES(empty_module4, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_module4, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule7);
     NBP_MODULE_RUN(empty_submodule8);
 }
 
-NBP_MODULE_FIXTURES(empty_submodule5, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule5, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule6, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule6, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule7, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule7, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_submodule8, setupEmptyModule, teardownEmptyModule)
+NBP_MODULE(empty_submodule8, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 

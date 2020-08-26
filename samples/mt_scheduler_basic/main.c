@@ -153,8 +153,8 @@ NBP_MODULE_TEARDOWN(main_module_teardown)
     }
 }
 
-NBP_MAIN_MODULE_FIXTURES(mt_scheduler_basic_sample, main_module_setup,
-    main_module_teardown)
+NBP_MAIN_MODULE(mt_scheduler_basic_sample,
+    NBP_MODULE_FIXTURES(main_module_setup, main_module_teardown))
 {
     NBP_TEST_RUN(test1);
     NBP_TEST_RUN(test2);

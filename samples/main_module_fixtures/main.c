@@ -54,8 +54,8 @@ NBP_TEST(test4)
     NBP_CHECK(1 == 1);
 }
 
-NBP_MAIN_MODULE_FIXTURES(main_module_fixtures, setupMainModule,
-    teardownMainModule)
+NBP_MAIN_MODULE(main_module_fixtures,
+    NBP_MODULE_FIXTURES(setupMainModule, teardownMainModule))
 {
     NBP_TEST_RUN(test1);
     NBP_TEST_RUN(test2);

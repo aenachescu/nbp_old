@@ -56,7 +56,7 @@ NBP_MODULE_TEARDOWN(teardownModule)
     );
 }
 
-NBP_MAIN_MODULE_FIXTURES(test_assert_sample, setupModule, teardownModule)
+NBP_MAIN_MODULE(test_assert_sample, NBP_MODULE_FIXTURES(setupModule, teardownModule))
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);
@@ -68,7 +68,7 @@ NBP_MAIN_MODULE_FIXTURES(test_assert_sample, setupModule, teardownModule)
     NBP_TEST_RUN(test3);
 }
 
-NBP_MODULE_FIXTURES(module1, setupModule, teardownModule)
+NBP_MODULE(module1, NBP_MODULE_FIXTURES(setupModule, teardownModule))
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);
@@ -78,7 +78,7 @@ NBP_MODULE_FIXTURES(module1, setupModule, teardownModule)
     NBP_MODULE_RUN(submodule2);
 }
 
-NBP_MODULE_FIXTURES(module2, setupModule, teardownModule)
+NBP_MODULE(module2, NBP_MODULE_FIXTURES(setupModule, teardownModule))
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);
@@ -89,7 +89,7 @@ NBP_MODULE_FIXTURES(module2, setupModule, teardownModule)
     NBP_TEST_RUN(test6);
 }
 
-NBP_MODULE_FIXTURES(submodule1, setupModule, teardownModule)
+NBP_MODULE(submodule1, NBP_MODULE_FIXTURES(setupModule, teardownModule))
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);
@@ -100,7 +100,7 @@ NBP_MODULE_FIXTURES(submodule1, setupModule, teardownModule)
     NBP_TEST_RUN(test10);
 }
 
-NBP_MODULE_FIXTURES(submodule2, setupModule, teardownModule)
+NBP_MODULE(submodule2, NBP_MODULE_FIXTURES(setupModule, teardownModule))
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);
@@ -111,7 +111,7 @@ NBP_MODULE_FIXTURES(submodule2, setupModule, teardownModule)
     NBP_TEST_RUN(test14);
 }
 
-NBP_MODULE_FIXTURES(submodule3, setupModule, teardownModule)
+NBP_MODULE(submodule3, NBP_MODULE_FIXTURES(setupModule, teardownModule))
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);
@@ -122,7 +122,7 @@ NBP_MODULE_FIXTURES(submodule3, setupModule, teardownModule)
     NBP_TEST_RUN(test18);
 }
 
-NBP_MODULE_FIXTURES(submodule4, setupModule, teardownModule)
+NBP_MODULE(submodule4, NBP_MODULE_FIXTURES(setupModule, teardownModule))
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);

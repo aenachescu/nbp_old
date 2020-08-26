@@ -41,8 +41,8 @@ unsigned int test3_test1TeardownValue = 0;
 
 SAMPLE_SEMAPHORE_TYPE g_semaphore = SAMPLE_SEMAPHORE_DEFAULT_VALUE;
 
-NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_before_test_from_other_module,
-    main_module_setup, main_module_teardown)
+NBP_MAIN_MODULE(mt_scheduler_run_test_before_test_from_other_module,
+    NBP_MODULE_FIXTURES(main_module_setup, main_module_teardown))
 {
     NBP_MODULE_RUN(module);
     NBP_TEST_RUN_CTX(

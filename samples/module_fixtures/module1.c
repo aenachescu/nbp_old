@@ -27,7 +27,7 @@ SOFTWARE.
 
 #include <nbp.h>
 
-NBP_MODULE_FIXTURES(module1, module1_setup, module1_teardown)
+NBP_MODULE(module1, NBP_MODULE_FIXTURES(module1_setup, module1_teardown))
 {
     NBP_MODULE_RUN(submodule1);
     NBP_MODULE_RUN(submodule2);

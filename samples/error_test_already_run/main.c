@@ -50,7 +50,7 @@ NBP_TEST_TEARDOWN(test_teardown)
     write_message_to_file("test teardown - this message should not be printed");
 }
 
-NBP_MAIN_MODULE_FIXTURES(error_test_already_run, module_setup, module_teardown)
+NBP_MAIN_MODULE(error_test_already_run, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     write_message_to_file("processing main module");
 
@@ -61,7 +61,7 @@ NBP_MAIN_MODULE_FIXTURES(error_test_already_run, module_setup, module_teardown)
     NBP_MODULE_RUN(module2);
 }
 
-NBP_MODULE_FIXTURES(module1, module_setup, module_teardown)
+NBP_MODULE(module1, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     write_message_to_file("processing module1");
 
@@ -71,7 +71,7 @@ NBP_MODULE_FIXTURES(module1, module_setup, module_teardown)
     NBP_TEST_RUN(test6);
 }
 
-NBP_MODULE_FIXTURES(module2, module_setup, module_teardown)
+NBP_MODULE(module2, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     write_message_to_file("processing module2");
 

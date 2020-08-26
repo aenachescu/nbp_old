@@ -29,7 +29,7 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_MODULE_FIXTURES(module4, module_setup, module_teardown)
+NBP_MODULE(module4, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_MODULE_RUN(empty_module7);
     NBP_MODULE_RUN(submodule7);
@@ -39,7 +39,7 @@ NBP_MODULE_FIXTURES(module4, module_setup, module_teardown)
     NBP_TEST_RUN(test54);
 }
 
-NBP_MODULE_FIXTURES(submodule7, module_setup, module_teardown)
+NBP_MODULE(submodule7, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_MODULE_RUN(subsubmodule13);
     NBP_TEST_RUN(test55);
@@ -47,7 +47,7 @@ NBP_MODULE_FIXTURES(submodule7, module_setup, module_teardown)
     NBP_TEST_RUN(test56);
 }
 
-NBP_MODULE_FIXTURES(submodule8, module_setup, module_teardown)
+NBP_MODULE(submodule8, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_TEST_RUN(test57);
     NBP_MODULE_RUN(subsubmodule15);
@@ -55,7 +55,7 @@ NBP_MODULE_FIXTURES(submodule8, module_setup, module_teardown)
     NBP_MODULE_RUN(subsubmodule16);
 }
 
-NBP_MODULE_FIXTURES(subsubmodule13, module_setup, module_teardown)
+NBP_MODULE(subsubmodule13, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_TEST_RUN(test59);
     NBP_TEST_RUN(test60);
@@ -63,7 +63,7 @@ NBP_MODULE_FIXTURES(subsubmodule13, module_setup, module_teardown)
     NBP_TEST_RUN(test62);
 }
 
-NBP_MODULE_FIXTURES(subsubmodule14, module_setup, module_teardown)
+NBP_MODULE(subsubmodule14, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_TEST_RUN(test63);
     NBP_TEST_RUN(test64);
@@ -71,7 +71,7 @@ NBP_MODULE_FIXTURES(subsubmodule14, module_setup, module_teardown)
     NBP_TEST_RUN(test66);
 }
 
-NBP_MODULE_FIXTURES(subsubmodule15, module_setup, module_teardown)
+NBP_MODULE(subsubmodule15, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_TEST_RUN(test67);
     NBP_TEST_RUN(test68);
@@ -79,7 +79,7 @@ NBP_MODULE_FIXTURES(subsubmodule15, module_setup, module_teardown)
     NBP_TEST_RUN(test70);
 }
 
-NBP_MODULE_FIXTURES(subsubmodule16, module_setup, module_teardown)
+NBP_MODULE(subsubmodule16, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_TEST_RUN(test71);
     NBP_TEST_RUN(test72);

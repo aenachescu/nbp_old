@@ -27,70 +27,70 @@ SOFTWARE.
 
 #include <nbp.h>
 
-NBP_MODULE_FIXTURES(empty_module1, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module1, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_module3);
     NBP_MODULE_RUN(empty_module4);
 }
 
-NBP_MODULE_FIXTURES(empty_module2, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module2, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_module9);
     NBP_MODULE_RUN(empty_module10);
 }
 
-NBP_MODULE_FIXTURES(empty_module3, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module3, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_module5);
     NBP_MODULE_RUN(empty_module6);
 }
 
-NBP_MODULE_FIXTURES(empty_module4, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module4, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_module7);
     NBP_MODULE_RUN(empty_module8);
 }
 
-NBP_MODULE_FIXTURES(empty_module5, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module5, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_module6, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module6, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_module7, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module7, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_module8, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module8, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_module9, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module9, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_module11);
     NBP_MODULE_RUN(empty_module12);
 }
 
-NBP_MODULE_FIXTURES(empty_module10, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module10, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_module13);
     NBP_MODULE_RUN(empty_module14);
 }
 
-NBP_MODULE_FIXTURES(empty_module11, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module11, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_module12, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module12, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_module13, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module13, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE_FIXTURES(empty_module14, empty_module_setup, empty_module_teardown)
+NBP_MODULE(empty_module14, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }

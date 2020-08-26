@@ -46,6 +46,6 @@ NBP_MODULE_TEARDOWN(teardownModule)
 
 // LCOV_EXCL_STOP
 
-NBP_MAIN_MODULE_FIXTURES(empty_main_module, setupModule, teardownModule)
+NBP_MAIN_MODULE(empty_main_module, NBP_MODULE_FIXTURES(setupModule, teardownModule))
 {
 }

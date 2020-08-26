@@ -53,7 +53,7 @@ NBP_TEST(test4)
     NBP_CHECK(4);
 }
 
-NBP_MODULE_FIXTURES(submodule1, submodule_setup, submodule_teardown)
+NBP_MODULE(submodule1, NBP_MODULE_FIXTURES(submodule_setup, submodule_teardown))
 {
     NBP_TEST_RUN(test1);
     NBP_TEST_RUN(test2);

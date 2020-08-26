@@ -56,6 +56,8 @@ static void nbp_module_init(nbp_module_details_t* module,
         NBP_EXIT(NBP_ERROR_CODE_MODULE_ALREADY_RUN);
     }
 
+    module->configFunc(module);
+
     int errCode = NBP_SYNC_EVENT_INIT(module->runEvent);
     if (errCode != NBP_ERROR_CODE_SUCCESS) {
         // these lines are excluded from coverage because it is pretty hard to
@@ -78,26 +80,26 @@ static void nbp_module_init(nbp_module_details_t* module,
 
     nbp_module_setup_pfn_t emptyModuleSetup =
         NBP_PP_CONCAT(nbp_module_setup_, nbp_module_empty_setup_func);
-    if (module->setup == emptyModuleSetup) {
-        module->setup = NBP_MEMORY_NULL_POINTER;
+    if (module->setupFunc == emptyModuleSetup) {
+        module->setupFunc = NBP_MEMORY_NULL_POINTER;
     }
 
-    if (module->setup == NBP_MEMORY_NULL_POINTER &&
+    if (module->setupFunc == NBP_MEMORY_NULL_POINTER &&
         setupFunc != NBP_MEMORY_NULL_POINTER &&
         setupFunc != emptyModuleSetup) {
-        module->setup = setupFunc;
+        module->setupFunc = setupFunc;
     }
 
     nbp_module_teardown_pfn_t emptyModuleTeardown =
         NBP_PP_CONCAT(nbp_module_teardown_, nbp_module_empty_teardown_func);
-    if (module->teardown == emptyModuleTeardown) {
-        module->teardown = NBP_MEMORY_NULL_POINTER;
+    if (module->teardownFunc == emptyModuleTeardown) {
+        module->teardownFunc = NBP_MEMORY_NULL_POINTER;
     }
 
-    if (module->teardown == NBP_MEMORY_NULL_POINTER &&
+    if (module->teardownFunc == NBP_MEMORY_NULL_POINTER &&
         teardownFunc != NBP_MEMORY_NULL_POINTER &&
         teardownFunc != emptyModuleTeardown) {
-        module->teardown = teardownFunc;
+        module->teardownFunc = teardownFunc;
     }
 
     module->moduleId = nbpTotalNumberOfModules;

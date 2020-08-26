@@ -119,7 +119,7 @@ NBP_TEST(test22, NBP_TEST_FIXTURES(test22_setup, test22_teardown))
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
 
-NBP_MODULE_FIXTURES(module4, module4_setup, module4_teardown)
+NBP_MODULE(module4, NBP_MODULE_FIXTURES(module4_setup, module4_teardown))
 {
     NBP_MODULE_RUN(empty_module2);
 
@@ -134,7 +134,7 @@ NBP_MODULE_FIXTURES(module4, module4_setup, module4_teardown)
     NBP_TEST_RUN(test22);
 }
 
-NBP_MODULE_FIXTURES(submodule3, submodule3_setup, submodule3_teardown)
+NBP_MODULE(submodule3, NBP_MODULE_FIXTURES(submodule3_setup, submodule3_teardown))
 {
     NBP_MODULE_RUN(subsubmodule5);
 
@@ -147,7 +147,7 @@ NBP_MODULE_FIXTURES(submodule3, submodule3_setup, submodule3_teardown)
     NBP_TEST_RUN(test38);
 }
 
-NBP_MODULE_FIXTURES(submodule4, submodule4_setup, submodule4_teardown)
+NBP_MODULE(submodule4, NBP_MODULE_FIXTURES(submodule4_setup, submodule4_teardown))
 {
     NBP_MODULE_RUN(subsubmodule7);
 
@@ -160,22 +160,22 @@ NBP_MODULE_FIXTURES(submodule4, submodule4_setup, submodule4_teardown)
     NBP_TEST_RUN(test42);
 }
 
-NBP_MODULE_FIXTURES(subsubmodule5, subsubmodule5_setup, subsubmodule5_teardown)
+NBP_MODULE(subsubmodule5, NBP_MODULE_FIXTURES(subsubmodule5_setup, subsubmodule5_teardown))
 {
     NBP_TEST_RUN(test43);
 }
 
-NBP_MODULE_FIXTURES(subsubmodule6, subsubmodule6_setup, subsubmodule6_teardown)
+NBP_MODULE(subsubmodule6, NBP_MODULE_FIXTURES(subsubmodule6_setup, subsubmodule6_teardown))
 {
     NBP_TEST_RUN(test44);
 }
 
-NBP_MODULE_FIXTURES(subsubmodule7, subsubmodule7_setup, subsubmodule7_teardown)
+NBP_MODULE(subsubmodule7, NBP_MODULE_FIXTURES(subsubmodule7_setup, subsubmodule7_teardown))
 {
     NBP_TEST_RUN(test45);
 }
 
-NBP_MODULE_FIXTURES(subsubmodule8, subsubmodule8_setup, subsubmodule8_teardown)
+NBP_MODULE(subsubmodule8, NBP_MODULE_FIXTURES(subsubmodule8_setup, subsubmodule8_teardown))
 {
     NBP_TEST_RUN(test46);
 }

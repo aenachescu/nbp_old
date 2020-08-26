@@ -34,8 +34,8 @@ SAMPLE_SEMAPHORE_TYPE g_semaphores[4];
 SAMPLE_ATOMIC_UINT_TYPE g_setupCounter = SAMPLE_ATOMIC_UINT_INIT(0);
 SAMPLE_ATOMIC_UINT_TYPE g_teardownCounter = SAMPLE_ATOMIC_UINT_INIT(0);
 
-NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_fixtures_in_parallel,
-    mainSetup, mainTeardown)
+NBP_MAIN_MODULE(mt_scheduler_run_test_fixtures_in_parallel,
+    NBP_MODULE_FIXTURES(mainSetup, mainTeardown))
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);

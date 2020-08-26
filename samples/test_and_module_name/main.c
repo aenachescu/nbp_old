@@ -60,17 +60,17 @@ NBP_TEST(test2, NBP_TEST_NAME("second test"))
     NBP_CHECK(1);
 }
 
-NBP_MODULE_NAME(module1, "first module")
+NBP_MODULE(module1, NBP_MODULE_NAME("first module"))
 {
     NBP_TEST_RUN(test1);
 }
 
-NBP_MODULE_NAME(module2, "second module")
+NBP_MODULE(module2, NBP_MODULE_NAME("second module"))
 {
     NBP_TEST_RUN(test2);
 }
 
-NBP_MAIN_MODULE_NAME(test_and_module_name, "main module")
+NBP_MAIN_MODULE(test_and_module_name, NBP_MODULE_NAME("main module"))
 {
     NBP_TEST_RUN(test_and_module_name_test1);
     NBP_MODULE_RUN(module1);

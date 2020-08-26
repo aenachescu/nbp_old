@@ -53,8 +53,8 @@ unsigned int submodule1_test1TeardownValue = 0;
 
 SAMPLE_SEMAPHORE_TYPE g_semaphore;
 
-NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_before_submodule,
-    main_module_setup, main_module_teardown)
+NBP_MAIN_MODULE(mt_scheduler_run_test_before_submodule,
+    NBP_MODULE_FIXTURES(main_module_setup, main_module_teardown))
 {
     NBP_MODULE_RUN(module);
     NBP_TEST_RUN_CTX(
@@ -75,7 +75,7 @@ NBP_MODULE(module)
     NBP_MODULE_RUN(submodule2);
 }
 
-NBP_MODULE_FIXTURES(submodule1, submodule1_setup, submodule1_teardown)
+NBP_MODULE(submodule1, NBP_MODULE_FIXTURES(submodule1_setup, submodule1_teardown))
 {
     NBP_TEST_RUN(test6);
     NBP_TEST_RUN(test7);

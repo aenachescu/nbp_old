@@ -136,8 +136,8 @@ NBP_TEST(test5, NBP_TEST_FIXTURES(test5_setup, test5_teardown))
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&test5Value, 1);
 }
 
-NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_before_and_after,
-    main_module_setup, main_module_teardown)
+NBP_MAIN_MODULE(mt_scheduler_run_test_before_and_after,
+    NBP_MODULE_FIXTURES(main_module_setup, main_module_teardown))
 {
     NBP_MODULE_RUN(module1);
     NBP_MODULE_RUN(module3);
@@ -260,7 +260,7 @@ NBP_TEST(test10, NBP_TEST_FIXTURES(test10_setup, test10_teardown))
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module1Value, 1);
 }
 
-NBP_MODULE_FIXTURES(module1, module1_setup, module1_teardown)
+NBP_MODULE(module1, NBP_MODULE_FIXTURES(module1_setup, module1_teardown))
 {
     NBP_TEST_RUN(test7);
     NBP_TEST_RUN(test8);
@@ -352,7 +352,7 @@ NBP_TEST(test18, NBP_TEST_FIXTURES(test18_setup, test18_teardown))
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module3Value, 1);
 }
 
-NBP_MODULE_FIXTURES(module3, module3_setup, module3_teardown)
+NBP_MODULE(module3, NBP_MODULE_FIXTURES(module3_setup, module3_teardown))
 {
     NBP_TEST_RUN(test15);
     NBP_TEST_RUN(test16);

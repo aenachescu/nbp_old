@@ -101,8 +101,8 @@ NBP_MODULE_TEARDOWN(main_module_teardown)
     }
 }
 
-NBP_MAIN_MODULE_FIXTURES(mt_scheduler_run_test_on_same_thread_as_module,
-    main_module_setup, main_module_teardown)
+NBP_MAIN_MODULE(mt_scheduler_run_test_on_same_thread_as_module,
+    NBP_MODULE_FIXTURES(main_module_setup, main_module_teardown))
 {
     NBP_TEST_RUN(test26);
     NBP_TEST_RUN(test27);

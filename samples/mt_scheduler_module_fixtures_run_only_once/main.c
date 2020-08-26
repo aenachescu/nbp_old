@@ -45,7 +45,7 @@ NBP_MODULE_TEARDOWN(teardown)
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&teardownCounter, 1);
 }
 
-NBP_MODULE_FIXTURES(module1, setup, teardown)
+NBP_MODULE(module1, NBP_MODULE_FIXTURES(setup, teardown))
 {
     NBP_TEST_RUN(test1);
     NBP_TEST_RUN(test2);

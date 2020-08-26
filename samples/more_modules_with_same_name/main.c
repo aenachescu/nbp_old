@@ -116,8 +116,8 @@ NBP_TEST_TEARDOWN(test_teardown)
     write_message_to_file_2("test teardown", NBP_TEST_GET_NAME(NBP_TEST_THIS));
 }
 
-NBP_MAIN_MODULE_FIXTURES(more_modules_with_same_name, module_setup,
-    module_teardown)
+NBP_MAIN_MODULE(more_modules_with_same_name,
+    NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_MODULE_RUN(module1);
     NBP_MODULE_RUN(module2);
@@ -125,7 +125,7 @@ NBP_MAIN_MODULE_FIXTURES(more_modules_with_same_name, module_setup,
     NBP_MODULE_RUN(module4);
 }
 
-NBP_MODULE_NAME_FIXTURES(module1, "module", module1_setup, module1_teardown)
+NBP_MODULE(module1, NBP_MODULE_NAME("module"), NBP_MODULE_FIXTURES(module1_setup, module1_teardown))
 {
     NBP_MODULE_RUN(submodule1);
     NBP_MODULE_RUN(submodule2);
@@ -133,7 +133,7 @@ NBP_MODULE_NAME_FIXTURES(module1, "module", module1_setup, module1_teardown)
     NBP_MODULE_RUN(submodule4);
 }
 
-NBP_MODULE_FIXTURES(module2, module_setup, module_teardown)
+NBP_MODULE(module2, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_MODULE_RUN(submodule5);
     NBP_MODULE_RUN(submodule6);
@@ -141,7 +141,7 @@ NBP_MODULE_FIXTURES(module2, module_setup, module_teardown)
     NBP_MODULE_RUN(submodule8);
 }
 
-NBP_MODULE_NAME_FIXTURES(module3, "module", module3_setup, module3_teardown)
+NBP_MODULE(module3, NBP_MODULE_NAME("module"), NBP_MODULE_FIXTURES(module3_setup, module3_teardown))
 {
     NBP_TEST_RUN(test1);
     NBP_TEST_RUN(test2);
@@ -149,7 +149,7 @@ NBP_MODULE_NAME_FIXTURES(module3, "module", module3_setup, module3_teardown)
     NBP_TEST_RUN(test4);
 }
 
-NBP_MODULE_FIXTURES(module4, module_setup, module_teardown)
+NBP_MODULE(module4, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_TEST_RUN(test5);
     NBP_TEST_RUN(test6);
@@ -157,8 +157,8 @@ NBP_MODULE_FIXTURES(module4, module_setup, module_teardown)
     NBP_TEST_RUN(test8);
 }
 
-NBP_MODULE_NAME_FIXTURES(submodule1, "module", submodule1_setup,
-    submodule1_teardown)
+NBP_MODULE(submodule1, NBP_MODULE_NAME("module"),
+    NBP_MODULE_FIXTURES(submodule1_setup, submodule1_teardown))
 {
     NBP_TEST_RUN(test9);
     NBP_TEST_RUN(test10);
@@ -166,7 +166,7 @@ NBP_MODULE_NAME_FIXTURES(submodule1, "module", submodule1_setup,
     NBP_TEST_RUN(test12);
 }
 
-NBP_MODULE_FIXTURES(submodule2, module_setup, module_teardown)
+NBP_MODULE(submodule2, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_TEST_RUN(test13);
     NBP_TEST_RUN(test14);
@@ -174,8 +174,8 @@ NBP_MODULE_FIXTURES(submodule2, module_setup, module_teardown)
     NBP_TEST_RUN(test16);
 }
 
-NBP_MODULE_NAME_FIXTURES(submodule3, "module", submodule3_setup,
-    submodule3_teardown)
+NBP_MODULE(submodule3, NBP_MODULE_NAME("module"),
+    NBP_MODULE_FIXTURES(submodule3_setup, submodule3_teardown))
 {
     NBP_TEST_RUN(test17);
     NBP_TEST_RUN(test18);
@@ -183,7 +183,7 @@ NBP_MODULE_NAME_FIXTURES(submodule3, "module", submodule3_setup,
     NBP_TEST_RUN(test20);
 }
 
-NBP_MODULE_FIXTURES(submodule4, module_setup, module_teardown)
+NBP_MODULE(submodule4, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_TEST_RUN(test21);
     NBP_TEST_RUN(test22);
@@ -191,7 +191,7 @@ NBP_MODULE_FIXTURES(submodule4, module_setup, module_teardown)
     NBP_TEST_RUN(test24);
 }
 
-NBP_MODULE_FIXTURES(submodule5, module_setup, module_teardown)
+NBP_MODULE(submodule5, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_TEST_RUN(test25);
     NBP_TEST_RUN(test26);
@@ -199,8 +199,8 @@ NBP_MODULE_FIXTURES(submodule5, module_setup, module_teardown)
     NBP_TEST_RUN(test28);
 }
 
-NBP_MODULE_NAME_FIXTURES(submodule6, "module", submodule6_setup,
-    submodule6_teardown)
+NBP_MODULE(submodule6, NBP_MODULE_NAME("module"),
+    NBP_MODULE_FIXTURES(submodule6_setup, submodule6_teardown))
 {
     NBP_TEST_RUN(test29);
     NBP_TEST_RUN(test30);
@@ -208,7 +208,7 @@ NBP_MODULE_NAME_FIXTURES(submodule6, "module", submodule6_setup,
     NBP_TEST_RUN(test32);
 }
 
-NBP_MODULE_FIXTURES(submodule7, module_setup, module_teardown)
+NBP_MODULE(submodule7, NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     NBP_TEST_RUN(test33);
     NBP_TEST_RUN(test34);
@@ -216,8 +216,8 @@ NBP_MODULE_FIXTURES(submodule7, module_setup, module_teardown)
     NBP_TEST_RUN(test36);
 }
 
-NBP_MODULE_NAME_FIXTURES(submodule8, "module", submodule8_setup,
-    submodule8_teardown)
+NBP_MODULE(submodule8, NBP_MODULE_NAME("module"),
+    NBP_MODULE_FIXTURES(submodule8_setup, submodule8_teardown))
 {
     NBP_TEST_RUN(test37);
     NBP_TEST_RUN(test38);

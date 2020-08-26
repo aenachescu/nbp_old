@@ -334,8 +334,8 @@ static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
     if (oldVal == NBP_MODULE_PRIVATE_SKIP_NOT_SET) {
         unsigned int parentFlags = nbp_scheduler_setup_module(module->parent);
         if (parentFlags == NBP_MODULE_PRIVATE_SKIP_PROCESSED) {
-            if (module->setup != NBP_MEMORY_NULL_POINTER) {
-                module->setup(module);
+            if (module->setupFunc != NBP_MEMORY_NULL_POINTER) {
+                module->setupFunc(module);
             }
 
             NBP_ERROR_CODE_TYPE errCode = NBP_SYNC_EVENT_NOTIFY(module->setupEvent);
@@ -508,8 +508,8 @@ static void nbp_scheduler_teardown_module(nbp_module_details_t* module)
 
         isSkipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->isSkipped);
         if (isSkipped == NBP_MODULE_PRIVATE_SKIP_PROCESSED) {
-            if (module->teardown != NBP_MEMORY_NULL_POINTER) {
-                module->teardown(module);
+            if (module->teardownFunc != NBP_MEMORY_NULL_POINTER) {
+                module->teardownFunc(module);
             }
         }
 
