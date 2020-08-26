@@ -29,12 +29,6 @@ SOFTWARE.
 #define NBP_PRIVATE_API_TEST_H
 
 /*
- * TODO: add docs
- */
-#define NBP_TEST_NO_SETUP                                                      \
-    nbp_test_empty_setup_func
-
-/*
  * @public doc
  *
  * @brief
@@ -128,12 +122,6 @@ SOFTWARE.
  */
 #define NBP_TEST_RESET_SETUP()                                                 \
     nbpParamTestSetup = NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_TEST_NO_TEARDOWN                                                   \
-    nbp_test_empty_teardown_func
 
 /*
  * @public doc

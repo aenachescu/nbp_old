@@ -30,18 +30,6 @@ SOFTWARE.
 
 unsigned int nbpTotalNumberOfTests = 0;
 
-// these fixtures are not run because if they are used then the fixture pfn will
-// be replace with NBP_MEMORY_NULL_POINTER
-// LCOV_EXCL_START
-NBP_TEST_SETUP(nbp_test_empty_setup_func)
-{
-}
-
-NBP_TEST_TEARDOWN(nbp_test_empty_teardown_func)
-{
-}
-// LCOV_EXCL_STOP
-
 static void nbp_test_init(nbp_test_details_t* test,
     nbp_module_details_t* module, nbp_test_setup_pfn_t testSetup,
     nbp_test_teardown_pfn_t testTeardown)
@@ -66,27 +54,15 @@ static void nbp_test_init(nbp_test_details_t* test,
     test->module->ownTests.num++;
     test->module->taskNum++;
 
-    // reset setup function if it is the same with empty setup function
-    if (test->testSetupFunc == nbp_test_setup_nbp_test_empty_setup_func) {
-        test->testSetupFunc = NBP_MEMORY_NULL_POINTER;
-    }
-
     // set setup function
     if (test->testSetupFunc == NBP_MEMORY_NULL_POINTER &&
-        testSetup != NBP_MEMORY_NULL_POINTER &&
-        testSetup != nbp_test_setup_nbp_test_empty_setup_func) {
+        testSetup != NBP_MEMORY_NULL_POINTER) {
         test->testSetupFunc = testSetup;
-    }
-
-    // reset teardown function if it is the same with empty teardown function
-    if (test->testTeardownFunc == nbp_test_teardown_nbp_test_empty_teardown_func) {
-        test->testTeardownFunc = NBP_MEMORY_NULL_POINTER;
     }
 
     // set teardown function
     if (test->testTeardownFunc == NBP_MEMORY_NULL_POINTER &&
-        testTeardown != NBP_MEMORY_NULL_POINTER &&
-        testTeardown != nbp_test_teardown_nbp_test_empty_teardown_func) {
+        testTeardown != NBP_MEMORY_NULL_POINTER) {
         test->testTeardownFunc = testTeardown;
     }
 
