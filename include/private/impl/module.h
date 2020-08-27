@@ -82,7 +82,7 @@ static void nbp_module_init(nbp_module_details_t* module,
     module->parent = parent;
 
     if (parent != NBP_MEMORY_NULL_POINTER) {
-        parent->ownModules.num++;
+        parent->modules.num++;
         parent->taskNum++;
         if (parent->firstModule == NBP_MEMORY_NULL_POINTER) {
             parent->firstModule = module;
@@ -101,10 +101,8 @@ static void nbp_module_update_stats(nbp_module_details_t* module)
 {
     nbp_module_details_t* idx = module->firstModule;
     while (idx != NBP_MEMORY_NULL_POINTER) {
-        module->subModules.num += idx->ownModules.num;
-        module->subModules.num += idx->subModules.num;
-        module->subTests.num   += idx->ownTests.num;
-        module->subTests.num   += idx->subTests.num;
+        module->modules.num += idx->modules.num;
+        module->tests.num   += idx->tests.num;
 
         if (idx->isEmptyModule == 0) {
             module->isEmptyModule = 0;

@@ -35,38 +35,38 @@ static void nbp_scheduler_update_module_stats(nbp_test_details_t* test)
     nbp_module_details_t* m = test->module;
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->own.checks.numPassed,
+        &m->checks.numPassed,
         test->checks.numPassed
     );
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->own.checks.numFailed,
+        &m->checks.numFailed,
         test->checks.numFailed
     );
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->own.testAsserts.numPassed,
+        &m->testAsserts.numPassed,
         test->testAsserts.numPassed
     );
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->own.testAsserts.numFailed,
+        &m->testAsserts.numFailed,
         test->testAsserts.numFailed
     );
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->own.moduleAsserts.numPassed,
+        &m->moduleAsserts.numPassed,
         test->moduleAsserts.numPassed
     );
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->own.moduleAsserts.numFailed,
+        &m->moduleAsserts.numFailed,
         test->moduleAsserts.numFailed
     );
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->own.asserts.numPassed,
+        &m->asserts.numPassed,
         test->asserts.numPassed
     );
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->own.asserts.numFailed,
+        &m->asserts.numFailed,
         test->asserts.numFailed
     );
 }
@@ -83,69 +83,43 @@ static void nbp_scheduler_update_parent_stats(nbp_module_details_t* module)
 #define NBP_PRIVATE_TMP_ADD(a, b)                                              \
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&a, NBP_SYNC_ATOMIC_UINT_LOAD(&b))
 
-    // sub modules stats
-    NBP_PRIVATE_TMP_ADD(p->subModules.numPassed, m->ownModules.numPassed);
-    NBP_PRIVATE_TMP_ADD(p->subModules.numPassed, m->subModules.numPassed);
-    NBP_PRIVATE_TMP_ADD(p->subModules.numFailed, m->ownModules.numFailed);
-    NBP_PRIVATE_TMP_ADD(p->subModules.numFailed, m->subModules.numFailed);
-    NBP_PRIVATE_TMP_ADD(p->subModules.numSkipped, m->ownModules.numSkipped);
-    NBP_PRIVATE_TMP_ADD(p->subModules.numSkipped, m->subModules.numSkipped);
+    // modules stats
+    NBP_PRIVATE_TMP_ADD(p->modules.numPassed, m->modules.numPassed);
+    NBP_PRIVATE_TMP_ADD(p->modules.numFailed, m->modules.numFailed);
+    NBP_PRIVATE_TMP_ADD(p->modules.numSkipped, m->modules.numSkipped);
 
-    // sub tests stats
-    NBP_PRIVATE_TMP_ADD(p->subTests.numPassed, m->ownTests.numPassed);
-    NBP_PRIVATE_TMP_ADD(p->subTests.numPassed, m->subTests.numPassed);
-    NBP_PRIVATE_TMP_ADD(p->subTests.numFailed, m->ownTests.numFailed);
-    NBP_PRIVATE_TMP_ADD(p->subTests.numFailed, m->subTests.numFailed);
-    NBP_PRIVATE_TMP_ADD(p->subTests.numSkipped, m->ownTests.numSkipped);
-    NBP_PRIVATE_TMP_ADD(p->subTests.numSkipped, m->subTests.numSkipped);
+    // tests stats
+    NBP_PRIVATE_TMP_ADD(p->tests.numPassed, m->tests.numPassed);
+    NBP_PRIVATE_TMP_ADD(p->tests.numFailed, m->tests.numFailed);
+    NBP_PRIVATE_TMP_ADD(p->tests.numSkipped, m->tests.numSkipped);
 
-    // sub checks stats
-    NBP_PRIVATE_TMP_ADD(p->sub.checks.numPassed, m->own.checks.numPassed);
-    NBP_PRIVATE_TMP_ADD(p->sub.checks.numPassed, m->sub.checks.numPassed);
-    NBP_PRIVATE_TMP_ADD(p->sub.checks.numFailed, m->own.checks.numFailed);
-    NBP_PRIVATE_TMP_ADD(p->sub.checks.numFailed, m->sub.checks.numFailed);
+    // checks stats
+    NBP_PRIVATE_TMP_ADD(p->checks.numPassed, m->checks.numPassed);
+    NBP_PRIVATE_TMP_ADD(p->checks.numFailed, m->checks.numFailed);
 
-    // sub test asserts stats
+    // test asserts stats
     NBP_PRIVATE_TMP_ADD(
-        p->sub.testAsserts.numPassed,
-        m->own.testAsserts.numPassed
+        p->testAsserts.numPassed,
+        m->testAsserts.numPassed
     );
     NBP_PRIVATE_TMP_ADD(
-        p->sub.testAsserts.numPassed,
-        m->sub.testAsserts.numPassed
-    );
-    NBP_PRIVATE_TMP_ADD(
-        p->sub.testAsserts.numFailed,
-        m->own.testAsserts.numFailed
-    );
-    NBP_PRIVATE_TMP_ADD(
-        p->sub.testAsserts.numFailed,
-        m->sub.testAsserts.numFailed
+        p->testAsserts.numFailed,
+        m->testAsserts.numFailed
     );
 
-    // sub module asserts stats
+    // module asserts stats
     NBP_PRIVATE_TMP_ADD(
-        p->sub.moduleAsserts.numPassed,
-        m->own.moduleAsserts.numPassed
+        p->moduleAsserts.numPassed,
+        m->moduleAsserts.numPassed
     );
     NBP_PRIVATE_TMP_ADD(
-        p->sub.moduleAsserts.numPassed,
-        m->sub.moduleAsserts.numPassed
-    );
-    NBP_PRIVATE_TMP_ADD(
-        p->sub.moduleAsserts.numFailed,
-        m->own.moduleAsserts.numFailed
-    );
-    NBP_PRIVATE_TMP_ADD(
-        p->sub.moduleAsserts.numFailed,
-        m->sub.moduleAsserts.numFailed
+        p->moduleAsserts.numFailed,
+        m->moduleAsserts.numFailed
     );
 
-    // sub asserts stats
-    NBP_PRIVATE_TMP_ADD(p->sub.asserts.numPassed, m->own.asserts.numPassed);
-    NBP_PRIVATE_TMP_ADD(p->sub.asserts.numPassed, m->sub.asserts.numPassed);
-    NBP_PRIVATE_TMP_ADD(p->sub.asserts.numFailed, m->own.asserts.numFailed);
-    NBP_PRIVATE_TMP_ADD(p->sub.asserts.numFailed, m->sub.asserts.numFailed);
+    // asserts stats
+    NBP_PRIVATE_TMP_ADD(p->asserts.numPassed, m->asserts.numPassed);
+    NBP_PRIVATE_TMP_ADD(p->asserts.numFailed, m->asserts.numFailed);
 
 #undef NBP_PRIVATE_TMP_ADD
 }
@@ -153,28 +127,28 @@ static void nbp_scheduler_update_parent_stats(nbp_module_details_t* module)
 static void nbp_scheduler_update_module_state(nbp_module_details_t* module)
 {
     unsigned int numPassedTests = NBP_SYNC_ATOMIC_UINT_LOAD(
-        &module->ownTests.numPassed
+        &module->tests.numPassed
     );
     unsigned int numSkippedTests = NBP_SYNC_ATOMIC_UINT_LOAD(
-        &module->ownTests.numSkipped
+        &module->tests.numSkipped
     );
     unsigned int numPassedModules = NBP_SYNC_ATOMIC_UINT_LOAD(
-        &module->ownModules.numPassed
+        &module->modules.numPassed
     );
     unsigned int numSkippedModules = NBP_SYNC_ATOMIC_UINT_LOAD(
-        &module->ownModules.numSkipped
+        &module->modules.numSkipped
     );
     unsigned int oldVal;
     unsigned int state;
 
-    if (module->ownTests.num == numPassedTests &&
-        module->ownModules.num == numPassedModules) {
+    if (module->tests.num == numPassedTests &&
+        module->modules.num == numPassedModules) {
         state = NBP_MODULE_STATE_PASSED;
         goto end;
     }
 
-    if (module->ownTests.num == numSkippedTests &&
-        module->ownModules.num == numSkippedModules) {
+    if (module->tests.num == numSkippedTests &&
+        module->modules.num == numSkippedModules) {
         state = NBP_MODULE_STATE_SKIPPED;
         goto end;
     }
@@ -207,13 +181,13 @@ end:
     NBP_SYNC_ATOMIC_UINT_TYPE* parentNum;
     switch (state) {
         case NBP_MODULE_STATE_PASSED:
-            parentNum = &module->parent->ownModules.numPassed;
+            parentNum = &module->parent->modules.numPassed;
             break;
         case NBP_MODULE_STATE_FAILED:
-            parentNum = &module->parent->ownModules.numFailed;
+            parentNum = &module->parent->modules.numFailed;
             break;
         case NBP_MODULE_STATE_SKIPPED:
-            parentNum = &module->parent->ownModules.numSkipped;
+            parentNum = &module->parent->modules.numSkipped;
             break;
         default:
             // these lines are excluded from coverage because it is impossible
@@ -266,7 +240,7 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
             // LCOV_EXCL_STOP
         }
 
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numPassed, 1);
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->tests.numPassed, 1);
         return;
     } while (0);
 
@@ -287,7 +261,7 @@ static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
         // LCOV_EXCL_STOP
     }
 
-    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numFailed, 1);
+    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->tests.numFailed, 1);
 }
 
 static unsigned int nbp_scheduler_setup_module(nbp_module_details_t* module)
@@ -388,10 +362,10 @@ static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
 {
     unsigned int passed, failed, skipped;
 
-    passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numPassed);
-    failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numFailed);
-    skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownTests.numSkipped);
-    if (module->ownTests.num != passed + failed + skipped) {
+    passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->tests.numPassed);
+    failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->tests.numFailed);
+    skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->tests.numSkipped);
+    if (module->tests.num != passed + failed + skipped) {
         // this line is excluded from coverage because it is impossible to have
         // other value if there is no sync issue
         // LCOV_EXCL_START
@@ -399,32 +373,10 @@ static void nbp_scheduler_verify_module_stats(nbp_module_details_t* module)
         // LCOV_EXCL_STOP
     }
 
-    passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numPassed);
-    failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numFailed);
-    skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->ownModules.numSkipped);
-    if (module->ownModules.num != passed + failed + skipped) {
-        // this line is excluded from coverage because it is impossible to have
-        // other value if there is no sync issue
-        // LCOV_EXCL_START
-        goto error;
-        // LCOV_EXCL_STOP
-    }
-
-    passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numPassed);
-    failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numFailed);
-    skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subTests.numSkipped);
-    if (module->subTests.num != passed + failed + skipped) {
-        // this line is excluded from coverage because it is impossible to have
-        // other value if there is no sync issue
-        // LCOV_EXCL_START
-        goto error;
-        // LCOV_EXCL_STOP
-    }
-
-    passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numPassed);
-    failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numFailed);
-    skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->subModules.numSkipped);
-    if (module->subModules.num != passed + failed + skipped) {
+    passed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->modules.numPassed);
+    failed  = NBP_SYNC_ATOMIC_UINT_LOAD(&module->modules.numFailed);
+    skipped = NBP_SYNC_ATOMIC_UINT_LOAD(&module->modules.numSkipped);
+    if (module->modules.num != passed + failed + skipped) {
         // this line is excluded from coverage because it is impossible to have
         // other value if there is no sync issue
         // LCOV_EXCL_START
@@ -621,7 +573,7 @@ static void nbp_scheduler_run_test_skipped(nbp_test_details_t* test)
         // LCOV_EXCL_STOP
     }
 
-    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->ownTests.numSkipped, 1);
+    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&test->module->tests.numSkipped, 1);
 
     nbp_printer_notify_test_completed(test);
 }
@@ -926,7 +878,7 @@ void nbp_scheduler_complete_empty_module(nbp_module_details_t* module)
 
     if (module->parent != NBP_MEMORY_NULL_POINTER) {
         NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&module->parent->completedTaskNum, 1);
-        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&module->parent->ownModules.numPassed, 1);
+        NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(&module->parent->modules.numPassed, 1);
     }
 
     nbp_scheduler_update_parent_stats(module);

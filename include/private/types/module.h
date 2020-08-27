@@ -100,21 +100,19 @@ struct nbp_module_details_t {
         NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
         NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
         NBP_SYNC_ATOMIC_UINT_TYPE numSkipped;
-    } ownTests, subTests;
+    } tests;
 
     struct {
         unsigned int num;
         NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
         NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
         NBP_SYNC_ATOMIC_UINT_TYPE numSkipped;
-    } ownModules, subModules;
+    } modules;
 
     struct {
-        struct {
-            NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
-            NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
-        } checks, testAsserts, moduleAsserts, asserts;
-    } own, sub;
+        NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
+        NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
+    } checks, testAsserts, moduleAsserts, asserts;
 };
 typedef struct nbp_module_details_t nbp_module_details_t;
 

@@ -51,7 +51,7 @@ static void nbp_test_init(nbp_test_details_t* test,
 
     test->module = module;
     test->module->isEmptyModule = 0;
-    test->module->ownTests.num++;
+    test->module->tests.num++;
     test->module->taskNum++;
 
     // set setup function
