@@ -104,8 +104,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_CALLBACK_BEFORE_RUN(func)                                  \
     static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamModulesNum,            \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamTestsNum               \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 /*
@@ -113,24 +112,7 @@ SOFTWARE.
  */
 #define NBP_PRINTER_CALLBACK_AFTER_RUN(func)                                   \
     static void NBP_PP_CONCAT(nbp_printer_callback_, func)(                    \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedModulesNum,      \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedModulesNum,      \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamSkippedModulesNum,     \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedTestsNum,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedTestsNum,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamSkippedTestsNum,       \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamChecksNum,             \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedChecksNum,       \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedChecksNum,       \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamTestAssertsNum,        \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedTestAssertsNum,  \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedTestAssertsNum,  \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamModuleAssertsNum,      \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedModuleAssertsNum,\
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedModuleAssertsNum,\
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamAssertsNum,            \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamPassedAssertsNum,      \
-        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamFailedAssertsNum       \
+        NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
 
@@ -525,110 +507,6 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_PRINTER_NO_SUCCESS_MESSAGE NBP_MEMORY_NULL_POINTER
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_MODULES() nbpParamModulesNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_MODULES() nbpParamPassedModulesNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_MODULES() nbpParamFailedModulesNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_SKIPPED_MODULES() nbpParamSkippedModulesNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_TESTS() nbpParamTestsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_TESTS() nbpParamPassedTestsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_TESTS() nbpParamFailedTestsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_SKIPPED_TESTS() nbpParamSkippedTestsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_CHECKS() nbpParamChecksNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_CHECKS() nbpParamPassedChecksNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_CHECKS() nbpParamFailedChecksNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_TEST_ASSERTS() nbpParamTestAssertsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_TEST_ASSERTS()                        \
-    nbpParamPassedTestAssertsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_TEST_ASSERTS()                        \
-    nbpParamFailedTestAssertsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_MODULE_ASSERTS() nbpParamModuleAssertsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_MODULE_ASSERTS()                      \
-    nbpParamPassedModuleAssertsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_MODULE_ASSERTS()                      \
-    nbpParamFailedModuleAssertsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_ASSERTS() nbpParamAssertsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_PASSED_ASSERTS() nbpParamPassedAssertsNum
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_NUMBER_OF_FAILED_ASSERTS() nbpParamFailedAssertsNum
 
 /*
  * TODO: add docs

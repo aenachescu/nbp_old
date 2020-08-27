@@ -201,49 +201,20 @@ void nbp_printer_notify_module_completed(nbp_module_details_t* module)
     }
 }
 
-void nbp_printer_notify_before_run(unsigned int modulesNum,
-    unsigned int testsNum)
+void nbp_printer_notify_before_run(nbp_module_details_t* mainModule)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->beforeRunCbk != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->beforeRunCbk(modulesNum, testsNum);
+            nbpPrinterInterfaces[i]->beforeRunCbk(mainModule);
         }
     }
 }
 
-void nbp_printer_notify_after_run(unsigned int passedModulesNum,
-    unsigned int failedModulesNum, unsigned int skippedModulesNum,
-    unsigned int passedTestsNum, unsigned int failedTestsNum,
-    unsigned int skippedTestsNum, unsigned int checksNum,
-    unsigned int passedChecksNum, unsigned int failedChecksNum,
-    unsigned int testAssertsNum, unsigned int passedTestAssertsNum,
-    unsigned int failedTestAssertsNum, unsigned int moduleAssertsNum,
-    unsigned int passedModuleAssertsNum, unsigned int failedModuleAssertsNum,
-    unsigned int assertsNum, unsigned int passedAssertsNum,
-    unsigned int failedAssertsNum)
+void nbp_printer_notify_after_run(nbp_module_details_t* mainModule)
 {
     for (unsigned int i = 0; i < nbpPrinterInterfacesSize; i++) {
         if (nbpPrinterInterfaces[i]->afterRunCbk != NBP_MEMORY_NULL_POINTER) {
-            nbpPrinterInterfaces[i]->afterRunCbk(
-                passedModulesNum,
-                failedModulesNum,
-                skippedModulesNum,
-                passedTestsNum,
-                failedTestsNum,
-                skippedTestsNum,
-                checksNum,
-                passedChecksNum,
-                failedChecksNum,
-                testAssertsNum,
-                passedTestAssertsNum,
-                failedTestAssertsNum,
-                moduleAssertsNum,
-                passedModuleAssertsNum,
-                failedModuleAssertsNum,
-                assertsNum,
-                passedAssertsNum,
-                failedAssertsNum
-            );
+            nbpPrinterInterfaces[i]->afterRunCbk(mainModule);
         }
     }
 }

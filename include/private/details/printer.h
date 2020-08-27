@@ -85,29 +85,11 @@ void nbp_printer_notify_module_completed(
 );
 
 void nbp_printer_notify_before_run(
-    unsigned int, /* num of modules */
-    unsigned int  /* num of tests   */
+    nbp_module_details_t* /* main module */
 );
 
 void nbp_printer_notify_after_run(
-    unsigned int, /* num of passed  modules             */
-    unsigned int, /* num of failed  modules             */
-    unsigned int, /* num of skipped modules             */
-    unsigned int, /* num of passed  tests               */
-    unsigned int, /* num of failed  tests               */
-    unsigned int, /* num of skipped tests               */
-    unsigned int, /* num of         checks              */
-    unsigned int, /* num of passed  checks              */
-    unsigned int, /* num of failed  checks              */
-    unsigned int, /* num of         test asserts        */
-    unsigned int, /* num of passed  test asserts        */
-    unsigned int, /* num of failed  test asserts        */
-    unsigned int, /* num of         modules asserts     */
-    unsigned int, /* num of passed  modules asserts     */
-    unsigned int, /* num of failed  modules asserts     */
-    unsigned int, /* num of         asserts             */
-    unsigned int, /* num of passed  asserts             */
-    unsigned int  /* num of failed  asserts             */
+    nbp_module_details_t* /* main module */
 );
 
 void nbp_printer_notify_run_test(
