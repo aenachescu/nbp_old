@@ -44,7 +44,7 @@ NBP_MAIN_MODULE(mt_scheduler_run_test_before_empty_module)
 NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 // these lines are excluded from coverage because if a module has no test then

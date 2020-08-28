@@ -173,40 +173,40 @@ NBP_TEST(test1)
 
     SAMPLE_SLEEP();
 
-    NBP_CHECK(test2ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test2ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
 
-    NBP_CHECK(test12ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
-    NBP_CHECK(test13ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
-    NBP_CHECK(test14ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
-    NBP_CHECK(test15ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
-    NBP_CHECK(test16ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
-    NBP_CHECK(test17ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
-    NBP_CHECK(test18ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
-    NBP_CHECK(test19ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test12ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test13ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test14ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test15ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test16ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test17ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test18ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test19ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
 
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test3ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test4ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test5ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test6ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test7ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test8ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test9ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test10ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test11ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test3ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test4ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test5ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test6ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test7ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test8ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test9ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test10ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test11ThreadId));
 
     num = 0;
     if (!SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test12ThreadId)) num++;
     if (!SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test13ThreadId)) num++;
     if (!SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test14ThreadId)) num++;
     if (!SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test15ThreadId)) num++;
-    NBP_CHECK(num > 0);
+    NBP_ASSERT(num > 0);
 
     num = 0;
     if (!SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test16ThreadId)) num++;
     if (!SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test17ThreadId)) num++;
     if (!SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test18ThreadId)) num++;
     if (!SAMPLE_THREAD_ID_EQUAL(test2ThreadId, test19ThreadId)) num++;
-    NBP_CHECK(num > 0);
+    NBP_ASSERT(num > 0);
 }
 
 NBP_TEST(test2)
@@ -214,7 +214,7 @@ NBP_TEST(test2)
     SAMPLE_SLEEP();
 
     test2ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test2ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test2ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test3)
@@ -222,7 +222,7 @@ NBP_TEST(test3)
     SAMPLE_SLEEP();
 
     test3ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test3ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test3ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test4)
@@ -230,7 +230,7 @@ NBP_TEST(test4)
     SAMPLE_SLEEP();
 
     test4ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test4ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test4ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test5)
@@ -238,7 +238,7 @@ NBP_TEST(test5)
     SAMPLE_SLEEP();
 
     test5ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test5ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test5ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test6)
@@ -246,7 +246,7 @@ NBP_TEST(test6)
     SAMPLE_SLEEP();
 
     test6ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test6ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test6ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test7)
@@ -254,7 +254,7 @@ NBP_TEST(test7)
     SAMPLE_SLEEP();
 
     test7ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test7ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test7ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test8)
@@ -262,7 +262,7 @@ NBP_TEST(test8)
     SAMPLE_SLEEP();
 
     test8ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test8ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test8ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test9)
@@ -270,7 +270,7 @@ NBP_TEST(test9)
     SAMPLE_SLEEP();
 
     test9ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test9ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test9ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test10)
@@ -278,7 +278,7 @@ NBP_TEST(test10)
     SAMPLE_SLEEP();
 
     test10ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test10ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test10ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test11)
@@ -286,7 +286,7 @@ NBP_TEST(test11)
     SAMPLE_SLEEP();
 
     test11ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test11ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test11ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test12)
@@ -298,17 +298,17 @@ NBP_TEST(test12)
     // unblock test13, test14, test15
     for (i = 0; i < 3; i++) {
         err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[0]);
-        NBP_ASSERT_INT_EQ(err, 0);
+        NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
     }
 
     // wait for test13, test14, test15
     for (i = 0; i < 3; i++) {
         err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[1]);
-        NBP_ASSERT_INT_EQ(err, 0);
+        NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
     }
 
     test12ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test12ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test12ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test13)
@@ -318,13 +318,13 @@ NBP_TEST(test13)
     SAMPLE_SLEEP();
 
     err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[0]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[1]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     test13ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test13ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test13ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test14)
@@ -334,13 +334,13 @@ NBP_TEST(test14)
     SAMPLE_SLEEP();
 
     err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[0]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[1]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     test14ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test14ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test14ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test15)
@@ -350,13 +350,13 @@ NBP_TEST(test15)
     SAMPLE_SLEEP();
 
     err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[0]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[1]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     test15ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test15ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test15ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test16)
@@ -368,17 +368,17 @@ NBP_TEST(test16)
     // unblock test17, test18, test19
     for (i = 0; i < 3; i++) {
         err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[2]);
-        NBP_ASSERT_INT_EQ(err, 0);
+        NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
     }
 
     // wait for test17, test18, test19
     for (i = 0; i < 3; i++) {
         err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[3]);
-        NBP_ASSERT_INT_EQ(err, 0);
+        NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
     }
 
     test16ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test16ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test16ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test17)
@@ -388,13 +388,13 @@ NBP_TEST(test17)
     SAMPLE_SLEEP();
 
     err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[2]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[3]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     test17ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test17ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test17ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test18)
@@ -404,13 +404,13 @@ NBP_TEST(test18)
     SAMPLE_SLEEP();
 
     err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[2]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[3]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     test18ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test18ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test18ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test19)
@@ -420,11 +420,11 @@ NBP_TEST(test19)
     SAMPLE_SLEEP();
 
     err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphores[2]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     err = SAMPLE_SEMAPHORE_RELEASE(g_semaphores[3]);
-    NBP_ASSERT_INT_EQ(err, 0);
+    NBP_ASSERT_INT_EQ(err, 0, NBP_ASSERT_FATAL);
 
     test19ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test19ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test19ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }

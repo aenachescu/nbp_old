@@ -64,37 +64,37 @@ NBP_MODULE(submodule2)
 NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test3)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test4)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test5)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test6)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 // these lines are excluded from coverage because if a module has no test then

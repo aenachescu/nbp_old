@@ -32,25 +32,25 @@ SOFTWARE.
 NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(2);
+    NBP_ASSERT(2);
 }
 
 NBP_TEST(test3)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(3);
+    NBP_ASSERT(3);
 }
 
 NBP_TEST(test4)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(4);
+    NBP_ASSERT(4);
 }
 
 NBP_MODULE(submodule1, NBP_MODULE_FIXTURES(submodule_setup, submodule_teardown))

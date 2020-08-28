@@ -58,6 +58,7 @@ typedef void (*nbp_test_config_pfn_t)(
 
 typedef void (*nbp_test_pfn_t)(
     struct nbp_test_details_t*, /* current test */
+    unsigned int, /* assert type */
     const char*, /* success message */
     const char* /* failure message */
 );
@@ -79,9 +80,11 @@ struct nbp_test_details_t {
     NBP_SYNC_ATOMIC_UINT_TYPE isSkipped;
 
     struct {
-        unsigned int numPassed;
-        unsigned int numFailed;
-    } checks, testAsserts, moduleAsserts, asserts;
+        struct {
+            unsigned int numPassed;
+            unsigned int numFailed;
+        } nonFatal, fatal, fatalForTest, fatalForModule;
+    } asserts;
 };
 typedef struct nbp_test_details_t nbp_test_details_t;
 

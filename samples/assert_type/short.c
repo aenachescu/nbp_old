@@ -43,55 +43,55 @@ volatile short int sh = 2;
 NBP_TEST(assert_short_eq)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_SHORT_EQ(get_short(), sh);
-    NBP_ASSERT_SHORT_EQ(get_short(), sh, NBP_FAILURE_MESSAGE("assert failed"));
-    NBP_ASSERT_SHORT_EQ(get_short(), sh, NBP_SUCCESS_MESSAGE("assert passed"));
-    NBP_ASSERT_SHORT_EQ(get_short(), sh, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_EQ(get_short(), sh, NBP_ASSERT_FATAL);
+    NBP_ASSERT_SHORT_EQ(get_short(), sh, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_SHORT_EQ(get_short(), sh, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_EQ(get_short(), sh, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_short_ne)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_SHORT_NE(get_short(), sh_min);
-    NBP_ASSERT_SHORT_NE(get_short(), sh_min, NBP_FAILURE_MESSAGE("assert failed"));
-    NBP_ASSERT_SHORT_NE(get_short(), sh_min, NBP_SUCCESS_MESSAGE("assert passed"));
-    NBP_ASSERT_SHORT_NE(get_short(), sh_min, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_NE(get_short(), sh_min, NBP_ASSERT_FATAL);
+    NBP_ASSERT_SHORT_NE(get_short(), sh_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_SHORT_NE(get_short(), sh_min, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_NE(get_short(), sh_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_short_gt)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_SHORT_GT(get_short(), sh_min);
-    NBP_ASSERT_SHORT_GT(get_short(), sh_min, NBP_FAILURE_MESSAGE("assert failed"));
-    NBP_ASSERT_SHORT_GT(get_short(), sh_min, NBP_SUCCESS_MESSAGE("assert passed"));
-    NBP_ASSERT_SHORT_GT(get_short(), sh_min, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_GT(get_short(), sh_min, NBP_ASSERT_FATAL);
+    NBP_ASSERT_SHORT_GT(get_short(), sh_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_SHORT_GT(get_short(), sh_min, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_GT(get_short(), sh_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_short_ge)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_SHORT_GE(get_short(), sh_min);
-    NBP_ASSERT_SHORT_GE(get_short(), sh, NBP_FAILURE_MESSAGE("assert failed"));
-    NBP_ASSERT_SHORT_GE(get_short(), sh_min, NBP_SUCCESS_MESSAGE("assert passed"));
-    NBP_ASSERT_SHORT_GE(get_short(), sh, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_GE(get_short(), sh_min, NBP_ASSERT_FATAL);
+    NBP_ASSERT_SHORT_GE(get_short(), sh, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_SHORT_GE(get_short(), sh_min, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_GE(get_short(), sh, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_short_lt)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_SHORT_LT(get_short(), sh_max);
-    NBP_ASSERT_SHORT_LT(get_short(), sh_max, NBP_FAILURE_MESSAGE("assert failed"));
-    NBP_ASSERT_SHORT_LT(get_short(), sh_max, NBP_SUCCESS_MESSAGE("assert passed"));
-    NBP_ASSERT_SHORT_LT(get_short(), sh_max, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_LT(get_short(), sh_max, NBP_ASSERT_FATAL);
+    NBP_ASSERT_SHORT_LT(get_short(), sh_max, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_SHORT_LT(get_short(), sh_max, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_LT(get_short(), sh_max, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_TEST(assert_short_le)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_SHORT_LE(get_short(), sh_max);
-    NBP_ASSERT_SHORT_LE(get_short(), sh, NBP_FAILURE_MESSAGE("assert failed"));
-    NBP_ASSERT_SHORT_LE(get_short(), sh_max, NBP_SUCCESS_MESSAGE("assert passed"));
-    NBP_ASSERT_SHORT_LE(get_short(), sh, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_LE(get_short(), sh_max, NBP_ASSERT_FATAL);
+    NBP_ASSERT_SHORT_LE(get_short(), sh, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"));
+    NBP_ASSERT_SHORT_LE(get_short(), sh_max, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("assert passed"));
+    NBP_ASSERT_SHORT_LE(get_short(), sh, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("assert failed"), NBP_SUCCESS_MESSAGE("assert passed"));
 }
 
 NBP_MODULE(assert_short)

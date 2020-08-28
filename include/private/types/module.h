@@ -110,9 +110,11 @@ struct nbp_module_details_t {
     } modules;
 
     struct {
-        NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
-        NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
-    } checks, testAsserts, moduleAsserts, asserts;
+        struct {
+            NBP_SYNC_ATOMIC_UINT_TYPE numPassed;
+            NBP_SYNC_ATOMIC_UINT_TYPE numFailed;
+        } nonFatal, fatal, fatalForTest, fatalForModule;
+    } asserts;
 };
 typedef struct nbp_module_details_t nbp_module_details_t;
 

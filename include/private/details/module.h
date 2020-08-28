@@ -43,4 +43,10 @@ void nbp_module_run_ctx(
     nbp_module_teardown_pfn_t /* module teardown pfn */
 );
 
+unsigned int nbp_module_get_number_of_asserts(
+    nbp_module_details_t*, /* module */
+    unsigned int, /* assert status */
+    unsigned int /* assert type */
+);
+
 #endif // end if NBP_PRIVATE_DETAILS_MODULE_H

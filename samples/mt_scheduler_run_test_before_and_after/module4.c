@@ -43,13 +43,13 @@ NBP_TEST(test19, NBP_TEST_FIXTURES(test19_setup, test19_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test19SetupValue);
-    NBP_CHECK_UINT_EQ(value, 3);
+    NBP_ASSERT_UINT_EQ(value, 3);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
@@ -64,13 +64,13 @@ NBP_TEST(test20, NBP_TEST_FIXTURES(test20_setup, test20_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test20SetupValue);
-    NBP_CHECK_UINT_EQ(value, 3);
+    NBP_ASSERT_UINT_EQ(value, 3);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
@@ -85,13 +85,13 @@ NBP_TEST(test21, NBP_TEST_FIXTURES(test21_setup, test21_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test21SetupValue);
-    NBP_CHECK_UINT_EQ(value, 3);
+    NBP_ASSERT_UINT_EQ(value, 3);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
@@ -106,13 +106,13 @@ NBP_TEST(test22, NBP_TEST_FIXTURES(test22_setup, test22_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test22SetupValue);
-    NBP_CHECK_UINT_EQ(value, 3);
+    NBP_ASSERT_UINT_EQ(value, 3);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
@@ -188,13 +188,13 @@ NBP_TEST(test35, NBP_TEST_FIXTURES(test35_setup, test35_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test35SetupValue);
-    NBP_CHECK_UINT_EQ(value, 4);
+    NBP_ASSERT_UINT_EQ(value, 4);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -207,13 +207,13 @@ NBP_TEST(test36, NBP_TEST_FIXTURES(test36_setup, test36_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test36SetupValue);
-    NBP_CHECK_UINT_EQ(value, 4);
+    NBP_ASSERT_UINT_EQ(value, 4);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -226,13 +226,13 @@ NBP_TEST(test37, NBP_TEST_FIXTURES(test37_setup, test37_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test37SetupValue);
-    NBP_CHECK_UINT_EQ(value, 4);
+    NBP_ASSERT_UINT_EQ(value, 4);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -245,13 +245,13 @@ NBP_TEST(test38, NBP_TEST_FIXTURES(test38_setup, test38_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test38SetupValue);
-    NBP_CHECK_UINT_EQ(value, 4);
+    NBP_ASSERT_UINT_EQ(value, 4);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -264,13 +264,13 @@ NBP_TEST(test39, NBP_TEST_FIXTURES(test39_setup, test39_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test39SetupValue);
-    NBP_CHECK_UINT_EQ(value, 4);
+    NBP_ASSERT_UINT_EQ(value, 4);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -283,13 +283,13 @@ NBP_TEST(test40, NBP_TEST_FIXTURES(test40_setup, test40_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test40SetupValue);
-    NBP_CHECK_UINT_EQ(value, 4);
+    NBP_ASSERT_UINT_EQ(value, 4);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -302,13 +302,13 @@ NBP_TEST(test41, NBP_TEST_FIXTURES(test41_setup, test41_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test41SetupValue);
-    NBP_CHECK_UINT_EQ(value, 4);
+    NBP_ASSERT_UINT_EQ(value, 4);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -321,13 +321,13 @@ NBP_TEST(test42, NBP_TEST_FIXTURES(test42_setup, test42_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test42SetupValue);
-    NBP_CHECK_UINT_EQ(value, 4);
+    NBP_ASSERT_UINT_EQ(value, 4);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -340,13 +340,13 @@ NBP_TEST(test43, NBP_TEST_FIXTURES(test43_setup, test43_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test43SetupValue);
-    NBP_CHECK_UINT_EQ(value, 5);
+    NBP_ASSERT_UINT_EQ(value, 5);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -359,13 +359,13 @@ NBP_TEST(test44, NBP_TEST_FIXTURES(test44_setup, test44_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test44SetupValue);
-    NBP_CHECK_UINT_EQ(value, 5);
+    NBP_ASSERT_UINT_EQ(value, 5);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -378,13 +378,13 @@ NBP_TEST(test45, NBP_TEST_FIXTURES(test45_setup, test45_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test45SetupValue);
-    NBP_CHECK_UINT_EQ(value, 5);
+    NBP_ASSERT_UINT_EQ(value, 5);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }
@@ -397,13 +397,13 @@ NBP_TEST(test46, NBP_TEST_FIXTURES(test46_setup, test46_teardown))
 
     // check setup values
     value = SAMPLE_ATOMIC_UINT_LOAD(&test46SetupValue);
-    NBP_CHECK_UINT_EQ(value, 5);
+    NBP_ASSERT_UINT_EQ(value, 5);
 
     // check if it is run before test1 and test2
     value = SAMPLE_ATOMIC_UINT_LOAD(&test1Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
     value = SAMPLE_ATOMIC_UINT_LOAD(&test2Value);
-    NBP_CHECK_UINT_EQ(value, 0);
+    NBP_ASSERT_UINT_EQ(value, 0);
 
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&module4Value, 1);
 }

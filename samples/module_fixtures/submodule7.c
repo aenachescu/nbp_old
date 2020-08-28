@@ -32,7 +32,7 @@ SOFTWARE.
 NBP_TEST(test19)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_MODULE(submodule7, NBP_MODULE_TEARDOWN(module3_teardown1))

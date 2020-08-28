@@ -136,73 +136,11 @@ typedef void (*nbp_printer_callback_run_module_completed_pfn_t) (
     nbp_module_details_t* /* current module */
 );
 
-typedef void (*nbp_printer_callback_check_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    const char*, /* condition */
-    int, /* status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
-typedef void (*nbp_printer_callback_check_type_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    nbp_printer_type_value_t, /* first value */
-    nbp_printer_type_value_t, /* second value */
-    unsigned int, /* type */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
-typedef void (*nbp_printer_callback_test_assert_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    const char*, /* condition */
-    int, /*status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
-typedef void (*nbp_printer_callback_test_assert_type_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    nbp_printer_type_value_t, /* first value */
-    nbp_printer_type_value_t, /* second value */
-    unsigned int, /* type */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
-typedef void (*nbp_printer_callback_module_assert_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    const char*, /* condition */
-    int, /*status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
-typedef void (*nbp_printer_callback_module_assert_type_op_result_pfn_t)(
-    nbp_test_details_t*, /* current test */
-    nbp_printer_type_value_t, /* first value */
-    nbp_printer_type_value_t, /* second value */
-    unsigned int, /* type */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
 typedef void (*nbp_printer_callback_assert_result_pfn_t)(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
-    int, /*status */
+    unsigned int, /* assert type */
+    unsigned int, /* status */
     int, /* line */
     const char*, /* failure message */
     const char* /* success message */
@@ -212,9 +150,10 @@ typedef void (*nbp_printer_callback_assert_type_op_result_pfn_t)(
     nbp_test_details_t*, /* current test */
     nbp_printer_type_value_t, /* first value */
     nbp_printer_type_value_t, /* second value */
-    unsigned int, /* type */
+    unsigned int, /* value type */
     unsigned int, /* operator */
-    int, /* status */
+    unsigned int, /* assert type */
+    unsigned int, /* status */
     int, /* line */
     const char*, /* failure message */
     const char* /* success message */
@@ -246,15 +185,6 @@ struct nbp_printer_interface_t {
 
     nbp_printer_callback_run_module_pfn_t runModuleCbk;
     nbp_printer_callback_run_module_completed_pfn_t runModuleCompletedCbk;
-
-    nbp_printer_callback_check_result_pfn_t checkResultCbk;
-    nbp_printer_callback_check_type_op_result_pfn_t checkTypeOpResultCbk;
-
-    nbp_printer_callback_test_assert_result_pfn_t testAssertResultCbk;
-    nbp_printer_callback_test_assert_type_op_result_pfn_t testAssertTypeOpResultCbk;
-
-    nbp_printer_callback_module_assert_result_pfn_t moduleAssertResultCbk;
-    nbp_printer_callback_module_assert_type_op_result_pfn_t moduleAssertTypeOpResultCbk;
 
     nbp_printer_callback_assert_result_pfn_t assertResultCbk;
     nbp_printer_callback_assert_type_op_result_pfn_t assertTypeOpResultCbk;

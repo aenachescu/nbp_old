@@ -43,55 +43,55 @@ volatile unsigned short int ush = 2;
 NBP_TEST(check_ushort_eq)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_USHORT_EQ(get_ushort(), ush);
-    NBP_CHECK_USHORT_EQ(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_USHORT_EQ(get_ushort(), ush, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_USHORT_EQ(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_EQ(get_ushort(), ush);
+    NBP_ASSERT_USHORT_EQ(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_USHORT_EQ(get_ushort(), ush, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_EQ(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ushort_ne)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_USHORT_NE(get_ushort(), ush_min);
-    NBP_CHECK_USHORT_NE(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_USHORT_NE(get_ushort(), ush_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_USHORT_NE(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_NE(get_ushort(), ush_min);
+    NBP_ASSERT_USHORT_NE(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_USHORT_NE(get_ushort(), ush_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_NE(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ushort_gt)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_USHORT_GT(get_ushort(), ush_min);
-    NBP_CHECK_USHORT_GT(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_USHORT_GT(get_ushort(), ush_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_USHORT_GT(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_GT(get_ushort(), ush_min);
+    NBP_ASSERT_USHORT_GT(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_USHORT_GT(get_ushort(), ush_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_GT(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ushort_ge)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_USHORT_GE(get_ushort(), ush_min);
-    NBP_CHECK_USHORT_GE(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_USHORT_GE(get_ushort(), ush_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_USHORT_GE(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_GE(get_ushort(), ush_min);
+    NBP_ASSERT_USHORT_GE(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_USHORT_GE(get_ushort(), ush_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_GE(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ushort_lt)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_USHORT_LT(get_ushort(), ush_max);
-    NBP_CHECK_USHORT_LT(get_ushort(), ush_max, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_USHORT_LT(get_ushort(), ush_max, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_USHORT_LT(get_ushort(), ush_max, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_LT(get_ushort(), ush_max);
+    NBP_ASSERT_USHORT_LT(get_ushort(), ush_max, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_USHORT_LT(get_ushort(), ush_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_LT(get_ushort(), ush_max, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ushort_le)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_USHORT_LE(get_ushort(), ush_max);
-    NBP_CHECK_USHORT_LE(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_USHORT_LE(get_ushort(), ush_max, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_USHORT_LE(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_LE(get_ushort(), ush_max);
+    NBP_ASSERT_USHORT_LE(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_USHORT_LE(get_ushort(), ush_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_USHORT_LE(get_ushort(), ush, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_MODULE(check_ushort)

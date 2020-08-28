@@ -43,55 +43,55 @@ volatile long double ldouble_ = 1.14L;
 NBP_TEST(check_ldouble_eq)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_LDOUBLE_EQ(get_ldouble(), ldouble_);
-    NBP_CHECK_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_);
+    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ldouble_ne)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_LDOUBLE_NE(get_ldouble(), ldouble_min);
-    NBP_CHECK_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min);
+    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ldouble_gt)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_LDOUBLE_GT(get_ldouble(), ldouble_min);
-    NBP_CHECK_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min);
+    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ldouble_ge)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_LDOUBLE_GE(get_ldouble(), ldouble_min);
-    NBP_CHECK_LDOUBLE_GE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_LDOUBLE_GE(get_ldouble(), ldouble_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_LDOUBLE_GE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_min);
+    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ldouble_lt)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_LDOUBLE_LT(get_ldouble(), ldouble_max);
-    NBP_CHECK_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max);
+    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_ldouble_le)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_LDOUBLE_LE(get_ldouble(), ldouble_max);
-    NBP_CHECK_LDOUBLE_LE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_LDOUBLE_LE(get_ldouble(), ldouble_max, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_LDOUBLE_LE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_max);
+    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_MODULE(check_ldouble)

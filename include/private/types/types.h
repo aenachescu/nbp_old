@@ -30,6 +30,7 @@ SOFTWARE.
 
 #include "error.h"
 #include "sync.h"
+#include "assert.h"
 #include "test.h"
 #include "module.h"
 #include "scheduler.h"

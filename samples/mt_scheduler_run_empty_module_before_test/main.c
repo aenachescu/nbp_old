@@ -74,5 +74,5 @@ NBP_MODULE(empty_submodule2, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmpty
 NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }

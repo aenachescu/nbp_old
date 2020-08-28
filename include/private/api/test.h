@@ -229,6 +229,7 @@ SOFTWARE.
     }                                                                          \
     void NBP_PP_CONCAT(nbp_test_, func)(                                       \
         nbp_test_details_t*,                                                   \
+        unsigned int,                                                          \
         const char*,                                                           \
         const char*                                                            \
     );                                                                         \
@@ -246,25 +247,28 @@ SOFTWARE.
             NBP_SYNC_ATOMIC_UINT_INIT(NBP_TEST_STATE_NOT_INITIALIZED),         \
         .isSkipped                  =                                          \
             NBP_SYNC_ATOMIC_UINT_INIT(NBP_TEST_PRIVATE_SKIP_NOT_SET),          \
-        .checks = {                                                            \
-            .numPassed              = 0,                                       \
-            .numFailed              = 0,                                       \
-        },                                                                     \
-        .testAsserts = {                                                       \
-            .numPassed              = 0,                                       \
-            .numFailed              = 0,                                       \
-        },                                                                     \
-        .moduleAsserts = {                                                     \
-            .numPassed              = 0,                                       \
-            .numFailed              = 0,                                       \
-        },                                                                     \
         .asserts = {                                                           \
-            .numPassed              = 0,                                       \
-            .numFailed              = 0,                                       \
+            .nonFatal = {                                                      \
+                .numPassed      = 0,                                           \
+                .numFailed      = 0,                                           \
+            },                                                                 \
+            .fatal = {                                                         \
+                .numPassed      = 0,                                           \
+                .numFailed      = 0,                                           \
+            },                                                                 \
+            .fatalForTest = {                                                  \
+                .numPassed      = 0,                                           \
+                .numFailed      = 0,                                           \
+            },                                                                 \
+            .fatalForModule = {                                                \
+                .numPassed      = 0,                                           \
+                .numFailed      = 0,                                           \
+            },                                                                 \
         },                                                                     \
     };                                                                         \
     void NBP_PP_CONCAT(nbp_test_, func)(                                       \
         NBP_MAYBE_UNUSED_PARAMETER nbp_test_details_t* nbpParamTest,           \
+        NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamAssertType,            \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMessage,         \
         NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMessage          \
     )
@@ -424,158 +428,6 @@ SOFTWARE.
  * @public doc
  *
  * @brief
- *  This macro gets the total number of NBP_CHECK* macros executed by this test.
- *
- * @params
- *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_TEST_THIS macro.
- *
- * @return
- *  unsigned int which represents the total number of NBP_CHECK* macros
- *  executed by this test.
- */
-#define NBP_TEST_GET_NUMBER_OF_CHECKS(test)                                    \
-    NBP_TEST_GET_NUMBER_OF_PASSED_CHECKS(test) +                               \
-    NBP_TEST_GET_NUMBER_OF_FAILED_CHECKS(test)
-
-/*
- * @public doc
- *
- * @brief
- *  This macro gets the number of passed NBP_CHECK* macros.
- *
- * @params
- *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_TEST_THIS macro.
- *
- * @return
- *  unsigned int which represents the number of passed NBP_CHECK* macros.
- */
-#define NBP_TEST_GET_NUMBER_OF_PASSED_CHECKS(test)                             \
-    test->checks.numPassed
-
-/*
- * @public doc
- *
- * @brief
- *  This macro gets the number of failed NBP_CHECK* macros.
- *
- * @params
- *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_TEST_THIS macro.
- *
- * @return
- *  unsigned int which represents the number of failed NBP_CHECK* macros.
- */
-#define NBP_TEST_GET_NUMBER_OF_FAILED_CHECKS(test)                             \
-    test->checks.numFailed
-
-/*
- * @public doc
- *
- * @brief
- *  This macro gets the total number of NBP_TEST_ASSERT* macros executed by this
- *  test.
- *
- * @params
- *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_TEST_THIS macro.
- *
- * @return
- *  unsigned int which represents the total number of NBP_TEST_ASSERT* macros
- *  executed by this test.
- */
-#define NBP_TEST_GET_NUMBER_OF_TEST_ASSERTS(test)                              \
-    NBP_TEST_GET_NUMBER_OF_PASSED_TEST_ASSERTS(test) +                         \
-    NBP_TEST_GET_NUMBER_OF_FAILED_TEST_ASSERTS(test)
-
-/*
- * @public doc
- *
- * @brief
- *  This macro gets the number of passed NBP_TEST_ASSERT* macros.
- *
- * @params
- *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_TEST_THIS macro.
- *
- * @return
- *  unsigned int which represents the number of passed NBP_TEST_ASSERT* macros.
- */
-#define NBP_TEST_GET_NUMBER_OF_PASSED_TEST_ASSERTS(test)                       \
-    test->testAsserts.numPassed
-
-/*
- * @public doc
- *
- * @brief
- *  This macro gets the number of failed NBP_TEST_ASSERT* macros.
- *
- * @params
- *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_TEST_THIS macro.
- *
- * @return
- *  unsigned int which represents the number of failed NBP_TEST_ASSERT* macros.
- */
-#define NBP_TEST_GET_NUMBER_OF_FAILED_TEST_ASSERTS(test)                       \
-    test->testAsserts.numFailed
-
-/*
- * @public doc
- *
- * @brief
- *  This macro gets the total number of NBP_MODULE_ASSERT* macros executed by
- *  this test.
- *
- * @params
- *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_TEST_THIS macro.
- *
- * @return
- *  unsigned int which represents the total number of NBP_MODULE_ASSERT* macros
- *  executed by this test.
- */
-#define NBP_TEST_GET_NUMBER_OF_MODULE_ASSERTS(test)                            \
-    NBP_TEST_GET_NUMBER_OF_PASSED_MODULE_ASSERTS(test) +                       \
-    NBP_TEST_GET_NUMBER_OF_FAILED_MODULE_ASSERTS(test)
-
-/*
- * @public doc
- *
- * @brief
- *  This macro gets the number of passed NBP_MODULE_ASSERT* macros.
- *
- * @params
- *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_TEST_THIS macro.
- *
- * @return
- *  unsigned int which represents the number of passed NBP_MODULE_ASSERT* macros.
- */
-#define NBP_TEST_GET_NUMBER_OF_PASSED_MODULE_ASSERTS(test)                     \
-    test->moduleAsserts.numPassed
-
-/*
- * @public doc
- *
- * @brief
- *  This macro gets the number of failed NBP_MODULE_ASSERT* macros.
- *
- * @params
- *  test - a pointer to nbp_test_details_t structure which was obtained using
- *         the NBP_TEST_THIS macro.
- *
- * @return
- *  unsigned int which represents the number of failed NBP_MODULE_ASSERT* macros.
- */
-#define NBP_TEST_GET_NUMBER_OF_FAILED_MODULE_ASSERTS(test)                     \
-    test->moduleAsserts.numFailed
-
-/*
- * @public doc
- *
- * @brief
  *  This macro gets the total number of NBP_ASSERT* macros executed by this test.
  *
  * @params
@@ -586,9 +438,9 @@ SOFTWARE.
  *  unsigned int which represents the total number of NBP_ASSERT* macros
  *  executed by this test.
  */
-#define NBP_TEST_GET_NUMBER_OF_ASSERTS(test)                                   \
-    NBP_TEST_GET_NUMBER_OF_PASSED_ASSERTS(test) +                              \
-    NBP_TEST_GET_NUMBER_OF_FAILED_ASSERTS(test)
+#define NBP_TEST_GET_NUMBER_OF_ASSERTS(test, assertType)                       \
+    NBP_TEST_GET_NUMBER_OF_PASSED_ASSERTS(test, assertType) +                  \
+    NBP_TEST_GET_NUMBER_OF_FAILED_ASSERTS(test, assertType)
 
 /*
  * @public doc
@@ -603,8 +455,13 @@ SOFTWARE.
  * @return
  *  unsigned int which represents the number of passed NBP_ASSERT* macros.
  */
-#define NBP_TEST_GET_NUMBER_OF_PASSED_ASSERTS(test)                            \
-    test->asserts.numPassed
+#define NBP_TEST_GET_NUMBER_OF_PASSED_ASSERTS(test, assertType)                \
+    nbp_test_get_number_of_asserts(                                            \
+        test,                                                                  \
+        NBP_ASSERT_STATUS_PASSED,                                              \
+        assertType                                                             \
+    )
+
 
 /*
  * @public doc
@@ -619,8 +476,12 @@ SOFTWARE.
  * @return
  *  unsigned int which represents the number of failed NBP_ASSERT* macros.
  */
-#define NBP_TEST_GET_NUMBER_OF_FAILED_ASSERTS(test)                            \
-    test->asserts.numFailed
+#define NBP_TEST_GET_NUMBER_OF_FAILED_ASSERTS(test, assertType)                \
+    nbp_test_get_number_of_asserts(                                            \
+        test,                                                                  \
+        NBP_ASSERT_STATUS_FAILED,                                              \
+        assertType                                                             \
+    )
 
 #define NBP_TEST_PRIVATE_GENERATE_CONFIG(...)                                  \
     NBP_PP_CONCAT(                                                             \

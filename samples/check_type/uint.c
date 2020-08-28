@@ -43,55 +43,55 @@ volatile unsigned int uint_ = 2U;
 NBP_TEST(check_uint_eq)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_UINT_EQ(get_uint(), uint_);
-    NBP_CHECK_UINT_EQ(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_UINT_EQ(get_uint(), uint_, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_UINT_EQ(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_EQ(get_uint(), uint_);
+    NBP_ASSERT_UINT_EQ(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_UINT_EQ(get_uint(), uint_, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_EQ(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_uint_ne)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_UINT_NE(get_uint(), uint_min);
-    NBP_CHECK_UINT_NE(get_uint(), uint_min, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_UINT_NE(get_uint(), uint_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_UINT_NE(get_uint(), uint_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_NE(get_uint(), uint_min);
+    NBP_ASSERT_UINT_NE(get_uint(), uint_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_UINT_NE(get_uint(), uint_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_NE(get_uint(), uint_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_uint_gt)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_UINT_GT(get_uint(), uint_min);
-    NBP_CHECK_UINT_GT(get_uint(), uint_min, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_UINT_GT(get_uint(), uint_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_UINT_GT(get_uint(), uint_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_GT(get_uint(), uint_min);
+    NBP_ASSERT_UINT_GT(get_uint(), uint_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_UINT_GT(get_uint(), uint_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_GT(get_uint(), uint_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_uint_ge)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_UINT_GE(get_uint(), uint_min);
-    NBP_CHECK_UINT_GE(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_UINT_GE(get_uint(), uint_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_UINT_GE(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_GE(get_uint(), uint_min);
+    NBP_ASSERT_UINT_GE(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_UINT_GE(get_uint(), uint_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_GE(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_uint_lt)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_UINT_LT(get_uint(), uint_max);
-    NBP_CHECK_UINT_LT(get_uint(), uint_max, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_UINT_LT(get_uint(), uint_max, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_UINT_LT(get_uint(), uint_max, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_LT(get_uint(), uint_max);
+    NBP_ASSERT_UINT_LT(get_uint(), uint_max, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_UINT_LT(get_uint(), uint_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_LT(get_uint(), uint_max, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_uint_le)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_UINT_LE(get_uint(), uint_max);
-    NBP_CHECK_UINT_LE(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_UINT_LE(get_uint(), uint_max, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_UINT_LE(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_LE(get_uint(), uint_max);
+    NBP_ASSERT_UINT_LE(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_UINT_LE(get_uint(), uint_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_UINT_LE(get_uint(), uint_, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_MODULE(check_uint)

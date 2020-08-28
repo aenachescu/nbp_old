@@ -35,39 +35,39 @@ static void nbp_scheduler_update_module_stats(nbp_test_details_t* test)
     nbp_module_details_t* m = test->module;
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->checks.numPassed,
-        test->checks.numPassed
+        &m->asserts.nonFatal.numPassed,
+        test->asserts.nonFatal.numPassed
     );
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->checks.numFailed,
-        test->checks.numFailed
-    );
-
-    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->testAsserts.numPassed,
-        test->testAsserts.numPassed
-    );
-    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->testAsserts.numFailed,
-        test->testAsserts.numFailed
+        &m->asserts.nonFatal.numFailed,
+        test->asserts.nonFatal.numFailed
     );
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->moduleAsserts.numPassed,
-        test->moduleAsserts.numPassed
+        &m->asserts.fatalForTest.numPassed,
+        test->asserts.fatalForTest.numPassed
     );
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->moduleAsserts.numFailed,
-        test->moduleAsserts.numFailed
+        &m->asserts.fatalForTest.numFailed,
+        test->asserts.fatalForTest.numFailed
     );
 
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->asserts.numPassed,
-        test->asserts.numPassed
+        &m->asserts.fatalForModule.numPassed,
+        test->asserts.fatalForModule.numPassed
     );
     NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
-        &m->asserts.numFailed,
-        test->asserts.numFailed
+        &m->asserts.fatalForModule.numFailed,
+        test->asserts.fatalForModule.numFailed
+    );
+
+    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
+        &m->asserts.fatal.numPassed,
+        test->asserts.fatal.numPassed
+    );
+    NBP_SYNC_ATOMIC_UINT_ADD_AND_FETCH(
+        &m->asserts.fatal.numFailed,
+        test->asserts.fatal.numFailed
     );
 }
 
@@ -93,33 +93,39 @@ static void nbp_scheduler_update_parent_stats(nbp_module_details_t* module)
     NBP_PRIVATE_TMP_ADD(p->tests.numFailed, m->tests.numFailed);
     NBP_PRIVATE_TMP_ADD(p->tests.numSkipped, m->tests.numSkipped);
 
-    // checks stats
-    NBP_PRIVATE_TMP_ADD(p->checks.numPassed, m->checks.numPassed);
-    NBP_PRIVATE_TMP_ADD(p->checks.numFailed, m->checks.numFailed);
-
-    // test asserts stats
+    // non fatal asserts stats
     NBP_PRIVATE_TMP_ADD(
-        p->testAsserts.numPassed,
-        m->testAsserts.numPassed
+        p->asserts.nonFatal.numPassed,
+        m->asserts.nonFatal.numPassed
     );
     NBP_PRIVATE_TMP_ADD(
-        p->testAsserts.numFailed,
-        m->testAsserts.numFailed
+        p->asserts.nonFatal.numFailed,
+        m->asserts.nonFatal.numFailed
     );
 
-    // module asserts stats
+    // fatal for test asserts stats
     NBP_PRIVATE_TMP_ADD(
-        p->moduleAsserts.numPassed,
-        m->moduleAsserts.numPassed
+        p->asserts.fatalForTest.numPassed,
+        m->asserts.fatalForTest.numPassed
     );
     NBP_PRIVATE_TMP_ADD(
-        p->moduleAsserts.numFailed,
-        m->moduleAsserts.numFailed
+        p->asserts.fatalForTest.numFailed,
+        m->asserts.fatalForTest.numFailed
     );
 
-    // asserts stats
-    NBP_PRIVATE_TMP_ADD(p->asserts.numPassed, m->asserts.numPassed);
-    NBP_PRIVATE_TMP_ADD(p->asserts.numFailed, m->asserts.numFailed);
+    // fatal for module asserts stats
+    NBP_PRIVATE_TMP_ADD(
+        p->asserts.fatalForModule.numPassed,
+        m->asserts.fatalForModule.numPassed
+    );
+    NBP_PRIVATE_TMP_ADD(
+        p->asserts.fatalForModule.numFailed,
+        m->asserts.fatalForModule.numFailed
+    );
+
+    // fatal asserts stats
+    NBP_PRIVATE_TMP_ADD(p->asserts.fatal.numPassed, m->asserts.fatal.numPassed);
+    NBP_PRIVATE_TMP_ADD(p->asserts.fatal.numFailed, m->asserts.fatal.numFailed);
 
 #undef NBP_PRIVATE_TMP_ADD
 }
@@ -207,19 +213,19 @@ end:
 static void nbp_scheduler_update_test_state(nbp_test_details_t* test)
 {
     do {
-        if (test->checks.numFailed != 0) {
+        if (test->asserts.nonFatal.numFailed != 0) {
             break;
         }
 
-        if (test->testAsserts.numFailed != 0) {
+        if (test->asserts.fatalForTest.numFailed != 0) {
             break;
         }
 
-        if (test->moduleAsserts.numFailed != 0) {
+        if (test->asserts.fatalForModule.numFailed != 0) {
             break;
         }
 
-        if (test->asserts.numFailed != 0) {
+        if (test->asserts.fatal.numFailed != 0) {
             break;
         }
 
@@ -534,11 +540,16 @@ static void nbp_scheduler_run_test_running(nbp_test_details_t* test)
         test->testSetupFunc(test);
     }
 
-    test->testFunc(test, NBP_MEMORY_NULL_POINTER, NBP_MEMORY_NULL_POINTER);
+    test->testFunc(
+        test,
+        NBP_ASSERT_NON_FATAL,
+        NBP_MEMORY_NULL_POINTER,
+        NBP_MEMORY_NULL_POINTER
+    );
 
-    if (test->asserts.numFailed != 0) {
+    if (test->asserts.fatal.numFailed != 0) {
         nbp_scheduler_skip_module(nbpMainModule);
-    } else if (test->moduleAsserts.numFailed != 0) {
+    } else if (test->asserts.fatalForModule.numFailed != 0) {
         nbp_scheduler_skip_module(test->module);
     }
 

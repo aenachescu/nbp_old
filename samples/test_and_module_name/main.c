@@ -33,31 +33,31 @@ SOFTWARE.
 NBP_TEST(test_and_module_name_test1, NBP_TEST_NAME("first test"))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test_and_module_name_test2, NBP_TEST_NAME("second test"))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test_and_module_name_test3, NBP_TEST_NAME("third test"))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test1, NBP_TEST_NAME("first test"))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test2, NBP_TEST_NAME("second test"))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_MODULE(module1, NBP_MODULE_NAME("first module"))

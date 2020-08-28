@@ -104,73 +104,11 @@ void nbp_printer_notify_run_module_completed(
     nbp_module_details_t* /* current module */
 );
 
-void nbp_printer_notify_check_result(
-    nbp_test_details_t*, /* current test */
-    const char*, /* condition */
-    int, /* status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
-void nbp_printer_notify_check_type_op_result(
-    nbp_test_details_t*, /* current test */
-    nbp_printer_type_value_t, /* first value */
-    nbp_printer_type_value_t, /* second value */
-    unsigned int, /* type */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
-void nbp_printer_notify_test_assert_result(
-    nbp_test_details_t*, /* current test */
-    const char*, /* condition */
-    int, /* status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
-void nbp_printer_notify_test_assert_type_op_result(
-    nbp_test_details_t*, /* current test */
-    nbp_printer_type_value_t, /* first value */
-    nbp_printer_type_value_t, /* second value */
-    unsigned int, /* type */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
-void nbp_printer_notify_module_assert_result(
-    nbp_test_details_t*, /* current test */
-    const char*, /* condition */
-    int, /* status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
-void nbp_printer_notify_module_assert_type_op_result(
-    nbp_test_details_t*, /* current test */
-    nbp_printer_type_value_t, /* first value */
-    nbp_printer_type_value_t, /* second value */
-    unsigned int, /* type */
-    unsigned int, /* operator */
-    int, /* status */
-    int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
-);
-
 void nbp_printer_notify_assert_result(
     nbp_test_details_t*, /* current test */
     const char*, /* condition */
-    int, /* status */
+    unsigned int, /* assert type */
+    unsigned int, /* status */
     int, /* line */
     const char*, /* failure message */
     const char* /* success message */
@@ -180,9 +118,10 @@ void nbp_printer_notify_assert_type_op_result(
     nbp_test_details_t*, /* current test */
     nbp_printer_type_value_t, /* first value */
     nbp_printer_type_value_t, /* second value */
-    unsigned int, /* type */
+    unsigned int, /* value type */
     unsigned int, /* operator */
-    int, /* status */
+    unsigned int, /* assert type */
+    unsigned int, /* status */
     int, /* line */
     const char*, /* failure message */
     const char* /* success message */

@@ -58,7 +58,7 @@ NBP_TEST(test1)
     SAMPLE_SLEEP();
 
     unsigned int counter = SAMPLE_ATOMIC_UINT_LOAD(&setupCounter);
-    NBP_CHECK(counter == 1);
+    NBP_ASSERT(counter == 1);
 }
 
 NBP_TEST(test2)
@@ -66,7 +66,7 @@ NBP_TEST(test2)
     SAMPLE_SLEEP();
 
     unsigned int counter = SAMPLE_ATOMIC_UINT_LOAD(&setupCounter);
-    NBP_CHECK(counter == 1);
+    NBP_ASSERT(counter == 1);
 }
 
 NBP_TEST(test3)
@@ -74,7 +74,7 @@ NBP_TEST(test3)
     SAMPLE_SLEEP();
 
     unsigned int counter = SAMPLE_ATOMIC_UINT_LOAD(&setupCounter);
-    NBP_CHECK(counter == 1);
+    NBP_ASSERT(counter == 1);
 }
 
 NBP_TEST(test4)
@@ -82,7 +82,7 @@ NBP_TEST(test4)
     SAMPLE_SLEEP();
 
     unsigned int counter = SAMPLE_ATOMIC_UINT_LOAD(&setupCounter);
-    NBP_CHECK(counter == 1);
+    NBP_ASSERT(counter == 1);
 }
 
 NBP_TEST(test5)
@@ -90,10 +90,10 @@ NBP_TEST(test5)
     SAMPLE_SLEEP();
 
     unsigned int counter = SAMPLE_ATOMIC_UINT_LOAD(&setupCounter);
-    NBP_CHECK(counter == 1);
+    NBP_ASSERT(counter == 1);
 
     counter = SAMPLE_ATOMIC_UINT_LOAD(&teardownCounter);
-    NBP_CHECK(counter == 1);
+    NBP_ASSERT(counter == 1);
 }
 
 NBP_MAIN_MODULE(mt_scheduler_module_fixtures_run_only_once)

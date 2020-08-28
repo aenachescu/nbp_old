@@ -31,154 +31,18 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_ASSERT_STATUS_PASSED 1
+#define NBP_SUCCESS_MESSAGE(msg)
 
 /*
  * TODO: add docs
  */
-#define NBP_ASSERT_STATUS_FAILED 0
-
-#define NBP_ASSERT_PRIVATE_IMPL(cond)                                          \
-    if (cond) {                                                                \
-        nbpParamTest->asserts.numPassed++;                                     \
-        nbp_printer_notify_assert_result(                                      \
-            nbpParamTest,                                                      \
-            #cond,                                                             \
-            NBP_ASSERT_STATUS_PASSED,                                          \
-            __LINE__,                                                          \
-            NBP_MEMORY_NULL_POINTER,                                           \
-            nbpParamSuccessMessage                                             \
-        );                                                                     \
-    } else {                                                                   \
-        nbpParamTest->asserts.numFailed++;                                     \
-        nbp_printer_notify_assert_result(                                      \
-            nbpParamTest,                                                      \
-            #cond,                                                             \
-            NBP_ASSERT_STATUS_FAILED,                                          \
-            __LINE__,                                                          \
-            nbpParamFailureMessage,                                            \
-            NBP_MEMORY_NULL_POINTER                                            \
-        );                                                                     \
-        return;                                                                \
-    }                                                                          \
-    nbpParamSuccessMessage = NBP_MEMORY_NULL_POINTER;                          \
-    nbpParamFailureMessage = NBP_MEMORY_NULL_POINTER;
-
-#define NBP_ASSERT_PRIVATE_OP_IMPL(a, b, op, printerOp)                        \
-    if (a op b) {                                                              \
-        nbp_printer_type_value_t tmpA, tmpB;                                   \
-        tmpA.stringValue = #a; tmpB.stringValue = #b;                          \
-        nbpParamTest->asserts.numPassed++;                                     \
-        nbp_printer_notify_assert_type_op_result(                              \
-            nbpParamTest,                                                      \
-            tmpA,                                                              \
-            tmpB,                                                              \
-            NBP_PRINTER_TYPE_NONE,                                             \
-            printerOp,                                                         \
-            NBP_ASSERT_STATUS_PASSED,                                          \
-            __LINE__,                                                          \
-            NBP_MEMORY_NULL_POINTER,                                           \
-            nbpParamSuccessMessage                                             \
-        );                                                                     \
-    } else {                                                                   \
-        nbp_printer_type_value_t tmpA, tmpB;                                   \
-        tmpA.stringValue = #a; tmpB.stringValue = #b;                          \
-        nbpParamTest->asserts.numFailed++;                                     \
-        nbp_printer_notify_assert_type_op_result(                              \
-            nbpParamTest,                                                      \
-            tmpA,                                                              \
-            tmpB,                                                              \
-            NBP_PRINTER_TYPE_NONE,                                             \
-            printerOp,                                                         \
-            NBP_ASSERT_STATUS_FAILED,                                          \
-            __LINE__,                                                          \
-            nbpParamFailureMessage,                                            \
-            NBP_MEMORY_NULL_POINTER                                            \
-        );                                                                     \
-        return;                                                                \
-    }                                                                          \
-    nbpParamSuccessMessage = NBP_MEMORY_NULL_POINTER;                          \
-    nbpParamFailureMessage = NBP_MEMORY_NULL_POINTER;
-
-#define NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, op, printerOp, type, valuePrefix)\
-    do {                                                                       \
-        nbp_printer_type_value_t tmpA, tmpB;                                   \
-        tmpA.valuePrefix ## Value = a; tmpB.valuePrefix ## Value = b;          \
-        if (tmpA.valuePrefix ## Value op tmpB.valuePrefix ## Value) {          \
-            nbpParamTest->asserts.numPassed++;                                 \
-            nbp_printer_notify_assert_type_op_result(                          \
-                nbpParamTest,                                                  \
-                tmpA,                                                          \
-                tmpB,                                                          \
-                type,                                                          \
-                printerOp,                                                     \
-                NBP_ASSERT_STATUS_PASSED,                                      \
-                __LINE__,                                                      \
-                NBP_MEMORY_NULL_POINTER,                                       \
-                nbpParamSuccessMessage                                         \
-            );                                                                 \
-        } else {                                                               \
-            nbpParamTest->asserts.numFailed++;                                 \
-            nbp_printer_notify_assert_type_op_result(                          \
-                nbpParamTest,                                                  \
-                tmpA,                                                          \
-                tmpB,                                                          \
-                type,                                                          \
-                printerOp,                                                     \
-                NBP_ASSERT_STATUS_FAILED,                                      \
-                __LINE__,                                                      \
-                nbpParamFailureMessage,                                        \
-                NBP_MEMORY_NULL_POINTER                                        \
-            );                                                                 \
-            return;                                                            \
-        }                                                                      \
-        nbpParamSuccessMessage = NBP_MEMORY_NULL_POINTER;                      \
-        nbpParamFailureMessage = NBP_MEMORY_NULL_POINTER;                      \
-    } while (0);
-
-#define NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, op, printerOp)                \
-    do {                                                                       \
-        long double ldA, ldB;                                                  \
-        nbp_printer_type_value_t tmpA, tmpB;                                   \
-        ldA = a; ldB = b;                                                      \
-        tmpA.ldoubleValue = &ldA; tmpB.ldoubleValue = &ldB;                    \
-        if (ldA op ldB) {                                                      \
-            nbpParamTest->asserts.numPassed++;                                 \
-            nbp_printer_notify_assert_type_op_result(                          \
-                nbpParamTest,                                                  \
-                tmpA,                                                          \
-                tmpB,                                                          \
-                NBP_PRINTER_TYPE_LDOUBLE,                                      \
-                printerOp,                                                     \
-                NBP_ASSERT_STATUS_PASSED,                                      \
-                __LINE__,                                                      \
-                NBP_MEMORY_NULL_POINTER,                                       \
-                nbpParamSuccessMessage                                         \
-            );                                                                 \
-        } else {                                                               \
-            nbpParamTest->asserts.numFailed++;                                 \
-            nbp_printer_notify_assert_type_op_result(                          \
-                nbpParamTest,                                                  \
-                tmpA,                                                          \
-                tmpB,                                                          \
-                NBP_PRINTER_TYPE_LDOUBLE,                                      \
-                printerOp,                                                     \
-                NBP_ASSERT_STATUS_FAILED,                                      \
-                __LINE__,                                                      \
-                nbpParamFailureMessage,                                        \
-                NBP_MEMORY_NULL_POINTER                                        \
-            );                                                                 \
-            return;                                                            \
-        }                                                                      \
-        nbpParamSuccessMessage = NBP_MEMORY_NULL_POINTER;                      \
-        nbpParamFailureMessage = NBP_MEMORY_NULL_POINTER;                      \
-    } while (0);
+#define NBP_FAILURE_MESSAGE(msg)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT(cond, ...)                                                  \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_IMPL(cond)
 
 /******************************************************************************
@@ -193,42 +57,42 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_EQ(a, b, ...)                                               \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_NE(a, b, ...)                                               \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_GT(a, b, ...)                                               \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_GE(a, b, ...)                                               \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LT(a, b, ...)                                               \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LE(a, b, ...)                                               \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE)
 
 /******************************************************************************
@@ -243,7 +107,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_EQ(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
         NBP_PRINTER_TYPE_CHAR, char)
 
@@ -251,7 +115,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_NE(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
         NBP_PRINTER_TYPE_CHAR, char)
 
@@ -259,7 +123,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_GT(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
         NBP_PRINTER_TYPE_CHAR, char)
 
@@ -267,7 +131,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_GE(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
         NBP_PRINTER_TYPE_CHAR, char)
 
@@ -275,7 +139,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_LT(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
         NBP_PRINTER_TYPE_CHAR, char)
 
@@ -283,7 +147,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_CHAR_LE(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
         NBP_PRINTER_TYPE_CHAR, char)
 
@@ -299,7 +163,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_EQ(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
         NBP_PRINTER_TYPE_SHORT, short)
 
@@ -307,7 +171,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_NE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
         NBP_PRINTER_TYPE_SHORT, short)
 
@@ -315,7 +179,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_GT(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
         NBP_PRINTER_TYPE_SHORT, short)
 
@@ -323,7 +187,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_GE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
         NBP_PRINTER_TYPE_SHORT, short)
 
@@ -331,7 +195,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_LT(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
         NBP_PRINTER_TYPE_SHORT, short)
 
@@ -339,7 +203,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_SHORT_LE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
         NBP_PRINTER_TYPE_SHORT, short)
 
@@ -355,7 +219,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_EQ(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
         NBP_PRINTER_TYPE_USHORT, ushort)
 
@@ -363,7 +227,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_NE(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
         NBP_PRINTER_TYPE_USHORT, ushort)
 
@@ -371,7 +235,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_GT(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
         NBP_PRINTER_TYPE_USHORT, ushort)
 
@@ -379,7 +243,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_GE(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
         NBP_PRINTER_TYPE_USHORT, ushort)
 
@@ -387,7 +251,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_LT(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
         NBP_PRINTER_TYPE_USHORT, ushort)
 
@@ -395,7 +259,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_USHORT_LE(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
         NBP_PRINTER_TYPE_USHORT, ushort)
 
@@ -411,7 +275,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_EQ(a, b, ...)                                           \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
         NBP_PRINTER_TYPE_INT, int)
 
@@ -419,7 +283,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_NE(a, b, ...)                                           \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
         NBP_PRINTER_TYPE_INT, int)
 
@@ -427,7 +291,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_GT(a, b, ...)                                           \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
         NBP_PRINTER_TYPE_INT, int)
 
@@ -435,7 +299,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_GE(a, b, ...)                                           \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
         NBP_PRINTER_TYPE_INT, int)
 
@@ -443,7 +307,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_LT(a, b, ...)                                           \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
         NBP_PRINTER_TYPE_INT, int)
 
@@ -451,7 +315,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_INT_LE(a, b, ...)                                           \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
         NBP_PRINTER_TYPE_INT, int)
 
@@ -467,7 +331,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_EQ(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
         NBP_PRINTER_TYPE_UINT, uint)
 
@@ -475,7 +339,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_NE(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
         NBP_PRINTER_TYPE_UINT, uint)
 
@@ -483,7 +347,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_GT(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
         NBP_PRINTER_TYPE_UINT, uint)
 
@@ -491,7 +355,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_GE(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
         NBP_PRINTER_TYPE_UINT, uint)
 
@@ -499,7 +363,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_LT(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
         NBP_PRINTER_TYPE_UINT, uint)
 
@@ -507,7 +371,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_UINT_LE(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
         NBP_PRINTER_TYPE_UINT, uint)
 
@@ -523,7 +387,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_EQ(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
         NBP_PRINTER_TYPE_LONG, long)
 
@@ -531,7 +395,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_NE(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
         NBP_PRINTER_TYPE_LONG, long)
 
@@ -539,7 +403,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_GT(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
         NBP_PRINTER_TYPE_LONG, long)
 
@@ -547,7 +411,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_GE(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
         NBP_PRINTER_TYPE_LONG, long)
 
@@ -555,7 +419,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_LT(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
         NBP_PRINTER_TYPE_LONG, long)
 
@@ -563,7 +427,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LONG_LE(a, b, ...)                                          \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
         NBP_PRINTER_TYPE_LONG, long)
 
@@ -579,7 +443,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_EQ(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
         NBP_PRINTER_TYPE_ULONG, ulong)
 
@@ -587,7 +451,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_NE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
         NBP_PRINTER_TYPE_ULONG, ulong)
 
@@ -595,7 +459,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_GT(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
         NBP_PRINTER_TYPE_ULONG, ulong)
 
@@ -603,7 +467,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_GE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
         NBP_PRINTER_TYPE_ULONG, ulong)
 
@@ -611,7 +475,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_LT(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
         NBP_PRINTER_TYPE_ULONG, ulong)
 
@@ -619,7 +483,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULONG_LE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
         NBP_PRINTER_TYPE_ULONG, ulong)
 
@@ -635,7 +499,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_EQ(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
         NBP_PRINTER_TYPE_LLONG, llong)
 
@@ -643,7 +507,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_NE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
         NBP_PRINTER_TYPE_LLONG, llong)
 
@@ -651,7 +515,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_GT(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
         NBP_PRINTER_TYPE_LLONG, llong)
 
@@ -659,7 +523,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_GE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
         NBP_PRINTER_TYPE_LLONG, llong)
 
@@ -667,7 +531,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_LT(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
         NBP_PRINTER_TYPE_LLONG, llong)
 
@@ -675,7 +539,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LLONG_LE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
         NBP_PRINTER_TYPE_LLONG, llong)
 
@@ -691,7 +555,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_EQ(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
         NBP_PRINTER_TYPE_ULLONG, ullong)
 
@@ -699,7 +563,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_NE(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
         NBP_PRINTER_TYPE_ULLONG, ullong)
 
@@ -707,7 +571,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_GT(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
         NBP_PRINTER_TYPE_ULLONG, ullong)
 
@@ -715,7 +579,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_GE(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
         NBP_PRINTER_TYPE_ULLONG, ullong)
 
@@ -723,7 +587,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_LT(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
         NBP_PRINTER_TYPE_ULLONG, ullong)
 
@@ -731,7 +595,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_ULLONG_LE(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
         NBP_PRINTER_TYPE_ULLONG, ullong)
 
@@ -747,7 +611,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_EQ(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
         NBP_PRINTER_TYPE_FLOAT, float)
 
@@ -755,7 +619,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_NE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
         NBP_PRINTER_TYPE_FLOAT, float)
 
@@ -763,7 +627,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_GT(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
         NBP_PRINTER_TYPE_FLOAT, float)
 
@@ -771,7 +635,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_GE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
         NBP_PRINTER_TYPE_FLOAT, float)
 
@@ -779,7 +643,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_LT(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
         NBP_PRINTER_TYPE_FLOAT, float)
 
@@ -787,7 +651,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_FLOAT_LE(a, b, ...)                                         \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
         NBP_PRINTER_TYPE_FLOAT, float)
 
@@ -803,7 +667,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_EQ(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ,         \
         NBP_PRINTER_TYPE_DOUBLE, double)
 
@@ -811,7 +675,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_NE(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE,         \
         NBP_PRINTER_TYPE_DOUBLE, double)
 
@@ -819,7 +683,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_GT(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT,          \
         NBP_PRINTER_TYPE_DOUBLE, double)
 
@@ -827,7 +691,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_GE(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE,         \
         NBP_PRINTER_TYPE_DOUBLE, double)
 
@@ -835,7 +699,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_LT(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT,          \
         NBP_PRINTER_TYPE_DOUBLE, double)
 
@@ -843,7 +707,7 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_DOUBLE_LE(a, b, ...)                                        \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE,         \
         NBP_PRINTER_TYPE_DOUBLE, double)
 
@@ -859,42 +723,249 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_EQ(a, b, ...)                                       \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, ==, NBP_PRINTER_OPERATOR_EQ)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_NE(a, b, ...)                                       \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, !=, NBP_PRINTER_OPERATOR_NE)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_GT(a, b, ...)                                       \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, >, NBP_PRINTER_OPERATOR_GT)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_GE(a, b, ...)                                       \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, >=, NBP_PRINTER_OPERATOR_GE)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_LT(a, b, ...)                                       \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, <, NBP_PRINTER_OPERATOR_LT)
 
 /*
  * TODO: add docs
  */
 #define NBP_ASSERT_LDOUBLE_LE(a, b, ...)                                       \
-    NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(P_ ## __VA_ARGS__)        \
+    NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(P_ ## __VA_ARGS__)              \
     NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, <=, NBP_PRINTER_OPERATOR_LE)
+
+#define NBP_ASSERT_PRIVATE_IMPL(cond)                                          \
+    if (cond) {                                                                \
+        nbp_test_increment_asserts_stats(                                      \
+            nbpParamTest,                                                      \
+            NBP_ASSERT_STATUS_PASSED,                                          \
+            nbpParamAssertType                                                 \
+        );                                                                     \
+        nbp_printer_notify_assert_result(                                      \
+            nbpParamTest,                                                      \
+            #cond,                                                             \
+            nbpParamAssertType,                                                \
+            NBP_ASSERT_STATUS_PASSED,                                          \
+            __LINE__,                                                          \
+            NBP_MEMORY_NULL_POINTER,                                           \
+            nbpParamSuccessMessage                                             \
+        );                                                                     \
+    } else {                                                                   \
+        nbp_test_increment_asserts_stats(                                      \
+            nbpParamTest,                                                      \
+            NBP_ASSERT_STATUS_FAILED,                                          \
+            nbpParamAssertType                                                 \
+        );                                                                     \
+        nbp_printer_notify_assert_result(                                      \
+            nbpParamTest,                                                      \
+            #cond,                                                             \
+            nbpParamAssertType,                                                \
+            NBP_ASSERT_STATUS_FAILED,                                          \
+            __LINE__,                                                          \
+            nbpParamFailureMessage,                                            \
+            NBP_MEMORY_NULL_POINTER                                            \
+        );                                                                     \
+        if (nbpParamAssertType != NBP_ASSERT_NON_FATAL) {                      \
+            return;                                                            \
+        }                                                                      \
+    }                                                                          \
+    nbpParamAssertType      = NBP_ASSERT_NON_FATAL;                            \
+    nbpParamSuccessMessage  = NBP_MEMORY_NULL_POINTER;                         \
+    nbpParamFailureMessage  = NBP_MEMORY_NULL_POINTER;
+
+#define NBP_ASSERT_PRIVATE_OP_IMPL(a, b, op, printerOp)                        \
+    if (a op b) {                                                              \
+        nbp_printer_type_value_t tmpA, tmpB;                                   \
+        tmpA.stringValue = #a; tmpB.stringValue = #b;                          \
+        nbp_test_increment_asserts_stats(                                      \
+            nbpParamTest,                                                      \
+            NBP_ASSERT_STATUS_PASSED,                                          \
+            nbpParamAssertType                                                 \
+        );                                                                     \
+        nbp_printer_notify_assert_type_op_result(                              \
+            nbpParamTest,                                                      \
+            tmpA,                                                              \
+            tmpB,                                                              \
+            NBP_PRINTER_TYPE_NONE,                                             \
+            printerOp,                                                         \
+            nbpParamAssertType,                                                \
+            NBP_ASSERT_STATUS_PASSED,                                          \
+            __LINE__,                                                          \
+            NBP_MEMORY_NULL_POINTER,                                           \
+            nbpParamSuccessMessage                                             \
+        );                                                                     \
+    } else {                                                                   \
+        nbp_printer_type_value_t tmpA, tmpB;                                   \
+        tmpA.stringValue = #a; tmpB.stringValue = #b;                          \
+        nbp_test_increment_asserts_stats(                                      \
+            nbpParamTest,                                                      \
+            NBP_ASSERT_STATUS_FAILED,                                          \
+            nbpParamAssertType                                                 \
+        );                                                                     \
+        nbp_printer_notify_assert_type_op_result(                              \
+            nbpParamTest,                                                      \
+            tmpA,                                                              \
+            tmpB,                                                              \
+            NBP_PRINTER_TYPE_NONE,                                             \
+            printerOp,                                                         \
+            nbpParamAssertType,                                                \
+            NBP_ASSERT_STATUS_FAILED,                                          \
+            __LINE__,                                                          \
+            nbpParamFailureMessage,                                            \
+            NBP_MEMORY_NULL_POINTER                                            \
+        );                                                                     \
+        if (nbpParamAssertType != NBP_ASSERT_NON_FATAL) {                      \
+            return;                                                            \
+        }                                                                      \
+    }                                                                          \
+    nbpParamAssertType      = NBP_ASSERT_NON_FATAL;                            \
+    nbpParamSuccessMessage  = NBP_MEMORY_NULL_POINTER;                         \
+    nbpParamFailureMessage  = NBP_MEMORY_NULL_POINTER;
+
+#define NBP_ASSERT_PRIVATE_TYPE_OP_IMPL(a, b, op, printerOp, type, valuePrefix)\
+    do {                                                                       \
+        nbp_printer_type_value_t tmpA, tmpB;                                   \
+        tmpA.valuePrefix ## Value = a; tmpB.valuePrefix ## Value = b;          \
+        if (tmpA.valuePrefix ## Value op tmpB.valuePrefix ## Value) {          \
+            nbp_test_increment_asserts_stats(                                  \
+                nbpParamTest,                                                  \
+                NBP_ASSERT_STATUS_PASSED,                                      \
+                nbpParamAssertType                                             \
+            );                                                                 \
+            nbp_printer_notify_assert_type_op_result(                          \
+                nbpParamTest,                                                  \
+                tmpA,                                                          \
+                tmpB,                                                          \
+                type,                                                          \
+                printerOp,                                                     \
+                nbpParamAssertType,                                            \
+                NBP_ASSERT_STATUS_PASSED,                                      \
+                __LINE__,                                                      \
+                NBP_MEMORY_NULL_POINTER,                                       \
+                nbpParamSuccessMessage                                         \
+            );                                                                 \
+        } else {                                                               \
+            nbp_test_increment_asserts_stats(                                  \
+                nbpParamTest,                                                  \
+                NBP_ASSERT_STATUS_FAILED,                                      \
+                nbpParamAssertType                                             \
+            );                                                                 \
+            nbp_printer_notify_assert_type_op_result(                          \
+                nbpParamTest,                                                  \
+                tmpA,                                                          \
+                tmpB,                                                          \
+                type,                                                          \
+                printerOp,                                                     \
+                nbpParamAssertType,                                            \
+                NBP_ASSERT_STATUS_FAILED,                                      \
+                __LINE__,                                                      \
+                nbpParamFailureMessage,                                        \
+                NBP_MEMORY_NULL_POINTER                                        \
+            );                                                                 \
+            if (nbpParamAssertType != NBP_ASSERT_NON_FATAL) {                  \
+                return;                                                        \
+            }                                                                  \
+        }                                                                      \
+        nbpParamAssertType      = NBP_ASSERT_NON_FATAL;                        \
+        nbpParamSuccessMessage  = NBP_MEMORY_NULL_POINTER;                     \
+        nbpParamFailureMessage  = NBP_MEMORY_NULL_POINTER;                     \
+    } while (0);
+
+#define NBP_ASSERT_PRIVATE_LDOUBLE_OP_IMPL(a, b, op, printerOp)                \
+    do {                                                                       \
+        long double ldA, ldB;                                                  \
+        nbp_printer_type_value_t tmpA, tmpB;                                   \
+        ldA = a; ldB = b;                                                      \
+        tmpA.ldoubleValue = &ldA; tmpB.ldoubleValue = &ldB;                    \
+        if (ldA op ldB) {                                                      \
+            nbp_test_increment_asserts_stats(                                  \
+                nbpParamTest,                                                  \
+                NBP_ASSERT_STATUS_PASSED,                                      \
+                nbpParamAssertType                                             \
+            );                                                                 \
+            nbp_printer_notify_assert_type_op_result(                          \
+                nbpParamTest,                                                  \
+                tmpA,                                                          \
+                tmpB,                                                          \
+                NBP_PRINTER_TYPE_LDOUBLE,                                      \
+                printerOp,                                                     \
+                nbpParamAssertType,                                            \
+                NBP_ASSERT_STATUS_PASSED,                                      \
+                __LINE__,                                                      \
+                NBP_MEMORY_NULL_POINTER,                                       \
+                nbpParamSuccessMessage                                         \
+            );                                                                 \
+        } else {                                                               \
+            nbp_test_increment_asserts_stats(                                  \
+                nbpParamTest,                                                  \
+                NBP_ASSERT_STATUS_FAILED,                                      \
+                nbpParamAssertType                                             \
+            );                                                                 \
+            nbp_printer_notify_assert_type_op_result(                          \
+                nbpParamTest,                                                  \
+                tmpA,                                                          \
+                tmpB,                                                          \
+                NBP_PRINTER_TYPE_LDOUBLE,                                      \
+                printerOp,                                                     \
+                nbpParamAssertType,                                            \
+                NBP_ASSERT_STATUS_FAILED,                                      \
+                __LINE__,                                                      \
+                nbpParamFailureMessage,                                        \
+                NBP_MEMORY_NULL_POINTER                                        \
+            );                                                                 \
+            if (nbpParamAssertType != NBP_ASSERT_NON_FATAL) {                  \
+                return;                                                        \
+            }                                                                  \
+        }                                                                      \
+        nbpParamAssertType      = NBP_ASSERT_NON_FATAL;                        \
+        nbpParamSuccessMessage  = NBP_MEMORY_NULL_POINTER;                     \
+        nbpParamFailureMessage  = NBP_MEMORY_NULL_POINTER;                     \
+    } while (0);
+
+#define NBP_ASSERT_PRIVATE_PARSE_ASSERT_PARAMETERS(...)                        \
+    NBP_PP_CONCAT(                                                             \
+        NBP_PP_PROCESSING_PARAM_,                                              \
+        NBP_PP_VARCOUNT(P ## __VA_ARGS__)                                      \
+    )(P ## __VA_ARGS__)
+
+#define NBP_PP_EAT_PP_NBP_SUCCESS_MESSAGE(msg) nbpParamSuccessMessage = msg;
+
+#define NBP_PP_EAT_PP_NBP_FAILURE_MESSAGE(msg) nbpParamFailureMessage = msg;
+
+#define NBP_PP_EAT_PP_NBP_ASSERT_NON_FATAL                                     \
+    nbpParamAssertType = NBP_ASSERT_NON_FATAL;
+#define NBP_PP_EAT_PP_NBP_ASSERT_FATAL                                         \
+    nbpParamAssertType = NBP_ASSERT_FATAL;
+#define NBP_PP_EAT_PP_NBP_ASSERT_FATAL_FOR_TEST                                \
+    nbpParamAssertType = NBP_ASSERT_FATAL_FOR_TEST;
+#define NBP_PP_EAT_PP_NBP_ASSERT_FATAL_FOR_MODULE                              \
+    nbpParamAssertType = NBP_ASSERT_FATAL_FOR_MODULE;
 
 #endif // end if NBP_PRIVATE_API_ASSERT_H

@@ -32,7 +32,7 @@ SOFTWARE.
 NBP_TEST(test22)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_MODULE(submodule10, NBP_MODULE_NAME("submodule10"), NBP_MODULE_SETUP(module3_setup1))

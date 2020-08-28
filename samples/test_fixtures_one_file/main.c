@@ -137,25 +137,25 @@ NBP_MODULE(module3)
 NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(2);
+    NBP_ASSERT(2);
 }
 
 NBP_TEST(test3)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(3);
+    NBP_ASSERT(3);
 }
 
 NBP_TEST(test4)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(4);
+    NBP_ASSERT(4);
 }
 
 NBP_MODULE(submodule1)
@@ -176,25 +176,25 @@ NBP_MODULE(submodule1)
 NBP_TEST(test5)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test6)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(2);
+    NBP_ASSERT(2);
 }
 
 NBP_TEST(test7)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(3);
+    NBP_ASSERT(3);
 }
 
 NBP_TEST(test8)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(4);
+    NBP_ASSERT(4);
 }
 
 NBP_MODULE(submodule2)
@@ -215,25 +215,25 @@ NBP_MODULE(submodule2)
 NBP_TEST(test9)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test10)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(2);
+    NBP_ASSERT(2);
 }
 
 NBP_TEST(test11)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(3);
+    NBP_ASSERT(3);
 }
 
 NBP_TEST(test12)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(4);
+    NBP_ASSERT(4);
 }
 
 NBP_MODULE(submodule3)
@@ -252,25 +252,25 @@ NBP_MODULE(submodule3)
 NBP_TEST(test13)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test14)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(2);
+    NBP_ASSERT(2);
 }
 
 NBP_TEST(test15)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(3);
+    NBP_ASSERT(3);
 }
 
 NBP_TEST(test16)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(4);
+    NBP_ASSERT(4);
 }
 
 NBP_MODULE(submodule4)
@@ -289,49 +289,49 @@ NBP_MODULE(submodule4)
 NBP_TEST(test17, NBP_TEST_FIXTURES(my_test_setup3, my_test_teardown3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test18, NBP_TEST_SETUP(my_test_setup3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test19, NBP_TEST_TEARDOWN(my_test_teardown3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test20)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test21, NBP_TEST_NAME("test21"), NBP_TEST_FIXTURES(my_test_setup3, my_test_teardown3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test22, NBP_TEST_NAME("test22"), NBP_TEST_SETUP(my_test_setup3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test23, NBP_TEST_NAME("test23"), NBP_TEST_TEARDOWN(my_test_teardown3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test24, NBP_TEST_NAME("test24"))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_MODULE(submodule5)

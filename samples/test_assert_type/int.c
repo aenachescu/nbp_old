@@ -43,55 +43,55 @@ volatile int int_ = 2;
 NBP_TEST(test_assert_int_eq)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_INT_EQ(get_int(), int_);
-    NBP_TEST_ASSERT_INT_EQ(get_int(), int_, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_INT_EQ(get_int(), int_, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_INT_EQ(get_int(), int_, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_EQ(get_int(), int_, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_INT_EQ(get_int(), int_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_INT_EQ(get_int(), int_, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_EQ(get_int(), int_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_int_ne)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_INT_NE(get_int(), int_min);
-    NBP_TEST_ASSERT_INT_NE(get_int(), int_min, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_INT_NE(get_int(), int_min, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_INT_NE(get_int(), int_min, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_NE(get_int(), int_min, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_INT_NE(get_int(), int_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_INT_NE(get_int(), int_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_NE(get_int(), int_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_int_gt)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_INT_GT(get_int(), int_min);
-    NBP_TEST_ASSERT_INT_GT(get_int(), int_min, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_INT_GT(get_int(), int_min, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_INT_GT(get_int(), int_min, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_GT(get_int(), int_min, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_INT_GT(get_int(), int_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_INT_GT(get_int(), int_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_GT(get_int(), int_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_int_ge)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_INT_GE(get_int(), int_min);
-    NBP_TEST_ASSERT_INT_GE(get_int(), int_, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_INT_GE(get_int(), int_min, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_INT_GE(get_int(), int_, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_GE(get_int(), int_min, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_INT_GE(get_int(), int_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_INT_GE(get_int(), int_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_GE(get_int(), int_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_int_lt)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_INT_LT(get_int(), int_max);
-    NBP_TEST_ASSERT_INT_LT(get_int(), int_max, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_INT_LT(get_int(), int_max, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_INT_LT(get_int(), int_max, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_LT(get_int(), int_max, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_INT_LT(get_int(), int_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_INT_LT(get_int(), int_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_LT(get_int(), int_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_int_le)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_INT_LE(get_int(), int_max);
-    NBP_TEST_ASSERT_INT_LE(get_int(), int_, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_INT_LE(get_int(), int_max, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_INT_LE(get_int(), int_, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_LE(get_int(), int_max, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_INT_LE(get_int(), int_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_INT_LE(get_int(), int_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_INT_LE(get_int(), int_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_MODULE(test_assert_int)

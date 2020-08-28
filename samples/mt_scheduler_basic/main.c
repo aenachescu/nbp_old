@@ -38,12 +38,12 @@ NBP_TEST(test1)
     SAMPLE_SLEEP();
 
     int err = SAMPLE_SEMAPHORE_RELEASE(g_semaphore1);
-    NBP_ASSERT(err == 0);
+    NBP_ASSERT(err == 0, NBP_ASSERT_FATAL);
 
     err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphore2);
-    NBP_ASSERT(err == 0);
+    NBP_ASSERT(err == 0, NBP_ASSERT_FATAL);
 
-    NBP_CHECK(1 + 1 == 2);
+    NBP_ASSERT(1 + 1 == 2);
 }
 
 NBP_TEST(test2)
@@ -51,12 +51,12 @@ NBP_TEST(test2)
     SAMPLE_SLEEP();
 
     int err = SAMPLE_SEMAPHORE_RELEASE(g_semaphore1);
-    NBP_ASSERT(err == 0);
+    NBP_ASSERT(err == 0, NBP_ASSERT_FATAL);
 
     err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphore2);
-    NBP_ASSERT(err == 0);
+    NBP_ASSERT(err == 0, NBP_ASSERT_FATAL);
 
-    NBP_CHECK(1 + 1 == 2);
+    NBP_ASSERT(1 + 1 == 2);
 }
 
 NBP_TEST(test3)
@@ -64,12 +64,12 @@ NBP_TEST(test3)
     SAMPLE_SLEEP();
 
     int err = SAMPLE_SEMAPHORE_RELEASE(g_semaphore1);
-    NBP_ASSERT(err == 0);
+    NBP_ASSERT(err == 0, NBP_ASSERT_FATAL);
 
     err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphore2);
-    NBP_ASSERT(err == 0);
+    NBP_ASSERT(err == 0, NBP_ASSERT_FATAL);
 
-    NBP_CHECK(1 + 1 == 2);
+    NBP_ASSERT(1 + 1 == 2);
 }
 
 NBP_TEST(test4)
@@ -80,15 +80,15 @@ NBP_TEST(test4)
 
     for (i = 0; i < 3; i++) {
         err = SAMPLE_SEMAPHORE_WAIT_TIMEOUT(g_semaphore1);
-        NBP_ASSERT(err == 0);
+        NBP_ASSERT(err == 0, NBP_ASSERT_FATAL);
     }
 
     for (i = 0; i < 3; i++) {
         err = SAMPLE_SEMAPHORE_RELEASE(g_semaphore2);
-        NBP_ASSERT(err == 0);
+        NBP_ASSERT(err == 0, NBP_ASSERT_FATAL);
     }
 
-    NBP_CHECK(1 + 1 == 2);
+    NBP_ASSERT(1 + 1 == 2);
 }
 
 NBP_MODULE_SETUP(main_module_setup)

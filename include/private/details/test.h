@@ -43,4 +43,16 @@ void nbp_test_run_ctx(
     nbp_test_teardown_pfn_t /* test teardown pfn */
 );
 
+void nbp_test_increment_asserts_stats(
+    nbp_test_details_t*, /* test */
+    unsigned int, /* assert status */
+    unsigned int /* assert type */
+);
+
+unsigned int nbp_test_get_number_of_asserts(
+    nbp_test_details_t*, /* test */
+    unsigned int, /* assert status */
+    unsigned int /* assert type */
+);
+
 #endif // end if NBP_PRIVATE_DETAILS_TEST_H

@@ -43,145 +43,6 @@ SOFTWARE.
 #define NBP_LINUX_PRINTER_PRIVATE_PRINTER_TYPE_MODULE       (unsigned int) 0x50000002
 
 #define NBP_LINUX_PRINTER_PRIVATE_GENERATE_CONDITION(buff, size)               \
-    switch (NBP_PRINTER_GET_VALUE_TYPE()) {                                    \
-        case NBP_PRINTER_TYPE_NONE:                                            \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%s %s %s",                                                    \
-                NBP_PRINTER_GET_FIRST_VALUE(),                                 \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE()                                 \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_CHAR:                                            \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%c %s %c",                                                    \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_CHAR(),                         \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_CHAR()                         \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_SHORT:                                           \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%hd %s %hd",                                                  \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_SHORT(),                        \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_SHORT()                        \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_USHORT:                                          \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%hu %s %hu",                                                  \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_USHORT(),                       \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_USHORT()                       \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_INT:                                             \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%d %s %d",                                                    \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_INT(),                          \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_INT()                          \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_UINT:                                            \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%u %s %u",                                                    \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_UINT(),                         \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_UINT()                         \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_LONG:                                            \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%ld %s %ld",                                                  \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_LONG(),                         \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_LONG()                         \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_ULONG:                                           \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%lu %s %lu",                                                  \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_ULONG(),                        \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_ULONG()                        \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_LLONG:                                           \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%lld %s %lld",                                                \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_LLONG(),                        \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_LLONG()                        \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_ULLONG:                                          \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%llu %s %llu",                                                \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_ULLONG(),                       \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_ULLONG()                       \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_FLOAT:                                           \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%f %s %f",                                                    \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_FLOAT(),                        \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_FLOAT()                        \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_DOUBLE:                                          \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%f %s %f",                                                    \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_DOUBLE(),                       \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_DOUBLE()                       \
-            );                                                                 \
-            break;                                                             \
-        case NBP_PRINTER_TYPE_LDOUBLE:                                         \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "%Lf %s %Lf",                                                  \
-                NBP_PRINTER_GET_FIRST_VALUE_AS_LDOUBLE(),                      \
-                NBP_PRINTER_GET_OPERATOR_STR(),                                \
-                NBP_PRINTER_GET_SECOND_VALUE_AS_LDOUBLE()                      \
-            );                                                                 \
-            break;                                                             \
-        default:                                                               \
-            snprintf(                                                          \
-                buff,                                                          \
-                size,                                                          \
-                "unknown value type"                                           \
-            );                                                                 \
-            break;                                                             \
-    }
 
 #ifdef NBP_MT_SUPPORT
 
@@ -480,155 +341,8 @@ static void nbp_linux_printer_add_message(nbp_test_details_t* test, char* msg)
     }
 }
 
-static void nbp_linux_printer_add_check_result(nbp_test_details_t* test,
-    const char* cond, int passed, int line, const char* failMsg,
-    const char* passMsg)
-{
-    char buffer[1024] = { 0 };
-
-    if (passed == NBP_CHECK_STATUS_PASSED) {
-        if (passMsg == NBP_PRINTER_NO_SUCCESS_MESSAGE) {
-            return;
-        }
-
-        snprintf(
-            buffer,
-            1024,
-            NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN
-                "%s (%s) (%d)"
-            NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-            cond,
-            passMsg,
-            line
-        );
-    } else {
-        if (failMsg == NBP_PRINTER_NO_FAILURE_MESSAGE) {
-            snprintf(
-                buffer,
-                1024,
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_RED
-                    "%s (%d)"
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-                cond,
-                line
-            );
-        } else {
-            snprintf(
-                buffer,
-                1024,
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_RED
-                    "%s (%s) (%d)"
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-                cond,
-                failMsg,
-                line
-            );
-        }
-    }
-
-    nbp_linux_printer_add_message(test, buffer);
-}
-
-static void nbp_linux_printer_add_test_assert_result(nbp_test_details_t* test,
-    const char* cond, int passed, int line, const char* failMsg,
-    const char* passMsg)
-{
-    char buffer[1024] = { 0 };
-
-    if (passed == NBP_TEST_ASSERT_STATUS_PASSED) {
-        if (passMsg == NBP_PRINTER_NO_SUCCESS_MESSAGE) {
-            return;
-        }
-
-        snprintf(
-            buffer,
-            1024,
-            NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN
-                "%s (%s) (%d)"
-            NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-            cond,
-            passMsg,
-            line
-        );
-    } else {
-        if (failMsg == NBP_PRINTER_NO_FAILURE_MESSAGE) {
-            snprintf(
-                buffer,
-                1024,
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_RED
-                    "%s (%d)"
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-                cond,
-                line
-            );
-        } else {
-            snprintf(
-                buffer,
-                1024,
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_RED
-                    "%s (%s) (%d)"
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-                cond,
-                failMsg,
-                line
-            );
-        }
-    }
-
-    nbp_linux_printer_add_message(test, buffer);
-}
-
-static void nbp_linux_printer_add_module_assert_result(nbp_test_details_t* test,
-    const char* cond, int passed, int line, const char* failMsg,
-    const char* passMsg)
-{
-    char buffer[1024] = { 0 };
-
-    if (passed == NBP_MODULE_ASSERT_STATUS_PASSED) {
-        if (passMsg == NBP_PRINTER_NO_SUCCESS_MESSAGE) {
-            return;
-        }
-
-        snprintf(
-            buffer,
-            1024,
-            NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN
-                "%s (%s) (%d)"
-            NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-            cond,
-            passMsg,
-            line
-        );
-    } else {
-        if (failMsg == NBP_PRINTER_NO_FAILURE_MESSAGE) {
-            snprintf(
-                buffer,
-                1024,
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_RED
-                    "%s (%d)"
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-                cond,
-                line
-            );
-        } else {
-            snprintf(
-                buffer,
-                1024,
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_RED
-                    "%s (%s) (%d)"
-                NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL "\n",
-                cond,
-                failMsg,
-                line
-            );
-        }
-    }
-
-    nbp_linux_printer_add_message(test, buffer);
-}
-
 static void nbp_linux_printer_add_assert_result(nbp_test_details_t* test,
-    const char* cond, int passed, int line, const char* failMsg,
+    const char* cond, unsigned int passed, int line, const char* failMsg,
     const char* passMsg)
 {
     char buffer[1024] = { 0 };
@@ -871,6 +585,9 @@ NBP_PRINTER_CALLBACK_AFTER_RUN(nbp_linux_printer_after_run)
     unsigned int numFailedModules;
     unsigned int numSkippedModules;
     unsigned int moduleState;
+    unsigned int numAsserts;
+    unsigned int numPassedAsserts;
+    unsigned int numFailedAsserts;
 
     printf(NBP_LINUX_PRINTER_PRIVATE_CLEAR_LINE);
     nbp_linux_printer_print_data();
@@ -939,75 +656,131 @@ NBP_PRINTER_CALLBACK_AFTER_RUN(nbp_linux_printer_after_run)
     );
 
     // print checks stats
+
+    numAsserts = NBP_MODULE_GET_NUMBER_OF_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_NON_FATAL
+    );
+    numPassedAsserts = NBP_MODULE_GET_NUMBER_OF_PASSED_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_NON_FATAL
+    );
+    numFailedAsserts = NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_NON_FATAL
+    );
+
     printf(
         "Passed checks: %s%u%s/%u\n"
         "Failed checks: %s%u%s/%u\n",
 
         NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN,
-        NBP_MODULE_GET_NUMBER_OF_PASSED_CHECKS(NBP_MODULE_THIS),
+        numPassedAsserts,
         NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL,
-        NBP_MODULE_GET_NUMBER_OF_CHECKS(NBP_MODULE_THIS),
+        numAsserts,
 
-        NBP_MODULE_GET_NUMBER_OF_FAILED_CHECKS(NBP_MODULE_THIS) == 0 ?
+        numFailedAsserts == 0 ?
             NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN :
             NBP_LINUX_PRINTER_PRIVATE_COLOR_RED,
-        NBP_MODULE_GET_NUMBER_OF_FAILED_CHECKS(NBP_MODULE_THIS),
+        numFailedAsserts,
         NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL,
-        NBP_MODULE_GET_NUMBER_OF_CHECKS(NBP_MODULE_THIS)
+        numAsserts
     );
 
     // print test asserts stats
+
+    numAsserts = NBP_MODULE_GET_NUMBER_OF_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_FATAL_FOR_TEST
+    );
+    numPassedAsserts = NBP_MODULE_GET_NUMBER_OF_PASSED_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_FATAL_FOR_TEST
+    );
+    numFailedAsserts = NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_FATAL_FOR_TEST
+    );
+
     printf(
         "Passed test asserts: %s%u%s/%u\n"
         "Failed test asserts: %s%u%s/%u\n",
 
         NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN,
-        NBP_MODULE_GET_NUMBER_OF_PASSED_TEST_ASSERTS(NBP_MODULE_THIS),
+        numPassedAsserts,
         NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL,
-        NBP_MODULE_GET_NUMBER_OF_TEST_ASSERTS(NBP_MODULE_THIS),
+        numAsserts,
 
-        NBP_MODULE_GET_NUMBER_OF_FAILED_TEST_ASSERTS(NBP_MODULE_THIS) == 0 ?
+        numFailedAsserts == 0 ?
             NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN :
             NBP_LINUX_PRINTER_PRIVATE_COLOR_RED,
-        NBP_MODULE_GET_NUMBER_OF_FAILED_TEST_ASSERTS(NBP_MODULE_THIS),
+        numFailedAsserts,
         NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL,
-        NBP_MODULE_GET_NUMBER_OF_TEST_ASSERTS(NBP_MODULE_THIS)
+        numAsserts
     );
 
     // print module asserts stats
+
+    numAsserts = NBP_MODULE_GET_NUMBER_OF_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_FATAL_FOR_MODULE
+    );
+    numPassedAsserts = NBP_MODULE_GET_NUMBER_OF_PASSED_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_FATAL_FOR_MODULE
+    );
+    numFailedAsserts = NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_FATAL_FOR_MODULE
+    );
+
     printf(
         "Passed module asserts: %s%u%s/%u\n"
         "Failed module asserts: %s%u%s/%u\n",
 
         NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN,
-        NBP_MODULE_GET_NUMBER_OF_PASSED_MODULE_ASSERTS(NBP_MODULE_THIS),
+        numPassedAsserts,
         NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL,
-        NBP_MODULE_GET_NUMBER_OF_MODULE_ASSERTS(NBP_MODULE_THIS),
+        numAsserts,
 
-        NBP_MODULE_GET_NUMBER_OF_FAILED_MODULE_ASSERTS(NBP_MODULE_THIS) == 0 ?
+        numFailedAsserts == 0 ?
             NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN :
             NBP_LINUX_PRINTER_PRIVATE_COLOR_RED,
-        NBP_MODULE_GET_NUMBER_OF_FAILED_MODULE_ASSERTS(NBP_MODULE_THIS),
+        numFailedAsserts,
         NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL,
-        NBP_MODULE_GET_NUMBER_OF_MODULE_ASSERTS(NBP_MODULE_THIS)
+        numAsserts
     );
 
     // print asserts stats
+
+    numAsserts = NBP_MODULE_GET_NUMBER_OF_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_FATAL
+    );
+    numPassedAsserts = NBP_MODULE_GET_NUMBER_OF_PASSED_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_FATAL
+    );
+    numFailedAsserts = NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(
+        NBP_MODULE_THIS,
+        NBP_ASSERT_FATAL
+    );
+
     printf(
         "Passed asserts: %s%u%s/%u\n"
         "Failed asserts: %s%u%s/%u\n",
 
         NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN,
-        NBP_MODULE_GET_NUMBER_OF_PASSED_ASSERTS(NBP_MODULE_THIS),
+        numPassedAsserts,
         NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL,
-        NBP_MODULE_GET_NUMBER_OF_ASSERTS(NBP_MODULE_THIS),
+        numAsserts,
 
-        NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(NBP_MODULE_THIS) == 0 ?
+        numFailedAsserts == 0 ?
             NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN :
             NBP_LINUX_PRINTER_PRIVATE_COLOR_RED,
-        NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(NBP_MODULE_THIS),
+        numFailedAsserts,
         NBP_LINUX_PRINTER_PRIVATE_COLOR_NORMAL,
-        NBP_MODULE_GET_NUMBER_OF_ASSERTS(NBP_MODULE_THIS)
+        numAsserts
     );
 }
 
@@ -1045,84 +818,6 @@ NBP_PRINTER_CALLBACK_RUN_MODULE(nbp_linux_printer_run_module)
     }
 }
 
-NBP_PRINTER_CALLBACK_CHECK_RESULT(nbp_linux_printer_check_result)
-{
-    nbp_linux_printer_add_check_result(
-        NBP_TEST_THIS,
-        NBP_PRINTER_GET_CONDITION(),
-        NBP_PRINTER_GET_CHECK_STATUS(),
-        NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAILURE_MESSAGE(),
-        NBP_PRINTER_GET_SUCCESS_MESSAGE()
-    );
-}
-
-NBP_PRINTER_CALLBACK_CHECK_TYPE_OP_RESULT(nbp_linux_printer_check_type_op_result)
-{
-    char buff[1024];
-    NBP_LINUX_PRINTER_PRIVATE_GENERATE_CONDITION(buff, 1024);
-    nbp_linux_printer_add_check_result(
-        NBP_TEST_THIS,
-        buff,
-        NBP_PRINTER_GET_CHECK_STATUS(),
-        NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAILURE_MESSAGE(),
-        NBP_PRINTER_GET_SUCCESS_MESSAGE()
-    );
-}
-
-NBP_PRINTER_CALLBACK_TEST_ASSERT_RESULT(nbp_linux_printer_test_assert_result)
-{
-    nbp_linux_printer_add_test_assert_result(
-        NBP_TEST_THIS,
-        NBP_PRINTER_GET_CONDITION(),
-        NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
-        NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAILURE_MESSAGE(),
-        NBP_PRINTER_GET_SUCCESS_MESSAGE()
-    );
-}
-
-NBP_PRINTER_CALLBACK_TEST_ASSERT_TYPE_OP_RESULT(nbp_linux_printer_test_assert_type_op_result)
-{
-    char buff[1024];
-    NBP_LINUX_PRINTER_PRIVATE_GENERATE_CONDITION(buff, 1024);
-    nbp_linux_printer_add_test_assert_result(
-        NBP_TEST_THIS,
-        buff,
-        NBP_PRINTER_GET_TEST_ASSERT_STATUS(),
-        NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAILURE_MESSAGE(),
-        NBP_PRINTER_GET_SUCCESS_MESSAGE()
-    );
-}
-
-NBP_PRINTER_CALLBACK_MODULE_ASSERT_RESULT(nbp_linux_printer_module_assert_result)
-{
-    nbp_linux_printer_add_module_assert_result(
-        NBP_TEST_THIS,
-        NBP_PRINTER_GET_CONDITION(),
-        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
-        NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAILURE_MESSAGE(),
-        NBP_PRINTER_GET_SUCCESS_MESSAGE()
-    );
-}
-
-NBP_PRINTER_CALLBACK_MODULE_ASSERT_TYPE_OP_RESULT(nbp_linux_printer_module_assert_type_op_result)
-{
-    char buff[1024];
-    NBP_LINUX_PRINTER_PRIVATE_GENERATE_CONDITION(buff, 1024);
-    nbp_linux_printer_add_module_assert_result(
-        NBP_TEST_THIS,
-        buff,
-        NBP_PRINTER_GET_MODULE_ASSERT_STATUS(),
-        NBP_PRINTER_GET_LINE_NUMBER(),
-        NBP_PRINTER_GET_FAILURE_MESSAGE(),
-        NBP_PRINTER_GET_SUCCESS_MESSAGE()
-    );
-}
-
 NBP_PRINTER_CALLBACK_ASSERT_RESULT(nbp_linux_printer_assert_result)
 {
     nbp_linux_printer_add_assert_result(
@@ -1137,8 +832,148 @@ NBP_PRINTER_CALLBACK_ASSERT_RESULT(nbp_linux_printer_assert_result)
 
 NBP_PRINTER_CALLBACK_ASSERT_TYPE_OP_RESULT(nbp_linux_printer_assert_type_op_result)
 {
-    char buff[1024];
-    NBP_LINUX_PRINTER_PRIVATE_GENERATE_CONDITION(buff, 1024);
+    char buff[1024] = { 0 };
+
+    switch (NBP_PRINTER_GET_VALUE_TYPE()) {
+        case NBP_PRINTER_TYPE_NONE:
+            snprintf(
+                buff,
+                1024,
+                "%s %s %s",
+                NBP_PRINTER_GET_FIRST_VALUE(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE()
+            );
+            break;
+        case NBP_PRINTER_TYPE_CHAR:
+            snprintf(
+                buff,
+                1024,
+                "%c %s %c",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_CHAR(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_CHAR()
+            );
+            break;
+        case NBP_PRINTER_TYPE_SHORT:
+            snprintf(
+                buff,
+                1024,
+                "%hd %s %hd",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_SHORT(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_SHORT()
+            );
+            break;
+        case NBP_PRINTER_TYPE_USHORT:
+            snprintf(
+                buff,
+                1024,
+                "%hu %s %hu",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_USHORT(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_USHORT()
+            );
+            break;
+        case NBP_PRINTER_TYPE_INT:
+            snprintf(
+                buff,
+                1024,
+                "%d %s %d",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_INT(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_INT()
+            );
+            break;
+        case NBP_PRINTER_TYPE_UINT:
+            snprintf(
+                buff,
+                1024,
+                "%u %s %u",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_UINT(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_UINT()
+            );
+            break;
+        case NBP_PRINTER_TYPE_LONG:
+            snprintf(
+                buff,
+                1024,
+                "%ld %s %ld",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_LONG(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_LONG()
+            );
+            break;
+        case NBP_PRINTER_TYPE_ULONG:
+            snprintf(
+                buff,
+                1024,
+                "%lu %s %lu",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_ULONG(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_ULONG()
+            );
+            break;
+        case NBP_PRINTER_TYPE_LLONG:
+            snprintf(
+                buff,
+                1024,
+                "%lld %s %lld",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_LLONG(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_LLONG()
+            );
+            break;
+        case NBP_PRINTER_TYPE_ULLONG:
+            snprintf(
+                buff,
+                1024,
+                "%llu %s %llu",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_ULLONG(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_ULLONG()
+            );
+            break;
+        case NBP_PRINTER_TYPE_FLOAT:
+            snprintf(
+                buff,
+                1024,
+                "%f %s %f",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_FLOAT(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_FLOAT()
+            );
+            break;
+        case NBP_PRINTER_TYPE_DOUBLE:
+            snprintf(
+                buff,
+                1024,
+                "%f %s %f",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_DOUBLE(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_DOUBLE()
+            );
+            break;
+        case NBP_PRINTER_TYPE_LDOUBLE:
+            snprintf(
+                buff,
+                1024,
+                "%Lf %s %Lf",
+                NBP_PRINTER_GET_FIRST_VALUE_AS_LDOUBLE(),
+                NBP_PRINTER_GET_OPERATOR_STR(),
+                NBP_PRINTER_GET_SECOND_VALUE_AS_LDOUBLE()
+            );
+            break;
+        default:
+            snprintf(
+                buff,
+                1024,
+                "unknown value type"
+            );
+            break;
+    }
+
     nbp_linux_printer_add_assert_result(
         NBP_TEST_THIS,
         buff,
@@ -1161,12 +996,6 @@ NBP_PRINTER(
         NBP_PRINTER_CALLBACK_AFTER_RUN(nbp_linux_printer_after_run),
         NBP_PRINTER_CALLBACK_RUN_TEST(nbp_linux_printer_run_test),
         NBP_PRINTER_CALLBACK_RUN_MODULE(nbp_linux_printer_run_module),
-        NBP_PRINTER_CALLBACK_CHECK_RESULT(nbp_linux_printer_check_result),
-        NBP_PRINTER_CALLBACK_CHECK_TYPE_OP_RESULT(nbp_linux_printer_check_type_op_result),
-        NBP_PRINTER_CALLBACK_TEST_ASSERT_RESULT(nbp_linux_printer_test_assert_result),
-        NBP_PRINTER_CALLBACK_TEST_ASSERT_TYPE_OP_RESULT(nbp_linux_printer_test_assert_type_op_result),
-        NBP_PRINTER_CALLBACK_MODULE_ASSERT_RESULT(nbp_linux_printer_module_assert_result),
-        NBP_PRINTER_CALLBACK_MODULE_ASSERT_TYPE_OP_RESULT(nbp_linux_printer_module_assert_type_op_result),
         NBP_PRINTER_CALLBACK_ASSERT_RESULT(nbp_linux_printer_assert_result),
         NBP_PRINTER_CALLBACK_ASSERT_TYPE_OP_RESULT(nbp_linux_printer_assert_type_op_result),
     )

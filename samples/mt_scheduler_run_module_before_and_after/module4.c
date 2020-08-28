@@ -94,54 +94,54 @@ NBP_TEST(test53, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -153,54 +153,54 @@ NBP_TEST(test54, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -212,54 +212,54 @@ NBP_TEST(test55, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -271,54 +271,54 @@ NBP_TEST(test56, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -330,54 +330,54 @@ NBP_TEST(test57, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -389,54 +389,54 @@ NBP_TEST(test58, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -448,54 +448,54 @@ NBP_TEST(test59, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -507,54 +507,54 @@ NBP_TEST(test60, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -566,54 +566,54 @@ NBP_TEST(test61, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -625,54 +625,54 @@ NBP_TEST(test62, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -684,54 +684,54 @@ NBP_TEST(test63, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -743,54 +743,54 @@ NBP_TEST(test64, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -802,54 +802,54 @@ NBP_TEST(test65, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -861,54 +861,54 @@ NBP_TEST(test66, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -920,54 +920,54 @@ NBP_TEST(test67, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -979,54 +979,54 @@ NBP_TEST(test68, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -1038,54 +1038,54 @@ NBP_TEST(test69, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -1097,54 +1097,54 @@ NBP_TEST(test70, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -1156,54 +1156,54 @@ NBP_TEST(test71, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -1215,54 +1215,54 @@ NBP_TEST(test72, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -1274,54 +1274,54 @@ NBP_TEST(test73, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }
@@ -1333,54 +1333,54 @@ NBP_TEST(test74, NBP_TEST_FIXTURES(test_setup, test_teardown))
     SAMPLE_SLEEP();
 
     testData = sample_utils_get_test_data_from_copy("module4", "test2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "test4");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 1);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 1);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module2");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 23);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 16);
 
     testData = sample_utils_get_test_data_from_copy("module4", "module6");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 2);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 29);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 22);
 
     SAMPLE_FORCE_SLEEP_MS(100);
 
     testData = sample_utils_get_test_data_or_create("test1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("test3");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module1");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     testData = sample_utils_get_test_data_or_create("module5");
-    NBP_TEST_ASSERT(testData != NBP_MEMORY_NULL_POINTER);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
-    NBP_CHECK_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
+    NBP_ASSERT(testData != NBP_MEMORY_NULL_POINTER, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->setupValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->teardownValue), 0);
+    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&testData->runValue), 0);
 
     sample_utils_increment_run_data_recursively(NBP_TEST_THIS);
 }

@@ -32,21 +32,21 @@ SOFTWARE.
 NBP_TEST(test_my_mul)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1 * 1 == 1);
-    NBP_CHECK(2 * 2 == 4);
-    NBP_CHECK(3 * 3 == 9);
-    NBP_CHECK(4 * 4 == 16);
-    NBP_CHECK(5 * 5 == 25);
+    NBP_ASSERT(1 * 1 == 1);
+    NBP_ASSERT(2 * 2 == 4);
+    NBP_ASSERT(3 * 3 == 9);
+    NBP_ASSERT(4 * 4 == 16);
+    NBP_ASSERT(5 * 5 == 25);
 }
 
 NBP_TEST(test_my_div)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1 / 1 == 1);
-    NBP_CHECK(2 / 2 == 1);
-    NBP_CHECK(3 / 3 == 1);
-    NBP_CHECK(4 / 4 == 1);
-    NBP_CHECK(5 / 5 == 1);
+    NBP_ASSERT(1 / 1 == 1);
+    NBP_ASSERT(2 / 2 == 1);
+    NBP_ASSERT(3 / 3 == 1);
+    NBP_ASSERT(4 / 4 == 1);
+    NBP_ASSERT(5 / 5 == 1);
 }
 
 NBP_MODULE(advanced_math)

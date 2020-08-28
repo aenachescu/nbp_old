@@ -43,55 +43,55 @@ volatile unsigned short int ush = 2;
 NBP_TEST(test_assert_ushort_eq)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_USHORT_EQ(get_ushort(), ush);
-    NBP_TEST_ASSERT_USHORT_EQ(get_ushort(), ush, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_USHORT_EQ(get_ushort(), ush, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_USHORT_EQ(get_ushort(), ush, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_EQ(get_ushort(), ush, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_USHORT_EQ(get_ushort(), ush, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_USHORT_EQ(get_ushort(), ush, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_EQ(get_ushort(), ush, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_ushort_ne)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_USHORT_NE(get_ushort(), ush_min);
-    NBP_TEST_ASSERT_USHORT_NE(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_USHORT_NE(get_ushort(), ush_min, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_USHORT_NE(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_NE(get_ushort(), ush_min, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_USHORT_NE(get_ushort(), ush_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_USHORT_NE(get_ushort(), ush_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_NE(get_ushort(), ush_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_ushort_gt)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_USHORT_GT(get_ushort(), ush_min);
-    NBP_TEST_ASSERT_USHORT_GT(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_USHORT_GT(get_ushort(), ush_min, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_USHORT_GT(get_ushort(), ush_min, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_GT(get_ushort(), ush_min, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_USHORT_GT(get_ushort(), ush_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_USHORT_GT(get_ushort(), ush_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_GT(get_ushort(), ush_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_ushort_ge)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_USHORT_GE(get_ushort(), ush_min);
-    NBP_TEST_ASSERT_USHORT_GE(get_ushort(), ush, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_USHORT_GE(get_ushort(), ush_min, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_USHORT_GE(get_ushort(), ush, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_GE(get_ushort(), ush_min, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_USHORT_GE(get_ushort(), ush, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_USHORT_GE(get_ushort(), ush_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_GE(get_ushort(), ush, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_ushort_lt)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_USHORT_LT(get_ushort(), ush_max);
-    NBP_TEST_ASSERT_USHORT_LT(get_ushort(), ush_max, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_USHORT_LT(get_ushort(), ush_max, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_USHORT_LT(get_ushort(), ush_max, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_LT(get_ushort(), ush_max, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_USHORT_LT(get_ushort(), ush_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_USHORT_LT(get_ushort(), ush_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_LT(get_ushort(), ush_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_ushort_le)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_USHORT_LE(get_ushort(), ush_max);
-    NBP_TEST_ASSERT_USHORT_LE(get_ushort(), ush, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_USHORT_LE(get_ushort(), ush_max, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_USHORT_LE(get_ushort(), ush, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_LE(get_ushort(), ush_max, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_USHORT_LE(get_ushort(), ush, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_USHORT_LE(get_ushort(), ush_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_USHORT_LE(get_ushort(), ush, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_MODULE(test_assert_ushort)

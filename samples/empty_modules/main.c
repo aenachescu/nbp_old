@@ -121,14 +121,14 @@ NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
 
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
 
-    NBP_MODULE_ASSERT(1 != 1);
+    NBP_ASSERT(1 != 1, NBP_ASSERT_FATAL_FOR_MODULE);
 }
 
 // these lines are excluded from coverage because these tests are skipped
@@ -138,14 +138,14 @@ NBP_TEST(test3)
 {
     SAMPLE_SLEEP();
 
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test4)
 {
     SAMPLE_SLEEP();
 
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 // LCOV_EXCL_STOP

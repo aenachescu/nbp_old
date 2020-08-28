@@ -33,25 +33,25 @@ SOFTWARE.
 NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test3)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test4)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_MAIN_MODULE(main_module_setup, NBP_MODULE_SETUP(setupMainModule))

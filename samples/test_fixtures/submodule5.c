@@ -32,49 +32,49 @@ SOFTWARE.
 NBP_TEST(test17, NBP_TEST_FIXTURES(my_test_setup3, my_test_teardown3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test18, NBP_TEST_SETUP(my_test_setup3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test19, NBP_TEST_TEARDOWN(my_test_teardown3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test20)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test21, NBP_TEST_NAME("test21"), NBP_TEST_FIXTURES(my_test_setup3, my_test_teardown3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test22, NBP_TEST_NAME("test22"), NBP_TEST_SETUP(my_test_setup3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test23, NBP_TEST_NAME("test23"), NBP_TEST_TEARDOWN(my_test_teardown3))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test24, NBP_TEST_NAME("test24"))
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_MODULE(submodule5)

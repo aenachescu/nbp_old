@@ -163,4 +163,45 @@ void nbp_module_run_ctx(nbp_module_details_t* module, void* ctx,
     nbp_printer_notify_run_module_completed(module);
 }
 
+unsigned int nbp_module_get_number_of_asserts(nbp_module_details_t* module,
+    unsigned int assertStatus, unsigned int assertType)
+{
+    switch (assertType)
+    {
+        case NBP_ASSERT_NON_FATAL:
+            if (assertStatus == NBP_ASSERT_STATUS_PASSED) {
+                return module->asserts.nonFatal.numPassed;
+            } else if (assertStatus == NBP_ASSERT_STATUS_FAILED) {
+                return module->asserts.nonFatal.numFailed;
+            }
+            break;
+
+        case NBP_ASSERT_FATAL:
+            if (assertStatus == NBP_ASSERT_STATUS_PASSED) {
+                return module->asserts.fatal.numPassed;
+            } else if (assertStatus == NBP_ASSERT_STATUS_FAILED) {
+                return module->asserts.fatal.numFailed;
+            }
+            break;
+
+        case NBP_ASSERT_FATAL_FOR_TEST:
+            if (assertStatus == NBP_ASSERT_STATUS_PASSED) {
+                return module->asserts.fatalForTest.numPassed;
+            } else if (assertStatus == NBP_ASSERT_STATUS_FAILED) {
+                return module->asserts.fatalForTest.numFailed;
+            }
+            break;
+
+        case NBP_ASSERT_FATAL_FOR_MODULE:
+            if (assertStatus == NBP_ASSERT_STATUS_PASSED) {
+                return module->asserts.fatalForModule.numPassed;
+            } else if (assertStatus == NBP_ASSERT_STATUS_FAILED) {
+                return module->asserts.fatalForModule.numFailed;
+            }
+            break;
+    }
+
+    return 0;
+}
+
 #endif // end if NBP_PRIVATE_IMPL_MODULE_H

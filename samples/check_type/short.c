@@ -43,55 +43,55 @@ volatile short int sh = 2;
 NBP_TEST(check_short_eq)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_SHORT_EQ(get_short(), sh);
-    NBP_CHECK_SHORT_EQ(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_SHORT_EQ(get_short(), sh, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_SHORT_EQ(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_EQ(get_short(), sh);
+    NBP_ASSERT_SHORT_EQ(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_SHORT_EQ(get_short(), sh, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_EQ(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_short_ne)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_SHORT_NE(get_short(), sh_min);
-    NBP_CHECK_SHORT_NE(get_short(), sh_min, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_SHORT_NE(get_short(), sh_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_SHORT_NE(get_short(), sh_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_NE(get_short(), sh_min);
+    NBP_ASSERT_SHORT_NE(get_short(), sh_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_SHORT_NE(get_short(), sh_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_NE(get_short(), sh_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_short_gt)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_SHORT_GT(get_short(), sh_min);
-    NBP_CHECK_SHORT_GT(get_short(), sh_min, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_SHORT_GT(get_short(), sh_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_SHORT_GT(get_short(), sh_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_GT(get_short(), sh_min);
+    NBP_ASSERT_SHORT_GT(get_short(), sh_min, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_SHORT_GT(get_short(), sh_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_GT(get_short(), sh_min, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_short_ge)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_SHORT_GE(get_short(), sh_min);
-    NBP_CHECK_SHORT_GE(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_SHORT_GE(get_short(), sh_min, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_SHORT_GE(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_GE(get_short(), sh_min);
+    NBP_ASSERT_SHORT_GE(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_SHORT_GE(get_short(), sh_min, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_GE(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_short_lt)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_SHORT_LT(get_short(), sh_max);
-    NBP_CHECK_SHORT_LT(get_short(), sh_max, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_SHORT_LT(get_short(), sh_max, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_SHORT_LT(get_short(), sh_max, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_LT(get_short(), sh_max);
+    NBP_ASSERT_SHORT_LT(get_short(), sh_max, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_SHORT_LT(get_short(), sh_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_LT(get_short(), sh_max, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_TEST(check_short_le)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK_SHORT_LE(get_short(), sh_max);
-    NBP_CHECK_SHORT_LE(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"));
-    NBP_CHECK_SHORT_LE(get_short(), sh_max, NBP_SUCCESS_MESSAGE("check passed"));
-    NBP_CHECK_SHORT_LE(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_LE(get_short(), sh_max);
+    NBP_ASSERT_SHORT_LE(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"));
+    NBP_ASSERT_SHORT_LE(get_short(), sh_max, NBP_SUCCESS_MESSAGE("check passed"));
+    NBP_ASSERT_SHORT_LE(get_short(), sh, NBP_FAILURE_MESSAGE("check failed"), NBP_SUCCESS_MESSAGE("check passed"));
 }
 
 NBP_MODULE(check_short)

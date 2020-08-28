@@ -25,27 +25,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef NBP_PRIVATE_API_ASSERTION_H
-#define NBP_PRIVATE_API_ASSERTION_H
+#ifndef NBP_PRIVATE_TYPES_ASSERT_H
+#define NBP_PRIVATE_TYPES_ASSERT_H
 
 /*
  * TODO: add docs
  */
-#define NBP_SUCCESS_MESSAGE(msg)
+#define NBP_ASSERT_STATUS_FAILED            (unsigned int) 0x70000000
+#define NBP_ASSERT_STATUS_PASSED            (unsigned int) 0x70000001
 
 /*
  * TODO: add docs
  */
-#define NBP_FAILURE_MESSAGE(msg)
+#define NBP_ASSERT_NON_FATAL                (unsigned int) 0x71000000
+#define NBP_ASSERT_FATAL                    (unsigned int) 0x71000001
+#define NBP_ASSERT_FATAL_FOR_TEST           (unsigned int) 0x71000002
+#define NBP_ASSERT_FATAL_FOR_MODULE         (unsigned int) 0x71000003
 
-#define NBP_ASSERTION_PRIVATE_PARSE_ASSERTION_PARAMETERS(...)                  \
-    NBP_PP_CONCAT(                                                             \
-        NBP_PP_PROCESSING_PARAM_,                                              \
-        NBP_PP_VARCOUNT(P ## __VA_ARGS__)                                      \
-    )(P ## __VA_ARGS__)
-
-#define NBP_PP_EAT_PP_NBP_SUCCESS_MESSAGE(msg) nbpParamSuccessMessage = msg;
-
-#define NBP_PP_EAT_PP_NBP_FAILURE_MESSAGE(msg) nbpParamFailureMessage = msg;
-
-#endif // end if NBP_PRIVATE_API_ASSERTION_H
+#endif // end if NBP_PRIVATE_TYPES_ASSERT_H

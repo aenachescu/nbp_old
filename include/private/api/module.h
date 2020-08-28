@@ -224,78 +224,29 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_MODULE_GET_NUMBER_OF_CHECKS(module)                                \
-    NBP_MODULE_GET_NUMBER_OF_PASSED_CHECKS(module) +                           \
-    NBP_MODULE_GET_NUMBER_OF_FAILED_CHECKS(module)
+#define NBP_MODULE_GET_NUMBER_OF_ASSERTS(module, assertType)                   \
+    NBP_MODULE_GET_NUMBER_OF_PASSED_ASSERTS(module, assertType) +              \
+    NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(module, assertType)
 
 /*
  * TODO: add docs
  */
-#define NBP_MODULE_GET_NUMBER_OF_PASSED_CHECKS(module)                         \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->checks.numPassed)
+#define NBP_MODULE_GET_NUMBER_OF_PASSED_ASSERTS(module, assertType)            \
+    nbp_module_get_number_of_asserts(                                          \
+        module,                                                                \
+        NBP_ASSERT_STATUS_PASSED,                                              \
+        assertType                                                             \
+    )
 
 /*
  * TODO: add docs
  */
-#define NBP_MODULE_GET_NUMBER_OF_FAILED_CHECKS(module)                         \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->checks.numFailed)
-
-/*
- * TODO: add docs
- */
-#define NBP_MODULE_GET_NUMBER_OF_TEST_ASSERTS(module)                          \
-    NBP_MODULE_GET_NUMBER_OF_PASSED_TEST_ASSERTS(module) +                     \
-    NBP_MODULE_GET_NUMBER_OF_FAILED_TEST_ASSERTS(module)
-
-/*
- * TODO: add docs
- */
-#define NBP_MODULE_GET_NUMBER_OF_PASSED_TEST_ASSERTS(module)                   \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->testAsserts.numPassed)
-
-/*
- * TODO: add docs
- */
-#define NBP_MODULE_GET_NUMBER_OF_FAILED_TEST_ASSERTS(module)                   \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->testAsserts.numFailed)
-
-/*
- * TODO: add docs
- */
-#define NBP_MODULE_GET_NUMBER_OF_MODULE_ASSERTS(module)                        \
-    NBP_MODULE_GET_NUMBER_OF_PASSED_MODULE_ASSERTS(module) +                   \
-    NBP_MODULE_GET_NUMBER_OF_FAILED_MODULE_ASSERTS(module)
-
-/*
- * TODO: add docs
- */
-#define NBP_MODULE_GET_NUMBER_OF_PASSED_MODULE_ASSERTS(module)                 \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->moduleAsserts.numPassed)
-
-/*
- * TODO: add docs
- */
-#define NBP_MODULE_GET_NUMBER_OF_FAILED_MODULE_ASSERTS(module)                 \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->moduleAsserts.numFailed)
-
-/*
- * TODO: add docs
- */
-#define NBP_MODULE_GET_NUMBER_OF_ASSERTS(module)                               \
-    NBP_MODULE_GET_NUMBER_OF_PASSED_ASSERTS(module) +                          \
-    NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(module)
-
-/*
- * TODO: add docs
- */
-#define NBP_MODULE_GET_NUMBER_OF_PASSED_ASSERTS(module)                        \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->asserts.numPassed)
-
-/*
- * TODO: add docs
- */
-#define NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(module)                        \
-    NBP_SYNC_ATOMIC_UINT_LOAD(&module->asserts.numFailed)
+#define NBP_MODULE_GET_NUMBER_OF_FAILED_ASSERTS(module, assertType)            \
+    nbp_module_get_number_of_asserts(                                          \
+        module,                                                                \
+        NBP_ASSERT_STATUS_FAILED,                                              \
+        assertType                                                             \
+    )
 
 #define NBP_MODULE_PRIVATE_GENERATE_CONFIG(...)                                \
     NBP_PP_CONCAT(                                                             \
@@ -361,21 +312,23 @@ SOFTWARE.
             .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
             .numSkipped         = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
         },                                                                     \
-        .checks = {                                                            \
-            .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
-            .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
-        },                                                                     \
-        .testAsserts = {                                                       \
-            .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
-            .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
-        },                                                                     \
-        .moduleAsserts = {                                                     \
-            .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
-            .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
-        },                                                                     \
         .asserts = {                                                           \
-            .numPassed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
-            .numFailed          = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            .nonFatal = {                                                      \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            },                                                                 \
+            .fatal = {                                                         \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            },                                                                 \
+            .fatalForTest = {                                                  \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            },                                                                 \
+            .fatalForModule = {                                                \
+                .numPassed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+                .numFailed      = NBP_SYNC_ATOMIC_UINT_INIT(0),                \
+            },                                                                 \
         },                                                                     \
     };                                                                         \
     void NBP_PP_CONCAT(nbp_module_, func)(                                     \

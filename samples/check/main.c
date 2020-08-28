@@ -89,127 +89,127 @@ NBP_MODULE(submodule4)
 NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
-    NBP_CHECK(1 == 1, NBP_FAILURE_MESSAGE("fail message"), NBP_SUCCESS_MESSAGE("pass message"));
-    NBP_CHECK(2 == 2, NBP_SUCCESS_MESSAGE("whoaaa"));
+    NBP_ASSERT(1);
+    NBP_ASSERT(1 == 1, NBP_FAILURE_MESSAGE("fail message"), NBP_SUCCESS_MESSAGE("pass message"));
+    NBP_ASSERT(2 == 2, NBP_SUCCESS_MESSAGE("whoaaa"));
 }
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
-    NBP_CHECK(1 == 1, NBP_FAILURE_MESSAGE("it should not be printed"));
-    NBP_CHECK(2 == 2, NBP_SUCCESS_MESSAGE("best best best"));
+    NBP_ASSERT(1);
+    NBP_ASSERT(1 == 1, NBP_FAILURE_MESSAGE("it should not be printed"));
+    NBP_ASSERT(2 == 2, NBP_SUCCESS_MESSAGE("best best best"));
 }
 
 NBP_TEST(test3)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test4)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
-    NBP_CHECK(1 != 1, NBP_FAILURE_MESSAGE("failed :("), NBP_SUCCESS_MESSAGE("passed :)"));
+    NBP_ASSERT(1);
+    NBP_ASSERT(1 != 1, NBP_FAILURE_MESSAGE("failed :("), NBP_SUCCESS_MESSAGE("passed :)"));
 }
 
 NBP_TEST(test5)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
-    NBP_CHECK(1 == 1, NBP_SUCCESS_MESSAGE("qwe"));
-    NBP_CHECK(2 == 2, NBP_SUCCESS_MESSAGE("asd"));
-    NBP_CHECK(3 == 3, NBP_SUCCESS_MESSAGE("zxc"));
-    NBP_CHECK(4 != 4, NBP_FAILURE_MESSAGE("pff"));
-    NBP_CHECK(5 == 5, NBP_SUCCESS_MESSAGE("rty"));
-    NBP_CHECK(6 == 6, NBP_SUCCESS_MESSAGE("fgh"));
+    NBP_ASSERT(1);
+    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("qwe"));
+    NBP_ASSERT(2 == 2, NBP_SUCCESS_MESSAGE("asd"));
+    NBP_ASSERT(3 == 3, NBP_SUCCESS_MESSAGE("zxc"));
+    NBP_ASSERT(4 != 4, NBP_FAILURE_MESSAGE("pff"));
+    NBP_ASSERT(5 == 5, NBP_SUCCESS_MESSAGE("rty"));
+    NBP_ASSERT(6 == 6, NBP_SUCCESS_MESSAGE("fgh"));
 }
 
 NBP_TEST(test6)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
-    NBP_CHECK(1 == 4, NBP_FAILURE_MESSAGE("pff"));
+    NBP_ASSERT(1);
+    NBP_ASSERT(1 == 4, NBP_FAILURE_MESSAGE("pff"));
 }
 
 NBP_TEST(test7)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
-    NBP_CHECK(1 != 1);
-    NBP_CHECK(2 == 2);
-    NBP_CHECK(3 == 3, NBP_SUCCESS_MESSAGE("pass msg"));
+    NBP_ASSERT(1);
+    NBP_ASSERT(1 != 1);
+    NBP_ASSERT(2 == 2);
+    NBP_ASSERT(3 == 3, NBP_SUCCESS_MESSAGE("pass msg"));
 }
 
 NBP_TEST(test8)
 {
     int a = 0, b = 1, c = 2, d = 2;
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
-    NBP_CHECK(a == b);
-    NBP_CHECK(c == d, NBP_SUCCESS_MESSAGE("peeeerfect"));
+    NBP_ASSERT(1);
+    NBP_ASSERT(a == b);
+    NBP_ASSERT(c == d, NBP_SUCCESS_MESSAGE("peeeerfect"));
 }
 
 NBP_TEST(test9)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test10)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test11)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test12)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test13)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test14)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test15)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test16)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test17)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test18)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 int func1()
@@ -225,26 +225,26 @@ int func2(int b)
 NBP_TEST(test19)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
-    NBP_CHECK(func1() == func2(2));
+    NBP_ASSERT(1);
+    NBP_ASSERT(func1() == func2(2));
 }
 
 NBP_TEST(test20)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
-    NBP_CHECK(func2(1) == func2(1), NBP_FAILURE_MESSAGE("fail"), NBP_SUCCESS_MESSAGE("pass"));
-    NBP_CHECK(func2(2) == func2(1), NBP_FAILURE_MESSAGE("fail"), NBP_SUCCESS_MESSAGE("pass"));
+    NBP_ASSERT(1);
+    NBP_ASSERT(func2(1) == func2(1), NBP_FAILURE_MESSAGE("fail"), NBP_SUCCESS_MESSAGE("pass"));
+    NBP_ASSERT(func2(2) == func2(1), NBP_FAILURE_MESSAGE("fail"), NBP_SUCCESS_MESSAGE("pass"));
 }
 
 NBP_TEST(test21)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test22)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }

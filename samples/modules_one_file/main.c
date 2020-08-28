@@ -33,13 +33,13 @@ SOFTWARE.
 NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(1);
+    NBP_ASSERT(1);
 }
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(2);
+    NBP_ASSERT(2);
 }
 
 NBP_MODULE(module1)
@@ -53,13 +53,13 @@ NBP_MODULE(module1)
 NBP_TEST(test3)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(3);
+    NBP_ASSERT(3);
 }
 
 NBP_TEST(test4)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(4);
+    NBP_ASSERT(4);
 }
 
 NBP_MAIN_MODULE(modules_one_file_sample)
@@ -71,13 +71,13 @@ NBP_MAIN_MODULE(modules_one_file_sample)
 NBP_TEST(test5)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(5);
+    NBP_ASSERT(5);
 }
 
 NBP_TEST(test6)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(6);
+    NBP_ASSERT(6);
 }
 
 NBP_MODULE(module2)
@@ -91,12 +91,12 @@ NBP_MODULE(module2)
 NBP_TEST(test7)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(8);
+    NBP_ASSERT(8);
 }
 
 NBP_TEST(test8)
 {
     SAMPLE_SLEEP();
-    NBP_CHECK(8);
+    NBP_ASSERT(8);
 }
 

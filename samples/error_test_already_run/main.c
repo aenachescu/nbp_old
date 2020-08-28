@@ -85,68 +85,68 @@ NBP_TEST(test1, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_file("running test1");
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test2, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_file("running test2");
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test3, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_file("running test3");
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test4, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_file("running test4");
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test5, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_file("running test5");
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test6, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_file("running test6");
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test7, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_file("running test7");
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test8, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_file("running test8");
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test9, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_file("running test9");
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }
 
 NBP_TEST(test10, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
     write_message_to_file("running test10");
-    NBP_CHECK(1 == 1);
+    NBP_ASSERT(1 == 1);
 }

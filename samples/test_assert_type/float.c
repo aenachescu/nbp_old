@@ -43,55 +43,55 @@ volatile float float_ = 1.14f;
 NBP_TEST(test_assert_float_eq)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_FLOAT_EQ(get_float(), float_);
-    NBP_TEST_ASSERT_FLOAT_EQ(get_float(), float_, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_FLOAT_EQ(get_float(), float_, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_FLOAT_EQ(get_float(), float_, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_EQ(get_float(), float_, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_FLOAT_EQ(get_float(), float_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_FLOAT_EQ(get_float(), float_, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_EQ(get_float(), float_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_float_ne)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_FLOAT_NE(get_float(), float_min);
-    NBP_TEST_ASSERT_FLOAT_NE(get_float(), float_min, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_FLOAT_NE(get_float(), float_min, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_FLOAT_NE(get_float(), float_min, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_NE(get_float(), float_min, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_FLOAT_NE(get_float(), float_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_FLOAT_NE(get_float(), float_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_NE(get_float(), float_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_float_gt)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_FLOAT_GT(get_float(), float_min);
-    NBP_TEST_ASSERT_FLOAT_GT(get_float(), float_min, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_FLOAT_GT(get_float(), float_min, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_FLOAT_GT(get_float(), float_min, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_GT(get_float(), float_min, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_FLOAT_GT(get_float(), float_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_FLOAT_GT(get_float(), float_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_GT(get_float(), float_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_float_ge)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_FLOAT_GE(get_float(), float_min);
-    NBP_TEST_ASSERT_FLOAT_GE(get_float(), float_, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_FLOAT_GE(get_float(), float_min, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_FLOAT_GE(get_float(), float_, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_GE(get_float(), float_min, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_FLOAT_GE(get_float(), float_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_FLOAT_GE(get_float(), float_min, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_GE(get_float(), float_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_float_lt)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_FLOAT_LT(get_float(), float_max);
-    NBP_TEST_ASSERT_FLOAT_LT(get_float(), float_max, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_FLOAT_LT(get_float(), float_max, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_FLOAT_LT(get_float(), float_max, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_LT(get_float(), float_max, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_FLOAT_LT(get_float(), float_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_FLOAT_LT(get_float(), float_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_LT(get_float(), float_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_TEST(test_assert_float_le)
 {
     SAMPLE_SLEEP();
-    NBP_TEST_ASSERT_FLOAT_LE(get_float(), float_max);
-    NBP_TEST_ASSERT_FLOAT_LE(get_float(), float_, NBP_FAILURE_MESSAGE("test_assert failed"));
-    NBP_TEST_ASSERT_FLOAT_LE(get_float(), float_max, NBP_SUCCESS_MESSAGE("test_assert passed"));
-    NBP_TEST_ASSERT_FLOAT_LE(get_float(), float_, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_LE(get_float(), float_max, NBP_ASSERT_FATAL_FOR_TEST);
+    NBP_ASSERT_FLOAT_LE(get_float(), float_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"));
+    NBP_ASSERT_FLOAT_LE(get_float(), float_max, NBP_ASSERT_FATAL_FOR_TEST, NBP_SUCCESS_MESSAGE("test_assert passed"));
+    NBP_ASSERT_FLOAT_LE(get_float(), float_, NBP_ASSERT_FATAL_FOR_TEST, NBP_FAILURE_MESSAGE("test_assert failed"), NBP_SUCCESS_MESSAGE("test_assert passed"));
 }
 
 NBP_MODULE(test_assert_float)

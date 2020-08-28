@@ -81,14 +81,14 @@ NBP_TEST(test1)
     SAMPLE_SLEEP();
 
     test1ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test1ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);}
+    NBP_ASSERT(test1ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);}
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
 
     test2ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test2ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test2ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test3)
@@ -96,7 +96,7 @@ NBP_TEST(test3)
     SAMPLE_SLEEP();
 
     test3ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test3ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test3ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test4)
@@ -104,7 +104,7 @@ NBP_TEST(test4)
     SAMPLE_SLEEP();
 
     test4ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test4ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test4ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test5)
@@ -112,7 +112,7 @@ NBP_TEST(test5)
     SAMPLE_SLEEP();
 
     test5ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test5ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test5ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test6)
@@ -120,19 +120,19 @@ NBP_TEST(test6)
     SAMPLE_SLEEP();
 
     test6ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test6ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(test6ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
 }
 
 NBP_TEST(test7)
 {
     SAMPLE_SLEEP();
 
-    NBP_CHECK(test1ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test2ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test3ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test4ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test5ThreadId));
-    NBP_CHECK(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test6ThreadId));
+    NBP_ASSERT(test1ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE);
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test2ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test3ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test4ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test5ThreadId));
+    NBP_ASSERT(SAMPLE_THREAD_ID_EQUAL(test1ThreadId, test6ThreadId));
 }
 
 // these lines are excluded from coverage because if a module has no test then
