@@ -255,131 +255,131 @@ NBP_MODULE(submodule4, NBP_MODULE_NAME("foo"), NBP_MODULE_FIXTURES(submodule4_se
 NBP_TEST(test1, NBP_TEST_NAME("foo"), NBP_TEST_FIXTURES(test1_setup, test1_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test1"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test1"));
 }
 
 NBP_TEST(test2, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test2"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test2"));
 }
 
 NBP_TEST(test3, NBP_TEST_NAME("foo"), NBP_TEST_FIXTURES(test3_setup, test3_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test3"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test3"));
 }
 
 NBP_TEST(test4, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test4"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test4"));
 }
 
 NBP_TEST(test5, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test5"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test5"));
 }
 
 NBP_TEST(test6, NBP_TEST_NAME("foo"), NBP_TEST_FIXTURES(test6_setup, test6_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test6"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test6"));
 }
 
 NBP_TEST(test7, NBP_TEST_NAME("foo"), NBP_TEST_FIXTURES(test7_setup, test7_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test7"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test7"));
 }
 
 NBP_TEST(test8, NBP_TEST_NAME("foo"), NBP_TEST_FIXTURES(test8_setup, test8_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test8"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test8"));
 }
 
 NBP_TEST(test9, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test9"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test9"));
 }
 
 NBP_TEST(test10, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test10"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test10"));
 }
 
 NBP_TEST(test11, NBP_TEST_NAME("foo"), NBP_TEST_FIXTURES(test11_setup, test11_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test11"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test11"));
 }
 
 NBP_TEST(test12, NBP_TEST_NAME("foo"), NBP_TEST_FIXTURES(test12_setup, test12_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test12"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test12"));
 }
 
 NBP_TEST(test13, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test13"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test13"));
 }
 
 NBP_TEST(test14, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test14"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test14"));
 }
 
 NBP_TEST(test15, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test15"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test15"));
 }
 
 NBP_TEST(test16, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test16"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test16"));
 }
 
 NBP_TEST(test17, NBP_TEST_NAME("foo"), NBP_TEST_FIXTURES(test17_setup, test17_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test17"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test17"));
 }
 
 NBP_TEST(test18, NBP_TEST_NAME("foo"), NBP_TEST_FIXTURES(test18_setup, test18_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test18"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test18"));
 }
 
 NBP_TEST(test19, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test19"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test19"));
 }
 
 NBP_TEST(test20, NBP_TEST_FIXTURES(test_setup, test_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test20"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test20"));
 }
 
 NBP_TEST(test21, NBP_TEST_NAME("foo"), NBP_TEST_FIXTURES(test21_setup, test21_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test21"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test21"));
 }
 
 NBP_TEST(test22, NBP_TEST_NAME("foo"), NBP_TEST_FIXTURES(test22_setup, test22_teardown))
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT(1 == 1, NBP_SUCCESS_MESSAGE("test22"));
+    NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test22"));
 }

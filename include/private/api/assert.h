@@ -31,12 +31,12 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_SUCCESS_MESSAGE(msg)
+#define NBP_ASSERT_SUCCESS_MESSAGE(msg)
 
 /*
  * TODO: add docs
  */
-#define NBP_FAILURE_MESSAGE(msg)
+#define NBP_ASSERT_FAILURE_MESSAGE(msg)
 
 /*
  * TODO: add docs
@@ -955,9 +955,11 @@ SOFTWARE.
         NBP_PP_VARCOUNT(P ## __VA_ARGS__)                                      \
     )(P ## __VA_ARGS__)
 
-#define NBP_PP_EAT_PP_NBP_SUCCESS_MESSAGE(msg) nbpParamSuccessMessage = msg;
+#define NBP_PP_EAT_PP_NBP_ASSERT_SUCCESS_MESSAGE(msg)                          \
+    nbpParamSuccessMessage = msg;
 
-#define NBP_PP_EAT_PP_NBP_FAILURE_MESSAGE(msg) nbpParamFailureMessage = msg;
+#define NBP_PP_EAT_PP_NBP_ASSERT_FAILURE_MESSAGE(msg)                          \
+    nbpParamFailureMessage = msg;
 
 #define NBP_PP_EAT_PP_NBP_ASSERT_NON_FATAL                                     \
     nbpParamAssertType = NBP_ASSERT_NON_FATAL;

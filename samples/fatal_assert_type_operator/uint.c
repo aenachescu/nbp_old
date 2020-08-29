@@ -44,54 +44,54 @@ NBP_TEST(fatal_assert_uint_eq)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_UINT_EQ(get_uint(), uint_, NBP_ASSERT_FATAL);
-    NBP_ASSERT_UINT_EQ(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_UINT_EQ(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_UINT_EQ(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_EQ(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_UINT_EQ(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_EQ(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_TEST(fatal_assert_uint_ne)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_UINT_NE(get_uint(), uint_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_UINT_NE(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_UINT_NE(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_UINT_NE(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_NE(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_UINT_NE(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_NE(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_TEST(fatal_assert_uint_gt)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_UINT_GT(get_uint(), uint_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_UINT_GT(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_UINT_GT(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_UINT_GT(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_GT(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_UINT_GT(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_GT(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_TEST(fatal_assert_uint_ge)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_UINT_GE(get_uint(), uint_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_UINT_GE(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_UINT_GE(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_UINT_GE(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_GE(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_UINT_GE(get_uint(), uint_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_GE(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_TEST(fatal_assert_uint_lt)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_UINT_LT(get_uint(), uint_max, NBP_ASSERT_FATAL);
-    NBP_ASSERT_UINT_LT(get_uint(), uint_max, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_UINT_LT(get_uint(), uint_max, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_UINT_LT(get_uint(), uint_max, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_LT(get_uint(), uint_max, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_UINT_LT(get_uint(), uint_max, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_LT(get_uint(), uint_max, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_TEST(fatal_assert_uint_le)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_UINT_LE(get_uint(), uint_max, NBP_ASSERT_FATAL);
-    NBP_ASSERT_UINT_LE(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_UINT_LE(get_uint(), uint_max, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_UINT_LE(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_LE(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_UINT_LE(get_uint(), uint_max, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_UINT_LE(get_uint(), uint_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_MODULE(fatal_assert_uint)

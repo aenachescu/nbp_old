@@ -44,54 +44,54 @@ NBP_TEST(fatal_assert_ldouble_eq)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_ASSERT_FATAL);
-    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_EQ(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_TEST(fatal_assert_ldouble_ne)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_NE(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_TEST(fatal_assert_ldouble_gt)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_GT(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_TEST(fatal_assert_ldouble_ge)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_GE(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_TEST(fatal_assert_ldouble_lt)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_ASSERT_FATAL);
-    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_LT(get_ldouble(), ldouble_max, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_TEST(fatal_assert_ldouble_le)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_max, NBP_ASSERT_FATAL);
-    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_max, NBP_ASSERT_FATAL, NBP_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_FAILURE_MESSAGE("fatal assert failed"), NBP_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
+    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_max, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+    NBP_ASSERT_LDOUBLE_LE(get_ldouble(), ldouble_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
 }
 
 NBP_MODULE(fatal_assert_ldouble)
