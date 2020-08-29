@@ -30,7 +30,7 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_MAIN_MODULE(submodules_one_file_sample)
+NBP_MAIN_MODULE(submodules_one_file)
 {
     NBP_MODULE_RUN(module1);
     NBP_MODULE_RUN(module2);

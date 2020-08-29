@@ -1,57 +1,0 @@
-Running...[2KRunning... 1/32[2KRunning... 2/32[2KRunning... 3/32[2KRunning... 4/32[2KRunning... 5/32[2KRunning... 6/32[2KRunning... 7/32[2KRunning... 8/32[2KRunning... 9/32[2KRunning... 10/32[2KRunning... 11/32[2KRunning... 12/32[2KRunning... 13/32[2KRunning... 14/32[2KRunning... 15/32[2KRunning... 16/32[2KRunning... 17/32[2KRunning... 18/32[2KRunning... 19/32[2KRunning... 20/32[2KRunning... 21/32[2KRunning... 22/32[2KRunning... 23/32[2KRunning... 24/32[2KRunning... 25/32[2KRunning... 26/32[2KRunning... 27/32[2KRunning... 28/32[2KRunning... 29/32[2KRunning... 30/32[2KRunning... 31/32[2KRunning... 32/32[2K[31mmodule_assert_sample[0m
-    [32mtest1[0m
-    [31mmodule1[0m
-        [32mtest4[0m
-        [32msubmodule1[0m
-            [32mtest13[0m
-            [32mtest14[0m
-            [32mtest15[0m
-            [32mtest16[0m
-        [31mtest5[0m
-            [31m1 != 1 (183)[0m
-        [31mtest6[0m
-            [31m1 != 1 (189)[0m
-        [33mtest7[0m
-        [33msubmodule2[0m
-            [33mtest17[0m
-            [33mtest18[0m
-            [33mtest19[0m
-            [33mtest20[0m
-        [33mtest8[0m
-        [33msubmodule3[0m
-            [33mtest21[0m
-            [33mtest22[0m
-            [33mtest23[0m
-            [33mtest24[0m
-        [33mtest9[0m
-    [32mtest2[0m
-    [31mmodule2[0m
-        [32mtest10[0m
-        [31msubmodule4[0m
-            [31mtest25[0m
-                [31m1 != 1 (336)[0m
-            [33mtest26[0m
-            [33mtest27[0m
-            [33mtest28[0m
-        [32mtest11[0m
-        [32msubmodule5[0m
-            [32mtest29[0m
-            [32mtest30[0m
-            [32mtest31[0m
-            [32mtest32[0m
-        [32mtest12[0m
-    [32mtest3[0m
-Passed  modules: [32m2[0m/8
-Failed  modules: [31m4[0m/8
-Skipped modules: [33m2[0m/8
-Passed  tests: [32m15[0m/32
-Failed  tests: [31m3[0m/32
-Skipped tests: [33m14[0m/32
-Passed checks: [32m0[0m/1
-Failed checks: [31m1[0m/1
-Passed test asserts: [32m0[0m/0
-Failed test asserts: [32m0[0m/0
-Passed module asserts: [32m15[0m/17
-Failed module asserts: [31m2[0m/17
-Passed asserts: [32m0[0m/0
-Failed asserts: [32m0[0m/0

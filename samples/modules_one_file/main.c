@@ -62,7 +62,7 @@ NBP_TEST(test4)
     NBP_ASSERT(4);
 }
 
-NBP_MAIN_MODULE(modules_one_file_sample)
+NBP_MAIN_MODULE(modules_one_file)
 {
     NBP_MODULE_RUN(module1);
     NBP_MODULE_RUN(module2);

@@ -28,7 +28,7 @@ SOFTWARE.
 #define NBP_LIBRARY_MAIN
 #include <nbp.h>
 
-NBP_MAIN_MODULE(module_fixtures_sample)
+NBP_MAIN_MODULE(module_fixtures)
 {
     NBP_MODULE_RUN(module1);
     NBP_MODULE_RUN(module2);

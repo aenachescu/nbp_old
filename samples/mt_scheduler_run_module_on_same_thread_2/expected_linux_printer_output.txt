@@ -27,11 +27,11 @@ Skipped modules: [32m0[0m/14
 Passed  tests: [32m9[0m/9
 Failed  tests: [32m0[0m/9
 Skipped tests: [32m0[0m/9
-Passed checks: [32m8[0m/8
-Failed checks: [32m0[0m/8
-Passed test asserts: [32m0[0m/0
-Failed test asserts: [32m0[0m/0
-Passed module asserts: [32m0[0m/0
-Failed module asserts: [32m0[0m/0
-Passed asserts: [32m8[0m/8
-Failed asserts: [32m0[0m/8
+Passed non-fatal asserts: [32m8[0m/8
+Failed non-fatal asserts: [32m0[0m/8
+Passed fatal-for-test asserts: [32m0[0m/0
+Failed fatal-for-test asserts: [32m0[0m/0
+Passed fatal-for-module asserts: [32m0[0m/0
+Failed fatal-for-module asserts: [32m0[0m/0
+Passed fatal asserts: [32m8[0m/8
+Failed fatal asserts: [32m0[0m/8

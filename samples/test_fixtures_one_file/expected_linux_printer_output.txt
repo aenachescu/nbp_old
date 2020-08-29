@@ -1,4 +1,4 @@
-Running...[2KRunning... 1/24[2KRunning... 2/24[2KRunning... 3/24[2KRunning... 4/24[2KRunning... 5/24[2KRunning... 6/24[2KRunning... 7/24[2KRunning... 8/24[2KRunning... 9/24[2KRunning... 10/24[2KRunning... 11/24[2KRunning... 12/24[2KRunning... 13/24[2KRunning... 14/24[2KRunning... 15/24[2KRunning... 16/24[2KRunning... 17/24[2KRunning... 18/24[2KRunning... 19/24[2KRunning... 20/24[2KRunning... 21/24[2KRunning... 22/24[2KRunning... 23/24[2KRunning... 24/24[2K[32mtest_fixtures_one_file_sample[0m
+Running...[2KRunning... 1/24[2KRunning... 2/24[2KRunning... 3/24[2KRunning... 4/24[2KRunning... 5/24[2KRunning... 6/24[2KRunning... 7/24[2KRunning... 8/24[2KRunning... 9/24[2KRunning... 10/24[2KRunning... 11/24[2KRunning... 12/24[2KRunning... 13/24[2KRunning... 14/24[2KRunning... 15/24[2KRunning... 16/24[2KRunning... 17/24[2KRunning... 18/24[2KRunning... 19/24[2KRunning... 20/24[2KRunning... 21/24[2KRunning... 22/24[2KRunning... 23/24[2KRunning... 24/24[2K[32mtest_fixtures_one_file[0m
     [32mmodule1[0m
         [32msubmodule1[0m
             [32mtest1[0m
@@ -37,11 +37,11 @@ Skipped modules: [32m0[0m/9
 Passed  tests: [32m24[0m/24
 Failed  tests: [32m0[0m/24
 Skipped tests: [32m0[0m/24
-Passed checks: [32m24[0m/24
-Failed checks: [32m0[0m/24
-Passed test asserts: [32m0[0m/0
-Failed test asserts: [32m0[0m/0
-Passed module asserts: [32m0[0m/0
-Failed module asserts: [32m0[0m/0
-Passed asserts: [32m0[0m/0
-Failed asserts: [32m0[0m/0
+Passed non-fatal asserts: [32m24[0m/24
+Failed non-fatal asserts: [32m0[0m/24
+Passed fatal-for-test asserts: [32m0[0m/0
+Failed fatal-for-test asserts: [32m0[0m/0
+Passed fatal-for-module asserts: [32m0[0m/0
+Failed fatal-for-module asserts: [32m0[0m/0
+Passed fatal asserts: [32m0[0m/0
+Failed fatal asserts: [32m0[0m/0

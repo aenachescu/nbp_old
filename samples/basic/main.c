@@ -70,7 +70,7 @@ NBP_TEST(test_my_div)
     NBP_ASSERT(5 / 5 == 1);
 }
 
-NBP_MAIN_MODULE(basic_sample)
+NBP_MAIN_MODULE(basic)
 {
     NBP_TEST_RUN(test_my_add);
     NBP_TEST_RUN(test_my_sub);

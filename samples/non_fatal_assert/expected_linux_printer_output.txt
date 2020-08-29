@@ -1,0 +1,61 @@
+Running...[2KRunning... 1/22[2KRunning... 2/22[2KRunning... 3/22[2KRunning... 4/22[2KRunning... 5/22[2KRunning... 6/22[2KRunning... 7/22[2KRunning... 8/22[2KRunning... 9/22[2KRunning... 10/22[2KRunning... 11/22[2KRunning... 12/22[2KRunning... 13/22[2KRunning... 14/22[2KRunning... 15/22[2KRunning... 16/22[2KRunning... 17/22[2KRunning... 18/22[2KRunning... 19/22[2KRunning... 20/22[2KRunning... 21/22[2KRunning... 22/22[2K[31mnon_fatal_assert[0m
+    [32mtest1[0m
+        [32m1 == 1 (pass message) (93)[0m
+        [32m2 == 2 (whoaaa) (94)[0m
+    [31mmodule1[0m
+        [31msubmodule1[0m
+            [31mtest7[0m
+                [31m1 != 1 (141)[0m
+                [32m3 == 3 (pass msg) (143)[0m
+            [31mtest8[0m
+                [31ma == b (151)[0m
+                [32mc == d (peeeerfect) (152)[0m
+            [32mtest9[0m
+            [32mtest10[0m
+        [31mtest4[0m
+            [31m1 != 1 (failed :() (115)[0m
+        [32msubmodule2[0m
+            [32mtest11[0m
+            [32mtest12[0m
+            [32mtest13[0m
+            [32mtest14[0m
+    [32mtest2[0m
+        [32m2 == 2 (best best best) (102)[0m
+    [31mmodule2[0m
+        [31mtest5[0m
+            [32m1 == 1 (qwe) (122)[0m
+            [32m2 == 2 (asd) (123)[0m
+            [32m3 == 3 (zxc) (124)[0m
+            [31m4 != 4 (pff) (125)[0m
+            [32m5 == 5 (rty) (126)[0m
+            [32m6 == 6 (fgh) (127)[0m
+        [32msubmodule3[0m
+            [32mtest15[0m
+            [32mtest16[0m
+            [32mtest17[0m
+            [32mtest18[0m
+        [31msubmodule4[0m
+            [31mtest19[0m
+                [31mfunc1() == func2(2) (229)[0m
+            [31mtest20[0m
+                [32mfunc2(1) == func2(1) (pass) (236)[0m
+                [31mfunc2(2) == func2(1) (fail) (237)[0m
+            [32mtest21[0m
+            [32mtest22[0m
+        [31mtest6[0m
+            [31m1 == 4 (pff) (134)[0m
+    [32mtest3[0m
+Passed  modules: [32m2[0m/7
+Failed  modules: [31m5[0m/7
+Skipped modules: [32m0[0m/7
+Passed  tests: [32m15[0m/22
+Failed  tests: [31m7[0m/22
+Skipped tests: [32m0[0m/22
+Passed non-fatal asserts: [32m35[0m/42
+Failed non-fatal asserts: [31m7[0m/42
+Passed fatal-for-test asserts: [32m0[0m/0
+Failed fatal-for-test asserts: [32m0[0m/0
+Passed fatal-for-module asserts: [32m0[0m/0
+Failed fatal-for-module asserts: [32m0[0m/0
+Passed fatal asserts: [32m0[0m/0
+Failed fatal asserts: [32m0[0m/0

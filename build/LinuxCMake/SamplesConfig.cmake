@@ -16,21 +16,21 @@ list(APPEND SAMPLES basic
     module_fixtures_one_file
     test_fixtures
     test_fixtures_one_file
-    check
+    non_fatal_assert
     test_and_module
     test_and_module_fixtures
     test_and_module_name
-    check_type
-    check_operator
-    assert_type
-    test_assert_type
-    module_assert_type
-    assert_operator
-    test_assert_operator
-    module_assert_operator
-    test_assert
-    module_assert
-    assert
+    non_fatal_assert_type_operator
+    non_fatal_assert_operator
+    fatal_assert_type_operator
+    fatal_for_test_assert_type_operator
+    fatal_for_module_assert_type_operator
+    fatal_assert_operator
+    fatal_for_test_assert_operator
+    fatal_for_module_assert_operator
+    fatal_for_test_assert
+    fatal_for_module_assert
+    fatal_assert
     mt_scheduler_basic
     mt_scheduler_module_fixtures_run_only_once
     mt_scheduler_run_test_fixtures_in_parallel

@@ -28,7 +28,7 @@ SOFTWARE.
 #define NBP_LIBRARY_MAIN
 #include <nbp.h>
 
-NBP_MAIN_MODULE(modules_sample)
+NBP_MAIN_MODULE(modules)
 {
     NBP_MODULE_RUN(basic_math);
     NBP_MODULE_RUN(advanced_math);

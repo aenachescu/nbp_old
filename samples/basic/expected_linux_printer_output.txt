@@ -1,4 +1,4 @@
-Running...[2KRunning... 1/4[2KRunning... 2/4[2KRunning... 3/4[2KRunning... 4/4[2K[32mbasic_sample[0m
+Running...[2KRunning... 1/4[2KRunning... 2/4[2KRunning... 3/4[2KRunning... 4/4[2K[32mbasic[0m
     [32mtest_my_add[0m
     [32mtest_my_sub[0m
     [32mtest_my_mul[0m
@@ -9,11 +9,11 @@ Skipped modules: [32m0[0m/1
 Passed  tests: [32m4[0m/4
 Failed  tests: [32m0[0m/4
 Skipped tests: [32m0[0m/4
-Passed checks: [32m20[0m/20
-Failed checks: [32m0[0m/20
-Passed test asserts: [32m0[0m/0
-Failed test asserts: [32m0[0m/0
-Passed module asserts: [32m0[0m/0
-Failed module asserts: [32m0[0m/0
-Passed asserts: [32m0[0m/0
-Failed asserts: [32m0[0m/0
+Passed non-fatal asserts: [32m20[0m/20
+Failed non-fatal asserts: [32m0[0m/20
+Passed fatal-for-test asserts: [32m0[0m/0
+Failed fatal-for-test asserts: [32m0[0m/0
+Passed fatal-for-module asserts: [32m0[0m/0
+Failed fatal-for-module asserts: [32m0[0m/0
+Passed fatal asserts: [32m0[0m/0
+Failed fatal asserts: [32m0[0m/0

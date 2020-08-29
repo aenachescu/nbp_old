@@ -110,7 +110,7 @@ NBP_TEST_TEARDOWN(my_test_teardown3)
     );
 }
 
-NBP_MAIN_MODULE(test_fixtures_one_file_sample)
+NBP_MAIN_MODULE(test_fixtures_one_file)
 {
     NBP_MODULE_RUN(module1);
     NBP_MODULE_RUN(module2);

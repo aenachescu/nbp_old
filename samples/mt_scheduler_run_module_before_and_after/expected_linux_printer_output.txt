@@ -201,11 +201,11 @@ Skipped modules: [32m0[0m/79
 Passed  tests: [32m118[0m/118
 Failed  tests: [32m0[0m/118
 Skipped tests: [32m0[0m/118
-Passed checks: [32m1392[0m/1392
-Failed checks: [32m0[0m/1392
-Passed test asserts: [32m464[0m/464
-Failed test asserts: [32m0[0m/464
-Passed module asserts: [32m0[0m/0
-Failed module asserts: [32m0[0m/0
-Passed asserts: [32m0[0m/0
-Failed asserts: [32m0[0m/0
+Passed non-fatal asserts: [32m1392[0m/1392
+Failed non-fatal asserts: [32m0[0m/1392
+Passed fatal-for-test asserts: [32m464[0m/464
+Failed fatal-for-test asserts: [32m0[0m/464
+Passed fatal-for-module asserts: [32m0[0m/0
+Failed fatal-for-module asserts: [32m0[0m/0
+Passed fatal asserts: [32m0[0m/0
+Failed fatal asserts: [32m0[0m/0

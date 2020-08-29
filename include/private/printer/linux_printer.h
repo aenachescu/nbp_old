@@ -671,8 +671,8 @@ NBP_PRINTER_CALLBACK_AFTER_RUN(nbp_linux_printer_after_run)
     );
 
     printf(
-        "Passed checks: %s%u%s/%u\n"
-        "Failed checks: %s%u%s/%u\n",
+        "Passed non-fatal asserts: %s%u%s/%u\n"
+        "Failed non-fatal asserts: %s%u%s/%u\n",
 
         NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN,
         numPassedAsserts,
@@ -703,8 +703,8 @@ NBP_PRINTER_CALLBACK_AFTER_RUN(nbp_linux_printer_after_run)
     );
 
     printf(
-        "Passed test asserts: %s%u%s/%u\n"
-        "Failed test asserts: %s%u%s/%u\n",
+        "Passed fatal-for-test asserts: %s%u%s/%u\n"
+        "Failed fatal-for-test asserts: %s%u%s/%u\n",
 
         NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN,
         numPassedAsserts,
@@ -735,8 +735,8 @@ NBP_PRINTER_CALLBACK_AFTER_RUN(nbp_linux_printer_after_run)
     );
 
     printf(
-        "Passed module asserts: %s%u%s/%u\n"
-        "Failed module asserts: %s%u%s/%u\n",
+        "Passed fatal-for-module asserts: %s%u%s/%u\n"
+        "Failed fatal-for-module asserts: %s%u%s/%u\n",
 
         NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN,
         numPassedAsserts,
@@ -767,8 +767,8 @@ NBP_PRINTER_CALLBACK_AFTER_RUN(nbp_linux_printer_after_run)
     );
 
     printf(
-        "Passed asserts: %s%u%s/%u\n"
-        "Failed asserts: %s%u%s/%u\n",
+        "Passed fatal asserts: %s%u%s/%u\n"
+        "Failed fatal asserts: %s%u%s/%u\n",
 
         NBP_LINUX_PRINTER_PRIVATE_COLOR_GREEN,
         numPassedAsserts,
