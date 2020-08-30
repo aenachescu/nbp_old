@@ -23,13 +23,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-status=0
+numOfFailedTests=0
+numOfTests=0
 warnings=0
 sanopt=""
 
 binPath="../../bin/"
 samplesPath="../../samples/"
 testsTime=0
+
+colorRed=$'\e[31m'
+colorGreen=$'\e[32m'
+colorYellow=$'\e[33m'
+colorNormal=$'\e[39m'
 
 # Parameters:
 # 1 - the name of the sample
@@ -39,11 +45,13 @@ testsTime=0
 # 5 - [optional] command line for sample
 
 function run_test {
+    numOfTests=$(( $numOfTests + 1 ))
+
     if test "$#" -lt 4; then
         echo "running test"
         echo "too few parameters"
         echo $'\e[31mtest failed\e[39m\n'
-        status=1
+        numOfFailedTests=$(( $numOfFailedTests + 1 ))
         return
     fi
 
@@ -69,14 +77,14 @@ function run_test {
     if [ $has_printer_output -ne 0 ] && [ $has_printer_output -ne 1 ]; then
         echo "unexpected value for has_printer_output"
         echo $'\e[31mtest failed\e[39m\n'
-        status=1
+        numOfFailedTests=$(( $numOfFailedTests + 1 ))
         return
     fi
 
     if [ $has_output -ne 0 ] && [ $has_output -ne 1 ]; then
         echo "unexpected value for has_output"
         echo $'\e[31mtest failed\e[39m\n'
-        status=1
+        numOfFailedTests=$(( $numOfFailedTests + 1 ))
         return
     fi
 
@@ -91,7 +99,7 @@ function run_test {
         else
             echo "not found expected printer output"
             echo $'\e[31mtest failed\e[39m\n'
-            status=1
+            numOfFailedTests=$(( $numOfFailedTests + 1 ))
             return
         fi
     elif [ -f "${expectedPrinterOutputPath}" ]; then
@@ -106,7 +114,7 @@ function run_test {
         else
             echo "not found expected output"
             echo $'\e[31mtest failed\e[39m\n'
-            status=1
+            numOfFailedTests=$(( $numOfFailedTests + 1 ))
             return
         fi
     elif [ -f "${expectedOutputPath}" ]; then
@@ -148,7 +156,7 @@ function run_test {
         echo "***** current status: $testStatus"
         echo -n $'\e[31mtest failed\e[39m'
         LC_NUMERIC=C printf " (%02.4f s)\n\n" $testTime
-        status=1
+        numOfFailedTests=$(( $numOfFailedTests + 1 ))
         return
     fi
 
@@ -161,7 +169,7 @@ function run_test {
             echo "$printer_output"
             echo -n $'\e[31mtest failed\e[39m'
             LC_NUMERIC=C printf " (%02.4f s)\n\n" $testTime
-            status=1
+            numOfFailedTests=$(( $numOfFailedTests + 1 ))
             return
         fi
     fi
@@ -175,7 +183,7 @@ function run_test {
             echo "$output"
             echo -n $'\e[31mtest failed\e[39m'
             LC_NUMERIC=C printf " (%02.4f s)\n\n" $testTime
-            status=1
+            numOfFailedTests=$(( $numOfFailedTests + 1 ))
             return
         fi
     fi
@@ -265,20 +273,22 @@ run_test module_and_test_with_same_name_sample 0 1 1
 run_test mt_scheduler_run_module_on_same_thread_as_test_sample 0 1 0
 run_test mt_scheduler_run_module_on_same_thread_as_module_sample 0 1 0
 
-if [ $status -ne 0 ]; then
-    echo -n $'\e[31mrun_tests failed\e[39m'
+if [ $numOfFailedTests -ne 0 ]; then
+    echo -n "${colorRed}run_tests failed${colorNormal} (${colorRed}${numOfFailedTests}${colorNormal}/${numOfTests} failed)"
 else
-    echo -n $'\e[32mrun_tests passed\e[39m'
+    echo -n "${colorGreen}run_tests passed${colorNormal} (${colorGreen}${numOfTests}${colorNormal}/${numOfTests} passed)"
 fi
 
 LC_NUMERIC=C printf " (%02.4f s)\n\n" $testsTime
 
-colorBegin=$'\e[33m'
-colorEnd=$'\e[39m'
 if [ $warnings -eq 0 ]; then
-    colorBegin=$'\e[32m'
+    echo "${colorGreen}${warnings}${colorNormal} warnings found"
+else
+    echo "${colorYellow}${warnings}${colorNormal} warnings found"
 fi
 
-echo "${colorBegin}${warnings}${colorEnd} warnings found"
+if [ $numOfFailedTests -ne 0 ]; then
+exit 1
+fi
 
-exit $status
+exit 0
