@@ -115,7 +115,6 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \
     )
 
-
 /*
  * TODO: add docs
  */
@@ -150,8 +149,8 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamAssertType,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamStatus,                \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMsg,             \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMsg              \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamAssertFailureMsg,       \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamAssertSuccessMsg        \
     )
 
 /*
@@ -167,8 +166,8 @@ SOFTWARE.
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamAssertType,            \
         NBP_MAYBE_UNUSED_PARAMETER unsigned int nbpParamStatus,                \
         NBP_MAYBE_UNUSED_PARAMETER int nbpParamLine,                           \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamFailureMsg,             \
-        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamSuccessMsg              \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamAssertFailureMsg,       \
+        NBP_MAYBE_UNUSED_PARAMETER const char* nbpParamAssertSuccessMsg        \
     )
 
 /*
@@ -208,18 +207,6 @@ SOFTWARE.
         .assertResultCbk                    = NBP_MEMORY_NULL_POINTER,         \
         .assertTypeOpResultCbk              = NBP_MEMORY_NULL_POINTER          \
     }
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_GET_PTR(name)                                              \
-    & NBP_PP_CONCAT(nbpPrinter, name)
-
-/*
- * TODO: add docs
- */
-#define NBP_PRINTER_INCLUDE(name)                                              \
-    extern nbp_printer_interface_t NBP_PP_CONCAT(nbpPrinter, name)
 
 /*
  * TODO: add docs
@@ -390,7 +377,7 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_FAILURE_MESSAGE() nbpParamFailureMsg
+#define NBP_PRINTER_GET_ASSERT_FAILURE_MESSAGE() nbpParamAssertFailureMsg
 
 /*
  * TODO: add docs
@@ -400,7 +387,7 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_PRINTER_GET_SUCCESS_MESSAGE() nbpParamSuccessMsg
+#define NBP_PRINTER_GET_ASSERT_SUCCESS_MESSAGE() nbpParamAssertSuccessMsg
 
 /*
  * TODO: add docs

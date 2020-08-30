@@ -32,4 +32,3 @@ SOFTWARE.
 #include "compiler.h"
 
 #endif // end if NBP_PRIVATE_UTILS_H
-

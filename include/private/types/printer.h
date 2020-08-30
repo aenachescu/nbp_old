@@ -142,8 +142,8 @@ typedef void (*nbp_printer_callback_assert_result_pfn_t)(
     unsigned int, /* assert type */
     unsigned int, /* status */
     int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
+    const char*, /* assert failure message */
+    const char* /* assert success message */
 );
 
 typedef void (*nbp_printer_callback_assert_type_op_result_pfn_t)(
@@ -155,8 +155,8 @@ typedef void (*nbp_printer_callback_assert_type_op_result_pfn_t)(
     unsigned int, /* assert type */
     unsigned int, /* status */
     int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
+    const char*, /* assert failure message */
+    const char* /* assert success message */
 );
 
 struct nbp_printer_interface_t {

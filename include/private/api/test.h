@@ -462,7 +462,6 @@ SOFTWARE.
         assertType                                                             \
     )
 
-
 /*
  * @public doc
  *

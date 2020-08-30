@@ -127,18 +127,6 @@ SOFTWARE.
 /*
  * TODO: add docs
  */
-#define NBP_SCHEDULER_GET_PTR(name)                                            \
-    & NBP_PP_CONCAT(nbpScheduler, name)
-
-/*
- * TODO: add docs
- */
-#define NBP_SCHEDULER_INCLUDE(name)                                            \
-    extern nbp_scheduler_interface_t NBP_PP_CONCAT(nbpScheduler, name)
-
-/*
- * TODO: add docs
- */
 #define NBP_SCHEDULER_RUN_TEST(test)                                           \
     nbp_scheduler_run_test(test)
 

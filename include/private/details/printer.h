@@ -110,8 +110,8 @@ void nbp_printer_notify_assert_result(
     unsigned int, /* assert type */
     unsigned int, /* status */
     int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
+    const char*, /* assert failure message */
+    const char* /* assert success message */
 );
 
 void nbp_printer_notify_assert_type_op_result(
@@ -123,8 +123,8 @@ void nbp_printer_notify_assert_type_op_result(
     unsigned int, /* assert type */
     unsigned int, /* status */
     int, /* line */
-    const char*, /* failure message */
-    const char* /* success message */
+    const char*, /* assert failure message */
+    const char* /* assert success message */
 );
 
 #endif // end if NBP_PRIVATE_DETAILS_PRINTER_H

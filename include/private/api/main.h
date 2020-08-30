@@ -57,12 +57,14 @@ SOFTWARE.
  * TODO: add docs
  */
 #define NBP_MAIN_MODULE(func, ...)                                             \
-    NBP_PRINTER_INCLUDE(nbpDefaultPrinter);                                    \
-    NBP_SCHEDULER_INCLUDE(NBP_MAIN_PRIVATE_SCHEDULER_NAME);                    \
+    extern nbp_printer_interface_t                                             \
+        NBP_PP_CONCAT(nbpPrinter, nbpDefaultPrinter);                          \
+    extern nbp_scheduler_interface_t                                           \
+        NBP_PP_CONCAT(nbpScheduler, NBP_MAIN_PRIVATE_SCHEDULER_NAME);          \
     NBP_MAIN_PRIVATE_MODULE_IMPL(                                              \
         func,                                                                  \
-        NBP_SCHEDULER_GET_PTR(NBP_MAIN_PRIVATE_SCHEDULER_NAME),                \
-        { NBP_PRINTER_GET_PTR(nbpDefaultPrinter) }                             \
+        & NBP_PP_CONCAT(nbpScheduler, NBP_MAIN_PRIVATE_SCHEDULER_NAME),        \
+        { & NBP_PP_CONCAT(nbpPrinter, nbpDefaultPrinter) }                     \
     );                                                                         \
     void NBP_PP_CONCAT(nbp_module_config_, func)(                              \
         NBP_MAYBE_UNUSED_PARAMETER nbp_module_details_t* nbpParamModule        \

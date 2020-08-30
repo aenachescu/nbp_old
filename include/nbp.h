@@ -52,4 +52,3 @@ SOFTWARE.
 #include "private/printer/printer.h"
 
 #endif // end if NBP_LIBRARY_H
-
