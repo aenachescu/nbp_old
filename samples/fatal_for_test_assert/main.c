@@ -142,13 +142,13 @@ NBP_TEST(test1)
     NBP_ASSERT(
         1 == 1,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_FAILURE_MESSAGE("fail message"),
-        NBP_ASSERT_SUCCESS_MESSAGE("pass message")
+        NBP_ASSERT_FAILURE_MESSAGE("fatal for test assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
     NBP_ASSERT(
         2 == 2,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_SUCCESS_MESSAGE("whoaaa")
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
 }
 
@@ -160,12 +160,12 @@ NBP_TEST(test2)
     NBP_ASSERT(
         1 == 1,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_FAILURE_MESSAGE("it should not be printed")
+        NBP_ASSERT_FAILURE_MESSAGE("fatal for test assert failed")
     );
     NBP_ASSERT(
         2 == 2,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_SUCCESS_MESSAGE("best best best")
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
 }
 
@@ -182,8 +182,8 @@ NBP_TEST(test4)
     NBP_ASSERT(
         1 != 1,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_FAILURE_MESSAGE("failed :("),
-        NBP_ASSERT_SUCCESS_MESSAGE("passed :)")
+        NBP_ASSERT_FAILURE_MESSAGE("fatal for test assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
 }
 
@@ -195,32 +195,32 @@ NBP_TEST(test5)
     NBP_ASSERT(
         1 == 1,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_SUCCESS_MESSAGE("qwe")
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
     NBP_ASSERT(
         2 == 2,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_SUCCESS_MESSAGE("asd")
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
     NBP_ASSERT(
         3 == 3,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_SUCCESS_MESSAGE("zxc")
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
     NBP_ASSERT(
         4 != 4,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_FAILURE_MESSAGE("pff")
+        NBP_ASSERT_FAILURE_MESSAGE("fatal for test assert failed")
     );
     NBP_ASSERT(
         5 == 5,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_SUCCESS_MESSAGE("rty")
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
     NBP_ASSERT(
         6 == 6,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_SUCCESS_MESSAGE("fgh")
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
 }
 
@@ -232,7 +232,7 @@ NBP_TEST(test6)
     NBP_ASSERT(
         1 == 4,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_FAILURE_MESSAGE("pff")
+        NBP_ASSERT_FAILURE_MESSAGE("fatal for test assert failed")
     );
 }
 
@@ -246,7 +246,7 @@ NBP_TEST(test7)
     NBP_ASSERT(
         3 == 3,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_SUCCESS_MESSAGE("pass msg")
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
 }
 
@@ -264,7 +264,7 @@ NBP_TEST(test8)
     NBP_ASSERT(
         c == d,
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_SUCCESS_MESSAGE("peeeerfect")
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
     // LCOV_EXCL_STOP
 }
@@ -355,14 +355,14 @@ NBP_TEST(test20)
     NBP_ASSERT(
         func2(1) == func2(1),
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_FAILURE_MESSAGE("fail"),
-        NBP_ASSERT_SUCCESS_MESSAGE("pass")
+        NBP_ASSERT_FAILURE_MESSAGE("fatal for test assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
     NBP_ASSERT(
         func2(2) == func2(1),
         NBP_ASSERT_FATAL_FOR_TEST,
-        NBP_ASSERT_FAILURE_MESSAGE("fail"),
-        NBP_ASSERT_SUCCESS_MESSAGE("pass")
+        NBP_ASSERT_FAILURE_MESSAGE("fatal for test assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal for test assert passed")
     );
 }
 
