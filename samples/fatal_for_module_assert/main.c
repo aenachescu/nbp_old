@@ -56,7 +56,8 @@ NBP_MODULE_TEARDOWN(teardownModule)
     );
 }
 
-NBP_MAIN_MODULE(fatal_for_module_assert, NBP_MODULE_FIXTURES(setupModule, teardownModule))
+NBP_MAIN_MODULE(fatal_for_module_assert,
+    NBP_MODULE_FIXTURES(setupModule, teardownModule))
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);

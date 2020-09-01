@@ -75,7 +75,8 @@ NBP_MODULE(module)
     NBP_MODULE_RUN(submodule2);
 }
 
-NBP_MODULE(submodule1, NBP_MODULE_FIXTURES(submodule1_setup, submodule1_teardown))
+NBP_MODULE(submodule1,
+    NBP_MODULE_FIXTURES(submodule1_setup, submodule1_teardown))
 {
     NBP_TEST_RUN(test6);
     NBP_TEST_RUN(test7);
@@ -128,7 +129,9 @@ NBP_MODULE_SETUP(submodule1_setup)
     SAMPLE_ATOMIC_UINT_ADD_AND_FETCH(&submodule1_test1SetupValue, 1);
 
     submodule1_test1SetupValue = SAMPLE_ATOMIC_UINT_LOAD(&test1SetupValue);
-    submodule1_test1TeardownValue = SAMPLE_ATOMIC_UINT_LOAD(&test1TeardownValue);
+    submodule1_test1TeardownValue = SAMPLE_ATOMIC_UINT_LOAD(
+        &test1TeardownValue
+    );
 }
 
 NBP_MODULE_TEARDOWN(submodule1_teardown)
@@ -183,14 +186,38 @@ NBP_TEST(test1, NBP_TEST_FIXTURES(test1_setup, test1_teardown))
         NBP_ASSERT(err == 0, NBP_ASSERT_FATAL);
     }
 
-    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&test6SetupValue), 0, NBP_ASSERT_FATAL);
-    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&test6TeardownValue), 0, NBP_ASSERT_FATAL);
+    NBP_ASSERT_UINT_EQ(
+        SAMPLE_ATOMIC_UINT_LOAD(&test6SetupValue),
+        0,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_UINT_EQ(
+        SAMPLE_ATOMIC_UINT_LOAD(&test6TeardownValue),
+        0,
+        NBP_ASSERT_FATAL
+    );
 
-    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&test7SetupValue), 0, NBP_ASSERT_FATAL);
-    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&test7TeardownValue), 0, NBP_ASSERT_FATAL);
+    NBP_ASSERT_UINT_EQ(
+        SAMPLE_ATOMIC_UINT_LOAD(&test7SetupValue),
+        0,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_UINT_EQ(
+        SAMPLE_ATOMIC_UINT_LOAD(&test7TeardownValue),
+        0,
+        NBP_ASSERT_FATAL
+    );
 
-    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&submodule1SetupValue), 0, NBP_ASSERT_FATAL);
-    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&submodule1TeardownValue), 0, NBP_ASSERT_FATAL);
+    NBP_ASSERT_UINT_EQ(
+        SAMPLE_ATOMIC_UINT_LOAD(&submodule1SetupValue),
+        0,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_UINT_EQ(
+        SAMPLE_ATOMIC_UINT_LOAD(&submodule1TeardownValue),
+        0,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test2)

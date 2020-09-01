@@ -35,7 +35,8 @@ NBP_TEST(test23)
     NBP_ASSERT(1);
 }
 
-NBP_MODULE(submodule11, NBP_MODULE_NAME("submodule11"), NBP_MODULE_TEARDOWN(module3_teardown1))
+NBP_MODULE(submodule11, NBP_MODULE_NAME("submodule11"),
+    NBP_MODULE_TEARDOWN(module3_teardown1))
 {
     NBP_TEST_RUN(test23);
 }

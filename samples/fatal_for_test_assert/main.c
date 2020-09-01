@@ -56,7 +56,8 @@ NBP_MODULE_TEARDOWN(teardownModule)
     );
 }
 
-NBP_MAIN_MODULE(fatal_for_test_assert, NBP_MODULE_FIXTURES(setupModule, teardownModule))
+NBP_MAIN_MODULE(fatal_for_test_assert,
+    NBP_MODULE_FIXTURES(setupModule, teardownModule))
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);
@@ -136,17 +137,36 @@ NBP_MODULE(submodule4, NBP_MODULE_FIXTURES(setupModule, teardownModule))
 NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1, NBP_ASSERT_FATAL_FOR_TEST);
-    NBP_ASSERT(1 == 1, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_FAILURE_MESSAGE("fail message"), NBP_ASSERT_SUCCESS_MESSAGE("pass message"));
-    NBP_ASSERT(2 == 2, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_SUCCESS_MESSAGE("whoaaa"));
+    NBP_ASSERT(
+        1 == 1,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_FAILURE_MESSAGE("fail message"),
+        NBP_ASSERT_SUCCESS_MESSAGE("pass message")
+    );
+    NBP_ASSERT(
+        2 == 2,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_SUCCESS_MESSAGE("whoaaa")
+    );
 }
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1, NBP_ASSERT_FATAL_FOR_TEST);
-    NBP_ASSERT(1 == 1, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_FAILURE_MESSAGE("it should not be printed"));
-    NBP_ASSERT(2 == 2, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_SUCCESS_MESSAGE("best best best"));
+    NBP_ASSERT(
+        1 == 1,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_FAILURE_MESSAGE("it should not be printed")
+    );
+    NBP_ASSERT(
+        2 == 2,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_SUCCESS_MESSAGE("best best best")
+    );
 }
 
 NBP_TEST(test3)
@@ -159,47 +179,93 @@ NBP_TEST(test4)
 {
     SAMPLE_SLEEP();
     NBP_ASSERT(1, NBP_ASSERT_FATAL_FOR_TEST);
-    NBP_ASSERT(1 != 1, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_FAILURE_MESSAGE("failed :("), NBP_ASSERT_SUCCESS_MESSAGE("passed :)"));
+    NBP_ASSERT(
+        1 != 1,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_FAILURE_MESSAGE("failed :("),
+        NBP_ASSERT_SUCCESS_MESSAGE("passed :)")
+    );
 }
 
 NBP_TEST(test5)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1, NBP_ASSERT_FATAL_FOR_TEST);
-    NBP_ASSERT(1 == 1, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_SUCCESS_MESSAGE("qwe"));
-    NBP_ASSERT(2 == 2, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_SUCCESS_MESSAGE("asd"));
-    NBP_ASSERT(3 == 3, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_SUCCESS_MESSAGE("zxc"));
-    NBP_ASSERT(4 != 4, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_FAILURE_MESSAGE("pff"));
-    NBP_ASSERT(5 == 5, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_SUCCESS_MESSAGE("rty"));
-    NBP_ASSERT(6 == 6, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_SUCCESS_MESSAGE("fgh"));
+    NBP_ASSERT(
+        1 == 1,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_SUCCESS_MESSAGE("qwe")
+    );
+    NBP_ASSERT(
+        2 == 2,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_SUCCESS_MESSAGE("asd")
+    );
+    NBP_ASSERT(
+        3 == 3,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_SUCCESS_MESSAGE("zxc")
+    );
+    NBP_ASSERT(
+        4 != 4,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_FAILURE_MESSAGE("pff")
+    );
+    NBP_ASSERT(
+        5 == 5,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_SUCCESS_MESSAGE("rty")
+    );
+    NBP_ASSERT(
+        6 == 6,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_SUCCESS_MESSAGE("fgh")
+    );
 }
 
 NBP_TEST(test6)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1, NBP_ASSERT_FATAL_FOR_TEST);
-    NBP_ASSERT(1 == 4, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_FAILURE_MESSAGE("pff"));
+    NBP_ASSERT(
+        1 == 4,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_FAILURE_MESSAGE("pff")
+    );
 }
 
 NBP_TEST(test7)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1, NBP_ASSERT_FATAL_FOR_TEST);
     NBP_ASSERT(1 != 1, NBP_ASSERT_FATAL_FOR_TEST);
     NBP_ASSERT(2 == 2, NBP_ASSERT_FATAL_FOR_TEST);
-    NBP_ASSERT(3 == 3, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_SUCCESS_MESSAGE("pass msg"));
+    NBP_ASSERT(
+        3 == 3,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_SUCCESS_MESSAGE("pass msg")
+    );
 }
 
 NBP_TEST(test8)
 {
     int a = 0, b = 1, c = 2, d = 2;
+
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1, NBP_ASSERT_FATAL_FOR_TEST);
     NBP_ASSERT(a == b, NBP_ASSERT_FATAL_FOR_TEST);
 
     // this line is excluded from coverage because the above asser fails
     // LCOV_EXCL_START
-    NBP_ASSERT(c == d, NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_SUCCESS_MESSAGE("peeeerfect"));
+    NBP_ASSERT(
+        c == d,
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_SUCCESS_MESSAGE("peeeerfect")
+    );
     // LCOV_EXCL_STOP
 }
 
@@ -276,6 +342,7 @@ int func2(int b)
 NBP_TEST(test19)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1, NBP_ASSERT_FATAL_FOR_TEST);
     NBP_ASSERT(func1() == func2(2), NBP_ASSERT_FATAL_FOR_TEST);
 }
@@ -283,9 +350,20 @@ NBP_TEST(test19)
 NBP_TEST(test20)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1, NBP_ASSERT_FATAL_FOR_TEST);
-    NBP_ASSERT(func2(1) == func2(1), NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_FAILURE_MESSAGE("fail"), NBP_ASSERT_SUCCESS_MESSAGE("pass"));
-    NBP_ASSERT(func2(2) == func2(1), NBP_ASSERT_FATAL_FOR_TEST, NBP_ASSERT_FAILURE_MESSAGE("fail"), NBP_ASSERT_SUCCESS_MESSAGE("pass"));
+    NBP_ASSERT(
+        func2(1) == func2(1),
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_FAILURE_MESSAGE("fail"),
+        NBP_ASSERT_SUCCESS_MESSAGE("pass")
+    );
+    NBP_ASSERT(
+        func2(2) == func2(1),
+        NBP_ASSERT_FATAL_FOR_TEST,
+        NBP_ASSERT_FAILURE_MESSAGE("fail"),
+        NBP_ASSERT_SUCCESS_MESSAGE("pass")
+    );
 }
 
 NBP_TEST(test21)

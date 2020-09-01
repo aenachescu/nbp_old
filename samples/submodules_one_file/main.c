@@ -175,4 +175,3 @@ NBP_TEST(test16)
     SAMPLE_SLEEP();
     NBP_ASSERT(4);
 }
-

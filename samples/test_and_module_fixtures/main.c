@@ -108,7 +108,8 @@ NBP_MODULE(module2, NBP_MODULE_FIXTURES(setupModule, teardownModule))
     NBP_TEST_RUN(test2);
 }
 
-NBP_MAIN_MODULE(test_and_module_fixtures, NBP_MODULE_FIXTURES(setupModule, teardownModule))
+NBP_MAIN_MODULE(test_and_module_fixtures,
+    NBP_MODULE_FIXTURES(setupModule, teardownModule))
 {
     NBP_TEST_USE_SETUP(testSetup);
     NBP_TEST_USE_TEARDOWN(testTeardown);

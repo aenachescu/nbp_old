@@ -81,7 +81,10 @@ NBP_TEST(test44)
     SAMPLE_SLEEP();
 
     test44ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test44ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test44ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test45)
@@ -89,7 +92,10 @@ NBP_TEST(test45)
     SAMPLE_SLEEP();
 
     test45ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test45ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test45ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test46)
@@ -97,7 +103,10 @@ NBP_TEST(test46)
     SAMPLE_SLEEP();
 
     test46ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test46ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test46ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test47)
@@ -105,7 +114,10 @@ NBP_TEST(test47)
     SAMPLE_SLEEP();
 
     test47ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test47ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test47ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 /*******************************************************************************
@@ -125,7 +137,10 @@ NBP_TEST(test48)
     SAMPLE_SLEEP();
 
     test48ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test48ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test48ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test49)
@@ -133,7 +148,10 @@ NBP_TEST(test49)
     SAMPLE_SLEEP();
 
     test49ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test49ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test49ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test50)
@@ -141,7 +159,10 @@ NBP_TEST(test50)
     SAMPLE_SLEEP();
 
     test50ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test50ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test50ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test51)
@@ -149,7 +170,10 @@ NBP_TEST(test51)
     SAMPLE_SLEEP();
 
     test51ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test51ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test51ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 /*******************************************************************************
@@ -169,7 +193,10 @@ NBP_TEST(test52)
     SAMPLE_SLEEP();
 
     test52ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test52ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test52ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test53)
@@ -177,7 +204,10 @@ NBP_TEST(test53)
     SAMPLE_SLEEP();
 
     test53ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test53ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test53ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test54)
@@ -185,7 +215,10 @@ NBP_TEST(test54)
     SAMPLE_SLEEP();
 
     test54ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test54ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test54ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test55)
@@ -193,7 +226,10 @@ NBP_TEST(test55)
     SAMPLE_SLEEP();
 
     test55ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test55ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test55ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 /*******************************************************************************
@@ -210,31 +246,37 @@ NBP_MODULE(module9)
     NBP_TEST_RUN(test57);
 }
 
-NBP_MODULE(empty_module5, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_module5,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule9);
     NBP_MODULE_RUN(empty_submodule10);
 }
 
-NBP_MODULE(empty_module6, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_module6,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule11);
     NBP_MODULE_RUN(empty_submodule12);
 }
 
-NBP_MODULE(empty_submodule9, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_submodule9,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE(empty_submodule10, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_submodule10,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE(empty_submodule11, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_submodule11,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE(empty_submodule12, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_submodule12,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
@@ -283,7 +325,10 @@ NBP_TEST(test56)
     SAMPLE_SLEEP();
 
     test56ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test56ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test56ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test57)
@@ -291,7 +336,10 @@ NBP_TEST(test57)
     SAMPLE_SLEEP();
 
     test57ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test57ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test57ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test58)
@@ -299,7 +347,10 @@ NBP_TEST(test58)
     SAMPLE_SLEEP();
 
     test58ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test58ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test58ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test59)
@@ -307,7 +358,10 @@ NBP_TEST(test59)
     SAMPLE_SLEEP();
 
     test59ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test59ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test59ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test60)
@@ -315,7 +369,10 @@ NBP_TEST(test60)
     SAMPLE_SLEEP();
 
     test60ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test60ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test60ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test61)
@@ -323,7 +380,10 @@ NBP_TEST(test61)
     SAMPLE_SLEEP();
 
     test61ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test61ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test61ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test62)
@@ -331,7 +391,10 @@ NBP_TEST(test62)
     SAMPLE_SLEEP();
 
     test62ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test62ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test62ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test63)
@@ -339,7 +402,10 @@ NBP_TEST(test63)
     SAMPLE_SLEEP();
 
     test63ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test63ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test63ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test64)
@@ -347,7 +413,10 @@ NBP_TEST(test64)
     SAMPLE_SLEEP();
 
     test64ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test64ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test64ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test65)
@@ -355,7 +424,10 @@ NBP_TEST(test65)
     SAMPLE_SLEEP();
 
     test65ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test65ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test65ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test66)
@@ -363,7 +435,10 @@ NBP_TEST(test66)
     SAMPLE_SLEEP();
 
     test66ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test66ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test66ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test67)
@@ -371,7 +446,10 @@ NBP_TEST(test67)
     SAMPLE_SLEEP();
 
     test67ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test67ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test67ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test68)
@@ -379,7 +457,10 @@ NBP_TEST(test68)
     SAMPLE_SLEEP();
 
     test68ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test68ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test68ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test69)
@@ -387,7 +468,10 @@ NBP_TEST(test69)
     SAMPLE_SLEEP();
 
     test69ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test69ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test69ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 /*******************************************************************************
@@ -402,31 +486,37 @@ NBP_MODULE(module10)
     NBP_MODULE_RUN(submodule8);
 }
 
-NBP_MODULE(empty_module7, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_module7,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule13);
     NBP_MODULE_RUN(empty_submodule14);
 }
 
-NBP_MODULE(empty_module8, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_module8,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule15);
     NBP_MODULE_RUN(empty_submodule16);
 }
 
-NBP_MODULE(empty_submodule13, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_submodule13,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE(empty_submodule14, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_submodule14,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE(empty_submodule15, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_submodule15,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE(empty_submodule16, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_submodule16,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
@@ -471,7 +561,10 @@ NBP_TEST(test70)
     SAMPLE_SLEEP();
 
     test70ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test70ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test70ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test71)
@@ -479,7 +572,10 @@ NBP_TEST(test71)
     SAMPLE_SLEEP();
 
     test71ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test71ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test71ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test72)
@@ -487,7 +583,10 @@ NBP_TEST(test72)
     SAMPLE_SLEEP();
 
     test72ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test72ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test72ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test73)
@@ -495,7 +594,10 @@ NBP_TEST(test73)
     SAMPLE_SLEEP();
 
     test73ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test73ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test73ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test74)
@@ -503,7 +605,10 @@ NBP_TEST(test74)
     SAMPLE_SLEEP();
 
     test74ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test74ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test74ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test75)
@@ -511,7 +616,10 @@ NBP_TEST(test75)
     SAMPLE_SLEEP();
 
     test75ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test75ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test75ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test76)
@@ -519,7 +627,10 @@ NBP_TEST(test76)
     SAMPLE_SLEEP();
 
     test76ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test76ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test76ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test77)
@@ -527,5 +638,8 @@ NBP_TEST(test77)
     SAMPLE_SLEEP();
 
     test77ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test77ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test77ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }

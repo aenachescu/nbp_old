@@ -33,4 +33,3 @@ NBP_MAIN_MODULE(submodules)
     NBP_MODULE_RUN(module1);
     NBP_MODULE_RUN(module2);
 }
-

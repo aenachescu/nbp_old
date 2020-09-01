@@ -43,55 +43,181 @@ volatile unsigned long int ulong_ = 2UL;
 NBP_TEST(fatal_assert_ulong_eq)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_ULONG_EQ(get_ulong(), ulong_, NBP_ASSERT_FATAL);
-    NBP_ASSERT_ULONG_EQ(get_ulong(), ulong_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_ULONG_EQ(get_ulong(), ulong_, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_ULONG_EQ(get_ulong(), ulong_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_ULONG_EQ(
+        get_ulong(),
+        ulong_,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_ULONG_EQ(
+        get_ulong(),
+        ulong_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_ULONG_EQ(
+        get_ulong(),
+        ulong_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_ULONG_EQ(
+        get_ulong(),
+        ulong_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_TEST(fatal_assert_ulong_ne)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_ULONG_NE(get_ulong(), ulong_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_ULONG_NE(get_ulong(), ulong_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_ULONG_NE(get_ulong(), ulong_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_ULONG_NE(get_ulong(), ulong_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_ULONG_NE(
+        get_ulong(),
+        ulong_min,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_ULONG_NE(
+        get_ulong(),
+        ulong_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_ULONG_NE(
+        get_ulong(),
+        ulong_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_ULONG_NE(
+        get_ulong(),
+        ulong_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_TEST(fatal_assert_ulong_gt)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_ULONG_GT(get_ulong(), ulong_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_ULONG_GT(get_ulong(), ulong_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_ULONG_GT(get_ulong(), ulong_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_ULONG_GT(get_ulong(), ulong_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_ULONG_GT(
+        get_ulong(),
+        ulong_min,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_ULONG_GT(
+        get_ulong(),
+        ulong_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_ULONG_GT(
+        get_ulong(),
+        ulong_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_ULONG_GT(
+        get_ulong(),
+        ulong_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_TEST(fatal_assert_ulong_ge)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_ULONG_GE(get_ulong(), ulong_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_ULONG_GE(get_ulong(), ulong_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_ULONG_GE(get_ulong(), ulong_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_ULONG_GE(get_ulong(), ulong_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_ULONG_GE(
+        get_ulong(),
+        ulong_min,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_ULONG_GE(
+        get_ulong(),
+        ulong_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_ULONG_GE(
+        get_ulong(),
+        ulong_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_ULONG_GE(
+        get_ulong(),
+        ulong_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_TEST(fatal_assert_ulong_lt)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_ULONG_LT(get_ulong(), ulong_max, NBP_ASSERT_FATAL);
-    NBP_ASSERT_ULONG_LT(get_ulong(), ulong_max, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_ULONG_LT(get_ulong(), ulong_max, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_ULONG_LT(get_ulong(), ulong_max, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_ULONG_LT(
+        get_ulong(),
+        ulong_max,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_ULONG_LT(
+        get_ulong(),
+        ulong_max,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_ULONG_LT(
+        get_ulong(),
+        ulong_max,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_ULONG_LT(
+        get_ulong(),
+        ulong_max,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_TEST(fatal_assert_ulong_le)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_ULONG_LE(get_ulong(), ulong_max, NBP_ASSERT_FATAL);
-    NBP_ASSERT_ULONG_LE(get_ulong(), ulong_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_ULONG_LE(get_ulong(), ulong_max, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_ULONG_LE(get_ulong(), ulong_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_ULONG_LE(
+        get_ulong(),
+        ulong_max,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_ULONG_LE(
+        get_ulong(),
+        ulong_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_ULONG_LE(
+        get_ulong(),
+        ulong_max,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_ULONG_LE(
+        get_ulong(),
+        ulong_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_MODULE(fatal_assert_ulong)

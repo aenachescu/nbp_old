@@ -46,55 +46,181 @@ volatile int int_ = 2;
 NBP_TEST(fatal_assert_operator_eq)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_EQ(get_int(), int_, NBP_ASSERT_FATAL);
-    NBP_ASSERT_EQ(get_int(), int_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_EQ(get_int(), int_, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_EQ(get_int(), int_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_EQ(
+        get_int(),
+        int_,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_EQ(
+        get_int(),
+        int_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_EQ(
+        get_int(),
+        int_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_EQ(
+        get_int(),
+        int_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_TEST(fatal_assert_operator_ne)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_NE(get_int(), int_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_NE(get_int(), int_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_NE(get_int(), int_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_NE(get_int(), int_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_NE(
+        get_int(),
+        int_min,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_NE(
+        get_int(),
+        int_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_NE(
+        get_int(),
+        int_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_NE(
+        get_int(),
+        int_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_TEST(fatal_assert_operator_gt)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_GT(get_int(), int_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_GT(get_int(), int_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_GT(get_int(), int_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_GT(get_int(), int_min, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_GT(
+        get_int(),
+        int_min,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_GT(
+        get_int(),
+        int_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_GT(
+        get_int(),
+        int_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_GT(
+        get_int(),
+        int_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_TEST(fatal_assert_operator_ge)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_GE(get_int(), int_min, NBP_ASSERT_FATAL);
-    NBP_ASSERT_GE(get_int(), int_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_GE(get_int(), int_min, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_GE(get_int(), int_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_GE(
+        get_int(),
+        int_min,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_GE(
+        get_int(),
+        int_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_GE(
+        get_int(),
+        int_min,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_GE(
+        get_int(),
+        int_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_TEST(fatal_assert_operator_lt)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_LT(get_int(), int_max, NBP_ASSERT_FATAL);
-    NBP_ASSERT_LT(get_int(), int_max, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_LT(get_int(), int_max, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_LT(get_int(), int_max, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_LT(
+        get_int(),
+        int_max,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_LT(
+        get_int(),
+        int_max,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_LT(
+        get_int(),
+        int_max,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_LT(
+        get_int(),
+        int_max,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_TEST(fatal_assert_operator_le)
 {
     SAMPLE_SLEEP();
-    NBP_ASSERT_LE(get_int(), int_max, NBP_ASSERT_FATAL);
-    NBP_ASSERT_LE(get_int(), int_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"));
-    NBP_ASSERT_LE(get_int(), MY_INT_MAX, NBP_ASSERT_FATAL, NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
-    NBP_ASSERT_LE(get_int(), int_, NBP_ASSERT_FATAL, NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"), NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed"));
+
+    NBP_ASSERT_LE(
+        get_int(),
+        int_max,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_LE(
+        get_int(),
+        int_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed")
+    );
+    NBP_ASSERT_LE(
+        get_int(),
+        MY_INT_MAX,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
+    NBP_ASSERT_LE(
+        get_int(),
+        int_,
+        NBP_ASSERT_FATAL,
+        NBP_ASSERT_FAILURE_MESSAGE("fatal assert failed"),
+        NBP_ASSERT_SUCCESS_MESSAGE("fatal assert passed")
+    );
 }
 
 NBP_MAIN_MODULE(fatal_assert_operator)

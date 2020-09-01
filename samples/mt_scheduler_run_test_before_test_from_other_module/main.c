@@ -145,8 +145,16 @@ NBP_TEST(test1, NBP_TEST_FIXTURES(test1_setup, test1_teardown))
         NBP_ASSERT(err == 0, NBP_ASSERT_FATAL);
     }
 
-    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&test3SetupValue), 0, NBP_ASSERT_FATAL);
-    NBP_ASSERT_UINT_EQ(SAMPLE_ATOMIC_UINT_LOAD(&test3TeardownValue), 0, NBP_ASSERT_FATAL);
+    NBP_ASSERT_UINT_EQ(
+        SAMPLE_ATOMIC_UINT_LOAD(&test3SetupValue),
+        0,
+        NBP_ASSERT_FATAL
+    );
+    NBP_ASSERT_UINT_EQ(
+        SAMPLE_ATOMIC_UINT_LOAD(&test3TeardownValue),
+        0,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test2)

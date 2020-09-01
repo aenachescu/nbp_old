@@ -33,4 +33,3 @@ NBP_MAIN_MODULE(modules)
     NBP_MODULE_RUN(basic_math);
     NBP_MODULE_RUN(advanced_math);
 }
-

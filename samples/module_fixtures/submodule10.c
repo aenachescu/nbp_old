@@ -35,7 +35,8 @@ NBP_TEST(test22)
     NBP_ASSERT(1);
 }
 
-NBP_MODULE(submodule10, NBP_MODULE_NAME("submodule10"), NBP_MODULE_SETUP(module3_setup1))
+NBP_MODULE(submodule10, NBP_MODULE_NAME("submodule10"),
+    NBP_MODULE_SETUP(module3_setup1))
 {
     NBP_TEST_RUN(test22);
 }

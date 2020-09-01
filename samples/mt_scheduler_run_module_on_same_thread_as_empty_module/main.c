@@ -81,14 +81,21 @@ NBP_TEST(test1)
     SAMPLE_SLEEP();
 
     test1ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test1ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);}
+    NBP_ASSERT(
+        test1ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
+}
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
 
     test2ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test2ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test2ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test3)
@@ -96,7 +103,10 @@ NBP_TEST(test3)
     SAMPLE_SLEEP();
 
     test3ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test3ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test3ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test4)
@@ -104,7 +114,10 @@ NBP_TEST(test4)
     SAMPLE_SLEEP();
 
     test4ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test4ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test4ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test5)
@@ -112,7 +125,10 @@ NBP_TEST(test5)
     SAMPLE_SLEEP();
 
     test5ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test5ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test5ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test6)
@@ -120,7 +136,10 @@ NBP_TEST(test6)
     SAMPLE_SLEEP();
 
     test6ThreadId = SAMPLE_THREAD_GET_ID();
-    NBP_ASSERT(test6ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE, NBP_ASSERT_FATAL);
+    NBP_ASSERT(
+        test6ThreadId != SAMPLE_THREAD_ID_INVALID_VALUE,
+        NBP_ASSERT_FATAL
+    );
 }
 
 NBP_TEST(test7)
@@ -151,16 +170,19 @@ NBP_MODULE_TEARDOWN(teardownEmptyModule)
 
 // LCOV_EXCL_STOP
 
-NBP_MODULE(empty_module, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_module,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
     NBP_MODULE_RUN(empty_submodule1);
     NBP_MODULE_RUN(empty_submodule2);
 }
 
-NBP_MODULE(empty_submodule1, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_submodule1,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }
 
-NBP_MODULE(empty_submodule2, NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
+NBP_MODULE(empty_submodule2,
+    NBP_MODULE_FIXTURES(setupEmptyModule, teardownEmptyModule))
 {
 }

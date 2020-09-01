@@ -114,7 +114,8 @@ NBP_MODULE(module1, NBP_MODULE_FIXTURES(module_setup, module_teardown))
     NBP_TEST_RUN(test8);
 }
 
-NBP_TEST(test1, NBP_TEST_NAME("test"), NBP_TEST_FIXTURES(test1_setup, test1_teardown))
+NBP_TEST(test1, NBP_TEST_NAME("test"),
+    NBP_TEST_FIXTURES(test1_setup, test1_teardown))
 {
     SAMPLE_SLEEP();
     NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test1"));
@@ -126,7 +127,8 @@ NBP_TEST(test2, NBP_TEST_FIXTURES(test_setup, test_teardown))
     NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test2"));
 }
 
-NBP_TEST(test3, NBP_TEST_NAME("test"), NBP_TEST_FIXTURES(test3_setup, test3_teardown))
+NBP_TEST(test3, NBP_TEST_NAME("test"),
+    NBP_TEST_FIXTURES(test3_setup, test3_teardown))
 {
     SAMPLE_SLEEP();
     NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test3"));
@@ -144,7 +146,8 @@ NBP_TEST(test5, NBP_TEST_FIXTURES(test_setup, test_teardown))
     NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test5"));
 }
 
-NBP_TEST(test6, NBP_TEST_NAME("test"), NBP_TEST_FIXTURES(test6_setup, test6_teardown))
+NBP_TEST(test6, NBP_TEST_NAME("test"),
+    NBP_TEST_FIXTURES(test6_setup, test6_teardown))
 {
     SAMPLE_SLEEP();
     NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test6"));
@@ -156,7 +159,8 @@ NBP_TEST(test7, NBP_TEST_FIXTURES(test_setup, test_teardown))
     NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test7"));
 }
 
-NBP_TEST(test8, NBP_TEST_NAME("test"), NBP_TEST_FIXTURES(test8_setup, test8_teardown))
+NBP_TEST(test8, NBP_TEST_NAME("test"),
+    NBP_TEST_FIXTURES(test8_setup, test8_teardown))
 {
     SAMPLE_SLEEP();
     NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("test8"));

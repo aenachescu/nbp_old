@@ -125,7 +125,8 @@ NBP_MAIN_MODULE(more_modules_with_same_name,
     NBP_MODULE_RUN(module4);
 }
 
-NBP_MODULE(module1, NBP_MODULE_NAME("module"), NBP_MODULE_FIXTURES(module1_setup, module1_teardown))
+NBP_MODULE(module1, NBP_MODULE_NAME("module"),
+    NBP_MODULE_FIXTURES(module1_setup, module1_teardown))
 {
     NBP_MODULE_RUN(submodule1);
     NBP_MODULE_RUN(submodule2);
@@ -141,7 +142,8 @@ NBP_MODULE(module2, NBP_MODULE_FIXTURES(module_setup, module_teardown))
     NBP_MODULE_RUN(submodule8);
 }
 
-NBP_MODULE(module3, NBP_MODULE_NAME("module"), NBP_MODULE_FIXTURES(module3_setup, module3_teardown))
+NBP_MODULE(module3, NBP_MODULE_NAME("module"),
+    NBP_MODULE_FIXTURES(module3_setup, module3_teardown))
 {
     NBP_TEST_RUN(test1);
     NBP_TEST_RUN(test2);

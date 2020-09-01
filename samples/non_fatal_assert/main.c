@@ -89,14 +89,20 @@ NBP_MODULE(submodule4)
 NBP_TEST(test1)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1);
-    NBP_ASSERT(1 == 1, NBP_ASSERT_FAILURE_MESSAGE("fail message"), NBP_ASSERT_SUCCESS_MESSAGE("pass message"));
+    NBP_ASSERT(
+        1 == 1,
+        NBP_ASSERT_FAILURE_MESSAGE("fail message"),
+        NBP_ASSERT_SUCCESS_MESSAGE("pass message")
+    );
     NBP_ASSERT(2 == 2, NBP_ASSERT_SUCCESS_MESSAGE("whoaaa"));
 }
 
 NBP_TEST(test2)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1);
     NBP_ASSERT(1 == 1, NBP_ASSERT_FAILURE_MESSAGE("it should not be printed"));
     NBP_ASSERT(2 == 2, NBP_ASSERT_SUCCESS_MESSAGE("best best best"));
@@ -111,14 +117,21 @@ NBP_TEST(test3)
 NBP_TEST(test4)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1);
-    NBP_ASSERT(1 != 1, NBP_ASSERT_FAILURE_MESSAGE("failed :("), NBP_ASSERT_SUCCESS_MESSAGE("passed :)"));
+    NBP_ASSERT(
+        1 != 1,
+        NBP_ASSERT_FAILURE_MESSAGE("failed :("),
+        NBP_ASSERT_SUCCESS_MESSAGE("passed :)")
+    );
 }
 
 NBP_TEST(test5)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1);
+
     NBP_ASSERT(1 == 1, NBP_ASSERT_SUCCESS_MESSAGE("qwe"));
     NBP_ASSERT(2 == 2, NBP_ASSERT_SUCCESS_MESSAGE("asd"));
     NBP_ASSERT(3 == 3, NBP_ASSERT_SUCCESS_MESSAGE("zxc"));
@@ -130,6 +143,7 @@ NBP_TEST(test5)
 NBP_TEST(test6)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1);
     NBP_ASSERT(1 == 4, NBP_ASSERT_FAILURE_MESSAGE("pff"));
 }
@@ -137,6 +151,7 @@ NBP_TEST(test6)
 NBP_TEST(test7)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1);
     NBP_ASSERT(1 != 1);
     NBP_ASSERT(2 == 2);
@@ -146,7 +161,9 @@ NBP_TEST(test7)
 NBP_TEST(test8)
 {
     int a = 0, b = 1, c = 2, d = 2;
+
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1);
     NBP_ASSERT(a == b);
     NBP_ASSERT(c == d, NBP_ASSERT_SUCCESS_MESSAGE("peeeerfect"));
@@ -232,9 +249,18 @@ NBP_TEST(test19)
 NBP_TEST(test20)
 {
     SAMPLE_SLEEP();
+
     NBP_ASSERT(1);
-    NBP_ASSERT(func2(1) == func2(1), NBP_ASSERT_FAILURE_MESSAGE("fail"), NBP_ASSERT_SUCCESS_MESSAGE("pass"));
-    NBP_ASSERT(func2(2) == func2(1), NBP_ASSERT_FAILURE_MESSAGE("fail"), NBP_ASSERT_SUCCESS_MESSAGE("pass"));
+    NBP_ASSERT(
+        func2(1) == func2(1),
+        NBP_ASSERT_FAILURE_MESSAGE("fail"),
+        NBP_ASSERT_SUCCESS_MESSAGE("pass")
+    );
+    NBP_ASSERT(
+        func2(2) == func2(1),
+        NBP_ASSERT_FAILURE_MESSAGE("fail"),
+        NBP_ASSERT_SUCCESS_MESSAGE("pass")
+    );
 }
 
 NBP_TEST(test21)

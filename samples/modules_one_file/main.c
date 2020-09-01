@@ -99,4 +99,3 @@ NBP_TEST(test8)
     SAMPLE_SLEEP();
     NBP_ASSERT(8);
 }
-

@@ -50,7 +50,8 @@ NBP_TEST_TEARDOWN(test_teardown)
     write_message_to_console("this message should not be displayed");
 }
 
-NBP_MAIN_MODULE(version_command, NBP_MODULE_FIXTURES(module_setup, module_teardown))
+NBP_MAIN_MODULE(version_command,
+    NBP_MODULE_FIXTURES(module_setup, module_teardown))
 {
     write_message_to_console("this message should not be displayed");
     NBP_MODULE_RUN(module1);

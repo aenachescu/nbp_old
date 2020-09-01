@@ -29,170 +29,206 @@ SOFTWARE.
 
 #include "../sample_utils.h"
 
-NBP_MODULE(empty_module1, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module1,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule1);
     NBP_MODULE_RUN(empty_submodule2);
 }
 
-NBP_MODULE(empty_module2, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module2,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule3);
     NBP_MODULE_RUN(empty_submodule4);
 }
 
-NBP_MODULE(empty_submodule1, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule1,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule2, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule2,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule3, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule3,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule4, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule4,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_module3, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module3,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule5);
     NBP_MODULE_RUN(empty_submodule6);
 }
 
-NBP_MODULE(empty_module4, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module4,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule7);
     NBP_MODULE_RUN(empty_submodule8);
 }
 
-NBP_MODULE(empty_submodule5, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule5,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule6, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule6,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule7, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule7,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule8, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule8,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_module5, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module5,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule9);
     NBP_MODULE_RUN(empty_submodule10);
 }
 
-NBP_MODULE(empty_module6, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module6,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule11);
     NBP_MODULE_RUN(empty_submodule12);
 }
 
-NBP_MODULE(empty_submodule9, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule9,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule10, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule10,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule11, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule11,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule12, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule12,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_module7, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module7,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule13);
     NBP_MODULE_RUN(empty_submodule14);
 }
 
-NBP_MODULE(empty_module8, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module8,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule15);
     NBP_MODULE_RUN(empty_submodule16);
 }
 
-NBP_MODULE(empty_submodule13, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule13,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule14, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule14,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule15, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule15,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule16, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule16,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_module9, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module9,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule17);
     NBP_MODULE_RUN(empty_submodule18);
 }
 
-NBP_MODULE(empty_module10, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module10,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule19);
     NBP_MODULE_RUN(empty_submodule20);
 }
 
-NBP_MODULE(empty_submodule17, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule17,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule18, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule18,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule19, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule19,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule20, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule20,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_module11, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module11,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule21);
     NBP_MODULE_RUN(empty_submodule22);
 }
 
-NBP_MODULE(empty_module12, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_module12,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
     NBP_MODULE_RUN(empty_submodule23);
     NBP_MODULE_RUN(empty_submodule24);
 }
 
-NBP_MODULE(empty_submodule21, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule21,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule22, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule22,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule23, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule23,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }
 
-NBP_MODULE(empty_submodule24, NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
+NBP_MODULE(empty_submodule24,
+    NBP_MODULE_FIXTURES(empty_module_setup, empty_module_teardown))
 {
 }

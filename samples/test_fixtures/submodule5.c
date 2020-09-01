@@ -53,7 +53,8 @@ NBP_TEST(test20)
     NBP_ASSERT(1);
 }
 
-NBP_TEST(test21, NBP_TEST_NAME("test21"), NBP_TEST_FIXTURES(my_test_setup3, my_test_teardown3))
+NBP_TEST(test21, NBP_TEST_NAME("test21"),
+    NBP_TEST_FIXTURES(my_test_setup3, my_test_teardown3))
 {
     SAMPLE_SLEEP();
     NBP_ASSERT(1);

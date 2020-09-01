@@ -34,4 +34,3 @@ NBP_MAIN_MODULE(module_fixtures)
     NBP_MODULE_RUN(module2);
     NBP_MODULE_RUN(module3);
 }
-
