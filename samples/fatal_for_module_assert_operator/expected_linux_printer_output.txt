@@ -1,22 +1,22 @@
 Running...[2KRunning... 1/6[2KRunning... 2/6[2KRunning... 3/6[2KRunning... 4/6[2KRunning... 5/6[2KRunning... 6/6[2K[32mfatal_for_module_assert_operator[0m
     [32mfatal_for_module_assert_operator_eq[0m
-        [32mget_int() == int_ (fatal for module assert passed) (51)[0m
-        [32mget_int() == int_ (fatal for module assert passed) (52)[0m
+        [32mget_int() == int_ (fatal for module assert passed) (66)[0m
+        [32mget_int() == int_ (fatal for module assert passed) (73)[0m
     [32mfatal_for_module_assert_operator_ne[0m
-        [32mget_int() != int_min (fatal for module assert passed) (60)[0m
-        [32mget_int() != int_min (fatal for module assert passed) (61)[0m
+        [32mget_int() != int_min (fatal for module assert passed) (96)[0m
+        [32mget_int() != int_min (fatal for module assert passed) (103)[0m
     [32mfatal_for_module_assert_operator_gt[0m
-        [32mget_int() > int_min (fatal for module assert passed) (69)[0m
-        [32mget_int() > int_min (fatal for module assert passed) (70)[0m
+        [32mget_int() > int_min (fatal for module assert passed) (126)[0m
+        [32mget_int() > int_min (fatal for module assert passed) (133)[0m
     [32mfatal_for_module_assert_operator_ge[0m
-        [32mget_int() >= int_min (fatal for module assert passed) (78)[0m
-        [32mget_int() >= int_ (fatal for module assert passed) (79)[0m
+        [32mget_int() >= int_min (fatal for module assert passed) (156)[0m
+        [32mget_int() >= int_ (fatal for module assert passed) (163)[0m
     [32mfatal_for_module_assert_operator_lt[0m
-        [32mget_int() < int_max (fatal for module assert passed) (87)[0m
-        [32mget_int() < int_max (fatal for module assert passed) (88)[0m
+        [32mget_int() < int_max (fatal for module assert passed) (186)[0m
+        [32mget_int() < int_max (fatal for module assert passed) (193)[0m
     [32mfatal_for_module_assert_operator_le[0m
-        [32mget_int() <= 0x7fffffff (fatal for module assert passed) (96)[0m
-        [32mget_int() <= int_ (fatal for module assert passed) (97)[0m
+        [32mget_int() <= 0x7fffffff (fatal for module assert passed) (216)[0m
+        [32mget_int() <= int_ (fatal for module assert passed) (223)[0m
 Passed  modules: [32m1[0m/1
 Failed  modules: [32m0[0m/1
 Skipped modules: [32m0[0m/1
