@@ -1,0 +1,33 @@
+Running...[2KRunning... 1/6[2KRunning... 2/6[2KRunning... 3/6[2KRunning... 4/6[2KRunning... 5/6[2KRunning... 6/6[2K[32mfatal_assert_operator[0m
+    [32mfatal_assert_operator_eq[0m
+        [32mget_int() == int_ (fatal assert passed) (61)[0m
+        [32mget_int() == int_ (fatal assert passed) (67)[0m
+    [32mfatal_assert_operator_ne[0m
+        [32mget_int() != int_min (fatal assert passed) (91)[0m
+        [32mget_int() != int_min (fatal assert passed) (97)[0m
+    [32mfatal_assert_operator_gt[0m
+        [32mget_int() > int_min (fatal assert passed) (121)[0m
+        [32mget_int() > int_min (fatal assert passed) (127)[0m
+    [32mfatal_assert_operator_ge[0m
+        [32mget_int() >= int_min (fatal assert passed) (151)[0m
+        [32mget_int() >= int_ (fatal assert passed) (157)[0m
+    [32mfatal_assert_operator_lt[0m
+        [32mget_int() < int_max (fatal assert passed) (181)[0m
+        [32mget_int() < int_max (fatal assert passed) (187)[0m
+    [32mfatal_assert_operator_le[0m
+        [32mget_int() <= 0x7fffffff (fatal assert passed) (211)[0m
+        [32mget_int() <= int_ (fatal assert passed) (217)[0m
+Passed  modules: [32m1[0m/1
+Failed  modules: [32m0[0m/1
+Skipped modules: [32m0[0m/1
+Passed  tests: [32m6[0m/6
+Failed  tests: [32m0[0m/6
+Skipped tests: [32m0[0m/6
+Passed non-fatal asserts: [32m0[0m/0
+Failed non-fatal asserts: [32m0[0m/0
+Passed fatal-for-test asserts: [32m0[0m/0
+Failed fatal-for-test asserts: [32m0[0m/0
+Passed fatal-for-module asserts: [32m0[0m/0
+Failed fatal-for-module asserts: [32m0[0m/0
+Passed fatal asserts: [32m24[0m/24
+Failed fatal asserts: [32m0[0m/24

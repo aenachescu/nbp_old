@@ -62,6 +62,7 @@ function run_test {
     has_printer_output=$3
     expected_output=""
     expected_printer_output=""
+    gcc9_expected_printer_output=""
     printer_output=""
     output=""
     testStartTime=""
@@ -72,6 +73,7 @@ function run_test {
     currentSamplePath="${samplesPath}${sample}/"
     currentSampleBinPath="${binPath}$1/"
     expectedPrinterOutputPath="${currentSamplePath}expected_linux_printer_output.txt"
+    gcc9ExpectedPrinterOutputPath="${currentSamplePath}gcc9_expected_linux_printer_output.txt"
     expectedOutputPath="${currentSamplePath}expected_output.txt"
 
     if [ $has_printer_output -ne 0 ] && [ $has_printer_output -ne 1 ]; then
@@ -101,6 +103,10 @@ function run_test {
             echo $'\e[31mtest failed\e[39m\n'
             numOfFailedTests=$(( $numOfFailedTests + 1 ))
             return
+        fi
+
+        if [ -f "${gcc9ExpectedPrinterOutputPath}" ]; then
+            gcc9_expected_printer_output=$(<${gcc9ExpectedPrinterOutputPath})
         fi
     elif [ -f "${expectedPrinterOutputPath}" ]; then
         echo $'\e[33mwarning\e[39m - has_printer_output is not set but the expected_linux_printer_output.txt file exists'
@@ -162,7 +168,8 @@ function run_test {
 
     # check printer output
     if [ $has_printer_output -eq 1 ]; then
-        if [ "$expected_printer_output" != "$printer_output" ]; then
+        if [ "$expected_printer_output" != "$printer_output" ] &&
+            [ "$gcc9_expected_printer_output" != "$printer_output" ]; then
             echo "***** expected printer output *****"
             echo "$expected_printer_output"
             echo "***** printer output *****"
