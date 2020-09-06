@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # https://github.com/aenachescu/nbp
 #
 # Licensed under the MIT License <http://opensource.org/licenses/MIT>.
