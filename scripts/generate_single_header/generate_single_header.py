@@ -137,7 +137,7 @@ def processing_file(filePath, topFile):
 
     path = os.path.dirname(filePath)
 
-    inputFile = open(filePath, 'rb')
+    inputFile = open(filePath, 'r')
     lines = inputFile.readlines()
     inputFile.close()
 
