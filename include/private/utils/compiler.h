@@ -37,13 +37,6 @@ SOFTWARE.
 
 #endif // end if NBP_COMPILER_GCC
 
-#ifdef NBP_COMPILER_GPP
-
-#undef NBP_MAYBE_UNUSED_PARAMETER
-#define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
-
-#endif // end if NBP_COMPILER_GPP
-
 #ifdef NBP_COMPILER_CLANG
 
 #undef NBP_MAYBE_UNUSED_PARAMETER

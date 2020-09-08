@@ -35,6 +35,46 @@ SOFTWARE.
 #define NBP_VERSION_STR         "1.0.0"
 
 /*
+ * Make sure there is only one compiler defined
+ */
+#undef NBP_PRIVATE_COMPILER_TYPE
+
+#ifdef NBP_COMPILER_GCC
+#define NBP_PRIVATE_COMPILER_TYPE
+#endif // end if NBP_COMPILER_GCC
+
+#ifdef NBP_COMPILER_CLANG
+#ifndef NBP_PRIVATE_COMPILER_TYPE
+#define NBP_PRIVATE_COMPILER_TYPE
+#else // NBP_PRIVATE_COMPILER_TYPE not defined
+#error "More NBP_COMPILER_* macros are defined"
+#endif // end if NBP_PRIVATE_COMPILER_TYPE
+#endif // end if NBP_COMPILER_CLANG
+
+#ifdef NBP_COMPILER_CUSTOM
+#ifndef NBP_PRIVATE_COMPILER_TYPE
+#define NBP_PRIVATE_COMPILER_TYPE
+#else // NBP_PRIVATE_COMPILER_TYPE not defined
+#error "More NBP_COMPILER_* macros are defined"
+#endif // end if NBP_PRIVATE_COMPILER_TYPE
+#endif // end if NBP_COMPILER_CUSTOM
+
+/*
+ * If there is no compiler defined then try to detect the compiler
+ */
+#ifndef NBP_PRIVATE_COMPILER_TYPE
+#ifdef __clang__
+#define NBP_COMPILER_CLANG
+#elif __GNUC__
+#define NBP_COMPILER_GCC
+#else // no compiler detected
+#error "Unknown compiler"
+#endif
+#endif // end if NBP_PRIVATE_COMPILER_TYPE
+
+#undef NBP_PRIVATE_COMPILER_TYPE
+
+/*
  * Make sure there is only one OS defined
  */
 #undef NBP_PRIVATE_OS_TYPE
@@ -67,42 +107,18 @@ SOFTWARE.
 #endif // end if NBP_PRIVATE_OS_TYPE
 #endif // end if NBP_OS_CUSTOM
 
+/*
+ * If there is no OS defined then try to detect the OS
+ */
 #ifndef NBP_PRIVATE_OS_TYPE
+#ifdef __linux__
+#define NBP_OS_LINUX
+#else // no OS detected
 #error "Unknown OS"
+#endif
 #endif // end if NBP_PRIVATE_OS_TYPE
 
 #undef NBP_PRIVATE_OS_TYPE
-
-/*
- * Make sure there is only one compiler defined
- */
-#undef NBP_PRIVATE_COMPILER_TYPE
-
-#ifdef NBP_COMPILER_GCC
-#define NBP_PRIVATE_COMPILER_TYPE
-#endif // end if NBP_COMPILER_GCC
-
-#ifdef NBP_COMPILER_GPP
-#ifndef NBP_PRIVATE_COMPILER_TYPE
-#define NBP_PRIVATE_COMPILER_TYPE
-#else // NBP_PRIVATE_COMPILER_TYPE not defined
-#error "More NBP_COMPILER_* macros are defined"
-#endif // end if NBP_PRIVATE_COMPILER_TYPE
-#endif // end if NBP_COMPILER_GPP
-
-#ifdef NBP_COMPILER_CLANG
-#ifndef NBP_PRIVATE_COMPILER_TYPE
-#define NBP_PRIVATE_COMPILER_TYPE
-#else // NBP_PRIVATE_COMPILER_TYPE not defined
-#error "More NBP_COMPILER_* macros are defined"
-#endif // end if NBP_PRIVATE_COMPILER_TYPE
-#endif // end if NBP_COMPILER_CLANG
-
-#ifndef NBP_PRIVATE_COMPILER_TYPE
-#error "Unknown compiler"
-#endif // end if NBP_PRIVATE_COMPILER_TYPE
-
-#undef NBP_PRIVATE_COMPILER_TYPE
 
 /*
  * Make sure there is only one defined scheduler
@@ -2835,13 +2851,6 @@ SOFTWARE.
 #define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
 
 #endif // end if NBP_COMPILER_GCC
-
-#ifdef NBP_COMPILER_GPP
-
-#undef NBP_MAYBE_UNUSED_PARAMETER
-#define NBP_MAYBE_UNUSED_PARAMETER __attribute__ ((unused))
-
-#endif // end if NBP_COMPILER_GPP
 
 #ifdef NBP_COMPILER_CLANG
 

@@ -124,28 +124,28 @@ matrix:
         - cd build/LinuxCMake
 
         # g++ 5
-        - cmake . -DCOMPILER=g++-5 -DCOMPILER_FLAG=-DNBP_COMPILER_GPP -DCODE_COVERAGE=ON
+        - cmake . -DCOMPILER=g++-5 -DCODE_COVERAGE=ON
         - make
         - ./run_tests.sh
         - ./run_coveralls.sh gcov-5
         - make clean
         # g++ 6
-        - cmake . -DCOMPILER=g++-6 -DCOMPILER_FLAG=-DNBP_COMPILER_GPP
+        - cmake . -DCOMPILER=g++-6
         - make
         - ./run_tests.sh
         - make clean
         # g++ 7
-        - cmake . -DCOMPILER=g++-7 -DCOMPILER_FLAG=-DNBP_COMPILER_GPP
+        - cmake . -DCOMPILER=g++-7
         - make
         - ./run_tests.sh
         - make clean
         # g++ 8
-        - cmake . -DCOMPILER=g++-8 -DCOMPILER_FLAG=-DNBP_COMPILER_GPP
+        - cmake . -DCOMPILER=g++-8
         - make
         - ./run_tests.sh
         - make clean
         # g++ 9
-        - cmake . -DCOMPILER=g++-9 -DCOMPILER_FLAG=-DNBP_COMPILER_GPP
+        - cmake . -DCOMPILER=g++-9
         - make
         - ./run_tests.sh
         - make clean
@@ -185,13 +185,13 @@ matrix:
         - cd build/LinuxCMake
 
         # clang 7
-        - cmake . -DCOMPILER=clang-7 -DCOMPILER_FLAG=-DNBP_COMPILER_CLANG -DCODE_COVERAGE=ON
+        - cmake . -DCOMPILER=clang-7 -DCODE_COVERAGE=ON
         - make
         - ./run_tests.sh
         - ./run_coveralls.sh `pwd`/gcov_clang_7.sh
         - make clean
         # clang 8
-        - cmake . -DCOMPILER=clang-8 -DCOMPILER_FLAG=-DNBP_COMPILER_CLANG
+        - cmake . -DCOMPILER=clang-8
         - make
         - ./run_tests.sh
         - make clean
