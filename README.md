@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/aenachescu/nbp/badge.svg?branch=master)](https://coveralls.io/github/aenachescu/nbp?branch=master)
 
 one day NBP will be the most cool unit-testing library for C/C++ :)
-coming soon, stay tunned
+coming soon, stay tuned.
 
 ## Commit Guidelines 
 - docs :memo:
